@@ -1,0 +1,248 @@
+# Descriptive Statistics in R
+ 
+ 
+ 
+ 
+
+## Package pape 
+
+编写漂亮论文和报告的工具箱
+
+* Using papeR with [Markdown](https://cran.r-project.org/web/packages/papeR/vignettes/papeR_introduction.html)
+* Using papeR with [LaTeX](https://cran.r-project.org/web/packages/papeR/vignettes/papeR_with_latex.pdf)
+
+```
+library(papeR)
+library("papeR")
+data(Orthodont, package = "nlme")
+labels(Orthodont) <- c("fissure distance (mm)",
+                       "age (years)", "Subject", "Sex")
+summarize(Orthodont, type = "numeric", group = "Sex",
+          test = c("wilcox.test", "t.test"))
+```
+
+
+## Package summarytools 
+
+
+* [Github](https://github.com/dcomtois/summarytools)
+
+| Function    | Description |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| freq()      | Frequency Tables featuring counts, proportions, as well as missing data information  |
+| ctable()    | Cross-Tabulations (joint frequencies) between pairs of discrete variables featuring marginal sums as well as row, column or total proportions                 |
+| descr()     | Descriptive (Univariate) Statistics for numerical data featuring common measures of central tendency and dispersion                                       |
+| dfSummary() | Extensive Data Frame Summaries featuring type-specific information for all variables in a data frame: univariate statistics and/or frequency distributions, bar charts or histograms, as well as missing data counts. Very useful to quickly detect anomalies and identify trends at a glance |
+
+
+
+
+## Package compareGroups  
+
+[Descriptives by groups](https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html)
+
+```
+library(compareGroups)
+data(predimed)
+
+## Methods
+## 1 - forces analysis as "normal-distributed"; 
+## 2 - forces analysis as "continuous non-normal"; 
+## 3 - forces analysis as "categorical"; 
+## 4 - NA, which performs a Shapiro-Wilks test to decide between normal or non-normal. 
+res <- compareGroups(group ~ . - toevent, 
+                     data = predimed, 
+                     method = c(wtn = 2, p14 = 2))
+
+## Create the descriptive table
+restab <- createTable(res, digits = c(p14 = 0, hormo=1), type = 1, 
+                      hide = c(sex = "Male"), 
+                      hide.no = "no", 
+                      show.n = TRUE)
+restab
+
+export2md(restab, header.labels = c(p.overall = "p-value"))
+```
+
+
+
+## Package kableExtra 
+
+Use kable() with kableExtra to generate 90 % of complex/advanced tables in either HTML or LaTeX, See more
+
+* [Create Awesome HTML Table with knitr::kable and kableExtra](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+* [Create Awesome LaTeX Table with knitr::kable and kableExtra](https://rdrr.io/cran/kableExtra/f/inst/doc/awesome_table_in_pdf.pdf)
+
+### kable_styling
+
+HTML table attributes, provides a cleaner approach to modify the style of HTML tables other than using the table.attr option in knitr::kable(). Note that those bootstrap options requires Twitter bootstrap theme, which is not avaiable in some customized template being loaded.
+
+```
+kable_styling(
+  kable_input,
+  bootstrap_options = "basic",
+  latex_options = "basic",
+  full_width = NULL,
+  position = "center",
+  font_size = NULL,
+  row_label_position = "l",
+  repeat_header_text = "\\textit{(continued)}",
+  repeat_header_method = c("append", "replace"),
+  repeat_header_continued = FALSE,
+  stripe_color = "gray!6",
+  stripe_index = NULL,
+  latex_table_env = NULL,
+  protect_latex = TRUE,
+  table.envir = "table",
+  fixed_thead = FALSE,
+  htmltable_class = NULL,
+  html_font = NULL,
+  wraptable_width = "0pt"
+)
+```
+
+```{r Basic kable_styling,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+# load package
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+
+
+## pandoc Output
+## kable_styling() will automatically apply twitter bootstrap theme to the table.
+## same as the original pandoc output
+dt <- mtcars[1:5, 1:6]
+dt %>%
+  kable() %>%
+  kable_styling()
+  
+
+kable(dt) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+  ## Table Styles:add striped lines "striped" 添加带条纹
+  ## highlight the hovered row,"hover"
+  ## 不希望表格太大,"condensed"
+  ## 响应选项，可以适应窗口滚动--horizontally scrollable，“responsive”
+
+
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "float_right")
+  ## 文本环绕表格 wrap text around the table using the float-left or float-right options.
+
+## small Font size
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 7)
+  
+## Fixed Table Header Row 固定表标题行
+kable(mtcars[1:10, 1:5]) %>%
+  kable_styling(fixed_thead = T)
+
+## 直接保存HTML表
+## kable(mtcars) %>%
+##   kable_styling() %>%
+##   save_kable(file = "table1.html", self_contained = T)
+```
+
+
+### Column/Row Specification
+
+
+table with lots of explanatory texts, specified the column width for different column, may want to highlight a column (e.g. a “Total” column) by making it bold. 
+
+```{r kableExtra Specification,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## data preparation
+text_tbl <- data.frame(
+  Items = c("Item 1", "Item 2", "Item 3"),
+  Features = c("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
+               "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
+               "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "))
+
+
+## 第一列加粗，居左对其
+## 第二列背景，居左对其
+kable(text_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em", background = "yellow")
+
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  column_spec(5:7, bold = T) %>%
+  row_spec(3:5, bold = T, color = "white", background = "#D7261E")
+
+## 标题行的格式
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  row_spec(0, angle = -45)
+```
+
+
+### Grouping columns/rows 
+
+
+```{r kableExtra Grouping,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Add header rows to group columns 分组的列/行, 将标题行添加到组列
+kable(dt) %>%
+  kable_styling("striped") %>%
+  add_header_above(c(" " = 1, "Group 1" = 3, 
+                     "Group 2" = 1, "Group 3" = 2))
+
+kable(dt) %>%
+  kable_styling(c("striped", "bordered")) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2" = 2, "Group 3" = 2)) %>%
+  add_header_above(c(" ", "Group 4" = 4, "Group 5" = 2)) %>%
+  add_header_above(c(" ", "Group 6" = 6))
+
+
+## Subgroups
+## Group rows via labeling 对行进行分组
+kable(mtcars[1:10, 1:6], caption = "Group Rows") %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows("Group 1", 4, 7) %>%
+  pack_rows("Group 2", 8, 10)
+
+kable(mtcars[1:10, 1:6], caption = "Group Rows") %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows(index = c(" " = 3, "Group 1" = 4, "Group 2" = 3))
+
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows("Group 1", 3, 5, label_row_css = "background-color: #666; color: #fff;")
+```
+
+
+### Add Footnote
+
+```{r kableExtra Footnote,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+kable(dt, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  footnote(general = "Here is a general comments of the table. ",
+           number = c("Footnote 1; ", "Footnote 2; "),
+           alphabet = c("Footnote A; ", "Footnote B; "),
+           symbol = c("Footnote Symbol 1; ", "Footnote Symbol 2"),
+           general_title = "General: ", number_title = "Type I: ",
+           alphabet_title = "Type II: ", symbol_title = "Type III: ",
+           footnote_as_chunk = T, title_format = c("italic", "underline")
+           )
+
+dt_footnote <- dt
+names(dt_footnote)[2] <- paste0(names(dt_footnote)[2], 
+                                footnote_marker_symbol(1))
+row.names(dt_footnote)[4] <- paste0(row.names(dt_footnote)[4], 
+                                footnote_marker_alphabet(1))
+kable(dt_footnote, align = "c", 
+      # Remember this escape = F
+      escape = F) %>%
+  kable_styling(full_width = F) %>%
+  footnote(alphabet = "Footnote A; ",
+           symbol = "Footnote Symbol 1; ",
+           alphabet_title = "Type II: ", symbol_title = "Type III: ",
+           footnote_as_chunk = T)
+``` 
+           
+           
+
+```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```

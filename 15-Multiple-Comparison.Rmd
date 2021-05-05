@@ -1,0 +1,106 @@
+# Multiple Comparison
+
+## One-Way ANOVA
+
+### R implementation
+
+* `df.residual` 返回残差的自由度
+* `coef` 返回被估计的系数(有时还包括他们的标准差)
+* `residuals` 返回残差
+* `deviance` 返回方差
+* `fitted` 返回拟合值
+* `logLik` 计算对数似然值和返回参数数目
+* `AIC` 计算Akaike信息准则(Akaike information criterion, AIC) (依赖于logLik())
+
+```{r One-Way ANOVA Test,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+Intelligenz <- data.frame(IQ.Werte=c(99, 131, 118, 112, 128, 136, 120, 107,
+                                     134, 122,134, 103, 127, 121, 139, 114, 
+                                     121, 132,120, 133, 110, 141, 118, 124, 
+                                     111, 138, 120,117, 125, 140, 109, 128, 
+                                     137, 110, 138, 127, 141, 119, 148),
+                             Fach=c(rep(1,10),rep(2,8),rep(3,9),rep(4,12)))
+Intelligenz$Fach <- factor(Intelligenz$Fach,labels=c("I", "II", "III","IV"))
+
+## Compute summary statistics
+library(dplyr)
+group_by(Intelligenz, Fach) %>%
+  summarise(
+    count = n(),
+    mean = mean(IQ.Werte, na.rm = TRUE),
+    sd = sd(IQ.Werte, na.rm = TRUE)
+  )
+
+## Visualize your data with ggpubr
+library("ggpubr")
+ggboxplot(Intelligenz, x = "Fach", y = "IQ.Werte", 
+          color = "Fach", 
+          palette = c("#00AFBB", "#E7B800", "#FC4E07","#E7298A"),
+          order = c("I","II","III","IV"),
+          ylab = "IQ.Werte", xlab = "Fach")
+
+## Model Fitting
+Intelligenz.aov <- aov(IQ.Werte~Fach, data=Intelligenz)
+summary(Intelligenz.aov)
+```
+
+
+## ANOVA Model Diagnosis
+
+1. Homogeneity Test
+    + Homogeneity of variance assumption using Plot
+    + Homogeneity of variance assumption using Levene's test, which is less sensitive to departures from normal distribution. (对偏离正态分布不敏感)
+    + Homogeneity of variance assumption with no assumption of equal variances (放宽方差假设的同质性)
+2. Normality assumption
+3. Multiple Test
+
+### Homogeneity Test
+
+```{r Homogeneity Test,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Check the homogeneity of variance assumption
+plot(Intelligenz.aov, 1)
+
+## Levene’s test,  Homogeneity of variance assumption
+library(car)
+leveneTest(IQ.Werte ~ Fach, data = Intelligenz)
+
+## With no assumption of equal variances
+oneway.test(IQ.Werte~Fach, data=Intelligenz)
+```
+
+### Normality assumption
+
+Using QQ Plot or Shapiro–Wilk test to test residuals
+
+```{r Normality assumption,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Check the normality assumption
+plot(Intelligenz.aov, 2)
+
+## Shapiro–Wilk test to test residuals
+## Extract the residuals and run Shapiro-Wilk test
+aov_residuals <- residuals(object = Intelligenz.aov )
+shapiro.test(x = aov_residuals )
+```
+
+
+### Violation of assumptions
+
+#### Random Effects Models
+
+$$Y_{ij} = \mu + \alpha_i + \epsilon_{ij},$$
+We assume $\alpha_i \; \textrm{i.i.d.} \sim N(0, \sigma_{\alpha}^2).$ and 
+$$E[Y_{ij}] = \mu$$
+$$\text{Var}(Y_{ij}) = \sigma_{\alpha}^2 + \sigma^2$$
+$$\text{Cor}(Y_{ij}, Y_{kl}) =    \left\{   \begin{array}{cc}     0 & i \neq k \\     \sigma_{\alpha}^2 / (\sigma_{\alpha}^2 + \sigma^2) & i = k, j \neq l (\text{intraclass correlation (ICC)})\\     1 & i = k, j = l   \end{array}   \right.$$
+
+MLE is not usable for parameter estimation for the variance components $\sigma_a^2$ and $\sigma^2$, **Restricted maximum likelihood (REML)** is applied here. REML is less biased. The parameter $\mu$ is estimated with maximum-likelihood assuming that the variances are known.
+
+#### Non-Parametric Test
+
+Non-parametric alternative to one-way ANOVA test, **Kruskal-Wallis rank sum test**, which can be used when ANOVA assumptions are not met. 
+
+```
+kruskal.test(IQ.Werte~Fach, data=Intelligenz)
+```
+
+## Two-Ways ANOVA Test
+

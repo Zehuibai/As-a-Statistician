@@ -1,0 +1,126 @@
+--- 
+title: "As a Statistician"
+author: "Zehui Bai"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge."
+---
+
+# Introduction
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+
+**The main content contains the following modules**:
+
+* Data Management
+
+    + Chap 01 Introduction
+    + Chap 02 Input and Format
+    + Chap 03 DM in SAS
+    + Chap 04 DM in R
+    + Chap 05 SQL
+  
+* Data Visualization  
+    + Chap 07 ggplot2
+    + Chap 08 Proc Sqplot
+    
+* Data Analysis
+
+    + Chap 11 Descriptive Statistics in SAS
+    + Chap 12 Descriptive Statistics in R
+    
+    + Chap 13 Distributions
+    + Chap 14 Parametric Test
+    + Chap 15 Multiple Comparison
+    + Chap 16 CI and Sample Size Calculation
+    + Chap 17 Non-Parametric Test
+    
+    + Chap 18 Correlation and Regression
+    + Chap 19 Advanced Linear Regression
+    
+    + Chap 20 Logistic Regression 
+    + Chap 21 Advanced Logistic Regression 
+    
+    + Chap 22 Survival Analysis
+    + Chap 23 Advanced Survival Analysis
+    
+    + Chap 24 Count Data Regression
+    + Chap 25 Proportion Response Regression
+    
+    + Chap 26 Mixed Model
+    + Chap 27 Generalized Linear (Mixed) Model
+    + Chap 28 Generalized Estimating Equation
+    
+    + Chap 29 Time Series Analysis
+    + Chap 30 Meta Analysis
+    
+    + Chap 31 Group (Adaptive) Sequential Design
+    + Chap 32 Clinic Study Design
+    
+    + Chap 33 Propensity Score
+    
+    + Chap 34 Missing Data
+    + Chap 35 
+    
+* Machine learning and Deep learning
+
+    + Chap 38 Bayesian Theory     
+    + Chap 39 Bayesian Regression
+    
+    + Chap 43 Regularization: Penalized Regression
+    + Chap 44 
+    
+    + Chap 45 Classification Analysis 
+    + Chap 46 Random Forest
+    + Chap 47 Gradient Descent and Gradient Boosting
+    + Chap 48 Cubist Model
+    + Chap 49 Support Vector Machine (SVM)
+    + Chap 50 K-Nearest Neighbors (KNN)
+    + Chap 51 Linear Discriminant Analysis (LDA)
+    + Chap 52 Multivariate Adaptive Regression Spline (MARS)
+    + Chap 53 Clustering Analysis
+    
+    + Chap 56 Singular Value Decomposition (SVD)
+    + Chap 57 Principal Component Analysis (PCA) 
+    
+    + Chap 60 Neural Networks
+    
+    

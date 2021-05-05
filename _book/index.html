@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>As a Statistician</title>
+  <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="As a Statistician" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="As a Statistician" />
+  
+  <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  
+
+<meta name="author" content="Zehui Bai" />
+
+
+<meta name="date" content="2021-04-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="input-and-format.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-and-format.html"><a href="input-and-format.html"><i class="fa fa-check"></i><b>2</b> Input and Format</a><ul>
+<li class="chapter" data-level="2.1" data-path="input-and-format.html"><a href="input-and-format.html#import-in-sas"><i class="fa fa-check"></i><b>2.1</b> Import in SAS</a></li>
+<li class="chapter" data-level="2.2" data-path="input-and-format.html"><a href="input-and-format.html#import-in-r"><i class="fa fa-check"></i><b>2.2</b> Import in R</a></li>
+<li class="chapter" data-level="2.3" data-path="input-and-format.html"><a href="input-and-format.html#package-readr"><i class="fa fa-check"></i><b>2.3</b> Package readr</a></li>
+<li class="chapter" data-level="2.4" data-path="input-and-format.html"><a href="input-and-format.html#package-strings"><i class="fa fa-check"></i><b>2.4</b> Package Strings</a></li>
+<li class="chapter" data-level="2.5" data-path="input-and-format.html"><a href="input-and-format.html#package-forcats"><i class="fa fa-check"></i><b>2.5</b> Package forcats</a></li>
+<li class="chapter" data-level="2.6" data-path="input-and-format.html"><a href="input-and-format.html#package-lubridate"><i class="fa fa-check"></i><b>2.6</b> Package lubridate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html"><i class="fa fa-check"></i><b>3</b> Data Management in SAS</a></li>
+<li class="chapter" data-level="4" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>4</b> Data Management in R</a></li>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a></li>
+<li class="chapter" data-level="6" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>6</b> ^_^ Space</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a></li>
+<li class="chapter" data-level="8" data-path="proc-sqplot.html"><a href="proc-sqplot.html"><i class="fa fa-check"></i><b>8</b> Proc Sqplot</a><ul>
+<li class="chapter" data-level="8.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter Plot</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>8.1.1</b> Vector in scatter Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>9</b> ^_^ Space</a></li>
+<li class="chapter" data-level="10" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>10</b> ^_^ Space</a></li>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics in SAS</a><ul>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>11.1</b> Proc Freq</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>11.2</b> Proc Means</a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulatte"><i class="fa fa-check"></i><b>11.3</b> Proc Tabulatte</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>12</b> Descriptive Statistics in R</a><ul>
+<li class="chapter" data-level="12.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>12.1</b> Package pape</a></li>
+<li class="chapter" data-level="12.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>12.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="12.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>12.3</b> Package compareGroups</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>13.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#binomial-distribution"><i class="fa fa-check"></i><b>13.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>13.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="distributions.html"><a href="distributions.html#multinomial-distribution"><i class="fa fa-check"></i><b>13.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="13.5" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>13.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="13.6" data-path="distributions.html"><a href="distributions.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>13.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="13.7" data-path="distributions.html"><a href="distributions.html#poisson-distribution"><i class="fa fa-check"></i><b>13.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="13.8" data-path="distributions.html"><a href="distributions.html#exponential-distribution"><i class="fa fa-check"></i><b>13.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="13.9" data-path="distributions.html"><a href="distributions.html#gamma-distribution"><i class="fa fa-check"></i><b>13.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="13.10" data-path="distributions.html"><a href="distributions.html#weibull-distribution"><i class="fa fa-check"></i><b>13.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="13.11" data-path="distributions.html"><a href="distributions.html#beta-distribution"><i class="fa fa-check"></i><b>13.11</b> Beta Distribution</a><ul>
+<li class="chapter" data-level="13.11.1" data-path="distributions.html"><a href="distributions.html#beta分布及其函数公式推导"><i class="fa fa-check"></i><b>13.11.1</b> Beta分布及其函数公式推导</a></li>
+<li class="chapter" data-level="13.11.2" data-path="distributions.html"><a href="distributions.html#beta-函数和-gamma-函数"><i class="fa fa-check"></i><b>13.11.2</b> Beta 函数和 Gamma 函数</a></li>
+<li class="chapter" data-level="13.11.3" data-path="distributions.html"><a href="distributions.html#beta-分布的期望与方差"><i class="fa fa-check"></i><b>13.11.3</b> Beta 分布的期望与方差</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>14</b> Parametric Test</a><ul>
+<li class="chapter" data-level="14.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>14.1</b> Proc FREQ</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="parametric-test.html"><a href="parametric-test.html#ods-table-names"><i class="fa fa-check"></i><b>14.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="14.1.2" data-path="parametric-test.html"><a href="parametric-test.html#ods-plots"><i class="fa fa-check"></i><b>14.1.2</b> ODS Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>14.2</b> </a></li>
+<li class="chapter" data-level="14.3" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>14.3</b> Binomial test</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>14.3.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.3.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>14.3.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>14.4</b> Fisher’s Exact Test</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula-1"><i class="fa fa-check"></i><b>14.4.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>14.4.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>14.4.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="parametric-test.html"><a href="parametric-test.html#contingency-test"><i class="fa fa-check"></i><b>14.5</b> Contingency test</a></li>
+<li class="chapter" data-level="14.6" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>14.6</b> McNemar’s test</a></li>
+<li class="chapter" data-level="14.7" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>14.7</b> Cochran–Mantel–Haenszel Test</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>14.7.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>14.8</b> Correlation Test</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>14.8.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="14.8.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>14.8.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="14.8.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>14.8.3</b> Kendall correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>14.9</b> Two Sample T-Test</a><ul>
+<li class="chapter" data-level="14.9.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>14.9.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.9.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>14.9.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>14.10</b> Normality test</a><ul>
+<li class="chapter" data-level="14.10.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>14.10.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.10.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>14.10.2</b> R implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple Comparison</a><ul>
+<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#anova"><i class="fa fa-check"></i><b>15.1</b> ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>16</b> CI and Sample Size Calculation</a><ul>
+<li class="chapter" data-level="16.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>16.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="16.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci"><i class="fa fa-check"></i><b>16.2</b> Binomial CI</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>16.2.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="16.2.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>16.2.2</b> Package binom</a></li>
+<li class="chapter" data-level="16.2.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>16.2.3</b> %CI_Single_Proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>16.3</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="16.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>16.4</b> Package: pwr</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>17</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="18" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>18</b> Correlation and Regression</a><ul>
+<li class="chapter" data-level="18.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>18.1</b> Correlation</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>18.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="18.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>18.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols-assumpions"><i class="fa fa-check"></i><b>18.2</b> Ordinary least squares (OLS) Assumpions</a></li>
+<li class="chapter" data-level="18.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>18.3</b> Model Statistics</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>18.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="18.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>18.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="18.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>18.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="18.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>18.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="18.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>18.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="18.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>18.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="18.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>18.3.7</b> Accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-assumptions-checks"><i class="fa fa-check"></i><b>18.4</b> Model Assumptions Checks</a></li>
+<li class="chapter" data-level="18.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>18.5</b> SAS implementation Proc Reg</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>18.5.1</b> Options</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>18.6</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Advanced Linear Regression</a></li>
+<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Advanced Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>22</b> Survival Analysis</a></li>
+<li class="chapter" data-level="23" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>23</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="24" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>24</b> Count Data Regression</a></li>
+<li class="chapter" data-level="25" data-path="proportion-response-regression.html"><a href="proportion-response-regression.html"><i class="fa fa-check"></i><b>25</b> Proportion Response Regression</a></li>
+<li class="chapter" data-level="26" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>26</b> Mixed Model</a></li>
+<li class="chapter" data-level="27" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>27</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="28" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>28</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="29" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>29</b> Time Series Analysis</a></li>
+<li class="chapter" data-level="30" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>30</b> Meta Analysis</a></li>
+<li class="chapter" data-level="31" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>31</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="32" data-path="clinic-study-design.html"><a href="clinic-study-design.html"><i class="fa fa-check"></i><b>32</b> Clinic Study Design</a></li>
+<li class="chapter" data-level="33" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>33</b> Propensity Score</a></li>
+<li class="chapter" data-level="34" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>34</b> Missing Data</a></li>
+<li class="chapter" data-level="35" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
+<li class="chapter" data-level="36" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
+<li class="chapter" data-level="37" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>37</b> ^_^ Space</a></li>
+<li class="chapter" data-level="38" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>38</b> Bayesian Theory</a></li>
+<li class="chapter" data-level="39" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>39</b> </a></li>
+<li class="chapter" data-level="40" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>40</b> ^_^ Space</a></li>
+<li class="chapter" data-level="41" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>41</b> ^_^ Space</a></li>
+<li class="chapter" data-level="42" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>42</b> ^_^ Space</a></li>
+<li class="chapter" data-level="43" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>43</b> Regularization: Penalized Regression</a></li>
+<li class="chapter" data-level="44" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>44</b> ^_^ Space</a></li>
+<li class="chapter" data-level="45" data-path="classification-analysis.html"><a href="classification-analysis.html"><i class="fa fa-check"></i><b>45</b> Classification Analysis</a></li>
+<li class="chapter" data-level="46" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>46</b> Random Forest</a></li>
+<li class="chapter" data-level="47" data-path="gradient-descent-and-gradient-boosting.html"><a href="gradient-descent-and-gradient-boosting.html"><i class="fa fa-check"></i><b>47</b> Gradient Descent and Gradient Boosting</a></li>
+<li class="chapter" data-level="48" data-path="cubist-model.html"><a href="cubist-model.html"><i class="fa fa-check"></i><b>48</b> Cubist Model</a></li>
+<li class="chapter" data-level="49" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>49</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="50" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>50</b> K-Nearest Neighbors</a></li>
+<li class="chapter" data-level="51" data-path="linear-discriminant-analysis.html"><a href="linear-discriminant-analysis.html"><i class="fa fa-check"></i><b>51</b> Linear Discriminant Analysis</a></li>
+<li class="chapter" data-level="52" data-path="multivariate-adaptive-regression-spline.html"><a href="multivariate-adaptive-regression-spline.html"><i class="fa fa-check"></i><b>52</b> Multivariate Adaptive Regression Spline</a></li>
+<li class="chapter" data-level="53" data-path="clustering-analysis.html"><a href="clustering-analysis.html"><i class="fa fa-check"></i><b>53</b> Clustering Analysis</a></li>
+<li class="chapter" data-level="54" data-path="singular-value-decomposition.html"><a href="singular-value-decomposition.html"><i class="fa fa-check"></i><b>54</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="55" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>55</b> </a></li>
+<li class="chapter" data-level="56" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>56</b> </a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">As a Statistician</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">As a Statistician</h1>
+<p class="author"><em>Zehui Bai</em></p>
+<p class="date"><em>2021-04-29</em></p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
+<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="#intro"><strong>??</strong></a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="#methods"><strong>??</strong></a>.</p>
+<p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</span>
+<span id="cb1-2"><a href="index.html#cb1-2"></a><span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
+<img src="bookdown-demo_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 1.1: Here is a nice figure!
+</p>
+</div>
+<p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="index.html#fig:nice-fig">1.1</a>. Similarly, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="index.html#tab:nice-tab">1.1</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
+<span id="cb2-2"><a href="index.html#cb2-2"></a>  <span class="kw">head</span>(iris, <span class="dv">20</span>), <span class="dt">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
+<span id="cb2-3"><a href="index.html#cb2-3"></a>  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
+<span id="cb2-4"><a href="index.html#cb2-4"></a>)</span></code></pre></div>
+<table>
+<caption><span id="tab:nice-tab">Table 1.1: </span>Here is a nice table!</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">2.9</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.8</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.3</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.7</td>
+<td align="right">3.8</td>
+<td align="right">1.7</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.5</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown" role="doc-biblioref">2020</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p><strong>The main content contains the following modules</strong>:</p>
+<ul>
+<li><p>Data Management</p>
+<ul>
+<li>Chap 01 Introduction</li>
+<li>Chap 02 Input and Format</li>
+<li>Chap 03 DM in SAS</li>
+<li>Chap 04 DM in R</li>
+<li>Chap 05 SQL</li>
+</ul></li>
+<li><p>Data Visualization</p>
+<ul>
+<li>Chap 07 ggplot2</li>
+<li>Chap 08 Proc Sqplot</li>
+</ul></li>
+<li><p>Data Analysis</p>
+<ul>
+<li><p>Chap 11 Descriptive Statistics in SAS</p></li>
+<li><p>Chap 12 Descriptive Statistics in R</p></li>
+<li><p>Chap 13 Distributions</p></li>
+<li><p>Chap 14 Parametric Test</p></li>
+<li><p>Chap 15 Multiple Comparison</p></li>
+<li><p>Chap 16 CI and Sample Size Calculation</p></li>
+<li><p>Chap 17 Non-Parametric Test</p></li>
+<li><p>Chap 18 Correlation and Regression</p></li>
+<li><p>Chap 19 Advanced Linear Regression</p></li>
+<li><p>Chap 20 Logistic Regression</p></li>
+<li><p>Chap 21 Advanced Logistic Regression</p></li>
+<li><p>Chap 22 Survival Analysis</p></li>
+<li><p>Chap 23 Advanced Survival Analysis</p></li>
+<li><p>Chap 24 Count Data Regression</p></li>
+<li><p>Chap 25 Proportion Response Regression</p></li>
+<li><p>Chap 26 Mixed Model</p></li>
+<li><p>Chap 27 Generalized Linear (Mixed) Model</p></li>
+<li><p>Chap 28 Generalized Estimating Equation</p></li>
+<li><p>Chap 29 Time Series Analysis</p></li>
+<li><p>Chap 30 Meta Analysis</p></li>
+<li><p>Chap 31 Group (Adaptive) Sequential Design</p></li>
+<li><p>Chap 32 Clinic Study Design</p></li>
+<li><p>Chap 33 Propensity Score</p></li>
+<li><p>Chap 34 Missing Data</p></li>
+<li><p>Chap 35</p></li>
+</ul></li>
+<li><p>Machine learning and Deep learning</p>
+<ul>
+<li><p>Chap 38 Bayesian Theory<br />
+</p></li>
+<li><p>Chap 39 Bayesian Regression</p></li>
+<li><p>Chap 43 Regularization: Penalized Regression</p></li>
+<li><p>Chap 44</p></li>
+<li><p>Chap 45 Classification Analysis</p></li>
+<li><p>Chap 46 Random Forest</p></li>
+<li><p>Chap 47 Gradient Descent and Gradient Boosting</p></li>
+<li><p>Chap 48 Cubist Model</p></li>
+<li><p>Chap 49 Support Vector Machine (SVM)</p></li>
+<li><p>Chap 50 K-Nearest Neighbors (KNN)</p></li>
+<li><p>Chap 51 Linear Discriminant Analysis (LDA)</p></li>
+<li><p>Chap 52 Multivariate Adaptive Regression Spline (MARS)</p></li>
+<li><p>Chap 53 Clustering Analysis</p></li>
+<li><p>Chap 56 Singular Value Decomposition (SVD)</p></li>
+<li><p>Chap 57 Principal Component Analysis (PCA)</p></li>
+<li><p>Chap 60 Neural Networks</p></li>
+</ul></li>
+</ul>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="input-and-format.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

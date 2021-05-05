@@ -1,0 +1,11 @@
+# Descriptive Statistics in SAS
+
+ 
+ 
+## Proc Freq 
+
+## Proc Means
+
+## Proc Tabulatte
+
+

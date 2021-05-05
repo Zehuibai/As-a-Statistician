@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Multiple Comparison | As a Statistician</title>
+  <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Multiple Comparison | As a Statistician" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Multiple Comparison | As a Statistician" />
+  
+  <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  
+
+<meta name="author" content="Zehui Bai" />
+
+
+<meta name="date" content="2021-04-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="parametric-test.html"/>
+<link rel="next" href="ci-and-sample-size-calculation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-and-format.html"><a href="input-and-format.html"><i class="fa fa-check"></i><b>2</b> Input and Format</a><ul>
+<li class="chapter" data-level="2.1" data-path="input-and-format.html"><a href="input-and-format.html#import-in-sas"><i class="fa fa-check"></i><b>2.1</b> Import in SAS</a></li>
+<li class="chapter" data-level="2.2" data-path="input-and-format.html"><a href="input-and-format.html#import-in-r"><i class="fa fa-check"></i><b>2.2</b> Import in R</a></li>
+<li class="chapter" data-level="2.3" data-path="input-and-format.html"><a href="input-and-format.html#package-readr"><i class="fa fa-check"></i><b>2.3</b> Package readr</a></li>
+<li class="chapter" data-level="2.4" data-path="input-and-format.html"><a href="input-and-format.html#package-strings"><i class="fa fa-check"></i><b>2.4</b> Package Strings</a></li>
+<li class="chapter" data-level="2.5" data-path="input-and-format.html"><a href="input-and-format.html#package-forcats"><i class="fa fa-check"></i><b>2.5</b> Package forcats</a></li>
+<li class="chapter" data-level="2.6" data-path="input-and-format.html"><a href="input-and-format.html#package-lubridate"><i class="fa fa-check"></i><b>2.6</b> Package lubridate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html"><i class="fa fa-check"></i><b>3</b> Data Management in SAS</a></li>
+<li class="chapter" data-level="4" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>4</b> Data Management in R</a></li>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a></li>
+<li class="chapter" data-level="6" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>6</b> ^_^ Space</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a></li>
+<li class="chapter" data-level="8" data-path="proc-sqplot.html"><a href="proc-sqplot.html"><i class="fa fa-check"></i><b>8</b> Proc Sqplot</a><ul>
+<li class="chapter" data-level="8.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter Plot</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>8.1.1</b> Vector in scatter Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>9</b> ^_^ Space</a></li>
+<li class="chapter" data-level="10" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>10</b> ^_^ Space</a></li>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics in SAS</a><ul>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>11.1</b> Proc Freq</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>11.2</b> Proc Means</a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulatte"><i class="fa fa-check"></i><b>11.3</b> Proc Tabulatte</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>12</b> Descriptive Statistics in R</a><ul>
+<li class="chapter" data-level="12.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>12.1</b> Package pape</a></li>
+<li class="chapter" data-level="12.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>12.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="12.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>12.3</b> Package compareGroups</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>13.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#binomial-distribution"><i class="fa fa-check"></i><b>13.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>13.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="distributions.html"><a href="distributions.html#multinomial-distribution"><i class="fa fa-check"></i><b>13.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="13.5" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>13.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="13.6" data-path="distributions.html"><a href="distributions.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>13.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="13.7" data-path="distributions.html"><a href="distributions.html#poisson-distribution"><i class="fa fa-check"></i><b>13.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="13.8" data-path="distributions.html"><a href="distributions.html#exponential-distribution"><i class="fa fa-check"></i><b>13.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="13.9" data-path="distributions.html"><a href="distributions.html#gamma-distribution"><i class="fa fa-check"></i><b>13.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="13.10" data-path="distributions.html"><a href="distributions.html#weibull-distribution"><i class="fa fa-check"></i><b>13.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="13.11" data-path="distributions.html"><a href="distributions.html#beta-distribution"><i class="fa fa-check"></i><b>13.11</b> Beta Distribution</a><ul>
+<li class="chapter" data-level="13.11.1" data-path="distributions.html"><a href="distributions.html#beta分布及其函数公式推导"><i class="fa fa-check"></i><b>13.11.1</b> Beta分布及其函数公式推导</a></li>
+<li class="chapter" data-level="13.11.2" data-path="distributions.html"><a href="distributions.html#beta-函数和-gamma-函数"><i class="fa fa-check"></i><b>13.11.2</b> Beta 函数和 Gamma 函数</a></li>
+<li class="chapter" data-level="13.11.3" data-path="distributions.html"><a href="distributions.html#beta-分布的期望与方差"><i class="fa fa-check"></i><b>13.11.3</b> Beta 分布的期望与方差</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>14</b> Parametric Test</a><ul>
+<li class="chapter" data-level="14.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>14.1</b> Proc FREQ</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="parametric-test.html"><a href="parametric-test.html#ods-table-names"><i class="fa fa-check"></i><b>14.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="14.1.2" data-path="parametric-test.html"><a href="parametric-test.html#ods-plots"><i class="fa fa-check"></i><b>14.1.2</b> ODS Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>14.2</b> </a></li>
+<li class="chapter" data-level="14.3" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>14.3</b> Binomial test</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>14.3.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.3.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>14.3.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>14.4</b> Fisher’s Exact Test</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula-1"><i class="fa fa-check"></i><b>14.4.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>14.4.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>14.4.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="parametric-test.html"><a href="parametric-test.html#contingency-test"><i class="fa fa-check"></i><b>14.5</b> Contingency test</a></li>
+<li class="chapter" data-level="14.6" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>14.6</b> McNemar’s test</a></li>
+<li class="chapter" data-level="14.7" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>14.7</b> Cochran–Mantel–Haenszel Test</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>14.7.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>14.8</b> Correlation Test</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>14.8.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="14.8.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>14.8.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="14.8.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>14.8.3</b> Kendall correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>14.9</b> Two Sample T-Test</a><ul>
+<li class="chapter" data-level="14.9.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>14.9.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.9.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>14.9.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>14.10</b> Normality test</a><ul>
+<li class="chapter" data-level="14.10.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>14.10.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.10.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>14.10.2</b> R implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple Comparison</a><ul>
+<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#one-way-anova"><i class="fa fa-check"></i><b>15.1</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>15.1.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#anova-model-diagnosis"><i class="fa fa-check"></i><b>15.2</b> ANOVA Model Diagnosis</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#homogeneity-test"><i class="fa fa-check"></i><b>15.2.1</b> Homogeneity Test</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#normality-assumption"><i class="fa fa-check"></i><b>15.2.2</b> Normality assumption</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#violation-of-assumptions"><i class="fa fa-check"></i><b>15.2.3</b> Violation of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#two-ways-anova-test"><i class="fa fa-check"></i><b>15.3</b> Two-Ways ANOVA Test</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>16</b> CI and Sample Size Calculation</a><ul>
+<li class="chapter" data-level="16.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>16.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="16.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci"><i class="fa fa-check"></i><b>16.2</b> Binomial CI</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>16.2.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="16.2.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>16.2.2</b> Package binom</a></li>
+<li class="chapter" data-level="16.2.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>16.2.3</b> %CI_Single_Proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>16.3</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="16.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>16.4</b> Package: pwr</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="multiple-comparison.html"><a href="multiple-comparison.html#non-parametric-test"><i class="fa fa-check"></i><b>17</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="18" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>18</b> Correlation and Regression</a><ul>
+<li class="chapter" data-level="18.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>18.1</b> Correlation</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>18.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="18.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>18.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols-assumpions"><i class="fa fa-check"></i><b>18.2</b> Ordinary least squares (OLS) Assumpions</a></li>
+<li class="chapter" data-level="18.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>18.3</b> Model Statistics</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>18.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="18.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>18.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="18.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>18.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="18.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>18.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="18.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>18.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="18.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>18.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="18.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>18.3.7</b> Accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-assumptions-checks"><i class="fa fa-check"></i><b>18.4</b> Model Assumptions Checks</a></li>
+<li class="chapter" data-level="18.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>18.5</b> SAS implementation Proc Reg</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>18.5.1</b> Options</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>18.6</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Advanced Linear Regression</a></li>
+<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Advanced Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>22</b> Survival Analysis</a></li>
+<li class="chapter" data-level="23" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>23</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="24" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>24</b> Count Data Regression</a></li>
+<li class="chapter" data-level="25" data-path="proportion-response-regression.html"><a href="proportion-response-regression.html"><i class="fa fa-check"></i><b>25</b> Proportion Response Regression</a></li>
+<li class="chapter" data-level="26" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>26</b> Mixed Model</a></li>
+<li class="chapter" data-level="27" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>27</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="28" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>28</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="29" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>29</b> Time Series Analysis</a></li>
+<li class="chapter" data-level="30" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>30</b> Meta Analysis</a></li>
+<li class="chapter" data-level="31" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>31</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="32" data-path="clinic-study-design.html"><a href="clinic-study-design.html"><i class="fa fa-check"></i><b>32</b> Clinic Study Design</a></li>
+<li class="chapter" data-level="33" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>33</b> Propensity Score</a></li>
+<li class="chapter" data-level="34" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>34</b> Missing Data</a></li>
+<li class="chapter" data-level="35" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
+<li class="chapter" data-level="36" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
+<li class="chapter" data-level="37" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>37</b> ^_^ Space</a></li>
+<li class="chapter" data-level="38" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>38</b> Bayesian Theory</a></li>
+<li class="chapter" data-level="39" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>39</b> </a></li>
+<li class="chapter" data-level="40" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>40</b> ^_^ Space</a></li>
+<li class="chapter" data-level="41" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>41</b> ^_^ Space</a></li>
+<li class="chapter" data-level="42" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>42</b> ^_^ Space</a></li>
+<li class="chapter" data-level="43" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>43</b> Regularization: Penalized Regression</a></li>
+<li class="chapter" data-level="44" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>44</b> ^_^ Space</a></li>
+<li class="chapter" data-level="45" data-path="classification-analysis.html"><a href="classification-analysis.html"><i class="fa fa-check"></i><b>45</b> Classification Analysis</a></li>
+<li class="chapter" data-level="46" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>46</b> Random Forest</a></li>
+<li class="chapter" data-level="47" data-path="gradient-descent-and-gradient-boosting.html"><a href="gradient-descent-and-gradient-boosting.html"><i class="fa fa-check"></i><b>47</b> Gradient Descent and Gradient Boosting</a></li>
+<li class="chapter" data-level="48" data-path="cubist-model.html"><a href="cubist-model.html"><i class="fa fa-check"></i><b>48</b> Cubist Model</a></li>
+<li class="chapter" data-level="49" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>49</b> Support Vector Machine</a></li>
+<li class="chapter" data-level="50" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>50</b> K-Nearest Neighbors</a></li>
+<li class="chapter" data-level="51" data-path="linear-discriminant-analysis.html"><a href="linear-discriminant-analysis.html"><i class="fa fa-check"></i><b>51</b> Linear Discriminant Analysis</a></li>
+<li class="chapter" data-level="52" data-path="multivariate-adaptive-regression-spline.html"><a href="multivariate-adaptive-regression-spline.html"><i class="fa fa-check"></i><b>52</b> Multivariate Adaptive Regression Spline</a></li>
+<li class="chapter" data-level="53" data-path="clustering-analysis.html"><a href="clustering-analysis.html"><i class="fa fa-check"></i><b>53</b> Clustering Analysis</a></li>
+<li class="chapter" data-level="54" data-path="singular-value-decomposition.html"><a href="singular-value-decomposition.html"><i class="fa fa-check"></i><b>54</b> Singular Value Decomposition</a></li>
+<li class="chapter" data-level="55" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>55</b> </a></li>
+<li class="chapter" data-level="56" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>56</b> </a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">As a Statistician</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multiple-comparison" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Multiple Comparison</h1>
+<div id="one-way-anova" class="section level2">
+<h2><span class="header-section-number">15.1</span> One-Way ANOVA</h2>
+<div id="r-implementation" class="section level3">
+<h3><span class="header-section-number">15.1.1</span> R implementation</h3>
+<ul>
+<li><code>df.residual</code> 返回残差的自由度</li>
+<li><code>coef</code> 返回被估计的系数(有时还包括他们的标准差)</li>
+<li><code>residuals</code> 返回残差</li>
+<li><code>deviance</code> 返回方差</li>
+<li><code>fitted</code> 返回拟合值</li>
+<li><code>logLik</code> 计算对数似然值和返回参数数目</li>
+<li><code>AIC</code> 计算Akaike信息准则(Akaike information criterion, AIC) (依赖于logLik())</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multiple-comparison.html#cb1-1"></a>Intelligenz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">IQ.Werte=</span><span class="kw">c</span>(<span class="dv">99</span>, <span class="dv">131</span>, <span class="dv">118</span>, <span class="dv">112</span>, <span class="dv">128</span>, <span class="dv">136</span>, <span class="dv">120</span>, <span class="dv">107</span>,</span>
+<span id="cb1-2"><a href="multiple-comparison.html#cb1-2"></a>                                     <span class="dv">134</span>, <span class="dv">122</span>,<span class="dv">134</span>, <span class="dv">103</span>, <span class="dv">127</span>, <span class="dv">121</span>, <span class="dv">139</span>, <span class="dv">114</span>, </span>
+<span id="cb1-3"><a href="multiple-comparison.html#cb1-3"></a>                                     <span class="dv">121</span>, <span class="dv">132</span>,<span class="dv">120</span>, <span class="dv">133</span>, <span class="dv">110</span>, <span class="dv">141</span>, <span class="dv">118</span>, <span class="dv">124</span>, </span>
+<span id="cb1-4"><a href="multiple-comparison.html#cb1-4"></a>                                     <span class="dv">111</span>, <span class="dv">138</span>, <span class="dv">120</span>,<span class="dv">117</span>, <span class="dv">125</span>, <span class="dv">140</span>, <span class="dv">109</span>, <span class="dv">128</span>, </span>
+<span id="cb1-5"><a href="multiple-comparison.html#cb1-5"></a>                                     <span class="dv">137</span>, <span class="dv">110</span>, <span class="dv">138</span>, <span class="dv">127</span>, <span class="dv">141</span>, <span class="dv">119</span>, <span class="dv">148</span>),</span>
+<span id="cb1-6"><a href="multiple-comparison.html#cb1-6"></a>                             <span class="dt">Fach=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">8</span>),<span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">9</span>),<span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">12</span>)))</span>
+<span id="cb1-7"><a href="multiple-comparison.html#cb1-7"></a>Intelligenz<span class="op">$</span>Fach &lt;-<span class="st"> </span><span class="kw">factor</span>(Intelligenz<span class="op">$</span>Fach,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;II&quot;</span>, <span class="st">&quot;III&quot;</span>,<span class="st">&quot;IV&quot;</span>))</span>
+<span id="cb1-8"><a href="multiple-comparison.html#cb1-8"></a></span>
+<span id="cb1-9"><a href="multiple-comparison.html#cb1-9"></a><span class="co">## Compute summary statistics</span></span>
+<span id="cb1-10"><a href="multiple-comparison.html#cb1-10"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-11"><a href="multiple-comparison.html#cb1-11"></a><span class="kw">group_by</span>(Intelligenz, Fach) <span class="op">%&gt;%</span></span>
+<span id="cb1-12"><a href="multiple-comparison.html#cb1-12"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb1-13"><a href="multiple-comparison.html#cb1-13"></a>    <span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb1-14"><a href="multiple-comparison.html#cb1-14"></a>    <span class="dt">mean =</span> <span class="kw">mean</span>(IQ.Werte, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb1-15"><a href="multiple-comparison.html#cb1-15"></a>    <span class="dt">sd =</span> <span class="kw">sd</span>(IQ.Werte, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-16"><a href="multiple-comparison.html#cb1-16"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   Fach  count  mean    sd
+## * &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 I        10  121.  12.1
+## 2 II        8  124.  11.7
+## 3 III       9  124.  11.2
+## 4 IV       12  128.  12.8</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="multiple-comparison.html#cb3-1"></a><span class="co">## Visualize your data with ggpubr</span></span>
+<span id="cb3-2"><a href="multiple-comparison.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb3-3"><a href="multiple-comparison.html#cb3-3"></a><span class="kw">ggboxplot</span>(Intelligenz, <span class="dt">x =</span> <span class="st">&quot;Fach&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;IQ.Werte&quot;</span>, </span>
+<span id="cb3-4"><a href="multiple-comparison.html#cb3-4"></a>          <span class="dt">color =</span> <span class="st">&quot;Fach&quot;</span>, </span>
+<span id="cb3-5"><a href="multiple-comparison.html#cb3-5"></a>          <span class="dt">palette =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>,<span class="st">&quot;#E7298A&quot;</span>),</span>
+<span id="cb3-6"><a href="multiple-comparison.html#cb3-6"></a>          <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;II&quot;</span>,<span class="st">&quot;III&quot;</span>,<span class="st">&quot;IV&quot;</span>),</span>
+<span id="cb3-7"><a href="multiple-comparison.html#cb3-7"></a>          <span class="dt">ylab =</span> <span class="st">&quot;IQ.Werte&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Fach&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/One-Way%20ANOVA%20Test-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="multiple-comparison.html#cb4-1"></a><span class="co">## Model Fitting</span></span>
+<span id="cb4-2"><a href="multiple-comparison.html#cb4-2"></a>Intelligenz.aov &lt;-<span class="st"> </span><span class="kw">aov</span>(IQ.Werte<span class="op">~</span>Fach, <span class="dt">data=</span>Intelligenz)</span>
+<span id="cb4-3"><a href="multiple-comparison.html#cb4-3"></a><span class="kw">summary</span>(Intelligenz.aov)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Fach         3    319   106.4   0.736  0.538
+## Residuals   35   5060   144.6</code></pre>
+</div>
+</div>
+<div id="anova-model-diagnosis" class="section level2">
+<h2><span class="header-section-number">15.2</span> ANOVA Model Diagnosis</h2>
+<ol style="list-style-type: decimal">
+<li>Homogeneity Test
+<ul>
+<li>Homogeneity of variance assumption using Plot</li>
+<li>Homogeneity of variance assumption using Levene’s test, which is less sensitive to departures from normal distribution. (对偏离正态分布不敏感)</li>
+<li>Homogeneity of variance assumption with no assumption of equal variances (放宽方差假设的同质性)</li>
+</ul></li>
+<li>Normality assumption</li>
+<li>Multiple Test</li>
+</ol>
+<div id="homogeneity-test" class="section level3">
+<h3><span class="header-section-number">15.2.1</span> Homogeneity Test</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="multiple-comparison.html#cb6-1"></a><span class="co">## Check the homogeneity of variance assumption</span></span>
+<span id="cb6-2"><a href="multiple-comparison.html#cb6-2"></a><span class="kw">plot</span>(Intelligenz.aov, <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Homogeneity%20Test-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="multiple-comparison.html#cb7-1"></a><span class="co">## Levene’s test,  Homogeneity of variance assumption</span></span>
+<span id="cb7-2"><a href="multiple-comparison.html#cb7-2"></a><span class="kw">library</span>(car)</span>
+<span id="cb7-3"><a href="multiple-comparison.html#cb7-3"></a><span class="kw">leveneTest</span>(IQ.Werte <span class="op">~</span><span class="st"> </span>Fach, <span class="dt">data =</span> Intelligenz)</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  3   0.134 0.9392
+##       35</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="multiple-comparison.html#cb9-1"></a><span class="co">## With no assumption of equal variances</span></span>
+<span id="cb9-2"><a href="multiple-comparison.html#cb9-2"></a><span class="kw">oneway.test</span>(IQ.Werte<span class="op">~</span>Fach, <span class="dt">data=</span>Intelligenz)</span></code></pre></div>
+<pre><code>## 
+## 	One-way analysis of means (not assuming equal variances)
+## 
+## data:  IQ.Werte and Fach
+## F = 0.64123, num df = 3.000, denom df = 18.758, p-value = 0.598</code></pre>
+</div>
+<div id="normality-assumption" class="section level3">
+<h3><span class="header-section-number">15.2.2</span> Normality assumption</h3>
+<p>Using QQ Plot or Shapiro–Wilk test to test residuals</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="multiple-comparison.html#cb11-1"></a><span class="co">## Check the normality assumption</span></span>
+<span id="cb11-2"><a href="multiple-comparison.html#cb11-2"></a><span class="kw">plot</span>(Intelligenz.aov, <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Normality%20assumption-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="multiple-comparison.html#cb12-1"></a><span class="co">## Shapiro–Wilk test to test residuals</span></span>
+<span id="cb12-2"><a href="multiple-comparison.html#cb12-2"></a><span class="co">## Extract the residuals and run Shapiro-Wilk test</span></span>
+<span id="cb12-3"><a href="multiple-comparison.html#cb12-3"></a>aov_residuals &lt;-<span class="st"> </span><span class="kw">residuals</span>(<span class="dt">object =</span> Intelligenz.aov )</span>
+<span id="cb12-4"><a href="multiple-comparison.html#cb12-4"></a><span class="kw">shapiro.test</span>(<span class="dt">x =</span> aov_residuals )</span></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  aov_residuals
+## W = 0.96021, p-value = 0.1813</code></pre>
+</div>
+<div id="violation-of-assumptions" class="section level3">
+<h3><span class="header-section-number">15.2.3</span> Violation of assumptions</h3>
+<div id="random-effects-models" class="section level4">
+<h4><span class="header-section-number">15.2.3.1</span> Random Effects Models</h4>
+<p><span class="math display">\[Y_{ij} = \mu + \alpha_i + \epsilon_{ij},\]</span>
+We assume <span class="math inline">\(\alpha_i \; \textrm{i.i.d.} \sim N(0, \sigma_{\alpha}^2).\)</span> and <span class="math inline">\(E[Y_{ij}] = \mu\)</span>, <span class="math inline">\(\text{Var}(Y_{ij}) = \sigma_{\alpha}^2 + \sigma^2\)</span>, <span class="math inline">\(\text{Cor}(Y_{ij}, Y_{kl}) = \left\{ \begin{array}{cc} 0 &amp; i \neq k \\ \sigma_{\alpha}^2 / (\sigma_{\alpha}^2 + \sigma^2) &amp; i = k, j \neq l (\text{intraclass correlation (ICC)})\\ 1 &amp; i = k, j = l \end{array} \right.\)</span></p>
+<p>MLE is not usable for parameter estimation for the variance components <span class="math inline">\(\sigma_a^2\)</span> and <span class="math inline">\(\sigma^2\)</span>, <strong>Restricted maximum likelihood (REML)</strong> is applied here. REML is less biased. The parameter <span class="math inline">\(\mu\)</span> is estimated with maximum-likelihood assuming that the variances are known.</p>
+</div>
+<div id="non-parametric-test" class="section level4">
+<h4><span class="header-section-number">15.2.3.2</span> Non-Parametric Test</h4>
+<p>Non-parametric alternative to one-way ANOVA test, <strong>Kruskal-Wallis rank sum test</strong>, which can be used when ANOVA assumptions are not met.</p>
+<pre><code>kruskal.test(IQ.Werte~Fach, data=Intelligenz)</code></pre>
+</div>
+</div>
+</div>
+<div id="two-ways-anova-test" class="section level2">
+<h2><span class="header-section-number">15.3</span> Two-Ways ANOVA Test</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="parametric-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ci-and-sample-size-calculation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/15-Multiple-Comparison.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

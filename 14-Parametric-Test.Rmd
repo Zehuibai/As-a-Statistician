@@ -1,0 +1,396 @@
+# Parametric Test
+
+nder the null hypothesis of no difference, the differences should be rather small. Of course, the size of the difference would depend on such factors as the sample sizes involved, the precision of our light meter, and the memories of our patients. 
+
+Even after taking all of these factors into account, there will still be observed differences, and we will need to quantify the magnitude of these. **The magnitude of the difference is expressed as the probability that such a difference could have occurred by chance alone under the null hypothesis. This probability is called the p-value**. 
+
+The p-value is a measure of **how unusual the observed outcome would be if all the conditions of the null hypothesis were valid**. The p-value is also known as the significance level, or statistical significance.
+
+> 没有差异的零假设下，差异应该很小。当然，差异的大小取决于所涉及的样本大小，光度计的精度以及患者的记忆等因素。
+即使将所有这些因素都考虑在内，仍然会观察到差异，我们将需要量化这些差异的大小。差异的大小表示为在原假设下仅偶然
+发生这种差异的可能性。该概率称为p值。p值是在无效假设的所有条件均有效的情况下观察到的结果有多不寻常的度量。
+p值也称为显着性水平或统计显着性。
+
+**Statistical significance** is the probability that such an outcome could have occurred by chance alone, under the null hypothesis.
+
+In this case, a small p-value suggests that perhaps the null hypothesis is not the correct explanation for the observed data. Notice that the p-value is not the probability that the null hypothesis is true. This is a common misconception. The p-value is a measure of how tolerant we may be of unusual outcomes. This tolerance will vary depending on the circumstances.
+
+> 如果观察到非常小的p值，则意味着在原假设下发生的某事发生的可能性很小。在这一点上，我们通常会得出结论：原假设是无效的，
+并使用p值作为替代的证据。更正式地说，我们拒绝了原假设，而选择了替代方案。较小的p值表明，原假设可能不是所观察数据的正确
+解释。请注意，p值不是零假设为真的概率。这是一个普遍的误解。 p值是衡量我们对异常结果的宽容程度的度量。该容差将根据情况
+而变化。
+
+Power is the probability of correctly rejecting the null hypothesis when the alternative is true.
+
+> 另一个普遍的误解是，观察到的p小于.05的次数是我们唯一拒绝无效假设的时间。尽管.05当然是一个受欢迎的值，但是观察到只有
+20次出现1次的结果并不一定会使我们拒绝接受严格审查的假设。
+问题: 即在我们本应假设的情况下未能拒绝原假设。我们需要能够在实际存在差异时检测出差异。就像通过p值（不正确地拒绝原假设）
+的不确定性一样，功效是当备选方案为true时正确地拒绝原假设的可能性。功率是更难测量的量，因为它取决于所考虑的特定替代假设。
+直观上，如果零假设和替代假设在某种意义上“相距甚远”，则需要较少的信息来说明差异。
+
+
+
+
+
+
+
+
+
+
+
+## Proc FREQ
+
+```
+PROC FREQ <options> ;
+
+  BY variables;
+  EXACT statistic-options </ computation-options> ;
+  OUTPUT <OUT=SAS-data-set> output-options;
+  TABLES requests </ options> ;
+  TEST options;
+  WEIGHT variable </ option> ;
+````
+
+### ODS Table Names
+
+See more ["ODS Table Names"](https://documentation.sas.com/doc/en/statcdc/14.2/statug/statug_freq_details116.htm)
+
+| ODS Table Name    | Description                            | Statement | Option           |
+|-------------------|----------------------------------------|-----------|------------------|
+| BinomialCLs       | Binomial confidence limits             | TABLES    | BINOMIAL(CL=)    |
+| BinomialEquivTest | Binomial equivalence test              | TABLES    | BINOMIAL(EQUIV)  |
+| BinomialNoninf    | Binomial noninferiority test           | TABLES    | BINOMIAL(NONINF) |
+| BinomialTest      | Binomial proportion test               | TABLES    | BINOMIAL         |
+| CMH               | Cochran-Mantel-Haenszel test           | TABLES    | CMH              |
+| ChiSq             | Chi-square tests                       | TABLES    | CHISQ            |
+| EqualKappaTests   | Tests for equal kappas                 | TABLES    | AGREE            |
+| EqualOddsRatios   | Tests for equal odds ratios            | EXACT     | EQOR             |
+| GammaTest         | Gamma test                             | TEST      | GAMMA            |
+| LRChiSq           | Likelihood ratio chi-square exact test | EXACT     | LRCHI            |
+| MHChiSq           | Mantel-Haenszel chi-square exact test  | EXACT     | MHCHI            |
+| OneWayChiSq       | One-way chi-square test                | TABLES    | CHISQ            |
+| PearsonCorr       | Pearson correlation                    | TEST      | PCORR            |
+
+
+### ODS Plots
+
+| ODS Graph Name | Description               | PLOTS= Option | TABLES Statement Option           |
+|----------------|---------------------------|---------------|-----------------------------------|
+| AgreePlot      | Agreement plot            | AGREEPLOT     | AGREE                             |
+| CumFreqPlot    | Cumulative frequency plot | CUMFREQPLOT   | One-way table request             |
+| DeviationPlot  | Deviation plot            | DEVIATIONPLOT | CHISQ (one-way table)             |
+| FreqPlot       | Frequency plot            | FREQPLOT      | Any table request                 |
+| KappaPlot      | Kappa plot                | KAPPAPLOT     | AGREE                             |
+| MosaicPlot     | Mosaic plot               | MOSAICPLOT    | Two-way or multiway table request |
+| ORPlot         | Odds ratio plot           | ODDSRATIOPLOT | MEASURES, OR, or RELRISK          |
+| RelRiskPlot    | Relative risk plot        | RELRISKPLOT   | MEASURES or RELRISK               |
+| RiskDiffPlot   | Risk difference plot      | RISKDIFFPLOT  | RISKDIFF ( table)                 |
+| WtKappaPlot    | Weighted kappa plot       | WTKAPPAPLOT   | AGREE                             |
+| PearsonCorr    | Pearson correlation       | TEST          | PCORR                             |
+
+
+## 
+
+
+
+
+
+## Binomial test
+
+### Mathematical Formula
+
+The Hzpothesis is 
+$${\displaystyle H_{0}:\pi =\pi _{0}}$$
+
+* For Large samples we have $${\displaystyle Z={\frac {k-n\pi }{\sqrt {n\pi (1-\pi )}}}}$$
+* The continuity correction is an adjustment that is made when a discrete distribution is approximated by a continuous distribution: $${\displaystyle Z={\frac {k-n\pi \pm {\frac {1}{2}}}{\sqrt {n\pi (1-\pi )}}}}$$
+
+
+
+### R implementation
+
+Package [binom](https://cran.r-project.org/web/packages/binom/binom.pdf) can provide different binomial CI and Test such as
+
+* exact - Pearson-Klopper method. See also binom.test.
+* asymptotic - the text-book definition for confidence limits on a single proportion using the Central Limit Theorem.
+* wilson - Wilson method.
+* prop.test - equivalent to prop.test(x = x, n = n, conf.level = conf.level)$conf.int.
+* bayes - see binom.bayes.
+* logit - see binom.logit.
+* cloglog - see binom.cloglog.
+* probit - see binom.probit.
+* profile - see binom.profile.
+
+|  Function           |  Description                                                                  |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| binom.bayes         | Binomial confidence intervals using Bayesian inference |
+|                     |二项式分布概率上使用beta优先级，从beta的后验确定两侧置信区间。  二项式实验中使用先于p分布（成功概率）的共轭beta，从β后验构造一个置信区间。根据贝叶斯定理，给定数据x的p的后验分布为：p \| x〜Beta（x + prior.shape1，n-x +prior.shape2)默认的priority是Jeffrey′sprior，它是Beta（0.5，0.5）分布 。 因此，后验均值为（x +0.5）/（n + 1）。 |
+| binom.logit         | Binomial confidence intervals using the logit parameterization                      |
+| binom.probit        | Binomial confidence intervals using the probit parameterization                     |
+| binom.cloglog       | 在观察到的比例上（cloglog）参数化来构造置信区间   The complementary-log-log link function says that $$\eta(x) = \log(-\log(1-\pi_x))=\mathbf{x}\beta$$|
+| binom.lrt           | Binomial confidence intervals using the lrt likelihood -- likelihood ratio test (LRT) 置信区间基于对MLE附近的二项式偏差进行分析。                                         |
+| binom.profile       | Binomial confidence intervals using the profile likelihood  当使用标准方法难以获得准确的间隔估计值时，例如，当对数似然函数的形状高度非正态或有大量麻烦参数时，通常使用轮廓似然.当似然函数具有多个参数时，只关注其中一部分参数，而将其他参数视为常数，此时似然函数就被称为profile likelihood。                            |
+| binom.sim           | Simulates confidence intervals for binomial data                              |
+| binom.confint       | Binomial confidence intervals                                                 |
+| binom.coverage      | Probability coverage for binomial confidence intervals                        |
+| binom.plot          | Coverage plots for binomial confidence intervals                              |
+| binom.length        | Expected length for binomial confidence intervals                             |
+| binom.power         | Power curves for binomial parameterizations                                   |
+| cloglog.sample.size | Power and sample size for a binomial proportion using the cloglog parameterization  |
+| cloglog.sample.size | Power and sample size for a binomial proportion using the cloglog parameterization  |
+
+
+
+```
+library(binom)
+binom.test(3,4,0.99,alternative = "less")
+library(pwr)
+pwr.p.test(ES.h(3/4,0.99),n = 42,alternative = "less")
+```
+
+
+## Fisher's Exact Test
+
+Fisher's exact test is particularly appropriate when dealing with small samples. Comparing to the contingency chi-square test, Fisher's exact test is to exaclty calculate the p-value rather than being based on an asymptotic approximation.
+
+### Mathematical Formula
+
+|                |       |       |                    |
+|----------------|-------|-------|--------------------|
+| Studying       | a     | b     | a + b              |
+| Non-studying   | c     | d     | c + d              |
+| Column Total   | a + c | b + d | a + b + c + d (=n) |
+
+$${\displaystyle p={\frac {\displaystyle {{a+b} \choose {a}}\displaystyle {{c+d} \choose {c}}}{\displaystyle {{n} \choose {a+c}}}}={\frac {\displaystyle {{a+b} \choose {b}}\displaystyle {{c+d} \choose {d}}}{\displaystyle {{n} \choose {b+d}}}}={\frac {(a+b)!~(c+d)!~(a+c)!~(b+d)!}{a!~~b!~~c!~~d!~~n!}}}$$
+
+
+### SAS implementation
+
+
+https://www.pharmasug.org/proceedings/2012/PO/PharmaSUG-2012-PO05.pdf
+
+```
+*** 0) Prepare example data;
+	data EXAMPLE;
+   		do ID = 1 to 50;
+			GROUP  = "A";
+			RESULT ="negative";
+			output; 
+		end;
+		do ID = 51 to 100;
+			GROUP  = "B";
+			RESULT ="negative";
+			output; 
+		end;	
+	RUN;
+
+
+*** 1) Define a format for the variable for which the statistical test should be conducted with PROC FREQ
+	   (Note: A dummy format is sufficient if the variable of interest is a character variable);
+	proc format;
+		value $RESULT_F		"positive"="positive"
+							"negative"="negative";
+	run;
+
+*** 2) Count frequencies for variable of interest
+	   (Note: It is essential to use PRELOADFMT and PRINTMISS in order to have all possible values of the variable of interest in the output datasset); 
+	proc tabulate data=EXAMPLE out=FREQUENCIES;
+		class GROUP RESULT / preloadfmt;		* PRELOADFMT loads the format of class variables if available;
+		table GROUP*RESULT*(n) / printmiss;			* (n) requests only frequencies and PRINTMISS requests entries also for values of the variable of interest which do not occur;
+		format RESULT $RESULT_F.;				* Assign format if it has not been done before;
+	run;
+
+*** 3) The count for values which not occurred has to be set from missing to 0;
+	data  FREQUENCIES_mod;
+		set FREQUENCIES (where=(RESULT ne ""));	* Delete frequency of missing values for the variable of interest ;
+		if N eq . then N = 0; 					* Convert missing to 0;
+	run;
+
+*** 4) Execute statistical test;
+	proc sort data=FREQUENCIES_mod; by GROUP; run;
+	proc freq data=FREQUENCIES_mod;
+		by GROUP;			* Analysis by group;
+		weight N/zeros;		* Indicate that the input dataset already contains summary data (WEIGHT option) and indicate that entries with frequency 0 should be included (ZEROS option); 
+		tables RESULT / binomial(cl=wald exact LEVEL="positive") alpha=0.05;	
+		exact binomial;
+		output out=OUTPUT binomial;
+	RUN;
+````
+
+### R implementation
+
+```
+library(vcd)
+mytable <- xtabs(~Treatment+Improved, data=Arthritis)
+fisher.test(mytable)
+```
+
+## Contingency test
+
+https://www.stat.purdue.edu/~tqin/system101/method_list.htm
+https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.4/statug/statug_npar1way_syntax01.htm#statug.npar1way.np1plots
+
+
+## McNemar's test
+
+Simar to the contigency test, McNemar's test can be used to analyze categorical data in survey and questionnarie. But when the data are dependent, McNemar's test is more appropiate. 
+
+```
+proc freq data=athelete;
+		title "McNemar's test for Paired Samples";
+		tables treatX*treatY /agree expected norow nocol nopercent; 
+run;
+```
+
+## Cochran–Mantel–Haenszel Test
+
+> 用于分析分层或匹配类别数据的检验。研究人员可以在考虑分层的情况下测试二元预测变量或治疗与二元结果（例如病例或对照状态）之间的关联。与只能处理成对的McNemar测试不同，CMH测试可处理任意层大小。它通常用于观察性研究中，在该研究中无法控制受试者随机分配给不同治疗的情况，但可以测量混杂的协变量。
+
+| Treatment    | No treatment         | Row total     |  Title                            |
+|--------------|----------------------|---------------|-----------------------------------|
+| Case         | Ai                   | Bi            | N1i                               |
+| Controls     | Ci                   | Di            | N2i                               |
+| Column total | M1i                  | M2i           | Ti                                |
+
+
+The common odds-ratio of the K contingency tables is defined as:
+
+$${\displaystyle R={{\sum _{i=1}^{K}{{A_{i}D_{i}} \over T_{i}}} \over {\sum _{i=1}^{K}{{B_{i}C_{i}} \over T_{i}}}},}$$
+
+The null hypothesis is that there is no association between the treatment and the outcome. More precisely, the null hypothesis is:
+
+* $H_0$: $R = 1$
+* $H_1$: $R \neq 1$
+
+The test statistic is:
+
+$${\displaystyle \xi _{CMH}={[{\sum _{i=1}^{K}(A_{i}-{N_{1i}M_{1i} \over T_{i}})]^{2}} \over {\sum _{i=1}^{K}{N_{1i}N_{2i}M_{1i}M_{2i} \over T_{i}^{2}(T_{i}-1)}}}.}$$
+
+### R implementation
+
+```
+library(vcd)
+mytable <- xtabs(~Treatment+Improved+Sex, data=Arthritis)
+mantelhaen.test(mytable)
+```
+
+
+## Correlation Test
+
+### Pearson correlation 
+
+The correlation is calculated as $$r = \frac{\sum{(x-m_x)(y-m_y)}}{\sqrt{\sum{(x-m_x)^2}\sum{(y-m_y)^2}}}$$
+
+The p-value (significance level) of the correlation can be determined:
+
+1. by using the correlation coefficient table for the degrees of freedom : df=n−2, where nn is the number of observations in x and y variables.
+2. or by calculating the t value as follow: $$t = \frac{r}{\sqrt{1-r^2}}\sqrt{n-2}$$
+
+
+
+
+### Spearman correlation
+
+$$rho = \frac{\sum(x' - m_{x'})(y'_i - m_{y'})}{\sqrt{\sum(x' - m_{x'})^2 \sum(y' - m_{y'})^2}}$$
+where $x' = rank(x_)$ and $y' = rank(y)$
+
+### Kendall correlation
+
+Begin by ordering the pairs by the $x$ values. If $x$ and $y$ are correlated, then they would have the same relative rank orders. Now, for each $y_{i}$, count the number of $y_{j}>y_{i}$ (concordant pairs ($n_{c}$)) and the number of $y_{j}<y_{i}$ (discordant pairs ($n_{d}$)). $n$ is the size of $x$ and $y$
+
+$$t a u=\frac{n_{c}-n_{d}}{\frac{1}{2} n(n-1)}$$
+
+原假设为变量间不相关 (即总体的相关系数为0)。 可以使用cor.test()函数对单个的Pearson、Spearman和Kendall相关系数进行检验. x和y为要检验相关性的变量，alternative则用来指定进行双侧检验或单侧检验(取值 为“two.side”、“less”或“greater”)，而method用以指定要计算的相关类型(“pearson”、 “kendall”或“spearman”)。当研究的假设为总体的相关系数小于0时，请使用alternative= “less”。在研究的假设为总体的相关系数大于0时，应使用alternative=“greater”。
+
+```
+pcor(u,s)
+
+cor(x, y, method = c("pearson", "kendall", "spearman"))
+cor.test(x, y, method=c("pearson", "kendall", "spearman"))
+```
+
+
+
+## Two Sample T-Test
+
+Two sample t-test assumes that
+
+1. There is one continuous dependent variable and one categorical independent variable (with 2 levels);
+2. The two samples are independent;
+3. The two samples follow normal distributions, and can be done with Normality check.
+
+When the assumptions are not met, other methods are possible based on the two samples:
+
+* Two dependent samples and follow Normal distribution, suggest Paired T-test;
+* Two independent samples and does not follow Normal distribution, suggest [WMW test](https://www.stat.purdue.edu/~tqin/system101/method/method_wilcoxon_rank_sum_sas.htm);
+* Two dependent samples and does not follow Normal distribution, suggest [Signed Rank test](https://www.stat.purdue.edu/~tqin/system101/method/method_wilcoxon_signed_rank_sas.htm);
+
+### SAS implementation
+
+```
+roc ttest data=read sides=2 alpha=0.05 h0=0;
+ 	title "Two sample t-test example";
+ 	class method; 
+	var grade;
+run;
+```
+
+
+### R implementation
+
+```
+## One Sample t-test  
+t.test(X, mu= 1,
+       alternative="two.sided", conf.level=0.95)$conf.int
+## Two Sample t-test       
+t.test(A, B,var.equal=TRUE, paired=TRUE)
+       
+## Gauß Test (Bekannt Variance)
+mu0 <- 0
+alpha <- 0.05 # (zweiseitig):
+sigma <- 1
+unten <- qnorm(alpha/2,mean=mu0,sd=(sigma)/(sqrt(n)))
+oben  <- qnorm(1-alpha/2,mean=mu0,sd=(sigma)/(sqrt(n)))
+
+
+## T Test (Unbekannt Variance)
+mu1 <- 1
+tcr <- qt(p=1-alpha, df=n-1)
+ncp1 <- abs(mu1-mu0)*sqrt(n)/sigma
+power <- 1-pt(q=tcr, df=n-1, ncp=ncp1)
+```
+
+
+
+
+## Normality test
+
+
+Checking the assumptionof Normality is necessary for many statistical methods. For example two sample t test or ANOVA. In this section we introduce some common ways to access normality: the normal probability plot and test statistics.
+
+The normal probabiltiy plot, QQplot creates quantile-quantile plots and compares ordered variable values with quantiles of a specific theoretical distribution. If the data distribution matches the theoretical distribution, the points on the plot form a linear pattern.
+
+In SAS, there are four test statistics for detecting the presence of non-normality, namely, the Shapiro-Wilk (Shapiro & Wilk, 1965), the Kolmogorov-Smirnov test, Cramer von Mises test, and the Anderson-Darling test. Details and discussions are given below.
+
+For example, in the two sample t test example , the assumption is the variables are normal. 
+
+
+### SAS implementation
+
+```
+proc univariate data=read normal; 
+		qqplot grade /Normal(mu=est sigma=est color=red l=1);
+		by method;
+run;
+```
+
+
+### R implementation
+
+Shapiro-Wilk Test
+
+```
+shapiro.test(X2)
+```
+
+Kolmogorov-Smirnov Test

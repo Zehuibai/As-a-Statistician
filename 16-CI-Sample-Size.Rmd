@@ -1,0 +1,493 @@
+# CI and Sample Size Calculation
+
+## Point Estimates
+
+1. MLE (Maximum Likelihood Estimate)
+2. LaPlace point estimates
+3. Wilson point estimates
+4. Jeffreys point estimates
+
+**MLE (Maximum Likelihood Estimate)**
+
+MLE是样本比例或成功用户数除以总尝试次数。这是所报告的最常见的点估计。
+
+$$\hat p=x/n$$
+
+**LaPlace point estimates**
+
+一个著名的大样本问题来自拉普拉斯在1800年代初期的开创性工作。他提出了一个问题，即您可以确定明天的太阳会升起，因为您知道过去的5000年（1,825,000天）每天都在升起。您可以确定它会上升，但不能完全确定。太阳可能会爆炸，或者大的小行星可能会将地球粉碎成碎片。为了回答这个问题，他提出了拉普拉斯继承定律，即在分子上加一个，在分母上加两个（（x + 1）/（n + 2））。应用此过程，您将确定99.999945％的明天明天会升起-接近100％，但略微偏离了那个极端。当样本量较小时，调整幅度会更大。
+
+$$\hat p=(x+1)/(n+2)$$
+**Wilson point estimates**
+
+Wilson's点估计值是调整后的Wald CI的中点。 它是通过将分子的临界值平方和分子分母的临界值平方相加而得出的。 Wilson's方法更为保守。
+
+$$\hat p=\frac{x+\frac{1}{2} z^{2}}{n+z^{2}}$$
+
+**Jeffreys point estimates**
+
+Jeffreys（1961）在LaPlace和MLE方法之间进行了折衷。Jeffreys区间是在对二项式比例p使用非信息性Jeffreys之前获得的贝叶斯可信区间。这个问题的Jeffreys先验是带有参数（1/2，1/2）的Beta分布，它是共轭先验。在n次试验中观察到x次成功之后，p的后验分布是带有参数（x + 1/2，n – x + 1/2）的Beta分布。
+
+$$\hat p=(x+0.5)/(n+1)$$
+
+
+## Binomial CI 
+
+### Binomial CI for Small Samples
+
+#### Wald CI
+
+Wald方法是计算二项式置信区间的最常用公式, 不幸的是，当样本量较小时，尤其是当完成率不接近50％时，它产生的间隔太窄。
+
+$$\hat{p} \pm z_{\alpha / 2} \sqrt{\hat{p}(1-\hat{p}) / n}$$
+
+#### Clopper-Pearson or “Exact” CI
+
+为了改善Wald区间的较差平均覆盖率，更为复杂的方法，称为Clopper-Pearson或“精确”方法. 精确方法使用小样本可提供更可靠的置信区间（Clopper和Pearson，1934）。但是，在实际实践中，
+当标称置信度为95％时，“精确”区间会产生过于保守的置信区间，其真实覆盖率接近99％。
+当样本量较小（n <15）时，这种过度保守的性质尤其容易受到伤害（Agresti and Coull，1996）
+
+$$\begin{aligned}
+\left[1+\frac{n-x+1}{x F_{2 x, 2(n-x+1), 1-\alpha / 2}}\right]^{-1} & 
+<p<\left[1+\frac{n-x}{(x+1) F_{2(x+1), 2(n-x), \alpha / 2}}\right]^{-1}
+\end{aligned}$$
+
+#### Wilson score CI
+
+精确间隔太宽而Wald间隔太窄。第三种方法称为“得分”间隔（Wilson，1927年）并不过分保守，对于标称95％的间隔，其平均覆盖率接近95％。不幸的是，它的计算与精确方法一样繁琐，并且当完成率接近0或1时，它存在一些严重的覆盖问题（Agresti和Coull，1998）
+
+$$\left(\hat{p}+\frac{z_{\alpha / 2}^{2}}{2 n} \pm z_{\alpha / 2} \sqrt{\left[\hat{p}(1-\hat{p})+z_{\alpha / 2}^{2} / 4 n\right] / n}\right) /\left(1+z_{\alpha / 2}^{2} / n\right)$$
+
+#### Adjusted Wald CI
+
+另一种可供选择的方法，由Agresti and Coull. 命名为Adjusted Wald方法，
+仅要求在95％的置信区间内，将观察到的完成率加两个成功和两个失败，然后使用Wald公式计算95％的二项式置信区间。
+对于大多数p值，它的覆盖范围与Score方法一样好，并且通常在完成率接近0或1时更好。
+该方法非常简单，并且在统计文献中已被推荐, 相加两次成功和两次失败”（或分子加上两个，分母增加四个）是从正态分布的临界值中得出的。
+
+$$\frac{\hat{p}+\frac{z_{1-\alpha / 2}^{2}}{2 n}+z_{1-\alpha / 2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}+\frac{z_{1-\alpha / 2}^{2}}{4 n^{2}}}}{1+\frac{z_{1-\alpha / 2}^{2}}{n}}  < \hat{p} <\frac{\hat{p}+\frac{z_{\alpha / 2}^{2}}{2 n}+z_{\alpha / 2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}+\frac{z_{\alpha / 2}^{2}}{4 n^{2}}}}{1+\frac{z_{\alpha / 2}^{2}}{n}}$$
+### Package binom
+
+
+Package [binom](https://cran.r-project.org/web/packages/binom/binom.pdf) can provide different binomial CI and Test such as
+
+* exact - Pearson-Klopper method. See also binom.test.
+* asymptotic - the text-book definition for confidence limits on a single proportion using the Central Limit Theorem.
+* wilson - Wilson method.
+* prop.test - equivalent to prop.test(x = x, n = n, conf.level = conf.level)$conf.int.
+* bayes - see binom.bayes.
+* logit - see binom.logit.
+* cloglog - see binom.cloglog.
+* probit - see binom.probit.
+* profile - see binom.profile.
+
+
+|  Function           |  Description                                                                       |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| binom.bayes         | Binomial confidence intervals using Bayesian inference 
+                        二项式分布概率上使用beta优先级，从beta的后验确定两侧置信区间。           
+                        二项式实验中使用先于p分布（成功概率）的共轭beta，从β后验构造一个置信区间。  
+                        根据贝叶斯定理，给定数据x的p的后验分布为：p \| x〜Beta（x + prior.shape1，n-x + prior.shape2）
+                        默认的priority是Jeffrey′sprior，它是Beta（0.5，0.5）分布 。 因此，后验均值为（x + 0.5）/（n + 1）。 |
+| binom.logit         | Binomial confidence intervals using the logit parameterization                      |
+| binom.probit        | Binomial confidence intervals using the probit parameterization                     |
+| binom.cloglog       | 在观察到的比例上（cloglog）参数化来构造置信区间   The complementary-log-log link function says that 
+                        $$\eta(x) = \log(-\log(1-\pi_x))=\mathbf{x}\beta$$|
+| binom.lrt           | Binomial confidence intervals using the lrt likelihood -- likelihood ratio test (LRT)                 
+                        置信区间基于对MLE附近的二项式偏差进行分析。                                         |
+| binom.profile       | Binomial confidence intervals using the profile likelihood   
+                        当使用标准方法难以获得准确的间隔估计值时，例如，当对数似然函数的形状高度非正态或有大
+                        量麻烦参数时，通常使用轮廓似然.当似然函数具有多个参数时，只关注其中一部分参数，而将其
+                        他参数视为常数，此时似然函数就被称为profile likelihood。                            |
+| binom.sim           | Simulates confidence intervals for binomial data                                    |
+| binom.confint       | Binomial confidence intervals                                                       |
+| binom.coverage      | Probability coverage for binomial confidence intervals                              |
+| binom.plot          | Coverage plots for binomial confidence intervals                                    |
+| binom.length        | Expected length for binomial confidence intervals                                   |
+| binom.power         | Power curves for binomial parameterizations                                         |
+| cloglog.sample.size | Power and sample size for a binomial proportion using the cloglog parameterization  |
+| cloglog.sample.size | Power and sample size for a binomial proportion using the cloglog parameterization  |
+
+
+### %CI_Single_Proportion 
+
+1. Simple asymptotic, Without CC | Wald
+2. Simple asymptotic, With CC
+3. Score method, Without CC | Wilson
+4. Score method, With CC
+5. Binomial-based, 'Exact' | Clopper-Pearson
+6. Binomial-based, Mid-p
+7. Likelihood-based
+8. Jeffreys
+9. Agresti-Coull, pseudo frequency, z^2/2 successes| psi = z^2/2
+10. Agresti-Coull, pseudo frequency, 2 successes and 2 fail| psi = 2
+11. Agresti-Coull, pseudo frequency, psi = 1
+12. Agresti-Coull, pseudo frequency, psi = 3
+13. Logit
+
+```
+%macro CI_Single_Proportion(r=,n=,alpha=0.05);
+
+proc fcmp outlib=work.func.CI;
+   function acceptbin(r, n, p) label = "computes the Blaker acceptability of p when x is observed and X is bin(n, p)";
+        p1 = 1 - CDF('BINOMIAL', r - 1,p,n);
+        p2 = CDF('BINOMIAL', r,p,n);
+
+        a1 = p1 + CDF('BINOMIAL', quantile('BINOM', p1, p, n)-1,  p, n) ;
+        a2 = p2 + 1 -  CDF('BINOMIAL', quantile('BINOM', 1-p2, p, n),  p, n) ;
+        return (min(a1,a2));
+   endsub;
+run;
+
+options cmplib=work.func;
+
+data param;
+    do i=1 to 14;
+          r = &r;
+          n = &n;
+          alpha = &alpha;
+          p = r/n;
+          q = 1 - p;
+          z = probit (1-alpha/2);
+    output;
+    end; 
+run;
+
+/*method 1-5,8-14;*/
+data CI5;
+    length method $75.;
+    set param(where=(i not in (6 7)));
+
+    if i=1 then do;
+          Method = "1. Simple asymptotic, Without CC | Wald";
+          se = (sqrt(&n*p*(1-p)))/n; *standard error;
+          p_CI_low = p - z * se;
+          p_CI_up  = p + z * se;  
+    end;
+
+    if i=2 then do;
+          Method = "2. Simple asymptotic, With CC";
+          se = (sqrt(&n*p*(1-p)))/n; *standard error;
+          cc = 1/(2*&n);             *continuity correction;
+          p_CI_low = p - (z * se + cc);
+          p_CI_up  = p + (z * se + cc);
+          
+/*          if r=0 then p_CI_low=0;*/
+/*          if r=n then p_CI_up =1;*/
+    end;
+    
+    if i=3 then do;
+          Method = "3. Score method, Without CC | Wilson";
+          *n1=2*r+z**2;
+		  *n2=z*sqrt(z**2+4*r*q);
+		  *d=2*(n+z**2);
+          *p_CI_low = (n1 - n2)/d;
+          *p_CI_up = (n1 + n2)/d;
+
+          p_CI_low = ( 2*r+z**2 - (z*sqrt(z**2+4*r*q)) ) / (2*(n+z**2));
+          p_CI_up  = ( 2*r+z**2 + (z*sqrt(z**2+4*r*q)) ) / (2*(n+z**2));        
+    end;
+    
+    if i=4 then do;
+          Method = "4. Score method, With CC";
+          *n1=2*r+z**2;
+          *n12=z*sqrt(z**2 - 2- 1/n + 4*p*(n*q+1));
+          *n22=z*sqrt(z**2 + 2- 1/n + 4*p*(n*q-1));
+          *d=2*(n+z**2);
+          *p_CI_low = ( n1 -1 - n12) / d;
+          *p_CI_up  = ( n1 +1 + n22) / d;
+
+          p_CI_low = ( 2*r+z**2 -1 - z*sqrt(z**2 - 2- 1/n + 4*p*(n*q+1))) / (2*(n+z**2));
+          p_CI_up  = ( 2*r+z**2 +1 + z*sqrt(z**2 + 2- 1/n + 4*p*(n*q-1))) / (2*(n+z**2));  
+          
+/*          if r=0 then p_CI_low=0;*/
+/*          if r=n then p_CI_up =1;  */
+    end;
+    
+    if i=5 then do;
+          Method = "5. Binomial-based, 'Exact' | Clopper-Pearson";
+          p_CI_low =1 - betainv(1 - alpha/2,n-r+1,r);
+          p_CI_up  =    betainv(1 - alpha/2,r+1  ,n-r);  
+          
+/*          if r=0 then p_CI_low=0;*/
+/*          if r=n then p_CI_up =1;*/
+    end;
+    
+    if i=8 then do;
+          Method = "8. Jeffreys";   
+          p_CI_low = betainv(  alpha/2, r+0.5,n-r+0.5);
+          p_CI_up  = betainv(1-alpha/2, r+0.5,n-r+0.5);
+    end;
+    
+    if i=9 then do;
+          Method = "9. Agresti-Coull, pseudo frequency, z^2/2 successes| psi = z^2/2";        
+          psi = z**2/2;
+          p2=(r+psi)/(n+2*psi);       
+
+          p_CI_low =p2 - z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          p_CI_up  =p2 + z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          
+          if p_CI_low<0 then p_CI_low=0;
+          if p_CI_up>1  then p_CI_up =1; 
+    end;
+    
+    if i=10 then do;
+          Method = "10. Agresti-Coull, pseudo frequency, 2 successes and 2 failures| psi = 2";
+
+          psi = 2;
+          p2=(r+psi)/(n+2*psi);       
+
+          p_CI_low =p2 - z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          p_CI_up  =p2 + z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          
+          if p_CI_low<0 then p_CI_low=0;
+          if p_CI_up>1  then p_CI_up =1;
+    end;
+
+    if i=11 then do;
+          Method = "11. Agresti-Coull, pseudo frequency, psi = 1";
+
+          psi = 1;
+          p2=(r+psi)/(n+2*psi);       
+
+          p_CI_low =p2 - z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          p_CI_up  =p2 + z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          
+          if p_CI_low<0 then p_CI_low=0;
+          if p_CI_up>1  then p_CI_up =1;
+    end;
+
+    if i=12 then do;
+          Method = "12. Agresti-Coull, pseudo frequency, psi = 3";
+
+          psi = 3;
+          p2=(r+psi)/(n+2*psi);       
+
+          p_CI_low =p2 - z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          p_CI_up  =p2 + z*(sqrt(p2*(1-p2)/(n+2*psi)));
+          
+          if p_CI_low<0 then p_CI_low=0;
+          if p_CI_up>1  then p_CI_up =1;
+    end;
+    
+    if i=13 then do;
+          Method = "13. Logit";             
+          p_CI_low=exp(log(p/(1-p)) - z*sqrt(n/(r*(n-r))))/(1+exp(log(p/(1-p)) - z*sqrt(n/(r*(n-r)))));
+          p_CI_up =exp(log(p/(1-p)) + z*sqrt(n/(r*(n-r))))/(1+exp(log(p/(1-p)) + z*sqrt(n/(r*(n-r)))));
+    end;
+
+    if i=14 then do;
+          Method = "14. Blaker";  
+          tolerance=1e-05;
+          lower = 0;
+          upper = 1;
+
+          if r ^= 0 then do;
+             lower = quantile('BETA',alpha/2, r, n-r+1);
+             do while (acceptbin(r, n, lower + tolerance) < (alpha));
+                   lower = lower + tolerance;
+             end;
+          end;
+
+
+          if r ^= n then do;      
+            upper = quantile('BETA',1 - alpha/2, r+1, n-r);
+            do while (acceptbin(r, n, upper - tolerance) < (alpha));
+                      upper = upper - tolerance;
+            end;
+          end; 
+
+          p_CI_low=lower;
+          p_CI_up =upper;
+    end;
+run;
+
+/*method 6;*/
+data param6;
+    set param(where=(i=6));
+    max_idx=alpha/2;
+    min_idx=1-alpha/2;
+
+    do j=0.000001 to 0.999999 by 0.00001;
+        if (r>0 and r<n) then a2=0.5*probbnml(j,n,r-1) + 0.5*probbnml(j,n,r);
+        output;
+    end;
+run;
+
+proc sql;
+    create table max as
+        select max(j) as p_CI_up
+        from param6     
+        where a2 > max_idx and r>0 and r<n
+        ;
+
+    create table min as
+        select min(j) as p_CI_low
+        from param6     
+        where a2 <= min_idx and r>0 and r<n
+        ;
+
+    create table param6_2 as
+        select *
+        from param
+        where i=6
+        ;
+quit;
+
+data CI6;
+    merge param6_2 min max;
+    Method = "6. Binomial-based, Mid-p";
+    
+    if r=0 then do;
+        p_CI_low=0;
+        p_CI_up = 1-alpha**(1/n);
+    end;
+
+    if r=n then do;
+        p_CI_low=alpha**(1/n);
+        p_CI_up = 1;
+    end;
+run;
+
+/*method 7;*/
+data param7;
+    set param(where=(i=7));
+
+    k=-cinv(1-alpha,1)/2;
+
+    do j=0.000001 to 0.999999 by 0.00001;
+        lik=pdf('Binomial',r,j,n);       
+        output;
+    end;
+run;
+
+proc sql;   
+    create table max as
+        select i,max(lik) as max
+        from param7
+    ;
+quit;
+
+data test1;
+    merge param7 max;
+    by i;
+
+    if lik ^= 0 then
+    logLR = log(lik/max);
+run;
+
+proc sql;
+    create table max2 as
+        select min(j) as p_CI_low,max(j) as p_CI_up
+        from test1      
+        where logLR>k
+        ;
+
+    create table param7_2 as
+        select distinct *
+        from param
+        where i=7
+        ;
+quit;
+
+data CI7;
+    merge param7_2 max2;
+    Method = "7. Likelihood-based";
+    
+    if r=0 then p_CI_low=0;
+    if r=n then p_CI_up =1;
+run;
+
+/*put together,1-12;*/
+data CI_SP;
+    set CI5 CI6 CI7;
+    p_CI=compress(catx("","[",put(round(p_CI_low,0.0001),6.4),",",put(round(p_CI_up,0.0001),6.4),"]"));
+run;
+
+proc sort; by i;run;
+           
+proc print data=CI_SP;
+    var r n p method p_ci;
+run;
+      
+%mend CI_Single_Proportion;
+```
+
+```
+%CI_Single_Proportion(r=81,n=263);
+
+** Cheak with SAS;
+
+data test;
+input grp outcome $ count;
+datalines;
+1 f 81
+1 u 182
+;
+
+proc freq data=test;
+    tables outcome / binomial;
+    weight Count;
+run;
+
+ods select BinomialCLs;
+proc freq data=test;
+    tables outcome / binomial (CL=ALL);
+    weight Count;
+run;
+
+ods select BinomialCLs;
+proc freq data=test;
+    tables outcome / binomial (CL=
+                               WALD
+                               WILSON
+                               CLOPPERPEARSON
+                               MIDP
+                               LIKELIHOODRATIO
+                               JEFFREYS
+                               AGRESTICOULL
+                               LOGIT
+                               BLAKER  
+                              );
+    weight Count;
+run;
+
+ods select BinomialCLs; 
+proc freq data=test; 
+    tables outcome / binomial (CL = 
+                              WILSON(CORRECT) 
+                              WALD(CORRECT)
+                              ); 
+    weight Count; 
+run;
+```
+
+## Incidence rate CI
+
+Incidence rate is the rate at which new clinical events occur in a population. It is the number of new events divided by the population at risk of an event in a specific time period, sometimes it is the person-time at risk.
+
+$$r=\frac{a}{N}$$
+$$\mathrm{SE}=\sqrt{\frac{1-r}{\mathrm{a}}}$$
+$100(1-\mathrm{a}) \%$ confidence interval is defined as:
+$$
+(\mathrm{e}^{\ln \mathrm{r}-\mathrm{z}_{1-\frac{\alpha}{2}} \mathrm{SE}}, \mathrm{e}^{\ln \mathrm{r}+\mathrm{z}_{1-\frac{\alpha}{2}} \mathrm{SE}})
+$$
+
+
+
+
+## Package: pwr
+
+[Basic Functions for Power Analysis](https://cran.r-project.org/web/packages/pwr/pwr.pdf)
+
+| 方法                | 功效计算的对象                                                                     |
+|---------------------|------------------------------------------------------------------------------------|
+| pwr.2p.test()       | 两比例(n相等)                                                                      |
+| pwr.2p2n.test()     | 两比例(n不相等)                                                                    |
+| pwr.anova.test()    | 平衡的单因素ANOVA                                                                  |
+| pwr.chisq.test()    | 卡方检验                                                                           |
+| pwr.f2.test()       | 广义线性模型                                                                       |
+| pwr.p.test()        | 比例(单样本)                                                                       |
+| pwr.r.test()        | 相关系数                                                                           |
+| pwr.t.test()        | t检验(单样本、两样本、配对)                                                        |
+| pwr.t2n.test()      | t检验(n不相等的两样本)                                                             |

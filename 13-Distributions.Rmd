@@ -1,0 +1,87 @@
+# Distributions
+
+## Quantile Function in SAS
+
+| Distribution            | Argument       |
+|-------------------------|----------------|
+| Bernoulli               | BERNOULLI      |
+| Beta                    | BETA           |
+| Binomial                | BINOMIAL       |
+| Cauchy                  | CAUCHY         |
+| Chi-Square              | CHISQUARE      |
+| Conway-Maxwell-Poisson  | CONMAXPOI      |
+| Exponential             | EXPONENTIAL    |
+| F                       | F              |
+| Gamma                   | GAMMA          |
+| Generalized Poisson     | GENPOISSON     |
+| Geometric               | GEOMETRIC      |
+| Hypergeometric          | HYPERGEOMETRIC |
+| Laplace                 | LAPLACE        |
+| Logistic                | LOGISTIC       |
+| Lognormal               | LOGNORMAL      |
+| Negative binomial       | NEGBINOMIAL    |
+| Normal                  | NORMAL\|GAUSS  |
+| Normal mixture          | NORMALMIX      |
+| Pareto                  | PARETO         |
+| Poisson                 | POISSON        |
+| T                       | T              |
+| Tweedie                 | TWEEDIE        |
+| Uniform                 | UNIFORM        |
+| Wald (inverse Gaussian) | WALD\|IGAUSS   |
+| Weibull                 | WEIBULL        |
+
+```
+data new;                                                                                                                       
+   a=quantile('BERN', .75, .25);   
+   b=quantile('BETA', 0.1, 3, 4);    
+   c=quantile('BINOM', .4, .5, 10);   
+   d=quantile('CAUCHY', .85);    
+   e=quantile('CHISQ', .6, 11);     
+   f=quantile('CONMAXPOI', .2, 2.3, .4);   
+   g=quantile('EXPO', .6);   
+   h=quantile('F', .8, 2, 3); 
+   i=quantile('GAMMA', .4, 3);  
+   j=quantile('GENPOISSON', .9, 1, .7);   
+   k=quantile('HYPER', .5, 200, 50, 10);  
+   l=quantile('LAPLACE', .8);  
+   m=quantile('LOGISTIC', .7);     
+   n=quantile('LOGNORMAL', .5);  
+   o=quantile('NEGB', .5, .5, 2);     
+   p=quantile('NORMAL', .975);    
+   q=quantile('NORMALMIX', 0.5, 1, 0.2, 1.1, 0.1);   
+   r=quantile('PARETO', .01, 1);  
+   s=quantile('POISSON', .9, 1);    
+   t=quantile('T', .8, 5);   
+   u=quantile('TWEEDIE', .8, 5);      
+   v=quantile('UNIFORM', 0.25);       
+   w=quantile('WALD', .6, 2);                                                                                                  
+   x=quantile('WEIBULL', .6, 2); 
+run;
+```
+
+
+## Binomial distribution
+
+## Negative binomial distribution
+ 
+## Multinomial distribution
+
+## Normal Distribution
+
+## Multivariate normal distribution
+
+## Poisson distribution
+
+## Exponential distribution
+
+## Gamma distribution
+
+## Weibull Distribution
+
+## Beta Distribution
+
+### Beta分布及其函数公式推导
+
+### Beta 函数和 Gamma 函数
+
+### Beta 分布的期望与方差
