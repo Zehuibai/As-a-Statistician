@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-04-29" />
+<meta name="date" content="2021-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,6 +166,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>12.1</b> Package pape</a></li>
 <li class="chapter" data-level="12.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>12.2</b> Package summarytools</a></li>
 <li class="chapter" data-level="12.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>12.3</b> Package compareGroups</a></li>
+<li class="chapter" data-level="12.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>12.4</b> Package kableExtra</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>12.4.1</b> kable_styling</a></li>
+<li class="chapter" data-level="12.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>12.4.2</b> Column/Row Specification</a></li>
+<li class="chapter" data-level="12.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>12.4.3</b> Grouping columns/rows</a></li>
+<li class="chapter" data-level="12.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>12.4.4</b> Add Footnote</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
 <li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>13.1</b> Quantile Function in SAS</a></li>
@@ -219,7 +225,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple Comparison</a><ul>
-<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#anova"><i class="fa fa-check"></i><b>15.1</b> ANOVA</a></li>
+<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#one-way-anova"><i class="fa fa-check"></i><b>15.1</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>15.1.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#anova-model-diagnosis"><i class="fa fa-check"></i><b>15.2</b> ANOVA Model Diagnosis</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#homogeneity-test"><i class="fa fa-check"></i><b>15.2.1</b> Homogeneity Test</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#normality-assumption"><i class="fa fa-check"></i><b>15.2.2</b> Normality assumption</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#violation-of-assumptions"><i class="fa fa-check"></i><b>15.2.3</b> Violation of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#two-ways-anova-test"><i class="fa fa-check"></i><b>15.3</b> Two-Ways ANOVA Test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>16</b> CI and Sample Size Calculation</a><ul>
 <li class="chapter" data-level="16.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>16.1</b> Point Estimates</a></li>
@@ -231,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>16.3</b> Incidence rate CI</a></li>
 <li class="chapter" data-level="16.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>16.4</b> Package: pwr</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>17</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="17" data-path="multiple-comparison.html"><a href="multiple-comparison.html#non-parametric-test"><i class="fa fa-check"></i><b>17</b> Non-Parametric Test</a></li>
 <li class="chapter" data-level="18" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>18</b> Correlation and Regression</a><ul>
 <li class="chapter" data-level="18.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>18.1</b> Correlation</a><ul>
 <li class="chapter" data-level="18.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.1</b> Pearson correlation coefficient</a></li>
@@ -240,7 +254,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>18.1.4</b> Intraclass correlation</a></li>
 <li class="chapter" data-level="18.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>18.1.5</b> Visualize the correlation in R</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols-assumpions"><i class="fa fa-check"></i><b>18.2</b> Ordinary least squares (OLS) Assumpions</a></li>
+<li class="chapter" data-level="18.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>18.2</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>18.2.1</b> Assumpions</a></li>
+<li class="chapter" data-level="18.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>18.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="18.2.3" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>18.2.3</b> </a></li>
+<li class="chapter" data-level="18.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>18.2.4</b> Gauss-Markov Theorem</a></li>
+<li class="chapter" data-level="18.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>18.2.5</b> limitation</a></li>
+</ul></li>
 <li class="chapter" data-level="18.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>18.3</b> Model Statistics</a><ul>
 <li class="chapter" data-level="18.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>18.3.1</b> Residuals Standard Error</a></li>
 <li class="chapter" data-level="18.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>18.3.2</b> R-Squared and Adjusted R-Squared</a></li>
@@ -250,9 +270,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>18.3.6</b> Likelihood-ratio test</a></li>
 <li class="chapter" data-level="18.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>18.3.7</b> Accuracy</a></li>
 </ul></li>
-<li class="chapter" data-level="18.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-assumptions-checks"><i class="fa fa-check"></i><b>18.4</b> Model Assumptions Checks</a></li>
+<li class="chapter" data-level="18.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>18.4</b> Model Diagnostics</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>18.4.1</b> Checking Error Assumptions</a></li>
+<li class="chapter" data-level="18.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>18.4.2</b> Finding Unusual Observations</a></li>
+<li class="chapter" data-level="18.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>18.4.3</b> Checking the Structure of the Model</a></li>
+</ul></li>
 <li class="chapter" data-level="18.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>18.5</b> SAS implementation Proc Reg</a><ul>
 <li class="chapter" data-level="18.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>18.5.1</b> Options</a></li>
+<li class="chapter" data-level="18.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>18.5.2</b> Diagnose</a></li>
 </ul></li>
 <li class="chapter" data-level="18.6" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>18.6</b> R implementation</a></li>
 </ul></li>
@@ -275,25 +300,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="35" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
 <li class="chapter" data-level="36" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
 <li class="chapter" data-level="37" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>37</b> ^_^ Space</a></li>
-<li class="chapter" data-level="38" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>38</b> Bayesian Theory</a></li>
-<li class="chapter" data-level="39" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>39</b> </a></li>
-<li class="chapter" data-level="40" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>40</b> ^_^ Space</a></li>
-<li class="chapter" data-level="41" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>41</b> ^_^ Space</a></li>
-<li class="chapter" data-level="42" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>42</b> ^_^ Space</a></li>
-<li class="chapter" data-level="43" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>43</b> Regularization: Penalized Regression</a></li>
-<li class="chapter" data-level="44" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>44</b> ^_^ Space</a></li>
-<li class="chapter" data-level="45" data-path="classification-analysis.html"><a href="classification-analysis.html"><i class="fa fa-check"></i><b>45</b> Classification Analysis</a></li>
-<li class="chapter" data-level="46" data-path="random-forest.html"><a href="random-forest.html"><i class="fa fa-check"></i><b>46</b> Random Forest</a></li>
-<li class="chapter" data-level="47" data-path="gradient-descent-and-gradient-boosting.html"><a href="gradient-descent-and-gradient-boosting.html"><i class="fa fa-check"></i><b>47</b> Gradient Descent and Gradient Boosting</a></li>
-<li class="chapter" data-level="48" data-path="cubist-model.html"><a href="cubist-model.html"><i class="fa fa-check"></i><b>48</b> Cubist Model</a></li>
-<li class="chapter" data-level="49" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>49</b> Support Vector Machine</a></li>
-<li class="chapter" data-level="50" data-path="k-nearest-neighbors.html"><a href="k-nearest-neighbors.html"><i class="fa fa-check"></i><b>50</b> K-Nearest Neighbors</a></li>
-<li class="chapter" data-level="51" data-path="linear-discriminant-analysis.html"><a href="linear-discriminant-analysis.html"><i class="fa fa-check"></i><b>51</b> Linear Discriminant Analysis</a></li>
-<li class="chapter" data-level="52" data-path="multivariate-adaptive-regression-spline.html"><a href="multivariate-adaptive-regression-spline.html"><i class="fa fa-check"></i><b>52</b> Multivariate Adaptive Regression Spline</a></li>
-<li class="chapter" data-level="53" data-path="clustering-analysis.html"><a href="clustering-analysis.html"><i class="fa fa-check"></i><b>53</b> Clustering Analysis</a></li>
-<li class="chapter" data-level="54" data-path="singular-value-decomposition.html"><a href="singular-value-decomposition.html"><i class="fa fa-check"></i><b>54</b> Singular Value Decomposition</a></li>
-<li class="chapter" data-level="55" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>55</b> </a></li>
-<li class="chapter" data-level="56" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>56</b> </a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -318,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">As a Statistician</h1>
 <p class="author"><em>Zehui Bai</em></p>
-<p class="date"><em>2021-04-29</em></p>
+<p class="date"><em>2021-05-09</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>

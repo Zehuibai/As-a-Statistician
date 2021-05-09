@@ -104,16 +104,19 @@ ggcorrplot(corr, hc.order = TRUE,
 ```
 
 
-## Ordinary least squares (OLS) Assumpions
+## Ordinary least squares (OLS) 
+
+### Assumpions
 
 $${\displaystyle \mathbf {y} =\mathbf {X} {\boldsymbol {\beta }}+{\boldsymbol {\varepsilon }}\;}  \ \ \ \ {\displaystyle \;{\boldsymbol {\varepsilon }}\sim {\mathcal {N}}(\mathbf {0} ,\sigma ^{2}\mathbf {I} _{T})}.$$
+
 1. $y_{i}=\alpha+\beta x_{i}+\varepsilon_{i}$
 2. $\mathrm{E}\left(\varepsilon_{i}\right)=0$
 3. $\operatorname{var}\left(\varepsilon_{i}\right)=\sigma^{2}$
 4. $\operatorname{cov}\left(\varepsilon_{i}, \varepsilon_{j}\right)=0$
 5. $\varepsilon_{i} \sim$ Normal Distribution
 
-Interpretation
+### Interpretation
 
 * Linearity: The relationship between the predictor variable and the response variable is linear. If the linear relationship cannot be clearly presented, **data conversion** (logarithmic conversion, polynomial conversion, exponential conversion, etc.) can be performed on the variable X or Y
 * Residuals are uncorrelated
@@ -122,6 +125,39 @@ Interpretation
 * on-collinearity: There is no linear relationship between the two predictors, that is, there should be no correlation between the features. Similarly, collinearity can also cause estimation bias.
 * Outliers: outliers will seriously affect parameter estimation. Ideally, outliers must be removed before using linear regression to fit the model.
 
+
+### Matrix Solution
+
+Least squares method minimum $J\left(\theta_{0}, \theta_{1}\right)$ and find out the smallest $\theta_{0}$ and $\theta_{1}$
+
+$$J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(y^{(i)} - h_\theta(x^{(i)})^2 = \sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)})^2$$
+
+Assume $$h_\theta(x_1, x_2, ...x_n) = \theta_0 + \theta_{1}x_1 + ... + \theta_{n}x_{n}$$ as $$h_\mathbf{\theta}(\mathbf{x}) = \mathbf{X\theta}$$
+
+$$J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})$$
+
+Take the derivative of the θ vector for this loss function to 0
+
+$$\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta) = \mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y}) = 0$$
+$$\mathbf{X^{T}X\theta} = \mathbf{X^{T}Y}$$
+$$\mathbf{\theta} = (\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}$$
+
+
+### Gauss-Markov Theorem
+
+高斯马尔科夫定理（Gauss-Markov Theorem）证明了最小二乘法线性有特别好的性质，具体来说，当误差项均值为 0 时，OLS 得到的无偏$\hat \beta$（unbiased），如果各误差项方差相同，OLS 得到的是最佳无偏线性估计（BLUE, best linear unbiased estimator）。如果线性回归模型中的误差不相关，则普通最小二乘（OLS）估计量在线性无偏估计量类别中的抽样方差最低. $\hat \beta$是一个合理的估计量，但也有其他选择。 但是，使用最小二乘有三个良好的理由：
+
+1. It results from an orthogonal projection onto the model space. It makes sense geometrically.
+2. If the errors are independent and identically normally distributed, it is the maximum likelihood estimator. Loosely put, the maximum likelihood estimate is the value of $\hat \beta$ that maximizes the probability of the data that was observed. (如果误差是独立的并且正态分布相同，则它是最大似然估计量。 松散地说，最大似然估计值为 这样可以最大程度地提高观察到数据的可能性。)
+3. The Gauss-Markov theorem states that is the best linear unbiased estimate (BLUE).
+
+
+### limitation
+
+1. 首先, 最小二乘法需要计算 $\left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)$ 的逆矩阵, 有可能它的逆 矩阵 $\left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)^{-1}$ 不存在, 这样就没有办法直接用最小二王法 了，此时梯度下降法仍然可以使用。当然，我们可以通过对样 本数据进行整理, 去掉几余特征。让 $\left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)$ 的行列式不为 0, 然后继续使用最小二乘法。
+2. 第二，当样本特征n非常的大的时候, 计算 $\left(\mathbf{X}^{\mathrm{T}} \mathbf{X}\right)$ 的逆矩阵 是一个非常耗时的工作 (nxn的矩阵求逆)， 甚至不可行。此时 以梯度下降为代表的迭代法仍然可以使用。那这个n到底多大就 不适合最小二乘法呢? 如果你没有很多的分布式大数据计算资 源, 建议超过10000个特征就用迭代法吧。或者通过主成分分 析降低特征的维度后再用最小二乘法。
+3. 第三，如果拟合函数不是线性的，这时无法使用最小二乘法,需要通过一些技巧转化为线性才能使用，此时梯度下降仍然可以用。
+4. 第四, 特死情况。当样本量m很少，小于特征数n的时候，这时 拟合方程是欠定的，常用的优化方法都无法去拟合数据。当样 本量m等于特征数n的时候, 用方程组求解就可以了。当m大于 n时，拟合方程是超定的, 也就是我们常用与最小二乘法的场景。
 
 
 ## Model Statistics
@@ -345,7 +381,180 @@ mape
 ```
 
 
-## Model Assumptions Checks
+## Model Diagnostics
+
+The estimation and inference of the regression model depend on several assumptions. These assumptions need to be checked using regression diagnostics. We divide potential problems into three categories:
+
+1. Error We have assumed that $\varepsilon \sim \mathrm{N}\left(0, \sigma^{2} I\right)$ or in words, that the errors are independent, have equal variance and are normally distributed.
+2. Model We have assumed that the structural part of the model $E y=X \beta$ is correct.
+3. Unusual observations Sometimes just a few observations do
+not fit the model. These few observations might change the
+choice and fit of the model.
+
+### Checking Error Assumptions
+
+**1. Constant Variance (Residuals vs. fitted plots)**
+
+There are two approaches to dealing with nonconstant variance. Use of **weighted least squares** is appropriate when the form of the **nonconstant variance** is either known exactly or there is some known parametric form. Alternatively, one can transform the variables.
+
+
+**Assumptions Checks using Residual Plots**
+
+
+In order for the model to accurately explain the data and for your p-value to represent a meaningful test of the null hypothesis, we need to make some assumptions about the data. Many diagnostics about the regression model can be derived using plots of the residuals of the fitted model. The residuals can easily be obtained and examined, but the crucial concept is that these are sampled from a larger, unobservable population
+
+> 为了使模型准确地解释数据并让您的p值代表对原假设的有意义的检验，我们需要对数据进行一些假设。 可以使用拟合模型的残差图得出有关回归模型的许多诊断信息。 残差可以很容易地获得和检查，但是关键的概念是，这些残差是从一个较大的，不可观察的人群中取样的
+
+**The model assumptions are expressed in terms of the error distribution.**
+
+1. Errors are independent
+2. Errors have constant variance
+3. Errors have mean zero
+4. Errors follow a normal distribution
+
+```{r, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Residums Plots"}
+knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/LR_Residums.png")
+```
+
+
+Hier some plots can be used:
+
+* Scatter plot: 可视化预测变量和响应之间的线性关系
+* Box plot: 在变量中发现任何异常值。在预测变量中包含异常值会极大地影响预测，因为它们很容易影响最佳拟合线的方向/斜率。
+* Density plot: 查看预测变量的分布。理想情况下，接近正态分布（钟形曲线）且不偏向左侧或右侧是首选。
+* Bubble plot: 气泡图是散点图的变体，其中 数据点 替换为气泡，数据的其他维度以气泡大小表示。 与散点图一样，气泡图不使用分类轴 - 水平坐标轴和垂直坐标轴都是数值轴。 除了绘制在散点图中的 x 值和 y 值之外，气泡图还绘制 x 值、y 值和 z (大小) 值。
+
+**Scatter plots**
+
+Scatter plots can help visualize any linear relationships between the dependent (response) variable and independent (predictor) variables. Ideally, if you are having multiple predictor variables, a scatter plot is drawn for each one of them against the response, along with the line of best as seen below. [Residuals](https://drsimonj.svbtle.com/visualising-residuals)
+
+```
+scatter.smooth(x=cars$speed, y=cars$dist, main="Dist ~ Speed")
+```
+
+**Box Plot**
+
+Check for outliers. Generally, any data point outside the 1.5 quartile range (1.5 IQR) is considered an outlier, where IQR is calculated as the 25th percentile and 75th percentile of the variable the distance between.
+
+```
+par(mfrow=c(1, 2))  # divide graph area in 2 columns
+boxplot(cars$speed, main="Speed", sub=paste("Outlier rows: ", boxplot.stats(cars$speed)$out))  # box plot for 'speed'
+boxplot(cars$dist, main="Distance", sub=paste("Outlier rows: ", boxplot.stats(cars$dist)$out))  # box plot for 'distance'
+```
+
+
+**Density plot**
+
+
+Check if the response variable is close to normality
+
+```
+library(e1071)
+par(mfrow=c(1, 2))  # divide graph area in 2 columns
+plot(density(cars$speed), main="Density Plot: Speed", ylab="Frequency", sub=paste("Skewness:", round(e1071::skewness(cars$speed), 2)))  # density plot for 'speed'
+polygon(density(cars$speed), col="red")
+plot(density(cars$dist), main="Density Plot: Distance", ylab="Frequency", sub=paste("Skewness:", round(e1071::skewness(cars$dist), 2)))  # density plot for 'dist'
+polygon(density(cars$dist), col="red")
+```
+ 
+ 
+**2. Normality**
+
+The residuals can be assessed for normality using a Q–Q plot
+
+When the errors are not normal, least squares estimates may not be optimal. They will still be best linear unbiased estimates, but other robust estimators may be more effective. Also tests and confidence intervals are not exact. However, only long-tailed distributions cause large inaccuracies. Mild nonnormality can safely be ignored and the larger the sample size the less troublesome the nonnormality. For short-tailed distributions, the consequences of nonnormality are not serious and can reasonably 
+
+<!-- 当误差不正常时，最小二乘估计可能不是最佳的。 它们仍将是最佳的线性无偏估计，但其他稳健的估计量可能更有效。 同样，测试和置信区间也不精确。 但是，只有长尾分布会导致较大的误差。 轻度的非正常现象可以安全地忽略，样本量越大，非正常现象的麻烦就越小。对于短尾分布，非正态性的后果并不严重，并且可以合理地进行。 -->
+
+The Shapiro-Wilk test is a formal test for normality, The null hypothesis is that the the residuals are normal.: 
+
+```
+shapiro.test (residuals (g))
+```
+
+**3. Correlated Errors**
+
+Graphical checks include plots of $\hat{\varepsilon}$ against time and
+$\hat{\varepsilon}_{i}$ against $\hat{\varepsilon}_{i-1}$ while the Durbin Watson test uses the statistic (The null distribution based on the assumption of uncorrelated errors follows a linear combination of $\chi^{2}$
+distributions.):
+$$
+D W=\frac{\sum_{i=2}^{n}\left(\hat{\varepsilon}_{i}-\hat{\varepsilon}_{i-1}\right)^{2}}{\sum_{i=1}^{n} \hat{\varepsilon}_{i}^{2}}
+$$
+
+
+### Finding Unusual Observations
+
+**Studentized residuals**
+
+$$r_{i}=\frac{\hat{\varepsilon}_{i}}{\hat{\sigma} \sqrt{1-h_{i}}}$$
+
+如果模型假设正确, 则var $\mathrm{r}_{i}=1$ 
+and $\operatorname{corr}\left(r_{i,}, r_{j}\right)$ 倾向于很小。
+在残差图中,有时首选学生化残差, 因为它们已经标准化为具有相等的方差。
+当误差具有恒定方差时，学生化只能校正残差的自然非恒定方差。 
+如果错误中存在一些潜在的异方差，则学生化无法对其进行校正。
+
+**Outlier**
+
+An outlier is a point that does not fit the current model. We need to be aware of such exceptions. An outlier test is useful because it enables us to distinguish between truly unusual observations and residuals that are large, but not exceptional
+
+In linear regression, an outlier is an observation with a large residual. In other words, it is an observation whose dependent-variable value is unusual given its value on the predictor variables. An outlier may indicate a sample peculiarity or may indicate a data entry error or other problem.
+
+$$
+\hat{y}_{(i)}=x_{i}^{T} \hat{\beta}_{(i)}
+$$
+If $\hat{y}_{(i)}-y_{i}$ is large, then case $i$ is an outlier. To judge the size of potential outliers, we need to scale appropriately. we discover:
+$$
+\text { vâr } \left.\left(y_{i}-\hat{y}_{(i)}\right)=\hat{\sigma}_{(i)}^{2}\left(1+x_{i}^{T}\left(X_{(i)}^{T} X_{(i)}\right)\right)^{-1} x_{i}\right)
+$$
+Therefore, we take the residuals of the jackknife (or externally learned or cross-validated)
+$$
+t_{i}=\frac{y_{i}-\hat{y}_{(i)}}{\left.\hat{\sigma}_{(i)}\left(1+x_{i}^{T}\left(X_{(i)}^{T} X_{(i)}\right)\right)^{-1} x_{i}\right)^{1 / 2}}
+$$
+which are distributed $t n-p-1$ if the model is correct and $\varepsilon \sim \mathrm{N}\left(0, \sigma^{2} I\right)$. Fortunately, there is an easier way to compute $t i$
+$$
+t_{i}=\frac{\hat{\varepsilon}_{i}}{\hat{\sigma}_{(i)} \sqrt{1-h_{i}}}=r_{i}\left(\frac{n-p-1}{n-p-r_{i}^{2}}\right)^{1 / 2}
+$$
+避免进行n回归。由于 $t_{i} \sim t_{n-p-1}$, 我们可以计算一个值来测试 情况i是否是异常值。
+
+
+
+**Leverage**
+
+An observation with an extreme value on a predictor variable is a point with high leverage. Leverage is a measure of how far an independent variable deviates from its mean. High leverage points can have a great amount of effect on the estimate of regression coefficients. 
+$h_{i}=H_{i i}$ are called leverages and are useful diagnostics. Since
+var $\hat{\varepsilon}_{i}=\sigma^{2}\left(1-h_{i}\right)$, a large leverage, $h_{i}$, will make var $\hat{\varepsilon}_{i}$
+small.
+
+**Influence**
+
+An observation is said to be influential if removing the observation substantially changes the estimate of the regression coefficients. Influence can be thought of as the product of leverage and outlierness.
+
+Consider the change in the fit $X^{T}\left(\hat{\boldsymbol{\beta}}-\hat{\boldsymbol{\beta}}_{(i)}\right)=\hat{y}-\hat{y}_{(i)}$ The
+Cook statistics are a popular influence diagnostic because they reduce the information to a single value for each case. They are defined as:
+$$
+\begin{aligned}
+D_{i} &=\frac{\left(\hat{y}-\hat{y}_{(i)}\right)^{T}\left(\hat{y}-\hat{y}_{(i)}\right)}{p \hat{\sigma}^{2}} \\
+&=\frac{1}{p} r_{i}^{2} \frac{h_{i}}{1-h_{i}}
+\end{aligned}
+$$
+
+### Checking the Structure of the Model
+
+We can look at plots of $\hat{\varepsilon}$ against $\hat{y}$ and $x_{i}$ to reveal problems
+or just simply look at plots of $y$ against each $x_{i} .$ 
+
+The disadvantage of these graphs is that other predictor variables affect the relationship. Partial regression or increased variable graph can help isolate the effect of $x_{i}$
+Look at the response that removes the expected effect of other $X_s$:
+**Partial regression (left) and partial residual (right) plots**
+
+$$
+y-\sum_{j \neq i} x_{j} \hat{\beta}_{j}=\hat{y}+\hat{\varepsilon}-\sum_{j \neq i} x_{j} \hat{\beta}_{j}=x_{i} \hat{\beta}_{i}+\hat{\varepsilon}
+$$
+
+
+
+
 
 
 
@@ -384,6 +593,59 @@ mape
 
 
 
+### Diagnose
+
+**Hat matrix diagonal SAS**
+
+The hat matrix diagonal measure is used to identify unusual values of the explanatory variables. The hat matrix depends only on the explanatory values and not on the dependent y values. The interpretation, then, is that the hat matrix is a measure of leverage among the independent, explanatory variables only. In contrast, a plot of residuals identifies observations that are unusual in terms of their Y values that we wish to explain. The hat matrix diagonal measure is used to identify unusual values of the explanatory variables.
+
+The "U" shape is a shape common to most hat matrix diagrams. We can think that the highest and lowest observed values of the explanatory variables are also the furthest away from the data center and will have the greatest impact. Observations close to the data center should have the least influence.
+
+<!-- 
+帽子矩阵仅取决于解释性值，而不取决于相关的y值。 因此，解释是帽子矩阵仅是独立，解释性变量之间杠杆作用的量度。 相比之下，残差图可标识出我们希望解释的，在Y值方面不寻常的观察结果。
+
+“ U”形是大多数帽子矩阵图所共有的形状。我们可以认为，解释变量的最高和
+最低观测值也离数据中心最远，并且将产生最大的影响。靠近数据中心的观测
+值应具有最小的影响力。
+-->
+
+
+```
+proc reg data=cold;
+    model maxt = lat long alt / p r influence ;
+    output out=inf h=h p=p r=r;
+    run;
+proc gplot data=inf;
+    plot h * p;
+run;
+```
+
+**Jackknife Diagnostics SAS**
+
+The jackknife measures how much the fitted model changes when one observation is deleted and the model is refitted. If an observation is deleted from the data set, and the new fit is very different from the original model based on the complete data set, the observation is considered to have an impact on the fit
+
+```
+proc reg data=cold;
+title2 ’Explain max Jan temperature’;
+model maxt = lat long alt / p influence partial;
+ods output OutputStatistics = diag;
+run;
+title2 ’Examine diagnostic data set’;
+proc print data=diag;
+run;
+```
+
+**Partial Regression Plots SAS**
+
+One way to solve the problem of the individual contribution of each explanatory variable is to use partial correlation and partial regression plots. These are obtained using the /partial option in proc reg.
+
+```
+proc reg data=lowbw;
+    model birthwt = headcirc length gestage momage toxemia
+    / partial influence p r pcorr1 pcorr2;
+    ods output OutputStatistics = diag;
+run;
+```
 
 
 ## R implementation 
@@ -391,13 +653,23 @@ mape
 
 |  Title             | Function                               |
 |--------------------|----------------------------------------|
-| 拟合模型           | bank.lm <- lm(y~x1+x2+x3+x4,data=bank) |
 | 预测值             | fitted(bank.lm)                        |
 | 求模型系数         | coef(bank.lm)                          |
 | 计算残差平方和     | deviance(bank.lm)                      |
 | 计算残差           | residuals(bank.lm)                     |
 | 方差分析表         | anova(bank.lm)                         |
 | Konfidenzintervall | confint(bank.lm, level=0.95)           |
+|                    |                                        |
+| 异方差检验         |library(car)                            |
+|                    |ncvTest(bank.lm)                        |
+| 共线性检验：VIF>10 |vif(bank.lm)                            |
+| 自相关性检验       |durbinWatsonTest(bank.lm)               |
+| 高杠杆点: 大于均值的2~3倍  | hatvalues(bank.lm)             |
+| 强影响点           |cooks.distance(bank.lm)                 |
+| 离群点、高杠杆点、强影响点 | influence.measures(bank.lm)    |
+|                    | influencePlot(bank.lm)                 |
+
+
 
 
 

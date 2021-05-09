@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Advanced Linear Regression | As a Statistician</title>
+  <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Advanced Linear Regression | As a Statistician" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Advanced Linear Regression | As a Statistician" />
+  
+  <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  
+
+<meta name="author" content="Zehui Bai" />
+
+
+<meta name="date" content="2021-05-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="correlation-and-regression.html"/>
+<link rel="next" href="logistic-regression.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-and-format.html"><a href="input-and-format.html"><i class="fa fa-check"></i><b>2</b> Input and Format</a><ul>
+<li class="chapter" data-level="2.1" data-path="input-and-format.html"><a href="input-and-format.html#import-in-sas"><i class="fa fa-check"></i><b>2.1</b> Import in SAS</a></li>
+<li class="chapter" data-level="2.2" data-path="input-and-format.html"><a href="input-and-format.html#import-in-r"><i class="fa fa-check"></i><b>2.2</b> Import in R</a></li>
+<li class="chapter" data-level="2.3" data-path="input-and-format.html"><a href="input-and-format.html#package-readr"><i class="fa fa-check"></i><b>2.3</b> Package readr</a></li>
+<li class="chapter" data-level="2.4" data-path="input-and-format.html"><a href="input-and-format.html#package-strings"><i class="fa fa-check"></i><b>2.4</b> Package Strings</a></li>
+<li class="chapter" data-level="2.5" data-path="input-and-format.html"><a href="input-and-format.html#package-forcats"><i class="fa fa-check"></i><b>2.5</b> Package forcats</a></li>
+<li class="chapter" data-level="2.6" data-path="input-and-format.html"><a href="input-and-format.html#package-lubridate"><i class="fa fa-check"></i><b>2.6</b> Package lubridate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html"><i class="fa fa-check"></i><b>3</b> Data Management in SAS</a></li>
+<li class="chapter" data-level="4" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>4</b> Data Management in R</a></li>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a></li>
+<li class="chapter" data-level="6" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>6</b> ^_^ Space</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a></li>
+<li class="chapter" data-level="8" data-path="proc-sqplot.html"><a href="proc-sqplot.html"><i class="fa fa-check"></i><b>8</b> Proc Sqplot</a><ul>
+<li class="chapter" data-level="8.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter Plot</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>8.1.1</b> Vector in scatter Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>9</b> ^_^ Space</a></li>
+<li class="chapter" data-level="10" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>10</b> ^_^ Space</a></li>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics in SAS</a><ul>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>11.1</b> Proc Freq</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>11.2</b> Proc Means</a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulatte"><i class="fa fa-check"></i><b>11.3</b> Proc Tabulatte</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>12</b> Descriptive Statistics in R</a><ul>
+<li class="chapter" data-level="12.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>12.1</b> Package pape</a></li>
+<li class="chapter" data-level="12.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>12.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="12.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>12.3</b> Package compareGroups</a></li>
+<li class="chapter" data-level="12.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>12.4</b> Package kableExtra</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>12.4.1</b> kable_styling</a></li>
+<li class="chapter" data-level="12.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>12.4.2</b> Column/Row Specification</a></li>
+<li class="chapter" data-level="12.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>12.4.3</b> Grouping columns/rows</a></li>
+<li class="chapter" data-level="12.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>12.4.4</b> Add Footnote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
+<li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>13.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#binomial-distribution"><i class="fa fa-check"></i><b>13.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>13.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="13.4" data-path="distributions.html"><a href="distributions.html#multinomial-distribution"><i class="fa fa-check"></i><b>13.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="13.5" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>13.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="13.6" data-path="distributions.html"><a href="distributions.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>13.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="13.7" data-path="distributions.html"><a href="distributions.html#poisson-distribution"><i class="fa fa-check"></i><b>13.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="13.8" data-path="distributions.html"><a href="distributions.html#exponential-distribution"><i class="fa fa-check"></i><b>13.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="13.9" data-path="distributions.html"><a href="distributions.html#gamma-distribution"><i class="fa fa-check"></i><b>13.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="13.10" data-path="distributions.html"><a href="distributions.html#weibull-distribution"><i class="fa fa-check"></i><b>13.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="13.11" data-path="distributions.html"><a href="distributions.html#beta-distribution"><i class="fa fa-check"></i><b>13.11</b> Beta Distribution</a><ul>
+<li class="chapter" data-level="13.11.1" data-path="distributions.html"><a href="distributions.html#beta分布及其函数公式推导"><i class="fa fa-check"></i><b>13.11.1</b> Beta分布及其函数公式推导</a></li>
+<li class="chapter" data-level="13.11.2" data-path="distributions.html"><a href="distributions.html#beta-函数和-gamma-函数"><i class="fa fa-check"></i><b>13.11.2</b> Beta 函数和 Gamma 函数</a></li>
+<li class="chapter" data-level="13.11.3" data-path="distributions.html"><a href="distributions.html#beta-分布的期望与方差"><i class="fa fa-check"></i><b>13.11.3</b> Beta 分布的期望与方差</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>14</b> Parametric Test</a><ul>
+<li class="chapter" data-level="14.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>14.1</b> Proc FREQ</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="parametric-test.html"><a href="parametric-test.html#ods-table-names"><i class="fa fa-check"></i><b>14.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="14.1.2" data-path="parametric-test.html"><a href="parametric-test.html#ods-plots"><i class="fa fa-check"></i><b>14.1.2</b> ODS Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>14.2</b> </a></li>
+<li class="chapter" data-level="14.3" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>14.3</b> Binomial test</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>14.3.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.3.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>14.3.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>14.4</b> Fisher’s Exact Test</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula-1"><i class="fa fa-check"></i><b>14.4.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="14.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>14.4.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>14.4.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="parametric-test.html"><a href="parametric-test.html#contingency-test"><i class="fa fa-check"></i><b>14.5</b> Contingency test</a></li>
+<li class="chapter" data-level="14.6" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>14.6</b> McNemar’s test</a></li>
+<li class="chapter" data-level="14.7" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>14.7</b> Cochran–Mantel–Haenszel Test</a><ul>
+<li class="chapter" data-level="14.7.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>14.7.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>14.8</b> Correlation Test</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>14.8.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="14.8.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>14.8.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="14.8.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>14.8.3</b> Kendall correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>14.9</b> Two Sample T-Test</a><ul>
+<li class="chapter" data-level="14.9.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>14.9.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.9.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>14.9.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>14.10</b> Normality test</a><ul>
+<li class="chapter" data-level="14.10.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>14.10.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="14.10.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>14.10.2</b> R implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple Comparison</a><ul>
+<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#one-way-anova"><i class="fa fa-check"></i><b>15.1</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>15.1.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#anova-model-diagnosis"><i class="fa fa-check"></i><b>15.2</b> ANOVA Model Diagnosis</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#homogeneity-test"><i class="fa fa-check"></i><b>15.2.1</b> Homogeneity Test</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#normality-assumption"><i class="fa fa-check"></i><b>15.2.2</b> Normality assumption</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#violation-of-assumptions"><i class="fa fa-check"></i><b>15.2.3</b> Violation of assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#two-ways-anova-test"><i class="fa fa-check"></i><b>15.3</b> Two-Ways ANOVA Test</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>16</b> CI and Sample Size Calculation</a><ul>
+<li class="chapter" data-level="16.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>16.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="16.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci"><i class="fa fa-check"></i><b>16.2</b> Binomial CI</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>16.2.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="16.2.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>16.2.2</b> Package binom</a></li>
+<li class="chapter" data-level="16.2.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>16.2.3</b> %CI_Single_Proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>16.3</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="16.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>16.4</b> Package: pwr</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="multiple-comparison.html"><a href="multiple-comparison.html#non-parametric-test"><i class="fa fa-check"></i><b>17</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="18" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>18</b> Correlation and Regression</a><ul>
+<li class="chapter" data-level="18.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>18.1</b> Correlation</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>18.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="18.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>18.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="18.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>18.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>18.2</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>18.2.1</b> Assumpions</a></li>
+<li class="chapter" data-level="18.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>18.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="18.2.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#matrix-solution"><i class="fa fa-check"></i><b>18.2.3</b> Matrix Solution</a></li>
+<li class="chapter" data-level="18.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>18.2.4</b> Gauss-Markov Theorem</a></li>
+<li class="chapter" data-level="18.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>18.2.5</b> limitation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>18.3</b> Model Statistics</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>18.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="18.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>18.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="18.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>18.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="18.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>18.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="18.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>18.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="18.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>18.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="18.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>18.3.7</b> Accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>18.4</b> Model Diagnostics</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>18.4.1</b> Checking Error Assumptions</a></li>
+<li class="chapter" data-level="18.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>18.4.2</b> Finding Unusual Observations</a></li>
+<li class="chapter" data-level="18.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>18.4.3</b> Checking the Structure of the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>18.5</b> SAS implementation Proc Reg</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>18.5.1</b> Options</a></li>
+<li class="chapter" data-level="18.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>18.5.2</b> Diagnose</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>18.6</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>19</b> Advanced Linear Regression</a><ul>
+<li class="chapter" data-level="19.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>19.1</b> Model Selection</a></li>
+<li class="chapter" data-level="19.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#practical-difficulties-using-ols"><i class="fa fa-check"></i><b>19.2</b> Practical Difficulties using OLS</a></li>
+<li class="chapter" data-level="19.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#skewness"><i class="fa fa-check"></i><b>19.3</b> Skewness</a></li>
+<li class="chapter" data-level="19.4" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#scale"><i class="fa fa-check"></i><b>19.4</b> Scale</a></li>
+<li class="chapter" data-level="19.5" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#interaction"><i class="fa fa-check"></i><b>19.5</b> Interaction</a></li>
+<li class="chapter" data-level="19.6" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#collinearity"><i class="fa fa-check"></i><b>19.6</b> Collinearity</a></li>
+<li class="chapter" data-level="19.7" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#problems-with-the-error"><i class="fa fa-check"></i><b>19.7</b> Problems with the Error</a><ul>
+<li class="chapter" data-level="19.7.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#generalized-least-squares"><i class="fa fa-check"></i><b>19.7.1</b> Generalized Least Squares</a></li>
+<li class="chapter" data-level="19.7.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#weighted-least-squares"><i class="fa fa-check"></i><b>19.7.2</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="19.7.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#robust-regression"><i class="fa fa-check"></i><b>19.7.3</b> Robust Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="19.8" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#shrinkage-methods"><i class="fa fa-check"></i><b>19.8</b> Shrinkage Methods</a><ul>
+<li class="chapter" data-level="19.8.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#principal-components-analzsis"><i class="fa fa-check"></i><b>19.8.1</b> Principal Components Analzsis</a></li>
+<li class="chapter" data-level="19.8.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#partial-least-squares"><i class="fa fa-check"></i><b>19.8.2</b> Partial Least Squares</a></li>
+<li class="chapter" data-level="19.8.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#ridge-regression"><i class="fa fa-check"></i><b>19.8.3</b> Ridge Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>21</b> Advanced Logistic Regression</a></li>
+<li class="chapter" data-level="22" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>22</b> Survival Analysis</a></li>
+<li class="chapter" data-level="23" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>23</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="24" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>24</b> Count Data Regression</a></li>
+<li class="chapter" data-level="25" data-path="proportion-response-regression.html"><a href="proportion-response-regression.html"><i class="fa fa-check"></i><b>25</b> Proportion Response Regression</a></li>
+<li class="chapter" data-level="26" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>26</b> Mixed Model</a></li>
+<li class="chapter" data-level="27" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>27</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="28" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>28</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="29" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>29</b> Time Series Analysis</a></li>
+<li class="chapter" data-level="30" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>30</b> Meta Analysis</a></li>
+<li class="chapter" data-level="31" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>31</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="32" data-path="clinic-study-design.html"><a href="clinic-study-design.html"><i class="fa fa-check"></i><b>32</b> Clinic Study Design</a></li>
+<li class="chapter" data-level="33" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>33</b> Propensity Score</a></li>
+<li class="chapter" data-level="34" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>34</b> Missing Data</a></li>
+<li class="chapter" data-level="35" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
+<li class="chapter" data-level="36" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
+<li class="chapter" data-level="37" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>37</b> ^_^ Space</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">As a Statistician</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="advanced-linear-regression" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Advanced Linear Regression</h1>
+<div id="model-selection" class="section level2">
+<h2><span class="header-section-number">19.1</span> Model Selection</h2>
+</div>
+<div id="practical-difficulties-using-ols" class="section level2">
+<h2><span class="header-section-number">19.2</span> Practical Difficulties using OLS</h2>
+<p><strong>1. Nonrandom Samples</strong></p>
+<p>数据的收集方式直接影响我们可以得出的结论。假设检验的一般理论提出了一个从中抽取样本的总体。样本就是我们的数据，我们想使用从样本数据中获得的估计值来说明未知的总体值！此外，我们要求生成数据d使用总体的简单随机样本。该样本的大小是有限的，而总体的大小是无限的，或者至少如此之大，以至于样本量在整体中所占的比例可以忽略不计。当数据根本不是随机样本时，统计推断背后的逻辑还取决于样本是随机的。这并不是说这样的研究是毫无价值的，而是应用描述性的统计技术之外的其他任何东西都是不合理的。对此类数据得出的结论的置信度肯定值得怀疑</p>
+<p><strong>2. Choice and Range of Predictors</strong></p>
+<p>如果未观察到重要的预测因素，则预测可能会很差，或者我们可能会误解预测因素与响应之间的关系。数据收集的范围和条件可能会限制有效的预测。 推断太多是不安全的。</p>
+<p><strong>3. Model Misspecification</strong></p>
+<p>我们对模型的结构部分和随机部分进行假设。 <span class="math inline">\(\varepsilon \sim \mathrm{N}\left(0, \sigma^{2} I\right)\)</span> 但这可能不正确. 线性模型 <span class="math inline">\(E y=X \beta\)</span> 的结构部分也可能不正确。</p>
+<p><strong>4. Practical and Statistical Significance</strong></p>
+<p>统计意义不等于实际意义。样本越大，您的p值将越小，因此请不要将p值与重要的预测器效果混淆。对于大型数据集，将很容易获得具有统计意义的结果，但实际效果可能并不重要。</p>
+<p>参数估计值上的CIS是评估效果大小的更好方法。即使在不拒绝零假设的情况下，它们也很有用，因为它们告诉我们，我们对真实效果或价值接近零的信心有多强。同样重要的是要记住，模型通常只是基础现实的近似，这至少使参数的确切含义值得商榷. 此外，我们知道，拥有的数据越多，测试的功能就越强大。即使是零样本，即使有很大的差异，也会被大量样本检测到。现在，如果我们不能拒绝原假设，我们可能会简单地得出结论，即我们没有足够的数据来获得重要的结果。根据这种观点，假设检验只是对样本量的检验。因此，我们更喜欢CIs</p>
+</div>
+<div id="skewness" class="section level2">
+<h2><span class="header-section-number">19.3</span> Skewness</h2>
+</div>
+<div id="scale" class="section level2">
+<h2><span class="header-section-number">19.4</span> Scale</h2>
+<p>单位的更改可能有助于解释, 但是不会影响参数估计。
+当所有预测变量的比例都相似时，估计的数值稳定性会增强。
+一种相当彻底的缩放方法是使用scale（）命令将所有变量转换为标准单位（均值0和方差1）。 这样的缩放比例具有将所有预测变量和响应置于可比较的比例尺上的优势，这使比较更加容易。
+它还避免了当变量的比例非常不同时可能出现的一些数字问题。 这种缩放的不利之处在于，回归系数现在表示预测变量中标准单位增加对标准单位响应的影响-
+这可能并不总是很容易解释。</p>
+<pre><code>data(savings)
+g &lt; - 1m (sr ˜ popl5+pop75+dpi+ddpi, savings)
+summary (g)
+
+Coefficients:
+ Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 28.566087 7.354516 3.88 0.00033
+      pop15  0.461193 0.144642 !3.19 0.00260
+      pop75  1.691498 1.083599 !1.56 0.12553
+        dpi  0.000337 0.000931 !0.36 0.71917
+        ddpi 0.409695 0.196197 2.09 0.04247
+        
+Residual standard error: 3.8 on 45 degrees of freedom
+Multiple R-Squared: 0.338, Adjusted R-squared: 0.28
+F-statistic: 5.76 on 4 and 45 DF, p-value: 0.00079
+
+
+ g &lt; 1m (sr ˜ pop15+pop75+I(dpi/1000)+ddpi, savings)
+ summary (g)
+ 
+Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 28.566 7.355 3.88 0.00033
+pop15 !0.461 0.145 !3.19 0.00260
+pop75 !1.691 1.084 !1.56 0.12553
+I(dpi/1000) !0.337 0.931 !0.36 0.71917
+ddpi 0.410 0.196 2.09 0.04247
+
+Residual standard error: 3.8 on 45 degrees of freedom
+Multiple R-Squared: 0.338, Adjusted R-squared: 0.28
+F-statistic: 5.76 on 4 and 45 DF, p-value: 0.00079
+ 
+ 
+scsav &lt; - data.frame(scale(savings))
+g &lt; - lm (sr , scsav) 
+summary (g) Coefficients:
+
+ Estimate Std Error t value Pr(&gt;|t|)
+(Intercept) 4.0e–16 0.1200 3.3e–15 1.0000
+pop15 !0.9420 0.2954 !3.19 0.0026
+pop75 !0.4873 0.3122 !1.56 0.1255
+dpi !0.0745 0.2059 !0.36 0.7192
+ddpi 0.2624 0.1257 2.09 0.0425
+
+Residual standard error: 0.849 on 45 degrees of freedom
+Multiple R-Squared: 0.338, Adjusted R-squared: 0.28
+F-statistic: 5.76 on 4 and 45 DF, p-value: 0.00079</code></pre>
+</div>
+<div id="interaction" class="section level2">
+<h2><span class="header-section-number">19.5</span> Interaction</h2>
+</div>
+<div id="collinearity" class="section level2">
+<h2><span class="header-section-number">19.6</span> Collinearity</h2>
+<p>When some predictors are linear combinations of others, then <span class="math inline">\(X^{T} X\)</span> is singular, and we have (exact) collinearity. There is no unique least squares estimate of <span class="math inline">\(\beta\)</span> If <span class="math inline">\(X^{T} X\)</span> is close to singular, we have collinearity (some call it multicollinearity). This causes serious problems with the estimation of <span class="math inline">\(\beta\)</span> and associated quantities, as well as the interpretation.</p>
+<p>共线性可以通过以下几种方式检测：</p>
+<ol style="list-style-type: decimal">
+<li>检查预测变量的相关矩阵可能会显示较大的成对共线性。</li>
+<li>将 <span class="math inline">\(x_{i}\)</span> 对所有其他预测变量进行回归得到 <span class="math inline">\(R_{i}^{2}\)</span> 。 对所有预测变量重复上述步骤。 <span class="math inline">\(R_{i}^{2}\)</span> 接近1表示有问 题。 令人讨厌的线性组合可以通过检查这些回归系数来发现。</li>
+<li>检查 <span class="math inline">\(X^{T} X\)</span>, 的特征值，其中 <span class="math inline">\(\lambda_{1}\)</span> 是最大特征值，其他特征值递减。特征值较小表示存在问题。</li>
+</ol>
+<pre><code>data (seatpos)
+g &lt; - lm (hipcenter ˜ . , seatpos)
+summary (g)
+round(cor(seatpos), 3)
+
+## check the eigendecomposition:
+x &lt; - model.matrix(g)[,-1] 
+e &lt; - eigen (t(x) %*% x)
+e$val
+
+sqrt(e$val[1]/e$val)
+1.000 13.042 20.100 110.551 156.912 212.156 261.667 707.549
+
+
+## check the variance inflation factors (VIFs). 
+   For the first variable this is:
+summary (lm (x [, 1] ~ x[,-1]))$r.squared
+[1] 0.49948
+1/(1!0.49948)
+[1] 1.9979
+
+vif (x)
+Age Weight HtShoes Ht Seated Arm Thigh  Leg
+1.9979 3.6470 307.4294 333.1378 8.9511 4.4964 2.7629 6.6943</code></pre>
+</div>
+<div id="problems-with-the-error" class="section level2">
+<h2><span class="header-section-number">19.7</span> Problems with the Error</h2>
+<p>关于误差项 <span class="math inline">\(\varepsilon\)</span> 的标准假设是，它根据情况是独立且均匀分布的
+（independent and identically distributed iid) 。即 <span class="math inline">\(\varepsilon=\sigma^{2} I\)</span> 。
+此外，我们还假定误差是正态分布的，以便执行 通常的统计推断。我们已经看到,
+这些假设经常会被违反，因此我们必须考虑其他选择。</p>
+<ul>
+<li>当误差不是i.i.d.时，我们考虑使用广义最小二乘（GLS）。</li>
+<li>当误差是独立的，但分布不相同时，我们可以使用加权最小二乘（WLS），这是GLS的特例。</li>
+<li>当误差不是正态分布时，我们可以使用鲁棒回归</li>
+</ul>
+<div id="generalized-least-squares" class="section level3">
+<h3><span class="header-section-number">19.7.1</span> Generalized Least Squares</h3>
+<p>到现在为止，我们假设var <span class="math inline">\(\varepsilon=\sigma^{2} I,\)</span>, 但有时错误具有非恒定方差或相关。假设var <span class="math inline">\(\varepsilon=\sigma^{2} \Sigma\)</span>, 其中
+<span class="math inline">\(\sigma^{2}\)</span> 是未知的，而 <span class="math inline">\(\Sigma\)</span> 是已知的-换句话说，我们知道误差之间的相关性和相对方差，但我们不知道绝对比
+例。
+我们可以写 <span class="math inline">\(\Sigma=S S^{T},\)</span>, 其中 <span class="math inline">\(S\)</span> 是使用Choleski分解的三角矩阵（triangular matrix) 。现在我们可以按
+如下方式转换回归模型：
+<span class="math display">\[
+\begin{array}{c}
+y=X \beta+\varepsilon \\
+S^{-1} y=S^{-1} X \beta+S^{-1} \varepsilon \\
+y^{\prime}=X^{\prime} \beta+\varepsilon^{\prime} \\
+\operatorname{var} \varepsilon^{\prime}=\operatorname{var}\left(S^{-1} \varepsilon\right)=S^{-1}(\operatorname{var} \varepsilon) S^{-T}=S^{-1} \sigma^{2} S S^{T} S^{-T}=\sigma^{2} I
+\end{array}
+\]</span>
+因此，我们可以将GLS 简化为OLS, 通过 <span class="math inline">\(y^{\prime}=S^{-1} y\)</span> on <span class="math inline">\(S^{-1} X\)</span>,误差为 <span class="math inline">\(\varepsilon^{\prime}\)</span> 即iid. 我们只是将问题简化为 我们已经解决的问题。在此转换后的模型中，平方和为：
+<span class="math display">\[
+\left(S^{-1} y-S^{-1} X \beta\right)^{T}\left(S^{-1} y-S^{-1} X \beta\right)=(y-X \beta)^{T} S^{-T} S^{-1}(y-X \beta)=(y-X \beta)^{T} \Sigma^{-1}(y-X \beta)
+\]</span>
+which is minimized by:
+<span class="math display">\[
+\hat{\boldsymbol{\beta}}=\left(X^{T} \Sigma^{-1} X\right)^{-1} X^{T} \Sigma^{-1} y
+\]</span>
+We find that:
+<span class="math display">\[
+\operatorname{var} \hat{\boldsymbol{\beta}}=\left(X^{T} \Sigma^{-1} X\right)^{-1} \sigma^{2}
+\]</span>
+Since <span class="math inline">\(\varepsilon^{\prime}=S^{-1} \varepsilon\)</span>, diagnostics should be applied to the residuals, <span class="math inline">\(S^{-1} \hat{\varepsilon} .\)</span> If we have the right <span class="math inline">\(\Sigma\)</span>, then
+these should be approximately i.i.d.
+在Pinheiro和Bates（2000）的nlme软件包中找到更方便的方法，该软件包包含GLS拟合函数。我们可以 使用它来拟合此模型：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="advanced-linear-regression.html#cb3-1"></a><span class="kw">library</span> (nlme)</span>
+<span id="cb3-2"><a href="advanced-linear-regression.html#cb3-2"></a>fm1 &lt;-<span class="st"> </span><span class="kw">gls</span>(follicles <span class="op">~</span><span class="st"> </span><span class="kw">sin</span>(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>Time) <span class="op">+</span><span class="st"> </span><span class="kw">cos</span>(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>Time), Ovary,</span>
+<span id="cb3-3"><a href="advanced-linear-regression.html#cb3-3"></a>           <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Mare))</span>
+<span id="cb3-4"><a href="advanced-linear-regression.html#cb3-4"></a><span class="kw">summary</span>(fm1)</span></code></pre></div>
+<pre><code>## Generalized least squares fit by REML
+##   Model: follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time) 
+##   Data: Ovary 
+##        AIC      BIC    logLik
+##   1571.455 1590.056 -780.7273
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Mare 
+##  Parameter estimate(s):
+##       Phi 
+## 0.7532079 
+## 
+## Coefficients:
+##                        Value Std.Error   t-value p-value
+## (Intercept)        12.216398 0.6646437 18.380373  0.0000
+## sin(2 * pi * Time) -2.774712 0.6450478 -4.301561  0.0000
+## cos(2 * pi * Time) -0.899605 0.6975383 -1.289685  0.1981
+## 
+##  Correlation: 
+##                    (Intr) s(*p*T
+## sin(2 * pi * Time)  0.000       
+## cos(2 * pi * Time) -0.294  0.000
+## 
+## Standardized residuals:
+##         Min          Q1         Med          Q3         Max 
+## -2.41180365 -0.75405234 -0.02923628  0.63156880  3.16247697 
+## 
+## Residual standard error: 4.616172 
+## Degrees of freedom: 308 total; 305 residual</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="advanced-linear-regression.html#cb5-1"></a><span class="co">## check the confidence intervals</span></span>
+<span id="cb5-2"><a href="advanced-linear-regression.html#cb5-2"></a><span class="kw">intervals</span> (fm1) </span></code></pre></div>
+<pre><code>## Approximate 95% confidence intervals
+## 
+##  Coefficients:
+##                        lower       est.      upper
+## (Intercept)        10.908531 12.2163982 13.5242656
+## sin(2 * pi * Time) -4.044019 -2.7747122 -1.5054050
+## cos(2 * pi * Time) -2.272201 -0.8996047  0.4729919
+## attr(,&quot;label&quot;)
+## [1] &quot;Coefficients:&quot;
+## 
+##  Correlation structure:
+##         lower      est.     upper
+## Phi 0.6684283 0.7532079 0.8186662
+## attr(,&quot;label&quot;)
+## [1] &quot;Correlation structure:&quot;
+## 
+##  Residual standard error:
+##    lower     est.    upper 
+## 3.974706 4.616172 5.361161</code></pre>
+</div>
+<div id="weighted-least-squares" class="section level3">
+<h3><span class="header-section-number">19.7.2</span> Weighted Least Squares</h3>
+<p>有时误差是不相关的，但方差不相等。当 <span class="math inline">\(\Sigma\)</span> 是对角矩阵时，误差是不相关的，但不一定具有相等的方
+差。在这种情况下可以使用WLS。
+<span class="math display">\[
+\Sigma=\operatorname{diag}(1 / \mathrm{w} 1, \ldots, 1 / \mathrm{w} n)
+\]</span>
+其中 <span class="math inline">\(w_{i}\)</span> 是权重, <span class="math inline">\(S=\operatorname{diag}(\sqrt{1 / w 1}, \ldots, \sqrt{1 / w n})\)</span> 因此我们可以将 <span class="math inline">\(\sqrt{w_{i}} y_{i}\)</span> 上的 <span class="math inline">\(\sqrt{w_{i}} x_{i}\)</span> 回归（尽
+管需要替换 <span class="math inline">\(X\)</span> -matrix中的一列 与 )。变异性低的案例应获得较高的权重，变异性高的案例应获
+得较低的权重。
+Das Modell
+<span class="math display">\[
+\boldsymbol{y}=\boldsymbol{X} \boldsymbol{\beta}+\boldsymbol{\varepsilon}
+\]</span></p>
+<p>is called a general linear regression model if the following assumptions apply:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathrm{E}(\varepsilon)=\mathbf{0}\)</span></li>
+<li><span class="math inline">\(\operatorname{Cov}(\varepsilon)=\mathrm{E}\left(\varepsilon \varepsilon^{\prime}\right)=\sigma^{2} \boldsymbol{W}\)</span>, wobei <span class="math inline">\(\boldsymbol{W}\)</span> eine bekannte positiv definite Matrix sei.</li>
+<li>Die Designmatrix <span class="math inline">\(\boldsymbol{X}\)</span> besitzt vollen Spaltenrang, d.h. <span class="math inline">\(\operatorname{rg}(\boldsymbol{X})=p\)</span>.</li>
+<li><span class="math inline">\(\varepsilon \sim \mathrm{N}\left(\mathbf{0}, \sigma^{2} \boldsymbol{W}\right)\)</span>
+<span class="math inline">\(\mathrm{lm}_{\mathrm{A} \mathrm{A} 2}^{\sim} \mathrm{A}+\mathrm{B}+\mathrm{C}+\mathrm{D}+\mathrm{E}+\mathrm{F}+\mathrm{G}+\mathrm{H}+\mathrm{J}+\mathrm{K}+\mathrm{N} ! \mathrm{l}\)</span>, fpe, weights <span class="math inline">\(\left.=\mathrm{l} / \mathrm{EI}\right)\)</span></li>
+</ol>
+<p><strong>weights options</strong></p>
+<p>an optional vector of weights to be used in the fitting process. Should be NULL or a numeric vector. If non-NULL, weighted least squares is used with weights weights (that is, minimizing sum(w*e^2)); otherwise ordinary least squares is used.</p>
+</div>
+<div id="robust-regression" class="section level3">
+<h3><span class="header-section-number">19.7.3</span> Robust Regression</h3>
+<p>When the error is normal, the least squares regression is obviously the best, but when the error is non-normal, other methods can be considered. Of particular interest are long-tailed error distributions. Robust regression provides an alternative. Robust regression is related to WLS.</p>
+<ol style="list-style-type: decimal">
+<li>健壮的估计器可防止长尾误差，但无法克服模型选择及其方差结构方面的问题。</li>
+<li>健壮的估算仅能为您提供 <span class="math inline">\(\hat{\beta}\)</span> 以及可能的标准错误，而没有相关的推论方法。</li>
+<li>除最小二乘法外，还可以使用鲁棒的方法作为确认方法。如果这两个估计值相距甚远，则有理由担 心。差异的来源应进行调查。</li>
+</ol>
+</div>
+</div>
+<div id="shrinkage-methods" class="section level2">
+<h2><span class="header-section-number">19.8</span> Shrinkage Methods</h2>
+<div id="principal-components-analzsis" class="section level3">
+<h3><span class="header-section-number">19.8.1</span> Principal Components Analzsis</h3>
+</div>
+<div id="partial-least-squares" class="section level3">
+<h3><span class="header-section-number">19.8.2</span> Partial Least Squares</h3>
+<p>Partial Least Squares (PLS) is a method used to associate a set of input variables X1,…Xm with outputs Y1,…,Y1. PLS regression is comparable to PCR because both use a certain number of linear combinations of predictors to predict the response. The difference is that although PCR ignores Y when determining linear combinations, PLS regression explicitly selects them to predict Y as much as possible. We will only consider univariate PLS</p>
+<p><span class="math display">\[\hat{y}=\beta_{1} T_{1}+\cdots+\beta_{p} T_{p}\]</span></p>
+<!-- 偏最小二乘（PLS）是一种用于关联一组输入变量X1，... Xm和输出Y1，...，Y1的方法。PLS回归可与PCR媲美，因为两者均使用一定数量的预测变量线性组合来预测响应。 区别在于，尽管PCR在确定线性组合时忽略了Y，但PLS回归显式选择了它们来尽可能地预测Y。 我们将仅考虑单变量PLS -->
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="02_Plots/Partial%20Least%20Squares.png" alt="Figure: Partial Least Squares" width="100%" />
+<p class="caption">
+Figure 19.1: Figure: Partial Least Squares
+</p>
+</div>
+</div>
+<div id="ridge-regression" class="section level3">
+<h3><span class="header-section-number">19.8.3</span> Ridge Regression</h3>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}=\left(X^{T} X+\lambda I\right)^{-1} X^{T} y
+\]</span>
+We demonstrate the method on the meat spectroscopy data; <span class="math inline">\(\lambda=0\)</span> corresponds to least
+squares while we find that as <span class="math inline">\(\lambda \rightarrow \infty: \hat{\beta} \rightarrow 0\)</span></p>
+<p>The Ridge regression estimates of coefficients are biased. Deviation is undesirable, but it is not the only consideration. The mean square error (MSE) can be decomposed in the following ways:</p>
+<p><span class="math display">\[E(\hat{\beta}-\beta)^{2}=(E(\hat{\beta}-\beta))^{2}+E(\hat{\beta}-E \hat{\beta})^{2}\]</span></p>
+<p>因此，估计的MSE可以表示为偏差的平方加方差。 有时，可以以增加偏差为代价获得方差的大幅减少。 如果结果导致MSE降低，那么我们可能愿意接受一些偏见。 这就是岭回归所要做出的权衡—以偏差增加为代价减少方差。 这是一个常见的难题。 Frank and Friedman（1993）比较了PCR，PLS和岭回归，发现岭回归的最佳结果。 当然，对于任何给定的数据集，任何一种方法都可能被证明是最好的，因此很难选择一个获胜者</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="correlation-and-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/19-Advanced-Linear-Regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
