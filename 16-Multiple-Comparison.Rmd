@@ -436,7 +436,7 @@ ods graphics off;
 ```
 
 ```{r Schweder-Spjøtvoll p-Value Plot, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Schweder-Spjøtvoll (Uniform Probability) Plot"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Schweder-Spjøtvoll 1.png")
+knitr::include_graphics("./02_Plots/Schweder-Spjøtvoll 1.png")
 ```
 
 How does the plot look when there are no true effects
@@ -449,7 +449,7 @@ ods graphics off;
 ```
 
 ```{r Plot of p-Values for the Cold Study, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Plot of p-Values for the Cold Study"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Schweder-Spjøtvoll 2.png")
+knitr::include_graphics("./02_Plots/Schweder-Spjøtvoll 2.png")
 ```
 
 **Adaptive Methods**
@@ -468,7 +468,7 @@ run;
 ods graphics off;
 ```
 ```{r g Hochberg and Benjamini’s, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Estimating the Number of True Nulls Using Hochberg and Benjamini’s Method"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Schweder-Spjøtvoll 3.png")
+knitr::include_graphics("./02_Plots/Schweder-Spjøtvoll 3.png")
 ```
 
 
@@ -537,7 +537,7 @@ Remark:
 * 一旦建立了参考表格，最小二乘均值就是基于表格的简单预测，或者说是预测值列表的边际均值（marginal means）。
 
 
-```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r Calculate the least squares mean in R,echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library(lsmeans)
 head(oranges)
 str(oranges)
@@ -931,7 +931,7 @@ ods graphics off;
 
 
 ```{r Turkey Diffogram, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Diffogram indicating Comparisons of Diets"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Turkey_Diffgram.png")
+knitr::include_graphics("./02_Plots/Turkey_Diffgram.png")
 ```
 
 
@@ -944,7 +944,7 @@ plot(warpbreaks.ci, main = "",
 ```
 
 ```{r Turkey CI Plots, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Turkey CI Plots"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Turkey_Plots.png")
+knitr::include_graphics("./02_Plots/Turkey_Plots.png")
 ```
 
 ```
@@ -954,7 +954,7 @@ plot(warpbreaks.cld)
 ```
 
 ```{r Turkey CI Boxplots, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: CI Boxplots"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Turkey_Boxplots.png")
+knitr::include_graphics("./02_Plots/Turkey_Boxplots.png")
 ```
 
 
@@ -1161,7 +1161,7 @@ lsmeans Trt/pdiff=controll;
 ```
 
 ```{r One-Sided Dunnett Comparisons, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Displaying One-Sided Dunnett Comparisons Graphically"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Dunnett_OneSide.png")
+knitr::include_graphics("./02_Plots/Dunnett_OneSide.png")
 ```
 
 
@@ -1593,7 +1593,7 @@ ods graphics off;
 ```
 
 ```{r ACNOVA Effect, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Fitted ANCOVA Model with Interaction"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/ACNOVA_Effect.png")
+knitr::include_graphics("./02_Plots/ACNOVA_Effect.png")
 ```
 
 There is some suggestion of interaction in that the effect of SQFEET on PRICE seems less in LOCATION C, but this may be an artifact due to small sample size, because the interaction is not statistically significant (for testing $H_{0}: \beta_{1}=\ldots=\beta_{5}=0, F(4,54)=1.54, p=0.2045$ ). Nevertheless, the graph illustrates clearly that comparisons of housing prices between levels of the CLASS variable differ, depending on the chosen value of the covariate.

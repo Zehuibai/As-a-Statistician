@@ -1,0 +1,28 @@
+h1:ci-and-sample-size-calculation CI and Sample Size Calculation
+h2:distribution Distribution
+h3:quantile-function-in-sas Quantile Function in SAS
+h3:binomial-distribution Binomial distribution
+h3:negative-binomial-distribution Negative binomial distribution
+h3:multinomial-distribution Multinomial distribution
+h3:normal-distribution Normal Distribution
+h3:multivariate-normal-distribution Multivariate normal distribution
+h3:poisson-distribution Poisson distribution
+h3:exponential-distribution Exponential distribution
+h3:gamma-distribution Gamma distribution
+h3:weibull-distribution Weibull Distribution
+h3:beta-distribution Beta Distribution
+h4:beta分布及其函数公式推导 Beta分布及其函数公式推导
+h4:beta-函数和-gamma-函数 Beta 函数和 Gamma 函数
+h4:beta-分布的期望与方差 Beta 分布的期望与方差
+h2:point-estimates Point Estimates
+h2:binomial-ci Binomial CI
+h3:binomial-ci-for-small-samples Binomial CI for Small Samples
+h4:wald-ci Wald CI
+h4:clopper-pearson-or-exact-ci Clopper-Pearson or  CI
+h4:wilson-score-ci Wilson score CI
+h4:adjusted-wald-ci Adjusted Wald CI
+h3:package-binom Package binom
+h3:ci_single_proportion %CI_Single_Proportion
+h2:incidence-rate-ci Incidence rate CI
+h2:package-pwr Package: pwr
+

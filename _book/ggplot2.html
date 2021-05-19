@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 ggplot2 | As a Statistician</title>
+  <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 ggplot2 | As a Statistician" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 ggplot2 | As a Statistician" />
+  
+  <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  
+
+<meta name="author" content="Zehui Bai" />
+
+
+<meta name="date" content="2021-05-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="space.html"/>
+<link rel="next" href="proc-sqplot.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-and-format.html"><a href="input-and-format.html"><i class="fa fa-check"></i><b>2</b> Input and Format</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="input-and-format.html"><a href="input-and-format.html#import-in-sas"><i class="fa fa-check"></i><b>2.1</b> Import in SAS</a></li>
+<li class="chapter" data-level="2.2" data-path="input-and-format.html"><a href="input-and-format.html#import-in-r"><i class="fa fa-check"></i><b>2.2</b> Import in R</a></li>
+<li class="chapter" data-level="2.3" data-path="input-and-format.html"><a href="input-and-format.html#package-readr"><i class="fa fa-check"></i><b>2.3</b> Package readr</a></li>
+<li class="chapter" data-level="2.4" data-path="input-and-format.html"><a href="input-and-format.html#package-strings"><i class="fa fa-check"></i><b>2.4</b> Package Strings</a></li>
+<li class="chapter" data-level="2.5" data-path="input-and-format.html"><a href="input-and-format.html#package-forcats"><i class="fa fa-check"></i><b>2.5</b> Package forcats</a></li>
+<li class="chapter" data-level="2.6" data-path="input-and-format.html"><a href="input-and-format.html#package-lubridate"><i class="fa fa-check"></i><b>2.6</b> Package lubridate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html"><i class="fa fa-check"></i><b>3</b> Data Management in SAS</a></li>
+<li class="chapter" data-level="4" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>4</b> Data Management in R</a></li>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a></li>
+<li class="chapter" data-level="6" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>6</b> ^_^ Space</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#parametric-rendering"><i class="fa fa-check"></i><b>7.1</b> Parametric Rendering</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="ggplot2.html"><a href="ggplot2.html#grammar"><i class="fa fa-check"></i><b>7.1.1</b> Grammar</a></li>
+<li class="chapter" data-level="7.1.2" data-path="ggplot2.html"><a href="ggplot2.html#coord"><i class="fa fa-check"></i><b>7.1.2</b> coord</a></li>
+<li class="chapter" data-level="7.1.3" data-path="ggplot2.html"><a href="ggplot2.html#facet"><i class="fa fa-check"></i><b>7.1.3</b> facet</a></li>
+<li class="chapter" data-level="7.1.4" data-path="ggplot2.html"><a href="ggplot2.html#geom"><i class="fa fa-check"></i><b>7.1.4</b> geom</a></li>
+<li class="chapter" data-level="7.1.5" data-path="ggplot2.html"><a href="ggplot2.html#position"><i class="fa fa-check"></i><b>7.1.5</b> position</a></li>
+<li class="chapter" data-level="7.1.6" data-path="ggplot2.html"><a href="ggplot2.html#scale"><i class="fa fa-check"></i><b>7.1.6</b> scale</a></li>
+<li class="chapter" data-level="7.1.7" data-path="ggplot2.html"><a href="ggplot2.html#stat"><i class="fa fa-check"></i><b>7.1.7</b> stat</a></li>
+<li class="chapter" data-level="7.1.8" data-path="ggplot2.html"><a href="ggplot2.html#color"><i class="fa fa-check"></i><b>7.1.8</b> Color</a></li>
+<li class="chapter" data-level="7.1.9" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>7.1.9</b> Thema</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#scatter-plot-geom_point"><i class="fa fa-check"></i><b>7.2</b> Scatter plot geom_point</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ggplot2.html"><a href="ggplot2.html#grouping-aesthetic"><i class="fa fa-check"></i><b>7.2.1</b> Grouping Aesthetic</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ggplot2.html"><a href="ggplot2.html#facet-1"><i class="fa fa-check"></i><b>7.2.2</b> facet</a></li>
+<li class="chapter" data-level="7.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_smooth"><i class="fa fa-check"></i><b>7.2.3</b> geom_smooth</a></li>
+<li class="chapter" data-level="7.2.4" data-path="ggplot2.html"><a href="ggplot2.html#dot-plot"><i class="fa fa-check"></i><b>7.2.4</b> Dot Plot</a></li>
+<li class="chapter" data-level="7.2.5" data-path="ggplot2.html"><a href="ggplot2.html#label-and-title"><i class="fa fa-check"></i><b>7.2.5</b> Label and Title</a></li>
+<li class="chapter" data-level="7.2.6" data-path="ggplot2.html"><a href="ggplot2.html#encircling"><i class="fa fa-check"></i><b>7.2.6</b> Encircling</a></li>
+<li class="chapter" data-level="7.2.7" data-path="ggplot2.html"><a href="ggplot2.html#dumbbell-plot"><i class="fa fa-check"></i><b>7.2.7</b> Dumbbell Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#histogram"><i class="fa fa-check"></i><b>7.3</b> Histogram</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ggplot2.html"><a href="ggplot2.html#marginal-histogram-boxplot"><i class="fa fa-check"></i><b>7.3.1</b> Marginal Histogram / Boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#bar-plot"><i class="fa fa-check"></i><b>7.4</b> Bar plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="proc-sqplot.html"><a href="proc-sqplot.html"><i class="fa fa-check"></i><b>8</b> Proc Sqplot</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter Plot</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>8.1.1</b> Vector in scatter Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="space-1.html"><a href="space-1.html"><i class="fa fa-check"></i><b>9</b> ^_^ Space</a></li>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics in SAS</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>10.1</b> Proc Freq</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>10.2</b> Proc Means</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulatte"><i class="fa fa-check"></i><b>10.3</b> Proc Tabulatte</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics in R</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>11.1</b> Package pape</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>11.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>11.3</b> Package compareGroups</a></li>
+<li class="chapter" data-level="11.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>11.4</b> Package kableExtra</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>11.4.1</b> kable_styling</a></li>
+<li class="chapter" data-level="11.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>11.4.2</b> Column/Row Specification</a></li>
+<li class="chapter" data-level="11.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>11.4.3</b> Grouping columns/rows</a></li>
+<li class="chapter" data-level="11.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>11.4.4</b> Add Footnote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>12</b> CI and Sample Size Calculation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#distribution"><i class="fa fa-check"></i><b>12.1</b> Distribution</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>12.1.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="12.1.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-distribution"><i class="fa fa-check"></i><b>12.1.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="12.1.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>12.1.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="12.1.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#multinomial-distribution"><i class="fa fa-check"></i><b>12.1.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="12.1.5" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#normal-distribution"><i class="fa fa-check"></i><b>12.1.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="12.1.6" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>12.1.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="12.1.7" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#poisson-distribution"><i class="fa fa-check"></i><b>12.1.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="12.1.8" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#exponential-distribution"><i class="fa fa-check"></i><b>12.1.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="12.1.9" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#gamma-distribution"><i class="fa fa-check"></i><b>12.1.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="12.1.10" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#weibull-distribution"><i class="fa fa-check"></i><b>12.1.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="12.1.11" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#beta-distribution"><i class="fa fa-check"></i><b>12.1.11</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>12.2</b> Point Estimates</a></li>
+<li class="chapter" data-level="12.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci"><i class="fa fa-check"></i><b>12.3</b> Binomial CI</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>12.3.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>12.3.2</b> Package binom</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>12.3.3</b> %CI_Single_Proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>12.4</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="12.5" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>12.5</b> Package: pwr</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>13</b> Parametric Test</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="parametric-test.html"><a href="parametric-test.html#proc-freq-1"><i class="fa fa-check"></i><b>13.1</b> Proc FREQ</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="parametric-test.html"><a href="parametric-test.html#ods-table-names"><i class="fa fa-check"></i><b>13.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="13.1.2" data-path="parametric-test.html"><a href="parametric-test.html#ods-plots"><i class="fa fa-check"></i><b>13.1.2</b> ODS Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>13.2</b> </a></li>
+<li class="chapter" data-level="13.3" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>13.3</b> Binomial test</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>13.3.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="13.3.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>13.3.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>13.4</b> Fisher’s Exact Test</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula-1"><i class="fa fa-check"></i><b>13.4.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="13.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>13.4.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>13.4.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="parametric-test.html"><a href="parametric-test.html#contingency-test"><i class="fa fa-check"></i><b>13.5</b> Contingency test</a></li>
+<li class="chapter" data-level="13.6" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>13.6</b> McNemar’s test</a></li>
+<li class="chapter" data-level="13.7" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>13.7</b> Cochran–Mantel–Haenszel Test</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>13.7.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>13.8</b> Correlation Test</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>13.8.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="13.8.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>13.8.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="13.8.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>13.8.3</b> Kendall correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>13.9</b> Two Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="13.9.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>13.9.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.9.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>13.9.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.10" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>13.10</b> Normality test</a>
+<ul>
+<li class="chapter" data-level="13.10.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>13.10.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.10.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>13.10.2</b> R implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>14</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="anova.html"><a href="anova.html#unstructured-models"><i class="fa fa-check"></i><b>14.1</b> Unstructured Models</a></li>
+<li class="chapter" data-level="14.2" data-path="anova.html"><a href="anova.html#balanced-one-way-analysis-of-variance-anova"><i class="fa fa-check"></i><b>14.2</b> Balanced One-Way Analysis-of-Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="anova.html"><a href="anova.html#modeling-assumptions-and-basic-analysis"><i class="fa fa-check"></i><b>14.2.1</b> Modeling Assumptions and Basic Analysis</a></li>
+<li class="chapter" data-level="14.2.2" data-path="anova.html"><a href="anova.html#parameter-estimates"><i class="fa fa-check"></i><b>14.2.2</b> Parameter Estimates</a></li>
+<li class="chapter" data-level="14.2.3" data-path="anova.html"><a href="anova.html#r-implementation-5"><i class="fa fa-check"></i><b>14.2.3</b> R Implementation</a></li>
+<li class="chapter" data-level="14.2.4" data-path="anova.html"><a href="anova.html#sas-implementation-3"><i class="fa fa-check"></i><b>14.2.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="14.2.5" data-path="anova.html"><a href="anova.html#model-diagnosis"><i class="fa fa-check"></i><b>14.2.5</b> Model Diagnosis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="anova.html"><a href="anova.html#unbalanced-one-way-anova-and-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>14.3</b> Unbalanced One-Way ANOVA and Analysis-of-Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="14.4" data-path="anova.html"><a href="anova.html#two-ways-anova-test"><i class="fa fa-check"></i><b>14.4</b> Two-Ways ANOVA Test</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="anova.html"><a href="anova.html#introduction-1"><i class="fa fa-check"></i><b>14.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.4.2" data-path="anova.html"><a href="anova.html#r-implementation-6"><i class="fa fa-check"></i><b>14.4.2</b> R implementation</a></li>
+<li class="chapter" data-level="14.4.3" data-path="anova.html"><a href="anova.html#unbalanced-design"><i class="fa fa-check"></i><b>14.4.3</b> Unbalanced design</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="anova.html"><a href="anova.html#heteroscedastic-responses"><i class="fa fa-check"></i><b>14.5</b> Heteroscedastic Responses</a></li>
+<li class="chapter" data-level="14.6" data-path="anova.html"><a href="anova.html#repeated-measures-anova-data"><i class="fa fa-check"></i><b>14.6</b> Repeated Measures ANOVA Data</a></li>
+<li class="chapter" data-level="14.7" data-path="anova.html"><a href="anova.html#multivariate-responses-with-normally-distributed-data"><i class="fa fa-check"></i><b>14.7</b> Multivariate Responses with Normally Distributed Data</a></li>
+<li class="chapter" data-level="14.8" data-path="anova.html"><a href="anova.html#independent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>14.8</b> Independent Observations from Parametric Nonnormal Distributions</a></li>
+<li class="chapter" data-level="14.9" data-path="anova.html"><a href="anova.html#dependent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>14.9</b> Dependent Observations from Parametric Nonnormal Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple-Comparison</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-2"><i class="fa fa-check"></i><b>15.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiplicity-problem"><i class="fa fa-check"></i><b>15.1.1</b> Multiplicity Problem</a></li>
+<li class="chapter" data-level="15.1.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#error-rates"><i class="fa fa-check"></i><b>15.1.2</b> Error Rates</a></li>
+<li class="chapter" data-level="15.1.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-adjusted-p"><i class="fa fa-check"></i><b>15.1.3</b> The adjusted P</a></li>
+<li class="chapter" data-level="15.1.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>15.1.4</b> Basic Statistical Concepts</a></li>
+<li class="chapter" data-level="15.1.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#functions-in-glht-package-in-r"><i class="fa fa-check"></i><b>15.1.5</b> Functions in glht package in R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-and-šidák-methods"><i class="fa fa-check"></i><b>15.2</b> Bonferroni and Šidák Methods</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#lsd-least-significance-difference"><i class="fa fa-check"></i><b>15.2.1</b> LSD (least significance difference)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák"><i class="fa fa-check"></i><b>15.2.2</b> Šidák</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni"><i class="fa fa-check"></i><b>15.2.3</b> Bonferroni</a></li>
+<li class="chapter" data-level="15.2.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#schweder-spjøtvoll-p-value-plot"><i class="fa fa-check"></i><b>15.2.4</b> Schweder-Spjøtvoll p-Value Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#mcp-among-treatment-means-in-the-one-way-balanced-anova"><i class="fa fa-check"></i><b>15.3</b> MCP among Treatment Means in the One-Way Balanced ANOVA</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#ls-means"><i class="fa fa-check"></i><b>15.3.1</b> LS-Means</a></li>
+<li class="chapter" data-level="15.3.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-multivariate-t-distribution"><i class="fa fa-check"></i><b>15.3.2</b> The Multivariate t Distribution</a></li>
+<li class="chapter" data-level="15.3.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#calculating-the-critical-value-c_alpha"><i class="fa fa-check"></i><b>15.3.3</b> Calculating the Critical Value <span class="math inline">\(c_{\alpha}\)</span></a></li>
+<li class="chapter" data-level="15.3.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#all-pairwise-comparisons-and-studentized-range-distribution"><i class="fa fa-check"></i><b>15.3.4</b> All Pairwise Comparisons and Studentized Range Distribution</a></li>
+<li class="chapter" data-level="15.3.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukeys-method-for-all-pairwise-comparisons"><i class="fa fa-check"></i><b>15.3.5</b> Tukey’s Method for All Pairwise Comparisons</a></li>
+<li class="chapter" data-level="15.3.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#displaying-pairwise-comparisons-graphically"><i class="fa fa-check"></i><b>15.3.6</b> Displaying Pairwise Comparisons Graphically</a></li>
+<li class="chapter" data-level="15.3.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-two-sided-comparisons-with-a-control-and-dunnetts-two-sided-range-distribution"><i class="fa fa-check"></i><b>15.3.7</b> Dunnett’s Two-Sided Comparisons with a Control and Dunnett’s Two-Sided Range Distribution</a></li>
+<li class="chapter" data-level="15.3.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-one-sided-comparisons-with-a-control"><i class="fa fa-check"></i><b>15.3.8</b> Dunnett’s One-Sided Comparisons with a Control</a></li>
+<li class="chapter" data-level="15.3.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maximum-modulus-distribution-multiple-inferences-for-independent-estimates"><i class="fa fa-check"></i><b>15.3.9</b> Maximum Modulus Distribution, Multiple Inferences for Independent Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-among-treatment-means-in-the-one-way-unbalanced-anova"><i class="fa fa-check"></i><b>15.4</b> Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-model-and-estimates"><i class="fa fa-check"></i><b>15.4.1</b> The Model and Estimates</a></li>
+<li class="chapter" data-level="15.4.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukey-kramer-method"><i class="fa fa-check"></i><b>15.4.2</b> Tukey-Kramer Method</a></li>
+<li class="chapter" data-level="15.4.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#alternative-simulation-based-method"><i class="fa fa-check"></i><b>15.4.3</b> Alternative Simulation-Based Method</a></li>
+<li class="chapter" data-level="15.4.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#pairwise-comparisons-with-control"><i class="fa fa-check"></i><b>15.4.4</b> Pairwise Comparisons with Control</a></li>
+<li class="chapter" data-level="15.4.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-with-the-average-meananalysis-of-means-anom"><i class="fa fa-check"></i><b>15.4.5</b> Comparisons with the Average Mean–Analysis of Means (ANOM)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#generalizations-for-the-analysis-of-covariance-ancova-model"><i class="fa fa-check"></i><b>15.5</b> Generalizations for the Analysis of Covariance (ANCOVA) model</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnett-hsu-factor-analytic-approximation"><i class="fa fa-check"></i><b>15.5.1</b> Dunnett-Hsu Factor Analytic Approximation</a></li>
+<li class="chapter" data-level="15.5.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hsu-nelson-simulation-based-approximation-cvadjust-method"><i class="fa fa-check"></i><b>15.5.2</b> Hsu-Nelson Simulation-Based Approximation: CVADJUST Method</a></li>
+<li class="chapter" data-level="15.5.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-in-ancova-models-with-interaction"><i class="fa fa-check"></i><b>15.5.3</b> Comparisons in ANCOVA Models with Interaction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>16</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="17" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>17</b> Correlation and Regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>17.1</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>17.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="17.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>17.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>17.2</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>17.2.1</b> Assumpions</a></li>
+<li class="chapter" data-level="17.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>17.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="17.2.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#matrix-solution"><i class="fa fa-check"></i><b>17.2.3</b> Matrix Solution</a></li>
+<li class="chapter" data-level="17.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>17.2.4</b> Gauss-Markov Theorem</a></li>
+<li class="chapter" data-level="17.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>17.2.5</b> limitation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>17.3</b> Model Statistics</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>17.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="17.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>17.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="17.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>17.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="17.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>17.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="17.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>17.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="17.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>17.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="17.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>17.3.7</b> Accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>17.4</b> Model Diagnostics</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>17.4.1</b> Checking Error Assumptions</a></li>
+<li class="chapter" data-level="17.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>17.4.2</b> Finding Unusual Observations</a></li>
+<li class="chapter" data-level="17.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>17.4.3</b> Checking the Structure of the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>17.5</b> SAS implementation Proc Reg</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>17.5.1</b> Options</a></li>
+<li class="chapter" data-level="17.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>17.5.2</b> Diagnose</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-implementation-7"><i class="fa fa-check"></i><b>17.6</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Advanced Linear Regression</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>18.1</b> Model Selection</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-methods"><i class="fa fa-check"></i><b>18.1.1</b> Selection Methods</a></li>
+<li class="chapter" data-level="18.1.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-criteria"><i class="fa fa-check"></i><b>18.1.2</b> Selection Criteria</a></li>
+<li class="chapter" data-level="18.1.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#k--fold-cross-validation"><i class="fa fa-check"></i><b>18.1.3</b> k- Fold Cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#practical-difficulties-using-ols"><i class="fa fa-check"></i><b>18.2</b> Practical Difficulties using OLS</a></li>
+<li class="chapter" data-level="18.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#skewness"><i class="fa fa-check"></i><b>18.3</b> Skewness</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#introduction-3"><i class="fa fa-check"></i><b>18.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.3.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#baisc-transformation"><i class="fa fa-check"></i><b>18.3.2</b> Baisc Transformation</a></li>
+<li class="chapter" data-level="18.3.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#box-cox-power-transformation"><i class="fa fa-check"></i><b>18.3.3</b> Box-Cox Power Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#scale-1"><i class="fa fa-check"></i><b>18.4</b> Scale</a></li>
+<li class="chapter" data-level="18.5" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#interaction"><i class="fa fa-check"></i><b>18.5</b> Interaction</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#simple-slopes-analysis"><i class="fa fa-check"></i><b>18.5.1</b> Simple slopes analysis</a></li>
+<li class="chapter" data-level="18.5.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>18.5.2</b> Plotting Interactions</a></li>
+<li class="chapter" data-level="18.5.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#check-linearity-assumption"><i class="fa fa-check"></i><b>18.5.3</b> Check linearity assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#collinearity"><i class="fa fa-check"></i><b>18.6</b> Collinearity</a></li>
+<li class="chapter" data-level="18.7" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#problems-with-the-error"><i class="fa fa-check"></i><b>18.7</b> Problems with the Error</a>
+<ul>
+<li class="chapter" data-level="18.7.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#generalized-least-squares"><i class="fa fa-check"></i><b>18.7.1</b> Generalized Least Squares</a></li>
+<li class="chapter" data-level="18.7.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#weighted-least-squares"><i class="fa fa-check"></i><b>18.7.2</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="18.7.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#robust-regression"><i class="fa fa-check"></i><b>18.7.3</b> Robust Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="18.8" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#shrinkage-methods"><i class="fa fa-check"></i><b>18.8</b> Shrinkage Methods</a>
+<ul>
+<li class="chapter" data-level="18.8.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#principal-components-analzsis"><i class="fa fa-check"></i><b>18.8.1</b> Principal Components Analzsis</a></li>
+<li class="chapter" data-level="18.8.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#partial-least-squares"><i class="fa fa-check"></i><b>18.8.2</b> Partial Least Squares</a></li>
+<li class="chapter" data-level="18.8.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#ridge-regression"><i class="fa fa-check"></i><b>18.8.3</b> Ridge Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>19</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-4"><i class="fa fa-check"></i><b>19.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#violation-of-assumptions-of-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>19.1.1</b> Violation of assumptions of Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="19.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#more-fundamental-problem-outside-01"><i class="fa fa-check"></i><b>19.1.2</b> More fundamental problem outside [0,1]</a></li>
+<li class="chapter" data-level="19.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>19.1.3</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="19.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#estimation-of-the-logistic-model"><i class="fa fa-check"></i><b>19.1.4</b> Estimation of the Logistic Model</a></li>
+<li class="chapter" data-level="19.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#convergence-problems"><i class="fa fa-check"></i><b>19.1.5</b> Convergence Problems</a></li>
+<li class="chapter" data-level="19.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#use-exact-methods."><i class="fa fa-check"></i><b>19.1.6</b> Use exact methods.</a></li>
+<li class="chapter" data-level="19.1.7" data-path="logistic-regression.html"><a href="logistic-regression.html#use-penalized-likelihood"><i class="fa fa-check"></i><b>19.1.7</b> Use penalized likelihood</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="logistic-regression.html"><a href="logistic-regression.html#binary-regression"><i class="fa fa-check"></i><b>19.2</b> Binary Regression</a></li>
+<li class="chapter" data-level="19.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logit-modell"><i class="fa fa-check"></i><b>19.3</b> Logit Modell</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-5"><i class="fa fa-check"></i><b>19.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-4"><i class="fa fa-check"></i><b>19.3.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="19.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#multicollinearity"><i class="fa fa-check"></i><b>19.3.3</b> Multicollinearity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Advanced Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>21</b> Survival Analysis</a></li>
+<li class="chapter" data-level="22" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>22</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="23" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>23</b> Count Data Regression</a></li>
+<li class="chapter" data-level="24" data-path="proportion-response-regression.html"><a href="proportion-response-regression.html"><i class="fa fa-check"></i><b>24</b> Proportion Response Regression</a></li>
+<li class="chapter" data-level="25" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>25</b> Mixed Model</a></li>
+<li class="chapter" data-level="26" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>26</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="27" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>27</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="28" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>28</b> Time Series Analysis</a></li>
+<li class="chapter" data-level="29" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>29</b> Meta Analysis</a></li>
+<li class="chapter" data-level="30" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>30</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="31" data-path="clinic-study-design.html"><a href="clinic-study-design.html"><i class="fa fa-check"></i><b>31</b> Clinic Study Design</a></li>
+<li class="chapter" data-level="32" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>32</b> Propensity Score</a></li>
+<li class="chapter" data-level="33" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>33</b> Missing Data</a></li>
+<li class="chapter" data-level="34" data-path="space-2.html"><a href="space-2.html"><i class="fa fa-check"></i><b>34</b> ^_^ Space</a></li>
+<li class="chapter" data-level="35" data-path="space-3.html"><a href="space-3.html"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
+<li class="chapter" data-level="36" data-path="space-4.html"><a href="space-4.html"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">As a Statistician</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> ggplot2</h1>
+<div id="parametric-rendering" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Parametric Rendering</h2>
+<div id="grammar" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Grammar</h3>
+<p>ggplot2 implements the idea of a “grammar of graphics.” The grammar implemented by ggplot2 could be summarized as follows:</p>
+<ul>
+<li>plot ::= coord scale+ facet? layer+</li>
+<li>layer ::= data mapping stat geom position?</li>
+</ul>
+<p>A plot is defined by a coordinate system (coord), one or more scales (scale), an optional faceting specification (facet), and one or more layers (layer). A layer is defined as an R data frame (data), a specification mapping columns of that frame into aesthetic properties (mapping), a statistical approach to summarize the rows of that frame (stat), a geometric object to visually represent that summary (geom), and an optional position adjustment to move overlapping geometric objects out of their way (position).</p>
+</div>
+<div id="coord" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> coord</h3>
+<ul>
+<li>coord_cartesian - (default) cartesian coordinate system (x horizontal from left to right, y vertical from bottom to top)</li>
+<li>coord_flip - flipped cartesian coordinate system (x vertical from bottom to top, y horizontal from left to right)</li>
+<li>coord_trans</li>
+<li>coord_equal</li>
+<li>coord_polar - polar coordinate system; the x (or y) scale is mapped to the angle (theta)</li>
+<li>coord_map - various map projections</li>
+</ul>
+<!-- coord_cartesian（默认）笛卡尔坐标系, coord_flip 直角坐标系 -->
+</div>
+<div id="facet" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> facet</h3>
+<ul>
+<li>facet_wrap(~cell) - univariate: create a 1-d strip of panels, based on one factor, and wrap the strip into a 2-d matrix</li>
+<li>facet_grid(row~col) - (usually) bivariate: create a 2-d matrix of panels, based on two factors</li>
+</ul>
+</div>
+<div id="geom" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> geom</h3>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="14%" />
+<col width="13%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>geom</th>
+<th>Useful stats (default in bold)</th>
+<th>Default position adjustment</th>
+<th>Parameters (when used with given stat)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>blank</td>
+<td>identity</td>
+<td>identity</td>
+<td>no parameters</td>
+</tr>
+<tr class="even">
+<td>abline</td>
+<td>abline</td>
+<td>identity</td>
+<td>slope, intercept, size, linetype, colour, alpha</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>identity</td>
+<td>identity</td>
+<td>slope, intercept, size, linetype, colour, alpha</td>
+</tr>
+<tr class="even">
+<td>hline</td>
+<td>hline</td>
+<td>identity</td>
+<td>yintercept, size, linetype, colour, alpha</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>identity</td>
+<td>identity</td>
+<td>y, yend, size, linetype, colour, alpha</td>
+</tr>
+<tr class="even">
+<td>vline</td>
+<td>vline</td>
+<td>identity</td>
+<td>xintercept, size, linetype, colour, alpha</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>identity</td>
+<td>identity</td>
+<td>x, xend, size, linetype, colour, alpha</td>
+</tr>
+<tr class="even">
+<td>text</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, label, size, colour, alpha, hjust, vjust, parse</td>
+</tr>
+<tr class="odd">
+<td>point</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, size, shape, colour, fill, alpha, na.rm</td>
+</tr>
+<tr class="even">
+<td>jitter</td>
+<td>identity</td>
+<td>jitter</td>
+<td>x, y, size, shape, colour, fill, alpha, na.rm</td>
+</tr>
+<tr class="odd">
+<td>segment</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, xend, y, yend, size, linetype, colour, alpha, arrow</td>
+</tr>
+<tr class="even">
+<td>line</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, arrow</td>
+</tr>
+<tr class="odd">
+<td>bar</td>
+<td>identity</td>
+<td>stack</td>
+<td>x, y, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>bin</td>
+<td>stack</td>
+<td>x, y, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="odd">
+<td>histogram</td>
+<td>alias for geom_bar</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>area</td>
+<td>identity</td>
+<td>stack</td>
+<td>group, x, y, size, linetype, colour, fill, alpha, na.rm</td>
+</tr>
+<tr class="odd">
+<td>ribbon</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, ymin, ymax, size, linetype, colour, fill, alpha, na.rm</td>
+</tr>
+<tr class="even">
+<td>linerange</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, ymin, ymax, size, linetype, colour, alpha</td>
+</tr>
+<tr class="odd">
+<td>pointrange</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, ymin, ymax, size, shape, linetype, colour, fill, alpha</td>
+</tr>
+<tr class="even">
+<td>errorbar</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, ymin, ymax, size, linetype, colour, alpha, width</td>
+</tr>
+<tr class="odd">
+<td>errorbarh</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, xmin, xmax, y, size, linetype, colour, alpha, height</td>
+</tr>
+<tr class="even">
+<td>crossbar</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, ymin, ymax, size, linetype, colour, fill, alpha, width, fatten</td>
+</tr>
+<tr class="odd">
+<td>boxplot</td>
+<td>identity</td>
+<td>dodge</td>
+<td>x, ymin, lower, middle, upper, ymax, size, colour, fill, alpha, weight(?), width(?), outliers(?), outlier.size, outlier.shape, outlier.colour ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>boxplot</td>
+<td>dodge</td>
+<td>x, ymin, lower, middle, upper, ymax, size, colour, fill, alpha, weight(?), width(?), outliers(?), outlier.size, outlier.shape, outlier.colour ???</td>
+</tr>
+<tr class="odd">
+<td>path</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, na.rm, arrow, linemitre, linejoin, lineend</td>
+</tr>
+<tr class="even">
+<td>polygon</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, fill, alpha</td>
+</tr>
+<tr class="odd">
+<td>rect</td>
+<td>identity</td>
+<td>identity</td>
+<td>xmin, xmax, ymin, ymax, size, linetype, colour, fill, alpha</td>
+</tr>
+<tr class="even">
+<td>rug</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, size, linetype, colour, alpha</td>
+</tr>
+<tr class="odd">
+<td>step</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, direction</td>
+</tr>
+<tr class="even">
+<td>bin2d</td>
+<td>identity</td>
+<td>identity</td>
+<td>xmin, xmax, ymin, ymax, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>bin2d</td>
+<td>identity</td>
+<td>xmin, xmax, ymin, ymax, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="even">
+<td>tile</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, size, linetype, colour, fill, alpha</td>
+</tr>
+<tr class="odd">
+<td>hex</td>
+<td>identity</td>
+<td>identity</td>
+<td>x, y, size, colour, fill, alpha</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>binhex</td>
+<td>identity</td>
+<td>x, y, size, colour, fill, alpha</td>
+</tr>
+<tr class="odd">
+<td>density</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>density</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, fill, alpha, weight(?) ???</td>
+</tr>
+<tr class="odd">
+<td>density2d</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?), na.rm, arrow, linemitre, linejoin, lineend ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>density2d</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?), na.rm, arrow, linemitre, linejoin, lineend ???</td>
+</tr>
+<tr class="odd">
+<td>contour</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?), na.rm, arrow, linemitre, linejoin, lineend ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>contour</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?), na.rm, arrow, linemitre, linejoin, lineend ???</td>
+</tr>
+<tr class="odd">
+<td>freqpoly</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?) ???</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>bin</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight(?) ???</td>
+</tr>
+<tr class="odd">
+<td>quantile</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, na.rm, arrow, linemitre, linejoin, lineend</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>quantile</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, alpha, weight, quantiles, formula, xseq, method, na.rm, arrow, linemitre, linejoin, lineend</td>
+</tr>
+<tr class="odd">
+<td>smooth</td>
+<td>identity</td>
+<td>identity</td>
+<td>group, x, y, ymin, ymax, size, linetype, colour, fill, alpha</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>smooth</td>
+<td>identity</td>
+<td>group, x, y, size, linetype, colour, fill, alpha, weight</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="position" class="section level3" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> position</h3>
+<ul>
+<li>position_identity - default of most geoms</li>
+<li>position_jitter - default of geom_jitter</li>
+<li>position_dodge - default of geom_boxplot</li>
+<li>position_stack - default of geom_bar==geom_histogram and geom_area</li>
+<li>position_fill - useful for geom_bar==geom_histogram and geom_area</li>
+</ul>
+</div>
+<div id="scale" class="section level3" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> scale</h3>
+<ul>
+<li>size - size of a geom</li>
+<li>shape - shape of a geom</li>
+<li>linetype - type of a geom’s outline (e.g., dashed, dotted)</li>
+<li>colour - color of a geom’s outline</li>
+<li>fill - color of a geom’s fill</li>
+<li>alpha - transparency of a geom (0=transparent … 1=opaque)</li>
+</ul>
+<p>Functions that ggplot2 provides to define each of the above kinds of scales.</p>
+<ul>
+<li>x (or y) position
+<ul>
+<li>scale_x_continuous</li>
+<li>scale_x_date</li>
+<li>scale_x_datetime</li>
+<li>scale_x_discrete</li>
+</ul></li>
+<li>size
+<ul>
+<li>scale_size_continuous</li>
+<li>scale_area</li>
+<li>scale_size_discrete</li>
+<li>scale_size_identity</li>
+<li>scale_size_manual</li>
+</ul></li>
+<li>shape
+<ul>
+<li>scale_shape_discrete</li>
+<li>scale_shape_identity</li>
+<li>scale_shape_manual</li>
+</ul></li>
+<li>linetype
+<ul>
+<li>scale_linetype_discrete</li>
+<li>scale_linetype_identity</li>
+<li>scale_linetype_manual</li>
+</ul></li>
+<li>colour (or fill)
+<ul>
+<li>scale_colour_gradient</li>
+<li>scale_colour_gradient2</li>
+<li>scale_colour_gradientn</li>
+<li>scale_colour_hue</li>
+<li>scale_colour_brewer</li>
+<li>scale_colour_grey</li>
+<li>scale_colour_identity</li>
+<li>scale_colour_manual</li>
+</ul></li>
+<li>alpha
+<ul>
+<li>scale_alpha_continuous</li>
+</ul></li>
+</ul>
+</div>
+<div id="stat" class="section level3" number="7.1.7">
+<h3><span class="header-section-number">7.1.7</span> stat</h3>
+<ul>
+<li>stat_abline - used by geom_abline</li>
+<li>stat_bin - used by geom_bar == geom_histogram, and geom_freqpoly</li>
+<li>stat_bin2d - used by geom_bin2d</li>
+<li>stat_binhex - used by geom_hex</li>
+<li>stat_boxplot - used by geom_boxplot</li>
+<li>stat_contour - used by geom_contour</li>
+<li>stat_density - used by geom_density</li>
+<li>stat_density2d - used by geom_density2d</li>
+<li>stat_ecdf</li>
+<li>stat_function</li>
+<li>stat_hline - used by geom_hline</li>
+<li>stat_identity - used by a large number of geoms</li>
+<li>stat_qq</li>
+<li>stat_quantile - used by geom_quantile</li>
+<li>stat_smooth - used by geom_smooth</li>
+<li>stat_spoke</li>
+<li>stat_sum</li>
+<li>stat_summary</li>
+<li>stat_unique</li>
+<li>stat_vline - used by geom_vline</li>
+</ul>
+</div>
+<div id="color" class="section level3" number="7.1.8">
+<h3><span class="header-section-number">7.1.8</span> Color</h3>
+<pre><code>+ [ColorBrewer scales](https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)
++ Hexadecimal color code chart</code></pre>
+<div class="figure" style="text-align: center">
+<img src="02_Plots/ggplot2_Hexadecimal_Color_Code.png" alt="Figure: Hexadecimal color code chart" width="100%" />
+<p class="caption">
+(#fig:Hexadecimal color code chart)Figure: Hexadecimal color code chart
+</p>
+</div>
+</div>
+<div id="thema" class="section level3" number="7.1.9">
+<h3><span class="header-section-number">7.1.9</span> Thema</h3>
+<ul>
+<li>theme_grey() - the default theme, with a grey background</li>
+<li>theme_bw() - a theme with a white background</li>
+</ul>
+<p>ggplot2 includes eight themes by default, as shown in Figure. Many more are included in add-on packages like <a href="https://github.com/jrnold/ggthemes">ggthemes</a>, by Jeffrey Arnold.</p>
+<div class="figure" style="text-align: center"><span id="fig:Thema"></span>
+<img src="02_Plots/ggplot2_ggthemes.png" alt="Figure: ggplot2 Thema" width="100%" />
+<p class="caption">
+Figure 7.1: Figure: ggplot2 Thema
+</p>
+</div>
+</div>
+</div>
+<div id="scatter-plot-geom_point" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Scatter plot geom_point</h2>
+<div id="grouping-aesthetic" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Grouping Aesthetic</h3>
+<ul>
+<li>Color Aesthetic</li>
+<li>Size Aesthetic</li>
+<li>Alpha Aesthetic</li>
+<li>Shape Aesthetic</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ggplot2.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="ggplot2.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Color Aesthetic</span></span>
+<span id="cb2-3"><a href="ggplot2.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb2-4"><a href="ggplot2.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Aesthetic-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ggplot2.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the aesthetic properties of your geom manually</span></span>
+<span id="cb3-2"><a href="ggplot2.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="ggplot2.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Aesthetic-2.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ggplot2.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Size Aesthetic</span></span>
+<span id="cb4-2"><a href="ggplot2.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="ggplot2.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">size =</span> class))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Aesthetic-3.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ggplot2.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Alpha aesthetic, which controls the transparency of the points</span></span>
+<span id="cb5-2"><a href="ggplot2.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="ggplot2.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">alpha =</span> class))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Aesthetic-4.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ggplot2.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## shape aesthetic</span></span>
+<span id="cb6-2"><a href="ggplot2.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="ggplot2.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">shape =</span> class))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Aesthetic-5.png" width="672" /></p>
+</div>
+<div id="facet-1" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> facet</h3>
+<p>facet_wrap(), “winding facet,” only one standard can be applied to data classification, and the small shapes obtained from different sets of data are arranged in the order of “winding” from left to right and from top to bottom</p>
+<p>facet_grid(), facet the drawing of the combination of two variables</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ggplot2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="ggplot2.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="ggplot2.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span> class, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ggplot2.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="ggplot2.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="ggplot2.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span> class)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ggplot2.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="ggplot2.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="ggplot2.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> .)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ggplot2.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="ggplot2.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="ggplot2.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> cyl)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+</div>
+<div id="geom_smooth" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> geom_smooth</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggplot2.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## display different aesthetics in different layers</span></span>
+<span id="cb11-2"><a href="ggplot2.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="ggplot2.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="ggplot2.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ggplot2.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## no aesthetic just grouping</span></span>
+<span id="cb12-2"><a href="ggplot2.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="ggplot2.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">group =</span> drv)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="ggplot2.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-2.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ggplot2.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## linetype aesthetic set the shape of a point</span></span>
+<span id="cb13-2"><a href="ggplot2.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="ggplot2.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">linetype =</span> drv))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-3.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ggplot2.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## color aesthetic</span></span>
+<span id="cb14-2"><a href="ggplot2.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="ggplot2.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb14-4"><a href="ggplot2.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> drv),</span>
+<span id="cb14-5"><a href="ggplot2.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-6"><a href="ggplot2.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-4.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ggplot2.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Linear line</span></span>
+<span id="cb15-2"><a href="ggplot2.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy))<span class="sc">+</span></span>
+<span id="cb15-3"><a href="ggplot2.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="ggplot2.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="ggplot2.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb15-6"><a href="ggplot2.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;mpg: city vs highway mileage&quot;</span>, </span>
+<span id="cb15-7"><a href="ggplot2.html#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;hwy&quot;</span>, </span>
+<span id="cb15-8"><a href="ggplot2.html#cb15-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;cty&quot;</span>, </span>
+<span id="cb15-9"><a href="ggplot2.html#cb15-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Scatterplot with overlapping points&quot;</span>, </span>
+<span id="cb15-10"><a href="ggplot2.html#cb15-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: midwest&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-5.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggplot2.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 原始数据有234个数据点，但图表似乎显示的点更少</span></span>
+<span id="cb16-2"><a href="ggplot2.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 这是因为有许多重叠的点显示为单个点。在源数据集中cty和hwy都是整数</span></span>
+<span id="cb16-3"><a href="ggplot2.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 可以使用jitter_geom（）绘制一个抖动图</span></span>
+<span id="cb16-4"><a href="ggplot2.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy))<span class="sc">+</span></span>
+<span id="cb16-5"><a href="ggplot2.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb16-6"><a href="ggplot2.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb16-7"><a href="ggplot2.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">5</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="ggplot2.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;mpg: city vs highway mileage&quot;</span>, </span>
+<span id="cb16-9"><a href="ggplot2.html#cb16-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;hwy&quot;</span>, </span>
+<span id="cb16-10"><a href="ggplot2.html#cb16-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;cty&quot;</span>, </span>
+<span id="cb16-11"><a href="ggplot2.html#cb16-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Jittered Points&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Grouping%20Aesthetic-6.png" width="672" /></p>
+</div>
+<div id="dot-plot" class="section level3" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Dot Plot</h3>
+<p>Order <code>fct_reorder</code>: Modifying factor order</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb17-2"><a href="ggplot2.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-3"><a href="ggplot2.html#cb17-3" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="ggplot2.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="ggplot2.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-6"><a href="ggplot2.html#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-7"><a href="ggplot2.html#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-8"><a href="ggplot2.html#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb17-9"><a href="ggplot2.html#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-10"><a href="ggplot2.html#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="ggplot2.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/fct_reorder-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggplot2.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(tvhours, <span class="fu">fct_reorder</span>(relig, tvhours))) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="ggplot2.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/fct_reorder-2.png" width="672" /></p>
+<p><strong>Diverging Dot Plot </strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Prep</span></span>
+<span id="cb19-2"><a href="ggplot2.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)  <span class="co"># load data</span></span>
+<span id="cb19-3"><a href="ggplot2.html#cb19-3" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">rownames</span>(mtcars)  <span class="co"># create new column for car names</span></span>
+<span id="cb19-4"><a href="ggplot2.html#cb19-4" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>mpg_z <span class="ot">&lt;-</span> <span class="fu">round</span>((mtcars<span class="sc">$</span>mpg <span class="sc">-</span> <span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg))<span class="sc">/</span><span class="fu">sd</span>(mtcars<span class="sc">$</span>mpg), <span class="dv">2</span>)  <span class="co"># compute normalized mpg</span></span>
+<span id="cb19-5"><a href="ggplot2.html#cb19-5" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>mpg_type <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(mtcars<span class="sc">$</span>mpg_z <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;below&quot;</span>, <span class="st">&quot;above&quot;</span>)  <span class="co"># above / below avg flag</span></span>
+<span id="cb19-6"><a href="ggplot2.html#cb19-6" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> mtcars[<span class="fu">order</span>(mtcars<span class="sc">$</span>mpg_z), ]  <span class="co"># sort</span></span>
+<span id="cb19-7"><a href="ggplot2.html#cb19-7" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">factor</span>(mtcars<span class="sc">$</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span>, <span class="at">levels =</span> mtcars<span class="sc">$</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span>)  <span class="co"># convert to factor to retain sorted order in plot.</span></span>
+<span id="cb19-8"><a href="ggplot2.html#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="ggplot2.html#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="ggplot2.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span>, <span class="at">y=</span>mpg_z, <span class="at">label=</span>mpg_z)) <span class="sc">+</span> </span>
+<span id="cb19-11"><a href="ggplot2.html#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="fu">aes</span>(<span class="at">col=</span>mpg_type), <span class="at">size=</span><span class="dv">6</span>)  <span class="sc">+</span></span>
+<span id="cb19-12"><a href="ggplot2.html#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name=</span><span class="st">&quot;Mileage&quot;</span>, </span>
+<span id="cb19-13"><a href="ggplot2.html#cb19-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Above Average&quot;</span>, <span class="st">&quot;Below Average&quot;</span>), </span>
+<span id="cb19-14"><a href="ggplot2.html#cb19-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;above&quot;</span><span class="ot">=</span><span class="st">&quot;#00ba38&quot;</span>, <span class="st">&quot;below&quot;</span><span class="ot">=</span><span class="st">&quot;#f8766d&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb19-15"><a href="ggplot2.html#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="ggplot2.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Diverging Dot Plot&quot;</span>, </span>
+<span id="cb19-17"><a href="ggplot2.html#cb19-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Normalized mileage from &#39;mtcars&#39;: Dotplot&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb19-18"><a href="ggplot2.html#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="ggplot2.html#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Diverging%20Dot%20Plot%20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diverging Barcharts</span></span>
+<span id="cb20-2"><a href="ggplot2.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">car name</span><span class="st">`</span>, <span class="at">y=</span>mpg_z, <span class="at">label=</span>mpg_z)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="ggplot2.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="fu">aes</span>(<span class="at">fill=</span>mpg_type), <span class="at">width=</span>.<span class="dv">5</span>)  <span class="sc">+</span></span>
+<span id="cb20-4"><a href="ggplot2.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span><span class="st">&quot;Mileage&quot;</span>, </span>
+<span id="cb20-5"><a href="ggplot2.html#cb20-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Above Average&quot;</span>, <span class="st">&quot;Below Average&quot;</span>), </span>
+<span id="cb20-6"><a href="ggplot2.html#cb20-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;above&quot;</span><span class="ot">=</span><span class="st">&quot;#00ba38&quot;</span>, <span class="st">&quot;below&quot;</span><span class="ot">=</span><span class="st">&quot;#f8766d&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="ggplot2.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;Normalised mileage from &#39;mtcars&#39;&quot;</span>, </span>
+<span id="cb20-8"><a href="ggplot2.html#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span> <span class="st">&quot;Diverging Bars&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb20-9"><a href="ggplot2.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-10"><a href="ggplot2.html#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Diverging%20Dot%20Plot%20-2.png" width="672" /></p>
+</div>
+<div id="label-and-title" class="section level3" number="7.2.5">
+<h3><span class="header-section-number">7.2.5</span> Label and Title</h3>
+<p><code>+ ggtitle("Area Vs Population", subtitle="From midwest dataset") + xlab("Area") + ylab("Population")</code></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ggplot2.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest, <span class="fu">aes</span>(<span class="at">x=</span>area, <span class="at">y=</span>poptotal)) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="ggplot2.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="ggplot2.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="ggplot2.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000000</span>)) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="ggplot2.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Area Vs Population&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;From midwest dataset&quot;</span>, <span class="at">y=</span><span class="st">&quot;Population&quot;</span>, <span class="at">x=</span><span class="st">&quot;Area&quot;</span>, <span class="at">caption=</span><span class="st">&quot;Midwest Demographics&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Label%20and%20Title-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ggplot2.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Or</span></span>
+<span id="cb22-2"><a href="ggplot2.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest, <span class="fu">aes</span>(<span class="at">x=</span>area, <span class="at">y=</span>poptotal)) <span class="sc">+</span> </span>
+<span id="cb22-3"><a href="ggplot2.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="ggplot2.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb22-5"><a href="ggplot2.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000000</span>)) <span class="sc">+</span> </span>
+<span id="cb22-6"><a href="ggplot2.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Area Vs Population&quot;</span>, <span class="at">subtitle=</span><span class="st">&quot;From midwest dataset&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Area&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Label%20and%20Title-2.png" width="672" />
+### Residuals</p>
+<pre><code>modf2 &lt;- fortify(lm(formular, data = rf10_comp))
+ggplot(modf2, aes(x = modf$bmi, y = .resid)) + geom_point()+
+  geom_hline(aes(yintercept=0), colour=&quot;#990000&quot;) +
+  labs(title=&quot;Residuals plot for BMI using MICE RF with 10 trees&quot;,
+       x = &quot;BMI&quot;,
+       y = &quot;Residuals&quot;)+
+  theme_classic()
+  
+## Standardized Residuals
+modf &lt;- fortify(lm(formular, data = data))
+ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
+  geom_hline(aes(yintercept=0), colour=&quot;#990000&quot;) +
+  labs(title=&quot;Standardised residuals plot for BMI using Full data&quot;,
+       x = &quot;BMI&quot;,
+       y = &quot;Residuals&quot;)+
+  theme_classic()</code></pre>
+</div>
+<div id="encircling" class="section level3" number="7.2.6">
+<h3><span class="header-section-number">7.2.6</span> Encircling</h3>
+<p>In geom_encircle(), set the data to a new data frame containing only points (rows) or points of interest. In addition, you can expand the curve so that it passes outside the point. The color and size (thickness) of the curve can also be modified.</p>
+<!-- 在图表中加上某些特殊的点或区域组，以便引起人们对这些特殊情况的注意。 可以使用ggalt包中的geom_encircle（）方便地完成此操作。 -->
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install &#39;ggalt&#39; pkg</span></span>
+<span id="cb24-2"><a href="ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;hrbrmstr/ggalt&quot;)</span></span>
+<span id="cb24-3"><a href="ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb24-4"><a href="ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalt)</span>
+<span id="cb24-5"><a href="ggplot2.html#cb24-5" aria-hidden="true" tabindex="-1"></a>midwest_select <span class="ot">&lt;-</span> midwest[midwest<span class="sc">$</span>poptotal <span class="sc">&gt;</span> <span class="dv">350000</span> <span class="sc">&amp;</span> </span>
+<span id="cb24-6"><a href="ggplot2.html#cb24-6" aria-hidden="true" tabindex="-1"></a>                            midwest<span class="sc">$</span>poptotal <span class="sc">&lt;=</span> <span class="dv">500000</span> <span class="sc">&amp;</span> </span>
+<span id="cb24-7"><a href="ggplot2.html#cb24-7" aria-hidden="true" tabindex="-1"></a>                            midwest<span class="sc">$</span>area <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> </span>
+<span id="cb24-8"><a href="ggplot2.html#cb24-8" aria-hidden="true" tabindex="-1"></a>                            midwest<span class="sc">$</span>area <span class="sc">&lt;</span> <span class="fl">0.1</span>, ]</span>
+<span id="cb24-9"><a href="ggplot2.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="ggplot2.html#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb24-11"><a href="ggplot2.html#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest, <span class="fu">aes</span>(<span class="at">x=</span>area, <span class="at">y=</span>poptotal)) <span class="sc">+</span> </span>
+<span id="cb24-12"><a href="ggplot2.html#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>state, <span class="at">size=</span>popdensity)) <span class="sc">+</span>   <span class="co"># draw points</span></span>
+<span id="cb24-13"><a href="ggplot2.html#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>, <span class="at">se=</span>F) <span class="sc">+</span> </span>
+<span id="cb24-14"><a href="ggplot2.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)) <span class="sc">+</span> </span>
+<span id="cb24-15"><a href="ggplot2.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500000</span>)) <span class="sc">+</span>   <span class="co"># draw smoothing line</span></span>
+<span id="cb24-16"><a href="ggplot2.html#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_encircle</span>(<span class="fu">aes</span>(<span class="at">x=</span>area, <span class="at">y=</span>poptotal), </span>
+<span id="cb24-17"><a href="ggplot2.html#cb24-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">data=</span>midwest_select, </span>
+<span id="cb24-18"><a href="ggplot2.html#cb24-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb24-19"><a href="ggplot2.html#cb24-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">2</span>, </span>
+<span id="cb24-20"><a href="ggplot2.html#cb24-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">expand=</span><span class="fl">0.08</span>) <span class="sc">+</span>   <span class="co"># encircle</span></span>
+<span id="cb24-21"><a href="ggplot2.html#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle=</span><span class="st">&quot;Area Vs Population&quot;</span>, </span>
+<span id="cb24-22"><a href="ggplot2.html#cb24-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Population&quot;</span>, </span>
+<span id="cb24-23"><a href="ggplot2.html#cb24-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Area&quot;</span>, </span>
+<span id="cb24-24"><a href="ggplot2.html#cb24-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Scatterplot + Encircle&quot;</span>, </span>
+<span id="cb24-25"><a href="ggplot2.html#cb24-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: midwest&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="dumbbell-plot" class="section level3" number="7.2.7">
+<h3><span class="header-section-number">7.2.7</span> Dumbbell Plot</h3>
+<ol style="list-style-type: decimal">
+<li>可视化两个时间点之间的相对位置（如增长和下降）。</li>
+<li>比较两个类别之间的距离。</li>
+</ol>
+<p>为了获得正确的哑铃排序，应将Y变量作为一个因子，并且该因子变量的级别应与在图中显示的顺序相同。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalt) </span>
+<span id="cb25-2"><a href="ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>health <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/selva86/datasets/master/health.csv&quot;</span>)</span>
+<span id="cb25-4"><a href="ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a>health<span class="sc">$</span>Area <span class="ot">&lt;-</span> <span class="fu">factor</span>(health<span class="sc">$</span>Area, <span class="at">levels=</span><span class="fu">as.character</span>(health<span class="sc">$</span>Area))  <span class="co"># for right ordering of the dumbells</span></span>
+<span id="cb25-5"><a href="ggplot2.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="ggplot2.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># health$Area &lt;- factor(health$Area)</span></span>
+<span id="cb25-7"><a href="ggplot2.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(health, <span class="fu">aes</span>(<span class="at">x=</span>pct_2013, <span class="at">xend=</span>pct_2014, <span class="at">y=</span>Area, <span class="at">group=</span>Area)) <span class="sc">+</span> </span>
+<span id="cb25-8"><a href="ggplot2.html#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dumbbell</span>(<span class="at">color=</span><span class="st">&quot;#a3c4dc&quot;</span>, </span>
+<span id="cb25-9"><a href="ggplot2.html#cb25-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">size=</span><span class="fl">0.75</span>, </span>
+<span id="cb25-10"><a href="ggplot2.html#cb25-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.colour.l=</span><span class="st">&quot;#0e668b&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb25-11"><a href="ggplot2.html#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, </span>
+<span id="cb25-12"><a href="ggplot2.html#cb25-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="cn">NULL</span>, </span>
+<span id="cb25-13"><a href="ggplot2.html#cb25-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Dumbbell Chart&quot;</span>, </span>
+<span id="cb25-14"><a href="ggplot2.html#cb25-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Pct Change: 2013 vs 2014&quot;</span>, </span>
+<span id="cb25-15"><a href="ggplot2.html#cb25-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source: https://github.com/hrbrmstr/ggalt&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="ggplot2.html#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb25-17"><a href="ggplot2.html#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>, <span class="at">face=</span><span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-18"><a href="ggplot2.html#cb25-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background=</span><span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;#f7f7f7&quot;</span>),</span>
+<span id="cb25-19"><a href="ggplot2.html#cb25-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background=</span><span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;#f7f7f7&quot;</span>),</span>
+<span id="cb25-20"><a href="ggplot2.html#cb25-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb25-21"><a href="ggplot2.html#cb25-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb25-22"><a href="ggplot2.html#cb25-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x=</span><span class="fu">element_line</span>(),</span>
+<span id="cb25-23"><a href="ggplot2.html#cb25-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb25-24"><a href="ggplot2.html#cb25-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position=</span><span class="st">&quot;top&quot;</span>,</span>
+<span id="cb25-25"><a href="ggplot2.html#cb25-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Dumbbell%20Plot%20-1.png" width="672" /></p>
+</div>
+</div>
+<div id="histogram" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Histogram</h2>
+<div id="marginal-histogram-boxplot" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Marginal Histogram / Boxplot</h3>
+<p>This can be achieved using the ggMarginal() function in the “ggExtra” package. In addition to histograms, you can choose to draw marginal box plots or density plots by setting the corresponding type options.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggExtra&quot;</span>)</span>
+<span id="cb26-2"><a href="ggplot2.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="ggplot2.html#cb26-3" aria-hidden="true" tabindex="-1"></a>mpg_select <span class="ot">&lt;-</span> mpg[mpg<span class="sc">$</span>hwy <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> mpg<span class="sc">$</span>cty <span class="sc">&gt;</span> <span class="dv">27</span>, ]</span>
+<span id="cb26-4"><a href="ggplot2.html#cb26-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb26-5"><a href="ggplot2.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="ggplot2.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="ggplot2.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb26-8"><a href="ggplot2.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="ggplot2.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(g, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>, <span class="at">fill=</span><span class="st">&quot;transparent&quot;</span>)</span>
+<span id="cb26-10"><a href="ggplot2.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(g, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>,   <span class="at">fill=</span><span class="st">&quot;transparent&quot;</span>)</span>
+<span id="cb26-11"><a href="ggplot2.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(g, <span class="at">type =</span> <span class="st">&quot;density&quot;</span>,   <span class="at">fill=</span><span class="st">&quot;transparent&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Marginal%20Plot-1.png" width="672" /></p>
+</div>
+</div>
+<div id="bar-plot" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Bar plot</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="space.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="proc-sqplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-ggplot2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

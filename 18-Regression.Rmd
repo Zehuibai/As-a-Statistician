@@ -413,7 +413,7 @@ In order for the model to accurately explain the data and for your p-value to re
 4. Errors follow a normal distribution
 
 ```{r, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Residums Plots"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/LR_Residums.png")
+knitr::include_graphics("./02_Plots/LR_Residums.png")
 ```
 
 

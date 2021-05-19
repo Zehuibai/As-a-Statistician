@@ -1,0 +1,27 @@
+h1:parametric-test Parametric Test
+h2:proc-freq Proc FREQ
+h3:ods-table-names ODS Table Names
+h3:ods-plots ODS Plots
+h2:section 
+h2:binomial-test Binomial test
+h3:mathematical-formula Mathematical Formula
+h3:r-implementation R implementation
+h2:fishers-exact-test Fisher’s Exact Test
+h3:mathematical-formula-1 Mathematical Formula
+h3:sas-implementation SAS implementation
+h3:r-implementation-1 R implementation
+h2:contingency-test Contingency test
+h2:mcnemars-test McNemar’s test
+h2:cochranmantelhaenszel-test Cochran–Mantel–Haenszel Test
+h3:r-implementation-2 R implementation
+h2:correlation-test Correlation Test
+h3:pearson-correlation Pearson correlation
+h3:spearman-correlation Spearman correlation
+h3:kendall-correlation Kendall correlation
+h2:two-sample-t-test Two Sample T-Test
+h3:sas-implementation-1 SAS implementation
+h3:r-implementation-3 R implementation
+h2:normality-test Normality test
+h3:sas-implementation-2 SAS implementation
+h3:r-implementation-4 R implementation
+

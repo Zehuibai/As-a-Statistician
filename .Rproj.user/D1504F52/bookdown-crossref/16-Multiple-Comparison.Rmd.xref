@@ -1,0 +1,45 @@
+h1:multiple-comparison Multiple-Comparison
+h2:introduction Introduction
+h3:multiplicity-problem Multiplicity Problem
+h3:error-rates Error Rates
+h4:comparisonwise-error-rate-cer Comparisonwise Error Rate (CER)
+h4:familywise-error-rate-fwe Familywise Error Rate (FWE)
+h4:control-of-the-fwe-weak-and-strong Control of the FWE: Weak and Strong
+h4:directional-decisions-and-type-iii-error-rates Directional Decisions and Type III Error Rates
+h4:false-discovery-rate-fdr False Discovery Rate (FDR)
+h3:the-adjusted-p The adjusted P
+h3:basic-statistical-concepts Basic Statistical Concepts
+h3:functions-in-glht-package-in-r Functions in glht package in R
+h2:bonferroni-and-šidák-methods Bonferroni and Šidák Methods
+h3:lsd-least-significance-difference LSD (least significance difference)
+h3:šidák Šidák
+h3:bonferroni Bonferroni
+h3:schweder-spjøtvoll-p-value-plot Schweder-Spjøtvoll p-Value Plot
+fig:Plot Figure: Plot of p-Values for the Cold Study
+fig:g Figure: Estimating the Number of True Nulls Using Hochberg and Benjamini’s Method
+h2:mcp-among-treatment-means-in-the-one-way-balanced-anova MCP among Treatment Means in the One-Way Balanced ANOVA
+h3:ls-means LS-Means
+h3:the-multivariate-t-distribution The Multivariate t Distribution
+h3:calculating-the-critical-value-c_alpha Calculating the Critical Value 
+h3:all-pairwise-comparisons-and-studentized-range-distribution All Pairwise Comparisons and Studentized Range Distribution
+h3:tukeys-method-for-all-pairwise-comparisons Tukey’s Method for All Pairwise Comparisons
+h3:displaying-pairwise-comparisons-graphically Displaying Pairwise Comparisons Graphically
+fig:Turkey Figure: Diffogram indicating Comparisons of Diets
+fig:Turkey Figure: Turkey CI Plots
+fig:Turkey Figure: CI Boxplots
+h3:dunnetts-two-sided-comparisons-with-a-control-and-dunnetts-two-sided-range-distribution Dunnett’s Two-Sided Comparisons with a Control and Dunnett’s Two-Sided Range Distribution
+h3:dunnetts-one-sided-comparisons-with-a-control Dunnett’s One-Sided Comparisons with a Control
+fig:One-Sided Figure: Displaying One-Sided Dunnett Comparisons Graphically
+h3:maximum-modulus-distribution-multiple-inferences-for-independent-estimates Maximum Modulus Distribution, Multiple Inferences for Independent Estimates
+h2:multiple-comparisons-among-treatment-means-in-the-one-way-unbalanced-anova Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA
+h3:the-model-and-estimates The Model and Estimates
+h3:tukey-kramer-method Tukey-Kramer Method
+h3:alternative-simulation-based-method Alternative Simulation-Based Method
+h3:pairwise-comparisons-with-control Pairwise Comparisons with Control
+h3:comparisons-with-the-average-meananalysis-of-means-anom Comparisons with the Average Mean–Analysis of Means (ANOM)
+h2:generalizations-for-the-analysis-of-covariance-ancova-model Generalizations for the Analysis of Covariance (ANCOVA) model
+h3:dunnett-hsu-factor-analytic-approximation Dunnett-Hsu Factor Analytic Approximation
+h3:hsu-nelson-simulation-based-approximation-cvadjust-method Hsu-Nelson Simulation-Based Approximation: CVADJUST Method
+h3:comparisons-in-ancova-models-with-interaction Comparisons in ANCOVA Models with Interaction
+fig:ACNOVA Figure: Fitted ANCOVA Model with Interaction
+

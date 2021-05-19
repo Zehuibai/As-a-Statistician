@@ -1,0 +1,11 @@
+h1:descriptive-statistics-in-r Descriptive Statistics in R
+h2:package-pape Package pape
+h2:package-summarytools Package summarytools
+h2:package-comparegroups Package compareGroups
+h2:package-kableextra Package kableExtra
+h3:kable_styling kable_styling
+h3:columnrow-specification Column/Row Specification
+h3:grouping-columnsrows Grouping columns/rows
+tab:kableExtra Group Rows
+h3:add-footnote Add Footnote
+
