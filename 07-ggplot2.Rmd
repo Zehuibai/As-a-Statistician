@@ -177,7 +177,7 @@ knitr::include_graphics("./02_Plots/ggplot2_ggthemes.png")
 
 
 
-## Scatter plot geom_point
+## Scatter plot
 
 ### Grouping Aesthetic
 
@@ -187,7 +187,7 @@ knitr::include_graphics("./02_Plots/ggplot2_ggthemes.png")
 * Shape Aesthetic
 
 
-```{r Aesthetic, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r the aesthetic, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library(ggplot2)
 ## Color Aesthetic
 ggplot(data = mpg) + 
@@ -216,7 +216,7 @@ facet_wrap(), "winding facet", only one standard can be applied to data classifi
 
 facet_grid(), facet the drawing of the combination of two variables
 
-```{r , echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r facet_wrap and facet_grid, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_wrap(.~ class, nrow = 2)
@@ -237,7 +237,7 @@ ggplot(data = mpg) +
 **Replacing facet strips with text boxes using ggtext::**
 
 ```{r Replacing facet strips, echo = T,message = FALSE, error = FALSE, warning = FALSE}
-library(cowplot)
+library("cowplot")
 
 ggplot(mpg, aes(cty, hwy)) + 
   geom_point() +
@@ -245,6 +245,7 @@ ggplot(mpg, aes(cty, hwy)) +
   theme_half_open(12) +
   background_grid() 
 
+library("ggtext")
 ggplot(mpg, aes(cty, hwy)) + 
   geom_point() +
   facet_wrap(~class) +
@@ -310,6 +311,37 @@ ggplot(mpg, aes(cty, hwy))+
        title="Jittered Points")
 ```
 
+
+### geom_errorbar
+
+```{r geom_errorbar, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+PrimEnd <- data.frame('Primary Endpoint'=c("Primary Analysis", 
+                                           "Sensitivity Analysis 1",
+                                           "Sensitivity Analysis 2",
+                                           "Primary Analysis after imputation"),
+                      mean=c(-0.2945, -0.08334, -0.2926, -0.2395),
+                      LL=c(-0.9612, -0.2861, -0.9344, -0.7521),
+                      UL=c(0.3722, 0.1194, 0.3491, 0.2730),
+                      pvalue=c("P = 0.313", "P = 0.347", "P = 0.304","P = 0.359"))
+level <- PrimEnd$Primary.Endpoint
+
+PrimEnd$Primary.Endpoint <- factor(PrimEnd$Primary.Endpoint, levels=level)
+
+library(ggplot2)
+ggplot(PrimEnd, aes(x=Primary.Endpoint, y=mean)) + 
+  geom_line() +
+  geom_point()+
+  geom_text(aes(label=pvalue),hjust=-0.2, vjust=0) +
+  geom_hline(aes(yintercept=0, color="black", linetype="dot")) + 
+  geom_errorbar(aes(ymin=LL, ymax=UL), width = 0.5, size = 0.5)+
+  theme_bw() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "Difference between the IOLs",
+       title = "Superiority analysis in mean absolute rotation between Visit H0 (sitting) and H1")
+```
+
+
 ### Dot Plot
 
 Order `fct_reorder`: Modifying factor order 
@@ -355,7 +387,22 @@ ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) +
   coord_flip()
 
  
- 
+### Diverging Lollipop Chart
+ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) + 
+  geom_point(stat='identity', fill="black", size=6)  +
+  geom_segment(aes(y = 0, 
+                   x = `car name`, 
+                   yend = mpg_z, 
+                   xend = `car name`), 
+               color = "black") +
+  geom_text(color="white", size=2) +
+  labs(title="Diverging Lollipop Chart", 
+       subtitle="Normalized mileage from 'mtcars': Lollipop") + 
+  ylim(-2.5, 2.5) +
+  coord_flip()
+
+
+
 # Diverging Barcharts
 ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) + 
   geom_bar(stat='identity', aes(fill=mpg_type), width=.5)  +
@@ -374,7 +421,7 @@ ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) +
 
 `+ ggtitle("Area Vs Population", subtitle="From midwest dataset") + xlab("Area") + ylab("Population")`
 
-```{r Label and Title, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r ggtitle, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 ggplot(midwest, aes(x=area, y=poptotal)) + 
   geom_point() + 
   geom_smooth(method="lm") + 
@@ -392,7 +439,7 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 **Change the Title rendering using ggtext::element_textbox()**
 
-```{r Label and Title, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r element_textbox, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 ggplot(mtcars, aes(disp, mpg)) + 
   geom_point() +
   labs(
@@ -465,7 +512,7 @@ In geom_encircle(), set the data to a new data frame containing only points (row
 
 <!-- 在图表中加上某些特殊的点或区域组，以便引起人们对这些特殊情况的注意。 可以使用ggalt包中的geom_encircle（）方便地完成此操作。 -->
 
-```{r , echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r Encircling for emphasizen, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 # install 'ggalt' pkg
 # devtools::install_github("hrbrmstr/ggalt")
 options(scipen = 999)
@@ -533,6 +580,49 @@ ggplot(health, aes(x=pct_2013, xend=pct_2014, y=Area, group=Area)) +
 
 ## Histogram 
 
+```{r , echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library("tidyverse")
+smaller <- diamonds %>% 
+  filter(carat < 3)
+ggplot(data = smaller, mapping = aes(x = carat, fill=color))+
+  geom_histogram(binwidth = 0.1, col="black", size=.1) +
+  labs(title="Histogram with Auto Binning", 
+       subtitle="Engine Displacement across Vehicle Classes")  
+## geom_histogram(bins=5, col="black", size=.1) 
+
+## Change the color according the number of legend
+## scale_color_manual(values = c("#00AFBB", "#E7B800")) 
+## scale_fill_manual(values = c("#00AFBB", "#E7B800"))
+```
+
+
+### geom_freqpoly()
+
+
+```{r freqpoly, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library("tidyverse")
+smaller <- diamonds %>% 
+  filter(carat < 3)
+ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
+  geom_freqpoly(binwidth = 0.1)
+
+
+## display density instead of count
+ggplot(data = diamonds, mapping = aes(x = price, y = ..density..)) + 
+  geom_freqpoly(mapping = aes(colour = cut), binwidth = 500)
+
+## geom_density
+ggplot(mpg, aes(cty)) +
+  geom_density(aes(fill=factor(cyl)), alpha=0.5) + 
+    labs(title="Density plot", 
+         subtitle="City Mileage Grouped by Number of cylinders",
+         caption="Source: mpg",
+         x="City Mileage",
+         fill="# Cylinders")
+```
+
+
+
 ### Marginal Histogram / Boxplot
 
 This can be achieved using the ggMarginal() function in the "ggExtra" package. In addition to histograms, you can choose to draw marginal box plots or density plots by setting the corresponding type options.
@@ -553,9 +643,6 @@ ggMarginal(g, type = "density",   fill="transparent")
 
 
 
-```{r , echo = T,message = FALSE, error = FALSE, warning = FALSE}
-
-```
 
 
 
@@ -566,23 +653,173 @@ ggMarginal(g, type = "density",   fill="transparent")
 
 ## Bar plot
 
+### Aesthetic
 
+```{r Aesthetic, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Color Aesthetic
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = cut ))
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color ))
+
+
+## Position aesthetic
+## position adjustment options: "identity", "dodge" or "fill".
+## position =“ fill”的作用类似于堆叠，但是使每组堆叠的条具有相同的高度。 这样可以更轻松地比较各组之间的比例。
+## position =“ dodge”将重叠的对象彼此相邻放置。 这样可以更轻松地比较各个值。
+
+ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
+  geom_bar(alpha = 1/5, position = "identity")
+
+ggplot(data = diamonds, mapping = aes(x = cut, colour = clarity)) + 
+  geom_bar(fill = NA, position = "identity")+
+  facet_wrap(~color) +
+  theme(legend.position = "top")
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "fill", width = 0.5) + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(title="Histogram on Categorical Variable", 
+       subtitle="Manufacturer across Vehicle Classes") 
+ 
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+```
+
+**Change outline colors**
+
+It is also possible to change manually barplot line colors using the functions :
+
+* scale_color_manual() : to use custom color palettes
+    + `p+scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9"))`
+* scale_color_brewer() : to use color palettes from RColorBrewer package
+    + `p+scale_color_brewer(palette="Dark2")`
+* scale_color_grey() : to use grey color palettes
+    + `p + scale_color_grey() + theme_classic()`
+
+**Change fill colors**
+
+* scale_fill_manual() : to use custom colors
+    + `p+scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"))`
+* scale_fill_brewer() : to use color palettes from RColorBrewer package
+    + `p+scale_fill_brewer(palette="Dark2")`
+* scale_fill_grey() : to use grey color palettes
+    + `p + scale_fill_grey()`
+
+**Change the legend position**
+
+* Change bar fill colors to blues
+    + `p <- p+scale_fill_brewer(palette="Blues")`
+* Change the legend position
+    + `p + theme(legend.position="top")`
+    + `p + theme(legend.position="bottom")`
+* Remove legend
+    + `p + theme(legend.position="none")`
+* Change the order of items in the legend
+    + `p + scale_x_discrete(limits=c("D2", "D0.5", "D1"))`
+
+  
+
+
+
+
+### Proportion
+
+```{r stat="identity", echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color ))
+ 
+## proportion, rather than count:
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1))+
+  scale_y_continuous(labels = scales::percent) +
+  labs(title="Name")+
+  theme_classic()
+```
+### coord
+
+```{r coordinary system, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## coord_polar() uses polar coordinates
+bar <- ggplot(data = diamonds) + 
+  geom_bar(
+    mapping = aes(x = cut, fill = cut), 
+    show.legend = FALSE,
+    width = 1
+  ) + 
+  theme(aspect.ratio = 1) +
+  labs(x = NULL, y = NULL)
+bar + coord_flip()
+bar + coord_polar()
+```
 
 ### stat="identity"
 
+```{r stat="identity", echo = T,message = FALSE, error = FALSE, warning = FALSE}
+Rotation_5 <- readRDS(file = "./01_Datasets/Rotation_5.rds")
+
+ggplot(data = Rotation_5, aes(x = Visit, y= Percentage, fill=Treatment)) +
+  geom_bar(stat="identity", width =0.5,
+           position=position_dodge()) +
+  geom_text(aes(label=N), vjust=1.6, color="white",
+            position = position_dodge(0.5), size=3.5)+
+  geom_text(aes(label=P, x=Visit, y=0.97),hjust=0.4, size=3.5)+
+  scale_fill_brewer(palette="Paired")+
+  scale_y_continuous(labels = scales::percent, breaks=seq(0, 1, 0.1)) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "Responder rate",
+       title = "Rotational stability within 5° from Visit H0 (sitting)")
+
+```
+
+
+### Ranking
+
+```{r Ranking the bar, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+### Ordered Bar Chart 
+cty_mpg <- aggregate(mpg$cty, by=list(mpg$manufacturer), FUN=mean)  # aggregate
+colnames(cty_mpg) <- c("make", "mileage")  # change column names
+cty_mpg <- cty_mpg[order(cty_mpg$mileage), ]  # sort
+cty_mpg$make <- factor(cty_mpg$make, levels = cty_mpg$make)  # to retain the order in plot.
+
+# Draw plot
+ggplot(cty_mpg, aes(x=make, y=mileage)) + 
+  geom_bar(stat="identity", width=.5, fill="tomato3") + 
+  labs(title="Ordered Bar Chart", 
+       subtitle="Make Vs Avg. Mileage", 
+       caption="source: mpg") + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) +
+  theme_bw()
 
 
 
 
 
+### Lollipop Chart
+### Lollipop charts conveys the same information as in bar charts. By reducing the thick bars into thin lines, it reduces the clutter and lays more emphasis on the value. It looks nice and modern.
+ggplot(cty_mpg, aes(x=make, y=mileage)) + 
+  geom_point(size=3) + 
+  geom_segment(aes(x=make, 
+                   xend=make, 
+                   y=0, 
+                   yend=mileage)) + 
+  labs(title="Lollipop Chart", 
+       subtitle="Make Vs Avg. Mileage", 
+       caption="source: mpg") + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6))
+```
 
 
 
 ## Box Plot
 
 
-```{r ggtext, echo = T,message = FALSE, error = FALSE, warning = FALSE}
-Cylinder3 <- readRDS(file = "./Data/Cylinder_Baseline.rds")
+### stat="identity"
+
+```{r Boxplot using identity, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+Cylinder3 <- readRDS(file = "./01_Datasets/Cylinder_Baseline.rds")
 library(ggplot2)
 ggplot(Cylinder3,aes(x=Subgroup,fill=Treatment))+
   geom_boxplot(aes(lower=`  Mean`-`  SD`,
@@ -598,6 +835,27 @@ ggplot(Cylinder3,aes(x=Subgroup,fill=Treatment))+
   labs(x = "Subgroups",
        y = "Cylinder [D]",
        title = "Subjective refraction Cylinder at Baseline")
+
+
+MeanRotation <- readRDS(file = "./01_Datasets/MeanRotation.rds" )
+ggplot(MeanRotation, aes(x=Visit,fill=Treatment))+
+  geom_boxplot(aes(lower=mean-SD,
+                   upper=mean+SD,
+                   middle=mean,
+                   ymin=min,
+                   ymax=max),
+               stat="identity")+
+  geom_text(aes(label=n, x=Visit, y=mean+1.5), vjust=1.3, color="white",
+            position = position_dodge(0.8), size=3.5)+
+  geom_text(aes(label=P,colour=label_color, x=Visit, y=25),hjust=0.4, size=3.5,show.legend = FALSE)+
+  scale_fill_brewer(palette="Paired")+
+  facet_wrap(.~ Subgroup, nrow = 2)+
+  coord_flip() +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  labs(x = "",
+       y = "Mean absolute rotation",
+       title = "Mean absolute rotation by visit")
 ```
 
 

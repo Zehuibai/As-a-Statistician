@@ -249,3 +249,17 @@ histogram
 marginal-histogram-boxplot
 bar-plot
 scale-1
+geom_errorbar
+residuals
+aesthetic
+proportion
+coord-1
+statidentity
+ranking
+box-plot
+statidentity-1
+text-rendering
+ggtext
+ggrepel
+geom_freqpoly
+scatter-plot-1
