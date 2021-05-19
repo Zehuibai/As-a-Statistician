@@ -1,5 +1,7 @@
 # ggplot2
 
+https://www.yan-holtz.com/PDF/Ggplot2_advancedTP_correction.html
+
 ## Parametric Rendering
 
 ### Grammar
@@ -208,6 +210,19 @@ ggplot(data = mpg) +
 ## shape aesthetic
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+
+data(iris)
+theme_set(theme_bw())
+ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width, shape = Species)) +
+  geom_point(aes(color = Species), size = 3) +
+  scale_colour_manual(values=c("#3399CC","#33FF33","#FFCC33"))+
+  scale_shape_manual(values = c(1,2,3)) +
+  xlab("Petal Length") +  ylab("Petal Width") +
+  ylim(0, 3)+
+  ggtitle("Petal Width and Length") +
+  theme(plot.title = element_text(hjust = 0.5,face = "bold"),
+        legend.title = element_blank(),
+        legend.position = c(0.1, 0.85))
 ```
 
 ### facet
@@ -580,7 +595,9 @@ ggplot(health, aes(x=pct_2013, xend=pct_2014, y=Area, group=Area)) +
 
 ## Histogram 
 
-```{r , echo = T,message = FALSE, error = FALSE, warning = FALSE}
+### General appearance
+
+```{r Appearance, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library("tidyverse")
 smaller <- diamonds %>% 
   filter(carat < 3)
@@ -595,6 +612,29 @@ ggplot(data = smaller, mapping = aes(x = carat, fill=color))+
 ## scale_fill_manual(values = c("#00AFBB", "#E7B800"))
 ```
 
+### Themes
+
+ggplot2 offers a set of pre-built themes. Try the followings to see which one you like the most:
+
+* theme_bw()
+* theme_dark()
+* theme_minimal()
+* theme_classic()
+
+The hrbrthemes package provides my favourite style.
+
+```{r hrbrthemes, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+# Load dataset from github
+data <- read.table("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/1_OneNum.csv", header=TRUE)
+# Make the histogram
+library(hrbrthemes)
+data %>%
+  filter( price<300 ) %>%
+  ggplot( aes(x=price)) +
+    stat_bin(breaks=seq(0,300,10), fill="#69b3a2", color="#e9ecef", alpha=0.9) +
+    ggtitle("Night price distribution of Airbnb appartements") +
+    theme_ipsum()
+```
 
 ### geom_freqpoly()
 
@@ -726,7 +766,7 @@ It is also possible to change manually barplot line colors using the functions :
 
 ### Proportion
 
-```{r stat="identity", echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r proportion, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = color ))
  
@@ -755,7 +795,7 @@ bar + coord_polar()
 
 ### stat="identity"
 
-```{r stat="identity", echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r identity, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 Rotation_5 <- readRDS(file = "./01_Datasets/Rotation_5.rds")
 
 ggplot(data = Rotation_5, aes(x = Visit, y= Percentage, fill=Treatment)) +
@@ -812,9 +852,78 @@ ggplot(cty_mpg, aes(x=make, y=mileage)) +
 ```
 
 
+### Waffle Chart
+
+Show a good way to make a total classification. Although there is no direct function, it can be clarified by using the geom_tile () function.
+
+```{r geom_tile, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+var <- mpg$class  # the categorical data 
+
+## Prep data (nothing to change here)
+nrows <- 10
+df <- expand.grid(y = 1:nrows, x = 1:nrows)
+categ_table <- round(table(var) * ((nrows*nrows)/(length(var))))
+categ_table
+
+df$category <- factor(rep(names(categ_table), categ_table)) 
+
+## Plot
+ggplot(df, aes(x = x, y = y, fill = category)) + 
+        geom_tile(color = "black", size = 0.5) +
+        scale_x_continuous(expand = c(0, 0)) +
+        scale_y_continuous(expand = c(0, 0), trans = 'reverse') +
+        scale_fill_brewer(palette = "Set3") +
+        labs(title="Waffle Chart", subtitle="'Class' of vehicles",
+             caption="Source: mpg") + 
+        theme(panel.border = element_rect(size = 2),
+              plot.title = element_text(size = rel(1.2)),
+              axis.text = element_blank(),
+              axis.title = element_blank(),
+              axis.ticks = element_blank(),
+              legend.title = element_blank(),
+              legend.position = "right")
+```
+
 
 ## Box Plot
 
+### varwidth
+
+```{r Boxplot using identity, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+theme_set(theme_classic())
+
+ggplot(mpg, aes(class, cty))+
+  geom_boxplot(varwidth=T, fill="plum") + 
+    labs(title="Box plot", 
+         subtitle="City Mileage grouped by Class of vehicle",
+         caption="Source: mpg",
+         x="Class of Vehicle",
+         y="City Mileage")
+```
+### Reorder
+
+Reorder: To make the trend easier to see, we can reorder class based on the median value of hwy:
+
+```{r Reorder according to median, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy))+
+  coord_flip()
+```
+ 
+ 
+ 
+### Fill
+
+```{r grouping using fill, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggplot(mpg, aes(class, cty))+
+  geom_boxplot(aes(fill=factor(cyl))) + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(title="Box plot", 
+       subtitle="City Mileage grouped by Class of vehicle",
+       caption="Source: mpg",
+       x="Class of Vehicle",
+       y="City Mileage")
+```
 
 ### stat="identity"
 
@@ -859,11 +968,49 @@ ggplot(MeanRotation, aes(x=Visit,fill=Treatment))+
 ```
 
 
+### Dot + Box Plot 
+
+In addition to the information provided by the box plot, you can provide clearer information in the form of summary statistics for each group. These points are interlaced to make each point represent an observation value.
+
+```{r Dot Box Plot, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+theme_set()
+
+# plot
+g <- ggplot(mpg, aes(reorder(manufacturer, cty, FUN = median) , cty))
+g + geom_boxplot() + 
+  geom_dotplot(binaxis='y', 
+               stackdir='center', 
+               dotsize = .5, 
+               fill="red") +
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  theme_bw() +
+  labs(title="Box plot + Dot plot", 
+       subtitle="City Mileage vs Class: Each dot represents 1 row in source data",
+       caption="Source: mpg",
+       x="Class of Vehicle",
+       y="City Mileage")
+```
+### Violin Plot 
+
+The violigogram is similar to the box pattern, but the density of the group is displayed. There is no too much information like a box line map.
+
+```{r geom_violin, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggplot(mpg, aes(class, cty)) +
+  geom_violin() + 
+  labs(title="Violin plot", 
+       subtitle="City Mileage vs Class of vehicle",
+       caption="Source: mpg",
+       x="Class of Vehicle",
+       y="City Mileage") +
+  theme_bw()
+```
 
 
-## Text rendering 
 
-### ggtext
+
+## Other rendering 
+
+### Text: ggtext
 
 **Markdown in theme elements**
 
@@ -899,7 +1046,7 @@ data %>% mutate(
 ```
   
   
-### ggrepel
+### Text: ggrepel
 
 There are two important functions in ggrepel R packages:
 
@@ -938,7 +1085,25 @@ p + geom_label_repel(aes(label = rownames(df),
 ```
 
 
+### Arrage: gridExtra
 
+```{r lay, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## assemble multiple plots on a page is to use the grid.arrange() function
+library(gridExtra)
+p1 <- qplot(mpg, wt, data = mtcars, colour = cyl)
+p2 <- qplot(mpg, data = mtcars) + ggtitle("title")
+
+grid.arrange(p1, p2, nrow = 1)
+
+## Tables and other grobs
+grid.arrange(
+  tableGrob(mtcars[1:4, 1:4]),
+  p2,
+  ncol = 2,
+  widths = c(1.5, 1),
+  clip = FALSE
+)
+```
 
 
 

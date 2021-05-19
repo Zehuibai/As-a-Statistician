@@ -1,5 +1,54 @@
 # Proc Sqplot
 
+
+## ODS
+
+```
+ODS LISTING GPATH="/home/zehuibai24885190/Bai-Statistische Praogrammierung/02_Scatter";
+ODS LISTING  style=HTMLBlue;
+ODS GRAPHICS ON / RESET=ALL 
+                  WIDTH =12.0 IN
+                  HEIGHT=8.4 IN
+                  OUTPUTFMT=PNG
+                  IMAGEMAP=on
+                  IMAGENAME="FEV_obs"
+                  RESET=INDEX
+                  BORDER=off;
+
+PROC SGPLOT DATA=bai;
+     SCATTER  x=time y=FEV / GROUP=treatment;
+	 TITLE "Observed FEV values";
+RUN;
+QUIT;
+ODS GRAPHICS OFF; 
+```
+
+
+
+## Introduction
+
+```
+hbar category-var/options;   /* 水平柱状图 */
+vbar category-var/options;   /* 垂直柱状图 */
+hline category-var/options;  /* 水平线图   */
+vline category-var/options;  /* 垂直线图   */
+dot category-var/options;    /* 点图       */
+
+
+Xaxis/Yaxis              设置坐标轴
+Grid                     生成网格线
+Label=‘---’              设置坐标轴标记文字
+Type=axistype            坐标轴的类型（axistype：字符变量默认discrete 数值变量默认linear；日期默认time）
+Values=（ ）             设置刻度标记  z.B values=(0 5 10 15 20)等同于 values=(0 to 20 by 5)
+Refline values/options;  设置基准线
+Axis=X 或者 Y            默认Y-竖直划线
+Transparency=n           设置透明度【1.1】默认0.8
+```
+
+
+
+
+
 ## Scatter Plot
 
 ### Vector in scatter Plot
@@ -124,4 +173,212 @@ ods exclude all;
 ods tagsets.rtf close;
 ods _all_ close;
 ```
+
+
+
+### 增加预测曲线
+
+```
+proc sgplot data=a;  
+  scatter x=petallength y=petalwidth;  
+  ellipse x=petallength y=petalwidth;  
+  keylegend / location=inside  position=bottomright;  
+run; 
+```
+
+
+
+### 分组
+
+```
+proc sgplot;
+scatter  x=groesse  Y=gewicht/group=sex markerattrs=(size=12 symbol=circlefilled);
+         /* group进行分组最后会出现两条图 
+            symbol=circlefilled 表示填充的点点形状
+reg x=groesse y=gewicht/group=sex;
+format sex sex.;
+run; 
+```
+
+
+
+
+
+
+```
+proc sgplot data=Sashelp.Iris;        /* BY-group visualization. Three independent graphs.  */
+   by Species;
+   histogram SepalLength;
+   density SepalLength / type=kernel;
+run;
+ 
+proc sgpanel data=Sashelp.Iris;       /* Panel visualization. Shared common axis. */
+   panelby Species / columns=1 onepanel;
+   histogram SepalLength;
+   density SepalLength / type=kernel;
+run;
+ 
+proc sgplot data=Sashelp.Iris;       /* Overlay three plots in one graph  */
+   histogram SepalLength / GROUP=Species binstart=42 binwidth=3 transparency=0.5;
+   density SepalLength / type=kernel GROUP=Species;
+run;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Bar chart
+
+ 
+
+### Group and using freq
+
+```
+	 *** Convert wide dataset to long dataset;
+	 proc transpose data=VENUS_F8_2_3_4_D05_&var. out=VENUS_F8_2_3_4_D05_&var.t;
+     		by analysis_set visit RD_IOL_TYP subject_id eye;
+		    var CAT0-CAT7;
+     run;
+
+     *** Get values for proc sgplot;
+	 proc sort data=VENUS_F8_2_3_4_D05_&var.t; by Analysis_set visit RD_IOL_TYP _NAME_; run;
+     proc means data=VENUS_F8_2_3_4_D05_&var.t stackodsoutput n nmiss maxdec=3 completetypes missing order=data ; 
+		var COL1;	
+		class Analysis_set visit RD_IOL_TYP _NAME_;
+		ods output  summary = VENUS_F8_2_3_4_D06_&var.; 
+     run;
+
+	 data VENUS_F8_2_3_4_D06_&var.; 
+	     label pct='Percent';
+	     format _NAME_ $CAT_Snell_Name. pct percent.;
+	     set VENUS_F8_2_3_4_D06_&var.; 
+		 by Analysis_set visit RD_IOL_TYP _NAME_;
+		 p = (divide (N,Nobs))*100;
+		 if visit in (1,5,6);
+		 if Analysis_Set="ITT";
+		 pct = p/100;
+		 keep _NAME_ RD_IOL_TYP visit pct;
+	 run;
+
+	 *** Sort data transpose p;
+	 proc sort data = VENUS_F8_2_3_4_D06_&var.;by RD_IOL_TYP _NAME_;;run;
+	 Proc transpose data=VENUS_F8_2_3_4_D06_&var. out=VENUS_F8_2_3_4_D07_&var.; 
+		var   pct;
+		ID    visit;
+		by    RD_IOL_TYP _NAME_;
+	 run;
+
+
+	*** Legend numbers;
+	*** Preoperative Visit;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 1 and Visit eq 1)) end=eof; if eof then call symputx('num_ITT_LARA_1',_N_/8); run;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 2 and Visit eq 1)) end=eof; if eof then call symputx('num_ITT_TECN_1',_N_/8); run;
+	*** Visit 5 1 month;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 1 and Visit eq 5)) end=eof; if eof then call symputx('num_ITT_LARA_5',_N_/8); run;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 2 and Visit eq 5)) end=eof; if eof then call symputx('num_ITT_TECN_5',_N_/8); run;
+	*** Visit 6 4-6 months;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 1 and Visit eq 6)) end=eof; if eof then call symputx('num_ITT_LARA_6',_N_/8); run;
+	data _NULL_; set VENUS_F8_2_3_4_D05_&var.t (where=(Analysis_set eq "ITT" and RD_IOL_TYP eq 2 and Visit eq 6)) end=eof; if eof then call symputx('num_ITT_TECN_6',_N_/8); run;
+	*** Check macro variable;
+	%put &num_ITT_LARA_1;
+	%put &num_ITT_TECN_1;
+
+	*** graphic formats;
+	proc format;
+		value category_a     1 = "AT LARA toric 929MP (N = &num_ITT_LARA_1)"
+						     2 = "TECNIS Symfony toric (N = &num_ITT_TECN_1)";
+		value category_b     1 = "AT LARA toric 929MP (N = &num_ITT_LARA_5)"
+						     2 = "TECNIS Symfony toric (N = &num_ITT_TECN_5)";
+		value category_c     1 = "AT LARA toric 929MP (N = &num_ITT_LARA_6)"
+					         2 = "TECNIS Symfony toric (N = &num_ITT_TECN_6)";
+	run;
+
+ 
+
+ods proclabel="Figure 8.2.3.4.9: Categorization of differences in monocular preoperative uncorrected distance visual acuity (UDVA) and 1-2-month as well as 4-6-month postoperative best corrected distance visual acuity (CDVA)";
+options orientation = landscape;
+
+ods tagsets.rtf file="Z:\STUDIES\ZEISS\VENUS\WORKSPACE\07_STATISTIC\04_Statistical_Analysis\01_Final\02_Output\02_Figures\VENUS_F8_2_3_4_9_DVAcat_fin_D01_0_0.rtf"
+	style=gcpservice_style;
+
+ods escapechar="^";	
+ods exclude none;
+
+*** Graphical output;
+ods graphics on;
+ods graphics / height=13cm width=25cm border=off;
+ 
+*** Postoperative 4-6 months;
+ods  text = '^S={width=100%}Figure 8.2.3.4.9:^R/RTF"\tab" Other secondary endpoint
+                                           ^n^R/RTF"\tab\tab\tab" Visual acuity assessments
+                                           ^n^R/RTF"\tab\tab\tab" Categorization of differences in monocular preoperative uncorrected distance visual acuity (UDVA) and 1-2-month as well as 4-6-month postoperative best corrected distance visual acuity (CDVA)
+                                         ^n^nAnalysis set: mITT, Visit: Postoperative 4-6 months';
+proc sgplot data=VENUS_F8_2_3_4_D07_&var. pad=(bottom=5%);
+   vbar _NAME_ / group=RD_IOL_TYP groupdisplay=cluster barwidth = 1 response=M4_6 stat=sum datalabel GROUPORDER=DATA;
+   xaxis display=(nolabel) valueattrs=(size=10pt) offsetmin=0.1 offsetmax=0.1 ;
+   yaxis label='Percentage [%]' max = 1;
+   keylegend / location=outside position=bottom across=2;
+   format RD_IOL_TYP category_c.;
+run;
+ods text = "^R/RTF'\ql' Output generated by program &this_prog.";
+ods startpage= now;
+
+
+
+footnote; 
+title;
+
+ods graphics off;
+ods exclude all;
+
+ods tagsets.rtf close;
+ods _all_ close;
+```
+
+
+
+
+
+
+
+
+
+
+## Histogram
+
+
+
+```sas
+proc sgplot data=Sashelp.Iris;        /* BY-group visualization. Three independent graphs.  */
+   by Species;
+   histogram SepalLength;
+   density SepalLength / type=kernel;
+run;
+ 
+proc sgpanel data=Sashelp.Iris;       /* Panel visualization. Shared common axis. */
+   panelby Species / columns=1 onepanel;
+   histogram SepalLength;
+   density SepalLength / type=kernel;
+run;
+ 
+proc sgplot data=Sashelp.Iris;       /* Overlay three plots in one graph  */
+   histogram SepalLength / GROUP=Species binstart=42 binwidth=3 transparency=0.5;
+   density SepalLength / type=kernel GROUP=Species;
+run;
+```
+
+
+
+
+
 
