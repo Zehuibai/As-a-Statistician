@@ -524,6 +524,7 @@ states <- as.data.frame(state.x77)
 fiti <- lm(Income ~ Illiteracy * Murder + `HS Grad`, data = states)
 summ(fiti)
 
+library(interactions)
 sim_slopes(fiti, pred = Illiteracy, modx = Murder, johnson_neyman = FALSE)
 
 ## 现在我们知道文盲的影响只有在谋杀案很高的时候才存在。

@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Logistic Regression | As a Statistician</title>
+  <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Logistic Regression | As a Statistician" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Logistic Regression | As a Statistician" />
+  
+  <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
+  
+
+<meta name="author" content="Zehui Bai" />
+
+
+<meta name="date" content="2021-05-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="advanced-linear-regression.html"/>
+<link rel="next" href="advanced-logistic-regression.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-and-format.html"><a href="input-and-format.html"><i class="fa fa-check"></i><b>2</b> Input and Format</a><ul>
+<li class="chapter" data-level="2.1" data-path="input-and-format.html"><a href="input-and-format.html#import-in-sas"><i class="fa fa-check"></i><b>2.1</b> Import in SAS</a></li>
+<li class="chapter" data-level="2.2" data-path="input-and-format.html"><a href="input-and-format.html#import-in-r"><i class="fa fa-check"></i><b>2.2</b> Import in R</a></li>
+<li class="chapter" data-level="2.3" data-path="input-and-format.html"><a href="input-and-format.html#package-readr"><i class="fa fa-check"></i><b>2.3</b> Package readr</a></li>
+<li class="chapter" data-level="2.4" data-path="input-and-format.html"><a href="input-and-format.html#package-strings"><i class="fa fa-check"></i><b>2.4</b> Package Strings</a></li>
+<li class="chapter" data-level="2.5" data-path="input-and-format.html"><a href="input-and-format.html#package-forcats"><i class="fa fa-check"></i><b>2.5</b> Package forcats</a></li>
+<li class="chapter" data-level="2.6" data-path="input-and-format.html"><a href="input-and-format.html#package-lubridate"><i class="fa fa-check"></i><b>2.6</b> Package lubridate</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html"><i class="fa fa-check"></i><b>3</b> Data Management in SAS</a></li>
+<li class="chapter" data-level="4" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>4</b> Data Management in R</a></li>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a></li>
+<li class="chapter" data-level="6" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>6</b> ^_^ Space</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#parametric-rendering"><i class="fa fa-check"></i><b>7.1</b> Parametric Rendering</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="ggplot2.html"><a href="ggplot2.html#grammar"><i class="fa fa-check"></i><b>7.1.1</b> Grammar</a></li>
+<li class="chapter" data-level="7.1.2" data-path="ggplot2.html"><a href="ggplot2.html#coord"><i class="fa fa-check"></i><b>7.1.2</b> coord</a></li>
+<li class="chapter" data-level="7.1.3" data-path="ggplot2.html"><a href="ggplot2.html#facet"><i class="fa fa-check"></i><b>7.1.3</b> facet</a></li>
+<li class="chapter" data-level="7.1.4" data-path="ggplot2.html"><a href="ggplot2.html#geom"><i class="fa fa-check"></i><b>7.1.4</b> geom</a></li>
+<li class="chapter" data-level="7.1.5" data-path="ggplot2.html"><a href="ggplot2.html#position"><i class="fa fa-check"></i><b>7.1.5</b> position</a></li>
+<li class="chapter" data-level="7.1.6" data-path="ggplot2.html"><a href="ggplot2.html#scale"><i class="fa fa-check"></i><b>7.1.6</b> scale</a></li>
+<li class="chapter" data-level="7.1.7" data-path="ggplot2.html"><a href="ggplot2.html#stat"><i class="fa fa-check"></i><b>7.1.7</b> stat</a></li>
+<li class="chapter" data-level="7.1.8" data-path="ggplot2.html"><a href="ggplot2.html#color"><i class="fa fa-check"></i><b>7.1.8</b> Color</a></li>
+<li class="chapter" data-level="7.1.9" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>7.1.9</b> Thema</a></li>
+<li class="chapter" data-level="7.1.10" data-path="ggplot2.html"><a href="ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>7.1.10</b> Saving plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>7.2</b> Scatter plot</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="ggplot2.html"><a href="ggplot2.html#grouping-aesthetic"><i class="fa fa-check"></i><b>7.2.1</b> Grouping Aesthetic</a></li>
+<li class="chapter" data-level="7.2.2" data-path="ggplot2.html"><a href="ggplot2.html#facet-1"><i class="fa fa-check"></i><b>7.2.2</b> facet</a></li>
+<li class="chapter" data-level="7.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_smooth"><i class="fa fa-check"></i><b>7.2.3</b> geom_smooth</a></li>
+<li class="chapter" data-level="7.2.4" data-path="ggplot2.html"><a href="ggplot2.html#dot-plot"><i class="fa fa-check"></i><b>7.2.4</b> Dot Plot</a></li>
+<li class="chapter" data-level="7.2.5" data-path="ggplot2.html"><a href="ggplot2.html#label-and-title"><i class="fa fa-check"></i><b>7.2.5</b> Label and Title</a></li>
+<li class="chapter" data-level="7.2.6" data-path="ggplot2.html"><a href="ggplot2.html#residuals"><i class="fa fa-check"></i><b>7.2.6</b> Residuals</a></li>
+<li class="chapter" data-level="7.2.7" data-path="ggplot2.html"><a href="ggplot2.html#encircling"><i class="fa fa-check"></i><b>7.2.7</b> Encircling</a></li>
+<li class="chapter" data-level="7.2.8" data-path="ggplot2.html"><a href="ggplot2.html#dumbbell-plot"><i class="fa fa-check"></i><b>7.2.8</b> Dumbbell Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#histogram"><i class="fa fa-check"></i><b>7.3</b> Histogram</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="ggplot2.html"><a href="ggplot2.html#general-appearance"><i class="fa fa-check"></i><b>7.3.1</b> General appearance</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ggplot2.html"><a href="ggplot2.html#themes"><i class="fa fa-check"></i><b>7.3.2</b> Themes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_freqpoly"><i class="fa fa-check"></i><b>7.3.3</b> geom_freqpoly()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="ggplot2.html"><a href="ggplot2.html#marginal-histogram-boxplot"><i class="fa fa-check"></i><b>7.3.4</b> Marginal Histogram / Boxplot</a></li>
+<li class="chapter" data-level="7.3.5" data-path="ggplot2.html"><a href="ggplot2.html#scales"><i class="fa fa-check"></i><b>7.3.5</b> Scales</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#bar-plot"><i class="fa fa-check"></i><b>7.4</b> Bar plot</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic"><i class="fa fa-check"></i><b>7.4.1</b> Aesthetic</a></li>
+<li class="chapter" data-level="7.4.2" data-path="ggplot2.html"><a href="ggplot2.html#proportion"><i class="fa fa-check"></i><b>7.4.2</b> Proportion</a></li>
+<li class="chapter" data-level="7.4.3" data-path="ggplot2.html"><a href="ggplot2.html#coord-1"><i class="fa fa-check"></i><b>7.4.3</b> coord</a></li>
+<li class="chapter" data-level="7.4.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity"><i class="fa fa-check"></i><b>7.4.4</b> stat=“identity”</a></li>
+<li class="chapter" data-level="7.4.5" data-path="ggplot2.html"><a href="ggplot2.html#ranking"><i class="fa fa-check"></i><b>7.4.5</b> Ranking</a></li>
+<li class="chapter" data-level="7.4.6" data-path="ggplot2.html"><a href="ggplot2.html#means-and-error-bars"><i class="fa fa-check"></i><b>7.4.6</b> Means and error bars</a></li>
+<li class="chapter" data-level="7.4.7" data-path="ggplot2.html"><a href="ggplot2.html#waffle-chart"><i class="fa fa-check"></i><b>7.4.7</b> Waffle Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#box-plot"><i class="fa fa-check"></i><b>7.5</b> Box plot</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#varwidth"><i class="fa fa-check"></i><b>7.5.1</b> varwidth</a></li>
+<li class="chapter" data-level="7.5.2" data-path="ggplot2.html"><a href="ggplot2.html#reorder"><i class="fa fa-check"></i><b>7.5.2</b> Reorder</a></li>
+<li class="chapter" data-level="7.5.3" data-path="ggplot2.html"><a href="ggplot2.html#fill"><i class="fa fa-check"></i><b>7.5.3</b> Fill</a></li>
+<li class="chapter" data-level="7.5.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity-1"><i class="fa fa-check"></i><b>7.5.4</b> stat=“identity”</a></li>
+<li class="chapter" data-level="7.5.5" data-path="ggplot2.html"><a href="ggplot2.html#dot-box-plot"><i class="fa fa-check"></i><b>7.5.5</b> Dot + Box Plot</a></li>
+<li class="chapter" data-level="7.5.6" data-path="ggplot2.html"><a href="ggplot2.html#violin-plot"><i class="fa fa-check"></i><b>7.5.6</b> Violin Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#other-rendering"><i class="fa fa-check"></i><b>7.6</b> Other rendering</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="ggplot2.html"><a href="ggplot2.html#annotation"><i class="fa fa-check"></i><b>7.6.1</b> Annotation</a></li>
+<li class="chapter" data-level="7.6.2" data-path="ggplot2.html"><a href="ggplot2.html#text-ggtext"><i class="fa fa-check"></i><b>7.6.2</b> Text: ggtext</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ggplot2.html"><a href="ggplot2.html#text-ggrepel"><i class="fa fa-check"></i><b>7.6.3</b> Text: ggrepel</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ggplot2.html"><a href="ggplot2.html#arrage-gridextra"><i class="fa fa-check"></i><b>7.6.4</b> Arrage: gridExtra</a></li>
+<li class="chapter" data-level="7.6.5" data-path="ggplot2.html"><a href="ggplot2.html#interactive-charts-plotly"><i class="fa fa-check"></i><b>7.6.5</b> Interactive charts: plotly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="proc-sqplot.html"><a href="proc-sqplot.html"><i class="fa fa-check"></i><b>8</b> Proc Sqplot</a><ul>
+<li class="chapter" data-level="8.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#ods"><i class="fa fa-check"></i><b>8.1</b> ODS</a></li>
+<li class="chapter" data-level="8.2" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>8.2</b> Introduction</a></li>
+<li class="chapter" data-level="8.3" data-path="ggplot2.html"><a href="ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>8.3</b> Scatter Plot</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>8.3.1</b> Vector in scatter Plot</a></li>
+<li class="chapter" data-level="8.3.2" data-path="proc-sqplot.html"><a href="proc-sqplot.html#增加预测曲线"><i class="fa fa-check"></i><b>8.3.2</b> 增加预测曲线</a></li>
+<li class="chapter" data-level="8.3.3" data-path="proc-sqplot.html"><a href="proc-sqplot.html#分组"><i class="fa fa-check"></i><b>8.3.3</b> 分组</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="proc-sqplot.html"><a href="proc-sqplot.html#bar-chart"><i class="fa fa-check"></i><b>8.4</b> Bar chart</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="proc-sqplot.html"><a href="proc-sqplot.html#group-and-using-freq"><i class="fa fa-check"></i><b>8.4.1</b> Group and using freq</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ggplot2.html"><a href="ggplot2.html#histogram"><i class="fa fa-check"></i><b>8.5</b> Histogram</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>9</b> ^_^ Space</a></li>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics in SAS</a><ul>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>10.1</b> Proc Freq</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>10.2</b> Proc Means</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulatte"><i class="fa fa-check"></i><b>10.3</b> Proc Tabulatte</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics in R</a><ul>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>11.1</b> Package pape</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>11.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>11.3</b> Package compareGroups</a></li>
+<li class="chapter" data-level="11.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>11.4</b> Package kableExtra</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>11.4.1</b> kable_styling</a></li>
+<li class="chapter" data-level="11.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>11.4.2</b> Column/Row Specification</a></li>
+<li class="chapter" data-level="11.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>11.4.3</b> Grouping columns/rows</a></li>
+<li class="chapter" data-level="11.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>11.4.4</b> Add Footnote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html"><i class="fa fa-check"></i><b>12</b> CI and Sample Size Calculation</a><ul>
+<li class="chapter" data-level="12.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#distribution"><i class="fa fa-check"></i><b>12.1</b> Distribution</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>12.1.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="12.1.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-distribution"><i class="fa fa-check"></i><b>12.1.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="12.1.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>12.1.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="12.1.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#multinomial-distribution"><i class="fa fa-check"></i><b>12.1.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="12.1.5" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#normal-distribution"><i class="fa fa-check"></i><b>12.1.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="12.1.6" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>12.1.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="12.1.7" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#poisson-distribution"><i class="fa fa-check"></i><b>12.1.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="12.1.8" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#exponential-distribution"><i class="fa fa-check"></i><b>12.1.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="12.1.9" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#gamma-distribution"><i class="fa fa-check"></i><b>12.1.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="12.1.10" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#weibull-distribution"><i class="fa fa-check"></i><b>12.1.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="12.1.11" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#beta-distribution"><i class="fa fa-check"></i><b>12.1.11</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>12.2</b> Point Estimates</a></li>
+<li class="chapter" data-level="12.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci"><i class="fa fa-check"></i><b>12.3</b> Binomial CI</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>12.3.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>12.3.2</b> Package binom</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>12.3.3</b> %CI_Single_Proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>12.4</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="12.5" data-path="ci-and-sample-size-calculation.html"><a href="ci-and-sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>12.5</b> Package: pwr</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>13</b> Parametric Test</a><ul>
+<li class="chapter" data-level="13.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>13.1</b> Proc FREQ</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="parametric-test.html"><a href="parametric-test.html#ods-table-names"><i class="fa fa-check"></i><b>13.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="13.1.2" data-path="parametric-test.html"><a href="parametric-test.html#ods-plots"><i class="fa fa-check"></i><b>13.1.2</b> ODS Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="parametric-test.html"><a href="parametric-test.html#section"><i class="fa fa-check"></i><b>13.2</b> </a></li>
+<li class="chapter" data-level="13.3" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>13.3</b> Binomial test</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>13.3.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="13.3.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>13.3.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>13.4</b> Fisher’s Exact Test</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula-1"><i class="fa fa-check"></i><b>13.4.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="13.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>13.4.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>13.4.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="parametric-test.html"><a href="parametric-test.html#contingency-test"><i class="fa fa-check"></i><b>13.5</b> Contingency test</a></li>
+<li class="chapter" data-level="13.6" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>13.6</b> McNemar’s test</a></li>
+<li class="chapter" data-level="13.7" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>13.7</b> Cochran–Mantel–Haenszel Test</a><ul>
+<li class="chapter" data-level="13.7.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>13.7.1</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>13.8</b> Correlation Test</a><ul>
+<li class="chapter" data-level="13.8.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>13.8.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="13.8.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>13.8.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="13.8.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>13.8.3</b> Kendall correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>13.9</b> Two Sample T-Test</a><ul>
+<li class="chapter" data-level="13.9.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>13.9.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.9.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>13.9.2</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="13.10" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>13.10</b> Normality test</a><ul>
+<li class="chapter" data-level="13.10.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>13.10.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="13.10.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>13.10.2</b> R implementation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>14</b> ANOVA</a><ul>
+<li class="chapter" data-level="14.1" data-path="anova.html"><a href="anova.html#unstructured-models"><i class="fa fa-check"></i><b>14.1</b> Unstructured Models</a></li>
+<li class="chapter" data-level="14.2" data-path="anova.html"><a href="anova.html#balanced-one-way-analysis-of-variance-anova"><i class="fa fa-check"></i><b>14.2</b> Balanced One-Way Analysis-of-Variance (ANOVA)</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="anova.html"><a href="anova.html#modeling-assumptions-and-basic-analysis"><i class="fa fa-check"></i><b>14.2.1</b> Modeling Assumptions and Basic Analysis</a></li>
+<li class="chapter" data-level="14.2.2" data-path="anova.html"><a href="anova.html#parameter-estimates"><i class="fa fa-check"></i><b>14.2.2</b> Parameter Estimates</a></li>
+<li class="chapter" data-level="14.2.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>14.2.3</b> R Implementation</a></li>
+<li class="chapter" data-level="14.2.4" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>14.2.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="14.2.5" data-path="anova.html"><a href="anova.html#model-diagnosis"><i class="fa fa-check"></i><b>14.2.5</b> Model Diagnosis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="anova.html"><a href="anova.html#unbalanced-one-way-anova-and-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>14.3</b> Unbalanced One-Way ANOVA and Analysis-of-Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="14.4" data-path="anova.html"><a href="anova.html#two-ways-anova-test"><i class="fa fa-check"></i><b>14.4</b> Two-Ways ANOVA Test</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>14.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.4.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>14.4.2</b> R implementation</a></li>
+<li class="chapter" data-level="14.4.3" data-path="anova.html"><a href="anova.html#unbalanced-design"><i class="fa fa-check"></i><b>14.4.3</b> Unbalanced design</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="anova.html"><a href="anova.html#heteroscedastic-responses"><i class="fa fa-check"></i><b>14.5</b> Heteroscedastic Responses</a></li>
+<li class="chapter" data-level="14.6" data-path="anova.html"><a href="anova.html#repeated-measures-anova-data"><i class="fa fa-check"></i><b>14.6</b> Repeated Measures ANOVA Data</a></li>
+<li class="chapter" data-level="14.7" data-path="anova.html"><a href="anova.html#multivariate-responses-with-normally-distributed-data"><i class="fa fa-check"></i><b>14.7</b> Multivariate Responses with Normally Distributed Data</a></li>
+<li class="chapter" data-level="14.8" data-path="anova.html"><a href="anova.html#independent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>14.8</b> Independent Observations from Parametric Nonnormal Distributions</a></li>
+<li class="chapter" data-level="14.9" data-path="anova.html"><a href="anova.html#dependent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>14.9</b> Dependent Observations from Parametric Nonnormal Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>15</b> Multiple-Comparison</a><ul>
+<li class="chapter" data-level="15.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>15.1</b> Introduction</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiplicity-problem"><i class="fa fa-check"></i><b>15.1.1</b> Multiplicity Problem</a></li>
+<li class="chapter" data-level="15.1.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#error-rates"><i class="fa fa-check"></i><b>15.1.2</b> Error Rates</a></li>
+<li class="chapter" data-level="15.1.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-adjusted-p"><i class="fa fa-check"></i><b>15.1.3</b> The adjusted P</a></li>
+<li class="chapter" data-level="15.1.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>15.1.4</b> Basic Statistical Concepts</a></li>
+<li class="chapter" data-level="15.1.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#functions-in-glht-package-in-r"><i class="fa fa-check"></i><b>15.1.5</b> Functions in glht package in R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-and-šidák-methods"><i class="fa fa-check"></i><b>15.2</b> Bonferroni and Šidák Methods</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#lsd-least-significance-difference"><i class="fa fa-check"></i><b>15.2.1</b> LSD (least significance difference)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák"><i class="fa fa-check"></i><b>15.2.2</b> Šidák</a></li>
+<li class="chapter" data-level="15.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni"><i class="fa fa-check"></i><b>15.2.3</b> Bonferroni</a></li>
+<li class="chapter" data-level="15.2.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#schweder-spjøtvoll-p-value-plot"><i class="fa fa-check"></i><b>15.2.4</b> Schweder-Spjøtvoll p-Value Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#mcp-among-treatment-means-in-the-one-way-balanced-anova"><i class="fa fa-check"></i><b>15.3</b> MCP among Treatment Means in the One-Way Balanced ANOVA</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#ls-means"><i class="fa fa-check"></i><b>15.3.1</b> LS-Means</a></li>
+<li class="chapter" data-level="15.3.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-multivariate-t-distribution"><i class="fa fa-check"></i><b>15.3.2</b> The Multivariate t Distribution</a></li>
+<li class="chapter" data-level="15.3.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#calculating-the-critical-value-c_alpha"><i class="fa fa-check"></i><b>15.3.3</b> Calculating the Critical Value <span class="math inline">\(c_{\alpha}\)</span></a></li>
+<li class="chapter" data-level="15.3.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#all-pairwise-comparisons-and-studentized-range-distribution"><i class="fa fa-check"></i><b>15.3.4</b> All Pairwise Comparisons and Studentized Range Distribution</a></li>
+<li class="chapter" data-level="15.3.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukeys-method-for-all-pairwise-comparisons"><i class="fa fa-check"></i><b>15.3.5</b> Tukey’s Method for All Pairwise Comparisons</a></li>
+<li class="chapter" data-level="15.3.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#displaying-pairwise-comparisons-graphically"><i class="fa fa-check"></i><b>15.3.6</b> Displaying Pairwise Comparisons Graphically</a></li>
+<li class="chapter" data-level="15.3.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-two-sided-comparisons-with-a-control-and-dunnetts-two-sided-range-distribution"><i class="fa fa-check"></i><b>15.3.7</b> Dunnett’s Two-Sided Comparisons with a Control and Dunnett’s Two-Sided Range Distribution</a></li>
+<li class="chapter" data-level="15.3.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-one-sided-comparisons-with-a-control"><i class="fa fa-check"></i><b>15.3.8</b> Dunnett’s One-Sided Comparisons with a Control</a></li>
+<li class="chapter" data-level="15.3.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maximum-modulus-distribution-multiple-inferences-for-independent-estimates"><i class="fa fa-check"></i><b>15.3.9</b> Maximum Modulus Distribution, Multiple Inferences for Independent Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-among-treatment-means-in-the-one-way-unbalanced-anova"><i class="fa fa-check"></i><b>15.4</b> Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-model-and-estimates"><i class="fa fa-check"></i><b>15.4.1</b> The Model and Estimates</a></li>
+<li class="chapter" data-level="15.4.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukey-kramer-method"><i class="fa fa-check"></i><b>15.4.2</b> Tukey-Kramer Method</a></li>
+<li class="chapter" data-level="15.4.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#alternative-simulation-based-method"><i class="fa fa-check"></i><b>15.4.3</b> Alternative Simulation-Based Method</a></li>
+<li class="chapter" data-level="15.4.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#pairwise-comparisons-with-control"><i class="fa fa-check"></i><b>15.4.4</b> Pairwise Comparisons with Control</a></li>
+<li class="chapter" data-level="15.4.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-with-the-average-meananalysis-of-means-anom"><i class="fa fa-check"></i><b>15.4.5</b> Comparisons with the Average Mean–Analysis of Means (ANOM)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#generalizations-for-the-analysis-of-covariance-ancova-model"><i class="fa fa-check"></i><b>15.5</b> Generalizations for the Analysis of Covariance (ANCOVA) model</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnett-hsu-factor-analytic-approximation"><i class="fa fa-check"></i><b>15.5.1</b> Dunnett-Hsu Factor Analytic Approximation</a></li>
+<li class="chapter" data-level="15.5.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hsu-nelson-simulation-based-approximation-cvadjust-method"><i class="fa fa-check"></i><b>15.5.2</b> Hsu-Nelson Simulation-Based Approximation: CVADJUST Method</a></li>
+<li class="chapter" data-level="15.5.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-in-ancova-models-with-interaction"><i class="fa fa-check"></i><b>15.5.3</b> Comparisons in ANCOVA Models with Interaction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>16</b> Non-Parametric Test</a></li>
+<li class="chapter" data-level="17" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>17</b> Correlation and Regression</a><ul>
+<li class="chapter" data-level="17.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation"><i class="fa fa-check"></i><b>17.1</b> Correlation</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>17.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="17.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>17.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="17.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>17.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>17.2</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>17.2.1</b> Assumpions</a></li>
+<li class="chapter" data-level="17.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>17.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="17.2.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#matrix-solution"><i class="fa fa-check"></i><b>17.2.3</b> Matrix Solution</a></li>
+<li class="chapter" data-level="17.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>17.2.4</b> Gauss-Markov Theorem</a></li>
+<li class="chapter" data-level="17.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>17.2.5</b> limitation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>17.3</b> Model Statistics</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>17.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="17.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>17.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="17.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>17.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="17.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>17.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="17.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>17.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="17.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>17.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="17.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>17.3.7</b> Accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>17.4</b> Model Diagnostics</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>17.4.1</b> Checking Error Assumptions</a></li>
+<li class="chapter" data-level="17.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>17.4.2</b> Finding Unusual Observations</a></li>
+<li class="chapter" data-level="17.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>17.4.3</b> Checking the Structure of the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>17.5</b> SAS implementation Proc Reg</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>17.5.1</b> Options</a></li>
+<li class="chapter" data-level="17.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>17.5.2</b> Diagnose</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>17.6</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>18</b> Advanced Linear Regression</a><ul>
+<li class="chapter" data-level="18.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>18.1</b> Model Selection</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-methods"><i class="fa fa-check"></i><b>18.1.1</b> Selection Methods</a></li>
+<li class="chapter" data-level="18.1.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-criteria"><i class="fa fa-check"></i><b>18.1.2</b> Selection Criteria</a></li>
+<li class="chapter" data-level="18.1.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#k--fold-cross-validation"><i class="fa fa-check"></i><b>18.1.3</b> k- Fold Cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#practical-difficulties-using-ols"><i class="fa fa-check"></i><b>18.2</b> Practical Difficulties using OLS</a></li>
+<li class="chapter" data-level="18.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#skewness"><i class="fa fa-check"></i><b>18.3</b> Skewness</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>18.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.3.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#baisc-transformation"><i class="fa fa-check"></i><b>18.3.2</b> Baisc Transformation</a></li>
+<li class="chapter" data-level="18.3.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#box-cox-power-transformation"><i class="fa fa-check"></i><b>18.3.3</b> Box-Cox Power Transformation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="ggplot2.html"><a href="ggplot2.html#scale"><i class="fa fa-check"></i><b>18.4</b> Scale</a></li>
+<li class="chapter" data-level="18.5" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#interaction"><i class="fa fa-check"></i><b>18.5</b> Interaction</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#simple-slopes-analysis"><i class="fa fa-check"></i><b>18.5.1</b> Simple slopes analysis</a></li>
+<li class="chapter" data-level="18.5.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>18.5.2</b> Plotting Interactions</a></li>
+<li class="chapter" data-level="18.5.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#check-linearity-assumption"><i class="fa fa-check"></i><b>18.5.3</b> Check linearity assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#collinearity"><i class="fa fa-check"></i><b>18.6</b> Collinearity</a></li>
+<li class="chapter" data-level="18.7" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#problems-with-the-error"><i class="fa fa-check"></i><b>18.7</b> Problems with the Error</a><ul>
+<li class="chapter" data-level="18.7.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#generalized-least-squares"><i class="fa fa-check"></i><b>18.7.1</b> Generalized Least Squares</a></li>
+<li class="chapter" data-level="18.7.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#weighted-least-squares"><i class="fa fa-check"></i><b>18.7.2</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="18.7.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#robust-regression"><i class="fa fa-check"></i><b>18.7.3</b> Robust Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="18.8" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#shrinkage-methods"><i class="fa fa-check"></i><b>18.8</b> Shrinkage Methods</a><ul>
+<li class="chapter" data-level="18.8.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#principal-components-analzsis"><i class="fa fa-check"></i><b>18.8.1</b> Principal Components Analzsis</a></li>
+<li class="chapter" data-level="18.8.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#partial-least-squares"><i class="fa fa-check"></i><b>18.8.2</b> Partial Least Squares</a></li>
+<li class="chapter" data-level="18.8.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#ridge-regression"><i class="fa fa-check"></i><b>18.8.3</b> Ridge Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>19</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="19.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#violation-of-assumptions-of-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>19.1.1</b> Violation of assumptions of Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="19.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#more-fundamental-problem-outside-01"><i class="fa fa-check"></i><b>19.1.2</b> More fundamental problem outside [0,1]</a></li>
+<li class="chapter" data-level="19.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>19.1.3</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="19.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#estimation-of-the-logistic-model"><i class="fa fa-check"></i><b>19.1.4</b> Estimation of the Logistic Model</a></li>
+<li class="chapter" data-level="19.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#convergence-problems"><i class="fa fa-check"></i><b>19.1.5</b> Convergence Problems</a></li>
+<li class="chapter" data-level="19.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#use-exact-methods."><i class="fa fa-check"></i><b>19.1.6</b> Use exact methods.</a></li>
+<li class="chapter" data-level="19.1.7" data-path="logistic-regression.html"><a href="logistic-regression.html#use-penalized-likelihood"><i class="fa fa-check"></i><b>19.1.7</b> Use penalized likelihood</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="logistic-regression.html"><a href="logistic-regression.html#logit-modell"><i class="fa fa-check"></i><b>19.2</b> Logit Modell</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-1"><i class="fa fa-check"></i><b>19.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>19.2.2</b> R Implementation</a></li>
+<li class="chapter" data-level="19.2.3" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>19.2.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="19.2.4" data-path="logistic-regression.html"><a href="logistic-regression.html#multicollinearity"><i class="fa fa-check"></i><b>19.2.4</b> Multicollinearity</a></li>
+<li class="chapter" data-level="19.2.5" data-path="logistic-regression.html"><a href="logistic-regression.html#goodness-of-fit-statistics-pearson-deviance"><i class="fa fa-check"></i><b>19.2.5</b> Goodness-of-Fit Statistics Pearson deviance</a></li>
+<li class="chapter" data-level="19.2.6" data-path="logistic-regression.html"><a href="logistic-regression.html#hosmer-and-lemeshow-goodness-of-fit-test"><i class="fa fa-check"></i><b>19.2.6</b> Hosmer and Lemeshow Goodness-of-Fit Test</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probit-modell"><i class="fa fa-check"></i><b>19.3</b> Probit Modell</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation"><i class="fa fa-check"></i><b>19.3.1</b> R Implemetation</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="logistic-regression.html"><a href="logistic-regression.html#complementary-log-log-modell"><i class="fa fa-check"></i><b>19.4</b> Complementary log-log-Modell</a><ul>
+<li class="chapter" data-level="19.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>19.4.1</b> R Implemetation</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multi-category-logit-model"><i class="fa fa-check"></i><b>19.5</b> Multi-category logit model</a><ul>
+<li class="chapter" data-level="19.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>19.5.1</b> Multinomialverteilung</a></li>
+<li class="chapter" data-level="19.5.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>19.5.2</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-cumulative-logit-model"><i class="fa fa-check"></i><b>19.6</b> Ordinal Cumulative Logit Model</a><ul>
+<li class="chapter" data-level="19.6.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>19.6.1</b> R Implementation</a></li>
+<li class="chapter" data-level="19.6.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>19.6.2</b> SAS Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="19.7" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>19.7</b> Adjacent Categories Model</a></li>
+<li class="chapter" data-level="19.8" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>19.8</b> Continuation Ratio Model</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>20</b> Advanced Logistic Regression</a></li>
+<li class="chapter" data-level="21" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>21</b> Survival Analysis</a></li>
+<li class="chapter" data-level="22" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>22</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="23" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>23</b> Count Data Regression</a></li>
+<li class="chapter" data-level="24" data-path="proportion-response-regression.html"><a href="proportion-response-regression.html"><i class="fa fa-check"></i><b>24</b> Proportion Response Regression</a></li>
+<li class="chapter" data-level="25" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>25</b> Mixed Model</a></li>
+<li class="chapter" data-level="26" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>26</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="27" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>27</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="28" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>28</b> Time Series Analysis</a></li>
+<li class="chapter" data-level="29" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>29</b> Meta Analysis</a></li>
+<li class="chapter" data-level="30" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>30</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="31" data-path="clinic-study-design.html"><a href="clinic-study-design.html"><i class="fa fa-check"></i><b>31</b> Clinic Study Design</a></li>
+<li class="chapter" data-level="32" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>32</b> Propensity Score</a></li>
+<li class="chapter" data-level="33" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>33</b> Missing Data</a></li>
+<li class="chapter" data-level="34" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>34</b> ^_^ Space</a></li>
+<li class="chapter" data-level="35" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>35</b> ^_^ Space</a></li>
+<li class="chapter" data-level="36" data-path="space.html"><a href="space.html#space"><i class="fa fa-check"></i><b>36</b> ^_^ Space</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">As a Statistician</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="logistic-regression" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Logistic Regression</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">19.1</span> Introduction</h2>
+<p>Use probability-based linear models to predict qualitative response variables, three methods:</p>
+<ol style="list-style-type: decimal">
+<li>Logistic regression</li>
+<li>Linear discriminant analysis<br />
+</li>
+<li>Multivariate adaptive regression spline</li>
+</ol>
+<div id="violation-of-assumptions-of-ordinary-least-squares-ols" class="section level3">
+<h3><span class="header-section-number">19.1.1</span> Violation of assumptions of Ordinary least squares (OLS)</h3>
+<p>The basic assumptions of OLS regression</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(y_{i}=\alpha+\beta x_{i}+\varepsilon_{i} \mid\)</span></li>
+<li><span class="math inline">\(\mathrm{E}\left(\varepsilon_{i}\right)=0\)</span></li>
+<li><span class="math inline">\(\operatorname{var}\left(\varepsilon_{i}\right)=\sigma^{2}\)</span></li>
+<li><span class="math inline">\(\operatorname{cov}\left(\varepsilon_{i}, \varepsilon_{j}\right)=0\)</span></li>
+<li><span class="math inline">\(\varepsilon_{i} \sim\)</span> Normal</li>
+</ol>
+<p><strong>Normal residuals assumption</strong></p>
+<p>Assuming y is a dichotomy, the possible values are 1 or 0. Assume yi = 1. Then hypothesis 1 means εi = 1–α–βxi. On the other hand, if yi = 0, we have εi = –α–βxi. Since εi can only take two values, it is impossible to have a normal distribution</p>
+<p><strong>Consistant variance assumption</strong></p>
+<p><span class="math display">\[E\left(y_{i}\right)=1 \times \operatorname{Pr}\left(y_{i}=1\right)+0 \times \operatorname{Pr}\left(y_{i}=0\right)\]</span></p>
+<p>If we define <span class="math inline">\(p i=\operatorname{Pr}(y i=1)\)</span>,Then
+<span class="math display">\[E\left(y_{i}\right)=p_{i}\]</span></p>
+<p><span class="math display">\[
+\begin{array}{c}
+E\left(y_{i}\right)=E\left(\alpha+\beta x_{i}+\varepsilon_{i}\right) 
+=E(\alpha)+E\left(\beta x_{i}\right)+E\left(\varepsilon_{i}\right) 
+=\alpha+\beta x_{i}
+\end{array}
+\]</span>
+Putting these two results together, we get
+<span class="math display">\[
+\begin{array}{c}
+p_{i}=\alpha+\beta x_{i} \\
+\operatorname{var}\left(\varepsilon_{i}\right)=p_{i}\left(1-p_{i}\right)=\left(\alpha+\beta x_{i}\right)\left(1-\alpha-\beta x_{i}\right)
+\end{array}
+\]</span>
+For different observations, the variance of <span class="math inline">\(ε_i\)</span> must be different, especially as it changes with changes in x. When pi = 0.5, the disturbance variance is the largest, and when pi is close to 1 or 0, the disturbance variance becomes smaller.</p>
+<p><strong>Problems</strong></p>
+<p>If the sample is quite large, the normality assumption is not required. The <strong>central limit theorem</strong> assures us that even if ε is not normally distributed, the coefficient estimates will have an approximately normal distribution. This means that we can still use ordinary tables to calculate p-values and confidence intervals. However, if the sample is small, these approximations may be poor.</p>
+<!-- 如果样本相当大，则不需要正态假设。中心极限定理向我们保证，即使ε不呈正态分布，系数估计也将具有近似正态的分布。这意味着我们仍然可以使用普通表来计算p值和置信区间。但是，如果样本较小，则这些近似值可能会很差。 -->
+<p><strong>Violation of the homoscedasticity assumption has two undesirable consequences.</strong></p>
+<ol style="list-style-type: decimal">
+<li>First, the coefficient estimates are no longer <strong>effective</strong>. In statistical terms, this means that there are other selection methods with smaller standard errors.</li>
+<li>the standard error estimates are no longer consistent estimates of the true standard errors. That means that the estimated standard errors could be biased (either upward or downward) to unknown degrees. And because the standard errors are used in calculating test statistics, the test statistics could also be problematic.</li>
+</ol>
+<!-- 首先，系数估计不再有效。用统计术语来说，这意味着存在其他选择方法，它们的标准误差较小。 -->
+<!-- 其次，更严重的是，标准误差估计不再是真实标准误差的一致估计。这意味着估计的标准误差可能会偏向（向上或向下）到未知程度。并且由于标准误差用于计算测试统计信息，因此测试统计信息也可能会出现问题。幸运的是，可以轻松解决标准错误和测试统计信息的潜在问题。 -->
+<p><strong>Heteroscedasticity consistent covariance estimator “sandwich”</strong></p>
+<p>Even if the homogeneity assumption is violated, this method will produce a consistent estimate of the standard error. To implement this method in PROC REG, just put the option HCC on the MODEL statement</p>
+<pre><code>PROC REG DATA=penalty;
+  MODEL death=blackd whitvic serious / HCC; 
+RUN;</code></pre>
+<!-- 尽管HCC标准误差很容易解决，但是请注意，它们固有地具有比常规标准误差更大的采样变异性（Kauermann和Carroll 2001），并且在小样本中可能尤其不可靠。但是，对于大样本，它们应该是令人满意的. -->
+</div>
+<div id="more-fundamental-problem-outside-01" class="section level3">
+<h3><span class="header-section-number">19.1.2</span> More fundamental problem outside [0,1]</h3>
+<p>For Linear probability model <span class="math inline">\(p_{i}=\alpha+\beta x_{i}\)</span>, If x has no upper or lower limit, then for any value of β, there is a value of x whose pi is greater than 1 or less than 0.</p>
+</div>
+<div id="logistic-regression-model" class="section level3">
+<h3><span class="header-section-number">19.1.3</span> Logistic Regression Model</h3>
+<p>Probability is bounded by 0 and 1, while linear functions are inherently unbounded. The solution is to convert the probability so that it is no longer restricted. Converting probabilities to odds eliminates the upper limit. For k explanatory variables
+<span class="math display">\[\log \left[\frac{p_{i}}{1-p_{i}}\right]=\alpha+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}\]</span>
+<span class="math display">\[p_{i}=\frac{\exp \left(\alpha+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}\right)}{1+\exp \left(\alpha+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}\right)}\]</span>
+<span class="math display">\[p_{i}=\frac{1}{1+\exp \left(-\alpha-\beta_{1} x_{i 1}-\beta_{2} x_{i 2}-\ldots-\beta_{k} x_{i k}\right)}\]</span></p>
+<!-- 逻辑模型的方程式中没有随机扰动项。这并不意味着该模型是确定性的，因为pi和yi之间的概率关系仍然存在随机变化的空间。-->
+<p>There is <strong>no random disturbance term</strong> in the equation of the logic model. This does not mean that the model is deterministic, because there is still room for random variation in the probability relationship between pi and yi.</p>
+</div>
+<div id="estimation-of-the-logistic-model" class="section level3">
+<h3><span class="header-section-number">19.1.4</span> Estimation of the Logistic Model</h3>
+<ul>
+<li>ordinary least squares,</li>
+<li>weighted least squares,</li>
+<li>maximum likelihood.</li>
+</ul>
+<blockquote>
+<p>假设分析单位是商业公司，并且因变量是员工是全职员工的概率。设Pi为在i公司中全职工作的可观察员工比例。
+要通过OLS估计逻辑模型，我们可以简单地采用P的logit变换，即log [P/（1-P）]，然后将结果回归到公司特征和员工平均特征上。
+加权最小二乘（WLS）分析将类似，不同之处在于将对数据进行加权以针对异方差进行调整。
+最大似然（ML）是为分组数据估算逻辑模型的第三种方法，也是一般用于单个级别数据的唯一方法。
+利用个人数据，我们只需观察每个人的二分因变量以及该人的测量特征即可。</p>
+</blockquote>
+<p><strong>ML</strong></p>
+<blockquote>
+<p>最大似然受欢迎程度有两个原因。
+1. ML估计量是一致的，渐近有效的并且渐近正态的。
+2. 在没有其他明显候选者的情况下，通常很容易得出ML估计量. 为此，有两个步骤：
+（1）写下数据概率作为未知参数的函数的表达式，以及（2）找到使该表达式的值尽可能大的未知参数值。</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li><strong>Consistency</strong> means that as the sample size gets larger the probability that the estimate is within some small distance of the true value also gets larger. No matter how small the distance or how high the specified probability, there is always a sample size that yields an even higher probability that the estimator is within that distance of the true value. One implication of consistency is that the ML estimator is approximately unbiased in large samples.</li>
+<li><strong>Asymptotic efficiency</strong> means that, in large samples, the estimates will have standard errors that are, approximately, at least as small as those for any other estimation method. And, finally, the sampling distribution of the estimates will be approximately normal in large samples, which means that you can use the normal and chi-square distributions to compute confidence intervals and p-values. All these approximations get better as the sample size gets larger. The fact that these desirable properties have only been proven for large samples does not mean that ML has bad properties for small samples. It simply means that we usually don’t know exactly what the small-sample properties are. And in the absence of attractive alternatives, researchers routinely use ML estimation for both large and small samples.</li>
+</ol>
+<!-- 一致性意味着，随着样本数量的增加，估计值在真实值的一小段距离内的可能性也会随之增加。无论距离有多小或指定概率有多高，总有一个样本大小会产生更高的概率，即估计量在真实值的该距离内。一致性的一个暗示是，在大样本中ML估计量几乎是无偏的。 -->
+<!-- 渐近效率意味着，在大样本中，估计将具有大约至少与任何其他估计方法一样小的标准误差。最后，在大样本中，估计值的采样分布将近似于正态，这意味着您可以使用正态分布和卡方分布来计算置信区间和p值。随着样本数量的增加，所有这些近似值都会变得更好。这些合意的特性仅在大样本中得到证明的事实并不意味着ML对于小样本具有不良的特性。这仅表示我们通常不确切知道小样本属性是什么。而且，在没有有吸引力的替代方案的情况下，研究人员通常对大型和小型样本都使用ML估计。 -->
+<p><strong>Maximum Likelihood Estimation </strong></p>
+<p>We have data for n individuals (i = 1, …, n), and these individuals are considered statistically independent. For each i, the data consists of yi and xi, where yi is a random variable with possible values 0 and 1, and xi = [1 xi1…xik]’ is a vector of explanatory variables (1 is the intercept).) Let pi The probability of yi = 1
+<span class="math display">\[p_{i}=\frac{1}{1+e^{-\boldsymbol{\beta} \mathbf{x}_{i}}}\]</span></p>
+<p>The likelihood of observing the values of <span class="math inline">\(y\)</span> for all the observations can be written as
+<span class="math display">\[L=\operatorname{Pr}\left(y_{1}, y_{2,} \ldots, y_{n}\right)\]</span></p>
+<p>Because we are assuming that observations are independent, the overall probability of observing all the <span class="math inline">\(y_{i}, \mathrm{~s}\)</span> can be factored into the product of the individual probabilities:
+<span class="math display">\[
+L=\operatorname{Pr}\left(y_{1}\right) \operatorname{Pr}\left(y_{2}\right) \ldots \operatorname{Pr}\left(y_{n}\right)=\prod_{i=1}^{n} \operatorname{Pr}\left(y_{i}\right)
+\]</span>
+By definition, <span class="math inline">\(\operatorname{Pr}\left(y_{i}=1\right)=p_{i}\)</span> and <span class="math inline">\(\operatorname{Pr}\left(y_{i}=0\right)=1-p_{i} .\)</span> That implies that we can write
+<span class="math display">\[
+\begin{array}{c}
+\operatorname{Pr}\left(y_{i}\right)=p_{i}^{y_{i}}\left(1-p_{i}\right)^{1-y_{i}} \\
+L=\prod_{i=1}^{n} p_{i}^{y_{i}}\left(1-p_{i}\right)^{1-y_{i}}=\prod_{i=1}^{n}\left(\frac{p_{i}}{1-p_{i}}\right)^{y_{i}}\left(1-p_{i}\right) .
+\end{array}
+\]</span>
+At this point we take the logarithm of both sides of the equation to get
+<span class="math display">\[
+\log L=\sum_{i} y_{i} \log \left(\frac{p_{i}}{1-p_{i}}\right)+\sum_{i} \log \left(1-p_{i}\right)
+\]</span>
+And for equation
+<span class="math display">\[
+\log L=\sum_{i} \boldsymbol{\beta} \mathbf{x}_{i} y_{i}-\sum_{i} \log \left(1+e^{\boldsymbol{\beta} \mathbf{x}_{i}}\right)
+\]</span>
+Taking the derivative of equation and setting it equal to 0 gives us:
+<span class="math display">\[
+\begin{aligned}
+\frac{\partial \log L}{\partial \boldsymbol{\beta}} &amp;=\sum_{i} \mathbf{x}_{i} y_{i}-\sum_{i} \mathbf{x}_{i}\left(1+e^{-\boldsymbol{\beta} \mathbf{x}_{i}}\right)^{-1} \\
+&amp;=\sum_{i} \mathbf{x}_{i} y_{i}-\sum_{i} \mathbf{x}_{i} \hat{y}_{i}=0
+\end{aligned}
+\]</span>
+<span class="math display">\[\hat{y}_{i}=\frac{1}{1+e^{-\beta \mathbf{x}_{i}}}\]</span>
+<strong>Newton-Raphson iterative methods</strong></p>
+<p>There is no clear solution to the equation. Instead, we must rely on iterative methods, which are equivalent to successive approximations to the solution until the approximation “converges” to the solution. Until the approximation “converges” to the correct value. Again, there are many different ways to do this. All methods produce the same solution, but they differ in factors such as convergence speed, sensitivity to initial values, and computational difficulty of each iteration. The Newton-Raphson algorithm is one of the most widely used iterative methods.
+<span class="math display">\[
+\begin{array}{l}
+\mathbf{U}(\boldsymbol{\beta})=\frac{\partial \log L}{\partial \boldsymbol{\beta}}=\sum_{i} \mathbf{x}_{i} y_{i}-\sum_{i} \mathbf{x}_{i} \hat{y}_{i} \\
+\mathbf{I}(\boldsymbol{\beta})=\frac{\partial^{2} \log L}{\partial \boldsymbol{\beta} \partial \boldsymbol{\beta}^{\prime}}=-\sum_{i} \mathbf{x}_{i} \mathbf{x}_{i}^{\prime} \hat{y}_{i}\left(1-\hat{y}_{i}\right)
+\end{array}
+\]</span></p>
+<!-- 方程没有明确的解决方案。 取而代之的是，我们必须依靠迭代方法，这些方法等于对解的逐次逼近，直到逼近“收敛”到解。直到逼近“收敛”到正确的值为止。同样，有许多不同的方法可以执行此操作。所有方法都产生相同的解决方案，但是它们在诸如收敛速度，对初始值的敏感性以及每次迭代的计算难度等因素方面有所不同。 牛顿-拉夫森（Newton-Raphson）算法是最广泛使用的迭代方法之一 -->
+<p>The Newton-Raphson algorithm is then <span class="math display">\[\boldsymbol{\beta}_{j+1}=\boldsymbol{\beta}_{j}-\mathbf{I}^{-1}\left(\boldsymbol{\beta}_{j}\right) \mathbf{U}\left(\boldsymbol{\beta}_{j}\right)\]</span></p>
+<p>We need a set of initial values <span class="math inline">\(\beta_0\)</span>. PROC LOGISTIC starts by setting all slope coefficients to 0. Set the intercept to be equal to log [p /(1-p)], where p is the total proportion of events. These initial values are substituted into the right side of the equation, resulting in the result of the first iteration <span class="math inline">\(\beta_1\)</span>. Then substitute these values into the right side, recalculate the first and second derivatives, and the result is <span class="math inline">\(\beta_2\)</span> Repeat this process until you get “convergence”.</p>
+<p>This means that what is inserted on the right is obtained on the left. In fact, you will never get exactly the same thing, so it is necessary to adopt a convergence criterion to judge whether the proximity is close enough. But since every successful run of PROC LOGISTIC reports “Convergence criterion (GCONV=1E-8) satisfied,”
+<span class="math display">\[\frac{\mathbf{U}\left(\boldsymbol{\beta}_{j}\right)^{\prime} \mathbf{I}^{-1}\left(\boldsymbol{\beta}_{j}\right) \mathbf{U}\left(\boldsymbol{\beta}_{j}\right)}{\left|\log L\left(\boldsymbol{\beta}_{j}\right)\right|+.000001}\]</span></p>
+<p>If the number is less than .00000001, convergence is declared and the algorithm stops.</p>
+</div>
+<div id="convergence-problems" class="section level3">
+<h3><span class="header-section-number">19.1.5</span> Convergence Problems</h3>
+<blockquote>
+<p>逻辑模型的最大似然估计是逐次逼近的迭代过程。通常，该过程会顺利进行，无需特别注意。很少需要超过10次迭代才能达到收敛。但是，有时迭代过程会中断，因此无法实现收敛。处理收敛失败可能是逻辑回归用户遇到的更令人沮丧的问题之一。 LOGISTIC的默认限制为25次迭代。如果算法尚未达到此限制，则LOGISTIC会发出警告消息，并在最后一次迭代时打印出结果。尽管可以提高迭代限制（使用MODEL语句中的MAXITER =选项），但这很少能解决问题。未进行25次迭代收敛的模型通常永远不会收敛。在大多数收敛失败的情况下，最大似然估计根本不存在。</p>
+</blockquote>
+<p><strong>Quasi-complete separation of data points detected.</strong></p>
+<blockquote>
+<p>准完全分离的最常见原因是虚拟预测变量具有以下属性：在虚拟变量的一个级别上，每种情况下因变量都为1或每种情况下都为0。查看任何分类自变量与因变量的交叉分类也非常有帮助。如果您在这些表中的任何一个中发现单元频率为0，则说明了造成准完全分离的原因。找到问题变量后，如何处理</p>
+</blockquote>
+<ul>
+<li>Recode the problem variables</li>
+<li>Collapse categories</li>
+<li>Exclude cases from the model</li>
+</ul>
+<p><strong>Retain the model with quasi-complete separation but use likelihood-ratio tests.</strong></p>
+<p>The reported standard error and Wald’s chi-square of this variable are also of no avail. Nevertheless, it is still possible to obtain a valid likelihood ratio test, <em>Profile Likelihood confidence interval.</em></p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ WHERE blackd=0;
+ CLASS culp /PARAM=REF;
+ MODEL death(EVENT=&#39;1&#39;) = culp serious / CLPARM=PL ALPHA=.01;
+RUN;
+
+##########################################
+Parameter Estimate   99% Confidence Limits
+culp 1    -15.5467          . -3.2344</code></pre>
+</div>
+<div id="use-exact-methods." class="section level3">
+<h3><span class="header-section-number">19.1.6</span> Use exact methods.</h3>
+<blockquote>
+<p>尽管最大似然具有许多吸引人的属性，但请务必记住，最大似然产生的标准误差和p值是大样本近似值。 在小样本或分离的情况下，准确性可能不如我们想要的那样好。 具有良好的小样本属性的另一种估算方法是“精确逻辑回归”。 这种方法可以看作是费雪（Fisher）对双向列联表的精确检验的概括。 在这种方法中，p值是通过在原假设下枚举所有可能的样本结果来计算的。 即使在完全分离或准完全分离的情况下，精确方法也会产生有效的p值。</p>
+</blockquote>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ WHERE blackd=0;
+ CLASS culp /PARAM=REF;
+ MODEL death(EVENT=&#39;1&#39;) = culp serious;
+ EXACT culp serious / ESTIMATE=BOTH;
+RUN; </code></pre>
+<p>These tests are conditional in the sense that they are based on the conditional distribution of the sufficient statistic for each parameter, conditioning on the sufficient statistics for all the other parameters. (The sufficient statistics are the sums of cross products for each x and the binary dependent variable y.) The tests are exact in the same sense that t-statistics are exact in normal-theory linear regression. That is, they are not large sample approximations, and they give the correct probability of getting a result that is at least as extreme as the one observed in the sample, under the null hypothesis that a variable has no effect.</p>
+</div>
+<div id="use-penalized-likelihood" class="section level3">
+<h3><span class="header-section-number">19.1.7</span> Use penalized likelihood</h3>
+<p>处理拟完全分离的最简单，最有效的方法之一是一种被称为惩罚似然估计的方法，该方法由Firth（1993）引入，因此通常被称为Firth方法。 众所周知，传统的最大似然估计可能会在小样本中产生偏差。 惩罚似然法旨在减少这种偏差，适用于最大似然的广泛应用。 Heinze和Schemper（2002）表明，这种方法在处理准完全分离的情况下特别有效。 运作方式如下。 在牛顿-拉夫森算法（方程3.7）中，一阶导数U（β）</p>
+<p><span class="math display">\[\mathbf{U}(\boldsymbol{\beta})=\frac{\partial \log L}{\partial \boldsymbol{\beta}}=\sum_{i} \mathbf{x}_{i} y_{i}-\sum_{i} \mathbf{x}_{i} \hat{y}_{i}-\sum_{i} h_{i} \mathbf{x}_{i}\left(.5-\hat{y}_{i}\right)\]</span>
+In PROC LOGISTIC, the method is implemented with the FIRTH option on the MODEL statement</p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ WHERE blackd=0;
+ CLASS culp /PARAM=REF;
+ MODEL death(EVENT=&#39;1&#39;) = culp serious / FIRTH
+ CLPARM=PL;
+RUN;</code></pre>
+</div>
+</div>
+<div id="logit-modell" class="section level2">
+<h2><span class="header-section-number">19.2</span> Logit Modell</h2>
+<div id="introduction-1" class="section level3">
+<h3><span class="header-section-number">19.2.1</span> Introduction</h3>
+<p>The probability <span class="math inline">\(\pi{i}=\mathrm{P}\left(y{i}=1 \mid x{i 1}, \ldots, x{i k}\right)\)</span> and the linear predictor <span class="math inline">\(\eta_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}\)</span> are linked by a response function $<em>{i}=h(</em>{i}) $:</p>
+<p>For Logit-Modell:
+<span class="math display">\[\pi=\frac{\exp (\eta)}{1+\exp (\eta)} \Longleftrightarrow \log \frac{\pi}{1-\pi}=\eta\]</span>
+For Complementary log-log model:
+<span class="math display">\[\pi=1-\exp (-\exp (\eta)) \quad \Longleftrightarrow \quad \log (-\log (1-\pi))=\eta\]</span></p>
+<p><strong>Interpretation</strong></p>
+<p><span class="math display">\[\frac{\mathrm{P}\left(y_{i}=1 \mid \boldsymbol{x}_{i}\right)}{\mathrm{P}\left(y_{i}=0 \mid \boldsymbol{x}_{i}\right)}=\exp \left(\beta_{0}\right) \cdot \exp \left(x_{i 1} \beta_{1}\right) \cdot \ldots \cdot \exp \left(x_{i k} \beta_{k}\right)\]</span></p>
+<p><span class="math display">\[\frac{\mathrm{P}\left(y_{i}=1 \mid x_{i 1}, \ldots\right)}{\mathrm{P}\left(y_{i}=0 \mid x_{i 1}, \ldots\right)} / \frac{\mathrm{P}\left(y_{i}=1 \mid x_{i 1}+1, \ldots\right)}{\mathrm{P}\left(y_{i}=0 \mid x_{i 1}+1, \ldots\right)}=\exp \left(\beta_{1}\right)\]</span></p>
+<p><span class="math display">\[
+\begin{array}{l}
+\beta_{1}&gt;0: \text {Chance} $\mathrm{P}\left(y_{i}=1\right) / \mathrm{P}\left(y_{i}=0\right) \text {wird größer},\\
+\beta_{1}&lt;0: \text { Chance } \mathrm{P}\left(y_{i}=1\right) / \mathrm{P}\left(y_{i}=0\right) \text { wird kleiner, } \\
+\beta_{1}=0: \text { Chance } \mathrm{P}\left(y_{i}=1\right) / \mathrm{P}\left(y_{i}=0\right) \text { bleibt gleich. }
+\end{array}
+\]</span></p>
+</div>
+<div id="r-implementation" class="section level3">
+<h3><span class="header-section-number">19.2.2</span> R Implementation</h3>
+<ul>
+<li>Compare models <code>anova(fit.model1, fit.model2, test = "Chisq")</code></li>
+<li>Change Referenz <code>relevel(factor(school2$RANK),ref=4)</code></li>
+<li>Interpret coefficients Odds <code>exp(coef(fit.reduced))</code></li>
+<li>Predict using new datasets <code>predict(fit.model, newdata = testdata, type = "response")</code></li>
+<li>CIs using profiled log-likelihood <code>confint(fit.model)</code></li>
+<li>CIs using standard errors <code>confint.default(fit.model)</code></li>
+<li>VIF statistics <code>library(car), vif(fit.model)</code></li>
+<li>Wald Test <code>library(aod) ,wald.test()</code></li>
+<li>Log likelihood ratio test <code>logLik()</code></li>
+<li>Marginal effects <code>library(mfx), logitmfx</code></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="logistic-regression.html#cb5-1"></a><span class="co">## get summary statistics </span></span>
+<span id="cb5-2"><a href="logistic-regression.html#cb5-2"></a><span class="kw">data</span>(Affairs, <span class="dt">package =</span> <span class="st">&quot;AER&quot;</span>)</span>
+<span id="cb5-3"><a href="logistic-regression.html#cb5-3"></a><span class="kw">summary</span>(Affairs)</span></code></pre></div>
+<pre><code>##     affairs          gender         age         yearsmarried    children 
+##  Min.   : 0.000   female:315   Min.   :17.50   Min.   : 0.125   no :171  
+##  1st Qu.: 0.000   male  :286   1st Qu.:27.00   1st Qu.: 4.000   yes:430  
+##  Median : 0.000                Median :32.00   Median : 7.000            
+##  Mean   : 1.456                Mean   :32.49   Mean   : 8.178            
+##  3rd Qu.: 0.000                3rd Qu.:37.00   3rd Qu.:15.000            
+##  Max.   :12.000                Max.   :57.00   Max.   :15.000            
+##  religiousness     education       occupation        rating     
+##  Min.   :1.000   Min.   : 9.00   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:2.000   1st Qu.:14.00   1st Qu.:3.000   1st Qu.:3.000  
+##  Median :3.000   Median :16.00   Median :5.000   Median :4.000  
+##  Mean   :3.116   Mean   :16.17   Mean   :4.195   Mean   :3.932  
+##  3rd Qu.:4.000   3rd Qu.:18.00   3rd Qu.:6.000   3rd Qu.:5.000  
+##  Max.   :5.000   Max.   :20.00   Max.   :7.000   Max.   :5.000</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="logistic-regression.html#cb7-1"></a><span class="kw">table</span>(Affairs<span class="op">$</span>affairs)</span></code></pre></div>
+<pre><code>## 
+##   0   1   2   3   7  12 
+## 451  34  17  19  42  38</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="logistic-regression.html#cb9-1"></a><span class="co">## 感兴趣的是二值型结果(有过一次婚 外情/没有过婚外情),将affairs转化为二值型因子ynaffair。</span></span>
+<span id="cb9-2"><a href="logistic-regression.html#cb9-2"></a><span class="co">## create binary outcome variable</span></span>
+<span id="cb9-3"><a href="logistic-regression.html#cb9-3"></a>Affairs<span class="op">$</span>ynaffair[Affairs<span class="op">$</span>affairs <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb9-4"><a href="logistic-regression.html#cb9-4"></a>Affairs<span class="op">$</span>ynaffair[Affairs<span class="op">$</span>affairs <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb9-5"><a href="logistic-regression.html#cb9-5"></a>Affairs<span class="op">$</span>ynaffair &lt;-<span class="st"> </span><span class="kw">factor</span>(Affairs<span class="op">$</span>ynaffair, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>, </span>
+<span id="cb9-6"><a href="logistic-regression.html#cb9-6"></a>    <span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span>
+<span id="cb9-7"><a href="logistic-regression.html#cb9-7"></a><span class="kw">table</span>(Affairs<span class="op">$</span>ynaffair)</span></code></pre></div>
+<pre><code>## 
+##  No Yes 
+## 451 150</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="logistic-regression.html#cb11-1"></a><span class="co"># fit full model</span></span>
+<span id="cb11-2"><a href="logistic-regression.html#cb11-2"></a>fit.full &lt;-<span class="st"> </span><span class="kw">glm</span>(ynaffair <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>yearsmarried <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-3"><a href="logistic-regression.html#cb11-3"></a><span class="st">    </span>children <span class="op">+</span><span class="st"> </span>religiousness <span class="op">+</span><span class="st"> </span>education <span class="op">+</span><span class="st"> </span>occupation <span class="op">+</span><span class="st"> </span>rating, </span>
+<span id="cb11-4"><a href="logistic-regression.html#cb11-4"></a>    <span class="dt">data =</span> Affairs, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb11-5"><a href="logistic-regression.html#cb11-5"></a><span class="kw">summary</span>(fit.full)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = ynaffair ~ gender + age + yearsmarried + children + 
+##     religiousness + education + occupation + rating, family = &quot;binomial&quot;, 
+##     data = Affairs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5713  -0.7499  -0.5690  -0.2539   2.5191  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    1.37726    0.88776   1.551 0.120807    
+## gendermale     0.28029    0.23909   1.172 0.241083    
+## age           -0.04426    0.01825  -2.425 0.015301 *  
+## yearsmarried   0.09477    0.03221   2.942 0.003262 ** 
+## childrenyes    0.39767    0.29151   1.364 0.172508    
+## religiousness -0.32472    0.08975  -3.618 0.000297 ***
+## education      0.02105    0.05051   0.417 0.676851    
+## occupation     0.03092    0.07178   0.431 0.666630    
+## rating        -0.46845    0.09091  -5.153 2.56e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 675.38  on 600  degrees of freedom
+## Residual deviance: 609.51  on 592  degrees of freedom
+## AIC: 627.51
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="logistic-regression.html#cb13-1"></a><span class="co"># 从回归系数的p值(最后一栏)可以看到，性别、是否有孩子、学历和职业对方程的贡献都不显著(你无法拒绝参数为0的假设)。去除这些变量重新拟合模型，检验新模型是否拟合得好</span></span>
+<span id="cb13-2"><a href="logistic-regression.html#cb13-2"></a><span class="co"># fit reduced model</span></span>
+<span id="cb13-3"><a href="logistic-regression.html#cb13-3"></a>fit.reduced &lt;-<span class="st"> </span><span class="kw">glm</span>(ynaffair <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>yearsmarried <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-4"><a href="logistic-regression.html#cb13-4"></a><span class="st">    </span>religiousness <span class="op">+</span><span class="st"> </span>rating, <span class="dt">data =</span> Affairs, <span class="dt">family =</span> <span class="kw">binomial</span>())</span>
+<span id="cb13-5"><a href="logistic-regression.html#cb13-5"></a><span class="kw">summary</span>(fit.reduced)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = ynaffair ~ age + yearsmarried + religiousness + 
+##     rating, family = binomial(), data = Affairs)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6278  -0.7550  -0.5701  -0.2624   2.3998  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    1.93083    0.61032   3.164 0.001558 ** 
+## age           -0.03527    0.01736  -2.032 0.042127 *  
+## yearsmarried   0.10062    0.02921   3.445 0.000571 ***
+## religiousness -0.32902    0.08945  -3.678 0.000235 ***
+## rating        -0.46136    0.08884  -5.193 2.06e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 675.38  on 600  degrees of freedom
+## Residual deviance: 615.36  on 596  degrees of freedom
+## AIC: 625.36
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="logistic-regression.html#cb15-1"></a><span class="co"># compare models</span></span>
+<span id="cb15-2"><a href="logistic-regression.html#cb15-2"></a><span class="kw">anova</span>(fit.reduced, fit.full, <span class="dt">test =</span> <span class="st">&quot;Chisq&quot;</span>)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: ynaffair ~ age + yearsmarried + religiousness + rating
+## Model 2: ynaffair ~ gender + age + yearsmarried + children + religiousness + 
+##     education + occupation + rating
+##   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
+## 1       596     615.36                     
+## 2       592     609.51  4   5.8474   0.2108</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="logistic-regression.html#cb17-1"></a><span class="co"># 结果的卡方值不显著(p=0.21)，表明四个预测变量的新模型与九个完整预测变量的模型拟合程度一样好。这使得你更加坚信添加性别、孩子、学历和职业变量不会显著提高方程的预测精 度，因此可以依据更简单的模型进行解释。</span></span>
+<span id="cb17-2"><a href="logistic-regression.html#cb17-2"></a></span>
+<span id="cb17-3"><a href="logistic-regression.html#cb17-3"></a><span class="co"># 解释模型参数</span></span>
+<span id="cb17-4"><a href="logistic-regression.html#cb17-4"></a><span class="co"># interpret coefficients</span></span>
+<span id="cb17-5"><a href="logistic-regression.html#cb17-5"></a><span class="kw">coef</span>(fit.reduced)</span></code></pre></div>
+<pre><code>##   (Intercept)           age  yearsmarried religiousness        rating 
+##    1.93083017   -0.03527112    0.10062274   -0.32902386   -0.46136144</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="logistic-regression.html#cb19-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(fit.reduced))</span></code></pre></div>
+<pre><code>##   (Intercept)           age  yearsmarried religiousness        rating 
+##     6.8952321     0.9653437     1.1058594     0.7196258     0.6304248</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="logistic-regression.html#cb21-1"></a><span class="co">## CIs using profiled log-likelihood</span></span>
+<span id="cb21-2"><a href="logistic-regression.html#cb21-2"></a><span class="kw">confint</span>(fit.reduced)</span></code></pre></div>
+<pre><code>##                     2.5 %       97.5 %
+## (Intercept)    0.75404303  3.150622807
+## age           -0.07006400 -0.001854759
+## yearsmarried   0.04388142  0.158562400
+## religiousness -0.50637196 -0.155156981
+## rating        -0.63741235 -0.288566411</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="logistic-regression.html#cb23-1"></a><span class="co">## CIs using standard errors</span></span>
+<span id="cb23-2"><a href="logistic-regression.html#cb23-2"></a><span class="kw">confint.default</span>(fit.reduced)</span></code></pre></div>
+<pre><code>##                     2.5 %       97.5 %
+## (Intercept)    0.73463085  3.127029497
+## age           -0.06928747 -0.001254761
+## yearsmarried   0.04337199  0.157873491
+## religiousness -0.50434371 -0.153703999
+## rating        -0.63547499 -0.287247895</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="logistic-regression.html#cb25-1"></a><span class="co">## 测试等级的总体效果。 在系数表中给出系数的顺序与模型中项的顺序相同</span></span>
+<span id="cb25-2"><a href="logistic-regression.html#cb25-2"></a><span class="co">## Globale Test</span></span>
+<span id="cb25-3"><a href="logistic-regression.html#cb25-3"></a><span class="kw">library</span>(aod)</span>
+<span id="cb25-4"><a href="logistic-regression.html#cb25-4"></a><span class="kw">wald.test</span>(<span class="dt">b =</span> <span class="kw">coef</span>(fit.reduced), <span class="dt">Sigma =</span> <span class="kw">vcov</span>(fit.reduced), <span class="dt">Terms =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 27.4, df = 4, P(&gt; X2) = 1.7e-05</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="logistic-regression.html#cb27-1"></a><span class="co">## the three terms for the levels of rank.</span></span>
+<span id="cb27-2"><a href="logistic-regression.html#cb27-2"></a><span class="kw">wald.test</span>(<span class="dt">b =</span> <span class="kw">coef</span>(fit.reduced), <span class="dt">Sigma =</span> <span class="kw">vcov</span>(fit.reduced), <span class="dt">Terms =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 26.7, df = 3, P(&gt; X2) = 6.9e-06</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="logistic-regression.html#cb29-1"></a><span class="co">## likelihood ratio test</span></span>
+<span id="cb29-2"><a href="logistic-regression.html#cb29-2"></a><span class="co">## An indicator to measure the degree of model fit. The test statistic is the residual deviation between the model with predictor variables and the zero model.</span></span>
+<span id="cb29-3"><a href="logistic-regression.html#cb29-3"></a><span class="co">## The degree of freedom of the chi-square distribution of the test statistic is equal to the degree of freedom difference between the current model and the zero model (that is, the number of predictors in the model)</span></span>
+<span id="cb29-4"><a href="logistic-regression.html#cb29-4"></a><span class="kw">with</span>(fit.reduced, null.deviance <span class="op">-</span><span class="st"> </span>deviance)            <span class="co"># 卡方值为41.46</span></span></code></pre></div>
+<pre><code>## [1] 60.01915</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="logistic-regression.html#cb31-1"></a><span class="kw">with</span>(fit.reduced, df.null <span class="op">-</span><span class="st"> </span>df.residual)               <span class="co"># degrees of freedom </span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="logistic-regression.html#cb33-1"></a><span class="kw">with</span>(fit.reduced, <span class="kw">pchisq</span>(null.deviance <span class="op">-</span><span class="st"> </span>deviance, </span>
+<span id="cb33-2"><a href="logistic-regression.html#cb33-2"></a>     df.null <span class="op">-</span><span class="st"> </span>df.residual, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>))       <span class="co"># the p-value</span></span></code></pre></div>
+<pre><code>## [1] 2.874106e-12</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="logistic-regression.html#cb35-1"></a><span class="co">## called a likelihood ratio test (the deviance residual is -2*log likelihood).</span></span>
+<span id="cb35-2"><a href="logistic-regression.html#cb35-2"></a><span class="kw">logLik</span>(fit.reduced)</span></code></pre></div>
+<pre><code>## &#39;log Lik.&#39; -307.6789 (df=5)</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="logistic-regression.html#cb37-1"></a><span class="co"># 探究每一个预测变量对结果概率的影响</span></span>
+<span id="cb37-2"><a href="logistic-regression.html#cb37-2"></a><span class="co"># 创建一个虚拟数据集，设定 年龄、婚龄和宗教信仰为它们的均值，婚姻评分的范围为1~5。</span></span>
+<span id="cb37-3"><a href="logistic-regression.html#cb37-3"></a><span class="co"># calculate probability of extramariatal affair by marital ratings</span></span>
+<span id="cb37-4"><a href="logistic-regression.html#cb37-4"></a>testdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rating =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), </span>
+<span id="cb37-5"><a href="logistic-regression.html#cb37-5"></a>    <span class="dt">age =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>age), <span class="dt">yearsmarried =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>yearsmarried), </span>
+<span id="cb37-6"><a href="logistic-regression.html#cb37-6"></a>    <span class="dt">religiousness =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>religiousness))</span>
+<span id="cb37-7"><a href="logistic-regression.html#cb37-7"></a>testdata<span class="op">$</span>prob &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.reduced, <span class="dt">newdata =</span> testdata, </span>
+<span id="cb37-8"><a href="logistic-regression.html#cb37-8"></a>    <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb37-9"><a href="logistic-regression.html#cb37-9"></a>testdata</span></code></pre></div>
+<pre><code>##   rating      age yearsmarried religiousness      prob
+## 1      1 32.48752     8.177696      3.116473 0.5302296
+## 2      2 32.48752     8.177696      3.116473 0.4157377
+## 3      3 32.48752     8.177696      3.116473 0.3096712
+## 4      4 32.48752     8.177696      3.116473 0.2204547
+## 5      5 32.48752     8.177696      3.116473 0.1513079</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="logistic-regression.html#cb39-1"></a><span class="co"># calculate probabilites of extramariatal affair by age</span></span>
+<span id="cb39-2"><a href="logistic-regression.html#cb39-2"></a>testdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">rating =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>rating), </span>
+<span id="cb39-3"><a href="logistic-regression.html#cb39-3"></a>    <span class="dt">age =</span> <span class="kw">seq</span>(<span class="dv">17</span>, <span class="dv">57</span>, <span class="dv">10</span>), <span class="dt">yearsmarried =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>yearsmarried), </span>
+<span id="cb39-4"><a href="logistic-regression.html#cb39-4"></a>    <span class="dt">religiousness =</span> <span class="kw">mean</span>(Affairs<span class="op">$</span>religiousness))</span>
+<span id="cb39-5"><a href="logistic-regression.html#cb39-5"></a>testdata<span class="op">$</span>prob &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.reduced, <span class="dt">newdata =</span> testdata, </span>
+<span id="cb39-6"><a href="logistic-regression.html#cb39-6"></a>    <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb39-7"><a href="logistic-regression.html#cb39-7"></a>testdata</span></code></pre></div>
+<pre><code>##    rating age yearsmarried religiousness      prob
+## 1 3.93178  17     8.177696      3.116473 0.3350834
+## 2 3.93178  27     8.177696      3.116473 0.2615373
+## 3 3.93178  37     8.177696      3.116473 0.1992953
+## 4 3.93178  47     8.177696      3.116473 0.1488796
+## 5 3.93178  57     8.177696      3.116473 0.1094738</code></pre>
+</div>
+<div id="sas-implementation" class="section level3">
+<h3><span class="header-section-number">19.2.3</span> SAS Implementation</h3>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;)=blackd whitvic serious;
+RUN; </code></pre>
+<blockquote>
+<p>在MODEL语句中指定的一个选项是因变量之后的EVENT =‘1’。 LOGISTIC中的默认值是估计一个预测因变量最低值的模型。因此，如果我省略了EVENT =‘1’，则结果将是一个逻辑模型，预测因变量DEATH等于0的概率。EVENT=’1’选项将其反转，以便模型预测因变量等于1。</p>
+</blockquote>
+<blockquote>
+<p>一种等效的（流行的）方法是使用选项DEATH （DESCENDING），它告诉LOGISTIC对DEATH的“较高”值进行建模，而不是对较低值进行建模。但是，较高而不是较低的值取决于所选的其他选项，因此明确建模哪个因变量值较为安全。如果您忘记了EVENT =’1’选项，则唯一的结果就是更改系数的符号。</p>
+</blockquote>
+<pre><code>*** For Multiplicative Terms in the MODEL Statement;
+
+MODEL y = x|x|x;
+MODEL y = x x*x x*x*x;</code></pre>
+<p><strong>class</strong></p>
+<blockquote>
+<p>当CLASS变量作为解释变量包含在MODEL语句中时，LOGISTIC自动创建一组“设计变量”来表示CLASS变量的级别。当预测变量是指示变量（虚拟变量）时，例如仅具有0或1的值，则无需将其声明为CLASS变量。实际上，将指示符变量放在CLASS语句上可能会产生误导性的结果。这是因为CLASS语句可能会以意想不到的方式重新编码变量，正如我们将看到的那样。因此，CLASS语句应保留给具有两个以上类别的分类变量，或保留具有字符值（例如“是”和“否”）的二分变量。</p>
+</blockquote>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ CLASS culp /PARAM=REF;
+ MODEL death(EVENT=&#39;1&#39;) = blackd whitvic culp ;
+RUN;</code></pre>
+<p>Change the default reference category (5 in this example) and hope it is the minimum value of CULP instead of the maximum value</p>
+<p><code>CLASS culp / PARAM=REF DESCENDING;</code></p>
+<p>Particular value, say 3</p>
+<p><code>CLASS culp(REF='3') / PARAM=REF;</code></p>
+<p><strong>Confidence Intervals</strong></p>
+<ul>
+<li>Wald CI: <code>CLPARM = WALD</code></li>
+<li>Profile likelihood CI: Can produce better approximations, especially in smaller samples using <code>CLPARM = PL</code></li>
+<li>Two confidence intervals:</li>
+</ul>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;) = blackd whitvic culp / CLPARM=BOTH;
+RUN;</code></pre>
+<p><strong>Marginal effect</strong></p>
+<p>For each variable, we obtain the predicted change in the probability of death penalty for each additional unit of the variable according to the predicted probability of the person.
+Get them easily with PROC QLIM</p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;)=blackd whitvic serious;
+RUN; 
+
+PROC QLIM DATA=penalty;
+ ENDOGENOUS death~DISCRETE(DIST=LOGISTIC);
+ MODEL death = blackd whitvic serious;
+ OUTPUT OUT=a MARGINAL;
+PROC PRINT DATA=a(OBS=10);
+ VAR meff_p2_blackd meff_p2_whitvic meff_p2_serious;
+RUN; </code></pre>
+</div>
+<div id="multicollinearity" class="section level3">
+<h3><span class="header-section-number">19.2.4</span> Multicollinearity</h3>
+<p>当解释变量之间有很强的线性相关性时，就会发生多重共线性。基本要点是，如果两个或多个变量彼此高度相关，则很难很好地估计它们对某些因变量的不同影响。尽管多重共线性不会使系数产生偏差，但确实会使系数更加不稳定。标准误差可能会变得很大，并且看起来似乎单独具有较弱影响的变量实际上可能整体上具有相当强的影响。幸运的是，多重共线性的结果仅适用于共线性的那些变量。</p>
+<p>当单个变量都不是重要变量，而整个变量集都很重要时，多重共线性很可能是罪魁祸首 When none of the individual variables is significant but the entire set is significant, multicollinearity is a likely culprit.</p>
+<p><strong>How to diagnose multicollinearity</strong></p>
+<ul>
+<li>检查PROC CORR产生的相关矩阵可能会有所帮助，但还不够。没有一对变量之间具有高度相关性的数据是很有可能的，但是几个变量在一起可能是高度相互依存的。</li>
+<li>PROC REG使用TOL，VIF和COLLINOINT选项可以产生更好的诊断结果。但是PROC LOGISTIC没有这些选项，
+多重共线性是解释变量的属性，而不是因变量。因此，每当您怀疑logit模型中的多重共线性时，只需在PROC REG中估计等效模型并请求共线性选项即可</li>
+</ul>
+<pre><code>PROC REG DATA=penalty;
+ MODEL death = blackd whitvic serious serious2 / TOL VIF;
+RUN; </code></pre>
+<p><span class="math display">\[
+\begin{array}{|l|r|r|r|r|r|r|r|}
+\hline \text { Variable } &amp; \text { DF } &amp; \text {Parameter} &amp; \text { Standard } &amp; \text { t Value } &amp; \text { Pr }&gt;\mid \text { |t| }&amp; \text { Tolerance }&amp; \text { Variance } \\
+&amp; \text {   } &amp; \text {Estimate  } &amp; \text {Error  } &amp;  &amp; &amp; &amp; \text { Inflation } \\
+\hline \text { Intercept } &amp; 1 &amp; -0.14164 &amp; 0.18229 &amp; -0.78 &amp; 0.4384 &amp; &amp; 0 \\
+\hline \text { blackd } &amp; 1 &amp; 0.12093 &amp; 0.08242 &amp; 1.47 &amp; 0.1445 &amp; 0.85428 &amp; 1.17058 \\
+\hline \text { whitvic } &amp; 1 &amp; 0.05739 &amp; 0.08451 &amp; 0.68 &amp; 0.4982 &amp; 0.84548 &amp; 1.18276 \\
+\hline \text { serious } &amp; 1 &amp; 0.01924 &amp; 0.03165 &amp; 0.61 &amp; 0.5442 &amp; 0.14290 &amp; 6.99788 \\
+\hline \text { serious2 } &amp; 1 &amp; 0.07044 &amp; 0.10759 &amp; 0.65 &amp; 0.5137 &amp; 0.14387 &amp; 6.95081 \\
+\hline
+\end{array}
+\]</span>
+在绝大多数情况下，这种诊断方法应该完全令人满意，但有时可能会漏掉严重的多重共线性（Davis等人，1986）。这是因为理想情况下，应通过最大似然算法中使用的权重矩阵来调整线性组合</p>
+<p><strong>Weight matrix</strong></p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;) = blackd whitvic serious serious2;
+ OUTPUT OUT=a PRED=phat;
+DATA b;
+ SET a;
+ w = phat*(1-phat);
+PROC REG DATA=b;
+ WEIGHT w;
+ MODEL death = blackd whitvic serious1 serious2 / TOL VIF;
+RUN; </code></pre>
+<p>OUTPUT语句创建一个新的数据集，该数据集包含MODEL语句中的所有变量以及变量PHAT，该变量PHAT包含因变量的预测概率。然后，将这些预测值用于DATA步骤以构建权重变量W。最后，使用W作为权重变量执行加权最小二乘回归。对于这些数据，共线性诊断仅与显示的略有不同</p>
+<p>可用于逻辑回归的解决方案范围与线性回归的解决方案范围几乎相同，例如删除变量，将变量组合到索引中以及测试关于变量集的假设。通常，没有一个潜在的解决办法是非常令人满意的。</p>
+</div>
+<div id="goodness-of-fit-statistics-pearson-deviance" class="section level3">
+<h3><span class="header-section-number">19.2.5</span> Goodness-of-Fit Statistics Pearson deviance</h3>
+<p>三种不同的“模型拟合统计量”：AIC，SC和-2 LogL。2 Log L的值越高，表示数据拟合越差。但是请记住，此统计信息的总体大小在很大程度上取决于观察值的数量。此外，对于适合的条件还没有绝对的标准，因此人们只能使用此统计信息来比较适合同一数据集的不同模型。-2 Log L的问题在于，协变量更多的模型仅靠偶然就趋于更好地拟合。其他两个拟合统计量通过惩罚具有更多协变量的模型来避免此问题。</p>
+<ul>
+<li>Akaike’s Information Criterion (AIC) <span class="math inline">\(A I C=-2 \log L+2 k\)</span></li>
+<li>Schwarz Criterion (SC), also known as the Bayesian Information Criterion (BIC) <span class="math inline">\(S C=-2 \log L+k \log n\)</span></li>
+</ul>
+<p><strong>deviance</strong></p>
+<p>deviance is a goodness-of-fit statistic for a statistical model; it is often used for statistical hypothesis testing. It is a generalization of the idea of using the sum of squares of residuals (RSS) in ordinary least squares to cases where model-fitting is achieved by maximum likelihood.</p>
+<p><span class="math display">\[{\displaystyle D(y,{\hat {\mu }})=2{\Big (}\log {\big (}p(y\mid {\hat {\theta }}_{s}){\big )}-\log {\big (}p(y\mid {\hat {\theta }}_{0}){\big )}{\Big )}.\,}\]</span></p>
+<p>LOGISTIC中的AGGREGATE和SCALE选项获得具有卡方分布的偏差, AGGREGATE选项告诉LOGISTIC汇总各个预测变量级别上的数据。 SCALE选项要求拟合优度统计信息，但是指定SCALE = NONE会告诉LOGISTIC不要针对过度分散调整拟合优度统计信息</p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;) = blackd whitvic culp / AGGREGATE
+SCALE=NONE;
+RUN;</code></pre>
+<p><strong>Saturated mode</strong></p>
+<p>偏差将拟合模型与饱和模型进行了隐式对比。 我们可以使用以下程序拟合饱和模型：</p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+    CLASS culp;
+    MODEL death(EVENT=&#39;1&#39;) = blackd whitvic culp blackd*whitvic
+    blackd*culp whitvic*culp blackd*whitvic*culp ;
+RUN; 
+
+*** The MODEL statement could also be abbreviated;
+MODEL death(EVENT=&#39;1&#39;) = blackd|whitvic|culp;</code></pre>
+</div>
+<div id="hosmer-and-lemeshow-goodness-of-fit-test" class="section level3">
+<h3><span class="header-section-number">19.2.6</span> Hosmer and Lemeshow Goodness-of-Fit Test</h3>
+<p>与偏差不同，皮尔逊（Pearson）的卡方在应用于个人级数据时没有卡方分布。 尽管SCALE和AGGREGATE选项通常很有用，但如果有很多解释变量，或者如果其中一些变量是按连续统来衡量的，那么它们就无济于事。 在这些情况下，轮廓将几乎与原始观测值一样多，并且通过汇总无法实现任何目的。 偏差和皮尔逊卡方均不会具有真实的卡方分布。 为了弥补这一缺陷，Hosmer和Lemeshow（2000）提出了一种已迅速得到广泛使用的测试。 可以使用MODEL语句中的LACKFIT选项在LOGISTIC中实现。 让我们将其应用于我们刚刚评估的模型。</p>
+<pre><code>PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT=&#39;1&#39;) = blackd whitvic culp / LACKFIT;
+RUN; </code></pre>
+<p>Hosmer-Lemeshow（HL）统计信息的计算方法如下。基于估计的模型，将为所有观测值生成预测的概率。这些文件按大小排序，然后分成大约10个间隔。在每个时间间隔内，通过将预测的概率相加来获得预期的事件数。通过从间隔中的案例数中减去预期的事件数，可以得到预期的非事件数。通过常规的Pearson卡方统计，将这些预期频率与观察到的频率进行比较。自由度是间隔数减去2。高p值（如本例所示）表明拟合模型不能被拒绝，并得出结论：该模型拟合良好。也就是说，无法通过添加非线性和/或交互来显着改善它</p>
+</div>
+</div>
+<div id="probit-modell" class="section level2">
+<h2><span class="header-section-number">19.3</span> Probit Modell</h2>
+<p>The probability <span class="math inline">\(\pi{i}=\mathrm{P}\left(y{i}=1 \mid x{i 1}, \ldots, x{i k}\right)\)</span> and the linear predictor <span class="math inline">\(\eta_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}\)</span> are linked by a response function $<em>{i}=h(</em>{i}) $:</p>
+<p>For Logit-Modell:
+<span class="math display">\[\pi=\frac{\exp (\eta)}{1+\exp (\eta)} \Longleftrightarrow \log \frac{\pi}{1-\pi}=\eta\]</span>
+For Probit-Modell:
+<span class="math display">\[\pi=\Phi(\eta) \Longleftrightarrow \Phi^{-1}(\pi)=\eta\]</span>
+<span class="math display">\[\pi=\Phi(\eta)=\Phi\left(\boldsymbol{x}^{\prime} \boldsymbol{\beta}\right)\]</span></p>
+<div id="r-implemetation" class="section level3">
+<h3><span class="header-section-number">19.3.1</span> R Implemetation</h3>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="logistic-regression.html#cb51-1"></a>mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./01_Datasets/binary.csv&quot;</span>)</span>
+<span id="cb51-2"><a href="logistic-regression.html#cb51-2"></a>mydata<span class="op">$</span>rank &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata<span class="op">$</span>rank)</span>
+<span id="cb51-3"><a href="logistic-regression.html#cb51-3"></a><span class="kw">xtabs</span>(<span class="op">~</span>rank <span class="op">+</span><span class="st"> </span>admit, <span class="dt">data =</span> mydata)</span></code></pre></div>
+<pre><code>##     admit
+## rank  0  1
+##    1 28 33
+##    2 97 54
+##    3 93 28
+##    4 55 12</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="logistic-regression.html#cb53-1"></a>myprobit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit <span class="op">~</span><span class="st"> </span>gre <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>rank, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb53-2"><a href="logistic-regression.html#cb53-2"></a>    <span class="dt">data =</span> mydata)</span>
+<span id="cb53-3"><a href="logistic-regression.html#cb53-3"></a><span class="kw">summary</span>(myprobit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = admit ~ gre + gpa + rank, family = binomial(link = &quot;probit&quot;), 
+##     data = mydata)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6163  -0.8710  -0.6389   1.1560   2.1035  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.386836   0.673946  -3.542 0.000398 ***
+## gre          0.001376   0.000650   2.116 0.034329 *  
+## gpa          0.477730   0.197197   2.423 0.015410 *  
+## rank2       -0.415399   0.194977  -2.131 0.033130 *  
+## rank3       -0.812138   0.208358  -3.898 9.71e-05 ***
+## rank4       -0.935899   0.245272  -3.816 0.000136 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 499.98  on 399  degrees of freedom
+## Residual deviance: 458.41  on 394  degrees of freedom
+## AIC: 470.41
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="logistic-regression.html#cb55-1"></a><span class="kw">confint</span>(myprobit)</span></code></pre></div>
+<pre><code>##                     2.5 %       97.5 %
+## (Intercept) -3.7201050682 -1.076327713
+## gre          0.0001104101  0.002655157
+## gpa          0.0960654793  0.862610221
+## rank2       -0.7992113929 -0.032995019
+## rank3       -1.2230955861 -0.405008112
+## rank4       -1.4234218227 -0.459538829</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="logistic-regression.html#cb57-1"></a><span class="co">## Wald test</span></span>
+<span id="cb57-2"><a href="logistic-regression.html#cb57-2"></a>l &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">0</span>)</span>
+<span id="cb57-3"><a href="logistic-regression.html#cb57-3"></a><span class="kw">wald.test</span>(<span class="dt">b =</span> <span class="kw">coef</span>(myprobit), <span class="dt">Sigma =</span> <span class="kw">vcov</span>(myprobit), <span class="dt">L =</span> l)</span></code></pre></div>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 5.6, df = 1, P(&gt; X2) = 0.018</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="logistic-regression.html#cb59-1"></a><span class="kw">wald.test</span>(<span class="dt">b =</span> <span class="kw">coef</span>(myprobit), <span class="dt">Sigma =</span> <span class="kw">vcov</span>(myprobit), <span class="dt">Terms =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 21.4, df = 3, P(&gt; X2) = 8.9e-05</code></pre>
+</div>
+</div>
+<div id="complementary-log-log-modell" class="section level2">
+<h2><span class="header-section-number">19.4</span> Complementary log-log-Modell</h2>
+<p>The probability <span class="math inline">\(\pi{i}=\mathrm{P}\left(y{i}=1 \mid x{i 1}, \ldots, x{i k}\right)\)</span> and the linear predictor <span class="math inline">\(\eta_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}\)</span> are linked by a response function $<em>{i}=h(</em>{i}) $:</p>
+<p>For Logit-Modell:
+<span class="math display">\[\pi=\frac{\exp (\eta)}{1+\exp (\eta)} \Longleftrightarrow \log \frac{\pi}{1-\pi}=\eta\]</span>
+For Complementary log-log model:
+<span class="math display">\[\pi=1-\exp (-\exp (\eta)) \quad \Longleftrightarrow \quad \log (-\log (1-\pi))=\eta\]</span></p>
+<div id="r-implemetation-1" class="section level3">
+<h3><span class="header-section-number">19.4.1</span> R Implemetation</h3>
+</div>
+</div>
+<div id="multi-category-logit-model" class="section level2">
+<h2><span class="header-section-number">19.5</span> Multi-category logit model</h2>
+<div id="multinomialverteilung" class="section level3">
+<h3><span class="header-section-number">19.5.1</span> Multinomialverteilung</h3>
+<p><span class="math display">\[
+f(\boldsymbol{y} \mid \boldsymbol{\pi})=\pi_{1}^{y_{1}} \cdot \ldots \cdot \pi_{q}^{y_{q}}\left(1-\pi_{1}-\ldots-\pi_{q}\right)^{1-y_{1}-\ldots-y_{q}}
+\]</span>
+given in generalization of the Bernoulli distribution. For m independent repetitions, in generalization to the binomial distribution,<span class="math inline">\(y r, r=1, \ldots, c\)</span> now the number of repetitions in which the category r occurred. Then <span class="math inline">\(\boldsymbol{y}=\left(y 1, \ldots, y_{q}\right)^{\prime}\)</span> has the probability function
+<span class="math display">\[
+\begin{aligned}
+f(\boldsymbol{y} \mid \boldsymbol{\pi}) &amp;=\frac{m !}{y_{1} ! \cdot \ldots \cdot y_{q} !\left(m-y_{1}-\ldots-y_{q}\right) !} \pi_{1}^{y_{1}} \cdot \ldots \cdot \pi_{q}^{y_{q}}\left(1-\pi_{1}-\ldots-\pi_{q}\right)^{1-y_{1}-\ldots-y_{q}} \\
+&amp;=\frac{m !}{y_{1} ! \cdot \ldots \cdot y_{c} !} \pi_{1}^{y_{1}} \cdot \ldots \cdot \pi_{c}^{y_{c}}
+\end{aligned}
+\]</span>
+a multinomial distribution, in short
+<span class="math display">\[
+\boldsymbol{y} \sim M(m, \boldsymbol{\pi})
+\]</span>
+mit den Parametern <span class="math inline">\(\mathrm{m}\)</span> und <span class="math inline">\(\boldsymbol{\pi}=(\pi 1, \ldots, \pi q)^{\prime}\)</span>. Für die ersten beiden Momente ergibt sich
+<span class="math display">\[
+\mathrm{E}(\boldsymbol{y})=m \boldsymbol{\pi}=\left(\begin{array}{c}
+m \pi_{1} \\
+\vdots \\
+m \pi_{q}
+\end{array}\right), \quad \operatorname{Cov}(\boldsymbol{y})=\left(\begin{array}{ccc}
+m \pi_{1}\left(1-\pi_{1}\right) &amp; \cdots &amp; -\pi_{1} \pi_{q} \\
+\vdots &amp; \ddots &amp; \vdots \\
+-\pi_{q} \pi_{1} &amp; \cdots &amp; m \pi_{q}\left(1-\pi_{q}\right)
+\end{array}\right)
+\]</span>
+### Mehrkategoriales Logit-Modell</p>
+<p><span class="math display">\[\mathrm{P}\left(Y_{i}=r \mid \boldsymbol{x}_{i}\right)=\pi_{i r}=\frac{\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right)}{1+\sum_{s=1}^{q} \exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{s}\right)} \quad r=1, \ldots, q\]</span>
+<span class="math display">\[\log \frac{\pi_{i r}}{\pi_{i c}}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r} \quad b z w \cdot \frac{\pi_{i r}}{\pi_{i c}}=\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right), \quad r=1, \ldots, c\]</span></p>
+</div>
+<div id="r-implementation-1" class="section level3">
+<h3><span class="header-section-number">19.5.2</span> R Implementation</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="logistic-regression.html#cb61-1"></a><span class="kw">library</span>(foreign)</span>
+<span id="cb61-2"><a href="logistic-regression.html#cb61-2"></a>ml &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&quot;./01_Datasets/hsbdemo.dta&quot;</span>)</span>
+<span id="cb61-3"><a href="logistic-regression.html#cb61-3"></a><span class="kw">with</span>(ml, <span class="kw">table</span>(ses, prog))</span></code></pre></div>
+<pre><code>##         prog
+## ses      general academic vocation
+##   low         16       19       12
+##   middle      20       44       31
+##   high         9       42        7</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="logistic-regression.html#cb63-1"></a><span class="kw">with</span>(ml, <span class="kw">do.call</span>(rbind, <span class="kw">tapply</span>(write, prog, <span class="cf">function</span>(x) <span class="kw">c</span>(<span class="dt">M =</span> <span class="kw">mean</span>(x), <span class="dt">SD =</span> <span class="kw">sd</span>(x)))))</span></code></pre></div>
+<pre><code>##                 M       SD
+## general  51.33333 9.397775
+## academic 56.25714 7.943343
+## vocation 46.76000 9.318754</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="logistic-regression.html#cb65-1"></a><span class="co">## Multinomial logistic regression</span></span>
+<span id="cb65-2"><a href="logistic-regression.html#cb65-2"></a><span class="kw">library</span>(nnet)</span>
+<span id="cb65-3"><a href="logistic-regression.html#cb65-3"></a>ml<span class="op">$</span>prog2 &lt;-<span class="st"> </span><span class="kw">relevel</span>(ml<span class="op">$</span>prog, <span class="dt">ref =</span> <span class="st">&quot;academic&quot;</span>)</span>
+<span id="cb65-4"><a href="logistic-regression.html#cb65-4"></a>test &lt;-<span class="st"> </span><span class="kw">multinom</span>(prog2 <span class="op">~</span><span class="st"> </span>ses <span class="op">+</span><span class="st"> </span>write, <span class="dt">data =</span> ml)</span></code></pre></div>
+<pre><code>## # weights:  15 (8 variable)
+## initial  value 219.722458 
+## iter  10 value 179.982880
+## final  value 179.981726 
+## converged</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="logistic-regression.html#cb67-1"></a><span class="kw">summary</span>(test)</span></code></pre></div>
+<pre><code>## Call:
+## multinom(formula = prog2 ~ ses + write, data = ml)
+## 
+## Coefficients:
+##          (Intercept)  sesmiddle    seshigh      write
+## general     2.852198 -0.5332810 -1.1628226 -0.0579287
+## vocation    5.218260  0.2913859 -0.9826649 -0.1136037
+## 
+## Std. Errors:
+##          (Intercept) sesmiddle   seshigh      write
+## general     1.166441 0.4437323 0.5142196 0.02141097
+## vocation    1.163552 0.4763739 0.5955665 0.02221996
+## 
+## Residual Deviance: 359.9635 
+## AIC: 375.9635</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="logistic-regression.html#cb69-1"></a><span class="co">## extract the coefficients from the model and exponentiate</span></span>
+<span id="cb69-2"><a href="logistic-regression.html#cb69-2"></a><span class="kw">exp</span>(<span class="kw">coef</span>(test))</span></code></pre></div>
+<pre><code>##          (Intercept) sesmiddle   seshigh     write
+## general     17.32582 0.5866769 0.3126026 0.9437172
+## vocation   184.61262 1.3382809 0.3743123 0.8926116</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="logistic-regression.html#cb71-1"></a><span class="co">## does not include the calculation of the p-value of the regression coefficient, so the Wald test (here z-test) is used to calculate the p-value</span></span>
+<span id="cb71-2"><a href="logistic-regression.html#cb71-2"></a><span class="co">## 2-tailed z test</span></span>
+<span id="cb71-3"><a href="logistic-regression.html#cb71-3"></a>z &lt;-<span class="st"> </span><span class="kw">summary</span>(test)<span class="op">$</span>coefficients<span class="op">/</span><span class="kw">summary</span>(test)<span class="op">$</span>standard.errors</span>
+<span id="cb71-4"><a href="logistic-regression.html#cb71-4"></a>p &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(z), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb71-5"><a href="logistic-regression.html#cb71-5"></a></span>
+<span id="cb71-6"><a href="logistic-regression.html#cb71-6"></a><span class="co"># Use a fitting function to calculate the probability of each result level</span></span>
+<span id="cb71-7"><a href="logistic-regression.html#cb71-7"></a><span class="kw">head</span>(<span class="kw">fitted</span>(test))</span></code></pre></div>
+<pre><code>##    academic   general  vocation
+## 1 0.1482764 0.3382454 0.5134781
+## 2 0.1202017 0.1806283 0.6991700
+## 3 0.4186747 0.2368082 0.3445171
+## 4 0.1726885 0.3508384 0.4764731
+## 5 0.1001231 0.1689374 0.7309395
+## 6 0.3533566 0.2377976 0.4088458</code></pre>
+<p><strong>Interpretation</strong></p>
+<p><span class="math display">\[\begin{aligned} ln\left(\frac{P(prog=general)}{P(prog=academic)}\right) = b_{10} + b_{11}(ses=2) + b_{12}(ses=3) + b_{13}write\\ ln\left(\frac{P(prog=vocation)}{P(prog=academic)}\right) = b_{20} + b_{21}(ses=2) + b_{22}(ses=3) + b_{23}write \end{aligned}\]</span>
+### SAS Implementation</p>
+<p>The unordered multinomial model is invoked by the LINK=GLOGIT option. If this option is omitted, LOGISTIC estimates the cumulative logit, which assumes that the response levels are ordered.</p>
+<pre><code>PROC LOGISTIC DATA=wallet;
+ MODEL wallet = male business punish explain / LINK=GLOGIT;
+RUN; </code></pre>
+<p>There are three types of wallet, (1) keep the wallet and the money, (2) keep the money and return the wallet, or (3) return both the wallet and the money. The default setting category 3 is the reference category. You can specify category 2 as the reference category</p>
+<p><code>MODEL wallet(REF='2') = male business punish explain / LINK=GLOGIT;</code></p>
+<p><strong>Test the null hypothesis using TEST</strong></p>
+<pre><code>PROC LOGISTIC DATA=wallet;
+ MODEL wallet = male business punish explain / LINK=GLOGIT;
+ TEST male_1=male_2, business_1=business_2,
+ punish_1=punish_2, explain_1=explain_2;
+RUN; </code></pre>
+<p><strong>Goodness-of-fit statistics using the AGGREGATE and SCALE=NONE options</strong></p>
+<pre><code>PROC LOGISTIC DATA=wallet;
+ MODEL wallet = male business punish explain / LINK=GLOGIT
+ AGGREGATE SCALE=NONE;
+ OUTPUT OUT=predicted PREDPROBS=I;
+RUN; </code></pre>
+<p>出现OUTPUT语句。它生成一个数据集（名为PREDICTED），其中包含在因变量的每个类别中的预测概率。 该数据集针对195个案例中的每个案例都有一个记录。 PREDPROBS = I选项要求生成三个新变量：IP_1是属于类别1的预测概率，IP_2是属于类别2的预测概率，IP_3是属于类别3的预测概率。 在每个配置文件中这些预测的概率，我们可以获得预期的频率。 我们可以使用PROC TABULATE完成</p>
+<pre><code>PROC TABULATE DATA=predicted;
+ CLASS male business punish explain;
+ var IP_1 IP_2 IP_3;
+ TABLE male*business*punish*explain, IP_1 IP_2 IP_3;
+RUN; </code></pre>
+<div class="figure" style="text-align: center">
+<img src="02_Plots/Logistic_AGGREGATE.png" alt="Figure: Goodness-of-fit statistics" width="100%" />
+<p class="caption">
+(#fig:Logistic AGGREGATE)Figure: Goodness-of-fit statistics
+</p>
+</div>
+<p><strong>Visualizing the effect of a variable</strong></p>
+<p>NOLIMITS option suppresses the 95% confidence bands around the plots</p>
+<pre><code>PROC LOGISTIC DATA=wallet;
+ MODEL wallet = male business punish explain / LINK=GLOGIT;
+ EFFECTPLOT FIT(X=punish) / NOOBS NOLIMITS GRIDSIZE=3;
+RUN; </code></pre>
+</div>
+</div>
+<div id="ordinal-cumulative-logit-model" class="section level2">
+<h2><span class="header-section-number">19.6</span> Ordinal Cumulative Logit Model</h2>
+<p>Cumulative odds logit models are also called proportional odds model or ordinal logit model (Scott et al, 1997), The odds of being less than or equal a particular category can be defined as <span class="math inline">\(\frac{P(Y \le j)}{P(Y&gt;j)}\)</span>
+<span class="math display">\[log \frac{P(Y \le j)}{P(Y&gt;j)} = logit (P(Y \le j)).\]</span>
+<span class="math display">\[logit (P(Y \le j)) = \beta_{j0} – \eta_{1}x_1 – \cdots – \eta_{p} x_p.\]</span>
+<strong>Proportional odds assumption</strong></p>
+<p>The proportional odds assumption is that the number added to each of these logarithms to get the next is the same in every case. In other words, these logarithms form an arithmetic sequence.[2] The model states that the number in the last column of the table—the number of times that that logarithm must be added—is some linear combination of the other observed variables.</p>
+<p>Ordinal logistic regression assumes that the coefficients that describe the relationship between the lowest versus all higher categories of the response variable</p>
+<div id="r-implementation-2" class="section level3">
+<h3><span class="header-section-number">19.6.1</span> R Implementation</h3>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="logistic-regression.html#cb78-1"></a><span class="kw">require</span>(foreign)</span>
+<span id="cb78-2"><a href="logistic-regression.html#cb78-2"></a><span class="kw">require</span>(ggplot2)</span>
+<span id="cb78-3"><a href="logistic-regression.html#cb78-3"></a><span class="kw">require</span>(MASS)</span>
+<span id="cb78-4"><a href="logistic-regression.html#cb78-4"></a><span class="kw">require</span>(Hmisc)</span>
+<span id="cb78-5"><a href="logistic-regression.html#cb78-5"></a><span class="kw">require</span>(reshape2)</span>
+<span id="cb78-6"><a href="logistic-regression.html#cb78-6"></a></span>
+<span id="cb78-7"><a href="logistic-regression.html#cb78-7"></a>dat &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&quot;./01_Datasets/ologit.dta&quot;</span>)</span>
+<span id="cb78-8"><a href="logistic-regression.html#cb78-8"></a><span class="co">## three way cross tabs (xtabs) and flatten the table</span></span>
+<span id="cb78-9"><a href="logistic-regression.html#cb78-9"></a><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>public <span class="op">+</span><span class="st"> </span>apply <span class="op">+</span><span class="st"> </span>pared, <span class="dt">data =</span> dat))</span></code></pre></div>
+<pre><code>##                        pared   0   1
+## public apply                        
+## 0      unlikely              175  14
+##        somewhat likely        98  26
+##        very likely            20  10
+## 1      unlikely               25   6
+##        somewhat likely        12   4
+##        very likely             7   3</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="logistic-regression.html#cb80-1"></a><span class="co">## 检查每个申请级别的gpa分布</span></span>
+<span id="cb80-2"><a href="logistic-regression.html#cb80-2"></a><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> apply, <span class="dt">y =</span> gpa)) <span class="op">+</span></span>
+<span id="cb80-3"><a href="logistic-regression.html#cb80-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">size =</span> <span class="fl">.75</span>) <span class="op">+</span></span>
+<span id="cb80-4"><a href="logistic-regression.html#cb80-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
+<span id="cb80-5"><a href="logistic-regression.html#cb80-5"></a><span class="st">  </span><span class="kw">facet_grid</span>(pared <span class="op">~</span><span class="st"> </span>public, <span class="dt">margins =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb80-6"><a href="logistic-regression.html#cb80-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))<span class="op">+</span></span>
+<span id="cb80-7"><a href="logistic-regression.html#cb80-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/Cumulative%20Logit%20Model-1.png" width="672" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="logistic-regression.html#cb81-1"></a><span class="co">## fit ordered logit model and store results &#39;m&#39;</span></span>
+<span id="cb81-2"><a href="logistic-regression.html#cb81-2"></a><span class="co">## proportional odds logistic regression,</span></span>
+<span id="cb81-3"><a href="logistic-regression.html#cb81-3"></a>m &lt;-<span class="st"> </span><span class="kw">polr</span>(apply <span class="op">~</span><span class="st"> </span>pared <span class="op">+</span><span class="st"> </span>public <span class="op">+</span><span class="st"> </span>gpa, <span class="dt">data =</span> dat, </span>
+<span id="cb81-4"><a href="logistic-regression.html#cb81-4"></a>          <span class="dt">Hess=</span><span class="ot">TRUE</span>)</span>
+<span id="cb81-5"><a href="logistic-regression.html#cb81-5"></a>          <span class="co">## Hess = TRUE，以使模型从优化中返回观察到的信息矩阵（称为Hessian）</span></span>
+<span id="cb81-6"><a href="logistic-regression.html#cb81-6"></a>          <span class="co">## 该矩阵用于获取标准误差</span></span>
+<span id="cb81-7"><a href="logistic-regression.html#cb81-7"></a><span class="kw">summary</span>(m)</span></code></pre></div>
+<pre><code>## Call:
+## polr(formula = apply ~ pared + public + gpa, data = dat, Hess = TRUE)
+## 
+## Coefficients:
+##           Value Std. Error t value
+## pared   1.04769     0.2658  3.9418
+## public -0.05879     0.2979 -0.1974
+## gpa     0.61594     0.2606  2.3632
+## 
+## Intercepts:
+##                             Value   Std. Error t value
+## unlikely|somewhat likely     2.2039  0.7795     2.8272
+## somewhat likely|very likely  4.2994  0.8043     5.3453
+## 
+## Residual Deviance: 717.0249 
+## AIC: 727.0249</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="logistic-regression.html#cb83-1"></a><span class="co">## calculate and store p values</span></span>
+<span id="cb83-2"><a href="logistic-regression.html#cb83-2"></a>ctable &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(m))</span>
+<span id="cb83-3"><a href="logistic-regression.html#cb83-3"></a>p &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="kw">abs</span>(ctable[, <span class="st">&quot;t value&quot;</span>]), <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb83-4"><a href="logistic-regression.html#cb83-4"></a>ctable &lt;-<span class="st"> </span><span class="kw">cbind</span>(ctable, <span class="st">&quot;p value&quot;</span> =<span class="st"> </span>p)    <span class="co">## combined table</span></span>
+<span id="cb83-5"><a href="logistic-regression.html#cb83-5"></a>ctable</span></code></pre></div>
+<pre><code>##                                   Value Std. Error    t value      p value
+## pared                        1.04769010  0.2657894  3.9418050 8.087072e-05
+## public                      -0.05878572  0.2978614 -0.1973593 8.435464e-01
+## gpa                          0.61594057  0.2606340  2.3632399 1.811594e-02
+## unlikely|somewhat likely     2.20391473  0.7795455  2.8271792 4.696004e-03
+## somewhat likely|very likely  4.29936315  0.8043267  5.3452947 9.027008e-08</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="logistic-regression.html#cb85-1"></a><span class="co">## KI und odds ratios</span></span>
+<span id="cb85-2"><a href="logistic-regression.html#cb85-2"></a>ci &lt;-<span class="st"> </span><span class="kw">confint</span>(m)                          <span class="co">## default method gives profiled CIs</span></span>
+<span id="cb85-3"><a href="logistic-regression.html#cb85-3"></a><span class="kw">confint.default</span>(m)                        <span class="co">## CIs assuming normality</span></span></code></pre></div>
+<pre><code>##             2.5 %    97.5 %
+## pared   0.5267524 1.5686278
+## public -0.6425833 0.5250119
+## gpa     0.1051074 1.1267737</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="logistic-regression.html#cb87-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(m))                              </span></code></pre></div>
+<pre><code>##     pared    public       gpa 
+## 2.8510579 0.9429088 1.8513972</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="logistic-regression.html#cb89-1"></a><span class="kw">exp</span>(<span class="kw">cbind</span>(<span class="dt">OR =</span> <span class="kw">coef</span>(m), ci))  </span></code></pre></div>
+<pre><code>##               OR     2.5 %   97.5 %
+## pared  2.8510579 1.6958376 4.817114
+## public 0.9429088 0.5208954 1.680579
+## gpa    1.8513972 1.1136247 3.098490</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="logistic-regression.html#cb91-1"></a><span class="co">## Predict and marginal effects</span></span>
+<span id="cb91-2"><a href="logistic-regression.html#cb91-2"></a><span class="co">## predicted probabilities</span></span>
+<span id="cb91-3"><a href="logistic-regression.html#cb91-3"></a><span class="co">## Use &quot;probs&quot; for predicted probabilities</span></span>
+<span id="cb91-4"><a href="logistic-regression.html#cb91-4"></a>m1.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(m, <span class="dt">type=</span><span class="st">&quot;probs&quot;</span>) </span>
+<span id="cb91-5"><a href="logistic-regression.html#cb91-5"></a><span class="kw">summary</span>(m1.pred)</span></code></pre></div>
+<pre><code>##     unlikely      somewhat likely   very likely     
+##  Min.   :0.2294   Min.   :0.2205   Min.   :0.04192  
+##  1st Qu.:0.5220   1st Qu.:0.3053   1st Qu.:0.06839  
+##  Median :0.5806   Median :0.3378   Median :0.08160  
+##  Mean   :0.5498   Mean   :0.3498   Mean   :0.10040  
+##  3rd Qu.:0.6263   3rd Qu.:0.3767   3rd Qu.:0.10123  
+##  Max.   :0.7376   Max.   :0.4807   Max.   :0.29242</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="logistic-regression.html#cb93-1"></a><span class="co">## marginal effects</span></span>
+<span id="cb93-2"><a href="logistic-regression.html#cb93-2"></a><span class="kw">library</span>(erer)</span>
+<span id="cb93-3"><a href="logistic-regression.html#cb93-3"></a>m.marginal &lt;-<span class="st"> </span><span class="kw">ocME</span>(m, <span class="dt">rev.dum	=</span><span class="ot">TRUE</span>)</span>
+<span id="cb93-4"><a href="logistic-regression.html#cb93-4"></a>m.marginal</span></code></pre></div>
+<pre><code>##        effect.unlikely effect.somewhat likely effect.very likely
+## pared           -0.255                  0.137              0.117
+## public           0.015                 -0.010             -0.005
+## gpa             -0.152                  0.101              0.051</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="logistic-regression.html#cb95-1"></a><span class="co">## want t and p-values</span></span>
+<span id="cb95-2"><a href="logistic-regression.html#cb95-2"></a>m.marginal<span class="op">$</span>out</span></code></pre></div>
+<pre><code>## $ME.unlikely
+##        effect error t.value p.value
+## pared  -0.255 0.060  -4.237   0.000
+## public  0.015 0.073   0.198   0.843
+## gpa    -0.152 0.064  -2.364   0.019
+## 
+## $`ME.somewhat likely`
+##        effect error t.value p.value
+## pared   0.137 0.029   4.820   0.000
+## public -0.010 0.049  -0.196   0.844
+## gpa     0.101 0.044   2.305   0.022
+## 
+## $`ME.very likely`
+##        effect error t.value p.value
+## pared   0.117 0.039   3.025   0.003
+## public -0.005 0.024  -0.201   0.841
+## gpa     0.051 0.022   2.301   0.022
+## 
+## $ME.all
+##        effect.unlikely effect.somewhat likely effect.very likely
+## pared           -0.255                  0.137              0.117
+## public           0.015                 -0.010             -0.005
+## gpa             -0.152                  0.101              0.051</code></pre>
+</div>
+<div id="sas-implementation-1" class="section level3">
+<h3><span class="header-section-number">19.6.2</span> SAS Implementation</h3>
+<p>cumulative logit model—also known as the ordered logit or ordinal logit model 是应用最广泛的方法，也是最容易在SAS中使用的模型(default)。</p>
+<pre><code>PROC LOGISTIC DATA=wallet;
+ MODEL wallet = male business punish explain;
+RUN;</code></pre>
+<p><strong>“Score Test for the Proportional Odds Assumption”</strong></p>
+<p>This is the Chi-Square Score Test for the Proportional Odds Assumption. Since the ordered logit model estimates one equation over all levels of the dependent variable (as compared to the multinomial logit model, which models, assuming low ses is our referent level, an equation for medium ses versus low ses, and an equation for high ses versus low ses), the test for proportional odds tests whether our one-equation model is valid. If we were to reject the null hypothesis, we would conclude that ordered logit coefficients are not equal across the levels of the outcome and we would fit a less restrictive model (i.e., multinomial logit model). If we fail to reject the null hypothesis, we conclude that the assumption holds. For our model, the Proportional Odds Assumption appears to have held.</p>
+</div>
+</div>
+<div id="adjacent-categories-model" class="section level2">
+<h2><span class="header-section-number">19.7</span> Adjacent Categories Model</h2>
+<p>排序类别数据的另一个通用模型是相邻类别模型。如前所述，我们将 <span class="math inline">\(p_{i j}\)</span> 设为个体 <span class="math inline">\(i\)</span> 进入因变量类别 <span class="math inline">\(j\)</span> 的 概率，并假设类别按序列 <span class="math inline">\(j=1, \ldots, J\)</span> 排序。现在取相邻的任何类别对，例如 <span class="math inline">\(j\)</span> 和 <span class="math inline">\(j+1\)</span> 。我们可 以根据解释变量来针对这两个类别之间的对比编写一个logit模型:
+<span class="math display">\[
+\begin{array}{c}
+\log \left(\frac{p_{i, j+1}}{p_{i j}}\right)=\alpha_{j}+\boldsymbol{\beta}_{j} \mathbf{x}_{i} \quad j=1, \ldots, J-1 \\
+\boldsymbol{\beta}_{j} \mathbf{x}_{i}=\beta_{j 1} x_{i 1}+\ldots+\beta_{j k} x_{i k}
+\end{array}
+\]</span>
+为了获得有序数据的相邻类别模型，我们在这组方程上施加了约束。具体而言，我们假设所有的 <span class="math inline">\(\beta_{j}=\beta\)</span> for all <span class="math inline">\(j\)</span> 。换句话说, 不是每个相邻对都有一组不同的系数，而是只有一组。</p>
+<p>尽管相邻类别模型是多项式logit模型的特例，但PROC LOGISTIC不允许施加适当的约束。如果可以将数 据分组到列联表中，则可以使用PROC CATMOD估计模型。但是，CATMOD使用加权最小二乘法而不是 最大似然法。</p>
+<p>CATMOD没有FREQ语句，但是WEIGHT语句执行相同的功能。带有ALOGIT选项的RESPONSE语句为因变 量调用相邻类别的函数。将RESPONSE放在MODEL语句将通知CATMOD估计一组系数，而不是为每对类 别估计一组系数。默认情况下, CATMOD将所有预测变量视为CLASS变量。但是像LOGISTIC一样, CATMOD也使用“效果参数化”对这些变量进行编码。PARAM = REF选项将覆盖默认值以产生指示符变量编 码. 与LOGISTIC不同, CATMOD对模型进行参数化以预测响应变量的较高值而不是较低值。但是, 因为 MARRIED被视为CLASS变量，所以引用类别为1而不是0.</p>
+<p>尽管累积对数模型和相邻类别模型在公式和解释上存在明显差异，但在实践中，这两种模型往往会得出非常相似的结论。我通常更喜欢累积模型，因为它具有吸引人的潜在变量解释能力，并且易于在软件中使用。但是相邻类别模型至少在原则上具有一个优势：容易制定对系数有选择性约束的模型</p>
+<pre><code>PROC CATMOD DATA=happy;
+ WEIGHT count;
+ RESPONSE ALOGIT;
+ MODEL happy = _RESPONSE_ married year / PARAM=REF;
+RUN;</code></pre>
+</div>
+<div id="continuation-ratio-model" class="section level2">
+<h2><span class="header-section-number">19.8</span> Continuation Ratio Model</h2>
+<p>when the ordered categories represent a progression through stages, so that individuals must pass through each lower stage before they go on to higher stages.</p>
+<blockquote>
+<p>当排序的类别代表各个阶段的进展时，这是最合适的，这样个人就必须先经过每个较低的阶段，然后才能进入较高的阶段。 在那些情况下，延续比率模型比其他两个模型更具吸引力。</p>
+</blockquote>
+<p>Formalize the model for J categories on the dependent variable
+将 <span class="math inline">\(A_{i j}\)</span> 定义为个人进入 <span class="math inline">\(j+1\)</span> 阶段的概率
+<span class="math display">\[
+\begin{array}{c}
+A_{i j}=\operatorname{Pr}\left(y_{i}&gt;j \mid y_{i} \geq j\right) \\
+\log \left(\frac{A_{i j}}{1-A_{i j}}\right)=\alpha_{j}+\boldsymbol{\beta} \mathbf{x}_{i} \quad j=1, \ldots, J-1
+\end{array}
+\]</span>
+where <span class="math inline">\(\boldsymbol{\beta} \mathbf{x}_{i}=\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}\)</span>.
+<span class="math display">\[
+\log \left(\frac{A_{i j}}{1-A_{i j}}\right)=\log \left[\frac{\sum_{m=j+1}^{J} p_{i m}}{p_{i j}}\right]
+\]</span></p>
+<p>我们可以使用普通的二进制logit过程来估算这个模型。 诀窍在于构建数据集。对于每个阶段，您都将构建一个数据集，该数据集将所有未进入该阶段的个人排除在外，并使用一个虚拟因变量来指示该个人是否进入下一阶段。 现在，我们将这些数据集合并为一个单独的集合，而不是进行单独的分析，其中包括一个指示数据来自哪个阶段的变量。 最后，我们估计组合数据上的单个二进制logit模型。</p>
+<p><span class="math display">\[
+\begin{array}{lcc|ccc}
+\hline &amp; &amp; \text { Father&#39;s } &amp; \text { Grammar } &amp; \text { Some High } &amp; \text { High School } \\
+\text { Race } &amp; \text { Age } &amp; \text { Education* } &amp; \text { School } &amp; \text { School } &amp; \text { Graduate } \\
+\hline \text { White } &amp; &lt;22 &amp; 1 &amp; 39 &amp; 29 &amp; 8 \\
+&amp; &amp; 2 &amp; 4 &amp; 8 &amp; 1 \\
+&amp; &amp; 3 &amp; 11 &amp; 9 &amp; 6 \\
+&amp; &amp; 4 &amp; 48 &amp; 17 &amp; 8 \\
+&amp; \geq 22 &amp; 1 &amp; 231 &amp; 115 &amp; 51 \\
+&amp; &amp; 2 &amp; 17 &amp; 21 &amp; 13 \\
+&amp; &amp; 3 &amp; 18 &amp; 28 &amp; 45 \\
+&amp; &amp; 4 &amp; 197 &amp; 111 &amp; 35 \\
+\text { Black } &amp; &lt;22 &amp; 1 &amp; 19 &amp; 40 &amp; 19 \\
+&amp; &amp; 2 &amp; 5 &amp; 17 &amp; 7 \\
+&amp; &amp; 3 &amp; 2 &amp; 14 &amp; 3 \\
+&amp; \geq 22 &amp; 4 &amp; 49 &amp; 79 &amp; 24 \\
+&amp; &amp; 1 &amp; 110 &amp; 133 &amp; 103 \\
+&amp; &amp; 2 &amp; 18 &amp; 38 &amp; 25 \\
+&amp; &amp; 3 &amp; 11 &amp; 25 &amp; 18 \\
+&amp; &amp; 4 &amp; 178 &amp; 206 &amp; 81 \\
+\hline
+\end{array}
+\]</span></p>
+<pre><code>DATA afqt;
+ INPUT white old faed ed count @@;
+ DATALINES;
+1 0 1 1 39
+1 0 1 2 29
+1 0 1 3 8
+1 0 2 1 4
+1 0 2 2 8
+1 0 2 3 1
+1 0 3 1 11
+1 0 3 2 9
+1 0 3 3 6
+1 0 4 1 48
+1 0 4 2 17
+1 0 4 3 8
+1 1 1 1 231
+1 1 1 2 115
+1 1 1 3 51
+1 1 2 1 17
+1 1 2 2 21
+1 1 2 3 13
+1 1 3 1 18
+1 1 3 2 28
+1 1 3 3 45
+1 1 4 1 197
+1 1 4 2 111
+1 1 4 3 35
+0 0 1 1 19
+0 0 1 2 40
+0 0 1 3 19
+0 0 2 1 5
+0 0 2 2 17
+0 0 2 3 7
+0 0 3 1 2
+0 0 3 2 14
+0 0 3 3 3
+0 0 4 1 49
+0 0 4 2 79
+0 0 4 3 24
+0 1 1 1 110
+0 1 1 2 133
+0 1 1 3 103
+0 1 2 1 18
+0 1 2 2 38
+0 1 2 3 25
+0 1 3 1 11
+0 1 3 2 25
+0 1 3 3 18
+0 1 4 1 178
+0 1 4 2 206
+0 1 4 3 81
+;
+
+##  first stage
+DATA first;
+ SET afqt;
+ stage=1;
+ advance = ed GE 2;
+RUN; 
+
+## second stage
+DATA second;
+ SET afqt;
+ stage=2;
+ IF ed=1 THEN DELETE;
+ advance = ed EQ 3;
+RUN; 
+
+## concatenated into a single set
+DATA concat;
+ SET first second;
+RUN; 
+
+## Alternatively
+DATA combined;
+ SET afqt;
+ stage=1;
+ advance = ed GE 2;
+ OUTPUT;
+ stage=2;
+ IF ed=1 THEN DELETE;
+ advance = ed EQ 3;
+ OUTPUT;
+RUN; 
+
+## estimate the model with PROC LOGISTIC:
+PROC LOGISTIC DATA=combined;
+ FREQ count;
+ CLASS faed / PARAM=REF;
+ MODEL advance(EVENT=&#39;1&#39;)=stage white old faed / AGGREGATE
+ SCALE=NONE;
+RUN;</code></pre>
+<p>关于延续比率方法，还有其他几点值得注意。</p>
+<ul>
+<li>首先，在合并的数据集中，同一个人可能会出现多次。对于教育示例，每个拥有高中的人都对合并后的数据集做出了两个观察。通常，由于多个观测值之间可能存在依赖关系，因此会产生危险信号。但是绝对没有依赖性的问题。对于每个人，将特定结果的概率计入一组条件概率，这些条件概率的结构与独立观察的结构相同。</li>
+<li>其次，延续比率法与离散时间法用于生存分析密切相关。在这种情况下，目标是建模直到发生某个事件为止的时间长度，并以离散单位（例如年）为单位来测量时间。</li>
+<li>第三，正如存在累积概率和累积互补对数-对数模型一样，人们可以使用概率或互补对数-对数函数轻松估计延续比率模型(probit or complementary log-log functions)。互补对数对数模型对于事件历史记录应用特别有吸引力，因为它是Cox回归中使用的比例风险模型的离散时间等效项</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="advanced-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/20-Logistic-Regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
