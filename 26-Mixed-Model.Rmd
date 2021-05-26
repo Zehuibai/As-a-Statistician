@@ -1,1 +1,581 @@
 # Mixed Model 
+
+## Introduction
+
+### Correlated response data
+
+> 在前面，假设对不同个体的观察是独立的。在本章中，我们将考虑在一段时间，空间或不同治疗条件下对同一个人重复收集多个观察值的情况。这种观察称为重复测量。在这些模型中，假设对不同个体的观察结果是不相关的。但是，每个人的观察都被建模为相关的。通过引入加性随机项，将这种潜在的相关性包括在模型中。因此，与通常的预测变量（称为固定效应预测变量）一起，模型还包含随机变量（称为随机效应术语）。通常将这种模型称为混合效应线性回归模型
+
+> 混合模型使我们能够考虑数据中的聚类。 如果这全部被使用，相对于我们忽略数据结构的情况，我们将拥有更准确的推断。 我们可以获得更多。 我们更好地了解了目标变量的可变性来源。 我们还可以获取模型中参数的特定于组的估计，从而使我们能够准确地了解各组之间的差异。 此外，这反过来又允许进行组特定的预测，因此可以进行更准确的预测，假设存在因聚类而产生的明显差异。
+
+1. Repeated measurements: 
+
+> 重复的测量可以定义为在多个场合并可能在不同的实验条件下观察到每个实验单位或受试者的反应变量的数据。在这种情况下，重复测量之间的整体相关性结构应足够灵活，以反映每个对象收集测量值的序列性质，同时还要考虑与特定于对象的随机效应相关的可能相关性。
+
+> 重复测量的一种特殊情况是纵向数据，它是在几个时间点收集的数据。纵向数据的特殊性在于重复测量之间的时间不一定相等。在这种情况下，兴趣通常集中在建模和比较随时间变化的趋势上。因此，纵向数据通常会表现出某种形式的序列相关，就像人们对时间序列数据所期望的那样。
+
+> 另外，还可以对由随机效应结构引起的相关性进行建模，该随机效应结构允许对象内部和对象之间的差异。
+
+2. Clustered data 
+
+> 当将观察结果以某种自然方式分组为聚类时，就会产生聚类的依存数据，从而导致趋于相关的聚类内数据。 通常，通过随机效应模型的说明来说明由聚类引起的相关性，在随机效应模型中，使用特定于聚类的随机效应来区分聚类内部和聚类之间的变异性。 在某些情况下，可能存在不止一个级别的聚类，从而形成了多级随机效应结构的规范。
+
+* Such as Paired data 
+    + Studies on twins where each pair serves as a natural cluster. 
+    + Ophthalmology studies where a pair of eyes serves as a cluster.
+    
+3. Spatially correlated data 
+
+> 当观测同时包含响应变量和与该响应变量关联的位置矢量时，就会发生空间相关的数据。位置矢量描述获得测量响应的位置或位置。所测得的响应之间的接近程度决定了它们之间的相关程度。格点数据（其测量值链接到离散区域（例如，乡镇，县等），而不是某个连续的坐标系）也被认为是空间相关的，通常从诸如普查数据，社会经济数据，和健康数据。
+
+
+### Hierarchical and Marginal model
+
+The general linear mixed model can be written as:
+
+$$
+\begin{array}{c}
+\mathbf{Y}_{i}=X_{i} \beta+Z_{i} \mathbf{b}_{i}+\epsilon_{i} \\
+\mathbf{b}_{i} \sim N(\mathbf{0}, D) \quad \text { und } \quad \epsilon_{i} \sim N\left(0, \Sigma_{i}\right)
+\end{array}
+$$
+und $\mathbf{b}_{1}, \ldots, \mathbf{b}_{N}, \epsilon_{1}, \ldots, \epsilon_{N}$ stoch. unabhängig sind Dies kann umgeschrieben werden als **Hierarchical model**
+$$
+\mathbf{Y}_{i} \mid \mathbf{b}_{i}=N\left(X_{i} \beta+Z_{i} \mathbf{b}_{i}, \Sigma_{i}\right), \quad \mathbf{b}_{i} \sim N(\mathbf{0}, D)
+$$
+One often assumes that $\Sigma_{i}$ only depends on the dimension of $i$ i.e. that the unknown parameters in $\Sigma_{i}$ are independent on $i$ 
+(仅取决于 $i$ 的维数, 未知参数 $\Sigma_{i}$ 独立于 $i$ )
+
+**Marginal model**
+
+The following marginal model follows from the hierarchical model:
+$$\mathbf{Y}_{i} \sim N\left(X_{i} \beta, Z_{i} D Z_{i}^{T}+\Sigma_{i}\right)$$
+The hierarchical model implies the marginal model, the reverse is not generally true: $\quad V_{i}=Z_{i} D Z_{i}^{T}+\Sigma_{i}$
+
+### MLE in Marginal model
+
+$$
+\mathbf{Y}=\left(\begin{array}{c}
+\mathbf{Y}_{1} \\
+\vdots \\
+\mathbf{Y}_{N}
+\end{array}\right), \quad \mathbf{V}=\operatorname{diag}\left(V_{1}, \ldots, V_{N}\right), \quad \mathbf{X}=\left(\begin{array}{c}
+X_{1} \\
+\vdots \\
+X_{N}
+\end{array}\right)
+$$
+假设 $\alpha$ 是 $q(q+1) / 2$ 的不同元素的矢量, 分别是 $D$ 和 $\Sigma_{i}$ 中的所有元素然后矩阵 $\mathbf{V}$ 取决于 $\alpha$, 因此我
+们将 $\mathbf{V}(\alpha)$ -这允许将边际模型写为
+$$
+\mathbf{Y} \sim N(\mathbf{X} \beta, \mathbf{V}(\alpha))
+$$
+The Log-Likelihood-Kern is
+$$I(\beta, \alpha)=-\frac{1}{2}\left\{|\mathbf{V}(\alpha)|+(\mathbf{Y}-\mathbf{X} \beta)^{T} \mathbf{V}(\alpha)^{-1}(\mathbf{Y}-\mathbf{X} \beta)\right\}$$
+给定 $\alpha$ (因为它是一个一般的线性模型)，因此将 $\beta$ 的ML估计量作为Aitken估计量给出:
+$$
+\hat{\beta}(\alpha)=\left(\mathbf{X}^{T} \mathbf{V}(\alpha)^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{T} \mathbf{V}(\alpha)^{-1} \mathbf{Y}
+$$
+通过将 $\hat{\alpha}$ 的公式插入对数似然内核并最大化 $\hat{\beta}$ 中的结果函数，可以确定 $\alpha$ (Nullstelle des Scores例如通过
+费舍尔评分) Der MLE für $\beta$ ergibt sich dann durch einsetzen von $\hat{\alpha}$ in obige Formel $(\hat{\beta}(\hat{\alpha}))$
+
+**Problem of MLE**
+
+最大似然估计在估计混合效应模型里的固定效应和随机效应（方差成分）时，采用迭代交互估计固定效应和方差的方法。估计方差时需要有个参考点，这个参考点就是固定效应，比如均值。
+所以MLE先估计固定效应，然后估计方差成分。采用EM或IGLS迭代法去估计。先估计固定效应，此时假定对任何观测的方差或随机效应缺失。然后基于固定效应再去估计方差，依次迭代，直到估计值不再变化为止。
+
+估计固定效应，这就意味着在估计方差时把固定效应视为已知并且固定，此时会出现两个问题
+
+1. 第一固定效应的变异没有考虑
+2. 第二估计固定效应时消耗的自由度没有考虑
+
+大样本时，这两个问题都不是问题，**小样本时这两个问题对估计方差有比较大的影响**。
+均值的总体方差计算时采用“各个X值减去总体均值的平方和”作分子，分母用N；样本方差计算时采用“各个X值减去样本均值的平方和”作分子，分母用N-1（因为均值是估计出来的，所以此时需要惩罚）；而ML估计就类似于总体方差的估计，但是实际中却用了样本均值，分子却用了N，没有用N-1。大样本时估计值相差无几，小样本时相差很大。这会导致估计出来的方差偏小，导致固定效应的标准误偏小，从而导致一类错误膨胀。
+
+
+
+### REML in Marginal model
+
+REML类似于“N-1”版本的MLE，把方差进行了校正。REML把估计固定效应和方差的过程分开，
+在小样本时可以更准确的估计方差，由此得到更准确的固定效应的标准误，从而控制一类错误膨胀。
+
+REML的第一步是忽略层次结构，先通过  ordinary least squares (OLS) 得到残差. OLS残差和原始结果具有同样的条件方差（基于X变量）。用OLS残差估计方差时固定效应被限制为0，
+所以REML估计方差成分时无需考虑考虑固定效应。
+
+第二步是估计固定效应。采用GLS通过matrix multiplication的方法估计固定效应，
+即把REML估计出的方差成分放入Generalized least squares (广义最小二乘法)中去估计固定效应
+
+PROC MIXED和PROC GLIMMIX都提供模型效果的最大似然估计（缩写MLE）以及方差分量的REML估计。 REML代表残差（或受限）最大可能性（Patterson和Thompson 1971）。基于似然的方法的基本优势是它的适应性。对于随机块模型，方差分析和基于似然方法的结果相同，
+但是对于大多数情况，方差分析不能应用于比随机块稍复杂的情况，而基于似然的方法可以应用于任意复杂的情况。
+REML默认方差估计方法。可以通过在PROC MIXED中使用METHOD = ML或在PROC GLIMMIX中使用METHOD = MSPL来获得ML方差估计。ML方差估计所得的方差估计将小于相应的REML估计，并且所得的置信区间将更窄，
+而检验统计量将更大。这反映了众所周知的事实，即方差成分的ML估计值向下偏。
+
+For example, in the one-sample case, when $y_{1}, y_{2}, \ldots, y_{n}$ is a random sample from $\mathrm{N}\left(\mu, \sigma^{2}\right)$, the ML estimate of the variance is as follows:
+$$
+\sum_{i}\left(y_{i}-\bar{y}\right)^{2} / n
+$$
+whereas the sample variance - which is the simplest REML variance estimate-is as follows:
+$$
+\sum_{i}\left(y_{i}-\bar{y}\right)^{2} /(n-1)
+$$
+后者是无偏见的，通常被视为首选方差估计。可以很容易地看出，使用ML方差估计会导致1型错误率上升 (对于标称 $a=0.05$, 拒绝率高达25\%)， 并且置信区间覆盖率不足。
+
+```
+proc mixed data=bond method=reml;
+ class ingot metal;
+ model pres=metal;
+ random ingot;
+run;
+
+proc glimmix data=bond method=rspl;
+ class ingot metal;
+ model pres=metal;
+ random ingot;
+run;
+```
+
+### Variance correction
+
+#### Kackar-Harville correction
+
+在小样本情况下，固定效应的方差成分 (可以理解为标准误) 估计是不准确的，无论是MLE还是REML。更 进一步说，在计算固定效应的p-value时，需要用到的fisher information和中心极限定理 (asympotics) 在 小样本下会失效, 导致方差估计偏低, 从而导致一类错误膨胀。有学者指出用Bayesian方法可以解决这个 问题 (贝叶斯方法不依赖于asympotics)，但是Kackar-Harville以及后来的Kendward-roger通过校正方羞 的方式在频率学派内部得到解决。
+
+Kackar-Harville发现了如下公式, 固定效应的方差等于固定效应样本估计值的REML方差估计值加上小样本 偏差。
+$$
+\operatorname{Var}(\gamma)=\operatorname{Var}^{R E M L}(\hat{\gamma})+\text { Small Sample Bias }
+$$
+从KH到KR的一系列研究都是针对如何估计small sample bias的。KH发现, Small sample bias (SSB) 的 估计需要用到方差成分的总体值 (而非样本估计值) ; 接着他们采用了Taylor series expansion方法用方差 和协方差成分的样本估计值去渐进估计了SSB; 之后Prasad-Rao, Harville-Jeske在KH的基础上，进一步扩 展和发展了该方法。所以这个校正有时也被称为Prasad-Rao-Jeske-kackar-Harville correction.
+
+#### Kendward-Roger correction
+
+KR进一步发现“固定效应样本估计值的REML方差估计值"在小样本下也有问题, 也就是REML在估计固定效 应时直接用估计出的方差放入GLS估计方程去估计固定效应，此时并没有考虑方差成分本身的变异, 而是直 接把其视为已知并且固定。KR进一步用泰勒公式展开去估计“固定效应样本估计值的REML方差估计值", 此 时考虑了在估计固定效应时的方差成分是估计值并且不是已知的这个事实。小样本情况下, 采用t检验而非 Z检验 (多元情况对应的是卡方检验而非F检验)。
+
+- K第一步相当于是针对“t=固定效应/残差"中的残差给出了准确的估计
+- 第二步是计算准确的自由度。在混合效应模型中，自由度的计算公式往往不存在，此时难以估计出准 确的自由度。KR采用了矩估计匹配方法 (method of moments matching procedure)，此时的估计更 加准确, 有时候甚至会出现分数形式的自由度。
+
+
+### Hypothesis tests
+
+#### Wald Test
+
+关于固定效应的假设是最重要的。在最简单的情况下，测试相应的第j个效应的显着性。假设 \beta 近似正态 分布, 可以在 $\beta$ j的 (近似 $)$ 置信区间的帮助下进行测试。如果dj处于此置信区间之外, 则对于给定的显着 性水平a拒绝H0。
+$$
+\begin{array}{c}
+H_{0}: \beta_{j}=d_{j} \text { gegen } H_{1}: \beta_{j} \neq d_{j} \\
+t_{j}=\frac{\hat{\beta}_{j}-d_{j}}{\hat{\sigma}_{j}}
+\end{array}
+$$
+其中 $\hat{\sigma}_{j}$ 是 $\hat{\boldsymbol{\beta}}$ 的近似协方差矩阵的 $j$ -th个对角元素的根。即使假设 $\gamma$ 和 $\varepsilon$ 的正态分布，通常希望 $t_{j}$ 对 于大样本近似为标准正态, 并在 $\left|t_{j}\right|>z_{1-\alpha / 2}$ 的情况下拒绝 $\$ H_{-}\{0\} \$$ \$
+更一般形式的线性假设
+$$
+H_{0}: \boldsymbol{C} \boldsymbol{\beta}=\boldsymbol{d} \text { gegen } H_{1}: \boldsymbol{C} \boldsymbol{\beta} \neq \boldsymbol{d}
+$$
+$$
+W=(\boldsymbol{C} \hat{\boldsymbol{\beta}}-\boldsymbol{d})^{\prime}\left(\boldsymbol{C}^{\prime} \boldsymbol{A}_{11} \boldsymbol{C}\right)^{-1}(\boldsymbol{C} \hat{\boldsymbol{\beta}}-\boldsymbol{d})
+$$
+The approximate covariance matrices are given by
+$$\widehat{\operatorname{Cov}}(\hat{\boldsymbol{\beta}})=\boldsymbol{A}_{11}=\left\{\sum_{i=1}^{m} \boldsymbol{X}_{i}^{\prime} \hat{\boldsymbol{V}}_{i}^{-1} \boldsymbol{X}_{i}\right\}^{-1}$$
+
+### Residual Structure
+
+标准线性回归模型的最简单设置中，我们具有恒定的方差而没有协方差。
+$$
+\Sigma = 
+\left[
+\begin{array}{ccc} 
+\sigma^2 & 0   & 0   \\
+0   & \sigma^2 & 0   \\
+0   & 0   & \sigma^2 \\
+\end{array}\right]
+$$
+
+
+```{r Residual-Structure, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Residual Structure in the mixed model"}
+knitr::include_graphics("./02_Plots/Residual_Structure.png")
+```
+
+每个块代表与个体内观察有关的协方差矩阵。在人内，对角线上有方差，非对角线上有协方差。当考虑整个数据时，我们可以看到一个人的观察与另一个人没有协方差（灰色）。此外，人内的协方差是恒定值，方差也是恒定值。
+
+此模型中有两个方差来源，即剩余观察水平方差和与人有关的方差。结合起来，它们提供了我们尚未使用协变量捕获的总残差。在这种情况下，大约是我们对角线显示的值0.12。非对角线是归因于学生的方差，我们将其交替解释为类内相关性（除以总方差会将其转换为相关性度量）。
+
+| group    | effect    | variance | sd    | var_prop |
+|----------|-----------|----------|-------|----------|
+| student  | Intercept | 0.064    | 0.252 | 0.523    |
+| Residual |  Content  | 0.058    | 0.241 | 0.477    |
+
+放宽等方差的假设，并分别进行估计。例如，在这种异质方差的情况下，我们可能会看到随时间变化的或多或少的变化。(relax the assumption of equal variances, and estimate each separately.)
+
+$$
+\Sigma = 
+\left[
+\begin{array}{ccc} 
+\sigma_1^2 & 0   & 0   \\
+0   & \sigma_2^2 & 0   \\
+0   & 0   & \sigma_3^2 \\
+\end{array}\right]
+$$
+
+
+
+更一般地，参考先前的估计方差符号，我们可以看到协方差矩阵（针对群集）如下。(covariance structure of compound symmetry 复合对称的协方差结构)
+
+$$
+\Sigma = 
+\left[
+\begin{array}{ccc} 
+\color{orange}{\sigma^2 + \tau^2} & \tau^2   & \tau^2  & \tau^2 & \tau^2 & \tau^2   \\
+\tau^2   & \color{orange}{\sigma^2 + \tau^2} & \tau^2 & \tau^2 & \tau^2 & \tau^2    \\
+\tau^2   & \tau^2   & \color{orange}{\sigma^2 + \tau^2} & \tau^2 & \tau^2 & \tau^2  \\
+\tau^2   & \tau^2   & \tau^2 & \color{orange}{\sigma^2 + \tau^2} & \tau^2 & \tau^2\\
+\tau^2   & \tau^2   & \tau^2  & \tau^2 & \color{orange}{\sigma^2 + \tau^2}  & \tau^2 \\
+\tau^2   & \tau^2   & \tau^2  & \tau^2   & \tau^2  & \color{orange}{\sigma^2 + \tau^2} \\
+\end{array}\right]
+$$
+ 
+假设我们实际上是想了解基本的协方差/相关性。切换到相关性表示法，仍然可以将方差视为常数或单独估算。 ρ 表示观察值之间的残差相关性。估计所有时间点对的相关性都不同（具有恒定的方差）。 通常将其描述为非结构化或简单的“对称”相关结构。
+$$
+\Sigma = \sigma^2
+\left[
+\begin{array}{ccc} 
+1 & \rho_1   & \rho_2   \\
+\rho_1   & 1 & \rho_3   \\
+\rho_2   & \rho_3   & 1 \\
+\end{array}\right]
+$$
+另一个非常常用的相关结构（用于基于时间的设置）是自相关结构，滞后阶数为1。 这意味着我们假设相隔一个时间点的残差与某个值相关 ρ ，相隔两个时间点的观察结果相关 ρ^2^
+$$
+\Sigma = \sigma^2
+\left[
+\begin{array}{cccc} 
+1 & \rho     & \rho^2   & \rho^3   \\
+\rho     & 1 & \rho     & \rho^2   \\
+\rho^2   & \rho     & 1 & \rho     \\
+\rho^3   & \rho^2   & \rho     & 1 \\
+\end{array}\right]
+$$
+
+### Converge problems
+
+> 模型无法收敛，这时候需要简化模型，使其收敛：针对模型无法收敛的问题，首先我们最终选取的模型要符合两个标准：1.可以收敛；2.不能过度拟合。(增大模型的迭代次数：无论增大迭代次数后，全模型是否可以收敛，都查看其随机效应. 相关接近1或-1，表明模型过度拟合，应该精简模型的随机斜率。)
+
+> 会出现介于0.9到1之间的Corr，0.9以上的可以认定为过度拟合；
+
+1. 先删除最高阶的交互作用，因为只要有最高阶的交互作用，删除其他作用对模型没有影响(Barr D. J., 2013)；
+2. 删除交互作用后，如果仍不能收敛，请继续删除，这时如果两个主效应的Corr都大于0.9，请先删除Corr较大的那个；
+3- 删除较大的主效应后如果仍然不能收敛，保留较大Corr的主效应，删除Corr较小的主效应（如果两个主效应的Corr都大于0.9，不能直接删掉它们，因为随机斜率彼此相互影响，删掉一个，其他的Corr都会相应改变），以此类推，直至探索到符合上面两条标准的模型。
+4. 进行随机斜率筛选的时候，请保持最大迭代次数和全模型相同，这样方便比较模型的差异。
+
+
+## Random Slope and Intercept Model  
+
+**This structure assumes that the errors are independent, and thus is termed an independent structure.**
+
+$$
+\Sigma = 
+\left[
+\begin{array}{ccc} 
+\sigma_1^2 & 0   & 0   \\
+0   & \sigma_2^2 & 0   \\
+0   & 0   & \sigma_3^2 \\
+\end{array}\right]
+$$
+
+
+### Model Introduction
+
+Suppose data are collected longitudinally at times $t_{1}, \ldots, t_{p} .$ For each individual $i, i=1, \ldots, n$, at time $t_{j}, j=1, \ldots, p$, the observations are $x_{1 i j}, \ldots, x_{k i j}, y_{i j}$
+The random slope and intercept model is defined as
+$$
+y_{i j}=\beta_{0}+\beta_{1} x_{1 i j}+\cdots+\beta_{k} x_{k i j}+\beta_{k+1} t_{j}+u_{1 i}+u_{2 i} t_{j}+\varepsilon_{i j}
+$$
+where
+
+- $u_{1 i}$ 's are independent $\mathcal{N}\left(0, \sigma_{u_{1}}^{2}\right)$ random intercepts,
+- $u_{2 i}$ 's are independent $\mathcal{N}\left(0, \sigma_{u_{2}}^{2}\right)$ random slopes,
+- and $\varepsilon_{i j}$ 's are independent $\mathcal{N}\left(0, \sigma^{2}\right)$ errors that are also independent of $u_{1 i}$ 's and $u_{2 i}$ 's
+
+It is assumed that $\operatorname{Cov}\left(u_{1 i}, u_{2 i}\right)=\sigma_{u_{1} u_{2}}$, and $\operatorname{Cov}\left(u_{1 i}, u_{2 i^{\prime}}\right)=0$ for $i \neq i^{\prime}$
+预测变量 $x_{1}, \ldots, x_{k}$ 具有固定影响, 而随机截距 $u_{1}$ 和斜率 $u_{2}$ 具有随机影响。同样值得注意的是, 预测 变量 $x 1, \ldots, x k$ 可能会随时间变化。
+$\operatorname{Cov}\left(y_{i j}, y_{i^{\prime} j^{\prime}}\right)=0, i \neq i^{\prime}$, 意味着在任何时间点, 针对不同个人的响应都是不相关的。还可以表明,
+同一个人在不同时间点之间的响应可能是相关的, 因为 $\operatorname{Cov}\left(y_{i j}, y_{i j^{\prime}}\right)=\sigma_{u_{1}}^{2}+\sigma_{u_{1} u_{2}}\left(t_{j}+t_{j^{\prime}}\right)+\sigma_{u_{2}}^{2} t_{j} t_{j^{\prime}}$ for $j \neq j^{\prime}$. 此外, 可以验证响应变量 $y_{i j}$
+与均值呈正态分布 $y_{i j}$
+$$\mathbb{E}(y)=\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{k} x_{k}+\beta_{k+1} t$$
+$$\operatorname{Var}\left(y_{i j}\right)=\sigma_{u_{1}}^{2}+2 \sigma_{u_{1} u_{2}} t_{j}+\sigma_{u_{2}}^{2} t_{j}^{2}+\sigma^{2}$$
+
+
+
+### SAS Implementation
+
+```
+## short-and-wide form to the long-form data set
+data cholesterol;
+input id gender$ age LDL0 LDL6 LDL9 LDL24 @@;
+cards;
+1 M 50 73 71 80 85 2 F 72 174 164 139 112
+3 M 46 85 86 82 90 4 F 71 172 150 139 127
+5 F 75 186 177 153 145 6 F 68 184 169 153 138
+7 F 63 196 188 163 155 8 M 73 137 137 132 104
+9 M 59 135 120 106 106 10 M 60 111 110 100 76
+11 F 59 127 126 106 99 12 M 46 88 87 84 80
+13 F 67 176 150 156 153 14 F 52 155 135 128 120
+15 M 65 142 117 114 97 16 F 75 158 143 145 135
+17 F 57 148 131 138 102 18 M 58 125 111 118 124
+19 M 48 76 65 94 98 20 M 47 116 108 94 107
+21 F 53 191 185 162 113 22 F 73 167 165 162 140
+23 M 62 109 104 93 94 24 F 77 167 164 155 155
+25 M 55 103 94 75 78 26 F 74 122 126 105 111
+27 F 79 203 204 178 145
+;
+
+data longform;
+set cholesterol;
+array m[4] (0 6 9 24);
+array c[4] LDL0 LDL6 LDL9 LDL24;
+do i=1 to 4;
+month=m[i];
+LDL=c[i];
+output;
+end;
+keep id gender age month LDL;
+run;
+
+## construct a histogram with fitted bell-shaped curve and
+   conduct normality testing
+proc univariate data=longform;
+var LDL;
+histogram LDL/normal;
+run;
+
+## fit a random slope and intercept model
+proc mixed data=covtest:
+class gender;
+model LDL=gender age month/solution;
+random intercept month/subject=id type=un;
+run;
+
+Covariance Parameter Estimates
+Cov Parm Estimate Pr Z
+UN(1,1) 520.17 0.0013
+UN(2,1) -16.3953 0.0087
+UN(2,2) 0.7846 0.0028
+Residual 69.8556 <.0001
+```
+
+- The outpm= produces prediction of the response $y$ for each row in the data set. If a new prediction
+is desired, the case must be added to the data set.
+- Specification of type=un, an unstructured type of variance-covariance matrix, requests an estimate of
+the covariance $\sigma_{u_{1} u_{2}}$.
+- In the output, the estimators of $\sigma_{u_{1}}^{2}, \sigma_{u_{1} u_{2}}, \sigma_{u_{2}}^{2}$, and $\sigma^{2}$ are termed UN $(1,1)$, UN $(2,1)$, UN $(2,2)$ and Residual, respectively.
+
+
+### R Implementation
+ 
+#### Model with one random intercept effekct
+
+```{r one-random-intercept,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library("lme4")
+library("lmerTest")
+library("dplyr")
+load("./01_Datasets/gpa.RData")
+
+## Standard regression
+gpa_lm = lm(gpa ~ occasion, data = gpa)  
+summary(gpa_lm)
+
+## Run a mixed model, taking into account the specific effects of the students
+## (1 | student) means that the intercept allowed to be expressed by 1 varies from student to student
+gpa_mixed = lmer(gpa ~ occasion + (1 | student), data = gpa)
+summary(gpa_mixed)
+
+## Another way to interpret the variance output is to record the student variance as a percentage of the total variance, which is 0.064 / 0.122 = 52%.
+## This is also called intra-class correlation because it is also an estimate of intra-cluster correlation
+
+## Profile confidence intervals      
+confint(gpa_mixed)
+## 随机效果和随机拦截（即拦截+随机效果）
+ranef(gpa_mixed)$student %>% head(5)
+
+## 不允许场合发生变化，对所有学生而言，这是一个固定的影响
+coef(gpa_mixed)$student %>% head(5)
+
+## 这些影响非常感兴趣，并希望对它们产生某种不确定性
+library(merTools)
+predictInterval(gpa_mixed)   # 用于各种模型预测，可能带有新数据
+REsim(gpa_mixed)             # 随机效应估计的均值，中位数和标准差
+plotREsim(REsim(gpa_mixed))  # 绘制间隔估计
+
+## 预测 不要使用随机效应re.form = NA
+predict(gpa_mixed, re.form=NA) %>% head()
+
+## R outputs AIC and BIC values automatically. The AICC value has to be computed as
+## AICC <- -2*logLik(gpa_mixed)+2*p*n/(n-p-1)
+```
+
+#### Model with random intercept and slpoe effects
+
+
+```{r random-intercept-slpoe,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+gpa_mixed =  lmer(gpa ~ occasion + (1 + occasion | student), data = gpa)
+summary(gpa_mixed)
+``` 
+
+
+## Random Slope and Intercept Model with Covariance Structure
+
+### Model Introduction
+
+In the random slope and intercept model introduced before, the variance-covariance matrix for the error terms has a diagonal structure. It is of the form $\sigma^{2} \mathbb{I}$, where $\mathbb{I}$ denotes a $n p \times n p$ identity matrix, with ones on the main diagonal and zeros everywhere else. This structure assumes that the errors are independent, and thus is termed an independent structure.
+
+The random slope and intercept models with other structures for the variance-covariance matrix of the error terms can be considered. The most general is an unstructured one with an $n p \times n p$ block-diagonal
+matrix with $n$ identical blocks of size $p \times p$ of the form:
+$$
+\left[\begin{array}{ccccc}
+\sigma_{1}^{2} & \sigma_{12} & \sigma_{13} & \ldots & \sigma_{1 p} \\
+\sigma_{12} & \sigma_{2}^{2} & \sigma_{23} & \ldots & \sigma_{2 p} \\
+\sigma_{13} & \sigma_{23} & \sigma_{3}^{2} & \ldots & \sigma_{3 p} \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+\sigma_{1 p} & \sigma_{2 p} & \sigma_{3 p} & \ldots & \sigma_{p}^{2}
+\end{array}\right]
+$$
+
+* 如果数据集的大小允许，则应使用带有误差项的非结构化方差协方差矩阵的模型。 该模型不对结构进行任何假设，并允许每个参数的估计取其自身的值。
+* 如果数据集的大小太小而无法适合一般的非结构化方差协方差矩阵，则可以尝试几种稀疏但有意义的结构。
+
+The first model has the blocks in the variance-covariance matrix that have constant values on
+each of the descending diagonals, that is, the matrix has the form:
+$$
+\left[\begin{array}{ccccc}
+\sigma^{2} & \sigma_{1} & \sigma_{2} & \ldots & \sigma_{p-1} \\
+\sigma_{1} & \sigma^{2} & \sigma_{1} & \ldots & \sigma_{p-2} \\
+\sigma_{2} & \sigma_{1} & \sigma^{2} & \ldots & \sigma_{p-3} \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+\sigma_{p-1} & \sigma_{p-2} & \sigma_{p-3} & \ldots & \sigma^{2}
+\end{array}\right]
+$$
+Using this structure implies that observations that are the same number of time points apart are equally correlated. There are a total of $p$ unknown parameters $\sigma^{2}, \sigma_{1}, \ldots, \sigma_{p-1} .$ This model is said to have the Toeplitz covariance structure, which is sometimes referred to as an
+autoregressive-moving average $\operatorname{ARMA}(1,1)$ structure.
+
+
+Another model with useful structure of the variance-covariance matrix relies on the fact that
+typically as time goes on, observations become less correlated with the earlier ones. In this model, each block in the variance-covariance matrix has $\sigma^{2} \rho^{\left|t_{i}-t_{j}\right|}$ in the $i j$ -th cell,
+$i, j=1, \ldots, p$, that is, it looks like this:
+$$
+\sigma^{2}\left[\begin{array}{ccccc}
+1 & \rho^{\left|t_{1}-t_{2}\right|} & \rho^{\left|t_{1}-t_{3}\right|} & \ldots & \rho^{\left|t_{1}-t_{p}\right|} \\
+\rho^{\left|t_{1}-t_{2}\right|} & 1 & \rho^{\left|t_{2}-t_{3}\right|} & \ldots & \rho^{\left|t_{2}-t_{p}\right|} \\
+\rho^{\left|t_{1}-t_{3}\right|} & \rho^{\left|t_{2}-t_{3}\right|} & 1 & \ldots & \rho^{\left|t_{3}-t_{p}\right|} \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+\rho^{\left|t_{1}-t_{p}\right|} & \rho^{\left|t_{2}-t_{p}\right|} & \rho^{\left|t_{3}-t_{p}\right|} & \ldots & 1
+\end{array}\right]
+$$
+Here $\sigma^{2}$ and $\rho$ are the unknown constants, $|\rho|<1$. Note that in this matrix the entries
+decrease as the distance between times $t_{i}$ and $t_{j}$ increases. 这种形式的矩阵称为空间幕矩
+阵，因此该模型具有误差项的空间幕方差-协方差结构。
+
+
+
+o A special case of this model is when the times are equal to $\$ 1,2,3$, Vidots, $\mathrm{p} \$$. Then the \$p $\mathrm{p}$ \$ blocks of the variance-covariance matrix become:
+$$
+\sigma^{2}\left[\begin{array}{ccccc}
+1 & \rho & \rho^{2} & \ldots & \rho^{p-1} \\
+\rho & 1 & \rho & \ldots & \rho^{p-2} \\
+\rho^{2} & \rho & 1 & \ldots & \rho^{p-3} \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+\rho^{p-1} & \rho^{p-2} & \rho^{p-3} & \ldots & 1
+\end{array}\right]
+$$
+This model is said to have an autoregressive variance-covariance structure of the error terms,
+referring to an AR(1) model, an autoregressive time series model with lag one that has the same
+covariance structure. Note that the autoregressive matrix is a special case of both Toeplitz and
+spatial power matrices.
+
+
+The last model that we introduce here is the model with compound symmetric (or exchangeable) variance-covariance matrix of the error terms. In this matrix, all variances are assumed to be equal to $\sigma^{2}$, and all correlations are assumed to be equal to $\rho$. That is, the matrix has the form:
+$$
+\sigma^{2}\left[\begin{array}{ccccc}
+1 & \rho & \rho & \ldots & \rho \\
+\rho & 1 & \rho & \ldots & \rho \\
+\rho & \rho & 1 & \ldots & \rho \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+\rho & \rho & \rho & \ldots & 1
+\end{array}\right]
+$$
+这种方差-协方差结构更适合在各种治疗条件下 (而不是纵向) 进行重复测量的情况, 因为假定所 有观察值均具有同等相关性
+
+
+### SAS Implementation
+
+`repeated / subject=id name type=covtype name r;`
+
+- Covariance structures in the option type= are un (unstructured), toep (Toeplitz), sp(pow)(time_name) (spatial power), ar(1) (autoregressive), or cs (compound symmetric).
+- By specifying the option $r$ we request that SAS outputs an estimated individual block of the
+variance-covariance matrix of the error terms, labeling it Estimated R Matrix for Subject 1 .
+- Estimated correlation coefficient $\rho$ in the output is labeled SP(POW) (spatial power), AR (1)
+(autoregressive), or CS (compound symmetric).
+
+```
+/*fitting random slope and intercept model with 
+  unstructured covariance matrix of error terms*/
+proc mixed covtest;
+    class gender;
+    model LDL=gender age month/solution;
+    random intercept month/subject=id type=un;
+    repeated/subject=id type=un r;
+run;
+
+/*fitting random slope and intercept model with
+  Toeplitz covariance matrix of error terms*/
+proc mixed covtest;
+    class gender;
+    model LDL=gender age month/solution;
+    random intercept month/subject=id type=un;
+    repeated / subject=id type=toep r;
+run;
+```
+
+### R Implementation
+
+A structure can be specified by adding `correlation=` to the syntax within thelme()function. The choices are:
+
+```
+corSymm() (unstructured),
+corARMA(form=∼ 1|id.name, p=1, q=1) (Toeplitz),
+corCAR1(form=∼1|id.name) (spatial power),
+corAR1(form=∼1|id.name) (autoregressive),
+corCompSymm(form=∼1|id.name) (compound symmetric).
+```
+
+lme4至少不能以一种简单的方式无法对残差协方差结构进行建模。要估算异构方差，我们需要使用其他权重参数。 以下内容将使每个occasion点都具有唯一的估计。
+
+
+```{r ,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+### Heterogeneous variance
+library(nlme)
+heterovar_res = lme(
+  gpa ~ occasion,
+  data = gpa,
+  random = ~ 1 | student,
+  weights = varIdent(form = ~ 1 | occasion)
+)
+summary(heterovar_res)
+
+
+### Autocorrelation
+corr_res = lme(
+  gpa ~ occasion,
+  data = gpa,
+  random = ~ 1 | student,
+  correlation = corAR1(form = ~ occasion)
+)
+summary(corr_res)
+## nlme输出中有一个名为Phi的新参数，它表示我们的自相关Phi
+```
+
+## Generalized Estimating Equations Model
+
+
+In the GEE model, there are no random-effects terms. Instead, the response variable relates to the predictors via the generalized linear regression model with only fixed-effects terms, and the variance-covariance structure of the response variable itself is specified, rather than that for the error terms.
+
+See more under GEE
+
+

@@ -1,4 +1,4 @@
-# Proc Sqplot
+# Proc Sqplot (In Processing)
 
 
 ## ODS
@@ -176,7 +176,7 @@ ods _all_ close;
 
 
 
-### 增加预测曲线
+### Add predict curve
 
 ```
 proc sgplot data=a;  
@@ -188,7 +188,7 @@ run;
 
 
 
-### 分组
+### grouping
 
 ```
 proc sgplot;

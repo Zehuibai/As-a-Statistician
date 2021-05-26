@@ -1,3 +1,888 @@
 # Data Management in SAS
 
+## Array
 
+### Defining
+
+`array array-name {n} <$><length> <array-elements> <(initial-value-list)>;`
+
+$$
+\begin{array}{|l|l|}
+\hline \text { Component } & \text { Description } \\
+\hline \text { array-name } & \text { a valid SAS name that will be used to identify the group of variables } \\
+\hline \mathrm{n} & \begin{array}{l}
+\text { a subscript that refers to the number of elements or variables in the array that should be enclosed in either } \\
+\text { parentheses ( ), braces }\{\} \text { , or brackets [ ] }
+\end{array} \\
+\hline \$ & \text { a component added to the statement to specify that the elements within the array are of character type } \\
+\hline \text { length } & \text { a common length of the elements in the array } \\
+\hline \text { array-elements } & \text { a list of the variables to be part of the array that must be all the same type, either all numeric or all character } \\
+\hline \text { initial-value-list } & \text { a list of initial values for each of the array elements } \\
+\hline
+\end{array}
+$$
+
+**simple examples**
+
+* `array charsamp {5} $ 10 varc1 varc2 varc3 varc4 varc5;`
+* `array numsamp (*) var1 var2 var3;`
+* `array initsamp [2] $ init1 init2 (‘A’, ‘B’);`
+
+**Using Arrays in simple iterative DO loop**
+
+```
+do i=1 to 5;
+if numsamp[i] =. then numsamp[i] = 0;
+end;
+
+do i=1 to dim(numsamp);
+if numsamp[i] =. then numsamp[i] = 0;
+end;
+```
+
+### Format multiple variables
+
+
+```
+data sample_sae2;
+set sample_sae1;
+ array saen {*} _aesdth _aeslife _aeshosp _aesdisab _aescong _aesmie;
+ array saec {*} $1 aesdth aeslife aeshosp aesdisab aescong aesmie;
+ do i=1 to dim(saec);
+ if saen{i} = 1 then saec{i} = 'Y';
+ else if saen{i} = 0 then saec{i} = 'N';
+ end;
+run;
+```
+
+Custom Formats
+
+```
+proc format;
+value YN
+1 = 'Y'
+0 = 'N';
+run;
+
+do i=1 to dim(saec);
+if ~missing(saen{i}) then saec{i} = put(saen{i},yn.);
+end;
+```
+
+Format the summary statistics
+
+
+```
+length contivar	$200.
+			   n_c mean_c  std_c	min_c	q1_c	median_c	q3_c	max_c	$100.;
+		contivar ="";
+
+		array stat_num	{*} n nmiss	mean 	std 	min 	q1 		median 		q3 		max;
+		array stat_char	{*} n_c nmiss_c mean_c  std_c	min_c	q1_c	median_c	q3_c	max_c;
+        
+        *** make sure only variable no mis, otherwise variable miss is uninitialized;
+		if n ne .      then		n_c 	  =	strip(put(round(n,1.),8.));
+		if nmiss ne .  then		nmiss_c	  =	strip(put(round(nmiss,1.),8.));
+		if mean ne .   then		Mean_c    = strip(put(round(mean,0.001),8.3));
+		if std ne .    then		Std_c  	  = strip(put(round(std,0.001),8.3));
+		if min ne .    then		Min_c  	  = strip(put(round(min,0.01),8.2));
+		if q1 ne .     then		Q1_c   	  = strip(put(round(q1,0.001),8.3));
+		if median ne . then		Median_c  = strip(put(round(median,0.001),8.3));
+		if Q3 ne .     then		Q3_c      = strip(put(round(q3,0.001),8.3));
+		if Max ne .    then		Max_c     = strip(put(round(max,0.01),8.2));
+		if nmiss ne .  then		nmiss_p   = divide (nmiss,_freq_);
+		if nmiss ne .  then		nmiss_p_c = "^R/RTF'\ql' " ||" " || strip("(" || put(round (nmiss_p*100,0.1),5.1) || ")");
+
+		do stat=1 to dim(stat_char);
+			if 		stat_num[stat] ge  100 then stat_char[stat] = "^R/RTF'\qr' " 	  || strip(stat_char[stat]); 
+			else if stat_num[stat] ge   10 then stat_char[stat] = " ^_^R/RTF'\qr' "   || strip(stat_char[stat]); 
+			else if stat_num[stat] ge    0 then stat_char[stat] = " ^_^_^R/RTF'\qr' " || strip(stat_char[stat]); 
+			else if stat_num[stat] le -100 then stat_char[stat] = "^R/RTF'\qr' "      || strip(stat_char[stat]);
+			else if stat_num[stat] le  -10 then stat_char[stat] = "^R/RTF'\qr' "	  || strip(stat_char[stat]);
+			else if stat_num[stat] ge   -1 then stat_char[stat] = "^_^R/RTF'\qr' "    || strip(stat_char[stat]);
+		end;
+```
+
+### 2*2 arrays
+
+```
+data anon_D06_glossary;
+	LENGTH 	Description $200.;
+	*** 6 Groups (COLs), max. 4 Subgroups (ROWs);
+	array grps_subgrps{5,6} (		0	1	2	3	4	5
+									01	11	21	31	41	51
+									.	12	22	32	.	.
+									.	.	.	33	. 	.
+									.	.	.	34	. 	.);
+	do i = 1 to dim2(grps_subgrps);
+		IF grps_subgrps[1,i] EQ &GROUP. THEN DO;
+			do j = 2 to dim1(grps_subgrps);
+					if grps_subgrps[j,i] ne . then do;
+						Description = &label.;
+						GROUP = grps_subgrps[1,i];
+						SUBGROUP = grps_subgrps[j,i];
+						output;
+					end;
+			end;
+		END;
+	end;
+	drop grps_subgrps: i j;
+	set anon_D06_fmt (in = a);
+run; 
+```
+
+### Dynamic Element List using Macro Variables
+
+```
+proc sql noprint;
+select distinct NAME into :NEWFLAGS separated by " "
+from dictionary.columns
+where libname = "WORK" and memname = "SAMPLEPROC1" and
+ upcase(NAME) contains "_FLAG";
+quit;
+
+array newfl {*} &newflags.;
+```
+
+### Carry over values
+
+```
+array visit{*} visit_:;
+ do i=2 to dim(visit);
+  if missing(visit{i}) then visit{i} = visit{i-1};
+ end;
+```
+
+## Retain
+
+### Change from Basilne
+
+```
+data data_a;																	
+			set data_b;
+			by RD_IOL_TYP subject_id eye Visit;		
+
+	        *** calculate the CFB and CFM1;
+			retain baseline baseline2;
+			if first.eye then do;
+				baseline = .;
+				baseline2=.;
+			end;
+
+			if first.eye and &var. ne . then do;
+				if Visit = 1 then baseline = &var.;
+			end;
+
+			if VISIT = 5 and &var. ne . then do;
+				baseline2 = &var.;
+			end;
+
+			if &var. ne . then do;
+				if baseline ne . or baseline2 ne .  then do;
+					if VISIT = 5 and baseline ne .  then CFB1  = &var. - baseline;
+					*** split CFB off, better for report;
+					if VISIT = 6 and baseline ne .  then CFB2  = &var. - baseline;				
+					if VISIT = 6 and baseline2 ne . then CFM1  = &var. - baseline2;
+				end;
+			end;
+			keep RD_IOL_TYP subject_id eye visit &var. CFB1 CFB2 CFM1 ITT PP;
+run;
+```
+
+## Variable Names and Types
+
+### Convert all numeric to char*
+
+```
+/*** macro to convert all numeric to char ***/
+%macro vars(ds_in, ds_out);
+  %let list=;
+  %let type=;
+  %let dsid=%sysfunc(open(&ds_in));
+  %let cnt=%sysfunc(attrn(&dsid,nvars));
+   %do i = 1 %to &cnt;
+    %let list=&list %sysfunc(varname(&dsid,&i));
+    %let type=&type %sysfunc(vartype(&dsid,&i));
+   %end;
+  %let rc=%sysfunc(close(&dsid));
+  data &ds_out(drop=
+    %do i = 1 %to &cnt;
+     %let temp=%scan(&list,&i);
+       _&temp
+    %end;);
+   set &ds_in(rename=(
+    %do i = 1 %to &cnt;
+     %let temp=%scan(&list,&i);
+       &temp=_&temp
+    %end;));
+    %do j = 1 %to &cnt;
+     %let temp=%scan(&list,&j);
+   /** Change C to N for numeric to character conversion  **/
+     %if %scan(&type,&j) = N %then %do;
+   /** Also change INPUT to PUT for numeric to character  **/
+      ***&temp=PUT(_&temp,8.);
+	  &temp=strip(vvalue(_&temp));
+     %end;
+     %else %do;
+      &temp=_&temp;
+     %end;
+    %end;
+  run;
+%mend vars;
+
+%vars(VENUS_L12_2_4_1_D02, VENUS_L12_2_4_1_D03)
+```
+
+### Get all the numeric variable names
+
+```
+proc transpose data=VENUS_L12_2_4_1_D02(obs=0) out=charvars;
+ var _character_;
+ run;
+proc transpose data=VENUS_L12_2_4_1_D02(obs=0) out=numvars;
+ var _numeric_;
+ run;
+
+proc sql noprint;
+ select _name_ into :charvars separated by ' '
+ from charvars;
+ select _name_ into :numvars separated by ' '
+ from numvars;
+ quit;
+ run;
+
+%put NOTE: CHARVARS=&charvars;
+%put NOTE: NUMVARS=&numvars;
+
+proc sql noprint;
+ select sub_reference into :subnum1 - :subnum4
+ from VENUS_T8_2_3_6_D03a_sub;
+ select sub_reference into :subnum separated by ',' 
+ from VENUS_T8_2_3_6_D03a_sub;
+ quit;
+run;
+%put &subnum1.;
+%put &subnum.;
+```
+
+**Alternative**
+
+```
+data want_num(keep=_NUMERIC_) want_char(keep=_CHARACTER_);
+    set SASHELP.class;
+run;
+proc sql;
+  create table char as
+    select *
+      from sashelp.class (keep=_char_)
+  ;
+  create table num as
+    select *
+      from sashelp.class (keep=name _numeric_)
+  ;
+quit;
+```
+ 
+
+
+### Write all variable names as macro variables
+
+Concatenate multiple cols into a single value
+
+```
+%macro M_VariableName_Content (ds_in, name, count_var, dataset_var); 
+%macro HL; %mend HL;
+
+%global &&count_var.;
+%global &&dataset_var.;
+
+proc contents data = &ds_in. out = &ds_in._content noprint; run;
+proc sort data = &ds_in._content
+    out = &ds_in._content (keep = &NAME.);
+    by VARNUM;
+run;
+
+*** count the number of variable;
+data _null_; 
+    set &ds_in._content end=eof;
+    retain counter 0;
+    counter = counter + 1;
+    if eof then call symputx("&count_var.", counter);
+run;
+
+proc transpose data = &ds_in._content out = &ds_in._content; var &NAME.; run;
+data &ds_in._content;
+    length concat $1000.;
+    set &ds_in._content;
+    concat = catx(" ", of COL1-COL&n_col_count.);
+    call symput("&dataset_var.", concat);
+run;
+
+proc datasets library=work;
+   delete &ds_in._content;
+run;
+
+%mend M_VariableName_Content;
+```
+
+
+**Alternative**: creating a long list of variable names based on an abbreviated one 
+
+```
+/***************************************************
+   slist: an abbreviated list of variable names
+          can be any SAS variable list
+   flist: a global macro variable that is the
+          expanded variable name list
+***************************************************/
+%macro varlist(data, slist);
+  data _tiny_;
+    set &data;
+	keep &slist;
+  run;
+proc sql noprint;
+  select name into :myvarlist separated by " "
+  from sashelp.vcolumn
+  where libname="WORK" and memname="_TINY_";
+quit;
+%let flist = &myvarlist;
+%mend;
+data test;
+  array v(10);
+  do j = 1 to 5;
+  do i = 1 to 10;
+    v(i) = i*5*j;
+	ind = (i*j >30);
+	end;
+  output;
+  end;
+run;
+%global flist;
+%varlist(test, v:);
+%put &flist;
+
+################################
+%put &flist;
+v1 v2 v3 v4 v5 v6 v7 v8 v9 v10
+```
+
+### Write all observations as macro variable
+
+```
+*** Alternative1;
+data _null_;
+	set sashelp.class;
+	suffix=put(_n_,5.);
+	call symput(cats('Name',suffix), Name);
+run;
+
+*** Alternative2;
+proc sql noprint;
+	select Name
+	into :Name1-:Name19
+	from SAShelp.class;
+quit;
+
+*** Alternative3;
+proc sql noprint;
+	select count(*)
+	into :NObs
+	from SAShelp.class;
+	select Name
+	into :Name1-:Name%left(&NObs)
+	from SAShelp.class;
+quit; 
+
+*** do a separate analysis for each macro variabe;
+%macro doit;
+	%do i=1 %to &NObs;
+		%put # # # Processing &&Name&i # # #;
+		%* ---- Analysis Code Goes Here ----- *;
+	%end;
+%mend;
+%doit;
+
+
+MANY MACRO VARIABLES
+data _null_;
+	set sashelp.class;
+	suffix=put(_n_,5.);
+
+	array xxx{*} _numeric_;
+	do i =1 to dim(xxx);
+	  *** VNAME returns the name of the specified variable;
+	  call symput(cats(vname(xxx[i]),suffix),xxx[i]);
+	end;
+
+	array yyy{*} $ _character_;
+	do i =1 to dim(yyy);
+	  call symput(cats(vname(yyy[i]),suffix),yyy[i]);
+	end;
+run; 
+%put &weight1;
+
+
+%macro doit;
+%let id=%sysfunc(open(sashelp.class));
+%let NObs=%sysfunc(attrn(&id,NOBS));
+%syscall set(id);
+%do i=1 %to &NObs;
+ %let rc=%sysfunc(fetchobs(&id,&i));
+ %put # # # Processing &Name # # #;
+ %* ---- Analysis Code Goes Here ----- *;
+
+
+ %end;
+%let id=sysfunc(close(&id));
+%mend; 
+```
+
+### Rename some variables
+
+```
+data faminc;
+  input famid faminc1-faminc12 ;
+cards;
+1 3281 3413 3114 2500 2700 3500 3114 -999 3514 1282 2434 2818
+2 4042 3084 3108 3150 -999 3100 1531 2914 3819 4124 4274 4471
+3 6015 6123 6113 -999 6100 6200 6186 6132 -999 4231 6039 6215
+;
+run;
+
+%macro rename1(oldvarlist, newvarlist);
+  %let k=1;
+  %let old = %scan(&oldvarlist, &k);
+  %let new = %scan(&newvarlist, &k);
+     %do %while(("&old" NE "") & ("&new" NE ""));
+      rename &old = &new;
+	  %let k = %eval(&k + 1);
+      %let old = %scan(&oldvarlist, &k);
+      %let new = %scan(&newvarlist, &k);
+  %end;
+%mend;
+
+data a ;
+  set faminc;
+  %rename1(faminc1 faminc2, a b);
+run;
+
+proc print data = a heading= h noobs;
+run;
+```
+
+### Rename with suffix
+
+```
+data faminc;
+  input famid faminc1-faminc12 ;
+cards;
+1 3281 3413 3114 2500 2700 3500 3114 -999 3514 1282 2434 2818
+2 4042 3084 3108 3150 -999 3100 1531 2914 3819 4124 4274 4471
+3 6015 6123 6113 -999 6100 6200 6186 6132 -999 4231 6039 6215
+;
+run;
+
+%macro rename2(oldvarlist, suffix);
+  %let k=1;
+  %let old = %scan(&oldvarlist, &k);
+     %do %while("&old" NE "");
+      rename &old = &old.&suffix;
+	  %let k = %eval(&k + 1);
+      %let old = %scan(&oldvarlist, &k);
+  %end;
+%mend;
+
+data a ;
+  set faminc;
+  %rename2(faminc1 faminc2, _new);
+run;
+proc print data = a heading= h noobs;
+run;
+```
+
+
+
+### Rename array variables
+
+```
+data faminc;
+  input famid faminc1-faminc12 ;
+cards;
+1 3281 3413 3114 2500 2700 3500 3114 -999 3514 1282 2434 2818
+2 4042 3084 3108 3150 -999 3100 1531 2914 3819 4124 4274 4471
+3 6015 6123 6113 -999 6100 6200 6186 6132 -999 4231 6039 6215
+;
+run;
+
+%macro rename3(oldprefix, newprefix, num);
+  %let k=1;
+     %do %while(&k <= &num);
+      rename &oldprefix.&k  = &newprefix.&k;
+	  %let k = %eval(&k + 1);
+  %end;
+%mend;
+
+data a ;
+  set faminc;
+  %rename3(faminc, oldfaminc, 11);
+run;
+proc print data = a heading= h noobs;
+run;
+```
+
+
+
+## Check exists for validation
+
+### Check datasets exists
+
+```
+%macro exist（dsn=）；
+　　%global exist；
+　　%if %sysfunc（exist（&dsn．）） %then %let exist=YES；
+　　%else %let exist=NO；
+%mend exist；
+%exist（dsn=Test）；
+%put &exist.;
+```
+
+### Check datasets and Variables
+
+```
+%macro CheckDsVar(ds =, var =);
+  %local dsid check rc;
+  %let dsid = %sysfunc(open(&ds.));
+  %if  &dsid=0 %then %DO; 
+      %put  Warning: Dataset &ds. is not exist!;  
+      %ABORT; 
+  %END; 
+  %else  %do;
+	  %let check = %sysfunc(varnum(&dsid., &var.));
+	  %let rc = %sysfunc(close(&dsid.));
+	  %if &check. = 0 %then   %DO ;
+          %put Warning: Variable &var is not exists!; 
+          %ABORT; 
+      %END;
+	  %if &check. ne 0 %then   %DO ;
+          %put Congratulations! Variable &var is exists!; 
+      %END;
+  %end;
+%mend CheckDsVar;
+%CheckDsVar (ds =sashelp.class, var=height);
+```
+
+
+
+### Check datasets if empty
+
+```
+*** Check if the dataset is empty;
+proc sql;
+	select count(*) into: nobs 
+	from work.VENUS_T8_1_3_1_D01_&in.;
+quit;
+%put &nobs.;
+```
+
+Alternative
+
+```
+*** Check if table is empty;
+%let dsid=%sysfunc(open(&ds.));
+%let nobs=%sysfunc(attrn(&dsid.,nlobs));
+%let dsid=%sysfunc(close(&dsid.));
+%IF &nobs. eq 0 %then %do;
+*** If table is empty, create dummy observation;
+	data &ds.; 
+		retain description order1 n_lara p_lara n_tecn p_tecn "";
+		retain order1 0;
+	run;
+%END;
+```
+
+**Deal with empty in proc report**
+
+```
+	%if &nobs. eq 0 %then %do;
+			compute after;
+				line 'No device deficiencies occurred during this investigation.^n';
+			endcomp;
+		%end;
+		%else %if &nobs. ne 0 %then %do;
+     	compute before ;									
+		line ' ';
+	    endcomp;
+	    compute after order1;
+		line ' ';
+	    endcomp;
+		%end;
+```
+
+### %sysfunc get the observations
+
+```
+%macro getNobsOf(data);
+proc sql noprint;
+	select count(*) into: nobs
+	from &data;
+quit;
+%mend;
+
+%global nobs;
+%getNobsOf(sashelp.class);
+%put &nobs;
+
+
+
+/* version 2 */
+%macro getNobsOf(data); 
+%local dsid;
+%local nobs;
+%local rc;
+
+%let dsid = %sysfunc(open(&data));
+%let nobs = %sysfunc(attrn(&dsid, nobs));
+%let rc   = %sysfunc(close(&dsid));
+
+&nobs
+%mend getNobsOf;
+
+%let nobs = %getNobsOf(sashelp.class);
+%put &nobs;
+```
+
+
+## Proc Transpose
+
+### _numeric_
+
+```
+proc transpose data=have out=t;
+by id name firmid;
+var _numeric_;
+run;
+```
+
+### In processing
+
+
+## Clean Up
+
+### Basic setting
+
+
+**Cleaning OUTPUT SCREEN and LOG**
+
+```
+dm log "clear";
+dm output "clear";
+```
+Alternatively, you can use a different DM statement that will not only clear the output screen but will also remove any leftover “residue” in the results window.
+
+`dm ‘odsresults’ clear;`
+
+**Cleaning LIBNAME references**
+
+`libname &&new&i clear;`
+ 
+**Cleaning TITLES and FOOTNOTES**
+
+`title1; footnote1;`
+
+### Delete datasets
+
+**Deleting with PROC SQL**
+
+```
+proc sql;
+drop table work.Venus_t8_2_3_9_2_d03_:,  work.Venus_t8_2_3_9_2_d04_:;
+quit;
+```
+
+**Deleting with PROC DELETE**
+
+```
+proc delete data=work.Venus_t8_2_3_9_2_d03 work.Venus_t8_2_3_9_2_d04;
+run;
+```
+
+**Deleting with PROC Datasets**
+
+```
+proc datasets lib=work nolist;
+	delete Venus_t8_2_3_9_2_d03_: ;
+quit;
+```
+
+**Delete All Data Sets from a Library**
+
+```
+proc datasets library=library-name kill nolist;
+quit;
+```
+
+### Deleting Formats
+
+**Delete Numeric Format**
+
+```
+proc format;
+	value eye
+		1 = "OD"
+		2 = "OS";
+	value visit
+		1 ="Screening"
+		2 ="Surgery"
+		3 ="D1"
+		4 ="W1"
+		5 ="M1"
+		6 ="M4-6"
+		99 ="Unscheduled";
+run;
+	
+proc catalog catalog=work.formats;
+	delete visit.format  eye.format ;
+run;
+```
+
+**Delete Character Format**
+
+```
+proc format;
+	value $ enrolled 
+		'n_Screened' = 'Screened'
+		'n_enrolled' = 'Randomized'
+		'n_screen_failure' = 'Randomization failure'
+		'n_implanted_1' = '1^{super st} eye implanted'
+		'n_implanted_2' = '2^{super nd} eye implanted'
+		'n_One_eye_eligible' = 'Only one eligible eye'
+		'n_SES' = 'Safety population'
+		'n_ITT' = 'modified Intention to Treat population'
+		'n_PP' = 'Per-protocol population^n'
+		'n_completed_study' = 'Completed study'
+		'n_discontinued' ='Discontinued^n'
+		other=[$250.];		
+run;
+
+
+proc catalog catalog=work.formats;
+	delete Enrolled.formatc;
+run;
+```
+
+### Remove assigned formats
+
+**format _all_ will delete all the formats in the SAS dataset.**
+
+```
+PROC DATASETS lib=work;
+MODIFY dsn;
+FORMAT _all_;
+INFORMAT _all_;
+RUN;
+QUIT;
+```
+
+**remove only the formats and informats of specific variables in the SAS dataset.**
+
+```
+Proc DataSets Lib = Work;
+Modify dsn;
+Format heigt weight sex;
+Run ;
+Quit ;
+```
+
+**delete formats/informats of all character or numeric variables**
+
+```
+proc datasets lib=work;
+modify dsn;
+format _char_; *format _num_;
+run;
+Quit;
+```
+
+
+### Delete macro variables
+
+```
+%macro deleteALL;
+   	options nonotes;
+  	%local vars;
+  	proc sql noprint;
+      	     select name into: vars separated by ' '
+         	  from dictionary.macros
+            	      where scope='GLOBAL' 
+			   and not name contains 'SYS_SQL_IP_' and not name contains ('STUDY') 
+			   and not name contains ('REPORT') and not name contains ('SPONSOR')
+			   and not name contains ('SYSRANDOM')
+			   ;
+   	quit;
+ 	%put &vars.;
+   	%symdel &vars;
+ 
+   	options notes;
+   	%put NOTE: Macro variables deleted.;
+ 
+%mend deleteALL;
+```
+
+**Alternative**
+
+```
+proc sql noprints;
+    select name into:mymacrovars separated by ''
+	from dictionary.macros
+	where scope = 'GLOBAL';
+quit;
+%symdel &mymacrovars mymacrovars;
+```
+
+### Delete Macro
+
+**With specifying the macro**
+
+```
+proc catalog cat=work.sasmacr;
+    delete macro_name / et=macro;
+quit;
+
+proc catalog catalog = work.sasmacr kill force; run;
+```
+
+**Reset all %macro**
+
+```
+/****************************************************************************
+Reset all %macro: Deletes a macro definition from the Work.SASMacr catalog.;
+
+Use DELETE parameter to list macro names to delete.
+Use KEEP parameter to list macro names to NOT delete.
+Calling it with no values will delete all macros not currently running.
+****************************************************************************/
+
+
+%macro macdelete(delete,keep);
+
+%local libname memname objname objtype fid i;
+%do i=1 %to %sysmexecdepth;
+  %let keep=%sysmexecname(&i) &keep;
+%end;
+%if %length(&delete) %then %let delete=and findw("&delete",objname,',','sit');
+%let fid=%sysfunc(open( sashelp.vcatalg(keep=libname memname objname objtype
+ where=(libname='WORK' and objtype='MACRO' and memname like 'SASMAC_'
+   and not findw("&keep",objname,',','sit') &delete))));
+%if (&fid) %then %do;
+  %syscall set(fid);
+  %do %while(0=%sysfunc(fetch(&fid)));
+    %put %sysfunc(compbl(Removing &objname from &libname catalog &memname));
+    %sysmacdelete &objname;
+  %end;
+  %let fid=%sysfunc(close(&fid));
+%end;
+%else %put %qsysfunc(sysmsg());
+%mend macdelete;
+%macdelete;
+
+```

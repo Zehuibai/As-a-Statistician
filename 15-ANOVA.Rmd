@@ -379,13 +379,102 @@ aov_residuals <- residuals(object = res.aov3)
 shapiro.test(x = aov_residuals )
 ```
 
+### SAS Implementation
+
+```
+data Waste;
+ do Temp = 1 to 3;
+ do Envir = 1 to 5;
+ do rep=1 to 2;
+ input Waste @@;
+ output;
+ end;
+ end;
+ end;
+datalines;
+7.09 5.90 7.94 9.15 9.23 9.85 5.43 7.73 9.43 6.90
+7.01 5.82 6.18 7.19 7.86 6.33 8.49 8.67 9.62 9.07
+7.78 7.73 10.39 8.78 9.27 8.90 12.17 10.95 13.07 9.76
+;
+run;
+ods graphics on;
+proc glm data=Waste;
+ class Temp Envir;
+ model Waste = Temp Envir Temp*Envir;
+run;
+quit;
+ods graphics off;
+
+```
+
+
+
+
 ### Unbalanced design
+
+With unbalanced designs, LS-means typically are more relevant than arithmetic means for quantifying general population characteristics, since the LS-means estimate the marginal means over a balanced population, whether or not the design itself is balanced; the arithmetic means only estimate the marginal means for a population whose margins match those of the design. In particular, the arithmetic means estimate balanced population margins only when the design itself is balanced. Moreover, the LS-means match the arithmetic means when the design is balanced. 
 
 ```
 ## unequal numbers of subjects in each group.
 library(car)
 my_anova <- aov(len ~ supp * dose, data = my_data)
 Anova(my_anova, type = "III")
+```
+
+```
+*** Comparisons of LS-Means with Unbalanced Data;
+data Drug;
+ input Drug Disease @;
+ do i=1 to 6;
+ input Response @;
+ output;
+ end;
+cards;
+1 1 42 44 36 13 19 22
+1 2 33 . 26 . 33 21
+1 3 31 -3 . 25 25 24
+2 1 28 . 23 34 42 13
+2 2 . 34 33 31 . 36
+2 3 3 26 28 32 4 16
+3 1 . . 1 29 . 19
+3 2 . 11 9 7 1 -6
+3 3 21 1 . 9 3 .
+4 1 24 . 9 22 -2 15
+4 2 27 12 12 -5 16 15
+4 3 22 7 25 5 12 .
+;
+ods graphics on;
+proc glm;
+ class Drug Disease;
+ model Response = Drug Disease Drug*Disease/ss3;
+ lsmeans Drug/ pdiff cl adjust=simulate(seed=121211 acc=.0002
+report);
+run; quit;
+ods graphics off; 
+```
+
+```{r ANOVA unbalance, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Graphical Depiction of the Drug Data Set"}
+knitr::include_graphics("./02_Plots/Unbalanced_ANOVA.png")
+```
+
+```
+*** Computing LS-Means by Hand;
+data Balanced;
+ do Drug = 1 to 4;
+ do Disease = 1 to 3;
+ output;
+ end;
+ end;
+data DrugPlus; set Drug(where=(Response ^= .)) Balanced;
+proc glm data=DrugPlus;
+ class Drug Disease;
+ model Response = Drug Disease Drug*Disease;
+ output out=PredBal(where=(Response = .)) p=pResponse;
+proc means data=PredBal;
+ class Drug;
+ ways 1;
+ var pResponse;
+run; 
 ```
 
 

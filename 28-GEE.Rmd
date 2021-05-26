@@ -1,1 +1,49 @@
 # Generalized Estimating Equation 
+
+## Alternatives to Mixed Models
+
+* Fixed effects models (also panel linear models with fixed, as opposed to random, effects)
+* Using cluster-robust standard errors
+* Generalized estimating equations (GEE)> GEE实际上是集群鲁棒方法的一种概括，并且将广义最小二乘（GLS）扩展到非线性/ GLM设置。 GEE方法允许人们考虑数据中的依存关系，但实际上并未估计可能非常有趣的内容，即随机效应和相关方差。
+
+
+
+In the GEE model, there are no random-effects terms. Instead, the response variable relates to the predictors via the generalized linear regression model with only fixed-effects terms, and the variance-covariance structure of the response variable itself is specified, rather than that for the error terms.
+
+对重复测量数据建模的另一种方法是使用广义估计方程（GEE）方法。在GEE模型中，没有随机效应项。相反，响应变量通过仅具有固定效应项的广义线性回归模型与预测变量相关，并且指定了响应变量本身的方差-协方差结构，而不是误差项。
+
+Suppose that for each individual $i, i=1, \ldots, n$, at time $t_{j}, j=1, \ldots, p$, the observations are $x_{1 i j}, \ldots, x_{k i j}, y_{i j} .$ Denote by $\mu_{i j}=\mathbb{E}\left(y_{i j}\right)$, the mean response, and assume that $g\left(\mu_{i j}\right)=\beta_{0}+\beta_{1} x_{1 i j}+\cdots+\beta_{k} x_{k i j}+\beta_{k+1} t_{j}$ where $g(\cdot)$ is the link function.
+Next, we write the variance of $y_{i j}$ as a function of $\mu_{i j}, \operatorname{Var}\left(y_{i j}\right)=V\left(\mu_{i j}\right)$. The function $V(\cdot)$ is
+termed the variance function.
+
+Further, we model the covariance structure of correlated responses for a given individual $i, i=1, \ldots, n$
+Observations between individuals are assumed independent. Let $\mathbf{A}_{i}$ denote a $p \times p$ diagonal matrix
+$$
+\mathbf{A}_{i}=\left[\begin{array}{cccc}
+V\left(\mu_{i 1}\right) & 0 & \ldots & 0 \\
+0 & V\left(\mu_{i 2}\right) & \ldots & 0 \\
+\ldots & \ldots & \ldots & \ldots \\
+0 & 0 & \ldots & V\left(\mu_{i p}\right)
+\end{array}\right]
+$$
+Also, let $\mathbf{R}_{i}(\boldsymbol{\alpha})$ be the working correlation matrix of the repeated responses for the $i$ -th individual,
+where $\alpha$ denotes a vector of unknown parameters which are the same for all individuals. The working
+covariance matrix for $\mathbf{y}_{i}=\left(y_{i 1}, y_{i 2}, \ldots, y_{i p}\right)^{\prime}$ is then
+$$
+\mathbf{V}_{i}(\boldsymbol{\alpha})=\mathbf{A}_{i}^{1 / 2} \mathbf{R}_{i}(\boldsymbol{\alpha}) \mathbf{A}_{i}^{1 / 2}
+$$
+
+The regression coefficients $\beta$ 's and the vector of parameters $\boldsymbol{\alpha}$ are the only unknowns of the GEE
+model and must be estimated from the data. 五个结构通常用于工作相关矩阵 $\mathbf{R}_{i}(\boldsymbol{\alpha})$.
+- unstructured $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha_{12} & \alpha_{13} & \ldots & \alpha_{1 p} \\ \alpha_{12} & 1 & \alpha_{23} & \ldots & \alpha_{2 p} \\ \alpha_{13} & \alpha_{23} & 1 & \ldots & \alpha_{3 p} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha_{1 p} & \alpha_{2 p} & \alpha_{3 p} & \ldots & 1\end{array}\right]$
+- Toeplitz $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha_{1} & \alpha_{2} & \ldots & \alpha_{p-1} \\ \alpha_{1} & 1 & \alpha_{1} & \ldots & \alpha_{p-2} \\ \alpha_{2} & \alpha_{1} & 1 & \ldots & \alpha_{p-3} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha_{p-1} & \alpha_{p-2} & \alpha_{p-3} & \ldots & 1\end{array}\right]$
+- autoregressive $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha & \alpha^{2} & \ldots & \alpha^{p-1} \\ \alpha & 1 & \alpha & \ldots & \alpha^{p-2} \\ \alpha^{2} & \alpha & 1 & \ldots & \alpha^{p-3} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha^{p-1} & \alpha^{p-2} & \alpha^{p-3} & \ldots & 1\end{array}\right]$
+- compound symmetric or exchangeable $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha & \alpha & \ldots & \alpha \\ \alpha & 1 & \alpha & \ldots & \alpha \\ \alpha & \alpha & 1 & \ldots & \alpha \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha & \alpha & \alpha & \alpha & 1\end{array}\right]$
+- independent $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & 0 & 0 & \ldots & 0 \\0 & 1 & 0 & \ldots & 0 \\0 & 0 & 1 & \ldots & 0 \\\ldots & \ldots & \ldots & \ldots & \ldots \\0 & 0 & 0 & \ldots & 1\end{array}\right]$
+
+The GEE estimate of $\boldsymbol{\beta}=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{k+1}\right)^{\prime}$ is the solution of the generalized estimating equations:
+$$
+\sum_{i=1}^{n}\left(\frac{\partial \boldsymbol{\mu}_{i}}{\partial \boldsymbol{\beta}}\right)_{(k+2) \times p}\left[\mathbf{V}_{i}(\hat{\boldsymbol{\alpha}})\right]_{p \times p}^{-1}\left(\mathbf{y}_{i}-\boldsymbol{\mu}_{i}\right)_{p \times 1}=\mathbf{0}_{(k+2) \times 1}
+$$
+where $\boldsymbol{\mu}_{i}=\left(\mu_{i 1}, \ldots, \mu_{i p}\right)^{\prime}$ is the vector of mean responses, and the estimator $\hat{\boldsymbol{\alpha}}$ is the method of
+moments estimator of the vector of parameters.

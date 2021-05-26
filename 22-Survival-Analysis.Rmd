@@ -1,1 +1,777 @@
 # Survival Analysis 
+
+## Preliminary
+
+Survival analysis mainly focuses on processing a special kind of time data, and the time data may be partially censored. The shortcomings of the ordinary least squares regression method are that the event occurrence time is usually not normally distributed, and the model cannot handle Censor. The non-parametric method can simply and quickly check the survival experience, while the Cox proportional hazard regression model is still the main Analytical method.
+
+### Probability density function
+
+The function that describes likelihood of observing Time at time t relative to all other survival times is known as the probability density function
+the probability of observing a survival time within the interval $[a, b]$ is
+$$
+\operatorname{Pr}(a \leq \text { Time } \leq b)=\int_{a}^{b} f(t) d t=\int_{a}^{b} \lambda e^{-\lambda t} d t
+$$
+### Cumulative distribution function
+
+Describes the probability of observing Time less than or equal to some timet $t$ $\operatorname{Pr}($ Time $\leq t)$
+$$
+\begin{array}{c}
+F(t)=\int_{0}^{t} f(t) d t \\
+f(t)=\frac{d F(t)}{d t}
+\end{array}
+$$
+In SAS, we can graph an estimate of the cdf using proc univariate.
+
+```
+proc univariate data = whas500(where=(fstat=1));
+    var lenfol;
+    cdfplot lenfol;
+run;
+```
+
+### Survival function
+
+$$
+S(t)=P(T>t)=1-F(t)
+$$
+The survival function gives the probability that a person survives longer than some specified time $t$ : that
+is, $S(t)$ gives the probability that the random variable $T$ exceeds the specified time $t .$ And here, some
+important characteristics:
+
+- It is nonincreasing; that is, it heads downward as $t$ increases.
+- At time $t=0, S(t)=S(0)=1$; that is, at the start of the study, since no one has gotten the event
+yet, the probability of surviving past time zero is one.
+- At time $t=\inf , S(t)=S(\mathrm{inf})=0 ;$ that is, theoretically, if the study period increased without limit.
+eventually nobody would survive, so the survival curve must eventually fall to zero.
+
+
+Here we can use proc lifetest to graph $S_(t)$.
+
+```
+proc lifetest data=whas500(where=(fstat=1)) plots=survival(atrisk);
+time lenfol*fstat(0);
+run; 
+```
+
+### Hazard function
+
+The hazard function $h(t)$, is given by the formula:
+$$
+h(t)=\lim _{\Delta_{t} \rightarrow 0} \frac{P(t \leq T<t+\Delta t \mid T \geq t)}{\Delta t}
+$$
+We could say that the hazard function
+is the probability that if you survive to time $t$, you will experience the event in the next instant, or in other
+words, the hazard function gives the instantaneous potential per unit time for the event to occur, given
+that the individual has survived up to time $t$. Because of the given sign here, the hazard function is
+sometimes called a conditional failure rate.
+
+We can estimate the hazard function is SAS as well using proc lifetest
+
+```
+proc lifetest data=whas500(where=(fstat=1)) plots=hazard(bw=200);
+    time lenfol*fstat(0);
+run;
+```
+
+### Cumulative hazard function
+
+Calculated by integrating the hazard function over an interval of time:
+$$H(t) = \int_0^th(u)du$$
+
+The cumulative hazard function H(t) and the survival function S(t) have a simple monotonic relationship. Therefore, when the survival function reaches the maximum at the beginning of the analysis time, the cumulative hazard function is the smallest. As time goes by, the survival function advances toward its minimum, and the cumulative hazard function advances toward its maximum. You can use proc lifetest to estimate the cumulative hazard function, and then send the results to proc sgplot for plotting.
+
+```
+ods output ProductLimitEstimates = ple;
+proc lifetest data=whas500(where=(fstat=1))  nelson outs=outwhas500;
+    time lenfol*fstat(0);
+run;
+proc sgplot data = ple;
+    series x = lenfol y = CumHaz;
+run;
+```
+
+### Mean Residual Life
+
+$$r(t)=E(T-t \mid T \geq t)=\frac{\int_{t}^{\infty} S(u) d u}{S(t)},$$
+
+Intuitively, this is as simple as when I know that I have lived to the time point t and how many years I have to live.
+
+### Relation between functions
+
+The survival function can be ascertained from the probability density function by integrating
+over the probability density function from time $t$ to infinity, or by calculating the difference between one and the cumulative distribution function $F(t)$. The hazard can then be found by dividing the negative derivative of the survival function by the survival function. Note that the functions $f(t), F(t), h(t)$, and
+$H(t)$ are all related.
+
+**Assume that $T$ is non-negative and continuos:**
+
+- Probability density function:
+$$
+f(t)=F^{\prime}(t)=\frac{d F(t)}{d t}
+$$
+- Cumulative distribution function:
+$$
+F(t)=P(T \leq t)=\int_{0}^{t} f(u) d u
+$$
+- Survival function
+$$
+\begin{array}{l}
+S(t)=1-F(t)\\
+S(t)=P(T>t)=\int_{t}^{+\infty} f(u) d u \\
+S(t)=\exp \left(-\int_{0}^{t} h(u) d u\right) \\
+S(t)=\exp (-H(t))
+\end{array}
+$$
+- Hazard function
+$$h(t) = \frac{ f(t)}{S(t)}= \frac{ -d[S(t)]/dt}{S(t)}$$
+- Cumulative hazard function
+o Cumulative hazard function
+$$
+H(t)=\int_{0}^{t} h(u) d u
+$$
+
+
+**Assume that $T$ is non-negative and discrete,**
+
+- Probability mass function:
+$$
+\begin{aligned}
+p\left(t_{i}\right) &=P\left(T=t_{i}\right) \\
+p\left(t_{i}\right) &=S\left(t_{i-1}\right)-S\left(t_{i}\right) \\
+p\left(t_{i}\right) &=F\left(t_{i}\right)-F\left(t_{i-1}\right)
+\end{aligned}
+$$
+- Cumulative distribution function:
+$$
+F(t)=P(T \leq t)=\sum_{t_{i} \leq t} p\left(t_{i}\right)
+$$
+- Survival function
+$$
+S(t)=\prod_{t_{i} \leq t}\left(1-h\left(t_{i}\right)\right)
+$$
+- Hazard function
+$$
+\begin{aligned}
+h(t) &=\frac{p\left(t_{i}\right)}{S\left(t_{i-1}\right)}=\frac{-d[S(t)] / d t}{S(t)} \\
+h(t) &=1-\frac{S\left(t_{i}\right)}{S\left(t_{i-1}\right)}
+\end{aligned}
+$$
+- Cumulative hazard function
+$$
+H(t)=\sum_{t_{i} \leq t} h\left(t_{i}\right)
+$$
+
+
+
+## Kaplan-Meier estimator
+
+### KM Introduction
+
+$$\hat S(t)=\prod_{t_i\leq t}\frac{n_i – d_i}{n_i},$$
+
+- $n_{i}$ is the number of subjects at risk
+- $d_{i}$ is the number of subjects who fail, both at time $t_{i}$, the number who failed out
+of $n_{i}$
+
+
+
+### Nelson-Aalen estimator of the cumulative hazard function
+
+Since it and the survival function $S(t)=e^{-H(t)}$ Nelson-Aalen estimator is a non-parametric estimator of the cumulative hazard function
+
+$$
+\hat{H}(t)=\sum_{t_{i} l e q t} \frac{d_{i}}{n_{i}}
+$$
+
+- The Nelson-Aalen estimator is requested in SAS through the nelson option on
+the proc lifetest statement. SAS will output both Kaplan Meier estimates of
+the survival function and Nelson-Aalen estimates of the cumulative hazard
+function in one table.
+- Quartile Estimates: Calculating median, mean, and other survival times
+
+```
+proc lifetest data=whas500 atrisk nelson;
+    time lenfol*fstat(0);
+run;
+```
+
+
+
+
+### Survival curve in SAS
+
+```
+proc lifetest data=whas500 atrisk plots=survival(cb) outs=outwhas500;
+  time lenfol*fstat(0);
+run;
+```
+
+**Graphing the Kaplan-Meier estimate**
+
+- By default, proc lifetest graphs the Kaplan Meier estimate, even without the
+plot= option on the proc lifetest statement, so we could have used the
+same code from above that produced the table of Kaplan-Meier estimates to
+generate the graph.
+- However, we would like to add confidence bands and the number at risk to the
+graph, so we add plots=survival(atrisk cb)
+
+> 生存曲线周围的蓝色阴影区域代表95\%置信带，此处为Hall-Wellner置信带。为整 个生存函数计算该置信带，在任何给定的时间间隔内，其宽度必须大于点状置信区
+间 (单个间隔附近的置信度间隔)， 以确保所有点状置信区间的95\%都包含在该带 中。survivor 函数的许多转换可用于通过conftype选项计算置信区间的替代方法
+
+**Life Table method**
+
+生命表方法如果观察的次数很多，并且如果精确地测量了事件时间，那么将有很多唯一的事件时间。然后，KM方法会生成较长的表，这些表可能难以呈现和解释。
+
+1. 解决此问题的一种方法是使用TIMELIST选项（在PROC LIFEREG语句中），该选项仅在指定的时间点报告KM估计。
+2. 另一种解决方案是切换到生命周期表方法 life-table method ，在该方法中，事件时间被分组为可以随意设置的时间间隔。此外，寿命表方法（也称为精算方法 actuarial method）可以生成危害函数的估计值和曲线图。寿命表方法的缺点是间隔的选择通常有些随意，从而导致结果的
+随意性以及如何选择间隔的不确定性。不可避免地也会丢失一些信息。但是注意，PROC LIFETEST根据未分组的数据（如果可用）计算对数秩和Wilcoxon统计信息（以及其他可选的测试统计信息），
+因此它们不受寿命表方法的间隔选择的影响。
+
+```
+ODS GRAPHICS ON;
+PROC LIFETEST DATA=recid METHOD=LIFE PLOTS=(S,H);
+ TIME week*arrest(0);
+RUN;
+ODS GRAPHICS OFF;
+
+    Interval    Number   Number    Sample   Probability   Standard
+ [Lower, Upper) Failed   Censored  Size     of Failure    Error
+  0      10     14       0         432.0    0.0324        0.00852
+ 10      20     21       0         418.0    0.0502        0.0107
+ 20      30     23       0         397.0    0.0579        0.0117
+ 30      40     23       0         374.0    0.0615        0.0124
+ 40      50     26       0         351.0    0.0741        0.0140
+ 50      60      7       318       166.0    0.0422        0.0156
+```
+
+
+### KM Survival Plots in SAS
+
+- 在任何被检查的观察结果中，图形都包含加号 (看起来像刻度线)。 当数据集很大且包含大量经过审 查的观察结果时, 这些标记可能会使人分心。可以使用NOCENSOR选项抑制它们.
+- 另一个有用的选项是ATRISK，可以将仍然处于危险中 (尚未死亡或受到审查) 的人数添加到图表中。
+- 要获得具有幸存者功能95\%置信度限制的图形, 请使用CL选项。置信度极限是逐点极限 pointwise limits, 这意味着对于每个指定的生存时间，我们有95\%的置信度到那个时间生存的概率在那些极限之 内。置信度限制仅扩展到最大事件时间.
+- 假设我们需要置信带 confidence bands that can be interpreted by saying that we are $95 \%$ confident that the entire survivor function falls within the upper curve and the lower curve. More complex
+methods are needed to produce such bands, and PROC LIFETEST offers two: the HallWellner method
+and the equal precision (EP) method. 有95\%的信心说整个幸存者功能都落在上曲线和下曲线之间。 产生这样的频带需要更复杂的方法, 而 PROC LIFETEST提供两种方法：HallWellner方法和等精度 (EP) 方法。
+    + EP方法 倾向于产生在尾部更稳定的置信带。要实现此方法, 该选项将变为PLOTS $=\mathrm{S}(\mathrm{CB}=$ EP) 。 要同时获得逐点频带和EP频带, 请使用选项PLOTS $=\mathrm{S}(\mathrm{CL} \mathrm{CB}=\mathrm{EP})$ 置信带始终比点状 置信极限宽。
+    + Other transformations are available, the most attractive being the logit $\log [\hat{S}(t) /(1-\hat{S}(t))]$ To switch to this transform, include the CONFTYPE=LOGIT option in the PROC statement.
+
+```
+proc lifetest data=whas500 atrisk  PLOTS=S(NOCENSOR ATRISK CL) OUTSURV=outwhas500;
+  time lenfol*fstat(0);
+run;
+```
+
+**Test in plot**
+
+```
+ODS GRAPHICS ON;
+PROC LIFETEST DATA=myel PLOTS=S(TEST);
+ TIME dur*status(0);
+ STRATA treat;
+RUN;
+ODS GRAPHICS OFF;
+```
+**log-log survival plots**
+
+LS produces a plot of $-\log \hat{S}(t)$ versus $t$.
+$$
+-\log S(t)=\int_{0}^{t} h(u) d u
+$$
+
+The LLS keyword produces a plot of $\log [-\log \hat{S}(t)]$ versus $\log t$. If survival times follow a Weibull distribution, which has a hazard given by $\log h(t)=\alpha+\beta \log t$, then the log-log survival plot (log
+cumulative hazard plot) should be a straight line with a slope of $\beta$.
+If the hazards are proportional, the log-log survivor functions should be strictly parallel.
+
+```
+PROC LIFETEST DATA=COMBINE PLOTS=LLS;
+ TIME years*event(0);
+ STRATA type;
+RUN; 
+```
+
+**Hazard plots**
+
+Examine smoothed hazard plots using the kernel smoothing option
+
+```
+ODS GRAPHICS ON;
+PROC LIFETEST DATA=combine PLOTS=H(BW=10);
+ TIME years*event(0);
+ STRATA type;
+RUN;
+ODS GRAPHICS OFF;
+
+## confidence limits around the hazard function;
+PROC LIFETEST DATA=recid PLOTS=H(CL);
+```
+
+
+### Convert Personal-level to Personal-period in R
+
+In studies of survival or modeling discrete-time events, one compact way to store data is in what may be called, “person-level” or generally “observation-level”. For example, you could have three variables, one indicating the observation, one indicating the time period the event occurred or the last follow-up period and one indicating whether the observation was censored. 
+
+The PLPP function takes five arguments. The first, data is the data set to be converted. The second, id is the name of the variable containing the identifier for each observation. The third, period is the name of the variable that indicates how many periods the person or observation was in. The fourth, event is the name of the variable that indicates whether the event occurred or not or whether the observation was censored (depending on which direction you are converting). The fifth, direction indicates whether the function should go from person-level to person-period or from person-period to person-level. There are two options, “period” to go to person-period or “level” to go to person-level. Now let’s try it out. For the examples that follow to work, you need to source the function into R.
+
+```{r ,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Person-Level Person-Period Converter Function
+PLPP <- function(data, id, period, event, direction = c("period", "level")){
+  ## Data Checking and Verification Steps
+  stopifnot(is.matrix(data) || is.data.frame(data))
+  stopifnot(c(id, period, event) %in% c(colnames(data), 1:ncol(data)))
+
+  if (any(is.na(data[, c(id, period, event)]))) {
+    stop("PLPP cannot currently handle missing data in the id, period, or event variables")
+  }
+   ## Do the conversion
+  switch(match.arg(direction),
+    period = {
+      index <- rep(1:nrow(data), data[, period])
+      idmax <- cumsum(data[, period])
+      reve <- !data[, event]
+      dat <- data[index, ]
+      dat[, period] <- ave(dat[, period], dat[, id], FUN = seq_along)
+      dat[, event] <- 0
+      dat[idmax, event] <- reve},
+    level = {
+      tmp <- cbind(data[, c(period, id)], i = 1:nrow(data))
+      index <- as.vector(by(tmp, tmp[, id],
+        FUN = function(x) x[which.max(x[, period]), "i"]))
+      dat <- data[index, ]
+      dat[, event] <- as.integer(!dat[, event])
+  })
+
+  rownames(dat) <- NULL
+  return(dat)
+}
+
+## Read in the person-level dataset
+teachers <- read.csv("https://stats.idre.ucla.edu/stat/examples/alda/teachers.csv")
+## Look at a subset of the cases
+subset(teachers, id %in% c(20, 126, 129))
+
+## Uses PLPP to convert to person-period and store in object, 'tpp'
+tpp <- PLPP(data = teachers, id = "id", period = "t", event = "censor", direction = "period")
+## Look at a subset of the cases
+subset(tpp, id %in% c(20, 126, 129))
+
+### Convert person-period to person-level
+## Read in person-period dataset
+teachers.pp <- read.csv("https://stats.idre.ucla.edu/stat/examples/alda/teachers_pp.csv")
+## Look at a subset of the cases
+subset(teachers.pp, id %in% c(20, 126, 129))
+```
+
+
+### Package survfit in R
+
+
+```{r survfit,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Compute survival curves
+library("survival")
+library("survminer")
+
+data("lung")
+fit <- survfit(Surv(time, status) ~ 1, data = lung)
+## Stratification
+fit <- survfit(Surv(time, status) ~ sex, data = lung)
+summary(fit)
+
+##  Access to the sort summary table
+summary(fit)$table
+
+##  function survfit() returns a list of variables,components can be accessed as follow:
+d <- data.frame(time = fit$time,
+                  n.risk = fit$n.risk,
+                  n.event = fit$n.event,
+                  n.censor = fit$n.censor,
+                  surv = fit$surv,
+                  upper = fit$upper,
+                  lower = fit$lower
+                  )
+head(d)
+
+## Kaplan-Meier life table: summary of survival curves summary(fit)
+res.sum <- surv_summary(fit)
+head(res.sum)
+## surv_summary对象还有一个名为“表格”的属性，其中包含有关生存曲线的信息，包括具有置信区间的生存中位数以及每条曲线中受试者的总数和事件数
+attr(res.sum, "table")
+
+
+## Confidence Interval type
+## One of "none", "plain", "log" (the default), "log-log", "logit" or "arcsin".
+ # The none option 将导致不生成置信区间
+ # The plain option 导致标准间隔曲线 +-k *se(curve), 其中k由conf.int确定. 
+ # The log option calculates intervals based on the cumulative hazard or log(survival). 
+ # The log-log option bases the intervals on the log hazard or log(-log(survival)), 将间隔设置为以log危险或log（-log（survival））为基础
+ # The logit option on log(survival/(1- survival)) and arcsin on arcsin(survival).
+
+## 1) Normalverteilungsannahme
+## S(t) +- SE(S(t)) * u_(1-alpha/2)
+a <- survfit(Surv(time, status) ~ sex, data = lung, conf.type="plain")
+
+## 2) log-Methode,nicht in Vorlesung
+b <- survfit(Surv(time, status) ~ sex, data = lung, conf.type="log")
+
+## 3) log-log-Methode 
+## S(t)^(exp(+-SE(log(-logS(t)))*u_(1-alpha/2))), dabei muss SE(log(-logS(t))) mit Formel (2.16) berechnet werden 
+ # ( nicht: S(t)^(exp(+-SE *(log(-logS(t)))*u_(1-alpha/2))) )
+b <- survfit(Surv(time, status) ~ sex, data = lung, conf.type="log-log")
+
+# 计算指定生存概率下相应的随访时间
+quantile(a ,probs =1- c(0.75,0.5,0.25))
+
+
+## Survival curves comparing
+## When rho=0, log-rank test or Mantel-Haenszel test is performed.
+## When rho=1, the Peto correction test of Gehan-Wilcoxon is performed, which gives a greater weight to the early outcome events. But this is not the Wilcoxon test 
+surv_diff <- survdiff(Surv(time, status) ~ sex, data = lung)
+surv_diff
+
+## Extracting information from a survdiff object
+surv_diff <- survdiff(Surv(time, status) ~ sex, data = lung)
+1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
+```
+
+### KM Survival Plots in R
+
+```{r Visualize survival curves,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Change color, linetype by strata, risk.table color by strata
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE,               # Add risk table
+          risk.table.col = "strata",       # Change risk table color by groups
+          linetype = "strata",             # Change line type by groups
+          surv.median.line = "hv",         # Specify median survival
+          ggtheme = theme_bw(),            # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+## The plot can be further customized
+ggsurvplot(
+   fit,                     # survfit object with calculated statistics.
+   pval = TRUE,             # show p-value of log-rank test.
+   conf.int = TRUE,         # show confidence intervals for 
+                            # point estimaes of survival curves.
+   conf.int.style = "step",  # customize style of confidence intervals
+   xlab = "Time in days",   # customize X axis label.
+   break.time.by = 200,     # break X axis in time intervals by 200.
+   ggtheme = theme_light(), # customize plot and risk table with a theme.
+   risk.table = "abs_pct",  # absolute number and percentage at risk.
+  risk.table.y.text.col = T,# colour risk table text annotations.
+  risk.table.y.text = FALSE,# show bars instead of names in text annotations
+                            # in legend of risk table.
+  ncensor.plot = TRUE,      # plot the number of censored subjects at time t
+  surv.median.line = "hv",  # add the median survival pointer.
+  legend.labs = 
+    c("Male", "Female"),    # change legend labels.
+  palette = 
+    c("#E7B800", "#2E9FDF") # custom color palettes.
+)
+
+
+### Plot cumulative events
+ ## fun = "event" cumulative events 
+ ## fun = "log": log transformation 
+ ## fun = "cumhaz": cumulative hazard
+
+## plot cumulative events
+ggsurvplot(fit,
+          conf.int = TRUE,
+          risk.table.col = "strata",          # Change risk table color by groups
+          ggtheme = theme_bw(),               # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"),
+          fun = "event")
+
+## Plot log survival curve
+ggsurvplot(fit,
+           conf.int = TRUE,
+           risk.table.col = "strata", # Change risk table color by groups
+           ggtheme = theme_bw(), # Change ggplot2 theme
+           palette = c("#E7B800", "#2E9FDF"),
+           fun = "log")
+
+## Plot cummulative hazard
+## The cummulative hazard is commonly used to estimate the hazard probability
+ggsurvplot(fit,
+          conf.int = TRUE,
+          risk.table.col = "strata", # Change risk table color by groups
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"),
+          fun = "cumhaz")
+
+## Complex survival curves in grouping
+fit2 <- survfit( Surv(time, status) ~ sex + rx + adhere,
+                 data = colon )
+# Plot survival curves by sex and facet by rx and adhere
+ggsurv <- ggsurvplot(fit2, fun = "event", conf.int = TRUE,
+                     ggtheme = theme_bw())
+
+ggsurv$plot +theme_bw() + 
+  theme (legend.position = "right")+
+  facet_grid(rx ~ adhere)
+```
+
+
+## Compare the survival function
+
+### Tests of equality of the survival function
+
+The log-rank test, is a hypothesis test to compare the survival distributions of two samples. It is a nonparametric test and appropriate to use when the data are right-skewed and censored (technically, the censoring must be non-informative).
+
+The logrank test is based on the same assumptions as the Kaplan-Meier survival curve—namely, that censoring is unrelated to prognosis, the survival probabilities are the same for subjects recruited early and late in the study, and the events happened at the times specified. Deviations from these assumptions matter most if they are satisfied differently in the groups being compared, for example if censoring is more likely in one group than another
+
+
+The calculation of the statistic for the nonparametric “Log-Rank” and “Wilcoxon” tests is given by :
+
+$$Q = \frac{\bigg[\sum\limits_{i=1}^m w_j(d_{ij}-\hat e_{ij})\bigg]^2}{\sum\limits_{i=1}^m w_j^2\hat v_{ij}},$$
+
+- $d_{i j}$ is the observed number of failures in stratum $i$ at time $t_{i j}$
+- $\hat{e}_{i j}$ is the expected number of failures in stratum $i$ at time $t_{i j}$
+- $\hat{v}_{i j}$ is the estimator of the variance of $d_{i j}$
+- $w_{j}$ is the weight of the difference at time $t_{j}$
+- The log-rank or Mantel-Haenzel test uses $w_{j}=1$
+- The Wilcoxon test uses $w_{j}=n_{j}$, so that differences are weighted by the number at risk at time $t_{j}$
+
+**Specified, for group 1, the log-rank statistic can be written as**
+
+$$
+\sum_{j=1}^{r}\left(d_{1 j}-e_{1 j}\right)
+$$
+where the summation is over all unique event times (in both groups), and there are a total of $r$ such
+times. $d_{1 j}$ is the number of deaths that occur in group 1 at time $j$, and $e_{1 j}$ is the expected number of events in group 1 at time $j$. The expected number is given by $n_{1 j} d_{j} / n_{j}$, where $n_{j}$ is the total number of cases that are at risk just prior to time $j, n_{1 j}$ is the number at risk just prior to time $j$ in group 1, and $d_{j}$ is the total number of deaths at time $j$ in both groups.
+
+**The Wilcoxon statistic, given by**
+
+$$\sum_{j=1}^{r} n_{j}\left(d_{1 j}-e_{1 j}\right)$$
+
+**strata statement in proc lifetest in SAS**
+
+```
+proc lifetest data=whas500 atrisk plots=survival(atrisk cb) outs=outwhas500;
+strata gender;
+time lenfol*fstat(0);
+run;
+```
+
+```{r Strata, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Strata statement in proc lifetest"}
+knitr::include_graphics("./02_Plots/Proc_lifetest_strata.png")
+```
+
+| Test of Equality over Strata |  Title     |  Title |  Title          |
+|------------------------------|------------|--------|-----------------|
+| Test                         | Chi-Square | DF     | Pr > Chi-Square |
+| Log-Rank                     | 7.7911     | 1      | 0.0053          |
+| Wilcoxon                     | 5.5370     | 1      | 0.0186          |
+| -2Log(LR)                    | 10.5120    | 1      | 0.0012          |
+
+
+**log-rank test v.s. Wilcoxon test**
+
+* If the log-rank test is meaningful but the Wilcoxon test is meaningless, it indicates that the long-term difference may be large, but not necessarily in the early stage, and the difference may not be large.
+* If the log-rank test is meaningless and the Wilcoxon test is meaningful, it indicates that there is a large difference in early survival and little difference in long-term survival. Because the Wilcoxon test is more important for early weights than for late weights (nj does not increase with time), it is not as sensitive as log-rank test to differences between groups that occur at later time points. In other words, although the two statistics test the same null hypothesis, they have different sensitivities to various deviations from the hypothesis.
+
+> 如果对数秩检验有意义，而Wilcoxon检验毫无意义，则表明长期差异可能很大，但不一定在早期，差异可能不会很大。
+如果对数秩检验无意义，而Wilcoxon检验有意义，则表明早期生存率差异很大，长期生存率差异很小。 因为Wilcoxon检验对于较早的重量比对较重的重量更重要（nj不会随时间增加）
+
+In particular, the log-rank test is more powerful for detecting differences of the form
+$$S_{1}(t)=\left[S_{2}(t)\right]^{\gamma}, \gamma > 1$$
+
+This equation defines a proportional hazards model, the log-rank test is closely related to tests for differences between two groups that are performed within the framework of Cox’s proportional hazards model
+
+In contrast, the Wilcoxon test is more powerful than the log-rank test in situations where event times have log-normal distributions (discussed in the next chapter) with a common variance but with different means in the two groups. 
+
+
+### Other nonparametric tests for STRATA statement 
+
+In addition to the log-rank and Wilcoxon tests, which are produced by default, the STRATA statement also has options for four other nonparametric tests: 
+
+* Tarone-Ware, 
+* Peto-Peto, 
+* modified Peto-Peto, 
+* Fleming-Harrington. 
+
+Like the Wilcoxon and log-rank tests, all of these can be represented as a weighted sum of observed and expected numbers of events:
+
+```
+STRATA treat / TESTS=ALL;
+```
+
+For the Tarone-Ware test, $w j$ is the square root of $n i$, so this test behaves much like the Wilcoxon test
+in being more sensitive to differences at earlier rather than later times.
+$$
+\sum_{j=1}^{r} w_{j}\left(d_{1 j}-e_{1 j}\right)
+$$
+That's also true of the two Peto tests, for which $w_{j}$ is a function of the survivor function itself.
+$$
+\sum_{j=1}^{r} \hat{S}\left(t_{j}\right)\left(d_{1 j}-e_{1 j}\right)
+$$
+Fleming-Harrington is actually a family of tests in which the weights depend on two parameters, $p$ and
+$q$ which can be chosen by the user:
+$$w_{j}=\hat{S}\left(t_{j}\right)^{p}\left[1-\hat{S}\left(t_{j}\right)\right]^{q}$$
+
+- When both $\mathrm{p}$ and $\mathrm{q}$ are 0 , you get the log-rank test.
+- When $\mathrm{p}$ is 1 and $\mathrm{q}$ is 0 , you get something very close to the Peto-Peto test.
+- When $\mathrm{q}$ is 1 and $\mathrm{p}$ is 0 , wi increases with time, unlike any of the other tests.
+
+
+### Multiple comparisons
+
+When more than one strata, the ADJUST option tells PROC LIFETEST to produce p-values for all six pairwise comparisons of the four strata and then to report p-values that have been adjusted for multiple comparisons using Tukey’s method (other methods are also available):
+
+```
+PROC LIFETEST DAta=my.recid;
+ TIME week*arrest(0);
+ STRATA wexp paro / ADJUST=TUKEY;
+RUN;
+```
+
+For numeric variables, you can use the STRATA statement to define groups by intervals rather than by unique values.
+
+```
+PROC LIFETEST DAta=my.recid;
+ TIME week*arrest(0);
+ STRATA age(21 24 28) / ADJUST=BON;
+RUN;
+
+     age < 21
+21 ≤ age < 24
+24 ≤ age < 28
+28 ≤ age 
+```
+
+### Comparing survival functions using Log-Rank HR
+
+One way to compare two survival curves is to calculate the hazard ratio (HR)
+
+```
+proc lifetest data=whas500 atrisk plots=hazard(bw=200) outs=outwhas500;
+    strata bmi(15,18.5,25,30,40);
+    time lenfol*fstat(0);
+run;
+```
+作为Kaplan-Meier计算的一部分，计算每个组中观察到的事件 (通常为死亡) 的数量, 以及假设生存时间 没有差异的零假设的预期事件的数量。危险比为:
+- Treatment A and Treatment B. the observed and expected deaths are summed, to give
+- $O_{A}=\Sigma O_{A t}, O_{B}=\Sigma O_{B t}, E_{A}=\Sigma E_{A t}$, and $E_{B}=\Sigma E_{B t}$
+- Finally the Logrank statistic is calculated as
+$$
+\chi_{\text {Logrank }}^{2}=\frac{\left(O_{A}-E_{A}\right)^{2}}{E_{A}}+\frac{\left(O_{B}-E_{B}\right)^{2}}{E_{B}}
+$$
+- It can be written as
+$$
+\chi_{\text {Logrank }}^{2}=\left(O_{A}-E_{A}\right)^{2}\left(\frac{1}{E_{A}}+\frac{1}{E_{B}}\right)
+$$
+- since $\left(O_{A}-E_{A}\right)^{2}=\left(O_{B}-E_{B}\right)^{2}$.
+- We can obtain the ratio $O_{A} / E_{A}$ and $\left.O_{B} / E_{B}\right)$, we can calculate the hazard ratio HR, defined as
+the ratio of these two relative death rates; that is,
+$$H R=\frac{O_{A} / E_{A}}{O_{B} / E_{B}}$$
+
+**Confidence Interval of HR**
+
+In calculating $C I s$, it is convenient if the statistic under consideration can be assumed to follow an
+approximately Normal distribution. However, the estimate of the $H R$ is not normally distributed. In
+particular it has a possible range of values from 0 to $\infty$, with the null hypothesis value of unity not
+located at the centre of this interval. To make the scale symmetric and to enable us to calculate $C I s$,
+we transform the estimate to make it approximately normally distributed. We do this by using log $H R$,
+rather than $H R$ itself, as the basis for our calculation. It is possible to show that a general
+$100(1-\alpha) \% C I$ for the $\log H R$ is
+Convert the estimated value to an approximately normal distribution. For this, we use logarithmic HR
+$$
+\log H R-\left[z_{1-\alpha / 2} \times S E(\log H R)\right] \text { to } \log H R+\left[z_{1-\alpha / 2} \times S E(\log H R)\right]
+$$
+HR itself is then
+$$
+\exp \left[\operatorname { l o g } H R - [ z _ { 1 - \alpha / 2 } \times S E ( \operatorname { l o g } H R ) ] \text { to } \operatorname { e x p } \left[\log H R+\left[z_{1-\alpha / 2} \times S E(\log H R)\right]\right.\right.
+$$
+In both these expressions
+$$S E(\log H R)=\sqrt{\left(\frac{1}{E_{A}}+\frac{1}{E_{B}}\right)}$$
+
+### Mantel-Haenszel HR
+
+在研究中的事件总数很小的情况下, $S E(\log H R)$ 的估计并不总是可靠的。但对 $S E$ 的首选估计值需要 在每个死亡时间计算方差，称为超几何方差 hypergeometric variance 。始终总结这些差异会导致Logrank
+测试的Mantel-Haenszel版本。时间 $t$ 的超几何方差由下式给出:
+$$
+V_{t}=\frac{m_{t} n_{t} r_{t} s_{t}}{N_{t}^{2}\left(N_{t}-1\right)}
+$$
+If all deaths occur at different times, that is, there is no fixed observation value, then
+$$r{t}=1, s{t}=N_{t}-1$$
+$$V_{t}=m_{t} n_{t} / N_{t}^{2} .$$
+As for both $E_{A t}$ and $E_{B t}$, we finally sum the individual $V_{t}$ calculated at each distinct event time to
+obtain $V=\Sigma V_{t}$. The Mantel-Haenszel test statistic is then defined as
+$$
+\chi_{M H}^{2}=\frac{\left(O_{A}-E_{A}\right)^{2}}{V}
+$$
+This has an approximate $\chi^{2}$ distribution with $d f=1$ in the same way as the Logrank test. It should be noted that $\chi_{M H}^{2}$ only differs from $\chi_{\text {Logrank }}^{2}$ by the expression for $V$.
+The use of the Mantel-Haenszel statistic to test for the difference between two groups also gives an alternative estimate of the HR:
+$$
+H R_{M H}=\exp \left(\frac{O_{A}-E_{A}}{V}\right)
+$$
+The corresponding $S E$ of the Mantel-Haenszel $\log H R_{M H}$ is
+$$S E\left(\log H R_{M H}\right)=1 / V^{1 / 2}$$
+This $S E\left(\log H R_{M H}\right)$ can be used to give $C I$ s derived from the Mantel-Haenszel estimate of the $H R$ as
+$$
+\exp \left[\log H R_{M H}-\left(z_{1-\alpha / 2} / V^{1 / 2}\right)\right] \text { to } \exp \left[\log H R_{M H}+\left(z_{1-\alpha / 2} / V^{1 / 2}\right)\right]
+$$
+
+
+See more under **Survival Analysis-Survival Analysis Using SAS - A Practical Guide (2nd Edition)**
+
+
+## Cox Proportional Hazards Model
+
+### Introduction
+
+The hazard rate can also be interpreted as the rate at which failures occur at that point in time, or the rate at which risk is accumulated
+$$h(t|x)=exp(\beta_0 + \beta_1x)$$
+$$h(t)=h_0(t)exp(x\beta_x)$$
+$$HR = \frac{h(t|x_2)}{h(t|x_1)} = \frac{h_0(t)exp(x_2\beta_x)}{h_0(t)exp(x_1\beta_x)} = exp(\beta_x(x_2-x_1))$$
+
+**Partial Likelihood**
+
+尚若不考虑删失, $\quad j$ 个观测 $T_{1} \sim \lambda_{1}(t), T_{2} \sim \lambda_{2}(t), \ldots T_{j} \sim \lambda_{j}(t)$ 在Cox Regression的假设下满
+足
+$$
+P\left(T_{1}<T_{2}<\ldots<T_{J}\right)=\prod_{i=1}^{J} \frac{\lambda_{j}(t)}{\sum_{k=j}^{J} \lambda_{k}(t)}=\prod_{i=1}^{J} \frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k=j}^{J} \exp \left(x_{k}^{T} \beta\right)}
+$$
+进一步，我们考虑删失, 为了更好的保留原数据中的信息, 我们将每个死亡事件发生的时间点记为 $t_{j}$, 则在
+该时间点发生死亡的概率为:
+$$
+\frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k \in R\left(t_{j}\right)} \exp \left(x_{k} \beta\right)}
+$$
+给定受试者的协变量值 $\beta ，$ 我们可以类似地计算观察到每个受试者失败时间的联合概率或失败时间的可能
+性, given the subject's covariates values $x_{j}$ 似然可以被表达为
+$$
+L(\beta)=\prod_{j} \frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k \in R\left(t_{j}\right)} \exp \left(x_{k} \beta\right)}
+$$
+$k \in R\left(t_{j}\right)$ 代表在时间点 $t_{j}-$ 处个体 $k$ 仍然存活。这里我们暂时假设在时间点 $t_{j}$ 上只有一个死亡观 测。
+从严格意义上来说，这并不是一个似然函数。因为似然函数本应代表在给定数据的情况下分布函数的连 乘, 然而上式显然不是。甚至来说，连乘本应是关于个体的连乘, 而上式是关于时间点的。Cox在1975年 将这种形式的似然称为偏似然 (Partial Likelihood)，并证明了它的所有性质与似然别无二致。
+
+
+**NR iteration for parameter estimate**
+
+参数迭代形式为
+$$
+\hat{\beta}^{(r+1)}=\hat{\beta}^{(r)}+\left(X^{T} W X\right)^{-1} X^{T}(d-P d)
+$$
+- $w_{i}=\exp \left(x_{i}^{T} \beta\right)$
+- $Y_{i}\left(t_{j}\right)$ 如果个体在 $t_{j}$ 时刻仍芙存活则为1, $Y_{i}\left(t_{j}\right)$ 是一个个体往某时间 $t_{j}$ 生存的index
+- $\pi_{i j}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k \in R\left(t_{j}\right)} w_{k}}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k=1}^{n} Y_{k}\left(t_{j}\right) w_{k}}$
+- $P=\left\{\pi_{i j}\right\}_{i, j}$,代表荣个个体 $i$ 在时间 $t_{j}$ 时的相对死亡风险。因此我们只考虑还活着的个体
+- $W_{k k}=-\sum_{i} \delta_{i} \pi_{k i}\left(1-\pi_{k i}\right), W_{k k}$ 代表个体的加权情况。每当一个其余个体 $i$ 死亡, 如果 $k$ 仍然 存活，则其权重增加 $\pi(1-\pi)$
+- $W_{k j}=\sum_{i} \delta_{i} \pi_{k i} \pi_{j i}, k j$ 代表个体 $k$ 的交互情况。每当一个其余个体死亡，如果 $k, j$ 仍然存活 $($ Y决
+定), 其交互权重增加 $\pi_{k} \pi_{j}$
+
+**Wald**
+
+$$\quad \hat{\beta} \sim N\left(\beta,\left(X^{T} W X\right)^{-1}\right)$$
+**Likelihood Ratio**
+
+Likelihood Ratio Test(LRT) 却是容易使用的。LRT常常被用来判断两个模型 (不同的参数维度) 是否具有显著差异。具体而言
+
+$$-2\left(l\left(\hat{\beta}_{1}\right)-l\left(\hat{\beta}_{2}\right)\right) \sim \chi_{p}^{2}, \quad$$
+
+**Score Test**
+
+用Score Method获得置信区间是非常界难的。但我们可以使用它来做检验。具体而言
+$$u(\beta)=\sum_{i=1}^{n} \delta_{i} x_{i}-\sum_{i=1}^{n} \sum_{k=1}^{n} Y_{k}\left(t_{i}\right) \frac{w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} x_{i} \delta_{i}=X^{T}(d-P d)$$
+$$I(\beta)=\sum_{i=1}^{n} \sum_{k=1}^{n} \delta_{i} x_{i}\left[\frac{Y_{k}\left(t_{i}\right) w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} \frac{x_{k}^{T}\left(\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}\right)+\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j} x_{j}^{T}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}}\right]$$
+
+统计量为$u\left(\beta_{0}\right) / \sqrt{I\left(\beta_{0}\right)}$, 不需要计算$\hat{\beta}$从而在模型加入新的变量时不需安再重新拟合参数。

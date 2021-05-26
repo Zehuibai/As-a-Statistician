@@ -1,1 +1,74 @@
 # Group (Adaptive) Sequential Design 
+
+
+
+## Adaptive designs
+
+### Introduction
+
+In general, adaptive designs allow various adaptations of the study design based on data
+gained during an interim analysis. Possible adaptions could be:
+
+* Early termination of the trial due to futility
+* Early termination of the trial due to efficacy
+* Sample size recalculation
+* Selection of the primary endpoint
+* Dropping of treatment arm(s)
+* Switching from non-inferiority to superiority
+* Patient allocation to the treatment arms
+* Selection of the patient population (enrichment designs)
+* Further change in the study design
+
+However, only with proper implementation of these designs, the validity and the integrity of
+the clinical trial are not undermined. Each of the adaptions might have an influence on the
+interpretation of the study results. Special attention should be paid for the comparability of
+the different stages of the study.
+
+#### Early termination due to futility
+
+The study can be stopped earlier due to futility using non-binding or binding futility rules. Non-binding futility bounds (i.e., the final decision is not only based on the suggestion made by the futility bounds) does not further increase the type I error. On the other hand, binding futility bounds can provide advantage in the efficacy analysis but may inflate the type I error if the stopping rule is not followed. 
+
+> 由于使用无约束力的或无约束力的无效性规则会导致无效性，因此可以更早地停止研究。 无约束力的无效边界（即最终决定不仅基于无效边界提出的建议）不会进一步增加I型错误。 另一方面，无用的约束范围可以在功效分析中提供优势，但是如果不遵循停止规则，则可能会夸大I型错误。
+
+#### Early termination due to efficacy
+
+The trial could also be stopped earlier if the efficacy of the primary endpoint is already shown by the results of the interim analysis. Efficacy bounds can be implemented by using groups sequential design methods. If efficacy bounds are used, it should be ensured that the sample size at the interim analysis is sufficient to show further objectives of the study (e.g., safety profile and secondary endpoints), which is typically not the case in phase III or premarket trials. If groups sequential design methods are used, the treatment effect tend to be biased towards greater values (especially the mean). Consequently, the confidence intervals will not have the desired coverage probability. Therefore, methods for reducing or removing the introduced bias and increasing the coverage probability should be applied if they exist. If no methods for these issues exist, the extent of bias should be discussed, and the resulting estimates should be used with caution.
+
+> 如果主要终点的疗效已经通过中期分析的结果表明，则该试验也可以更早停止。 功效范围可以通过使用组顺序设计方法来实现。 如果使用疗效界限，则应确保中期分析中的样本量足以显示研究的进一步目标（例如安全性和次要终点），通常在III期或上市前试验中并非如此。 如果使用分组顺序设计方法，则治疗效果倾向于偏向更大的值（尤其是平均值）。 因此，置信区间将不会具有所需的覆盖概率。 因此，如果存在减少或消除引入的偏差并增加覆盖概率的方法，则应采用。 如果没有解决这些问题的方法，则应讨论偏差的程度，并谨慎使用得出的估计值。
+
+
+#### Sample size reassessment
+
+Adaptations like sample size reassessment are not a substitute for careful planning. Sample size reassessment which is based on results of an ongoing trial is only a valid option if it can be shown that the uncertainty about the required sample size is not the result of an inadequate research in earlier stages of the study. If possible, the sample size should be recalculated in a blinded fashion. For a study with the objective to show superiority regarding a continuous primary endpoint, the type I error is generally not inflated if the method of Gould and Shih is applied (Gould and Shih, 1992). 
+
+For non-inferiority and equivalence hypotheses, the type I error could be inflated to a limited extend (Friede and Kieser, 2003). If a blinded sample size calculation is not appropriate or possible, the procedure of Chen and his colleagues (Chen et al., 2004) offers a sample size adaption without inflating the type I error. Details are described in the paper. The procedure of the reassessment should be planned a priori, must not question the validity of the study results, and has to maintain the type I error. But if more than one sample size reassessment is required, this can be a sign for varying experimental conditions and a sign that they are not fully understood.
+
+> 诸如样本量重新评估之类的调整并不能代替精心计划。如果可以证明对所需样本量的不确定性不是研究早期阶段研究不足的结果，则基于正在进行的试验结果进行的样本量重新评估只是一个有效的选择。如果可能，应以盲法重新计算样本量。对于旨在显示出连续主要终点指标优越性的研究，如果采用Gould and Shih的方法，通常不会夸大I型错误（Gould and Shih，1992）。
+
+> 对于非自卑和对等假说，I型错误可能会扩大到有限的范围（Friede和Kieser，2003年）。如果盲目的样本量计算不合适或不可行，Chen和他的同事（Chen等，2004）的程序可以对样本量进行调整，而不会增加I型错误。详细信息在本文中进行了描述。重新评估的程序应事先进行计划，不得质疑研究结果的有效性，并且必须保持I型错误。但是，如果需要进行多个样本大小的重新评估，则可能是变化的实验条件的信号，也可能是对它们没有完全了解的信号。
+
+#### Change or modification of the primary endpoint 
+
+There are several therapeutic areas where guidelines for the change or modification of the primary endpoint have not been developed. Adaptive designs are recommended if the assumptions and expectations of the primary endpoint seem to be not correct. Such information may be obtained through external knowledge in form of other studies or through interim results. In these situations, an adaptive design can be used for changes of the definition of a primary endpoint, for changes of the primary endpoint and for changes in the components of a composed primary endpoint. However, it should be noted that a change in a primary endpoint is generally difficult to justify and thus should be avoided.
+
+> 在一些治疗领域，尚未制定出主要终点改变或修改的指南。 如果主要终点的假设和期望似乎不正确，则建议采用自适应设计。 此类信息可以通过其他研究形式的外部知识或中期结果获得。 在这些情况下，可以将自适应设计用于主要端点定义的更改，主要端点的更改以及组成的主要端点的组件的更改。 但是，应注意的是，主要终点的变化通常难以证明是正确的，因此应避免。
+
+#### Discontinuing treatment arms 
+
+Discontinuation of treatment arms is worth consideration in case of multiple treatment arms – especially if one of them is a placebo arm. If data depending on discontinuation of treatment arms is favoured, the study should be planned with an appropriate adaptive design in combination with a multiple testing procedure to offer the chance to stop recruitment to the placebo group if an interim analysis has demonstrated superiority of the treatment over placebo. An application for an early phase study would be a drop-the-loser design (Sampson and Sill, 2005), where at the interim analysis of a two-stage design, one winner arm will be selected to enter the second stage of the trial (beside the control arm). Further details could be obtained from the original publication. This approach is more general described in the multiarm multi-stage approach (MAMS) by Magirr and his colleagues (Magirr et al.,2012).
+
+> 如果有多个治疗臂，则应考虑停用治疗臂-尤其是其中一个是安慰剂臂时。 如果偏爱根据治疗组停用的数据，则应采用适当的适应性设计并结合多种测试程序来计划研究，如果中期分析表明治疗优于治疗组，则有机会停止募集安慰剂组。 安慰剂。 早期研究的应用程序将是失败者设计（Sampson和Sill，2005年），其中在两阶段设计的中期分析中，将选择一个获胜者的手臂进入试验的第二阶段。 （在控制臂旁边）。 可以从原始出版物中获得更多详细信息。 Magirr及其同事在多臂多阶段方法（MAMS）中对这种方法进行了更一般的描述（Magirr等，2012）。
+
+
+#### Switching between superiority and non-inferiority
+ 
+If both, superiority and/or non-inferiority of an experimental treatment to an active comparator are acceptable outcomes, the study should be planned as a non-inferiority trial with the possibility to switch to superiority based on the trial results. A change from superiority to non-inferiority is not acceptable in the adaptive design after interim results are available
+
+> 如果对积极比较者的实验治疗的优越性和/或非劣效性均可以接受，则应将该研究计划为一项非劣效性试验，并有可能根据试验结果转向优势性。 在获得中期结果后，在自适应设计中从优劣变为非劣势是不可接受的
+
+
+#### Selection of the patient population 
+
+If the objective of a trial is not only to show efficacy, but efficacy in a certain population, so called enrichment designs could be applied. In such a design, for example, a general population is enrolled in the first stage. Based on the results of the interim analysis of the prespecified subgroups, only the most promising study population could be further investigated in the second part of the trial. The results from the first and the second stage could be combined using combination test describe in section below. A more detailed overview about enrichment can be found in article of Wang and his colleagues (Wang et al., 2009). 
+
+> 如果试验的目的不仅是显示功效，而且是在一定人群中的功效，那么可以应用所谓的富集设计。例如，在这样的设计中，第一阶段是一般人群。根据预先确定的亚组的中期分析结果，只有最有前途的研究人群可以在试验的第二部分中进行进一步研究。第一阶段和第二阶段的结果可以使用以下部分所述的组合测试进行组合。可以在Wang和他的同事的文章中找到有关浓缩的更详细的概述（Wang等，2009）。

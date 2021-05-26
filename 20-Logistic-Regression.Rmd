@@ -540,7 +540,230 @@ RUN;
 Hosmer-Lemeshow（HL）统计信息的计算方法如下。基于估计的模型，将为所有观测值生成预测的概率。这些文件按大小排序，然后分成大约10个间隔。在每个时间间隔内，通过将预测的概率相加来获得预期的事件数。通过从间隔中的案例数中减去预期的事件数，可以得到预期的非事件数。通过常规的Pearson卡方统计，将这些预期频率与观察到的频率进行比较。自由度是间隔数减去2。高p值（如本例所示）表明拟合模型不能被拒绝，并得出结论：该模型拟合良好。也就是说，无法通过添加非线性和/或交互来显着改善它
 
 
+### Statistics Measuring Predictive Power $R^2$
+
+#### Generalized $R^{2}$
+
+which is the statistic reported by LOGISTIC under the heading "Testihg Global Null Hypothesis: BETA=0." If we denote that statistic by $L^{2}$ and let $n$ be the sample size, the generalized $R^{2}$ is
+$$
+R^{2}=1-\exp \left\{-\frac{L^{2}}{n}\right\}
+$$
+将RSQ选项放在MODEL语句上, $\mathrm{LOGISTIC}$ 会为您完成。这是广义R2的原理。此公式可用于通过最大似然估 计的任何回归模型, 包括概率模型, 泊松回归模型和Cox回归模型。除了作为常规R2的泛化的吸引力之
+外, 广义R2还具有以下几方面的作用:
+- It's based on the quantity being maximized, namely the log-likelihood. 基于最大化的数量, 即对数似然
+- It's invariant to grouping. You get the same $\mathrm{R} 2$ whether you're working with grouped or individual-level data (as long as cases are only grouped together if they're identical on all the independent variables). 分组不变。无论您使用分组数据还是个人数据, 您都将获得相同的R2
+- It's readily obtained with virtually all computer programs because the loglikelihood is nearly always
+reported by default.
+几乎所有计算机程序都可以轻松获得它, 因为默认情况下几乎总是报告对数可能性
+- It never diminishes when you add variables to a model. 当您向模型添加变量时, 它永远不会减少。
+- The calculated values are usually quite similar to the $\mathrm{R} 2$ obtained from fitting a linear probability model to dichotomous data by ordinary least squares. 计算得出的值通常与通过普通最小二乘法将线性概率模型拟合为二分数据所获得的R2十分相似。
+
+尽管广义R2的行为可能与线性模型R2非常相似，但不能将其解释为自变量“解释"的方差比例。广义R2的一 个可能的缺点是它的上限小于1，因为因变量是离散的。为了解决这个问题, LOGISTIC还报告了一个标有“ Max-rescaled Rsquare"的字样, 它将原始R2除以上限 (Nagelkerke 1991) 。
+
+#### McFadden $R^{2}$
+
+McFadden的 $R^{2}$ 也是基于对数似然法, 但公式有些不同。 $L^{2}$ 为检验所有系数均为0的零假设的似然比卡
+方, $\ell_{0}$ 为无协变量模型的对数似然。
+$$
+R_{M c F}^{2}=\frac{L^{2}}{-2 \log \ell_{0}}
+$$
+与广义R2不同, McFadden的 $R^{2}$ 的上限不小于1。McFadden $R^{2}$ 和广义 $R^{2}$ 均基于最大化的数量, 即对 数似然。因此，可以将ML视为一种选择系数以使R2最大化的方法, 至少如这些措施所定义的那样。可以将 其视为一件好事，但是如果您想比较逻辑回归模型和其他不基于似然函数的方法 (例如神经网络模型) 的 预测能力，则不是一件好事。
+
+#### Tjur's $R^{2}$
+
+一种方法是使用Tjur (2009) 提出的“model free" $R^{2}$ 。这很容易计算, 并具有一些吸引人的特性。通过计 算 $\mathrm{y}=1$ 的观测值的预测值的平均值和 $\mathrm{y}=$ 0的观测值的预测值的平均值来找到Tjur的 $R^{2}$ 。 $R^{2}$ 只是这两个平 均值之间的差。Tjur的 $R^{2}$ 上限为1.
+
+```
+PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT='1')=culp whitvic blackd;
+ OUTPUT OUT=a PRED=yhat;
+PROC MEANS;
+ CLASS death;
+ VAR yhat;
+RUN; 
+```
+
+**Whenever you run binary (or ordinal) logistic regression, PROC LOGISTIC reports four such metrics by default.**
+
+$$
+\begin{array}{|l|c|l|l|}
+\hline \text { Percent Concordant } & 88.3 & \text { Somers' } \mathbf{D} & 0.800 \\
+\hline \text { Percent Discordant } & 8.4 & \text { Gamma } & 0.827 \\
+\hline \text { Percent Tied } & 3.3 & \text { Tau-a } & 0.361 \\
+\hline \text { Pairs } & 4850 & \mathrm{C} & 0.900 \\
+\hline
+\end{array}
+$$
+
+对于样本中的147个观察值，有147（146）/ 2 = 10731种不同的方式将它们配对（不将观察值与自身配对）。 其中，5881对在因变量中要么都为1，要么都为0。 我们忽略了这些，留下了4850对，其中一个案例的值为1，另一案例的值为0。对于每个对，我们提出一个问题：“具有1的案例是否具有比模型更高的预测值（基于模型）？ 是0的情况？” 如果答案是肯定的，我们称该对为一致。 如果否，则该对不和谐。 如果两个案例的预测值相同，我们将其称为平局。 令C为一致对的数量，D为不一致对的数量，T为关系的数量，N为对的总数（在消除任何对之前）。 然后定义了四个关联度量：
+
+> If the answer is yes, we call that pair concordant. If no, the pair is discordant. If the two cases have the same predicted value, we call it a tie. Let C be the number of concordant pairs, D the number of discordant pairs, T the number of ties, and N the total number of pairs (before eliminating any).
+
+$$
+\begin{array}{c}
+\text { Tau }-a=\frac{C-D}{N} \\
+G a m m a=\frac{C-D}{C+D} \\
+\text { Somer }^{\prime} s D=\frac{C-D}{C+D+T} \\
+c=.5(1+\text { Somer's } D)
+\end{array}
+$$
+
+所有这四个量度在0和1之间变化，较大的值对应于预测值和观察值之间的较强关联。 在这四个统计量中，Tau-a倾向于最接近广义R2。 另一方面，c统计量非常流行，因为它对应于ROC曲线下的面积，
+
+
+### ROC Curves 
+
+Another way to evaluate the predictive ability of a model for binary outcomes is the ROC curve. ROC is the abbreviation of Receiver Operating Characteristic. Let pi be the predicted probability of yi = 1 for individual i. If you want to use the predicted probability to generate an actual forecast for y = 1, you need some pointcut values. The natural choice is .5. If i pˆ≥.5, we predict yi =1. If i pˆ <.5, we predict yi = 0. Then we can build the following classification table:
+
+$$
+\begin{array}{l|c|c|c} 
+& \hat{p}_{i} \geq .5 & \hat{p}_{i}<.5 & \text { Total } \\
+y_{i}=1 & 35 & 15 & 50 \\
+y_{i}=0 & 10 & 87 & 97 \\
+\hline
+\end{array}
+$$
+> 敏感度是正确预测的事件的比例，在这种情况下为35/50 = .70。特异性是正确预测的非事件所占的比例，即87/97 = .90。理想的情况是这两个比例都很高。ROC曲线仅是一条图，在垂直轴上具有灵敏度，在水平轴上具有1减去特异性，两者都随着切点从1减小到0而增加。
+
+```
+PROC LOGISTIC DATA=penalty PLOTS(ONLY)=ROC;
+ MODEL death(EVENT='1')=blackd whitvic culp ;
+RUN;
+```
+
+The 45-degree line represents the expected ROC curve of a model with only intercept (ie, no predictive power). The farther the curve is from the 45-degree line, the greater the predictive power. The standard statistic for summarizing deviations is the area under the curve
+
+> 45度线代表仅具有截距（即没有预测能力）的模型的预期ROC曲线。曲线与45度线的距离越远，预测能力就越大。汇总偏离的标准统计量是曲线下的面积
+
+ROC曲线有很多选择，一个方便的选项使您可以将切点放置在曲线上。 可以通过将PLOTS选项更改为PLOTS（ONLY）= ROC（ID = CUTPOINT）来实现，
+
+```{r ROC logistic, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: ROC PLOTS（ONLY）= ROC（ID = CUTPOINT）"}
+knitr::include_graphics("./02_Plots/ROC_Logistic.png")
+```
+
+
+Compare the ROC curve and c statistics of different models. In the following code, I request the ROC curve and c statistics of the basic model and three different sub-models
+
+```
+PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT='1')=blackd whitvic culp;
+ ROC 'omit culp' blackd whitvic;
+ ROC 'omit blackd' whitvic culp;
+ ROC 'omit whitvic' blackd culp;
+ ROCCONTRAST / ESTIMATE=ALLPAIRS;
+RUN; 
+```
+
+### Predicted Values, Residuals, and Influence Statistics
+
+PROC LOGISTIC can use the OUTPUT statement to generate a large number of case statistics, which writes the selected diagnostic statistics into the SAS data set. Here are some statistics that can be selected:
+
+- Linear predictor- Predicted log-odds for each case. In matrix notation, this is $\mathbf{x} \boldsymbol{\beta}$, so it's commonly
+referred to as XBETA.
+- Standard error of linear predictor-Used in generating confidence intervals.
+- Predicted values-Predicted probability of the event, based on the estimated model and values of the explanatory variables. For grouped data, this is the expected number of events.
+- Confidence intervals for predicted values -Confidence intervals are first calculated for the linear predictor by adding and subtracting an appropriate multiple of the standard error. Then, to get confidence intervals around the predicted values, the upper and lower bounds on the linear predictor
+are substituted into $1 /\left(1+e^{-x}\right)$, where $x$ is either an upper or a lower bound.
+- Deviance residuals - Contribution of each observation to the deviance chi-square.
+- Pearson residuals - Contribution of each observation to the Pearson chi-square.
+
+
+> OUTPUT语句还可以产生多个统计数据, 这些统计数据旨在测量每个观察结果的影响。基本上，影响力统计 信息会告诉您, 当从数据集中删除特定观察值时，模型的某些功能会发生多少变化。对于用PROC REG估计 的线性模型，影响统计是准确的。但是，逻辑模型中的精确计算将非常耗时, 因此仅使用近似值。 LOGISTIC中可用的影响力统计数据为
+
+- DFBETAS-删除特定观察值时每个回归系数有多少变化,实际变化除以系数的标准误差。
+- DIFDEV-实际变化除以系数的标准误差。
+- DIFCHISQ一删除观察值后皮尔逊卡方的变化
+- $\mathrm{C}$ and $\mathrm{CBAR}$ 度量回归系数的总体变化, 类似于线性回归中的库克距离
+- LEVERAGE-测量在解释变量空间中观察值的极端程度。杜杆作用是"帽子"矩阵的对角线。
+
+> 可以通过在OUTPUT语句上指定适当的选项来获取任何这些统计信息。但是您可能会发现，使用PROC语句 上的PLOTS选项来请求ODS图形更有用。此选项产生的许多图具有三个变体, 根据水平轴上绘制的变量而 有所不同。对于INFLUENCE和DFBETAS图, 水平轴仅是案例编号。对于PHAT和DPC图, 水平轴是预测的 概率。 对于LEVERAGE, 水平轴是杜杆。
+
+Here is the [example](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.3/statug/statug_logistic_examples06.htm)
+
+```
+PROC LOGISTIC DATA=penalty PLOTS(UNPACK LABEL)=
+ (INFLUENCE DFBETAS PHAT DPC LEVERAGE);
+ MODEL death(EVENT='1')=blackd whitvic culp ;
+RUN; 
+```
+
+
+### Unobserved Heterogeneity
+
+σ is the coefficient disturbance term ε. The random disturbance term can be regarded as representing all omitted explanatory variables that have nothing to do with the measured x variable, usually referred to as unobserved heterogeneity
+
+$$\log \left[\frac{\operatorname{Pr}(y=1 \mid \varepsilon)}{\operatorname{Pr}(y=0 \mid \varepsilon)}\right]=\beta_{0}+\beta_{1} x_{1}+\beta_{2} x_{2}+\ldots+\beta_{k} x_{k}+\sigma \varepsilon$$
+We assume that ε has nothing to do with x and has a standard logarithmic distribution, (Allison 1987) the result is approximately
+
+$$\log \left[\frac{\operatorname{Pr}(y=1)}{\operatorname{Pr}(y=0)}\right]=\beta_{0}^{*}+\beta_{1}^{*} x_{1}+\beta_{2}^{*} x_{2}+\ldots+\beta_{k}^{*} x_{k}$$
+$$\beta_{i}^{*}=\frac{\beta_{j}}{\sqrt{1+\sigma^{2}}}$$
+
+> 显然，我们永远无法测量并包含影响因变量的所有变量，因此总会有一些异质性缩小。有什么实际意义
+首先，在解释逻辑回归的结果时，我们应记住，系数的大小和相应的优势比可能在某种程度上是保守的。
+其次，为了使收缩最小化，总是希望在模型中包括重要的解释变量，即使我们认为这些变量与模型中已经存在的变量不相关。该建议尤其适用于随机实验，在随机实验中，有忽略协变量的趋势，而仅关注治疗对反应的影响。对于线性模型可能没关系，但是当包括所有相关的协变量时，logit模型可得出对治疗效果的出色估计。
+第三，差分异质性可能会混淆不同组之间的logit系数比较。例如，如果要比较分别针对男性和女性估算的对数系数，则必须隐含地假设两组中未观察到的异质性程度相同。
+
+1. First, in interpreting the results of a logistic regression, we should keep in mind that the magnitudes of the coefficients and the corresponding odds ratios are likely to be conservative to some degree. 
+2. Second, to keep such shrinkage to a minimum, it’s always desirable to include important explanatory variables in the model—even if we think those variables are not correlated with the variables already in the model. This advice is especially relevant to randomized experiments where there is a tendency to ignore covariates and look only at the effect of the treatment on the response. That may be okay for linear models, but logit models yield superior estimates of the treatment effect when all relevant covariates are included. 
+3. A third problem is that differential heterogeneity can confound comparisons of logit coefficients across different groups. If, for example, you want to compare logit coefficients estimated separately for men and women, you must implicitly assume that the degree of unobserved heterogeneity is the same in both groups.
+
+
+**Adjusting for differential heterogeneity using HETERO in Proc QLIM**
+
+```
+PROC QLIM DATA=promo;
+ ENDOGENOUS promo~DISCRETE(DIST=LOGISTIC);
+ MODEL promo = female dur dur*dur select arts prestige
+arts*female;
+ HETERO promo~female / NOCONST;
+run; 
+
+####################################################
+Parameter DF   Estimate   StandardError    t Value   Approx Pr > |t|
+_H.FEMALE 1    0.354838   0.325341         1.09      0.2754
+
+我们也没有太多证据显示性别差异异质性：FEMALE对σ的影响的p值为.28。
+尽管与0没有显着差异，但可以通过计算exp（.354838）= 1.43来解释该影响的大小。 
+因此，我们说女性的差异估计比男性的差异高43％。
+```
+
+
+### Plotting Effects of Predictor Variables
+
+> 由于逻辑回归模型具有固有的非线性，因此通常很难直观地看到预测变量对事件概率的影响。 EFFECTPLOT语句为该问题提供了一种优雅的解决方案。 在检查交互作用和多项式函数时特别有用。
+
+> EFFECTPLOT语句要求根据ARTS（已发表文章的数量）绘制促销的预测概率图，同时将所有其他变量设置为其平均值。 如果模型中有任何CLASS变量，则将它们设置为参考级别。水平轴包括ARTS观测值的整个范围。 如果将选项/ LINK放在EFFECTPLOT语句上，则会得到在垂直轴上带有线性预测变量（几率的对数）的图形，在这种情况下，该线性预测变量将是一条直线。 水平轴上0和1处的小圆圈代表因变量在预测变量的不同值处的实际值。 在这种情况下，一个圆圈可以代表许多数据点
+
+```
+## 从不包含相互作用或多项式函数的模型开始
+PROC LOGISTIC DATA=promo;
+ MODEL promo(EVENT='1') = female dur select arts;
+ EFFECTPLOT FIT(X=arts);
+run; 
+
+PROC LOGISTIC DATA=promo;
+ MODEL promo(EVENT='1') = female dur select arts arts*arts;
+ EFFECTPLOT FIT(X=arts);
+run;
+
+## SLICEFIT option to produce curves for men and women: 
+PROC LOGISTIC DATA=promo;
+ MODEL promo(EVENT='1') = female dur select arts prestige
+arts*female ;
+ EFFECTPLOT SLICEFIT(X=arts SLICEBY=female=0 1);
+run;
+```
+
 ## Probit Modell
+
+### Introduction
+
+The latent variable model we examined in the last section should help to motivate these models. The equation for the continuous latent variable z was
+$$z=\alpha_{0}+\alpha_{1} x_{1}+\alpha_{2} x_{2}+\ldots+\alpha_{k} x_{k}+\sigma \varepsilon$$
+* 如果ε具有标准的logistic分布，则y对x的依赖性由logit模型给出。
+* 现在假设ε具有标准正态分布。这意味着y通过概率模型依赖于x。
+* 如果ε具有标准的极值分布（也称为Gumbel或双指数分布），我们将获得互补的log-log模型。
+
 
 The probability $\pi{i}=\mathrm{P}\left(y{i}=1 \mid x{i 1}, \ldots, x{i k}\right)$ and the linear predictor $\eta_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}$ are linked by a response function $\pi_{i}=h\left(\eta_{i}\right) $:
 
@@ -549,6 +772,8 @@ $$\pi=\frac{\exp (\eta)}{1+\exp (\eta)} \Longleftrightarrow \log \frac{\pi}{1-\p
 For Probit-Modell:
 $$\pi=\Phi(\eta) \Longleftrightarrow \Phi^{-1}(\pi)=\eta$$
 $$\pi=\Phi(\eta)=\Phi\left(\boldsymbol{x}^{\prime} \boldsymbol{\beta}\right)$$
+So the probit model is often written as
+$$\Phi^{-1}\left(p_{i}\right)=\beta_{0}+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}$$
 
 ### R Implemetation
 
@@ -569,7 +794,22 @@ wald.test(b = coef(myprobit), Sigma = vcov(myprobit), L = l)
 wald.test(b = coef(myprobit), Sigma = vcov(myprobit), Terms = 4:6)
 ```
 
+### SAS Implementation
+
+```
+PROC LOGISTIC DATA=penalty;
+ MODEL death(EVENT='1') = culp blackd whitvic / LINK=PROBIT
+ STB;
+RUN; 
+```
+
+For logit and probit models, the chi-square, p-value, and standardized coefficient are usually very close, although they will never be exactly the same. On the other hand, compared with the logit model, the **parameter estimates and standard errors** of the probit model are much lower.
+
+ 
+
 ## Complementary log-log-Modell
+
+The complementary log-log model has important applications in the field of **survival analysis**.
 
 The probability $\pi{i}=\mathrm{P}\left(y{i}=1 \mid x{i 1}, \ldots, x{i k}\right)$ and the linear predictor $\eta_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}$ are linked by a response function $\pi_{i}=h\left(\eta_{i}\right) $:
 
@@ -577,6 +817,13 @@ For Logit-Modell:
 $$\pi=\frac{\exp (\eta)}{1+\exp (\eta)} \Longleftrightarrow \log \frac{\pi}{1-\pi}=\eta$$
 For Complementary log-log model:
 $$\pi=1-\exp (-\exp (\eta)) \quad \Longleftrightarrow \quad \log (-\log (1-\pi))=\eta$$
+$$\log \left[-\log \left(1-p_{i}\right)\right]=\beta_{0}+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}$$
+$$p_{i}=1-\exp \left\{-\exp \left[\beta_{0}+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}\right]\right\}$$
+
+* 互补对数对数模型与logit和probit模型有一个主要区别。logit和probit变换在p = .50附近是对称的，但互补的log-log变换是不对称的。它是一条S形曲线，但逼近1的速度比逼近0的速度快得多。
+* 生存分析中最流行的方法是Cox回归方法，该方法基于一种称为比例风险模型的模型（Cox 1972）。 该模型的特殊情况包括Weibull回归模型和指数回归模型。 比例风险模型可以写成
+$$\log h(t)=\alpha(t)+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+\ldots+\beta_{k} x_{i k}$$
+where $h(t)$ is something called the hazard of an event at time $t$ and $\alpha(t)$ is an unspecified function of time.
 
 ### R Implemetation
 

@@ -38,62 +38,6 @@ Power is the probability of correctly rejecting the null hypothesis when the alt
 
 
 
-## Proc FREQ
-
-```
-PROC FREQ <options> ;
-
-  BY variables;
-  EXACT statistic-options </ computation-options> ;
-  OUTPUT <OUT=SAS-data-set> output-options;
-  TABLES requests </ options> ;
-  TEST options;
-  WEIGHT variable </ option> ;
-````
-
-### ODS Table Names
-
-See more ["ODS Table Names"](https://documentation.sas.com/doc/en/statcdc/14.2/statug/statug_freq_details116.htm)
-
-| ODS Table Name    | Description                            | Statement | Option           |
-|-------------------|----------------------------------------|-----------|------------------|
-| BinomialCLs       | Binomial confidence limits             | TABLES    | BINOMIAL(CL=)    |
-| BinomialEquivTest | Binomial equivalence test              | TABLES    | BINOMIAL(EQUIV)  |
-| BinomialNoninf    | Binomial noninferiority test           | TABLES    | BINOMIAL(NONINF) |
-| BinomialTest      | Binomial proportion test               | TABLES    | BINOMIAL         |
-| CMH               | Cochran-Mantel-Haenszel test           | TABLES    | CMH              |
-| ChiSq             | Chi-square tests                       | TABLES    | CHISQ            |
-| EqualKappaTests   | Tests for equal kappas                 | TABLES    | AGREE            |
-| EqualOddsRatios   | Tests for equal odds ratios            | EXACT     | EQOR             |
-| GammaTest         | Gamma test                             | TEST      | GAMMA            |
-| LRChiSq           | Likelihood ratio chi-square exact test | EXACT     | LRCHI            |
-| MHChiSq           | Mantel-Haenszel chi-square exact test  | EXACT     | MHCHI            |
-| OneWayChiSq       | One-way chi-square test                | TABLES    | CHISQ            |
-| PearsonCorr       | Pearson correlation                    | TEST      | PCORR            |
-
-
-### ODS Plots
-
-| ODS Graph Name | Description               | PLOTS= Option | TABLES Statement Option           |
-|----------------|---------------------------|---------------|-----------------------------------|
-| AgreePlot      | Agreement plot            | AGREEPLOT     | AGREE                             |
-| CumFreqPlot    | Cumulative frequency plot | CUMFREQPLOT   | One-way table request             |
-| DeviationPlot  | Deviation plot            | DEVIATIONPLOT | CHISQ (one-way table)             |
-| FreqPlot       | Frequency plot            | FREQPLOT      | Any table request                 |
-| KappaPlot      | Kappa plot                | KAPPAPLOT     | AGREE                             |
-| MosaicPlot     | Mosaic plot               | MOSAICPLOT    | Two-way or multiway table request |
-| ORPlot         | Odds ratio plot           | ODDSRATIOPLOT | MEASURES, OR, or RELRISK          |
-| RelRiskPlot    | Relative risk plot        | RELRISKPLOT   | MEASURES or RELRISK               |
-| RiskDiffPlot   | Risk difference plot      | RISKDIFFPLOT  | RISKDIFF ( table)                 |
-| WtKappaPlot    | Weighted kappa plot       | WTKAPPAPLOT   | AGREE                             |
-| PearsonCorr    | Pearson correlation       | TEST          | PCORR                             |
-
-
-## 
-
-
-
-
 
 ## Binomial test
 
@@ -148,12 +92,41 @@ library(pwr)
 pwr.p.test(ES.h(3/4,0.99),n = 42,alternative = "less")
 ```
 
+### SAS Implementation
+
+
+See more ["ODS Table Names"](https://documentation.sas.com/doc/en/statcdc/14.2/statug/statug_freq_details116.htm)
+
+| ODS Table Name    | Description                            | Statement | Option           |
+|-------------------|----------------------------------------|-----------|------------------|
+| BinomialCLs       | Binomial confidence limits             | TABLES    | BINOMIAL(CL=)    |
+| BinomialEquivTest | Binomial equivalence test              | TABLES    | BINOMIAL(EQUIV)  |
+| BinomialNoninf    | Binomial noninferiority test           | TABLES    | BINOMIAL(NONINF) |
+| BinomialTest      | Binomial proportion test               | TABLES    | BINOMIAL         |
+| CMH               | Cochran-Mantel-Haenszel test           | TABLES    | CMH              |
+| ChiSq             | Chi-square tests                       | TABLES    | CHISQ            |
+| EqualKappaTests   | Tests for equal kappas                 | TABLES    | AGREE            |
+| EqualOddsRatios   | Tests for equal odds ratios            | EXACT     | EQOR             |
+| GammaTest         | Gamma test                             | TEST      | GAMMA            |
+| LRChiSq           | Likelihood ratio chi-square exact test | EXACT     | LRCHI            |
+| MHChiSq           | Mantel-Haenszel chi-square exact test  | EXACT     | MHCHI            |
+| OneWayChiSq       | One-way chi-square test                | TABLES    | CHISQ            |
+| PearsonCorr       | Pearson correlation                    | TEST      | PCORR            |
 
 ## Fisher's Exact Test
 
 Fisher's exact test is particularly appropriate when dealing with small samples. Comparing to the contingency chi-square test, Fisher's exact test is to exaclty calculate the p-value rather than being based on an asymptotic approximation.
 
-### Mathematical Formula
+### Introduction
+
+**Hypotheses**
+
+The hypotheses of the Fisher’s exact test are the same than for the Chi-square test, that is:
+
+* $H_0$: the variables are independent, there is no relationship between the two categorical variables. Knowing the value of one variable does not help to predict the value of the other variable
+* $H_1$: the variables are dependent, there is a relationship between the two categorical variables. Knowing the value of one variable helps to predict the value of the other variable
+ 
+ 
 
 |                |       |       |                    |
 |----------------|-------|-------|--------------------|
@@ -219,21 +192,56 @@ https://www.pharmasug.org/proceedings/2012/PO/PharmaSUG-2012-PO05.pdf
 
 ### R implementation
 
+```{r fisher exact, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+dat <- data.frame(
+  "smoke_no" = c(7, 0),
+  "smoke_yes" = c(2, 5),
+  row.names = c("Athlete", "Non-athlete"),
+  stringsAsFactors = FALSE
+)
+colnames(dat) <- c("Non-smoker", "Smoker")
+dat
+
+## Expected frequencies
+chisq.test(dat)$expected
+
+## Fisher’s exact test
+fisher.test(dat)
 ```
-library(vcd)
-mytable <- xtabs(~Treatment+Improved, data=Arthritis)
-fisher.test(mytable)
-```
 
-## Contingency test
-
-https://www.stat.purdue.edu/~tqin/system101/method_list.htm
-https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.4/statug/statug_npar1way_syntax01.htm#statug.npar1way.np1plots
-
-
+ 
 ## McNemar's test
 
-Simar to the contigency test, McNemar's test can be used to analyze categorical data in survey and questionnarie. But when the data are dependent, McNemar's test is more appropiate. 
+### introduction
+
+Simar to the contigency test, McNemar's test can be used to analyze categorical data in survey and questionnarie. But when the data are dependent, McNemar's test is more appropiate. t is applied to 2 × 2 contingency tables with a dichotomous trait, with matched pairs of subjects, to determine whether the row and column marginal frequencies are equal (that is, whether there is "marginal homogeneity").
+
+The test is applied to a $2 \times 2$ contingency table, which tabulates the outcomes of two tests on a sample of $N$ subjects, as follows.
+
+$$
+\begin{tabular}{|c|c|c|c|}
+\hline & Test 2 positive & Test 2 negative & Row total \\
+\hline Test 1 positive & $a$ & $b$ & $a+b$ \\
+\hline Test 1 negative & $c$ & $d$ & $c+d$ \\
+\hline Column total & $a+c$ & $b+d$ & $N$ \\
+\hline
+\end{tabular}
+$$
+
+The null hypothesis of marginal homogeneity states that the two marginal probabilities for each outcome are the same, i.e. $p_{a}+p_{b}=p_{a}+p_{c}$ and
+$p_{c}+p_{d}=p_{b}+p_{d}$
+The null and alternative hypotheses are 
+
+* $H_{0}: p_{b}=p_{c}$
+* $H_{1}: p_{b} \neq p_{c}$
+
+The McNemar test statistic is:
+$$
+\chi^{2}=\frac{(b-c)^{2}}{b+c}
+$$
+Under the null hypothesis, with a sufficiently large number of discordants (cells b and c), $\chi^{2}$ has a chi-squared distribution with 1 degree of freedom. If the $\chi^{2}$ result is significant, this provides sufficient evidence to reject the null hypothesis, in favour of the alternative hypothesis that $p_{b} \neq p_{c}$, which would mean that the marginal proportions are significantly different from each other.
+
+### SAS Implementation
 
 ```
 proc freq data=athelete;
@@ -241,6 +249,32 @@ proc freq data=athelete;
 		tables treatX*treatY /agree expected norow nocol nopercent; 
 run;
 ```
+
+### R Implementation
+
+```{r McNemar,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+set.seed(150)
+data <- data.frame(before = sample(c("Positive",
+                                     "Positive",
+                                     "Positive",
+                                     "Positive",
+                                     "Negative"),
+                            300, replace = TRUE),
+                    after = sample(c("Positive",
+                                     "Positive",
+                                     "Positive",
+                                     "Positive",
+                                     "Negative"),
+                           300, replace = TRUE))
+###  contingency table
+table(data$before, data$after)
+
+mcnemar.test(table(data$before, data$after))
+ 
+```
+
+
+
 
 ## Cochran–Mantel–Haenszel Test
 
@@ -313,6 +347,10 @@ cor.test(x, y, method=c("pearson", "kendall", "spearman"))
 
 ## Two Sample T-Test
 
+### Inreoduction
+
+**Assumptions**
+
 Two sample t-test assumes that
 
 1. There is one continuous dependent variable and one categorical independent variable (with 2 levels);
@@ -324,6 +362,48 @@ When the assumptions are not met, other methods are possible based on the two sa
 * Two dependent samples and follow Normal distribution, suggest Paired T-test;
 * Two independent samples and does not follow Normal distribution, suggest [WMW test](https://www.stat.purdue.edu/~tqin/system101/method/method_wilcoxon_rank_sum_sas.htm);
 * Two dependent samples and does not follow Normal distribution, suggest [Signed Rank test](https://www.stat.purdue.edu/~tqin/system101/method/method_wilcoxon_signed_rank_sas.htm);
+
+**Two-sample t-test for unpaired data**
+
+$$\mathrm{H}_{0}: \mu_{1}=\mu_{2}$$
+$$\mathrm{H}_{\mathrm{a}}: \mu_{1} \neq \mu_{2}$$
+Test Statistic: 
+$$T=\frac{\bar{Y}_{1}-\bar{Y}_{2}}{\sqrt{s_{1}^{2} / N_{1}+s_{2}^{2} / N_{2}}}$$
+where $N_{1}$ and $N_{2}$ are the sample sizes, $\bar{Y}_{1}$ and $\bar{Y}_{2}$ are the sample means, and $s_{1}^{2}$ and $s_{2}^{2}$ are the sample variances.
+If equal variances are assumed, then the formula reduces to:
+$$
+T=\frac{\bar{Y}_{1}-\bar{Y}_{2}}{s_{p} \sqrt{1 / N_{1}+1 / N_{2}}}
+$$
+where
+$$
+s_{p}^{2}=\frac{\left(N_{1}-1\right) s_{1}^{2}+\left(N_{2}-1\right) s_{2}^{2}}{N_{1}+N_{2}-2}
+$$
+Reject the null hypothesis that the two means are equal if
+$$
+|T|>t_{1-\alpha / 2, v}
+$$
+where $t_{1-\alpha / 2, v}$ is the critical value of the $\underline{\underline{d} \text { dstribution with }} v$ degrees of freedom where
+$$
+v=\frac{\left(s_{1}^{2} / N_{1}+s_{2}^{2} / N_{2}\right)^{2}}{\left(s_{1}^{2} / N_{1}\right)^{2} /\left(N_{1}-1\right)+\left(s_{2}^{2} / N_{2}\right)^{2} /\left(N_{2}-1\right)}
+$$
+If equal variances are assumed, then $v=N_{1}+N_{2}-2$
+
+**Paired Samples t Test**
+
+The test statistic for the Paired Samples t Test, denoted $t$, follows the same formula as the one sample $t \mathrm{te}$
+$$
+t=\frac{\bar{x}_{\mathrm{diff}}-0}{s_{\bar{x}}}
+$$
+where
+$$
+s_{\bar{x}}=\frac{s_{\mathrm{diff}}}{\sqrt{n}}
+$$
+where
+
+* $\bar{x}_{\text {diff }}=$ Sample mean of the differences 
+* $n=$ Sample size (i.e., number of observations) 
+* $s_{\text {diff }}=$ Sample standard deviation of the differences
+* $s_{\bar{x}}=$ Estimated standard error of the mean $(s / \operatorname{sqrt}(n))$
 
 ### SAS implementation
 

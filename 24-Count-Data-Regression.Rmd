@@ -1,1 +1,59 @@
 # Count Data Regression  
+
+## Introduction of Count Data Regression  
+
+- Classical count data models:
+- Poisson regression
+- Negative binomial regression (including geometric regression)
+- Quasi-Poisson regression
+- Generalized count data models:
+- Zero-inflation models
+- Hurdle models
+- NegBin-P model
+- Heterogeneous NegBin model (NB-H)
+- Single-index models:
+o Poisson, quasi-Poisson, geometric, negative binomial, NB-P
+- Multiple-index models:
+o zero-inflation models, hurdle models, NB-H
+
+**Count data models in $\mathrm{R}$**:
+
+- stats: Poisson and quasi-Poisson models via glm0
+- MASS: negative binomial and geometric regression via glm.nb()
+- pscl: zero-inflation and hurdle models via zeroinfl() and hurdle 0 ・ER: testing for equildispersion via dispersiontest()
+- flexmix: finite mixtures of Poissons via flexmix()
+- gamlss: Poisson-inverse Gaussian (PIG) regression via gamlss()
+
+## Poisson regression
+
+
+## Negative Binomial Regression
+
+
+## Zero-truncated Poisson Regression Model 
+
+## Zero-Insflated Model
+
+## Hurdle models
+
+
+## Proportion-Response-Regression
+
+Assume that the response variable y takes a continuous value in the interval (0,1), which may or may not include the endpoint. There are 4 different model avaliable
+
+* beta regression, 
+* zero-inflated beta regression (if zero is included in the range), 
+* one-inflated beta regression (if one is a possible observation), and 
+* zero-one-inflated beta regression (where both zero and one may be observed).
+
+
+### Beta Regression
+
+
+### Zero-inflated Beta Regression
+
+
+### One-inflated Beta Regression
+
+### Zero-one-inflated Beta Regression
+

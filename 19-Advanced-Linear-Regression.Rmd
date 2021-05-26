@@ -543,11 +543,11 @@ plot(ss)
 
 ## Tabular output
 
+
 ss <- sim_slopes(fiti, pred = Illiteracy, modx = Murder,
                  modx.values = c(0, 5, 10))
 library(huxtable)
 as_huxtable(ss)
-
 
 ## Johnson-Neyman intervals
 
@@ -803,8 +803,8 @@ $$\hat{y}=\beta_{1} T_{1}+\cdots+\beta_{p} T_{p}$$
 
 <!-- 偏最小二乘（PLS）是一种用于关联一组输入变量X1，... Xm和输出Y1，...，Y1的方法。PLS回归可与PCR媲美，因为两者均使用一定数量的预测变量线性组合来预测响应。 区别在于，尽管PCR在确定线性组合时忽略了Y，但PLS回归显式选择了它们来尽可能地预测Y。 我们将仅考虑单变量PLS -->
 
-```{r, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Partial Least Squares"}
-knitr::include_graphics("/Users/zehuibai/Documents/GitHub/As-a-Statistician/02_Plots/Partial Least Squares.png")
+```{r Partial Least Squares, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Partial Least Squares"}
+knitr::include_graphics("./02_Plots/Partial Least Squares.png")
 ```
 
  
