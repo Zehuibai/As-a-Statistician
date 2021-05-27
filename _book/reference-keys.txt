@@ -651,3 +651,12 @@ sas-implementation-12
 r-implementation-13
 generalized-estimating-equations-model
 alternatives-to-mixed-models
+introduction-of-gee
+generalized-estimating-equation-1
+sas-implementation-13
+r-implementation-14
+hierarchical-regression-model-for-normal-response
+sas-implementation-14
+r-implementation-15
+introduction-16
+likelihood-ratio-test-1

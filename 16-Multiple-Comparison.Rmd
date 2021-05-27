@@ -1,6 +1,16 @@
 # Multiple-Comparison
 
- 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
+
 ## Introduction
 
 ### Multiplicity Problem
@@ -35,7 +45,7 @@ $$
 where
 - $\bar{y}$ is the estimate of the population mean
 - $s_{y}$ is the sample standard deviation
-o $n$ is the sample size
+- $n$ is the sample size
 - $s_{y} / \sqrt{n}$ is the standard error of the estimated mean.
 
 
@@ -268,7 +278,6 @@ round(u, 3)
 | `summary(warpbreaks.mc, test = Chisqtest())`                   | Wald测试                                    |
 | `summary(warpbreaks.mc, test = univariate())`                  | 未调整的p值, 不考虑多重性执行了m个单独t检验 |
 | `summary(warpbreaks.mc, test = adjusted(type = "bonferroni"))` | Bonferroni校正                              |
-
 
 
 
@@ -991,9 +1000,7 @@ data;
 run;
 proc print;
 run;
-```
-
-```
+ 
 ### Calculate critical values for Dunnett procedure given alpha, df1 and df2 in R;
 
 qDunnett <- function (p, df, k, rho,
@@ -1029,7 +1036,7 @@ p <- 0.95; df <- 24; rho <- 0.5; k <- 3
 nCDunnett::qNCDun(p=p, nu=df, rho=rho,
                   delta=rep(0,times=k), two.sided=T)
 qDunnett(p, df, k, rho)
-````
+```
 
 
 **SAS Implementation**
@@ -1153,6 +1160,8 @@ proc glm data=Tox;
 run; quit;
 ods graphics off; 
 ```
+
+
 
 **Graphing the One-Sided Dunnett Comparisons**
 
@@ -2083,7 +2092,7 @@ $$
 $$
 ist. Anderenfalls heißt $\varphi$ inkohärent.
 Ein multipler Test $\varphi=\left(\varphi_{i}: i \in I=1, \ldots, m\right)$ für $(\Omega, \mathcal{A}, \mathcal{P}, \mathcal{H})$ heißt konsonant, falls
-$$33
+$$
 \forall i \in I \text { mit } \exists j \in I: H_{i} \subset H_{j}:\left\{\varphi_{i}=1\right\} \subseteq \bigcup_{j: H_{j} \supset H_{i}}\left\{\varphi_{j}=1\right\}
 $$
 Wird $H i$ von einem konsonanten multiplen Test $\varphi$ abgelehnt und gibt es echte Obermengen $H j$
@@ -2145,7 +2154,10 @@ $$
 \tilde{p}_{(i)}=\min \left(1, \max _{j \leq i}\left\{(k-j+1) p_{(j)}\right\}\right) .
 $$
 
+
+
 **Calculating Bonferroni-Holm Adjusted p-Values Using PROC MULTTEST**
+
 
 ```
 data prog13p1;
@@ -2243,7 +2255,9 @@ Hochberg (1988) devised a shortcut to the Simes-Hommel method that can be comput
 $$
 \tilde{p}_{i, \text { Simes-Hommel }} \leq \tilde{p}_{i, \text { Hochberg }} \leq \tilde{p}_{i, \text { Bonferroni-Holm }} \leq \tilde{p}_{i, \text { Bonferroni }}
 $$
+
 The method's justification rests on the validity of the Simes test, meaning that it requires independence or positive dependence. It is very similar to the Bonferroni-Holm method, except that the $p$ -values are evaluated from least significant to most significant. Hence, unlike the Bonferroni-Holm method, which is sometimes called a "step-down" procedure, the Hochberg method is called a "step-up" procedure. Here is the algorithm:
+
 
 > 该方法的合理性取决于Simes检验的有效性，这意味着它需要独立性或正相关性
 
@@ -2347,6 +2361,7 @@ Different truncated closed testing procedures are distinguished by how the hypot
 
 As with Bonferroni-Holm, hypotheses are ordered by their **raw $p$ -values**; however, instead of testing $H_{(i)}$ by comparing $p_{(i)}$ to $\alpha(k-i+1)$, you **compare it to $\alpha / k_{i}$**, where $k_{i}$ is the maximum subset size of hypotheses among $H_{(i)}, \ldots, H_{(k)}$ that include $H_{(i)}$ and can possibly be true, given that $H_{(1)}, \ldots$ $H_{(i-1)}$ are false. Of course, $k_{i}$ can be no larger than $k-i+1$, but as you saw above, it can be much smaller, making Shaffer's method more powerful. Shaffer's method is implemented in many SAS procedures using the STEPDOWN option of LSMEANS, along with the TYPE=LOGICAL suboption. The REPORT option displays the Bonferroni divisors $k_{2}, k_{3}, \ldots$ and other information.
 
+
 ```
 data Anova1;
  input G Y @@;
@@ -2362,6 +2377,7 @@ proc orthoreg data=Anova1;
  lsmeans G / pdiff stepdown(type=logical report);
 run;
 ```
+
 
 $$
 \begin{array}{l}
@@ -2475,7 +2491,9 @@ run;
 ```
 
 
+
 **R Implementation**
+
 
 ```{r step down Dunnett,echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library("multcomp")
@@ -2486,6 +2504,9 @@ recovery.mc <- glht(recovery.aov,
                     alternative = "less") 
 summary(recovery.mc, test = adjusted(type = "free"))
 ```
+
+
+
 
 
 
@@ -2585,7 +2606,14 @@ title;
 
 
 
+
+
  
 
 
  
+
+
+
+
+

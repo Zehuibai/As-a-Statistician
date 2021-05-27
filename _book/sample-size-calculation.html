@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-05-26" />
+<meta name="date" content="2021-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,12 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.17/d3.min.js"></script>
+<link href="libs/markmap-0.3.3/view.mindmap.css" rel="stylesheet" />
+<script src="libs/markmap-0.3.3/view.mindmap.js"></script>
+<script src="libs/markmap-0.3.3/plugins/parsemd.min.js"></script>
+<script src="libs/markmap-binding-1.2.3/markmap.js"></script>
 
 
 <style type="text/css">
@@ -844,10 +850,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.7.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-one-inflated-beta-regression"><i class="fa fa-check"></i><b>21.7.4</b> Zero-one-inflated Beta Regression</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a></li>
+<li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-14"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="mixed-model.html"><a href="mixed-model.html#correlated-response-data"><i class="fa fa-check"></i><b>22.1.1</b> Correlated response data</a></li>
+<li class="chapter" data-level="22.1.2" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-and-marginal-model"><i class="fa fa-check"></i><b>22.1.2</b> Hierarchical and Marginal model</a></li>
+<li class="chapter" data-level="22.1.3" data-path="mixed-model.html"><a href="mixed-model.html#mle-in-marginal-model"><i class="fa fa-check"></i><b>22.1.3</b> MLE in Marginal model</a></li>
+<li class="chapter" data-level="22.1.4" data-path="mixed-model.html"><a href="mixed-model.html#reml-in-marginal-model"><i class="fa fa-check"></i><b>22.1.4</b> REML in Marginal model</a></li>
+<li class="chapter" data-level="22.1.5" data-path="mixed-model.html"><a href="mixed-model.html#variance-correction"><i class="fa fa-check"></i><b>22.1.5</b> Variance correction</a></li>
+<li class="chapter" data-level="22.1.6" data-path="mixed-model.html"><a href="mixed-model.html#hypothesis-tests"><i class="fa fa-check"></i><b>22.1.6</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="22.1.7" data-path="mixed-model.html"><a href="mixed-model.html#residual-structure"><i class="fa fa-check"></i><b>22.1.7</b> Residual Structure</a></li>
+<li class="chapter" data-level="22.1.8" data-path="mixed-model.html"><a href="mixed-model.html#converge-problems"><i class="fa fa-check"></i><b>22.1.8</b> Converge problems</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model"><i class="fa fa-check"></i><b>22.2</b> Random Slope and Intercept Model</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction"><i class="fa fa-check"></i><b>22.2.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.2.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-11"><i class="fa fa-check"></i><b>22.2.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.2.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-12"><i class="fa fa-check"></i><b>22.2.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model-with-covariance-structure"><i class="fa fa-check"></i><b>22.3</b> Random Slope and Intercept Model with Covariance Structure</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction-1"><i class="fa fa-check"></i><b>22.3.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.3.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-12"><i class="fa fa-check"></i><b>22.3.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.3.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-13"><i class="fa fa-check"></i><b>22.3.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="mixed-model.html"><a href="mixed-model.html#generalized-estimating-equation"><i class="fa fa-check"></i><b>22.4</b> Generalized Estimating Equation</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-of-gee"><i class="fa fa-check"></i><b>22.4.1</b> Introduction of GEE</a></li>
+<li class="chapter" data-level="22.4.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-13"><i class="fa fa-check"></i><b>22.4.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.4.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-14"><i class="fa fa-check"></i><b>22.4.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-regression-model-for-normal-response"><i class="fa fa-check"></i><b>22.5</b> Hierarchical Regression Model for Normal Response</a>
+<ul>
+<li class="chapter" data-level="22.5.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-15"><i class="fa fa-check"></i><b>22.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="22.5.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-14"><i class="fa fa-check"></i><b>22.5.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.5.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-15"><i class="fa fa-check"></i><b>22.5.3</b> R Implementation</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="23" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>23</b> Generalized Linear (Mixed) Model</a></li>
-<li class="chapter" data-level="24" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>24</b> Generalized Estimating Equation</a></li>
-<li class="chapter" data-level="25" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>25</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="24" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>24</b> Group (Adaptive) Sequential Design</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#section"><i class="fa fa-check"></i><b>24.1</b> </a></li>
+<li class="chapter" data-level="24.2" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#adaptive-designs"><i class="fa fa-check"></i><b>24.2</b> Adaptive designs</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#introduction-16"><i class="fa fa-check"></i><b>24.2.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>25</b> ^_^ Space</a></li>
 <li class="chapter" data-level="26" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>26</b> Propensity Score</a></li>
 <li class="chapter" data-level="27" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>27</b> Missing Data</a>
 <ul>
@@ -886,16 +936,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sample-size-calculation" class="section level1" number="10">
 <h1><span class="header-section-number">Chapter 10</span> Sample Size Calculation</h1>
+<div id="htmlwidget-6f6a75043e34b9ffc254" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6f6a75043e34b9ffc254">{"x":{"data":"# \n## Sample Size Calculation\n### Distribution\n#### Quantile Function in SAS\n#### Binomial distribution\n#### Negative binomial distribution\n#### Multinomial distribution\n#### Normal Distribution\n#### Multivariate normal distribution\n#### Poisson distribution\n#### Exponential distribution\n#### Gamma distribution\n#### Weibull Distribution\n#### Beta Distribution\n##### Beta分布及其函数公式推导\n##### Beta 函数和 Gamma 函数\n##### Beta 分布的期望与方差\n### Point Estimates\n### Test Proportion(s)\n#### Binomial CI for Small Samples\n##### Wald CI\n##### Clopper-Pearson or “Exact” CI\n##### Wilson score CI\n##### Adjusted Wald CI\n#### Package binom\n#### %CI_Single_Proportion \n#### Incidence rate CI\n#### Package: pwr\n#### Test one Proportion based on Wald CI\n##### 1-Sample, 2-Sided Equality\n##### 1-Sample Non-Inferiority or Superiority\n##### 1-Sample Equivalence\n#### Test two Proportions based on Wald CI\n##### 2-Sample, 2-Sided Equality\n##### 2-Sample Non-Inferiority or Superiority\n##### 2-Sample Equivalence\n#### Paired Proportions: McNemar's Z-test\n#### Chi-square test\n### Test Mean(s)\n#### Test one sample mean\n##### 2-Sided Equality\n##### 1-Sample Non-Inferiority or Superiority\n##### 1-Sample Equivalence\n#### Test two sample means\n##### 2-Sample, 2-Sided Equality\n##### 2-Sample, 1-Sided\n##### 2-Sample Non-Inferiority or Superiority\n##### 2-Sample Equivalence\n#### T-Test using `pwr.t.test` or `pwr.t2n.test`\n#### Test k Means\n#### Anova using `pwr.anova.test`\n### Other Methods\n#### Odds Ratio\n#### Correlation\n#### Correlated Binary Data: Ophthalmologic Studies\n### Multiple test\n#### Definitions of Power \n#### Bonferroni Tests (Individual Power)\n#### Tukey's method (Individual Power)\n#### Dunnett's Two-Sided Tests (Individual Power)\n#### Combined Power %SimPower and %PlotSimPower\n##### **All Pairwise Comparisons**\n##### **logically constrained step-down tests**\n##### **DUNNETT Comparisons with a Control Two-Sided**\n##### **Step-down Dunnett**\n#### Dunnett Set up Close Tests in R\n### Time-To-Event Data\n#### Cox PH, 2-Sided Equality\n#### Log-Rank Tests for Competing Risks\n### Estimation in diagnostic test \n#### Adequate sensitivity/specificity\n#### Testing sensitivity (or specificity) \n#### Likelihood ratio estimation\n#### ROC index of accuracy","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <p>Using the usual method for determination of the appropriate sample size, the following
 items should be specified:</p>
-<p>• a primary endpoint
-• the applied statistical test
-• the null and alternative hypothesis
-• the probability of erroneously rejecting the null hypothesis (the type I error)
-• the probability of erroneously failing to reject the null hypothesis (the type II error)
-• the expected drop-out rate
-• the software used for sample size calculation
-• assumptions made for the sample size calculation as well as their sources</p>
+<ul>
+<li>a primary endpoint</li>
+<li>the applied statistical test</li>
+<li>the null and alternative hypothesis</li>
+<li>the probability of erroneously rejecting the null hypothesis (the type I error)</li>
+<li>the probability of erroneously failing to reject the null hypothesis (the type II error)</li>
+<li>the expected drop-out rate</li>
+<li>the software used for sample size calculation</li>
+<li>assumptions made for the sample size calculation as well as their sources</li>
+</ul>
 <p>In some instances, such as time-to-event analyses, the event rate is of primary interest for evaluating power, and assumptions should be made to extrapolate from the required number of events to the eventual sample size of the trial.</p>
 <div id="distribution" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Distribution</h2>
@@ -2734,10 +2788,10 @@ to reject a hypothesis, and the power of the test, using the Individual Power de
 <span id="cb87-7"><a href="sample-size-calculation.html#cb87-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sigma =</span> <span class="fl">0.1188</span>,</span>
 <span id="cb87-8"><a href="sample-size-calculation.html#cb87-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">dist=</span><span class="st">&quot;zdist&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.025</span>, <span class="at">testcall=</span><span class="st">&quot;SU&quot;</span>)</span></code></pre></div>
 <pre><code>## $`least sample size required in each treatment groups`
-## [1] 25
+## [1] 26
 ## 
 ## $`least sample size required in the control group`
-## [1] 25</code></pre>
+## [1] 26</code></pre>
 </div>
 </div>
 <div id="time-to-event-data" class="section level2" number="10.7">

@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-05-25" />
+<meta name="date" content="2021-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,12 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.17/d3.min.js"></script>
+<link href="libs/markmap-0.3.3/view.mindmap.css" rel="stylesheet" />
+<script src="libs/markmap-0.3.3/view.mindmap.js"></script>
+<script src="libs/markmap-0.3.3/plugins/parsemd.min.js"></script>
+<script src="libs/markmap-binding-1.2.3/markmap.js"></script>
 
 
 
@@ -740,6 +746,28 @@
 <li class="chapter" data-level="19.1.6" data-path="survival-analysis.html"><a href="survival-analysis.html#mean-residual-life"><i class="fa fa-check"></i><b>19.1.6</b> Mean Residual Life</a></li>
 <li class="chapter" data-level="19.1.7" data-path="survival-analysis.html"><a href="survival-analysis.html#relation-between-functions"><i class="fa fa-check"></i><b>19.1.7</b> Relation between functions</a></li>
 </ul></li>
+<li class="chapter" data-level="19.2" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimator"><i class="fa fa-check"></i><b>19.2</b> Kaplan-Meier estimator</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="survival-analysis.html"><a href="survival-analysis.html#km-introduction"><i class="fa fa-check"></i><b>19.2.1</b> KM Introduction</a></li>
+<li class="chapter" data-level="19.2.2" data-path="survival-analysis.html"><a href="survival-analysis.html#nelson-aalen-estimator-of-the-cumulative-hazard-function"><i class="fa fa-check"></i><b>19.2.2</b> Nelson-Aalen estimator of the cumulative hazard function</a></li>
+<li class="chapter" data-level="19.2.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-curve-in-sas"><i class="fa fa-check"></i><b>19.2.3</b> Survival curve in SAS</a></li>
+<li class="chapter" data-level="19.2.4" data-path="survival-analysis.html"><a href="survival-analysis.html#km-survival-plots-in-sas"><i class="fa fa-check"></i><b>19.2.4</b> KM Survival Plots in SAS</a></li>
+<li class="chapter" data-level="19.2.5" data-path="survival-analysis.html"><a href="survival-analysis.html#convert-personal-level-to-personal-period-in-r"><i class="fa fa-check"></i><b>19.2.5</b> Convert Personal-level to Personal-period in R</a></li>
+<li class="chapter" data-level="19.2.6" data-path="survival-analysis.html"><a href="survival-analysis.html#package-survfit-in-r"><i class="fa fa-check"></i><b>19.2.6</b> Package survfit in R</a></li>
+<li class="chapter" data-level="19.2.7" data-path="survival-analysis.html"><a href="survival-analysis.html#km-survival-plots-in-r"><i class="fa fa-check"></i><b>19.2.7</b> KM Survival Plots in R</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="survival-analysis.html"><a href="survival-analysis.html#compare-the-survival-function"><i class="fa fa-check"></i><b>19.3</b> Compare the survival function</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="survival-analysis.html"><a href="survival-analysis.html#tests-of-equality-of-the-survival-function"><i class="fa fa-check"></i><b>19.3.1</b> Tests of equality of the survival function</a></li>
+<li class="chapter" data-level="19.3.2" data-path="survival-analysis.html"><a href="survival-analysis.html#other-nonparametric-tests-for-strata-statement"><i class="fa fa-check"></i><b>19.3.2</b> Other nonparametric tests for STRATA statement</a></li>
+<li class="chapter" data-level="19.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#multiple-comparisons"><i class="fa fa-check"></i><b>19.3.3</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="19.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#comparing-survival-functions-using-log-rank-hr"><i class="fa fa-check"></i><b>19.3.4</b> Comparing survival functions using Log-Rank HR</a></li>
+<li class="chapter" data-level="19.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#mantel-haenszel-hr"><i class="fa fa-check"></i><b>19.3.5</b> Mantel-Haenszel HR</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>19.4</b> Cox Proportional Hazards Model</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#introduction-13"><i class="fa fa-check"></i><b>19.4.1</b> Introduction</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>20</b> Advanced Survival Analysis</a></li>
 <li class="chapter" data-level="21" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>21</b> Count Data Regression</a>
@@ -758,10 +786,54 @@
 <li class="chapter" data-level="21.7.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-one-inflated-beta-regression"><i class="fa fa-check"></i><b>21.7.4</b> Zero-one-inflated Beta Regression</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a></li>
+<li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-14"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="mixed-model.html"><a href="mixed-model.html#correlated-response-data"><i class="fa fa-check"></i><b>22.1.1</b> Correlated response data</a></li>
+<li class="chapter" data-level="22.1.2" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-and-marginal-model"><i class="fa fa-check"></i><b>22.1.2</b> Hierarchical and Marginal model</a></li>
+<li class="chapter" data-level="22.1.3" data-path="mixed-model.html"><a href="mixed-model.html#mle-in-marginal-model"><i class="fa fa-check"></i><b>22.1.3</b> MLE in Marginal model</a></li>
+<li class="chapter" data-level="22.1.4" data-path="mixed-model.html"><a href="mixed-model.html#reml-in-marginal-model"><i class="fa fa-check"></i><b>22.1.4</b> REML in Marginal model</a></li>
+<li class="chapter" data-level="22.1.5" data-path="mixed-model.html"><a href="mixed-model.html#variance-correction"><i class="fa fa-check"></i><b>22.1.5</b> Variance correction</a></li>
+<li class="chapter" data-level="22.1.6" data-path="mixed-model.html"><a href="mixed-model.html#hypothesis-tests"><i class="fa fa-check"></i><b>22.1.6</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="22.1.7" data-path="mixed-model.html"><a href="mixed-model.html#residual-structure"><i class="fa fa-check"></i><b>22.1.7</b> Residual Structure</a></li>
+<li class="chapter" data-level="22.1.8" data-path="mixed-model.html"><a href="mixed-model.html#converge-problems"><i class="fa fa-check"></i><b>22.1.8</b> Converge problems</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model"><i class="fa fa-check"></i><b>22.2</b> Random Slope and Intercept Model</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction"><i class="fa fa-check"></i><b>22.2.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.2.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-11"><i class="fa fa-check"></i><b>22.2.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.2.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-12"><i class="fa fa-check"></i><b>22.2.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model-with-covariance-structure"><i class="fa fa-check"></i><b>22.3</b> Random Slope and Intercept Model with Covariance Structure</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction-1"><i class="fa fa-check"></i><b>22.3.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.3.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-12"><i class="fa fa-check"></i><b>22.3.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.3.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-13"><i class="fa fa-check"></i><b>22.3.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="mixed-model.html"><a href="mixed-model.html#generalized-estimating-equation"><i class="fa fa-check"></i><b>22.4</b> Generalized Estimating Equation</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-of-gee"><i class="fa fa-check"></i><b>22.4.1</b> Introduction of GEE</a></li>
+<li class="chapter" data-level="22.4.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-13"><i class="fa fa-check"></i><b>22.4.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.4.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-14"><i class="fa fa-check"></i><b>22.4.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-regression-model-for-normal-response"><i class="fa fa-check"></i><b>22.5</b> Hierarchical Regression Model for Normal Response</a>
+<ul>
+<li class="chapter" data-level="22.5.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-15"><i class="fa fa-check"></i><b>22.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="22.5.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-14"><i class="fa fa-check"></i><b>22.5.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.5.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-15"><i class="fa fa-check"></i><b>22.5.3</b> R Implementation</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="23" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>23</b> Generalized Linear (Mixed) Model</a></li>
-<li class="chapter" data-level="24" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>24</b> Generalized Estimating Equation</a></li>
-<li class="chapter" data-level="25" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>25</b> Group (Adaptive) Sequential Design</a></li>
+<li class="chapter" data-level="24" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>24</b> Group (Adaptive) Sequential Design</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#section"><i class="fa fa-check"></i><b>24.1</b> </a></li>
+<li class="chapter" data-level="24.2" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#adaptive-designs"><i class="fa fa-check"></i><b>24.2</b> Adaptive designs</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#introduction-16"><i class="fa fa-check"></i><b>24.2.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>25</b> ^_^ Space</a></li>
 <li class="chapter" data-level="26" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>26</b> Propensity Score</a></li>
 <li class="chapter" data-level="27" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>27</b> Missing Data</a>
 <ul>
@@ -800,6 +872,8 @@
             <section class="normal" id="section-">
 <div id="proc-sqplot-in-processing" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Proc Sqplot (In Processing)</h1>
+<div id="htmlwidget-3179cd125c76110983dd" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3179cd125c76110983dd">{"x":{"data":"# \n## Proc Sqplot (In Processing)\n### ODS\n### Introduction\n### Scatter Plot\n#### Vector in scatter Plot\n#### Add predict curve\n#### grouping\n### Bar chart\n#### Group and using freq\n### Histogram","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <div id="ods" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> ODS</h2>
 <pre><code>ODS LISTING GPATH=&quot;/home/zehuibai24885190/Bai-Statistische Praogrammierung/02_Scatter&quot;;

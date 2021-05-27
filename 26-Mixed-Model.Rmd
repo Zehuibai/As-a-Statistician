@@ -1,5 +1,15 @@
 # Mixed Model 
 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
 ## Introduction
 
 ### Correlated response data
@@ -156,6 +166,15 @@ KR进一步发现“固定效应样本估计值的REML方差估计值"在小样�
 
 ### Hypothesis tests
 
+Tests of fixed effects are typically done with either Wald or likelihood ratio (LRT) tests. With the assumptions of asymptotic distributions and independent predictors, Wald and LRT tests are equivalent. When a data set size is not large enough to be a good approximation of the asymptotic distribution or there is some correlation amongst the predictors, the Wald and LRT test results can vary considerably.
+
+* Wald test. Tests of the effect size which is scaled using the estimated standard error.
+* LRT (Likelihood Ratio Test.) Tests the difference in two nested models using the Chi square distribution.
+
+The Wald test is based only on estimates from the model being evaluated. This results in an implied assumption that a model which holds the parameter being tested to zero will be the same with the exception of the parameter which is being tested. Correlation between the tested predictor and the other model predictors, can cause the estimate made from the model including the parameter to be different from a model which holds the parameter to zero. The LRT requires the formal estimation of a model which restricts the parameter to zero and therefore accounts for correlation in its test.
+
+> Wald检验仅基于从模型估计值进行评估。这导致隐含的假设，即将要测试的参数保持为零的模型将是相同的，除了要测试的参数之外。测试的预测变量与其他模型预测变量之间的相关性可能导致从包含参数的模型进行的估计不同于将参数保持为零的模型。 LRT需要对模型进行形式上的估计，该模型将参数限制为零，因此考虑了其测试中的相关性。
+
 #### Wald Test
 
 关于固定效应的假设是最重要的。在最简单的情况下，测试相应的第j个效应的显着性。假设 \beta 近似正态 分布, 可以在 $\beta$ j的 (近似 $)$ 置信区间的帮助下进行测试。如果dj处于此置信区间之外, 则对于给定的显着 性水平a拒绝H0。
@@ -175,6 +194,10 @@ W=(\boldsymbol{C} \hat{\boldsymbol{\beta}}-\boldsymbol{d})^{\prime}\left(\boldsy
 $$
 The approximate covariance matrices are given by
 $$\widehat{\operatorname{Cov}}(\hat{\boldsymbol{\beta}})=\boldsymbol{A}_{11}=\left\{\sum_{i=1}^{m} \boldsymbol{X}_{i}^{\prime} \hat{\boldsymbol{V}}_{i}^{-1} \boldsymbol{X}_{i}\right\}^{-1}$$
+
+#### Likelihood Ratio Test
+
+The Likelihood Ratio Test (LRT) of fixed effects requires the models be fit with by MLE (use REML=FALSE for linear mixed models.) The LRT of mixed models is only approximately χ2 distributed. For tests of fixed effects the p-values will be smaller. Thus if a p-value is greater than the cutoff value, you can be confident that a more accurate test would also retain the null hypothesis. For p-values that are only a little below the cutoff value, a more accurate approach would need to be used.
 
 ### Residual Structure
 
@@ -571,11 +594,235 @@ summary(corr_res)
 ## nlme输出中有一个名为Phi的新参数，它表示我们的自相关Phi
 ```
 
-## Generalized Estimating Equations Model
+## Generalized Estimating Equation  
+
+### Introduction of GEE
+
+> Alternatives to Mixed Models
+
+* Fixed effects models (also panel linear models with fixed, as opposed to random, effects)
+* Using cluster-robust standard errors
+* Generalized estimating equations (GEE)> GEE实际上是集群鲁棒方法的一种概括，并且将广义最小二乘（GLS）扩展到非线性/ GLM设置。 GEE方法允许人们考虑数据中的依存关系，但实际上并未估计可能非常有趣的内容，即随机效应和相关方差。
+
 
 
 In the GEE model, there are no random-effects terms. Instead, the response variable relates to the predictors via the generalized linear regression model with only fixed-effects terms, and the variance-covariance structure of the response variable itself is specified, rather than that for the error terms.
 
-See more under GEE
+对重复测量数据建模的另一种方法是使用广义估计方程（GEE）方法。在GEE模型中，没有随机效应项。相反，响应变量通过仅具有固定效应项的广义线性回归模型与预测变量相关，并且指定了响应变量本身的方差-协方差结构，而不是误差项。
+
+Suppose that for each individual $i, i=1, \ldots, n$, at time $t_{j}, j=1, \ldots, p$, the observations are $x_{1 i j}, \ldots, x_{k i j}, y_{i j} .$ Denote by $\mu_{i j}=\mathbb{E}\left(y_{i j}\right)$, the mean response, and assume that $g\left(\mu_{i j}\right)=\beta_{0}+\beta_{1} x_{1 i j}+\cdots+\beta_{k} x_{k i j}+\beta_{k+1} t_{j}$ where $g(\cdot)$ is the link function.
+Next, we write the variance of $y_{i j}$ as a function of $\mu_{i j}, \operatorname{Var}\left(y_{i j}\right)=V\left(\mu_{i j}\right)$. The function $V(\cdot)$ is
+termed the variance function.
+
+Further, we model the covariance structure of correlated responses for a given individual $i, i=1, \ldots, n$
+Observations between individuals are assumed independent. Let $\mathbf{A}_{i}$ denote a $p \times p$ diagonal matrix
+$$
+\mathbf{A}_{i}=\left[\begin{array}{cccc}
+V\left(\mu_{i 1}\right) & 0 & \ldots & 0 \\
+0 & V\left(\mu_{i 2}\right) & \ldots & 0 \\
+\ldots & \ldots & \ldots & \ldots \\
+0 & 0 & \ldots & V\left(\mu_{i p}\right)
+\end{array}\right]
+$$
+Also, let $\mathbf{R}_{i}(\boldsymbol{\alpha})$ be the working correlation matrix of the repeated responses for the $i$ -th individual,
+where $\alpha$ denotes a vector of unknown parameters which are the same for all individuals. The working
+covariance matrix for $\mathbf{y}_{i}=\left(y_{i 1}, y_{i 2}, \ldots, y_{i p}\right)^{\prime}$ is then
+$$
+\mathbf{V}_{i}(\boldsymbol{\alpha})=\mathbf{A}_{i}^{1 / 2} \mathbf{R}_{i}(\boldsymbol{\alpha}) \mathbf{A}_{i}^{1 / 2}
+$$
+
+The regression coefficients $\beta$ 's and the vector of parameters $\boldsymbol{\alpha}$ are the only unknowns of the GEE
+model and must be estimated from the data. 五个结构通常用于工作相关矩阵 $\mathbf{R}_{i}(\boldsymbol{\alpha})$.
+- unstructured $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha_{12} & \alpha_{13} & \ldots & \alpha_{1 p} \\ \alpha_{12} & 1 & \alpha_{23} & \ldots & \alpha_{2 p} \\ \alpha_{13} & \alpha_{23} & 1 & \ldots & \alpha_{3 p} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha_{1 p} & \alpha_{2 p} & \alpha_{3 p} & \ldots & 1\end{array}\right]$
+- Toeplitz $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha_{1} & \alpha_{2} & \ldots & \alpha_{p-1} \\ \alpha_{1} & 1 & \alpha_{1} & \ldots & \alpha_{p-2} \\ \alpha_{2} & \alpha_{1} & 1 & \ldots & \alpha_{p-3} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha_{p-1} & \alpha_{p-2} & \alpha_{p-3} & \ldots & 1\end{array}\right]$
+- autoregressive $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha & \alpha^{2} & \ldots & \alpha^{p-1} \\ \alpha & 1 & \alpha & \ldots & \alpha^{p-2} \\ \alpha^{2} & \alpha & 1 & \ldots & \alpha^{p-3} \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha^{p-1} & \alpha^{p-2} & \alpha^{p-3} & \ldots & 1\end{array}\right]$
+- compound symmetric or exchangeable $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & \alpha & \alpha & \ldots & \alpha \\ \alpha & 1 & \alpha & \ldots & \alpha \\ \alpha & \alpha & 1 & \ldots & \alpha \\ \ldots & \ldots & \ldots & \ldots & \ldots \\ \alpha & \alpha & \alpha & \alpha & 1\end{array}\right]$
+- independent $\mathbf{R}_{i}(\boldsymbol{\alpha})=\left[\begin{array}{ccccc}1 & 0 & 0 & \ldots & 0 \\0 & 1 & 0 & \ldots & 0 \\0 & 0 & 1 & \ldots & 0 \\\ldots & \ldots & \ldots & \ldots & \ldots \\0 & 0 & 0 & \ldots & 1\end{array}\right]$
+
+The GEE estimate of $\boldsymbol{\beta}=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{k+1}\right)^{\prime}$ is the solution of the generalized estimating equations:
+$$
+\sum_{i=1}^{n}\left(\frac{\partial \boldsymbol{\mu}_{i}}{\partial \boldsymbol{\beta}}\right)_{(k+2) \times p}\left[\mathbf{V}_{i}(\hat{\boldsymbol{\alpha}})\right]_{p \times p}^{-1}\left(\mathbf{y}_{i}-\boldsymbol{\mu}_{i}\right)_{p \times 1}=\mathbf{0}_{(k+2) \times 1}
+$$
+where $\boldsymbol{\mu}_{i}=\left(\mu_{i 1}, \ldots, \mu_{i p}\right)^{\prime}$ is the vector of mean responses, and the estimator $\hat{\boldsymbol{\alpha}}$ is the method of
+moments estimator of the vector of parameters.
 
 
+### SAS Implementation 
+
+```
+proc genmod data=longform data name;
+    class <list of categorical predictors>;
+    model response name=<list of x predictors> time name/
+    dist=normal link=identity;
+    output out=outdata name p=predicted response name;
+    repeated subject=id name/type=corrtype name corrw covb;
+run;
+```
+
+* The types of the working correlation matrix are un for unstructured, mdep(m) for Toeplitz with m repeated observations for each individual, ar for autoregressive, cs or exch for compound symmetric (or exchangeable), and ind for independent.
+* Specifying the option corrw produces the estimated working correlation matrix for a single individual.
+
+```
+data cholesterol;
+input id gender$ age LDL0 LDL6 LDL9 LDL24 @@;
+cards;
+1 M 50 73 71 80 85 2 F 72 174 164 139 112
+3 M 46 85 86 82 90 4 F 71 172 150 139 127
+5 F 75 186 177 153 145 6 F 68 184 169 153 138
+7 F 63 196 188 163 155 8 M 73 137 137 132 104
+9 M 59 135 120 106 106 10 M 60 111 110 100 76
+11 F 59 127 126 106 99 12 M 46 88 87 84 80
+13 F 67 176 150 156 153 14 F 52 155 135 128 120
+15 M 65 142 117 114 97 16 F 75 158 143 145 135
+17 F 57 148 131 138 102 18 M 58 125 111 118 124
+19 M 48 76 65 94 98 20 M 47 116 108 94 107
+21 F 53 191 185 162 113 22 F 73 167 165 162 140
+23 M 62 109 104 93 94 24 F 77 167 164 155 155
+25 M 55 103 94 75 78 26 F 74 122 126 105 111
+27 F 79 203 204 178 145
+;
+
+proc genmod;
+    class id gender;
+    model ldl=gender age month/dist=normal link=identity;
+    repeated subject=id/type=un corrw;
+run;
+```
+
+### R Implementation 
+
+Function geeglm() in package geepack may be employed to fit a GEE model with the specified underlying distribution.
+
+R doesn’t automatically fit models with the Toeplitz correlation matrix. The choices for the correlation structures are unstructured, ar1, exchangeable, and independence.
+
+```
+#fitting GEE model with unstructured working correlation matrix
+summary(un.fitted.model<- geeglm(LDL ~ gender.rel + age + month, data=longform.data, id=id,
+family=gaussian(link="identity"), corstr="unstructured"))
+QIC(un.fitted.model)
+```
+
+
+
+## Hierarchical Regression Model for Normal Response
+
+### Introduction
+
+These models incorporate potential correlation among observations at each hierarchical level.
+
+> 假设数据是在三个级别上收集的，为了便于演示，当纵向收集以某种方式聚集的个人的数据时，将为特殊情况制定一个三级层次回归模型。
+
+Suppose data are recorded at times $t_{1}, \ldots, t_{p}$ on each of $n$ individuals, who are grouped into $c$
+clusters. For each individual, there are $k$ predictor variables and one normally distributed response. An
+observation at time $j$ for individual $i$ in cluster $m$ is $\left(x_{1 i j m}, \ldots, x_{k i j m}, y_{i j m}\right)$, where $i=1, \ldots, n, j=1, \ldots, p$, and $m=1, \ldots, c .$ Some of the $x$ variables may be characteristics of
+times (level 1 ), or of individuals (level 2), or of clusters (level 3). A general form of the three level hierarchical model (also termed three-stage hierarchical regression model or multilevel model or model for clustered data) for a normal response is:
+$$
+y_{i j m}=\beta_{0}+\beta_{1} x_{1 i j m}+\cdots+\beta_{k} x_{k i j m}+\beta_{k+1} t_{j}+u_{1 i m}+u_{2 i m} t_{j}+\tau_{1 m}+\tau_{2 m} t_{j}+\varepsilon_{i j m}
+$$
+where
+$$
+\begin{array}{c}
+u_{1 i m} \stackrel{i i d}{\sim} \mathcal{N}\left(0, \sigma_{u_{1}}^{2}\right), u_{2 i m} \stackrel{i i d}{\sim} \mathcal{N}\left(0, \sigma_{u_{2}}^{2}\right), \operatorname{Cov}\left(u_{1 i m}, u_{2 i m}\right)=\sigma_{u_{1} u_{2}} \\
+\operatorname{Cov}\left(u_{1 i m}, u_{2 i^{\prime} m^{\prime}}\right)=0 \text { for } i \neq i^{\prime}
+\end{array}
+$$
+These two random variables are the level-2 random slope and intercept, respectively. Also, $\tau_{1 m} \stackrel{\mathrm{iid}}{\sim} \mathcal{N}\left(0, \sigma_{\tau_{1}}^{2}\right), \tau_{2 m} \stackrel{\mathrm{iid}}{\sim} \mathcal{N}\left(0, \sigma_{\tau_{2}}^{2}\right), \mathbb{C o v}\left(\tau_{1 m}, \tau_{2 m}\right)=\sigma_{\tau_{1} \tau_{2}}$, and $\mathbb{C} \operatorname{cov}\left(\tau_{1 m}, \tau_{1 m^{\prime}}\right)=0$ for
+$m \neq m^{\prime} .$
+
+These variables are, respectively, the level-3 random slope and intercept. The random errors $\varepsilon_{i j m}$ 's are
+independent with $\mathcal{N}\left(0, \sigma^{2}\right)$ distribution. In addition, all $u$ 's are independent of $\tau$ 's, and both are
+independent of $\varepsilon$ 's.
+
+As defined in the above formula, the index $i$ for individuals (or, more generally, level- 2 variable) ranges
+between 1 and $n$. It is also possible to enumerate individuals only within each cluster: $i=1, \ldots, n_{m}$ where $\sum_{m=1}^{c} n_{m}=n$
+
+
+### SAS Implementation  
+
+To accommodate the hierarchical structure, random statements should be included for variables defining levels 2 and 3 of the model.
+
+```
+proc mixed data=longform data name covtest;
+    class cluster name individual name <list of categorical predictors>;
+    model response name=<list of predictors> time name/solution outpm=outdata name;
+    random intercept time name/subject=cluster name type=un;
+    random intercept time name/subject=individual name(cluster name)
+    type=un;
+run;
+
+
+data dyads;
+input family individual relation$ depression1
+depression2 depression3 qol1 qol2 qol3 @@;
+cards;
+1 1 M 1 1 1 4.0 4.1 4.9 1 2 D 1 1 0 2.5 3.2 4.2
+2 1 M 1 1 1 2.6 2.8 4.1 2 2 D 1 1 1 2.8 3.1 4.2
+3 1 M 1 1 1 2.5 3.8 4.0 3 2 D 1 1 1 2.4 5.1 3.3
+4 1 M 1 0 0 2.1 3.3 4.6 4 2 D 1 0 0 3.7 3.1 4.4
+5 1 M 1 0 0 2.9 4.2 3.4 5 2 D 1 0 0 2.4 2.6 2.7
+6 1 M 1 1 0 3.3 4.2 4.7 6 2 D 1 1 0 2.7 4.0 4.1
+7 1 M 1 1 0 3.7 4.3 3.8 7 2 D 1 1 0 2.8 3.2 3.6
+8 1 M 1 0 0 3.5 4.1 4.3 8 2 D 1 1 0 1.6 2.6 3.5
+9 1 M 1 0 0 4.0 4.4 3.6 9 2 D 1 0 1 1.8 2.5 3.1
+10 1 M 1 1 1 3.0 3.7 4.3 10 2 D 1 1 1 2.2 2.0 3.3
+11 1 M 1 1 1 4.3 5.0 3.7 11 2 D 1 1 1 3.3 2.5 3.2
+12 1 M 1 1 1 3.5 5.4 4.7 12 2 D 1 1 1 3.5 3.6 4.2
+13 1 M 1 0 0 4.1 4.5 3.2 13 2 D 1 0 0 3.7 4.2 3.5
+14 1 M 1 1 0 5.0 4.2 3.6 14 2 D 1 0 0 3.3 4.6 3.0
+15 1 M 1 1 0 1.8 2.2 2.3 15 2 D 1 0 0 2.4 3.5 3.6
+16 1 M 1 0 0 3.1 2.5 3.9 16 2 D 1 1 0 2.0 2.9 2.4
+17 1 M 1 1 0 3.4 5.5 4.7 17 2 D 1 0 1 3.2 4.3 3.7
+18 1 M 1 0 0 3.4 5.3 4.1 18 2 D 1 1 0 1.8 3.4 3.1
+19 1 M 1 0 0 3.5 3.3 5.1 19 2 D 1 0 0 2.8 4.3 3.4
+20 1 M 1 0 0 3.5 3.3 5.1 20 2 D 1 0 0 3.2 4.9 3.6
+21 1 M 1 0 0 2.9 2.7 3.5 21 2 D 1 0 0 4.3 3.7 2.5
+22 1 M 1 0 0 4.8 4.3 4.3 22 2 D 1 0 0 4.5 3.8 3.3
+23 1 M 1 1 0 3.6 3.9 3.7 23 2 D 1 0 0 3.7 3.7 3.5
+23 3 D 1 1 0 2.5 1.8 2.3 24 1 M 1 1 0 5.0 4.4 4.2
+24 2 D 1 1 0 4.9 3.2 2.5 24 3 D 1 0 0 2.7 3.1 4.1
+24 4 D 1 0 1 3.0 3.5 3.6
+;
+data longform;
+set dyads;
+array d[3] depression1-depression3;
+array q[3] qol1-qol3;
+do visit=1 to 3;
+depression=d[visit];
+qol_score=q[visit];
+output;
+end;
+keep family individual relation depression visit qol_score;
+run;
+
+## Check the Goodness-of-Fit Tests for Normal Distribution
+## The tests support normality, and the histogram shows a roughly bell-shaped curve.
+proc univariate;
+var qol_score;
+histogram/normal;
+run;
+
+## Fit the model
+proc mixed covtest;
+    class family individual relation(ref='D') depression;
+    model qol_score=relation depression visit/solution;
+    random intercept visit/subject=family type=un;
+    random intercept visit/subject=individual(family) type=un;
+run;
+```
+
+
+### R Implementation  
+
+```{r nested mdoel,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library("lme4")
+load('./01_Datasets/nurses.RData')
+nurses_hierarchical = lmer(
+  stress ~ age + sex + experience + treatment + wardtype + hospsize
+  + (1 | hospital) + (1 | hospital:ward),
+  data = nurses
+)
+summary(nurses_hierarchical) 
+```
+
+
+01_Datasets

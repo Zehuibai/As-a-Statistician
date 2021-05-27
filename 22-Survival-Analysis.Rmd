@@ -1,5 +1,15 @@
 # Survival Analysis 
 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
 ## Preliminary
 
 Survival analysis mainly focuses on processing a special kind of time data, and the time data may be partially censored. The shortcomings of the ordinary least squares regression method are that the event occurrence time is usually not normally distributed, and the model cannot handle Censor. The non-parametric method can simply and quickly check the survival experience, while the Cox proportional hazard regression model is still the main Analytical method.

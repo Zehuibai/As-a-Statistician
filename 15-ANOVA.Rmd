@@ -1,5 +1,15 @@
 # ANOVA
 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
 ## Unstructured Models
 
 These are models where **little is assumed about distributions, correlations**, etc. Nonparametric procedures fall in this class. The models for the actual data in this case may be quite complicated, but the assumption is that the analysis has been distilled down to a collection of pvalues. Multiple inference methods in this class consist essentially of adjusting these p-values for the purposes of making tests. Such methods work reasonably well for a variety of models, and if you have a model that is not contained in one of the major classes given below, then you can choose an MCP that assumes little structure. In particular, these methods are valid, though typically conservative when there are correlations. Generalized Bonferroni methods and standard false discovery rate controlling methods are in this group. 
@@ -453,10 +463,7 @@ run; quit;
 ods graphics off; 
 ```
 
-```{r ANOVA unbalance, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Graphical Depiction of the Drug Data Set"}
-knitr::include_graphics("./02_Plots/Unbalanced_ANOVA.png")
-```
-
+ 
 ```
 *** Computing LS-Means by Hand;
 data Balanced;

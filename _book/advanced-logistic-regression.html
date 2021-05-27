@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 16 Advanced Logistic Regression | As a Statistician</title>
+  <title>Chapter 18 Advanced Logistic Regression | As a Statistician</title>
   <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 16 Advanced Logistic Regression | As a Statistician" />
+  <meta property="og:title" content="Chapter 18 Advanced Logistic Regression | As a Statistician" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 16 Advanced Logistic Regression | As a Statistician" />
+  <meta name="twitter:title" content="Chapter 18 Advanced Logistic Regression | As a Statistician" />
   
   <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-05-24" />
+<meta name="date" content="2021-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,12 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.17/d3.min.js"></script>
+<link href="libs/markmap-0.3.3/view.mindmap.css" rel="stylesheet" />
+<script src="libs/markmap-0.3.3/view.mindmap.js"></script>
+<script src="libs/markmap-0.3.3/plugins/parsemd.min.js"></script>
+<script src="libs/markmap-binding-1.2.3/markmap.js"></script>
 
 
 
@@ -70,7 +76,7 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">As a Statistician</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -182,532 +188,667 @@
 <li class="chapter" data-level="4.2.10" data-path="data-management-in-r.html"><a href="data-management-in-r.html#summarise"><i class="fa fa-check"></i><b>4.2.10</b> summarise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> ggplot2</a>
+<li class="chapter" data-level="5" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>5</b> SQL</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sql.html"><a href="sql.html#mysql-management"><i class="fa fa-check"></i><b>5.1</b> MySQL: Management</a></li>
+<li class="chapter" data-level="5.2" data-path="sql.html"><a href="sql.html#mysql-php-in-processing"><i class="fa fa-check"></i><b>5.2</b> MySQL PHP (In processing)</a></li>
+<li class="chapter" data-level="5.3" data-path="sql.html"><a href="sql.html#proc-sql-in-sas"><i class="fa fa-check"></i><b>5.3</b> PROC SQL in SAS</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="sql.html"><a href="sql.html#inreoduction"><i class="fa fa-check"></i><b>5.3.1</b> Inreoduction</a></li>
+<li class="chapter" data-level="5.3.2" data-path="sql.html"><a href="sql.html#create-normal-table"><i class="fa fa-check"></i><b>5.3.2</b> Create Normal Table</a></li>
+<li class="chapter" data-level="5.3.3" data-path="sql.html"><a href="sql.html#creating-tables-like-an-existing-table"><i class="fa fa-check"></i><b>5.3.3</b> Creating Tables like an Existing Table</a></li>
+<li class="chapter" data-level="5.3.4" data-path="sql.html"><a href="sql.html#inserting-rows"><i class="fa fa-check"></i><b>5.3.4</b> Inserting Rows</a></li>
+<li class="chapter" data-level="5.3.5" data-path="sql.html"><a href="sql.html#delete-rows-and-table"><i class="fa fa-check"></i><b>5.3.5</b> Delete Rows and Table</a></li>
+<li class="chapter" data-level="5.3.6" data-path="sql.html"><a href="sql.html#new-columns-using-summary-function"><i class="fa fa-check"></i><b>5.3.6</b> New Columns using Summary Function</a></li>
+<li class="chapter" data-level="5.3.7" data-path="sql.html"><a href="sql.html#aggregation-summary"><i class="fa fa-check"></i><b>5.3.7</b> Aggregation: Summary</a></li>
+<li class="chapter" data-level="5.3.8" data-path="sql.html"><a href="sql.html#conditionality-if"><i class="fa fa-check"></i><b>5.3.8</b> Conditionality (If)</a></li>
+<li class="chapter" data-level="5.3.9" data-path="sql.html"><a href="sql.html#filtering-aggregated-data-having"><i class="fa fa-check"></i><b>5.3.9</b> Filtering Aggregated Data (HAVING)</a></li>
+<li class="chapter" data-level="5.3.10" data-path="sql.html"><a href="sql.html#select-operator-union"><i class="fa fa-check"></i><b>5.3.10</b> Select Operator (Union…)</a></li>
+<li class="chapter" data-level="5.3.11" data-path="sql.html"><a href="sql.html#loap"><i class="fa fa-check"></i><b>5.3.11</b> Loap</a></li>
+<li class="chapter" data-level="5.3.12" data-path="sql.html"><a href="sql.html#join-1"><i class="fa fa-check"></i><b>5.3.12</b> Join</a></li>
+<li class="chapter" data-level="5.3.13" data-path="sql.html"><a href="sql.html#reordering-rows-proc-sort"><i class="fa fa-check"></i><b>5.3.13</b> Reordering Rows (Proc Sort)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="sql.html"><a href="sql.html#package-dbi-in-processing"><i class="fa fa-check"></i><b>5.4</b> Package DBI (In processing)</a></li>
+<li class="chapter" data-level="5.5" data-path="sql.html"><a href="sql.html#package-sparklyr-in-processing"><i class="fa fa-check"></i><b>5.5</b> Package sparklyr (In processing)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#parametric-rendering"><i class="fa fa-check"></i><b>6.1</b> Parametric Rendering</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#parametric-rendering"><i class="fa fa-check"></i><b>5.1</b> Parametric Rendering</a>
+<li class="chapter" data-level="6.1.1" data-path="ggplot2.html"><a href="ggplot2.html#grammar"><i class="fa fa-check"></i><b>6.1.1</b> Grammar</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ggplot2.html"><a href="ggplot2.html#coord"><i class="fa fa-check"></i><b>6.1.2</b> coord</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ggplot2.html"><a href="ggplot2.html#facet"><i class="fa fa-check"></i><b>6.1.3</b> facet</a></li>
+<li class="chapter" data-level="6.1.4" data-path="ggplot2.html"><a href="ggplot2.html#geom"><i class="fa fa-check"></i><b>6.1.4</b> geom</a></li>
+<li class="chapter" data-level="6.1.5" data-path="ggplot2.html"><a href="ggplot2.html#position"><i class="fa fa-check"></i><b>6.1.5</b> position</a></li>
+<li class="chapter" data-level="6.1.6" data-path="ggplot2.html"><a href="ggplot2.html#scale"><i class="fa fa-check"></i><b>6.1.6</b> scale</a></li>
+<li class="chapter" data-level="6.1.7" data-path="ggplot2.html"><a href="ggplot2.html#stat"><i class="fa fa-check"></i><b>6.1.7</b> stat</a></li>
+<li class="chapter" data-level="6.1.8" data-path="ggplot2.html"><a href="ggplot2.html#color"><i class="fa fa-check"></i><b>6.1.8</b> Color</a></li>
+<li class="chapter" data-level="6.1.9" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>6.1.9</b> Thema</a></li>
+<li class="chapter" data-level="6.1.10" data-path="ggplot2.html"><a href="ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>6.1.10</b> Saving plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>6.2</b> Scatter plot</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="ggplot2.html"><a href="ggplot2.html#grammar"><i class="fa fa-check"></i><b>5.1.1</b> Grammar</a></li>
-<li class="chapter" data-level="5.1.2" data-path="ggplot2.html"><a href="ggplot2.html#coord"><i class="fa fa-check"></i><b>5.1.2</b> coord</a></li>
-<li class="chapter" data-level="5.1.3" data-path="ggplot2.html"><a href="ggplot2.html#facet"><i class="fa fa-check"></i><b>5.1.3</b> facet</a></li>
-<li class="chapter" data-level="5.1.4" data-path="ggplot2.html"><a href="ggplot2.html#geom"><i class="fa fa-check"></i><b>5.1.4</b> geom</a></li>
-<li class="chapter" data-level="5.1.5" data-path="ggplot2.html"><a href="ggplot2.html#position"><i class="fa fa-check"></i><b>5.1.5</b> position</a></li>
-<li class="chapter" data-level="5.1.6" data-path="ggplot2.html"><a href="ggplot2.html#scale"><i class="fa fa-check"></i><b>5.1.6</b> scale</a></li>
-<li class="chapter" data-level="5.1.7" data-path="ggplot2.html"><a href="ggplot2.html#stat"><i class="fa fa-check"></i><b>5.1.7</b> stat</a></li>
-<li class="chapter" data-level="5.1.8" data-path="ggplot2.html"><a href="ggplot2.html#color"><i class="fa fa-check"></i><b>5.1.8</b> Color</a></li>
-<li class="chapter" data-level="5.1.9" data-path="ggplot2.html"><a href="ggplot2.html#thema"><i class="fa fa-check"></i><b>5.1.9</b> Thema</a></li>
-<li class="chapter" data-level="5.1.10" data-path="ggplot2.html"><a href="ggplot2.html#saving-plots"><i class="fa fa-check"></i><b>5.1.10</b> Saving plots</a></li>
+<li class="chapter" data-level="6.2.1" data-path="ggplot2.html"><a href="ggplot2.html#grouping-aesthetic"><i class="fa fa-check"></i><b>6.2.1</b> Grouping Aesthetic</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ggplot2.html"><a href="ggplot2.html#facet-1"><i class="fa fa-check"></i><b>6.2.2</b> facet</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_smooth"><i class="fa fa-check"></i><b>6.2.3</b> geom_smooth</a></li>
+<li class="chapter" data-level="6.2.4" data-path="ggplot2.html"><a href="ggplot2.html#dot-plot"><i class="fa fa-check"></i><b>6.2.4</b> Dot Plot</a></li>
+<li class="chapter" data-level="6.2.5" data-path="ggplot2.html"><a href="ggplot2.html#label-and-title"><i class="fa fa-check"></i><b>6.2.5</b> Label and Title</a></li>
+<li class="chapter" data-level="6.2.6" data-path="ggplot2.html"><a href="ggplot2.html#residuals"><i class="fa fa-check"></i><b>6.2.6</b> Residuals</a></li>
+<li class="chapter" data-level="6.2.7" data-path="ggplot2.html"><a href="ggplot2.html#encircling"><i class="fa fa-check"></i><b>6.2.7</b> Encircling</a></li>
+<li class="chapter" data-level="6.2.8" data-path="ggplot2.html"><a href="ggplot2.html#dumbbell-plot"><i class="fa fa-check"></i><b>6.2.8</b> Dumbbell Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#scatter-plot"><i class="fa fa-check"></i><b>5.2</b> Scatter plot</a>
+<li class="chapter" data-level="6.3" data-path="ggplot2.html"><a href="ggplot2.html#histogram"><i class="fa fa-check"></i><b>6.3</b> Histogram</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="ggplot2.html"><a href="ggplot2.html#grouping-aesthetic"><i class="fa fa-check"></i><b>5.2.1</b> Grouping Aesthetic</a></li>
-<li class="chapter" data-level="5.2.2" data-path="ggplot2.html"><a href="ggplot2.html#facet-1"><i class="fa fa-check"></i><b>5.2.2</b> facet</a></li>
-<li class="chapter" data-level="5.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_smooth"><i class="fa fa-check"></i><b>5.2.3</b> geom_smooth</a></li>
-<li class="chapter" data-level="5.2.4" data-path="ggplot2.html"><a href="ggplot2.html#dot-plot"><i class="fa fa-check"></i><b>5.2.4</b> Dot Plot</a></li>
-<li class="chapter" data-level="5.2.5" data-path="ggplot2.html"><a href="ggplot2.html#label-and-title"><i class="fa fa-check"></i><b>5.2.5</b> Label and Title</a></li>
-<li class="chapter" data-level="5.2.6" data-path="ggplot2.html"><a href="ggplot2.html#residuals"><i class="fa fa-check"></i><b>5.2.6</b> Residuals</a></li>
-<li class="chapter" data-level="5.2.7" data-path="ggplot2.html"><a href="ggplot2.html#encircling"><i class="fa fa-check"></i><b>5.2.7</b> Encircling</a></li>
-<li class="chapter" data-level="5.2.8" data-path="ggplot2.html"><a href="ggplot2.html#dumbbell-plot"><i class="fa fa-check"></i><b>5.2.8</b> Dumbbell Plot</a></li>
+<li class="chapter" data-level="6.3.1" data-path="ggplot2.html"><a href="ggplot2.html#general-appearance"><i class="fa fa-check"></i><b>6.3.1</b> General appearance</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ggplot2.html"><a href="ggplot2.html#themes"><i class="fa fa-check"></i><b>6.3.2</b> Themes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_freqpoly"><i class="fa fa-check"></i><b>6.3.3</b> geom_freqpoly()</a></li>
+<li class="chapter" data-level="6.3.4" data-path="ggplot2.html"><a href="ggplot2.html#marginal-histogram-boxplot"><i class="fa fa-check"></i><b>6.3.4</b> Marginal Histogram / Boxplot</a></li>
+<li class="chapter" data-level="6.3.5" data-path="ggplot2.html"><a href="ggplot2.html#scales"><i class="fa fa-check"></i><b>6.3.5</b> Scales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#histogram"><i class="fa fa-check"></i><b>5.3</b> Histogram</a>
+<li class="chapter" data-level="6.4" data-path="ggplot2.html"><a href="ggplot2.html#bar-plot"><i class="fa fa-check"></i><b>6.4</b> Bar plot</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="ggplot2.html"><a href="ggplot2.html#general-appearance"><i class="fa fa-check"></i><b>5.3.1</b> General appearance</a></li>
-<li class="chapter" data-level="5.3.2" data-path="ggplot2.html"><a href="ggplot2.html#themes"><i class="fa fa-check"></i><b>5.3.2</b> Themes</a></li>
-<li class="chapter" data-level="5.3.3" data-path="ggplot2.html"><a href="ggplot2.html#geom_freqpoly"><i class="fa fa-check"></i><b>5.3.3</b> geom_freqpoly()</a></li>
-<li class="chapter" data-level="5.3.4" data-path="ggplot2.html"><a href="ggplot2.html#marginal-histogram-boxplot"><i class="fa fa-check"></i><b>5.3.4</b> Marginal Histogram / Boxplot</a></li>
-<li class="chapter" data-level="5.3.5" data-path="ggplot2.html"><a href="ggplot2.html#scales"><i class="fa fa-check"></i><b>5.3.5</b> Scales</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="ggplot2.html"><a href="ggplot2.html#bar-plot"><i class="fa fa-check"></i><b>5.4</b> Bar plot</a>
+<li class="chapter" data-level="6.4.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic"><i class="fa fa-check"></i><b>6.4.1</b> Aesthetic</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ggplot2.html"><a href="ggplot2.html#proportion"><i class="fa fa-check"></i><b>6.4.2</b> Proportion</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ggplot2.html"><a href="ggplot2.html#coord-1"><i class="fa fa-check"></i><b>6.4.3</b> coord</a></li>
+<li class="chapter" data-level="6.4.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity"><i class="fa fa-check"></i><b>6.4.4</b> stat=“identity”</a></li>
+<li class="chapter" data-level="6.4.5" data-path="ggplot2.html"><a href="ggplot2.html#ranking"><i class="fa fa-check"></i><b>6.4.5</b> Ranking</a></li>
+<li class="chapter" data-level="6.4.6" data-path="ggplot2.html"><a href="ggplot2.html#means-and-error-bars"><i class="fa fa-check"></i><b>6.4.6</b> Means and error bars</a></li>
+<li class="chapter" data-level="6.4.7" data-path="ggplot2.html"><a href="ggplot2.html#waffle-chart"><i class="fa fa-check"></i><b>6.4.7</b> Waffle Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ggplot2.html"><a href="ggplot2.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box plot</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic"><i class="fa fa-check"></i><b>5.4.1</b> Aesthetic</a></li>
-<li class="chapter" data-level="5.4.2" data-path="ggplot2.html"><a href="ggplot2.html#proportion"><i class="fa fa-check"></i><b>5.4.2</b> Proportion</a></li>
-<li class="chapter" data-level="5.4.3" data-path="ggplot2.html"><a href="ggplot2.html#coord-1"><i class="fa fa-check"></i><b>5.4.3</b> coord</a></li>
-<li class="chapter" data-level="5.4.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity"><i class="fa fa-check"></i><b>5.4.4</b> stat=“identity”</a></li>
-<li class="chapter" data-level="5.4.5" data-path="ggplot2.html"><a href="ggplot2.html#ranking"><i class="fa fa-check"></i><b>5.4.5</b> Ranking</a></li>
-<li class="chapter" data-level="5.4.6" data-path="ggplot2.html"><a href="ggplot2.html#means-and-error-bars"><i class="fa fa-check"></i><b>5.4.6</b> Means and error bars</a></li>
-<li class="chapter" data-level="5.4.7" data-path="ggplot2.html"><a href="ggplot2.html#waffle-chart"><i class="fa fa-check"></i><b>5.4.7</b> Waffle Chart</a></li>
+<li class="chapter" data-level="6.5.1" data-path="ggplot2.html"><a href="ggplot2.html#varwidth"><i class="fa fa-check"></i><b>6.5.1</b> varwidth</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ggplot2.html"><a href="ggplot2.html#reorder"><i class="fa fa-check"></i><b>6.5.2</b> Reorder</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ggplot2.html"><a href="ggplot2.html#fill"><i class="fa fa-check"></i><b>6.5.3</b> Fill</a></li>
+<li class="chapter" data-level="6.5.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity-1"><i class="fa fa-check"></i><b>6.5.4</b> stat=“identity”</a></li>
+<li class="chapter" data-level="6.5.5" data-path="ggplot2.html"><a href="ggplot2.html#dot-box-plot"><i class="fa fa-check"></i><b>6.5.5</b> Dot + Box Plot</a></li>
+<li class="chapter" data-level="6.5.6" data-path="ggplot2.html"><a href="ggplot2.html#violin-plot"><i class="fa fa-check"></i><b>6.5.6</b> Violin Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#box-plot"><i class="fa fa-check"></i><b>5.5</b> Box plot</a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="ggplot2.html"><a href="ggplot2.html#varwidth"><i class="fa fa-check"></i><b>5.5.1</b> varwidth</a></li>
-<li class="chapter" data-level="5.5.2" data-path="ggplot2.html"><a href="ggplot2.html#reorder"><i class="fa fa-check"></i><b>5.5.2</b> Reorder</a></li>
-<li class="chapter" data-level="5.5.3" data-path="ggplot2.html"><a href="ggplot2.html#fill"><i class="fa fa-check"></i><b>5.5.3</b> Fill</a></li>
-<li class="chapter" data-level="5.5.4" data-path="ggplot2.html"><a href="ggplot2.html#statidentity-1"><i class="fa fa-check"></i><b>5.5.4</b> stat=“identity”</a></li>
-<li class="chapter" data-level="5.5.5" data-path="ggplot2.html"><a href="ggplot2.html#dot-box-plot"><i class="fa fa-check"></i><b>5.5.5</b> Dot + Box Plot</a></li>
-<li class="chapter" data-level="5.5.6" data-path="ggplot2.html"><a href="ggplot2.html#violin-plot"><i class="fa fa-check"></i><b>5.5.6</b> Violin Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="ggplot2.html"><a href="ggplot2.html#other-rendering"><i class="fa fa-check"></i><b>6.6</b> Other rendering</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="ggplot2.html"><a href="ggplot2.html#annotation"><i class="fa fa-check"></i><b>6.6.1</b> Annotation</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ggplot2.html"><a href="ggplot2.html#text-ggtext"><i class="fa fa-check"></i><b>6.6.2</b> Text: ggtext</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ggplot2.html"><a href="ggplot2.html#text-ggrepel"><i class="fa fa-check"></i><b>6.6.3</b> Text: ggrepel</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ggplot2.html"><a href="ggplot2.html#arrage-gridextra"><i class="fa fa-check"></i><b>6.6.4</b> Arrage: gridExtra</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ggplot2.html"><a href="ggplot2.html#interactive-charts-plotly"><i class="fa fa-check"></i><b>6.6.5</b> Interactive charts: plotly</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#other-rendering"><i class="fa fa-check"></i><b>5.6</b> Other rendering</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="ggplot2.html"><a href="ggplot2.html#annotation"><i class="fa fa-check"></i><b>5.6.1</b> Annotation</a></li>
-<li class="chapter" data-level="5.6.2" data-path="ggplot2.html"><a href="ggplot2.html#text-ggtext"><i class="fa fa-check"></i><b>5.6.2</b> Text: ggtext</a></li>
-<li class="chapter" data-level="5.6.3" data-path="ggplot2.html"><a href="ggplot2.html#text-ggrepel"><i class="fa fa-check"></i><b>5.6.3</b> Text: ggrepel</a></li>
-<li class="chapter" data-level="5.6.4" data-path="ggplot2.html"><a href="ggplot2.html#arrage-gridextra"><i class="fa fa-check"></i><b>5.6.4</b> Arrage: gridExtra</a></li>
-<li class="chapter" data-level="5.6.5" data-path="ggplot2.html"><a href="ggplot2.html#interactive-charts-plotly"><i class="fa fa-check"></i><b>5.6.5</b> Interactive charts: plotly</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html"><i class="fa fa-check"></i><b>7</b> Proc Sqplot (In Processing)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#ods"><i class="fa fa-check"></i><b>7.1</b> ODS</a></li>
+<li class="chapter" data-level="7.2" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#introduction-1"><i class="fa fa-check"></i><b>7.2</b> Introduction</a></li>
+<li class="chapter" data-level="7.3" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.3</b> Scatter Plot</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#vector-in-scatter-plot"><i class="fa fa-check"></i><b>7.3.1</b> Vector in scatter Plot</a></li>
+<li class="chapter" data-level="7.3.2" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#add-predict-curve"><i class="fa fa-check"></i><b>7.3.2</b> Add predict curve</a></li>
+<li class="chapter" data-level="7.3.3" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#grouping"><i class="fa fa-check"></i><b>7.3.3</b> grouping</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#bar-chart"><i class="fa fa-check"></i><b>7.4</b> Bar chart</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#group-and-using-freq"><i class="fa fa-check"></i><b>7.4.1</b> Group and using freq</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>6</b> Descriptive Statistics in SAS</a>
+<li class="chapter" data-level="7.5" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html#histogram-1"><i class="fa fa-check"></i><b>7.5</b> Histogram</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics in SAS</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>6.1</b> PROC FREQ</a>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-freq"><i class="fa fa-check"></i><b>8.1</b> PROC FREQ</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-table-names"><i class="fa fa-check"></i><b>6.1.1</b> ODS Table Names</a></li>
-<li class="chapter" data-level="6.1.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-plots"><i class="fa fa-check"></i><b>6.1.2</b> ODS Plots</a></li>
+<li class="chapter" data-level="8.1.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-table-names"><i class="fa fa-check"></i><b>8.1.1</b> ODS Table Names</a></li>
+<li class="chapter" data-level="8.1.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-plots"><i class="fa fa-check"></i><b>8.1.2</b> ODS Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-univariate"><i class="fa fa-check"></i><b>6.2</b> PROC UNIVARIATE</a>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-univariate"><i class="fa fa-check"></i><b>8.2</b> PROC UNIVARIATE</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#histogram-statement"><i class="fa fa-check"></i><b>6.2.1</b> HISTOGRAM Statement</a></li>
-<li class="chapter" data-level="6.2.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#cdfplot-statement"><i class="fa fa-check"></i><b>6.2.2</b> CDFPLOT Statement</a></li>
-<li class="chapter" data-level="6.2.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ppplot-statement"><i class="fa fa-check"></i><b>6.2.3</b> PPPLOT Statement</a></li>
-<li class="chapter" data-level="6.2.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#probplot-and-qqplot-statement"><i class="fa fa-check"></i><b>6.2.4</b> PROBPLOT and QQPLOT Statement</a></li>
-<li class="chapter" data-level="6.2.5" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-tables"><i class="fa fa-check"></i><b>6.2.5</b> ODS Tables</a></li>
-<li class="chapter" data-level="6.2.6" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-graphics"><i class="fa fa-check"></i><b>6.2.6</b> ODS Graphics</a></li>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#histogram-statement"><i class="fa fa-check"></i><b>8.2.1</b> HISTOGRAM Statement</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#cdfplot-statement"><i class="fa fa-check"></i><b>8.2.2</b> CDFPLOT Statement</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ppplot-statement"><i class="fa fa-check"></i><b>8.2.3</b> PPPLOT Statement</a></li>
+<li class="chapter" data-level="8.2.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#probplot-and-qqplot-statement"><i class="fa fa-check"></i><b>8.2.4</b> PROBPLOT and QQPLOT Statement</a></li>
+<li class="chapter" data-level="8.2.5" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-tables"><i class="fa fa-check"></i><b>8.2.5</b> ODS Tables</a></li>
+<li class="chapter" data-level="8.2.6" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#ods-graphics"><i class="fa fa-check"></i><b>8.2.6</b> ODS Graphics</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>6.3</b> PROC MEANS</a>
+<li class="chapter" data-level="8.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-means"><i class="fa fa-check"></i><b>8.3</b> PROC MEANS</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#basic-summary-statistics"><i class="fa fa-check"></i><b>6.3.1</b> Basic summary statistics</a></li>
-<li class="chapter" data-level="6.3.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#autoname-option"><i class="fa fa-check"></i><b>6.3.2</b> AUTONAME Option</a></li>
-<li class="chapter" data-level="6.3.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#chartype-option"><i class="fa fa-check"></i><b>6.3.3</b> CHARTYPE Option</a></li>
+<li class="chapter" data-level="8.3.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#basic-summary-statistics"><i class="fa fa-check"></i><b>8.3.1</b> Basic summary statistics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#autoname-option"><i class="fa fa-check"></i><b>8.3.2</b> AUTONAME Option</a></li>
+<li class="chapter" data-level="8.3.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#chartype-option"><i class="fa fa-check"></i><b>8.3.3</b> CHARTYPE Option</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulate"><i class="fa fa-check"></i><b>6.4</b> PROC TABULATE</a>
+<li class="chapter" data-level="8.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-tabulate"><i class="fa fa-check"></i><b>8.4</b> PROC TABULATE</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#basic-syntax-for-proc-tabulate"><i class="fa fa-check"></i><b>6.4.1</b> Basic Syntax for PROC TABULATE</a></li>
-<li class="chapter" data-level="6.4.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#identification-of-desired-statistics"><i class="fa fa-check"></i><b>6.4.2</b> Identification of Desired Statistics</a></li>
-<li class="chapter" data-level="6.4.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#in-processing-1"><i class="fa fa-check"></i><b>6.4.3</b> In processing</a></li>
+<li class="chapter" data-level="8.4.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#basic-syntax-for-proc-tabulate"><i class="fa fa-check"></i><b>8.4.1</b> Basic Syntax for PROC TABULATE</a></li>
+<li class="chapter" data-level="8.4.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#identification-of-desired-statistics"><i class="fa fa-check"></i><b>8.4.2</b> Identification of Desired Statistics</a></li>
+<li class="chapter" data-level="8.4.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#in-processing-1"><i class="fa fa-check"></i><b>8.4.3</b> In processing</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>7</b> Descriptive Statistics in R</a>
+<li class="chapter" data-level="9" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics in R</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>7.1</b> Package pape</a></li>
-<li class="chapter" data-level="7.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>7.2</b> Package summarytools</a></li>
-<li class="chapter" data-level="7.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>7.3</b> Package compareGroups</a></li>
-<li class="chapter" data-level="7.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>7.4</b> Package kableExtra</a>
+<li class="chapter" data-level="9.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>9.1</b> Package pape</a></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>9.2</b> Package summarytools</a></li>
+<li class="chapter" data-level="9.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>9.3</b> Package compareGroups</a></li>
+<li class="chapter" data-level="9.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>9.4</b> Package kableExtra</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>7.4.1</b> kable_styling</a></li>
-<li class="chapter" data-level="7.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>7.4.2</b> Column/Row Specification</a></li>
-<li class="chapter" data-level="7.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>7.4.3</b> Grouping columns/rows</a></li>
-<li class="chapter" data-level="7.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>7.4.4</b> Add Footnote</a></li>
+<li class="chapter" data-level="9.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>9.4.1</b> kable_styling</a></li>
+<li class="chapter" data-level="9.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#columnrow-specification"><i class="fa fa-check"></i><b>9.4.2</b> Column/Row Specification</a></li>
+<li class="chapter" data-level="9.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#grouping-columnsrows"><i class="fa fa-check"></i><b>9.4.3</b> Grouping columns/rows</a></li>
+<li class="chapter" data-level="9.4.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#add-footnote"><i class="fa fa-check"></i><b>9.4.4</b> Add Footnote</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html"><i class="fa fa-check"></i><b>8</b> Sample Size Calculation</a>
+<li class="chapter" data-level="10" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html"><i class="fa fa-check"></i><b>10</b> Sample Size Calculation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#distribution"><i class="fa fa-check"></i><b>8.1</b> Distribution</a>
+<li class="chapter" data-level="10.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#distribution"><i class="fa fa-check"></i><b>10.1</b> Distribution</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>8.1.1</b> Quantile Function in SAS</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#binomial-distribution"><i class="fa fa-check"></i><b>8.1.2</b> Binomial distribution</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>8.1.3</b> Negative binomial distribution</a></li>
-<li class="chapter" data-level="8.1.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multinomial-distribution"><i class="fa fa-check"></i><b>8.1.4</b> Multinomial distribution</a></li>
-<li class="chapter" data-level="8.1.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#normal-distribution"><i class="fa fa-check"></i><b>8.1.5</b> Normal Distribution</a></li>
-<li class="chapter" data-level="8.1.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>8.1.6</b> Multivariate normal distribution</a></li>
-<li class="chapter" data-level="8.1.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#poisson-distribution"><i class="fa fa-check"></i><b>8.1.7</b> Poisson distribution</a></li>
-<li class="chapter" data-level="8.1.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#exponential-distribution"><i class="fa fa-check"></i><b>8.1.8</b> Exponential distribution</a></li>
-<li class="chapter" data-level="8.1.9" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#gamma-distribution"><i class="fa fa-check"></i><b>8.1.9</b> Gamma distribution</a></li>
-<li class="chapter" data-level="8.1.10" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#weibull-distribution"><i class="fa fa-check"></i><b>8.1.10</b> Weibull Distribution</a></li>
-<li class="chapter" data-level="8.1.11" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#beta-distribution"><i class="fa fa-check"></i><b>8.1.11</b> Beta Distribution</a></li>
+<li class="chapter" data-level="10.1.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#quantile-function-in-sas"><i class="fa fa-check"></i><b>10.1.1</b> Quantile Function in SAS</a></li>
+<li class="chapter" data-level="10.1.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#binomial-distribution"><i class="fa fa-check"></i><b>10.1.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="10.1.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#negative-binomial-distribution"><i class="fa fa-check"></i><b>10.1.3</b> Negative binomial distribution</a></li>
+<li class="chapter" data-level="10.1.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multinomial-distribution"><i class="fa fa-check"></i><b>10.1.4</b> Multinomial distribution</a></li>
+<li class="chapter" data-level="10.1.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#normal-distribution"><i class="fa fa-check"></i><b>10.1.5</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.1.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multivariate-normal-distribution"><i class="fa fa-check"></i><b>10.1.6</b> Multivariate normal distribution</a></li>
+<li class="chapter" data-level="10.1.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#poisson-distribution"><i class="fa fa-check"></i><b>10.1.7</b> Poisson distribution</a></li>
+<li class="chapter" data-level="10.1.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#exponential-distribution"><i class="fa fa-check"></i><b>10.1.8</b> Exponential distribution</a></li>
+<li class="chapter" data-level="10.1.9" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#gamma-distribution"><i class="fa fa-check"></i><b>10.1.9</b> Gamma distribution</a></li>
+<li class="chapter" data-level="10.1.10" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#weibull-distribution"><i class="fa fa-check"></i><b>10.1.10</b> Weibull Distribution</a></li>
+<li class="chapter" data-level="10.1.11" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#beta-distribution"><i class="fa fa-check"></i><b>10.1.11</b> Beta Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>8.2</b> Point Estimates</a></li>
-<li class="chapter" data-level="8.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-proportions"><i class="fa fa-check"></i><b>8.3</b> Test Proportion(s)</a>
+<li class="chapter" data-level="10.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>10.2</b> Point Estimates</a></li>
+<li class="chapter" data-level="10.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-proportions"><i class="fa fa-check"></i><b>10.3</b> Test Proportion(s)</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>8.3.1</b> Binomial CI for Small Samples</a></li>
-<li class="chapter" data-level="8.3.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>8.3.2</b> Package binom</a></li>
-<li class="chapter" data-level="8.3.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>8.3.3</b> %CI_Single_Proportion</a></li>
-<li class="chapter" data-level="8.3.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>8.3.4</b> Incidence rate CI</a></li>
-<li class="chapter" data-level="8.3.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>8.3.5</b> Package: pwr</a></li>
-<li class="chapter" data-level="8.3.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-one-proportion-based-on-wald-ci"><i class="fa fa-check"></i><b>8.3.6</b> Test one Proportion based on Wald CI</a></li>
-<li class="chapter" data-level="8.3.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-two-proportions-based-on-wald-ci"><i class="fa fa-check"></i><b>8.3.7</b> Test two Proportions based on Wald CI</a></li>
-<li class="chapter" data-level="8.3.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#paired-proportions-mcnemars-z-test"><i class="fa fa-check"></i><b>8.3.8</b> Paired Proportions: McNemar’s Z-test</a></li>
-<li class="chapter" data-level="8.3.9" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#chi-square-test"><i class="fa fa-check"></i><b>8.3.9</b> Chi-square test</a></li>
+<li class="chapter" data-level="10.3.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>10.3.1</b> Binomial CI for Small Samples</a></li>
+<li class="chapter" data-level="10.3.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#package-binom"><i class="fa fa-check"></i><b>10.3.2</b> Package binom</a></li>
+<li class="chapter" data-level="10.3.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#ci_single_proportion"><i class="fa fa-check"></i><b>10.3.3</b> %CI_Single_Proportion</a></li>
+<li class="chapter" data-level="10.3.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>10.3.4</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="10.3.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#package-pwr"><i class="fa fa-check"></i><b>10.3.5</b> Package: pwr</a></li>
+<li class="chapter" data-level="10.3.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-one-proportion-based-on-wald-ci"><i class="fa fa-check"></i><b>10.3.6</b> Test one Proportion based on Wald CI</a></li>
+<li class="chapter" data-level="10.3.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-two-proportions-based-on-wald-ci"><i class="fa fa-check"></i><b>10.3.7</b> Test two Proportions based on Wald CI</a></li>
+<li class="chapter" data-level="10.3.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#paired-proportions-mcnemars-z-test"><i class="fa fa-check"></i><b>10.3.8</b> Paired Proportions: McNemar’s Z-test</a></li>
+<li class="chapter" data-level="10.3.9" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#chi-square-test"><i class="fa fa-check"></i><b>10.3.9</b> Chi-square test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-means"><i class="fa fa-check"></i><b>8.4</b> Test Mean(s)</a>
+<li class="chapter" data-level="10.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-means"><i class="fa fa-check"></i><b>10.4</b> Test Mean(s)</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-one-sample-mean"><i class="fa fa-check"></i><b>8.4.1</b> Test one sample mean</a></li>
-<li class="chapter" data-level="8.4.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-two-sample-means"><i class="fa fa-check"></i><b>8.4.2</b> Test two sample means</a></li>
-<li class="chapter" data-level="8.4.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#t-test-using-pwr.t.test-or-pwr.t2n.test"><i class="fa fa-check"></i><b>8.4.3</b> T-Test using <code>pwr.t.test</code> or <code>pwr.t2n.test</code></a></li>
-<li class="chapter" data-level="8.4.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-k-means"><i class="fa fa-check"></i><b>8.4.4</b> Test k Means</a></li>
-<li class="chapter" data-level="8.4.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#anova-using-pwr.anova.test"><i class="fa fa-check"></i><b>8.4.5</b> Anova using <code>pwr.anova.test</code></a></li>
+<li class="chapter" data-level="10.4.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-one-sample-mean"><i class="fa fa-check"></i><b>10.4.1</b> Test one sample mean</a></li>
+<li class="chapter" data-level="10.4.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-two-sample-means"><i class="fa fa-check"></i><b>10.4.2</b> Test two sample means</a></li>
+<li class="chapter" data-level="10.4.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#t-test-using-pwr.t.test-or-pwr.t2n.test"><i class="fa fa-check"></i><b>10.4.3</b> T-Test using <code>pwr.t.test</code> or <code>pwr.t2n.test</code></a></li>
+<li class="chapter" data-level="10.4.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-k-means"><i class="fa fa-check"></i><b>10.4.4</b> Test k Means</a></li>
+<li class="chapter" data-level="10.4.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#anova-using-pwr.anova.test"><i class="fa fa-check"></i><b>10.4.5</b> Anova using <code>pwr.anova.test</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#other-methods"><i class="fa fa-check"></i><b>8.5</b> Other Methods</a>
+<li class="chapter" data-level="10.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#other-methods"><i class="fa fa-check"></i><b>10.5</b> Other Methods</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#odds-ratio"><i class="fa fa-check"></i><b>8.5.1</b> Odds Ratio</a></li>
-<li class="chapter" data-level="8.5.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#correlation"><i class="fa fa-check"></i><b>8.5.2</b> Correlation</a></li>
-<li class="chapter" data-level="8.5.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#correlated-binary-data-ophthalmologic-studies"><i class="fa fa-check"></i><b>8.5.3</b> Correlated Binary Data: Ophthalmologic Studies</a></li>
+<li class="chapter" data-level="10.5.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#odds-ratio"><i class="fa fa-check"></i><b>10.5.1</b> Odds Ratio</a></li>
+<li class="chapter" data-level="10.5.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#correlation"><i class="fa fa-check"></i><b>10.5.2</b> Correlation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#correlated-binary-data-ophthalmologic-studies"><i class="fa fa-check"></i><b>10.5.3</b> Correlated Binary Data: Ophthalmologic Studies</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multiple-test"><i class="fa fa-check"></i><b>8.6</b> Multiple test</a>
+<li class="chapter" data-level="10.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#multiple-test"><i class="fa fa-check"></i><b>10.6</b> Multiple test</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#definitions-of-power"><i class="fa fa-check"></i><b>8.6.1</b> Definitions of Power</a></li>
-<li class="chapter" data-level="8.6.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#bonferroni-tests-individual-power"><i class="fa fa-check"></i><b>8.6.2</b> Bonferroni Tests (Individual Power)</a></li>
-<li class="chapter" data-level="8.6.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#tukeys-method-individual-power"><i class="fa fa-check"></i><b>8.6.3</b> Tukey’s method (Individual Power)</a></li>
-<li class="chapter" data-level="8.6.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#dunnetts-two-sided-tests-individual-power"><i class="fa fa-check"></i><b>8.6.4</b> Dunnett’s Two-Sided Tests (Individual Power)</a></li>
-<li class="chapter" data-level="8.6.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#combined-power-simpower-and-plotsimpower"><i class="fa fa-check"></i><b>8.6.5</b> Combined Power %SimPower and %PlotSimPower</a></li>
-<li class="chapter" data-level="8.6.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#dunnett-set-up-close-tests-in-r"><i class="fa fa-check"></i><b>8.6.6</b> Dunnett Set up Close Tests in R</a></li>
+<li class="chapter" data-level="10.6.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#definitions-of-power"><i class="fa fa-check"></i><b>10.6.1</b> Definitions of Power</a></li>
+<li class="chapter" data-level="10.6.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#bonferroni-tests-individual-power"><i class="fa fa-check"></i><b>10.6.2</b> Bonferroni Tests (Individual Power)</a></li>
+<li class="chapter" data-level="10.6.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#tukeys-method-individual-power"><i class="fa fa-check"></i><b>10.6.3</b> Tukey’s method (Individual Power)</a></li>
+<li class="chapter" data-level="10.6.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#dunnetts-two-sided-tests-individual-power"><i class="fa fa-check"></i><b>10.6.4</b> Dunnett’s Two-Sided Tests (Individual Power)</a></li>
+<li class="chapter" data-level="10.6.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#combined-power-simpower-and-plotsimpower"><i class="fa fa-check"></i><b>10.6.5</b> Combined Power %SimPower and %PlotSimPower</a></li>
+<li class="chapter" data-level="10.6.6" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#dunnett-set-up-close-tests-in-r"><i class="fa fa-check"></i><b>10.6.6</b> Dunnett Set up Close Tests in R</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#time-to-event-data"><i class="fa fa-check"></i><b>8.7</b> Time-To-Event Data</a>
+<li class="chapter" data-level="10.7" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#time-to-event-data"><i class="fa fa-check"></i><b>10.7</b> Time-To-Event Data</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#cox-ph-2-sided-equality"><i class="fa fa-check"></i><b>8.7.1</b> Cox PH, 2-Sided Equality</a></li>
-<li class="chapter" data-level="8.7.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#log-rank-tests-for-competing-risks"><i class="fa fa-check"></i><b>8.7.2</b> Log-Rank Tests for Competing Risks</a></li>
+<li class="chapter" data-level="10.7.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#cox-ph-2-sided-equality"><i class="fa fa-check"></i><b>10.7.1</b> Cox PH, 2-Sided Equality</a></li>
+<li class="chapter" data-level="10.7.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#log-rank-tests-for-competing-risks"><i class="fa fa-check"></i><b>10.7.2</b> Log-Rank Tests for Competing Risks</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#estimation-in-diagnostic-test"><i class="fa fa-check"></i><b>8.8</b> Estimation in diagnostic test</a>
+<li class="chapter" data-level="10.8" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#estimation-in-diagnostic-test"><i class="fa fa-check"></i><b>10.8</b> Estimation in diagnostic test</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#adequate-sensitivityspecificity"><i class="fa fa-check"></i><b>8.8.1</b> Adequate sensitivity/specificity</a></li>
-<li class="chapter" data-level="8.8.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#testing-sensitivity-or-specificity"><i class="fa fa-check"></i><b>8.8.2</b> Testing sensitivity (or specificity)</a></li>
-<li class="chapter" data-level="8.8.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#likelihood-ratio-estimation"><i class="fa fa-check"></i><b>8.8.3</b> Likelihood ratio estimation</a></li>
-<li class="chapter" data-level="8.8.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#roc-index-of-accuracy"><i class="fa fa-check"></i><b>8.8.4</b> ROC index of accuracy</a></li>
+<li class="chapter" data-level="10.8.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#adequate-sensitivityspecificity"><i class="fa fa-check"></i><b>10.8.1</b> Adequate sensitivity/specificity</a></li>
+<li class="chapter" data-level="10.8.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#testing-sensitivity-or-specificity"><i class="fa fa-check"></i><b>10.8.2</b> Testing sensitivity (or specificity)</a></li>
+<li class="chapter" data-level="10.8.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#likelihood-ratio-estimation"><i class="fa fa-check"></i><b>10.8.3</b> Likelihood ratio estimation</a></li>
+<li class="chapter" data-level="10.8.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#roc-index-of-accuracy"><i class="fa fa-check"></i><b>10.8.4</b> ROC index of accuracy</a></li>
+</ul></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>11</b> Parametric Test</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>11.1</b> Binomial test</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>11.1.1</b> Mathematical Formula</a></li>
+<li class="chapter" data-level="11.1.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>11.1.2</b> R implementation</a></li>
+<li class="chapter" data-level="11.1.3" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>11.1.3</b> SAS Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="parametric-test.html"><a href="parametric-test.html"><i class="fa fa-check"></i><b>9</b> Parametric Test</a>
+<li class="chapter" data-level="11.2" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>11.2</b> Fisher’s Exact Test</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="parametric-test.html"><a href="parametric-test.html#binomial-test"><i class="fa fa-check"></i><b>9.1</b> Binomial test</a>
+<li class="chapter" data-level="11.2.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-2"><i class="fa fa-check"></i><b>11.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>11.2.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="11.2.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>11.2.3</b> R implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>11.3</b> McNemar’s test</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="parametric-test.html"><a href="parametric-test.html#mathematical-formula"><i class="fa fa-check"></i><b>9.1.1</b> Mathematical Formula</a></li>
-<li class="chapter" data-level="9.1.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation"><i class="fa fa-check"></i><b>9.1.2</b> R implementation</a></li>
-<li class="chapter" data-level="9.1.3" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation"><i class="fa fa-check"></i><b>9.1.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="11.3.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-3"><i class="fa fa-check"></i><b>11.3.1</b> introduction</a></li>
+<li class="chapter" data-level="11.3.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>11.3.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="11.3.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>11.3.3</b> R Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="parametric-test.html"><a href="parametric-test.html#fishers-exact-test"><i class="fa fa-check"></i><b>9.2</b> Fisher’s Exact Test</a>
+<li class="chapter" data-level="11.4" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>11.4</b> Cochran–Mantel–Haenszel Test</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-1"><i class="fa fa-check"></i><b>9.2.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>9.2.2</b> SAS implementation</a></li>
-<li class="chapter" data-level="9.2.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>9.2.3</b> R implementation</a></li>
+<li class="chapter" data-level="11.4.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>11.4.1</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>9.3</b> McNemar’s test</a>
+<li class="chapter" data-level="11.5" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>11.5</b> Correlation Test</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-2"><i class="fa fa-check"></i><b>9.3.1</b> introduction</a></li>
-<li class="chapter" data-level="9.3.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>9.3.2</b> SAS Implementation</a></li>
-<li class="chapter" data-level="9.3.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>9.3.3</b> R Implementation</a></li>
+<li class="chapter" data-level="11.5.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>11.5.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="11.5.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>11.5.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="11.5.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>11.5.3</b> Kendall correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>9.4</b> Cochran–Mantel–Haenszel Test</a>
+<li class="chapter" data-level="11.6" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>11.6</b> Two Sample T-Test</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>9.4.1</b> R implementation</a></li>
+<li class="chapter" data-level="11.6.1" data-path="parametric-test.html"><a href="parametric-test.html#inreoduction-1"><i class="fa fa-check"></i><b>11.6.1</b> Inreoduction</a></li>
+<li class="chapter" data-level="11.6.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-3"><i class="fa fa-check"></i><b>11.6.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="11.6.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>11.6.3</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>9.5</b> Correlation Test</a>
+<li class="chapter" data-level="11.7" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>11.7</b> Normality test</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>9.5.1</b> Pearson correlation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>9.5.2</b> Spearman correlation</a></li>
-<li class="chapter" data-level="9.5.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>9.5.3</b> Kendall correlation</a></li>
+<li class="chapter" data-level="11.7.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-4"><i class="fa fa-check"></i><b>11.7.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="11.7.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-5"><i class="fa fa-check"></i><b>11.7.2</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>9.6</b> Two Sample T-Test</a>
+</ul></li>
+<li class="chapter" data-level="12" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>12</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="anova.html"><a href="anova.html#unstructured-models"><i class="fa fa-check"></i><b>12.1</b> Unstructured Models</a></li>
+<li class="chapter" data-level="12.2" data-path="anova.html"><a href="anova.html#balanced-one-way-analysis-of-variance-anova"><i class="fa fa-check"></i><b>12.2</b> Balanced One-Way Analysis-of-Variance (ANOVA)</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="parametric-test.html"><a href="parametric-test.html#inreoduction"><i class="fa fa-check"></i><b>9.6.1</b> Inreoduction</a></li>
-<li class="chapter" data-level="9.6.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-3"><i class="fa fa-check"></i><b>9.6.2</b> SAS implementation</a></li>
-<li class="chapter" data-level="9.6.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>9.6.3</b> R implementation</a></li>
+<li class="chapter" data-level="12.2.1" data-path="anova.html"><a href="anova.html#modeling-assumptions-and-basic-analysis"><i class="fa fa-check"></i><b>12.2.1</b> Modeling Assumptions and Basic Analysis</a></li>
+<li class="chapter" data-level="12.2.2" data-path="anova.html"><a href="anova.html#parameter-estimates"><i class="fa fa-check"></i><b>12.2.2</b> Parameter Estimates</a></li>
+<li class="chapter" data-level="12.2.3" data-path="anova.html"><a href="anova.html#r-implementation-6"><i class="fa fa-check"></i><b>12.2.3</b> R Implementation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="anova.html"><a href="anova.html#sas-implementation-5"><i class="fa fa-check"></i><b>12.2.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="12.2.5" data-path="anova.html"><a href="anova.html#model-diagnosis"><i class="fa fa-check"></i><b>12.2.5</b> Model Diagnosis</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>9.7</b> Normality test</a>
+<li class="chapter" data-level="12.3" data-path="anova.html"><a href="anova.html#unbalanced-one-way-anova-and-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>12.3</b> Unbalanced One-Way ANOVA and Analysis-of-Covariance (ANCOVA)</a></li>
+<li class="chapter" data-level="12.4" data-path="anova.html"><a href="anova.html#two-ways-anova-test"><i class="fa fa-check"></i><b>12.4</b> Two-Ways ANOVA Test</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-4"><i class="fa fa-check"></i><b>9.7.1</b> SAS implementation</a></li>
-<li class="chapter" data-level="9.7.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-5"><i class="fa fa-check"></i><b>9.7.2</b> R implementation</a></li>
+<li class="chapter" data-level="12.4.1" data-path="anova.html"><a href="anova.html#introduction-4"><i class="fa fa-check"></i><b>12.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.4.2" data-path="anova.html"><a href="anova.html#r-implementation-7"><i class="fa fa-check"></i><b>12.4.2</b> R implementation</a></li>
+<li class="chapter" data-level="12.4.3" data-path="anova.html"><a href="anova.html#sas-implementation-6"><i class="fa fa-check"></i><b>12.4.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="12.4.4" data-path="anova.html"><a href="anova.html#unbalanced-design"><i class="fa fa-check"></i><b>12.4.4</b> Unbalanced design</a></li>
 </ul></li>
+<li class="chapter" data-level="12.5" data-path="anova.html"><a href="anova.html#heteroscedastic-responses"><i class="fa fa-check"></i><b>12.5</b> Heteroscedastic Responses</a></li>
+<li class="chapter" data-level="12.6" data-path="anova.html"><a href="anova.html#repeated-measures-anova-data"><i class="fa fa-check"></i><b>12.6</b> Repeated Measures ANOVA Data</a></li>
+<li class="chapter" data-level="12.7" data-path="anova.html"><a href="anova.html#multivariate-responses-with-normally-distributed-data"><i class="fa fa-check"></i><b>12.7</b> Multivariate Responses with Normally Distributed Data</a></li>
+<li class="chapter" data-level="12.8" data-path="anova.html"><a href="anova.html#independent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>12.8</b> Independent Observations from Parametric Nonnormal Distributions</a></li>
+<li class="chapter" data-level="12.9" data-path="anova.html"><a href="anova.html#dependent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>12.9</b> Dependent Observations from Parametric Nonnormal Distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>10</b> ANOVA</a>
+<li class="chapter" data-level="13" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>13</b> Multiple-Comparison</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="anova.html"><a href="anova.html#unstructured-models"><i class="fa fa-check"></i><b>10.1</b> Unstructured Models</a></li>
-<li class="chapter" data-level="10.2" data-path="anova.html"><a href="anova.html#balanced-one-way-analysis-of-variance-anova"><i class="fa fa-check"></i><b>10.2</b> Balanced One-Way Analysis-of-Variance (ANOVA)</a>
+<li class="chapter" data-level="13.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-5"><i class="fa fa-check"></i><b>13.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="anova.html"><a href="anova.html#modeling-assumptions-and-basic-analysis"><i class="fa fa-check"></i><b>10.2.1</b> Modeling Assumptions and Basic Analysis</a></li>
-<li class="chapter" data-level="10.2.2" data-path="anova.html"><a href="anova.html#parameter-estimates"><i class="fa fa-check"></i><b>10.2.2</b> Parameter Estimates</a></li>
-<li class="chapter" data-level="10.2.3" data-path="anova.html"><a href="anova.html#r-implementation-6"><i class="fa fa-check"></i><b>10.2.3</b> R Implementation</a></li>
-<li class="chapter" data-level="10.2.4" data-path="anova.html"><a href="anova.html#sas-implementation-5"><i class="fa fa-check"></i><b>10.2.4</b> SAS Implementation</a></li>
-<li class="chapter" data-level="10.2.5" data-path="anova.html"><a href="anova.html#model-diagnosis"><i class="fa fa-check"></i><b>10.2.5</b> Model Diagnosis</a></li>
+<li class="chapter" data-level="13.1.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiplicity-problem"><i class="fa fa-check"></i><b>13.1.1</b> Multiplicity Problem</a></li>
+<li class="chapter" data-level="13.1.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#error-rates"><i class="fa fa-check"></i><b>13.1.2</b> Error Rates</a></li>
+<li class="chapter" data-level="13.1.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-adjusted-p"><i class="fa fa-check"></i><b>13.1.3</b> The adjusted P</a></li>
+<li class="chapter" data-level="13.1.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>13.1.4</b> Basic Statistical Concepts</a></li>
+<li class="chapter" data-level="13.1.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#functions-in-glht-package-in-r"><i class="fa fa-check"></i><b>13.1.5</b> Functions in glht package in R</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="anova.html"><a href="anova.html#unbalanced-one-way-anova-and-analysis-of-covariance-ancova"><i class="fa fa-check"></i><b>10.3</b> Unbalanced One-Way ANOVA and Analysis-of-Covariance (ANCOVA)</a></li>
-<li class="chapter" data-level="10.4" data-path="anova.html"><a href="anova.html#two-ways-anova-test"><i class="fa fa-check"></i><b>10.4</b> Two-Ways ANOVA Test</a>
+<li class="chapter" data-level="13.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-and-šidák-methods"><i class="fa fa-check"></i><b>13.2</b> Bonferroni and Šidák Methods</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="anova.html"><a href="anova.html#introduction-3"><i class="fa fa-check"></i><b>10.4.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.4.2" data-path="anova.html"><a href="anova.html#r-implementation-7"><i class="fa fa-check"></i><b>10.4.2</b> R implementation</a></li>
-<li class="chapter" data-level="10.4.3" data-path="anova.html"><a href="anova.html#sas-implementation-6"><i class="fa fa-check"></i><b>10.4.3</b> SAS Implementation</a></li>
-<li class="chapter" data-level="10.4.4" data-path="anova.html"><a href="anova.html#unbalanced-design"><i class="fa fa-check"></i><b>10.4.4</b> Unbalanced design</a></li>
+<li class="chapter" data-level="13.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#lsd-least-significance-difference"><i class="fa fa-check"></i><b>13.2.1</b> LSD (least significance difference)</a></li>
+<li class="chapter" data-level="13.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák"><i class="fa fa-check"></i><b>13.2.2</b> Šidák</a></li>
+<li class="chapter" data-level="13.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni"><i class="fa fa-check"></i><b>13.2.3</b> Bonferroni</a></li>
+<li class="chapter" data-level="13.2.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#schweder-spjøtvoll-p-value-plot"><i class="fa fa-check"></i><b>13.2.4</b> Schweder-Spjøtvoll p-Value Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="anova.html"><a href="anova.html#heteroscedastic-responses"><i class="fa fa-check"></i><b>10.5</b> Heteroscedastic Responses</a></li>
-<li class="chapter" data-level="10.6" data-path="anova.html"><a href="anova.html#repeated-measures-anova-data"><i class="fa fa-check"></i><b>10.6</b> Repeated Measures ANOVA Data</a></li>
-<li class="chapter" data-level="10.7" data-path="anova.html"><a href="anova.html#multivariate-responses-with-normally-distributed-data"><i class="fa fa-check"></i><b>10.7</b> Multivariate Responses with Normally Distributed Data</a></li>
-<li class="chapter" data-level="10.8" data-path="anova.html"><a href="anova.html#independent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>10.8</b> Independent Observations from Parametric Nonnormal Distributions</a></li>
-<li class="chapter" data-level="10.9" data-path="anova.html"><a href="anova.html#dependent-observations-from-parametric-nonnormal-distributions"><i class="fa fa-check"></i><b>10.9</b> Dependent Observations from Parametric Nonnormal Distributions</a></li>
+<li class="chapter" data-level="13.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#mcp-among-treatment-means-in-the-one-way-balanced-anova"><i class="fa fa-check"></i><b>13.3</b> MCP among Treatment Means in the One-Way Balanced ANOVA</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#ls-means"><i class="fa fa-check"></i><b>13.3.1</b> LS-Means</a></li>
+<li class="chapter" data-level="13.3.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-multivariate-t-distribution"><i class="fa fa-check"></i><b>13.3.2</b> The Multivariate t Distribution</a></li>
+<li class="chapter" data-level="13.3.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#calculating-the-critical-value-c_alpha"><i class="fa fa-check"></i><b>13.3.3</b> Calculating the Critical Value <span class="math inline">\(c_{\alpha}\)</span></a></li>
+<li class="chapter" data-level="13.3.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#all-pairwise-comparisons-and-studentized-range-distribution"><i class="fa fa-check"></i><b>13.3.4</b> All Pairwise Comparisons and Studentized Range Distribution</a></li>
+<li class="chapter" data-level="13.3.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukeys-method-for-all-pairwise-comparisons"><i class="fa fa-check"></i><b>13.3.5</b> Tukey’s Method for All Pairwise Comparisons</a></li>
+<li class="chapter" data-level="13.3.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#displaying-pairwise-comparisons-graphically"><i class="fa fa-check"></i><b>13.3.6</b> Displaying Pairwise Comparisons Graphically</a></li>
+<li class="chapter" data-level="13.3.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-two-sided-comparisons-with-a-control-and-dunnetts-two-sided-range-distribution"><i class="fa fa-check"></i><b>13.3.7</b> Dunnett’s Two-Sided Comparisons with a Control and Dunnett’s Two-Sided Range Distribution</a></li>
+<li class="chapter" data-level="13.3.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-one-sided-comparisons-with-a-control"><i class="fa fa-check"></i><b>13.3.8</b> Dunnett’s One-Sided Comparisons with a Control</a></li>
+<li class="chapter" data-level="13.3.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maximum-modulus-distribution-multiple-inferences-for-independent-estimates"><i class="fa fa-check"></i><b>13.3.9</b> Maximum Modulus Distribution, Multiple Inferences for Independent Estimates</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="multiple-comparison.html"><a href="multiple-comparison.html"><i class="fa fa-check"></i><b>11</b> Multiple-Comparison</a>
+<li class="chapter" data-level="13.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-among-treatment-means-in-the-one-way-unbalanced-anova"><i class="fa fa-check"></i><b>13.4</b> Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-4"><i class="fa fa-check"></i><b>11.1</b> Introduction</a>
+<li class="chapter" data-level="13.4.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-model-and-estimates"><i class="fa fa-check"></i><b>13.4.1</b> The Model and Estimates</a></li>
+<li class="chapter" data-level="13.4.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukey-kramer-method"><i class="fa fa-check"></i><b>13.4.2</b> Tukey-Kramer Method</a></li>
+<li class="chapter" data-level="13.4.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#alternative-simulation-based-method"><i class="fa fa-check"></i><b>13.4.3</b> Alternative Simulation-Based Method</a></li>
+<li class="chapter" data-level="13.4.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#pairwise-comparisons-with-control"><i class="fa fa-check"></i><b>13.4.4</b> Pairwise Comparisons with Control</a></li>
+<li class="chapter" data-level="13.4.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-with-the-average-meananalysis-of-means-anom"><i class="fa fa-check"></i><b>13.4.5</b> Comparisons with the Average Mean–Analysis of Means (ANOM)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#generalizations-for-the-analysis-of-covariance-ancova-model"><i class="fa fa-check"></i><b>13.5</b> Generalizations for the Analysis of Covariance (ANCOVA) model</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiplicity-problem"><i class="fa fa-check"></i><b>11.1.1</b> Multiplicity Problem</a></li>
-<li class="chapter" data-level="11.1.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#error-rates"><i class="fa fa-check"></i><b>11.1.2</b> Error Rates</a></li>
-<li class="chapter" data-level="11.1.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-adjusted-p"><i class="fa fa-check"></i><b>11.1.3</b> The adjusted P</a></li>
-<li class="chapter" data-level="11.1.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>11.1.4</b> Basic Statistical Concepts</a></li>
-<li class="chapter" data-level="11.1.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#functions-in-glht-package-in-r"><i class="fa fa-check"></i><b>11.1.5</b> Functions in glht package in R</a></li>
+<li class="chapter" data-level="13.5.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnett-hsu-factor-analytic-approximation"><i class="fa fa-check"></i><b>13.5.1</b> Dunnett-Hsu Factor Analytic Approximation</a></li>
+<li class="chapter" data-level="13.5.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hsu-nelson-simulation-based-approximation-cvadjust-method"><i class="fa fa-check"></i><b>13.5.2</b> Hsu-Nelson Simulation-Based Approximation: CVADJUST Method</a></li>
+<li class="chapter" data-level="13.5.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-in-ancova-models-with-interaction"><i class="fa fa-check"></i><b>13.5.3</b> Comparisons in ANCOVA Models with Interaction</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-and-šidák-methods"><i class="fa fa-check"></i><b>11.2</b> Bonferroni and Šidák Methods</a>
+<li class="chapter" data-level="13.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-inferences-for-infinite-sets-of-parameters"><i class="fa fa-check"></i><b>13.6</b> Multiple Inferences for Infinite Sets of Parameters</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#lsd-least-significance-difference"><i class="fa fa-check"></i><b>11.2.1</b> LSD (least significance difference)</a></li>
-<li class="chapter" data-level="11.2.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák"><i class="fa fa-check"></i><b>11.2.2</b> Šidák</a></li>
-<li class="chapter" data-level="11.2.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni"><i class="fa fa-check"></i><b>11.2.3</b> Bonferroni</a></li>
-<li class="chapter" data-level="11.2.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#schweder-spjøtvoll-p-value-plot"><i class="fa fa-check"></i><b>11.2.4</b> Schweder-Spjøtvoll p-Value Plot</a></li>
+<li class="chapter" data-level="13.6.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#scheffés-method"><i class="fa fa-check"></i><b>13.6.1</b> Scheffés Method</a></li>
+<li class="chapter" data-level="13.6.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#finding-the-maximal-contrast"><i class="fa fa-check"></i><b>13.6.2</b> Finding the Maximal Contrast</a></li>
+<li class="chapter" data-level="13.6.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#working-hotelling-method"><i class="fa fa-check"></i><b>13.6.3</b> Working-Hotelling method</a></li>
+<li class="chapter" data-level="13.6.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#discrete-approximation-method"><i class="fa fa-check"></i><b>13.6.4</b> Discrete approximation method</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#mcp-among-treatment-means-in-the-one-way-balanced-anova"><i class="fa fa-check"></i><b>11.3</b> MCP among Treatment Means in the One-Way Balanced ANOVA</a>
+<li class="chapter" data-level="13.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-under-heteroscedasticity"><i class="fa fa-check"></i><b>13.7</b> Multiple Comparisons under Heteroscedasticity</a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#ls-means"><i class="fa fa-check"></i><b>11.3.1</b> LS-Means</a></li>
-<li class="chapter" data-level="11.3.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-multivariate-t-distribution"><i class="fa fa-check"></i><b>11.3.2</b> The Multivariate t Distribution</a></li>
-<li class="chapter" data-level="11.3.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#calculating-the-critical-value-c_alpha"><i class="fa fa-check"></i><b>11.3.3</b> Calculating the Critical Value <span class="math inline">\(c_{\alpha}\)</span></a></li>
-<li class="chapter" data-level="11.3.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#all-pairwise-comparisons-and-studentized-range-distribution"><i class="fa fa-check"></i><b>11.3.4</b> All Pairwise Comparisons and Studentized Range Distribution</a></li>
-<li class="chapter" data-level="11.3.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukeys-method-for-all-pairwise-comparisons"><i class="fa fa-check"></i><b>11.3.5</b> Tukey’s Method for All Pairwise Comparisons</a></li>
-<li class="chapter" data-level="11.3.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#displaying-pairwise-comparisons-graphically"><i class="fa fa-check"></i><b>11.3.6</b> Displaying Pairwise Comparisons Graphically</a></li>
-<li class="chapter" data-level="11.3.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-two-sided-comparisons-with-a-control-and-dunnetts-two-sided-range-distribution"><i class="fa fa-check"></i><b>11.3.7</b> Dunnett’s Two-Sided Comparisons with a Control and Dunnett’s Two-Sided Range Distribution</a></li>
-<li class="chapter" data-level="11.3.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnetts-one-sided-comparisons-with-a-control"><i class="fa fa-check"></i><b>11.3.8</b> Dunnett’s One-Sided Comparisons with a Control</a></li>
-<li class="chapter" data-level="11.3.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maximum-modulus-distribution-multiple-inferences-for-independent-estimates"><i class="fa fa-check"></i><b>11.3.9</b> Maximum Modulus Distribution, Multiple Inferences for Independent Estimates</a></li>
+<li class="chapter" data-level="13.7.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-of-heteroscedasticity"><i class="fa fa-check"></i><b>13.7.1</b> Introduction of heteroscedasticity</a></li>
+<li class="chapter" data-level="13.7.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#satterthwaite-approximation"><i class="fa fa-check"></i><b>13.7.2</b> Satterthwaite Approximation</a></li>
+<li class="chapter" data-level="13.7.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maxt-method-under-heteroscedasticity"><i class="fa fa-check"></i><b>13.7.3</b> MaxT Method under Heteroscedasticity</a></li>
+<li class="chapter" data-level="13.7.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#minp-method-under-heteroscedasticity"><i class="fa fa-check"></i><b>13.7.4</b> MinP Method under Heteroscedasticity</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-among-treatment-means-in-the-one-way-unbalanced-anova"><i class="fa fa-check"></i><b>11.4</b> Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA</a>
+<li class="chapter" data-level="13.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-and-stepwise-testing-methods"><i class="fa fa-check"></i><b>13.8</b> Closed and Stepwise Testing Methods</a>
 <ul>
-<li class="chapter" data-level="11.4.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#the-model-and-estimates"><i class="fa fa-check"></i><b>11.4.1</b> The Model and Estimates</a></li>
-<li class="chapter" data-level="11.4.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#tukey-kramer-method"><i class="fa fa-check"></i><b>11.4.2</b> Tukey-Kramer Method</a></li>
-<li class="chapter" data-level="11.4.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#alternative-simulation-based-method"><i class="fa fa-check"></i><b>11.4.3</b> Alternative Simulation-Based Method</a></li>
-<li class="chapter" data-level="11.4.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#pairwise-comparisons-with-control"><i class="fa fa-check"></i><b>11.4.4</b> Pairwise Comparisons with Control</a></li>
-<li class="chapter" data-level="11.4.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-with-the-average-meananalysis-of-means-anom"><i class="fa fa-check"></i><b>11.4.5</b> Comparisons with the Average Mean–Analysis of Means (ANOM)</a></li>
+<li class="chapter" data-level="13.8.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-family-of-hypotheses"><i class="fa fa-check"></i><b>13.8.1</b> Closed Family of Hypotheses</a></li>
+<li class="chapter" data-level="13.8.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-holm-method"><i class="fa fa-check"></i><b>13.8.2</b> Bonferroni-Holm Method</a></li>
+<li class="chapter" data-level="13.8.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák-holm-method"><i class="fa fa-check"></i><b>13.8.3</b> Šidák-Holm Method</a></li>
+<li class="chapter" data-level="13.8.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-fisher-combination-method"><i class="fa fa-check"></i><b>13.8.4</b> Closed Fisher Combination Method</a></li>
+<li class="chapter" data-level="13.8.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#simes-hommel-method"><i class="fa fa-check"></i><b>13.8.5</b> Simes-Hommel Method</a></li>
+<li class="chapter" data-level="13.8.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hochbergs-ok-step-up"><i class="fa fa-check"></i><b>13.8.6</b> Hochberg’s O(k) Step-Up</a></li>
+<li class="chapter" data-level="13.8.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#sequential-testing-with-fixed-sequences"><i class="fa fa-check"></i><b>13.8.7</b> Sequential Testing with Fixed Sequences</a></li>
+<li class="chapter" data-level="13.8.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#sequential-testing-using-gatekeeping-methods"><i class="fa fa-check"></i><b>13.8.8</b> Sequential Testing Using Gatekeeping Methods</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#generalizations-for-the-analysis-of-covariance-ancova-model"><i class="fa fa-check"></i><b>11.5</b> Generalizations for the Analysis of Covariance (ANCOVA) model</a>
+<li class="chapter" data-level="13.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-testing-of-pairwise-comparisons-and-general-contrasts"><i class="fa fa-check"></i><b>13.9</b> Closed Testing of Pairwise Comparisons and General Contrasts</a>
 <ul>
-<li class="chapter" data-level="11.5.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#dunnett-hsu-factor-analytic-approximation"><i class="fa fa-check"></i><b>11.5.1</b> Dunnett-Hsu Factor Analytic Approximation</a></li>
-<li class="chapter" data-level="11.5.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hsu-nelson-simulation-based-approximation-cvadjust-method"><i class="fa fa-check"></i><b>11.5.2</b> Hsu-Nelson Simulation-Based Approximation: CVADJUST Method</a></li>
-<li class="chapter" data-level="11.5.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#comparisons-in-ancova-models-with-interaction"><i class="fa fa-check"></i><b>11.5.3</b> Comparisons in ANCOVA Models with Interaction</a></li>
+<li class="chapter" data-level="13.9.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#incorporating-logical-constraints"><i class="fa fa-check"></i><b>13.9.1</b> Incorporating Logical Constraints</a></li>
+<li class="chapter" data-level="13.9.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#shaffers-method"><i class="fa fa-check"></i><b>13.9.2</b> Shaffer’s Method</a></li>
+<li class="chapter" data-level="13.9.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#extended-shaffer-royen-method"><i class="fa fa-check"></i><b>13.9.3</b> Extended Shaffer-Royen Method</a></li>
+<li class="chapter" data-level="13.9.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#step-down-dunnett-test"><i class="fa fa-check"></i><b>13.9.4</b> Step-down Dunnett test</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-inferences-for-infinite-sets-of-parameters"><i class="fa fa-check"></i><b>11.6</b> Multiple Inferences for Infinite Sets of Parameters</a>
+<li class="chapter" data-level="13.10" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-with-binary-data"><i class="fa fa-check"></i><b>13.10</b> Multiple Comparisons with Binary Data</a>
 <ul>
-<li class="chapter" data-level="11.6.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#scheffés-method"><i class="fa fa-check"></i><b>11.6.1</b> Scheffés Method</a></li>
-<li class="chapter" data-level="11.6.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#finding-the-maximal-contrast"><i class="fa fa-check"></i><b>11.6.2</b> Finding the Maximal Contrast</a></li>
-<li class="chapter" data-level="11.6.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#working-hotelling-method"><i class="fa fa-check"></i><b>11.6.3</b> Working-Hotelling method</a></li>
-<li class="chapter" data-level="11.6.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#discrete-approximation-method"><i class="fa fa-check"></i><b>11.6.4</b> Discrete approximation method</a></li>
+<li class="chapter" data-level="13.10.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-6"><i class="fa fa-check"></i><b>13.10.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.10.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multivariate-two-sample-binary-outcomes"><i class="fa fa-check"></i><b>13.10.2</b> Multivariate Two-Sample Binary Outcomes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-under-heteroscedasticity"><i class="fa fa-check"></i><b>11.7</b> Multiple Comparisons under Heteroscedasticity</a>
+</ul></li>
+<li class="chapter" data-level="14" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>14</b> Non-Parametric Test</a>
 <ul>
-<li class="chapter" data-level="11.7.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-of-heteroscedasticity"><i class="fa fa-check"></i><b>11.7.1</b> Introduction of heteroscedasticity</a></li>
-<li class="chapter" data-level="11.7.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#satterthwaite-approximation"><i class="fa fa-check"></i><b>11.7.2</b> Satterthwaite Approximation</a></li>
-<li class="chapter" data-level="11.7.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#maxt-method-under-heteroscedasticity"><i class="fa fa-check"></i><b>11.7.3</b> MaxT Method under Heteroscedasticity</a></li>
-<li class="chapter" data-level="11.7.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#minp-method-under-heteroscedasticity"><i class="fa fa-check"></i><b>11.7.4</b> MinP Method under Heteroscedasticity</a></li>
+<li class="chapter" data-level="14.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#two-samples-hypotheses-testing"><i class="fa fa-check"></i><b>14.1</b> Two Samples Hypotheses Testing</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#sign-test-for-location-parameter-for-matched-paired-samples"><i class="fa fa-check"></i><b>14.1.1</b> Sign Test for Location Parameter for Matched Paired Samples</a></li>
+<li class="chapter" data-level="14.1.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#wilcoxon-signed-rank-test-for-location-parameter-for-matched"><i class="fa fa-check"></i><b>14.1.2</b> Wilcoxon Signed-Rank Test for Location Parameter for Matched</a></li>
+<li class="chapter" data-level="14.1.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#wilcoxon-rank-sum-test-for-location-parameter-for-two-independent-samples"><i class="fa fa-check"></i><b>14.1.3</b> Wilcoxon Rank-Sum Test for Location Parameter for Two Independent Samples</a></li>
+<li class="chapter" data-level="14.1.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#ansari-bradley-test-for-scale-parameter-for-two-independent-samples"><i class="fa fa-check"></i><b>14.1.4</b> Ansari-Bradley Test for Scale Parameter for Two Independent Samples</a></li>
+<li class="chapter" data-level="14.1.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#kolmogorov-smirnov-test-for-equality-of-distributions"><i class="fa fa-check"></i><b>14.1.5</b> Kolmogorov-Smirnov Test for Equality of Distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-and-stepwise-testing-methods"><i class="fa fa-check"></i><b>11.8</b> Closed and Stepwise Testing Methods</a>
+<li class="chapter" data-level="14.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#several-samples-hypotheses-testing"><i class="fa fa-check"></i><b>14.2</b> Several Samples Hypotheses Testing</a>
 <ul>
-<li class="chapter" data-level="11.8.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-family-of-hypotheses"><i class="fa fa-check"></i><b>11.8.1</b> Closed Family of Hypotheses</a></li>
-<li class="chapter" data-level="11.8.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#bonferroni-holm-method"><i class="fa fa-check"></i><b>11.8.2</b> Bonferroni-Holm Method</a></li>
-<li class="chapter" data-level="11.8.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#šidák-holm-method"><i class="fa fa-check"></i><b>11.8.3</b> Šidák-Holm Method</a></li>
-<li class="chapter" data-level="11.8.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-fisher-combination-method"><i class="fa fa-check"></i><b>11.8.4</b> Closed Fisher Combination Method</a></li>
-<li class="chapter" data-level="11.8.5" data-path="multiple-comparison.html"><a href="multiple-comparison.html#simes-hommel-method"><i class="fa fa-check"></i><b>11.8.5</b> Simes-Hommel Method</a></li>
-<li class="chapter" data-level="11.8.6" data-path="multiple-comparison.html"><a href="multiple-comparison.html#hochbergs-ok-step-up"><i class="fa fa-check"></i><b>11.8.6</b> Hochberg’s O(k) Step-Up</a></li>
-<li class="chapter" data-level="11.8.7" data-path="multiple-comparison.html"><a href="multiple-comparison.html#sequential-testing-with-fixed-sequences"><i class="fa fa-check"></i><b>11.8.7</b> Sequential Testing with Fixed Sequences</a></li>
-<li class="chapter" data-level="11.8.8" data-path="multiple-comparison.html"><a href="multiple-comparison.html#sequential-testing-using-gatekeeping-methods"><i class="fa fa-check"></i><b>11.8.8</b> Sequential Testing Using Gatekeeping Methods</a></li>
+<li class="chapter" data-level="14.2.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#friedman-rank-test-for-location-parameter-for-several-dependent-samples"><i class="fa fa-check"></i><b>14.2.1</b> Friedman Rank Test for Location Parameter for Several Dependent Samples</a></li>
+<li class="chapter" data-level="14.2.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#kruskal-wallis-h-test-for-location-parameter"><i class="fa fa-check"></i><b>14.2.2</b> Kruskal-Wallis H-Test for Location Parameter</a></li>
 </ul></li>
-<li class="chapter" data-level="11.9" data-path="multiple-comparison.html"><a href="multiple-comparison.html#closed-testing-of-pairwise-comparisons-and-general-contrasts"><i class="fa fa-check"></i><b>11.9</b> Closed Testing of Pairwise Comparisons and General Contrasts</a>
+<li class="chapter" data-level="14.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#tests-for-categorical-data"><i class="fa fa-check"></i><b>14.3</b> Tests for Categorical Data</a>
 <ul>
-<li class="chapter" data-level="11.9.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#incorporating-logical-constraints"><i class="fa fa-check"></i><b>11.9.1</b> Incorporating Logical Constraints</a></li>
-<li class="chapter" data-level="11.9.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#shaffers-method"><i class="fa fa-check"></i><b>11.9.2</b> Shaffer’s Method</a></li>
-<li class="chapter" data-level="11.9.3" data-path="multiple-comparison.html"><a href="multiple-comparison.html#extended-shaffer-royen-method"><i class="fa fa-check"></i><b>11.9.3</b> Extended Shaffer-Royen Method</a></li>
-<li class="chapter" data-level="11.9.4" data-path="multiple-comparison.html"><a href="multiple-comparison.html#step-down-dunnett-test"><i class="fa fa-check"></i><b>11.9.4</b> Step-down Dunnett test</a></li>
+<li class="chapter" data-level="14.3.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#spearman-rank-correlation-coefficient-test"><i class="fa fa-check"></i><b>14.3.1</b> Spearman Rank Correlation Coefficient Test</a></li>
+<li class="chapter" data-level="14.3.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#fisher-exact-test"><i class="fa fa-check"></i><b>14.3.2</b> Fisher Exact Test</a></li>
 </ul></li>
-<li class="chapter" data-level="11.10" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multiple-comparisons-with-binary-data"><i class="fa fa-check"></i><b>11.10</b> Multiple Comparisons with Binary Data</a>
+<li class="chapter" data-level="14.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#permutation-test"><i class="fa fa-check"></i><b>14.4</b> Permutation test</a>
 <ul>
-<li class="chapter" data-level="11.10.1" data-path="multiple-comparison.html"><a href="multiple-comparison.html#introduction-5"><i class="fa fa-check"></i><b>11.10.1</b> Introduction</a></li>
-<li class="chapter" data-level="11.10.2" data-path="multiple-comparison.html"><a href="multiple-comparison.html#multivariate-two-sample-binary-outcomes"><i class="fa fa-check"></i><b>11.10.2</b> Multivariate Two-Sample Binary Outcomes</a></li>
+<li class="chapter" data-level="14.4.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#introduction-7"><i class="fa fa-check"></i><b>14.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.4.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#package-coin"><i class="fa fa-check"></i><b>14.4.2</b> Package: coin</a></li>
+<li class="chapter" data-level="14.4.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#one-way-permutation-test-of-independence-for-ordinal-data"><i class="fa fa-check"></i><b>14.4.3</b> One-way Permutation Test of Independence for Ordinal Data</a></li>
+<li class="chapter" data-level="14.4.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#one-way-permutation-test-of-symmetry-for-ordinal-data"><i class="fa fa-check"></i><b>14.4.4</b> One-way Permutation Test of Symmetry for Ordinal Data</a></li>
+<li class="chapter" data-level="14.4.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#permutation-tests-for-medians-and-percentiles"><i class="fa fa-check"></i><b>14.4.5</b> Permutation Tests for Medians and Percentiles</a></li>
 </ul></li>
+<li class="chapter" data-level="14.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#nonparametric-regression"><i class="fa fa-check"></i><b>14.5</b> Nonparametric Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>12</b> Non-Parametric Test</a>
+<li class="chapter" data-level="15" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>15</b> Correlation and Regression</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation-1"><i class="fa fa-check"></i><b>15.1</b> Correlation</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#two-samples-hypotheses-testing"><i class="fa fa-check"></i><b>12.1</b> Two Samples Hypotheses Testing</a>
+<li class="chapter" data-level="15.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>15.1.1</b> Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="15.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>15.1.2</b> Spearman’s rank correlation coefficient</a></li>
+<li class="chapter" data-level="15.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>15.1.3</b> Kendall rank correlation coefficient</a></li>
+<li class="chapter" data-level="15.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>15.1.4</b> Intraclass correlation</a></li>
+<li class="chapter" data-level="15.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>15.1.5</b> Visualize the correlation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>15.2</b> Ordinary least squares (OLS)</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#sign-test-for-location-parameter-for-matched-paired-samples"><i class="fa fa-check"></i><b>12.1.1</b> Sign Test for Location Parameter for Matched Paired Samples</a></li>
-<li class="chapter" data-level="12.1.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#wilcoxon-signed-rank-test-for-location-parameter-for-matched"><i class="fa fa-check"></i><b>12.1.2</b> Wilcoxon Signed-Rank Test for Location Parameter for Matched</a></li>
-<li class="chapter" data-level="12.1.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#wilcoxon-rank-sum-test-for-location-parameter-for-two-independent-samples"><i class="fa fa-check"></i><b>12.1.3</b> Wilcoxon Rank-Sum Test for Location Parameter for Two Independent Samples</a></li>
-<li class="chapter" data-level="12.1.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#ansari-bradley-test-for-scale-parameter-for-two-independent-samples"><i class="fa fa-check"></i><b>12.1.4</b> Ansari-Bradley Test for Scale Parameter for Two Independent Samples</a></li>
-<li class="chapter" data-level="12.1.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#kolmogorov-smirnov-test-for-equality-of-distributions"><i class="fa fa-check"></i><b>12.1.5</b> Kolmogorov-Smirnov Test for Equality of Distributions</a></li>
+<li class="chapter" data-level="15.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>15.2.1</b> Assumpions</a></li>
+<li class="chapter" data-level="15.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>15.2.2</b> Interpretation</a></li>
+<li class="chapter" data-level="15.2.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#matrix-solution"><i class="fa fa-check"></i><b>15.2.3</b> Matrix Solution</a></li>
+<li class="chapter" data-level="15.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>15.2.4</b> Gauss-Markov Theorem</a></li>
+<li class="chapter" data-level="15.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>15.2.5</b> limitation</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#several-samples-hypotheses-testing"><i class="fa fa-check"></i><b>12.2</b> Several Samples Hypotheses Testing</a>
+<li class="chapter" data-level="15.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>15.3</b> Model Statistics</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#friedman-rank-test-for-location-parameter-for-several-dependent-samples"><i class="fa fa-check"></i><b>12.2.1</b> Friedman Rank Test for Location Parameter for Several Dependent Samples</a></li>
-<li class="chapter" data-level="12.2.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#kruskal-wallis-h-test-for-location-parameter"><i class="fa fa-check"></i><b>12.2.2</b> Kruskal-Wallis H-Test for Location Parameter</a></li>
+<li class="chapter" data-level="15.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>15.3.1</b> Residuals Standard Error</a></li>
+<li class="chapter" data-level="15.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>15.3.2</b> R-Squared and Adjusted R-Squared</a></li>
+<li class="chapter" data-level="15.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>15.3.3</b> T Statistic</a></li>
+<li class="chapter" data-level="15.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>15.3.4</b> F Statistic</a></li>
+<li class="chapter" data-level="15.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>15.3.5</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="15.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>15.3.6</b> Likelihood-ratio test</a></li>
+<li class="chapter" data-level="15.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>15.3.7</b> Accuracy</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#tests-for-categorical-data"><i class="fa fa-check"></i><b>12.3</b> Tests for Categorical Data</a>
+<li class="chapter" data-level="15.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>15.4</b> Model Diagnostics</a>
 <ul>
-<li class="chapter" data-level="12.3.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#spearman-rank-correlation-coefficient-test"><i class="fa fa-check"></i><b>12.3.1</b> Spearman Rank Correlation Coefficient Test</a></li>
-<li class="chapter" data-level="12.3.2" data-path="non-parametric-test.html"><a href="non-parametric-test.html#fisher-exact-test"><i class="fa fa-check"></i><b>12.3.2</b> Fisher Exact Test</a></li>
+<li class="chapter" data-level="15.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>15.4.1</b> Checking Error Assumptions</a></li>
+<li class="chapter" data-level="15.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>15.4.2</b> Finding Unusual Observations</a></li>
+<li class="chapter" data-level="15.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>15.4.3</b> Checking the Structure of the Model</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#permutation-test"><i class="fa fa-check"></i><b>12.4</b> Permutation test</a>
+<li class="chapter" data-level="15.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>15.5</b> SAS implementation Proc Reg</a>
 <ul>
-<li class="chapter" data-level="12.4.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#package-coin"><i class="fa fa-check"></i><b>12.4.1</b> Package: coin</a></li>
+<li class="chapter" data-level="15.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>15.5.1</b> Options</a></li>
+<li class="chapter" data-level="15.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>15.5.2</b> Diagnose</a></li>
 </ul></li>
+<li class="chapter" data-level="15.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-implementation-8"><i class="fa fa-check"></i><b>15.6</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>13</b> Correlation and Regression</a>
+<li class="chapter" data-level="16" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>16</b> Advanced Linear Regression</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#correlation-1"><i class="fa fa-check"></i><b>13.1</b> Correlation</a>
+<li class="chapter" data-level="16.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>16.1</b> Model Selection</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#pearson-correlation-coefficient"><i class="fa fa-check"></i><b>13.1.1</b> Pearson correlation coefficient</a></li>
-<li class="chapter" data-level="13.1.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#spearmans-rank-correlation-coefficient"><i class="fa fa-check"></i><b>13.1.2</b> Spearman’s rank correlation coefficient</a></li>
-<li class="chapter" data-level="13.1.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#kendall-rank-correlation-coefficient"><i class="fa fa-check"></i><b>13.1.3</b> Kendall rank correlation coefficient</a></li>
-<li class="chapter" data-level="13.1.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#intraclass-correlation"><i class="fa fa-check"></i><b>13.1.4</b> Intraclass correlation</a></li>
-<li class="chapter" data-level="13.1.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#visualize-the-correlation-in-r"><i class="fa fa-check"></i><b>13.1.5</b> Visualize the correlation in R</a></li>
+<li class="chapter" data-level="16.1.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-methods"><i class="fa fa-check"></i><b>16.1.1</b> Selection Methods</a></li>
+<li class="chapter" data-level="16.1.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-criteria"><i class="fa fa-check"></i><b>16.1.2</b> Selection Criteria</a></li>
+<li class="chapter" data-level="16.1.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#k--fold-cross-validation"><i class="fa fa-check"></i><b>16.1.3</b> k- Fold Cross validation</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>13.2</b> Ordinary least squares (OLS)</a>
+<li class="chapter" data-level="16.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#practical-difficulties-using-ols"><i class="fa fa-check"></i><b>16.2</b> Practical Difficulties using OLS</a></li>
+<li class="chapter" data-level="16.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#skewness"><i class="fa fa-check"></i><b>16.3</b> Skewness</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#assumpions"><i class="fa fa-check"></i><b>13.2.1</b> Assumpions</a></li>
-<li class="chapter" data-level="13.2.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#interpretation"><i class="fa fa-check"></i><b>13.2.2</b> Interpretation</a></li>
-<li class="chapter" data-level="13.2.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#matrix-solution"><i class="fa fa-check"></i><b>13.2.3</b> Matrix Solution</a></li>
-<li class="chapter" data-level="13.2.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#gauss-markov-theorem"><i class="fa fa-check"></i><b>13.2.4</b> Gauss-Markov Theorem</a></li>
-<li class="chapter" data-level="13.2.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#limitation"><i class="fa fa-check"></i><b>13.2.5</b> limitation</a></li>
+<li class="chapter" data-level="16.3.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#introduction-8"><i class="fa fa-check"></i><b>16.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="16.3.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#baisc-transformation"><i class="fa fa-check"></i><b>16.3.2</b> Baisc Transformation</a></li>
+<li class="chapter" data-level="16.3.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#box-cox-power-transformation"><i class="fa fa-check"></i><b>16.3.3</b> Box-Cox Power Transformation</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-statistics"><i class="fa fa-check"></i><b>13.3</b> Model Statistics</a>
+<li class="chapter" data-level="16.4" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#scale-1"><i class="fa fa-check"></i><b>16.4</b> Scale</a></li>
+<li class="chapter" data-level="16.5" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#interaction"><i class="fa fa-check"></i><b>16.5</b> Interaction</a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#residuals-standard-error"><i class="fa fa-check"></i><b>13.3.1</b> Residuals Standard Error</a></li>
-<li class="chapter" data-level="13.3.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-squared-and-adjusted-r-squared"><i class="fa fa-check"></i><b>13.3.2</b> R-Squared and Adjusted R-Squared</a></li>
-<li class="chapter" data-level="13.3.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#t-statistic"><i class="fa fa-check"></i><b>13.3.3</b> T Statistic</a></li>
-<li class="chapter" data-level="13.3.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#f-statistic"><i class="fa fa-check"></i><b>13.3.4</b> F Statistic</a></li>
-<li class="chapter" data-level="13.3.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#confidence-intervals"><i class="fa fa-check"></i><b>13.3.5</b> Confidence Intervals</a></li>
-<li class="chapter" data-level="13.3.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#likelihood-ratio-test"><i class="fa fa-check"></i><b>13.3.6</b> Likelihood-ratio test</a></li>
-<li class="chapter" data-level="13.3.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#accuracy"><i class="fa fa-check"></i><b>13.3.7</b> Accuracy</a></li>
+<li class="chapter" data-level="16.5.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#simple-slopes-analysis"><i class="fa fa-check"></i><b>16.5.1</b> Simple slopes analysis</a></li>
+<li class="chapter" data-level="16.5.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>16.5.2</b> Plotting Interactions</a></li>
+<li class="chapter" data-level="16.5.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#check-linearity-assumption"><i class="fa fa-check"></i><b>16.5.3</b> Check linearity assumption</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>13.4</b> Model Diagnostics</a>
+<li class="chapter" data-level="16.6" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#collinearity"><i class="fa fa-check"></i><b>16.6</b> Collinearity</a></li>
+<li class="chapter" data-level="16.7" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#problems-with-the-error"><i class="fa fa-check"></i><b>16.7</b> Problems with the Error</a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-error-assumptions"><i class="fa fa-check"></i><b>13.4.1</b> Checking Error Assumptions</a></li>
-<li class="chapter" data-level="13.4.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#finding-unusual-observations"><i class="fa fa-check"></i><b>13.4.2</b> Finding Unusual Observations</a></li>
-<li class="chapter" data-level="13.4.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#checking-the-structure-of-the-model"><i class="fa fa-check"></i><b>13.4.3</b> Checking the Structure of the Model</a></li>
+<li class="chapter" data-level="16.7.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#generalized-least-squares"><i class="fa fa-check"></i><b>16.7.1</b> Generalized Least Squares</a></li>
+<li class="chapter" data-level="16.7.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#weighted-least-squares"><i class="fa fa-check"></i><b>16.7.2</b> Weighted Least Squares</a></li>
+<li class="chapter" data-level="16.7.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#robust-regression"><i class="fa fa-check"></i><b>16.7.3</b> Robust Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#sas-implementation-proc-reg"><i class="fa fa-check"></i><b>13.5</b> SAS implementation Proc Reg</a>
+<li class="chapter" data-level="16.8" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#shrinkage-methods"><i class="fa fa-check"></i><b>16.8</b> Shrinkage Methods</a>
 <ul>
-<li class="chapter" data-level="13.5.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#options"><i class="fa fa-check"></i><b>13.5.1</b> Options</a></li>
-<li class="chapter" data-level="13.5.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#diagnose"><i class="fa fa-check"></i><b>13.5.2</b> Diagnose</a></li>
+<li class="chapter" data-level="16.8.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#principal-components-analzsis"><i class="fa fa-check"></i><b>16.8.1</b> Principal Components Analzsis</a></li>
+<li class="chapter" data-level="16.8.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#partial-least-squares"><i class="fa fa-check"></i><b>16.8.2</b> Partial Least Squares</a></li>
+<li class="chapter" data-level="16.8.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#ridge-regression"><i class="fa fa-check"></i><b>16.8.3</b> Ridge Regression</a></li>
+</ul></li>
 </ul></li>
-<li class="chapter" data-level="13.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#r-implementation-8"><i class="fa fa-check"></i><b>13.6</b> R implementation</a></li>
+<li class="chapter" data-level="17" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>17</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-9"><i class="fa fa-check"></i><b>17.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#violation-of-assumptions-of-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>17.1.1</b> Violation of assumptions of Ordinary least squares (OLS)</a></li>
+<li class="chapter" data-level="17.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#more-fundamental-problem-outside-01"><i class="fa fa-check"></i><b>17.1.2</b> More fundamental problem outside [0,1]</a></li>
+<li class="chapter" data-level="17.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>17.1.3</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="17.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#estimation-of-the-logistic-model"><i class="fa fa-check"></i><b>17.1.4</b> Estimation of the Logistic Model</a></li>
+<li class="chapter" data-level="17.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#convergence-problems"><i class="fa fa-check"></i><b>17.1.5</b> Convergence Problems</a></li>
+<li class="chapter" data-level="17.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#use-exact-methods."><i class="fa fa-check"></i><b>17.1.6</b> Use exact methods.</a></li>
+<li class="chapter" data-level="17.1.7" data-path="logistic-regression.html"><a href="logistic-regression.html#use-penalized-likelihood"><i class="fa fa-check"></i><b>17.1.7</b> Use penalized likelihood</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html"><i class="fa fa-check"></i><b>14</b> Advanced Linear Regression</a>
+<li class="chapter" data-level="17.2" data-path="logistic-regression.html"><a href="logistic-regression.html#logit-modell"><i class="fa fa-check"></i><b>17.2</b> Logit Modell</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#model-selection"><i class="fa fa-check"></i><b>14.1</b> Model Selection</a>
+<li class="chapter" data-level="17.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-10"><i class="fa fa-check"></i><b>17.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-9"><i class="fa fa-check"></i><b>17.2.2</b> R Implementation</a></li>
+<li class="chapter" data-level="17.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-7"><i class="fa fa-check"></i><b>17.2.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="17.2.4" data-path="logistic-regression.html"><a href="logistic-regression.html#multicollinearity"><i class="fa fa-check"></i><b>17.2.4</b> Multicollinearity</a></li>
+<li class="chapter" data-level="17.2.5" data-path="logistic-regression.html"><a href="logistic-regression.html#goodness-of-fit-statistics-pearson-deviance"><i class="fa fa-check"></i><b>17.2.5</b> Goodness-of-Fit Statistics Pearson deviance</a></li>
+<li class="chapter" data-level="17.2.6" data-path="logistic-regression.html"><a href="logistic-regression.html#hosmer-and-lemeshow-goodness-of-fit-test"><i class="fa fa-check"></i><b>17.2.6</b> Hosmer and Lemeshow Goodness-of-Fit Test</a></li>
+<li class="chapter" data-level="17.2.7" data-path="logistic-regression.html"><a href="logistic-regression.html#statistics-measuring-predictive-power-r2"><i class="fa fa-check"></i><b>17.2.7</b> Statistics Measuring Predictive Power <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="17.2.8" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-curves"><i class="fa fa-check"></i><b>17.2.8</b> ROC Curves</a></li>
+<li class="chapter" data-level="17.2.9" data-path="logistic-regression.html"><a href="logistic-regression.html#predicted-values-residuals-and-influence-statistics"><i class="fa fa-check"></i><b>17.2.9</b> Predicted Values, Residuals, and Influence Statistics</a></li>
+<li class="chapter" data-level="17.2.10" data-path="logistic-regression.html"><a href="logistic-regression.html#unobserved-heterogeneity"><i class="fa fa-check"></i><b>17.2.10</b> Unobserved Heterogeneity</a></li>
+<li class="chapter" data-level="17.2.11" data-path="logistic-regression.html"><a href="logistic-regression.html#plotting-effects-of-predictor-variables"><i class="fa fa-check"></i><b>17.2.11</b> Plotting Effects of Predictor Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probit-modell"><i class="fa fa-check"></i><b>17.3</b> Probit Modell</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-methods"><i class="fa fa-check"></i><b>14.1.1</b> Selection Methods</a></li>
-<li class="chapter" data-level="14.1.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#selection-criteria"><i class="fa fa-check"></i><b>14.1.2</b> Selection Criteria</a></li>
-<li class="chapter" data-level="14.1.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#k--fold-cross-validation"><i class="fa fa-check"></i><b>14.1.3</b> k- Fold Cross validation</a></li>
+<li class="chapter" data-level="17.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-11"><i class="fa fa-check"></i><b>17.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation"><i class="fa fa-check"></i><b>17.3.2</b> R Implemetation</a></li>
+<li class="chapter" data-level="17.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-8"><i class="fa fa-check"></i><b>17.3.3</b> SAS Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#practical-difficulties-using-ols"><i class="fa fa-check"></i><b>14.2</b> Practical Difficulties using OLS</a></li>
-<li class="chapter" data-level="14.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#skewness"><i class="fa fa-check"></i><b>14.3</b> Skewness</a>
+<li class="chapter" data-level="17.4" data-path="logistic-regression.html"><a href="logistic-regression.html#complementary-log-log-modell"><i class="fa fa-check"></i><b>17.4</b> Complementary log-log-Modell</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#introduction-6"><i class="fa fa-check"></i><b>14.3.1</b> Introduction</a></li>
-<li class="chapter" data-level="14.3.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#baisc-transformation"><i class="fa fa-check"></i><b>14.3.2</b> Baisc Transformation</a></li>
-<li class="chapter" data-level="14.3.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#box-cox-power-transformation"><i class="fa fa-check"></i><b>14.3.3</b> Box-Cox Power Transformation</a></li>
+<li class="chapter" data-level="17.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>17.4.1</b> R Implemetation</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#scale-1"><i class="fa fa-check"></i><b>14.4</b> Scale</a></li>
-<li class="chapter" data-level="14.5" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#interaction"><i class="fa fa-check"></i><b>14.5</b> Interaction</a>
+<li class="chapter" data-level="17.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multi-category-logit-model"><i class="fa fa-check"></i><b>17.5</b> Multi-category logit model</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#simple-slopes-analysis"><i class="fa fa-check"></i><b>14.5.1</b> Simple slopes analysis</a></li>
-<li class="chapter" data-level="14.5.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>14.5.2</b> Plotting Interactions</a></li>
-<li class="chapter" data-level="14.5.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#check-linearity-assumption"><i class="fa fa-check"></i><b>14.5.3</b> Check linearity assumption</a></li>
+<li class="chapter" data-level="17.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>17.5.1</b> Multinomialverteilung</a></li>
+<li class="chapter" data-level="17.5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#mehrkategoriales-logit-modell"><i class="fa fa-check"></i><b>17.5.2</b> Mehrkategoriales Logit-Modell</a></li>
+<li class="chapter" data-level="17.5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-10"><i class="fa fa-check"></i><b>17.5.3</b> R Implementation</a></li>
+<li class="chapter" data-level="17.5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-9"><i class="fa fa-check"></i><b>17.5.4</b> SAS Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#collinearity"><i class="fa fa-check"></i><b>14.6</b> Collinearity</a></li>
-<li class="chapter" data-level="14.7" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#problems-with-the-error"><i class="fa fa-check"></i><b>14.7</b> Problems with the Error</a>
+<li class="chapter" data-level="17.6" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-cumulative-logit-model"><i class="fa fa-check"></i><b>17.6</b> Ordinal Cumulative Logit Model</a>
 <ul>
-<li class="chapter" data-level="14.7.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#generalized-least-squares"><i class="fa fa-check"></i><b>14.7.1</b> Generalized Least Squares</a></li>
-<li class="chapter" data-level="14.7.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#weighted-least-squares"><i class="fa fa-check"></i><b>14.7.2</b> Weighted Least Squares</a></li>
-<li class="chapter" data-level="14.7.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#robust-regression"><i class="fa fa-check"></i><b>14.7.3</b> Robust Regression</a></li>
+<li class="chapter" data-level="17.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-11"><i class="fa fa-check"></i><b>17.6.1</b> R Implementation</a></li>
+<li class="chapter" data-level="17.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-10"><i class="fa fa-check"></i><b>17.6.2</b> SAS Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.7" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>17.7</b> Adjacent Categories Model</a></li>
+<li class="chapter" data-level="17.8" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>17.8</b> Continuation Ratio Model</a></li>
 </ul></li>
-<li class="chapter" data-level="14.8" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#shrinkage-methods"><i class="fa fa-check"></i><b>14.8</b> Shrinkage Methods</a>
+<li class="chapter" data-level="18" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>18</b> Advanced Logistic Regression</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#principal-components-analzsis"><i class="fa fa-check"></i><b>14.8.1</b> Principal Components Analzsis</a></li>
-<li class="chapter" data-level="14.8.2" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#partial-least-squares"><i class="fa fa-check"></i><b>14.8.2</b> Partial Least Squares</a></li>
-<li class="chapter" data-level="14.8.3" data-path="advanced-linear-regression.html"><a href="advanced-linear-regression.html#ridge-regression"><i class="fa fa-check"></i><b>14.8.3</b> Ridge Regression</a></li>
+<li class="chapter" data-level="18.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#logit-analysis-of-contingency-tables"><i class="fa fa-check"></i><b>18.1</b> Logit Analysis of Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#two-way-table"><i class="fa fa-check"></i><b>18.1.1</b> Two-Way Table</a></li>
+<li class="chapter" data-level="18.1.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#three-way-table"><i class="fa fa-check"></i><b>18.1.2</b> Three-Way Table</a></li>
+<li class="chapter" data-level="18.1.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#four-way-table"><i class="fa fa-check"></i><b>18.1.3</b> Four-Way Table</a></li>
+<li class="chapter" data-level="18.1.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#overdispersion"><i class="fa fa-check"></i><b>18.1.4</b> Overdispersion</a></li>
 </ul></li>
+<li class="chapter" data-level="18.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#loglinear-analysis-of-contingency-tables"><i class="fa fa-check"></i><b>18.2</b> Loglinear Analysis of Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#two-way-table-1"><i class="fa fa-check"></i><b>18.2.1</b> Two-way Table</a></li>
+<li class="chapter" data-level="18.2.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#problem-of-zeros"><i class="fa fa-check"></i><b>18.2.2</b> Problem of Zeros</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Logistic Regression</a>
+<li class="chapter" data-level="18.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#discrete-choice-analysis"><i class="fa fa-check"></i><b>18.3</b> Discrete Choice Analysis</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-7"><i class="fa fa-check"></i><b>15.1</b> Introduction</a>
+<li class="chapter" data-level="18.3.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#logistic-strata"><i class="fa fa-check"></i><b>18.3.1</b> Logistic Strata</a></li>
+<li class="chapter" data-level="18.3.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#conditional-logit-model"><i class="fa fa-check"></i><b>18.3.2</b> Conditional logit model</a></li>
+<li class="chapter" data-level="18.3.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#ranked-data"><i class="fa fa-check"></i><b>18.3.3</b> Ranked Data</a></li>
+<li class="chapter" data-level="18.3.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#heteroscedastic-extreme-value-hev-model"><i class="fa fa-check"></i><b>18.3.4</b> Heteroscedastic extreme value (HEV) Model</a></li>
+<li class="chapter" data-level="18.3.5" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#nested-logit-model"><i class="fa fa-check"></i><b>18.3.5</b> Nested logit model</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#longitudinal-and-other-clustered-data"><i class="fa fa-check"></i><b>18.4</b> Longitudinal and Other Clustered Data</a>
 <ul>
-<li class="chapter" data-level="15.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#violation-of-assumptions-of-ordinary-least-squares-ols"><i class="fa fa-check"></i><b>15.1.1</b> Violation of assumptions of Ordinary least squares (OLS)</a></li>
-<li class="chapter" data-level="15.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#more-fundamental-problem-outside-01"><i class="fa fa-check"></i><b>15.1.2</b> More fundamental problem outside [0,1]</a></li>
-<li class="chapter" data-level="15.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>15.1.3</b> Logistic Regression Model</a></li>
-<li class="chapter" data-level="15.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#estimation-of-the-logistic-model"><i class="fa fa-check"></i><b>15.1.4</b> Estimation of the Logistic Model</a></li>
-<li class="chapter" data-level="15.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#convergence-problems"><i class="fa fa-check"></i><b>15.1.5</b> Convergence Problems</a></li>
-<li class="chapter" data-level="15.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#use-exact-methods."><i class="fa fa-check"></i><b>15.1.6</b> Use exact methods.</a></li>
-<li class="chapter" data-level="15.1.7" data-path="logistic-regression.html"><a href="logistic-regression.html#use-penalized-likelihood"><i class="fa fa-check"></i><b>15.1.7</b> Use penalized likelihood</a></li>
+<li class="chapter" data-level="18.4.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#introduction-12"><i class="fa fa-check"></i><b>18.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.4.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>18.4.2</b> Robust Standard Errors</a></li>
+<li class="chapter" data-level="18.4.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#gee-estimation-with-proc-genmod"><i class="fa fa-check"></i><b>18.4.3</b> GEE Estimation with PROC GENMOD</a></li>
+<li class="chapter" data-level="18.4.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#mixed-models-with-proc-glimmix"><i class="fa fa-check"></i><b>18.4.4</b> Mixed Models with PROC GLIMMIX</a></li>
+<li class="chapter" data-level="18.4.5" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#fixed-effects-with-conditional-logistic-regression"><i class="fa fa-check"></i><b>18.4.5</b> Fixed-Effects with Conditional Logistic Regression</a></li>
+<li class="chapter" data-level="18.4.6" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#hybrid-method"><i class="fa fa-check"></i><b>18.4.6</b> Hybrid Method</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="logistic-regression.html"><a href="logistic-regression.html#logit-modell"><i class="fa fa-check"></i><b>15.2</b> Logit Modell</a>
+</ul></li>
+<li class="chapter" data-level="19" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>19</b> Survival Analysis</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="survival-analysis.html"><a href="survival-analysis.html#preliminary"><i class="fa fa-check"></i><b>19.1</b> Preliminary</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-8"><i class="fa fa-check"></i><b>15.2.1</b> Introduction</a></li>
-<li class="chapter" data-level="15.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-9"><i class="fa fa-check"></i><b>15.2.2</b> R Implementation</a></li>
-<li class="chapter" data-level="15.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-7"><i class="fa fa-check"></i><b>15.2.3</b> SAS Implementation</a></li>
-<li class="chapter" data-level="15.2.4" data-path="logistic-regression.html"><a href="logistic-regression.html#multicollinearity"><i class="fa fa-check"></i><b>15.2.4</b> Multicollinearity</a></li>
-<li class="chapter" data-level="15.2.5" data-path="logistic-regression.html"><a href="logistic-regression.html#goodness-of-fit-statistics-pearson-deviance"><i class="fa fa-check"></i><b>15.2.5</b> Goodness-of-Fit Statistics Pearson deviance</a></li>
-<li class="chapter" data-level="15.2.6" data-path="logistic-regression.html"><a href="logistic-regression.html#hosmer-and-lemeshow-goodness-of-fit-test"><i class="fa fa-check"></i><b>15.2.6</b> Hosmer and Lemeshow Goodness-of-Fit Test</a></li>
-<li class="chapter" data-level="15.2.7" data-path="logistic-regression.html"><a href="logistic-regression.html#statistics-measuring-predictive-power-r2"><i class="fa fa-check"></i><b>15.2.7</b> Statistics Measuring Predictive Power <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="15.2.8" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-curves"><i class="fa fa-check"></i><b>15.2.8</b> ROC Curves</a></li>
-<li class="chapter" data-level="15.2.9" data-path="logistic-regression.html"><a href="logistic-regression.html#predicted-values-residuals-and-influence-statistics"><i class="fa fa-check"></i><b>15.2.9</b> Predicted Values, Residuals, and Influence Statistics</a></li>
-<li class="chapter" data-level="15.2.10" data-path="logistic-regression.html"><a href="logistic-regression.html#unobserved-heterogeneity"><i class="fa fa-check"></i><b>15.2.10</b> Unobserved Heterogeneity</a></li>
-<li class="chapter" data-level="15.2.11" data-path="logistic-regression.html"><a href="logistic-regression.html#plotting-effects-of-predictor-variables"><i class="fa fa-check"></i><b>15.2.11</b> Plotting Effects of Predictor Variables</a></li>
+<li class="chapter" data-level="19.1.1" data-path="survival-analysis.html"><a href="survival-analysis.html#probability-density-function"><i class="fa fa-check"></i><b>19.1.1</b> Probability density function</a></li>
+<li class="chapter" data-level="19.1.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>19.1.2</b> Cumulative distribution function</a></li>
+<li class="chapter" data-level="19.1.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-function"><i class="fa fa-check"></i><b>19.1.3</b> Survival function</a></li>
+<li class="chapter" data-level="19.1.4" data-path="survival-analysis.html"><a href="survival-analysis.html#hazard-function"><i class="fa fa-check"></i><b>19.1.4</b> Hazard function</a></li>
+<li class="chapter" data-level="19.1.5" data-path="survival-analysis.html"><a href="survival-analysis.html#cumulative-hazard-function"><i class="fa fa-check"></i><b>19.1.5</b> Cumulative hazard function</a></li>
+<li class="chapter" data-level="19.1.6" data-path="survival-analysis.html"><a href="survival-analysis.html#mean-residual-life"><i class="fa fa-check"></i><b>19.1.6</b> Mean Residual Life</a></li>
+<li class="chapter" data-level="19.1.7" data-path="survival-analysis.html"><a href="survival-analysis.html#relation-between-functions"><i class="fa fa-check"></i><b>19.1.7</b> Relation between functions</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probit-modell"><i class="fa fa-check"></i><b>15.3</b> Probit Modell</a>
+<li class="chapter" data-level="19.2" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimator"><i class="fa fa-check"></i><b>19.2</b> Kaplan-Meier estimator</a>
 <ul>
-<li class="chapter" data-level="15.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-9"><i class="fa fa-check"></i><b>15.3.1</b> Introduction</a></li>
-<li class="chapter" data-level="15.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation"><i class="fa fa-check"></i><b>15.3.2</b> R Implemetation</a></li>
-<li class="chapter" data-level="15.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-8"><i class="fa fa-check"></i><b>15.3.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="19.2.1" data-path="survival-analysis.html"><a href="survival-analysis.html#km-introduction"><i class="fa fa-check"></i><b>19.2.1</b> KM Introduction</a></li>
+<li class="chapter" data-level="19.2.2" data-path="survival-analysis.html"><a href="survival-analysis.html#nelson-aalen-estimator-of-the-cumulative-hazard-function"><i class="fa fa-check"></i><b>19.2.2</b> Nelson-Aalen estimator of the cumulative hazard function</a></li>
+<li class="chapter" data-level="19.2.3" data-path="survival-analysis.html"><a href="survival-analysis.html#survival-curve-in-sas"><i class="fa fa-check"></i><b>19.2.3</b> Survival curve in SAS</a></li>
+<li class="chapter" data-level="19.2.4" data-path="survival-analysis.html"><a href="survival-analysis.html#km-survival-plots-in-sas"><i class="fa fa-check"></i><b>19.2.4</b> KM Survival Plots in SAS</a></li>
+<li class="chapter" data-level="19.2.5" data-path="survival-analysis.html"><a href="survival-analysis.html#convert-personal-level-to-personal-period-in-r"><i class="fa fa-check"></i><b>19.2.5</b> Convert Personal-level to Personal-period in R</a></li>
+<li class="chapter" data-level="19.2.6" data-path="survival-analysis.html"><a href="survival-analysis.html#package-survfit-in-r"><i class="fa fa-check"></i><b>19.2.6</b> Package survfit in R</a></li>
+<li class="chapter" data-level="19.2.7" data-path="survival-analysis.html"><a href="survival-analysis.html#km-survival-plots-in-r"><i class="fa fa-check"></i><b>19.2.7</b> KM Survival Plots in R</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="logistic-regression.html"><a href="logistic-regression.html#complementary-log-log-modell"><i class="fa fa-check"></i><b>15.4</b> Complementary log-log-Modell</a>
+<li class="chapter" data-level="19.3" data-path="survival-analysis.html"><a href="survival-analysis.html#compare-the-survival-function"><i class="fa fa-check"></i><b>19.3</b> Compare the survival function</a>
 <ul>
-<li class="chapter" data-level="15.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>15.4.1</b> R Implemetation</a></li>
+<li class="chapter" data-level="19.3.1" data-path="survival-analysis.html"><a href="survival-analysis.html#tests-of-equality-of-the-survival-function"><i class="fa fa-check"></i><b>19.3.1</b> Tests of equality of the survival function</a></li>
+<li class="chapter" data-level="19.3.2" data-path="survival-analysis.html"><a href="survival-analysis.html#other-nonparametric-tests-for-strata-statement"><i class="fa fa-check"></i><b>19.3.2</b> Other nonparametric tests for STRATA statement</a></li>
+<li class="chapter" data-level="19.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#multiple-comparisons"><i class="fa fa-check"></i><b>19.3.3</b> Multiple comparisons</a></li>
+<li class="chapter" data-level="19.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#comparing-survival-functions-using-log-rank-hr"><i class="fa fa-check"></i><b>19.3.4</b> Comparing survival functions using Log-Rank HR</a></li>
+<li class="chapter" data-level="19.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#mantel-haenszel-hr"><i class="fa fa-check"></i><b>19.3.5</b> Mantel-Haenszel HR</a></li>
 </ul></li>
-<li class="chapter" data-level="15.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multi-category-logit-model"><i class="fa fa-check"></i><b>15.5</b> Multi-category logit model</a>
+<li class="chapter" data-level="19.4" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>19.4</b> Cox Proportional Hazards Model</a>
 <ul>
-<li class="chapter" data-level="15.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>15.5.1</b> Multinomialverteilung</a></li>
-<li class="chapter" data-level="15.5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#mehrkategoriales-logit-modell"><i class="fa fa-check"></i><b>15.5.2</b> Mehrkategoriales Logit-Modell</a></li>
-<li class="chapter" data-level="15.5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-10"><i class="fa fa-check"></i><b>15.5.3</b> R Implementation</a></li>
-<li class="chapter" data-level="15.5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-9"><i class="fa fa-check"></i><b>15.5.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="19.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#introduction-13"><i class="fa fa-check"></i><b>19.4.1</b> Introduction</a></li>
 </ul></li>
-<li class="chapter" data-level="15.6" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-cumulative-logit-model"><i class="fa fa-check"></i><b>15.6</b> Ordinal Cumulative Logit Model</a>
+</ul></li>
+<li class="chapter" data-level="20" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>20</b> Advanced Survival Analysis</a></li>
+<li class="chapter" data-level="21" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>21</b> Count Data Regression</a>
 <ul>
-<li class="chapter" data-level="15.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-11"><i class="fa fa-check"></i><b>15.6.1</b> R Implementation</a></li>
-<li class="chapter" data-level="15.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-10"><i class="fa fa-check"></i><b>15.6.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="21.1" data-path="count-data-regression.html"><a href="count-data-regression.html#introduction-of-count-data-regression"><i class="fa fa-check"></i><b>21.1</b> Introduction of Count Data Regression</a></li>
+<li class="chapter" data-level="21.2" data-path="count-data-regression.html"><a href="count-data-regression.html#poisson-regression"><i class="fa fa-check"></i><b>21.2</b> Poisson regression</a></li>
+<li class="chapter" data-level="21.3" data-path="count-data-regression.html"><a href="count-data-regression.html#negative-binomial-regression"><i class="fa fa-check"></i><b>21.3</b> Negative Binomial Regression</a></li>
+<li class="chapter" data-level="21.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-truncated-poisson-regression-model"><i class="fa fa-check"></i><b>21.4</b> Zero-truncated Poisson Regression Model</a></li>
+<li class="chapter" data-level="21.5" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-insflated-model"><i class="fa fa-check"></i><b>21.5</b> Zero-Insflated Model</a></li>
+<li class="chapter" data-level="21.6" data-path="count-data-regression.html"><a href="count-data-regression.html#hurdle-models"><i class="fa fa-check"></i><b>21.6</b> Hurdle models</a></li>
+<li class="chapter" data-level="21.7" data-path="count-data-regression.html"><a href="count-data-regression.html#proportion-response-regression"><i class="fa fa-check"></i><b>21.7</b> Proportion-Response-Regression</a>
+<ul>
+<li class="chapter" data-level="21.7.1" data-path="count-data-regression.html"><a href="count-data-regression.html#beta-regression"><i class="fa fa-check"></i><b>21.7.1</b> Beta Regression</a></li>
+<li class="chapter" data-level="21.7.2" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-inflated-beta-regression"><i class="fa fa-check"></i><b>21.7.2</b> Zero-inflated Beta Regression</a></li>
+<li class="chapter" data-level="21.7.3" data-path="count-data-regression.html"><a href="count-data-regression.html#one-inflated-beta-regression"><i class="fa fa-check"></i><b>21.7.3</b> One-inflated Beta Regression</a></li>
+<li class="chapter" data-level="21.7.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-one-inflated-beta-regression"><i class="fa fa-check"></i><b>21.7.4</b> Zero-one-inflated Beta Regression</a></li>
+</ul></li>
 </ul></li>
-<li class="chapter" data-level="15.7" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>15.7</b> Adjacent Categories Model</a></li>
-<li class="chapter" data-level="15.8" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>15.8</b> Continuation Ratio Model</a></li>
+<li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-14"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="mixed-model.html"><a href="mixed-model.html#correlated-response-data"><i class="fa fa-check"></i><b>22.1.1</b> Correlated response data</a></li>
+<li class="chapter" data-level="22.1.2" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-and-marginal-model"><i class="fa fa-check"></i><b>22.1.2</b> Hierarchical and Marginal model</a></li>
+<li class="chapter" data-level="22.1.3" data-path="mixed-model.html"><a href="mixed-model.html#mle-in-marginal-model"><i class="fa fa-check"></i><b>22.1.3</b> MLE in Marginal model</a></li>
+<li class="chapter" data-level="22.1.4" data-path="mixed-model.html"><a href="mixed-model.html#reml-in-marginal-model"><i class="fa fa-check"></i><b>22.1.4</b> REML in Marginal model</a></li>
+<li class="chapter" data-level="22.1.5" data-path="mixed-model.html"><a href="mixed-model.html#variance-correction"><i class="fa fa-check"></i><b>22.1.5</b> Variance correction</a></li>
+<li class="chapter" data-level="22.1.6" data-path="mixed-model.html"><a href="mixed-model.html#hypothesis-tests"><i class="fa fa-check"></i><b>22.1.6</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="22.1.7" data-path="mixed-model.html"><a href="mixed-model.html#residual-structure"><i class="fa fa-check"></i><b>22.1.7</b> Residual Structure</a></li>
+<li class="chapter" data-level="22.1.8" data-path="mixed-model.html"><a href="mixed-model.html#converge-problems"><i class="fa fa-check"></i><b>22.1.8</b> Converge problems</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>16</b> Advanced Logistic Regression</a>
+<li class="chapter" data-level="22.2" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model"><i class="fa fa-check"></i><b>22.2</b> Random Slope and Intercept Model</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#logit-analysis-of-contingency-tables"><i class="fa fa-check"></i><b>16.1</b> Logit Analysis of Contingency Tables</a>
+<li class="chapter" data-level="22.2.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction"><i class="fa fa-check"></i><b>22.2.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.2.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-11"><i class="fa fa-check"></i><b>22.2.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.2.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-12"><i class="fa fa-check"></i><b>22.2.3</b> R Implementation</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#random-slope-and-intercept-model-with-covariance-structure"><i class="fa fa-check"></i><b>22.3</b> Random Slope and Intercept Model with Covariance Structure</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#two-way-table"><i class="fa fa-check"></i><b>16.1.1</b> Two-Way Table</a></li>
-<li class="chapter" data-level="16.1.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#three-way-table"><i class="fa fa-check"></i><b>16.1.2</b> Three-Way Table</a></li>
-<li class="chapter" data-level="16.1.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#four-way-table"><i class="fa fa-check"></i><b>16.1.3</b> Four-Way Table</a></li>
-<li class="chapter" data-level="16.1.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#overdispersion"><i class="fa fa-check"></i><b>16.1.4</b> Overdispersion</a></li>
+<li class="chapter" data-level="22.3.1" data-path="mixed-model.html"><a href="mixed-model.html#model-introduction-1"><i class="fa fa-check"></i><b>22.3.1</b> Model Introduction</a></li>
+<li class="chapter" data-level="22.3.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-12"><i class="fa fa-check"></i><b>22.3.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.3.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-13"><i class="fa fa-check"></i><b>22.3.3</b> R Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#loglinear-analysis-of-contingency-tables"><i class="fa fa-check"></i><b>16.2</b> Loglinear Analysis of Contingency Tables</a>
+<li class="chapter" data-level="22.4" data-path="mixed-model.html"><a href="mixed-model.html#generalized-estimating-equation"><i class="fa fa-check"></i><b>22.4</b> Generalized Estimating Equation</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#two-way-table-1"><i class="fa fa-check"></i><b>16.2.1</b> Two-way Table</a></li>
-<li class="chapter" data-level="16.2.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#problem-of-zeros"><i class="fa fa-check"></i><b>16.2.2</b> Problem of Zeros</a></li>
+<li class="chapter" data-level="22.4.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-of-gee"><i class="fa fa-check"></i><b>22.4.1</b> Introduction of GEE</a></li>
+<li class="chapter" data-level="22.4.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-13"><i class="fa fa-check"></i><b>22.4.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.4.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-14"><i class="fa fa-check"></i><b>22.4.3</b> R Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#discrete-choice-analysis"><i class="fa fa-check"></i><b>16.3</b> Discrete Choice Analysis</a>
+<li class="chapter" data-level="22.5" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-regression-model-for-normal-response"><i class="fa fa-check"></i><b>22.5</b> Hierarchical Regression Model for Normal Response</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#logistic-strata"><i class="fa fa-check"></i><b>16.3.1</b> Logistic Strata</a></li>
-<li class="chapter" data-level="16.3.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#conditional-logit-model"><i class="fa fa-check"></i><b>16.3.2</b> Conditional logit model</a></li>
-<li class="chapter" data-level="16.3.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#ranked-data"><i class="fa fa-check"></i><b>16.3.3</b> Ranked Data</a></li>
-<li class="chapter" data-level="16.3.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#heteroscedastic-extreme-value-hev-model"><i class="fa fa-check"></i><b>16.3.4</b> Heteroscedastic extreme value (HEV) Model</a></li>
-<li class="chapter" data-level="16.3.5" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#nested-logit-model"><i class="fa fa-check"></i><b>16.3.5</b> Nested logit model</a></li>
+<li class="chapter" data-level="22.5.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-15"><i class="fa fa-check"></i><b>22.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="22.5.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-14"><i class="fa fa-check"></i><b>22.5.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="22.5.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-15"><i class="fa fa-check"></i><b>22.5.3</b> R Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#longitudinal-and-other-clustered-data"><i class="fa fa-check"></i><b>16.4</b> Longitudinal and Other Clustered Data</a>
+</ul></li>
+<li class="chapter" data-level="23" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>23</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="24" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>24</b> Group (Adaptive) Sequential Design</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#section"><i class="fa fa-check"></i><b>24.1</b> </a></li>
+<li class="chapter" data-level="24.2" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#adaptive-designs"><i class="fa fa-check"></i><b>24.2</b> Adaptive designs</a>
 <ul>
-<li class="chapter" data-level="16.4.1" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#introduction-10"><i class="fa fa-check"></i><b>16.4.1</b> Introduction</a></li>
-<li class="chapter" data-level="16.4.2" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>16.4.2</b> Robust Standard Errors</a></li>
-<li class="chapter" data-level="16.4.3" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#gee-estimation-with-proc-genmod"><i class="fa fa-check"></i><b>16.4.3</b> GEE Estimation with PROC GENMOD</a></li>
-<li class="chapter" data-level="16.4.4" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#mixed-models-with-proc-glimmix"><i class="fa fa-check"></i><b>16.4.4</b> Mixed Models with PROC GLIMMIX</a></li>
-<li class="chapter" data-level="16.4.5" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#fixed-effects-with-conditional-logistic-regression"><i class="fa fa-check"></i><b>16.4.5</b> Fixed-Effects with Conditional Logistic Regression</a></li>
-<li class="chapter" data-level="16.4.6" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html#hybrid-method"><i class="fa fa-check"></i><b>16.4.6</b> Hybrid Method</a></li>
+<li class="chapter" data-level="24.2.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#introduction-16"><i class="fa fa-check"></i><b>24.2.1</b> Introduction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>17</b> Survival Analysis</a></li>
-<li class="chapter" data-level="18" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>18</b> Advanced Survival Analysis</a></li>
-<li class="chapter" data-level="19" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>19</b> Count Data Regression</a>
+<li class="chapter" data-level="25" data-path="space.html"><a href="space.html"><i class="fa fa-check"></i><b>25</b> ^_^ Space</a></li>
+<li class="chapter" data-level="26" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>26</b> Propensity Score</a></li>
+<li class="chapter" data-level="27" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>27</b> Missing Data</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="count-data-regression.html"><a href="count-data-regression.html#introduction-of-count-data-regression"><i class="fa fa-check"></i><b>19.1</b> Introduction of Count Data Regression</a></li>
-<li class="chapter" data-level="19.2" data-path="count-data-regression.html"><a href="count-data-regression.html#poisson-regression"><i class="fa fa-check"></i><b>19.2</b> Poisson regression</a></li>
-<li class="chapter" data-level="19.3" data-path="count-data-regression.html"><a href="count-data-regression.html#negative-binomial-regression"><i class="fa fa-check"></i><b>19.3</b> Negative Binomial Regression</a></li>
-<li class="chapter" data-level="19.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-truncated-poisson-regression-model"><i class="fa fa-check"></i><b>19.4</b> Zero-truncated Poisson Regression Model</a></li>
-<li class="chapter" data-level="19.5" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-insflated-model"><i class="fa fa-check"></i><b>19.5</b> Zero-Insflated Model</a></li>
-<li class="chapter" data-level="19.6" data-path="count-data-regression.html"><a href="count-data-regression.html#hurdle-models"><i class="fa fa-check"></i><b>19.6</b> Hurdle models</a></li>
-<li class="chapter" data-level="19.7" data-path="count-data-regression.html"><a href="count-data-regression.html#proportion-response-regression"><i class="fa fa-check"></i><b>19.7</b> Proportion-Response-Regression</a>
+<li class="chapter" data-level="27.1" data-path="missing-data.html"><a href="missing-data.html#missing-mechanisms"><i class="fa fa-check"></i><b>27.1</b> Missing mechanisms</a></li>
+<li class="chapter" data-level="27.2" data-path="missing-data.html"><a href="missing-data.html#compatibility-and-congeniality"><i class="fa fa-check"></i><b>27.2</b> Compatibility and Congeniality</a></li>
+<li class="chapter" data-level="27.3" data-path="missing-data.html"><a href="missing-data.html#single-imputation"><i class="fa fa-check"></i><b>27.3</b> Single imputation</a></li>
+<li class="chapter" data-level="27.4" data-path="missing-data.html"><a href="missing-data.html#multiple-imputation"><i class="fa fa-check"></i><b>27.4</b> Multiple imputation</a>
 <ul>
-<li class="chapter" data-level="19.7.1" data-path="count-data-regression.html"><a href="count-data-regression.html#beta-regression"><i class="fa fa-check"></i><b>19.7.1</b> Beta Regression</a></li>
-<li class="chapter" data-level="19.7.2" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-inflated-beta-regression"><i class="fa fa-check"></i><b>19.7.2</b> Zero-inflated Beta Regression</a></li>
-<li class="chapter" data-level="19.7.3" data-path="count-data-regression.html"><a href="count-data-regression.html#one-inflated-beta-regression"><i class="fa fa-check"></i><b>19.7.3</b> One-inflated Beta Regression</a></li>
-<li class="chapter" data-level="19.7.4" data-path="count-data-regression.html"><a href="count-data-regression.html#zero-one-inflated-beta-regression"><i class="fa fa-check"></i><b>19.7.4</b> Zero-one-inflated Beta Regression</a></li>
+<li class="chapter" data-level="27.4.1" data-path="missing-data.html"><a href="missing-data.html#joint-modeling-jm"><i class="fa fa-check"></i><b>27.4.1</b> Joint Modeling (JM)</a></li>
+<li class="chapter" data-level="27.4.2" data-path="missing-data.html"><a href="missing-data.html#multiple-imputation-by-fully-conditional-specification-mice"><i class="fa fa-check"></i><b>27.4.2</b> Multiple Imputation by Fully Conditional Specification (MICE)</a></li>
 </ul></li>
+<li class="chapter" data-level="27.5" data-path="missing-data.html"><a href="missing-data.html#bayesian-linear-regression"><i class="fa fa-check"></i><b>27.5</b> Bayesian linear regression</a></li>
+<li class="chapter" data-level="27.6" data-path="missing-data.html"><a href="missing-data.html#predictive-mean-matching"><i class="fa fa-check"></i><b>27.6</b> Predictive Mean Matching</a></li>
+<li class="chapter" data-level="27.7" data-path="missing-data.html"><a href="missing-data.html#mice-using-random-forest"><i class="fa fa-check"></i><b>27.7</b> MICE using random forest</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>20</b> Mixed Model</a></li>
-<li class="chapter" data-level="21" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>21</b> Generalized Linear (Mixed) Model</a></li>
-<li class="chapter" data-level="22" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>22</b> Generalized Estimating Equation</a></li>
-<li class="chapter" data-level="23" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html"><i class="fa fa-check"></i><b>23</b> Group (Adaptive) Sequential Design</a></li>
-<li class="chapter" data-level="24" data-path="propensity-score.html"><a href="propensity-score.html"><i class="fa fa-check"></i><b>24</b> Propensity Score</a></li>
-<li class="chapter" data-level="25" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>25</b> Missing Data</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -729,10 +870,12 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="advanced-logistic-regression" class="section level1" number="16">
-<h1><span class="header-section-number">Chapter 16</span> Advanced Logistic Regression</h1>
-<div id="logit-analysis-of-contingency-tables" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> Logit Analysis of Contingency Tables</h2>
+<div id="advanced-logistic-regression" class="section level1" number="18">
+<h1><span class="header-section-number">Chapter 18</span> Advanced Logistic Regression</h1>
+<div id="htmlwidget-13c73d52aaf995dfdbe9" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-13c73d52aaf995dfdbe9">{"x":{"data":"# \n## Advanced Logistic Regression  \n### Logit Analysis of Contingency Tables\n#### Two-Way Table\n#### Three-Way Table\n#### Four-Way Table\n#### Overdispersion\n### Loglinear Analysis of Contingency Tables\n#### Two-way Table\n#### Problem of Zeros\n### Discrete Choice Analysis\n#### Logistic Strata\n#### Conditional logit model\n#### Ranked Data\n#### Heteroscedastic extreme value (HEV) Model\n#### Nested logit model\n### Longitudinal and Other Clustered Data\n#### Introduction\n#### Robust Standard Errors\n#### GEE Estimation with PROC GENMOD\n#### Mixed Models with PROC GLIMMIX\n#### Fixed-Effects with Conditional Logistic Regression\n#### Hybrid Method      ","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
+<div id="logit-analysis-of-contingency-tables" class="section level2" number="18.1">
+<h2><span class="header-section-number">18.1</span> Logit Analysis of Contingency Tables</h2>
 <blockquote>
 <p>几十年来，列联表分析的主要方法是由卡尔·皮尔森（Karl Pearson）在1900年提出的卡方检验。
 但是，随着对数线性模型在1960年代末和1970年代初的发展，情况发生了巨大变化。
@@ -742,8 +885,8 @@
 相同的对数线性模型。相反，情况并不成立-有些对数线性模型与任何logit模型都不相对应-但在大多
 数情况下，此类模型几乎没有实质性意义。</p>
 </blockquote>
-<div id="two-way-table" class="section level3" number="16.1.1">
-<h3><span class="header-section-number">16.1.1</span> Two-Way Table</h3>
+<div id="two-way-table" class="section level3" number="18.1.1">
+<h3><span class="header-section-number">18.1.1</span> Two-Way Table</h3>
 <p><strong>FREQ statement</strong></p>
 <pre><code>DATA tab4_1a;
  INPUT f blackd death;
@@ -782,8 +925,8 @@ PROC LOGISTIC DATA=tab4_1b;
  MODEL death/total = blackd;
 RUN</code></pre>
 </div>
-<div id="three-way-table" class="section level3" number="16.1.2">
-<h3><span class="header-section-number">16.1.2</span> Three-Way Table</h3>
+<div id="three-way-table" class="section level3" number="18.1.2">
+<h3><span class="header-section-number">18.1.2</span> Three-Way Table</h3>
 <p><span class="math display">\[
 \begin{array}{llcc}
 \hline &amp; &amp; {\text { \quad Intercourse }} \\
@@ -817,8 +960,8 @@ PROC LOGISTIC DATA=interco;
  MODEL yes/total=white male white*male/ SCALE=NONE ;
 RUN; </code></pre>
 </div>
-<div id="four-way-table" class="section level3" number="16.1.3">
-<h3><span class="header-section-number">16.1.3</span> Four-Way Table</h3>
+<div id="four-way-table" class="section level3" number="18.1.3">
+<h3><span class="header-section-number">18.1.3</span> Four-Way Table</h3>
 <p><span class="math display">\[
 \begin{array}{lllccc}
 \hline &amp; &amp; &amp; {\text { Identifies with the Working }} &amp; \\
@@ -857,8 +1000,8 @@ RUN;
 ODDSRATIO famanual / AT(france=0 1);
 ODDSRATIO france / AT(famanual=0 1);</code></pre>
 </div>
-<div id="overdispersion" class="section level3" number="16.1.4">
-<h3><span class="header-section-number">16.1.4</span> Overdispersion</h3>
+<div id="overdispersion" class="section level3" number="18.1.4">
+<h3><span class="header-section-number">18.1.4</span> Overdispersion</h3>
 <blockquote>
 <p>用分组数据估算逻辑模型时，经常会发生模型不适合的情况-相对于自由度，偏差和Pearson卡方均较大。 缺乏合身有时被称为过度分散。 过度分散有两个可能的原因：
 1. 模型指定不正确：模型中需要更多的相互作用和/或非线性。
@@ -927,10 +1070,10 @@ RUN;</code></pre>
 RUN;</code></pre>
 </div>
 </div>
-<div id="loglinear-analysis-of-contingency-tables" class="section level2" number="16.2">
-<h2><span class="header-section-number">16.2</span> Loglinear Analysis of Contingency Tables</h2>
-<div id="two-way-table-1" class="section level3" number="16.2.1">
-<h3><span class="header-section-number">16.2.1</span> Two-way Table</h3>
+<div id="loglinear-analysis-of-contingency-tables" class="section level2" number="18.2">
+<h2><span class="header-section-number">18.2</span> Loglinear Analysis of Contingency Tables</h2>
+<div id="two-way-table-1" class="section level3" number="18.2.1">
+<h3><span class="header-section-number">18.2.1</span> Two-way Table</h3>
 <p><span class="math display">\[
 \begin{array}{|c|c|}
 \hline m_{11} &amp; m_{12} \\
@@ -991,8 +1134,8 @@ RUN; </code></pre>
 \end{array}
 \]</span></p>
 </div>
-<div id="problem-of-zeros" class="section level3" number="16.2.2">
-<h3><span class="header-section-number">16.2.2</span> Problem of Zeros</h3>
+<div id="problem-of-zeros" class="section level3" number="18.2.2">
+<h3><span class="header-section-number">18.2.2</span> Problem of Zeros</h3>
 <blockquote>
 <p>列联表有时具有频率计数为零的像元。这些可能会引起问题或需要特殊处理。有两种零：</p>
 </blockquote>
@@ -1087,14 +1230,14 @@ RUN;</code></pre>
 </blockquote>
 </div>
 </div>
-<div id="discrete-choice-analysis" class="section level2" number="16.3">
-<h2><span class="header-section-number">16.3</span> Discrete Choice Analysis</h2>
+<div id="discrete-choice-analysis" class="section level2" number="18.3">
+<h2><span class="header-section-number">18.3</span> Discrete Choice Analysis</h2>
 <p>The explanatory variables can include characteristics of the choice options as well as variables describing the relationship between the chooser and the option. This model is very easily estimated using the STRATA statement in PROC LOGISTIC. But I’ll also show how to estimate more general models using PROC PHREG and PROC MDC</p>
 <blockquote>
 <p>解释变量可以包括选择选项的特征以及描述选择器和选项之间关系的变量。离散选择分析通常基于条件logit模型</p>
 </blockquote>
-<div id="logistic-strata" class="section level3" number="16.3.1">
-<h3><span class="header-section-number">16.3.1</span> Logistic Strata</h3>
+<div id="logistic-strata" class="section level3" number="18.3.1">
+<h3><span class="header-section-number">18.3.1</span> Logistic Strata</h3>
 <pre><code>DARK 0=milk chocolate, 1=dark chocolate
 SOFT 0=hard center, 1=soft center
 NUTS 0=no nuts, 1=nuts 
@@ -1130,8 +1273,8 @@ PROC LOGISTIC DATA=chocs;
  STRATA id;
 RUN;</code></pre>
 </div>
-<div id="conditional-logit-model" class="section level3" number="16.3.2">
-<h3><span class="header-section-number">16.3.2</span> Conditional logit model</h3>
+<div id="conditional-logit-model" class="section level3" number="18.3.2">
+<h3><span class="header-section-number">18.3.2</span> Conditional logit model</h3>
 <p>假设我们有 <span class="math inline">\(i=1, \ldots, n\)</span> 个个体, 并且每个个体都有 <span class="math inline">\(j=1, \ldots, J_{i}\)</span> 个选项。我们将
 可能的选择数记为 <span class="math inline">\(J_{i}\)</span>, 以表示不同的个人可能具有不同的选择集。如果个体i选择了选项, 则
 <span class="math inline">\(y_{i j}=1\)</span>, 否则选择0, 而 <span class="math inline">\(x_{i j}\)</span> 为向量 描述人的选项的解释变量。这组解释变量可以包括用于 各种选项的虚拟变量, 以及选项特征和各个特征之间的相互作用。但是, 它不包括拼截项。 McFadden (1974) 引入的条件logit模型是
@@ -1155,8 +1298,8 @@ Features</p>
 <li>Each person could choose one and only one option 每个人只能选择一个选项</li>
 </ul>
 </div>
-<div id="ranked-data" class="section level3" number="16.3.3">
-<h3><span class="header-section-number">16.3.3</span> Ranked Data</h3>
+<div id="ranked-data" class="section level3" number="18.3.3">
+<h3><span class="header-section-number">18.3.3</span> Ranked Data</h3>
 <blockquote>
 <p>E.g. 研究了147起谋杀案，这些案件进入了陪审团以在无期徒刑与死刑判决之间作出决定。为了不偏不倚地衡量犯罪的严重性，进行了一项辅助研究，其中有50名审判法官对谋杀案进行了评估。要求每位法官阅读详细描述14或15个案件的文件。然后，他们按照评估的罪责等级从1到14（或15）对案件进行排名，其中1表示最严重。每个案例由四到六名法官进行评估。有10个不同的案件组，因此（a）一组中的每个案件都由同一位法官评估，并且（b）评估一组中的案件的法官看不到其他组中的任何案件。但是，这种小组结构对分析没有影响。我们的目标是估计一个模型，在该模型中，谋杀案的特征可以预测法官的排名。</p>
 </blockquote>
@@ -1170,8 +1313,8 @@ Features</p>
  STRATA judgid;
 RUN;</code></pre>
 </div>
-<div id="heteroscedastic-extreme-value-hev-model" class="section level3" number="16.3.4">
-<h3><span class="header-section-number">16.3.4</span> Heteroscedastic extreme value (HEV) Model</h3>
+<div id="heteroscedastic-extreme-value-hev-model" class="section level3" number="18.3.4">
+<h3><span class="header-section-number">18.3.4</span> Heteroscedastic extreme value (HEV) Model</h3>
 <p>PROC MDC 不报告优势比。 但是好处是MDC可以估计一些更高级的模型，从而放宽了条件logit模型的某些假设。</p>
 <p>Such as:</p>
 <ul>
@@ -1205,8 +1348,8 @@ RUN;
  ID id;
 RUN; </code></pre>
 </div>
-<div id="nested-logit-model" class="section level3" number="16.3.5">
-<h3><span class="header-section-number">16.3.5</span> Nested logit model</h3>
+<div id="nested-logit-model" class="section level3" number="18.3.5">
+<h3><span class="header-section-number">18.3.5</span> Nested logit model</h3>
 <p>MDC中的另一个模型，该模型可以偏离IIA假设，即嵌套logit模型。该模型假定选择选项可以嵌套在组中，而随机实用程序在组内相关，而组之间不相关。例如，对于旅行数据，我们可以假设所有公共选择（火车，公共汽车，飞机）都属于一个组，而私人选择（汽车）则属于其自己的组。换句话说，公共选择将倾向于共享私人选择未共享的未观察到的特征。在PROC MDC中指定这种模型的方法如下：</p>
 <pre><code>PROC MDC DATA=travel2;
  MODEL choice = ttme time cost / CHOICE=(mode)
@@ -1218,10 +1361,10 @@ RUN; </code></pre>
 RUN;</code></pre>
 </div>
 </div>
-<div id="longitudinal-and-other-clustered-data" class="section level2" number="16.4">
-<h2><span class="header-section-number">16.4</span> Longitudinal and Other Clustered Data</h2>
-<div id="introduction-10" class="section level3" number="16.4.1">
-<h3><span class="header-section-number">16.4.1</span> Introduction</h3>
+<div id="longitudinal-and-other-clustered-data" class="section level2" number="18.4">
+<h2><span class="header-section-number">18.4</span> Longitudinal and Other Clustered Data</h2>
+<div id="introduction-12" class="section level3" number="18.4.1">
+<h3><span class="header-section-number">18.4.1</span> Introduction</h3>
 <blockquote>
 <p>在前面，我们假定所有观察值都是独立的，也就是说，每个观察值的结果与其他每个观察值的结果完全无关。尽管该假设非常适合大多数数据集，但在许多应用程序中，可以将数据分组为自然或强制群集，而同一群集中的观测值往往比不同群集中的观测值更相似。纵向数据也许是最常见的聚类示例。如果我们记录一个人在多个时间点的反应，我们通常希望这些观察结果是正相关的。但是，在许多其他应用程序中，数据具有群集结构。例如，丈夫和妻子聚集在家庭中，而学生聚集在教室中。在涉及匹配的研究中，每个匹配组都是一个簇。</p>
 </blockquote>
@@ -1246,8 +1389,8 @@ RUN;</code></pre>
 </p>
 </div>
 </div>
-<div id="robust-standard-errors" class="section level3" number="16.4.2">
-<h3><span class="header-section-number">16.4.2</span> Robust Standard Errors</h3>
+<div id="robust-standard-errors" class="section level3" number="18.4.2">
+<h3><span class="header-section-number">18.4.2</span> Robust Standard Errors</h3>
 <pre><code>## Data Preparation
 316名在费城地区的大火中幸存的人。 在火灾发生后的3个月，6个月和
 12个月对他们进行了采访。 对于每次访谈，如果该人有创伤后应激障碍
@@ -1297,8 +1440,8 @@ RUN;</code></pre>
  REPEATED SUBJECT=subjid;
 RUN;</code></pre>
 </div>
-<div id="gee-estimation-with-proc-genmod" class="section level3" number="16.4.3">
-<h3><span class="header-section-number">16.4.3</span> GEE Estimation with PROC GENMOD</h3>
+<div id="gee-estimation-with-proc-genmod" class="section level3" number="18.4.3">
+<h3><span class="header-section-number">18.4.3</span> GEE Estimation with PROC GENMOD</h3>
 <p>The robust standard error solves the biggest problem that arises from repeated observations of the same person. But the coefficient estimates are still not valid enough, which means their true standard errors are higher than needed. In principle, in terms of sample variability, better estimates should be obtained. One way to achieve this is the method of generalized estimating equations</p>
 <p>In ordinary logistic regression, the maximum likelihood estimates can be obtained by an algorithm known as iteratively reweighted least squares. What that means is that each step in the algorithm is accomplished by weighted least squares, with both the weights and the constructed dependent variable changing at each iteration as functions of the results at the last iteration. In the matrix formulation of weighted least squares, there is an N ×N weight matrix W, which has off-diagonal elements equal to 0 and diagonal elements equal to pi (1–pi ), where pi is the predicted probability from the previous iteration. The GEE algorithm extends this approach to do iterative generalized least squares. In this method, <strong>the matrix W has nonzero off-diagonal elements that are functions of the correlations among the observations</strong>. These correlations are re-estimated at each iteration based on correlations among the Pearson residuals.</p>
 <pre><code>PROC GENMOD DATA=ptsd DESC;
@@ -1314,8 +1457,8 @@ REPEATED SUBJECT=subjid / WITHIN=time LOGOR=EXC
 ## LOGOR refers to the logarithm of the odds ratio, 
 ## FULLCLUST: full set of odds ratios within each cluster</code></pre>
 </div>
-<div id="mixed-models-with-proc-glimmix" class="section level3" number="16.4.4">
-<h3><span class="header-section-number">16.4.4</span> Mixed Models with PROC GLIMMIX</h3>
+<div id="mixed-models-with-proc-glimmix" class="section level3" number="18.4.4">
+<h3><span class="header-section-number">18.4.4</span> Mixed Models with PROC GLIMMIX</h3>
 <p>the principal attraction of GEE is the fact that it produces efficient coefficient estimates that have minimum sampling variability. Mixed modeling has the same attraction, but also offers a number of additional features. In this approach, <strong>clustering is treated as a random effect in a mixed model—so named because it includes both fixed and random effects</strong>. Although mixed models are quite similar to GEE, they have two potential advantages. First, much more complex models are possible, with multiple levels of clustering, overlapping clusters, and random coefficients. Second, estimation of mixed models can correct for heterogeneity shrinkage. In other words, mixed models are subject specific rather than population averaged like the models estimated by GEE (McCulloch 1997, Rodriguez and Goldman 1995).</p>
 <p><span class="math display">\[\log \left(\frac{p_{i t}}{1-p_{i t}}\right)=\alpha_{i}+\boldsymbol{\beta} \mathbf{x}_{i t}\]</span></p>
 <blockquote>
@@ -1340,8 +1483,8 @@ RUN; </code></pre>
 <li>The COVTEST statement provides a test of the null hypothesis that the variance of <span class="math inline">\(\alpha\)</span> is 0.</li>
 </ul>
 </div>
-<div id="fixed-effects-with-conditional-logistic-regression" class="section level3" number="16.4.5">
-<h3><span class="header-section-number">16.4.5</span> Fixed-Effects with Conditional Logistic Regression</h3>
+<div id="fixed-effects-with-conditional-logistic-regression" class="section level3" number="18.4.5">
+<h3><span class="header-section-number">18.4.5</span> Fixed-Effects with Conditional Logistic Regression</h3>
 <blockquote>
 <p>尽管GEE和混合模型是出色的工具，但它们无法纠正因在群集级别省略解释变量而导致的偏差 (don’t correct for bias resulting from omitted explanatory variables at the cluster level)。更具体地说，当每个人有多个观测值时（如PTSD示例），可以统计地控制人的所有稳定特征，而不管这些特征是否可以测量。 不用说，这是一种极具吸引力的可能性，并且可以通过LOGISTIC程序轻松实现。 不幸的是，正如我们将要看到的那样，存在很多明显的限制，使这种方法不能成为普遍偏爱的方法。该模型的公式与随机截距模型的公式完全相同：</p>
 </blockquote>
@@ -1363,8 +1506,8 @@ RUN; </code></pre>
 <p>The contrast between fixed-effects and random-effects (mixed model) estimation is a classic trade-off between bias and inefficiency. Fixed-effects estimates are much less prone to bias because the conditional likelihood discards information that is potentially contaminated by confounding variables. On the other hand, if confounding variables are not a problem, then the fixed-effects approach can discard much potentially useful information.</p>
 <p>The best method to use depends greatly on the design, the data, and the goals of the analysis. In randomized experiments, there is little danger of spuriousness, so conditional logit is relatively unattractive. With observational (non-experimental) data, on the other hand, spuriousness is nearly always a serious concern, making conditional logit analysis especially attractive. I typically use both conditional logit and GEE analysis (or a mixed model) to get greater insight into the data. But as we saw in the matching section, some designs make GEE impossible while others make conditional logit analysis unappealing.</p>
 </div>
-<div id="hybrid-method" class="section level3" number="16.4.6">
-<h3><span class="header-section-number">16.4.6</span> Hybrid Method</h3>
+<div id="hybrid-method" class="section level3" number="18.4.6">
+<h3><span class="header-section-number">18.4.6</span> Hybrid Method</h3>
 <p>第五种方法，将条件logit方法的优点与GEE或混合模型的优点相结合。该方法可以概括为四个步骤：</p>
 <blockquote>
 <p>计算每个人随时间变化的解释变量的平均值。</p>

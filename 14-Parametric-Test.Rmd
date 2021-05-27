@@ -1,6 +1,16 @@
 # Parametric Test
 
-nder the null hypothesis of no difference, the differences should be rather small. Of course, the size of the difference would depend on such factors as the sample sizes involved, the precision of our light meter, and the memories of our patients. 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
+Under the null hypothesis of no difference, the differences should be rather small. Of course, the size of the difference would depend on such factors as the sample sizes involved, the precision of our light meter, and the memories of our patients. 
 
 Even after taking all of these factors into account, there will still be observed differences, and we will need to quantify the magnitude of these. **The magnitude of the difference is expressed as the probability that such a difference could have occurred by chance alone under the null hypothesis. This probability is called the p-value**. 
 
@@ -472,5 +482,4 @@ Shapiro-Wilk Test
 ```
 shapiro.test(X2)
 ```
-
-Kolmogorov-Smirnov Test
+ 
