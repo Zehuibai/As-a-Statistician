@@ -309,6 +309,13 @@ summary(design)
 
 ## Sample Size
 
+### Sample Sizes for Different Types of Endpoints without IA
+
+```{r Sample_Size_Without_IA, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Sample Sizes for Different Types of Endpoints without IA"}
+knitr::include_graphics("./02_Plots/Sample_Size_Without_IA.png")
+```
+
+
 ### Two groups continuous endpoint (without IA)
 
 
@@ -359,7 +366,7 @@ sampleSizeNoninf
 
 
 
-```{r superiority-sample-size,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```{r superiority-binary-sample-size,echo = T,message = FALSE, error = FALSE, warning = FALSE}
 # - probability 25% in control (pi2 = 0.25) vs 40% (pi1 = 0.4) in intervention
 # - one-sided test (sided = 1)
 # - Type I error 0.025 (alpha = 0.025) and power 80% (beta = 0.2)

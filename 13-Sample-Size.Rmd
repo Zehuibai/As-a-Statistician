@@ -859,10 +859,9 @@ $$
 | pwr.t2n.test()      | t检验(n不相等的两样本)                                                             |
 
 
+ 
 
-### Test one Proportion based on Wald CI
-
-#### 1-Sample, 2-Sided Equality
+### 1-Sample Proportion, 2-Sided Equality based on Wald CI
 
 $$
 \begin{array}{l}
@@ -877,7 +876,7 @@ n=p(1-p)\left(\frac{z_{1-\alpha / 2}+z_{1-\beta}}{p-p_{0}}\right)^{2} \\
 1-\beta=\Phi\left(z-z_{1-\alpha / 2}\right)+\Phi\left(-z-z_{1-\alpha / 2}\right) \quad, \quad z=\frac{p-p_{0}}{\sqrt{\frac{p(1-p)}{n}}}
 \end{array}
 $$
-#### 1-Sample Non-Inferiority or Superiority
+### 1-Sample Proportion Non-Inferiority or Superiority
 
 $$
 \begin{array}{l}
@@ -908,7 +907,7 @@ z=(p-p0-delta)/sqrt(p*(1-p)/n)
 (Power=pnorm(z-qnorm(1-alpha))+pnorm(-z-qnorm(1-alpha)))
 ```
 
-#### 1-Sample Equivalence
+### 1-Sample Proportion Equivalence
 
 $$
 \begin{array}{l}
@@ -925,9 +924,9 @@ n=p(1-p)\left(\frac{z_{1-\alpha}+z_{1-\beta / 2}}{\left|p-p_{0}\right|-\delta}\r
 $$
 
 
-### Test two Proportions based on Wald CI
 
-#### 2-Sample, 2-Sided Equality
+
+### 2-Sample Proportions, 2-Sided Equality based on Wald CI
 
 $$
 \begin{array}{l}
@@ -960,7 +959,7 @@ z=(pA-pB)/sqrt(pA*(1-pA)/nB/kappa+pB*(1-pB)/nB)
 (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
 ```
 
-#### 2-Sample Non-Inferiority or Superiority
+### 2-Sample Proportions Non-Inferiority or Superiority
 
 $$
 \begin{array}{l}
@@ -980,7 +979,7 @@ n_{A}=\kappa n_{B} \\ n_{B}=\left(\frac{p_{A}\left(1-p_{A}\right)}{\kappa}+p_{B}
 \end{array}
 $$
 
-#### 2-Sample Equivalence
+### 2-Sample Proportions Equivalence
 
 $$
 \begin{array}{l}
@@ -999,6 +998,42 @@ n_{A}=\kappa n_{B} \\ n_{B}=\left(\frac{p_{A}\left(1-p_{A}\right)}{\kappa}+p_{B}
 1-\beta=2\left[\Phi\left(z-z_{1-\alpha}\right)+\Phi\left(-z-z_{1-\alpha}\right)\right]-1 \quad, \quad z=\frac{\left|p_{A}-p_{B}\right|-\delta}{\sqrt{\frac{p_{A}\left(1-p_{A}\right)}{n_{A}}+\frac{p_{B}\left(1-p_{B}\right)}{n_{B}}}}
 \end{array}
 $$
+
+**Equivalence Trial with Binary Endpoint**
+
+```
+%Macro TwoSamZTest(nSims=100000, nPerGrp=100, px=0.3, py=0.4, delta=0.3, alpha=0.05);
+  Data TwoGVars;
+  KEEP powerCI powerTest;
+  powerCI=0; powerTest=0;
+  Do iSim=1 To &nSims;
+  PxObs=Ranbin(733,&nPerGrp,&px)/&nPerGrp;
+  PyObs=Ranbin(236,&nPerGrp,&py)/&nPerGrp;
+  se=((PxObs*(1-PxObs)+PyObs*(1-PyObs))/&nPerGrp)**0.5;
+  *CI method;
+  ICW=Probit(1-&alpha)*se;
+  IF Abs(PxObs-PyObs)+ICW < &delta Then
+  powerCI=powerCI+1/&nSims;
+  *Two one-sided tests method;
+  T1=(PyObs-PxObs-&delta)/se;
+  T2=(PyObs-PxObs+&delta)/se;
+  IF T1=Probit(1-&alpha) & T2>Probit(1-&alpha) Then
+  powerTest=powerTest+1/&nSims;
+  End;
+  Output;
+  Run;
+  Proc Print; Run;
+%Mend TwoSamZTest;
+
+Title “Equivalence test with binary response: Alpha under Ho”;
+%TwoSamZTest(nPerGrp=100, px=0.1, py=0.2, delta=0.1, alpha=0.05);
+
+Title “Equivalence test with binary response: Power under Ha”;
+%TwoSamZTest(nPerGrp=100, px=0.3, py=0.3, delta=0.2, alpha=0.05);
+```
+
+
+
 
 ### Paired Proportions: McNemar's Z-test
 
@@ -1083,9 +1118,7 @@ pwr.chisq.test(w =ES.w2(prob), df = 3, sig.level = 0.05, power = 0.9)
 ## Test Mean(s)
 
 
-### Test one sample mean
-
-#### 2-Sided Equality
+### One Sample Mean 2-Sided Equality
 
 The Null and Alternative hypotheses are
 $$
@@ -1114,7 +1147,7 @@ z=(mu-mu0)/sd*sqrt(n)
 (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
 ```
 
-#### 1-Sample Non-Inferiority or Superiority
+### 1-Sample Mean Non-Inferiority or Superiority
 
 $$
 \begin{array}{l}
@@ -1128,7 +1161,7 @@ Power
 $$1-\beta=\Phi\left(z-z_{1-\alpha}\right)+\Phi\left(-z-z_{1-\alpha}\right) \quad, \quad z=\frac{\mu-\mu_{0}-\delta}{\sigma / \sqrt{n}}$$
 
 
-#### 1-Sample Equivalence
+### 1-Sample Mean Equivalence
 
 $$
 \begin{array}{l}
@@ -1159,9 +1192,7 @@ z=(abs(mu-mu0)-delta)/sd*sqrt(n)
 
 
 
-### Test two sample means
-
-#### 2-Sample, 2-Sided Equality
+### 2-Sample Means, 2-Sided Equality
 
 $$
 \begin{array}{l}
@@ -1199,7 +1230,7 @@ z=(muA-muB)/(sd*sqrt((1+1/kappa)/nB))
 (Power=pnorm(z-qnorm(1-alpha/2))+pnorm(-z-qnorm(1-alpha/2)))
 ```
 
-#### 2-Sample, 1-Sided
+### 2-Sample Means, 1-Sided
 
 $$
 \begin{array}{l}
@@ -1220,7 +1251,7 @@ n_{B}=\kappa n_{A} \\
 \end{array}
 $$
 
-#### 2-Sample Non-Inferiority or Superiority
+### 2-Sample Means Non-Inferiority or Superiority
 
 $$
 \begin{array}{l}
@@ -1241,7 +1272,7 @@ n_{B}=\left(1+\frac{1}{\kappa}\right)\left(\sigma \frac{z_{1-\alpha}+z_{1-\beta}
 \end{array}
 $$
 
-#### 2-Sample Equivalence
+### 2-Sample Means Equivalence
 
 $$
 \begin{array}{l}
@@ -1277,6 +1308,49 @@ z=(abs(muA-muB)-delta)/(sd*sqrt((1+1/kappa)/nB))
 (Power=2*(pnorm(z-qnorm(1-alpha))+pnorm(-z-qnorm(1-alpha)))-1)
 ```
  
+
+**SAS Implementation**
+
+```
+*** Equivalence Trial with Normal Endpoin;
+
+%Macro EquivCI(nSims=1000, nPerGrp=200, ux=0, uy=1, delta=1.2, sigmax=1, sigmay=1.2, alpha=0.05);
+  Data TwoGVars;
+  Keep xMean yMean powerCI powerTest;
+  powerCI=0; powerTest=0;
+  Do iSim=1 To &nSims;
+  xMean=0; yMean=0; s2x=0; s2y=0;
+  Do iObs=1 To &nPerGrp;
+  xNOR=Rannor(7362); xMean=xMean+xNor; s2x=s2x+xNor**2;
+  yNOR=Rannor(2637); yMean=yMean+yNor; s2y=s2y+yNor**2;
+  End;
+  xMean=xMean*&sigmax/&nPerGrp+&ux;
+  yMean=yMean*&sigmay/&nPerGrp+&uy;
+  sp=((s2x*&sigmax**2+s2y*&sigmay**2)/(2*&nPerGrp-2))**0.5;
+  se=sp/(&nPerGrp/2)**0.5;
+  * CI method;
+  ICW=Probit(1-&alpha)*se;
+  If Abs(yMean-xMean)+ICW < &delta Then
+  powerCI=powerCI+1/&nSims;
+  *Two one-sided test method;
+  T1=(xMean-yMean-&delta)/se;
+  T2=(xMean-yMean+&delta)/se;
+  If T1=Probit(1-&alpha) & T2>Probit(1-&alpha) Then
+  powerTest=powerTest+1/&nSims;
+  End;
+  Output;
+  Run;
+  Proc Print Data=TwoGVars(obs=1); Run;
+%Mend EquivCI;
+
+Title “Equivalence test with normal response: Alpha under Ho”;
+%EquivCI(nSims=10000, nPerGrp=1000, ux=0.2, uy=0, delta=0.2, sigmax=1, sigmay=1, alpha=0.05);
+
+Title “Equivalence test with normal response: Power under Ha”;
+%EquivCI(nSims=10000, nPerGrp=198, ux=0, uy=1, delta=1.2, sigmax=0.8, sigmay=0.8, alpha=0.05);
+```
+
+
 
 ### T-Test using `pwr.t.test` or `pwr.t2n.test`
 
@@ -1358,12 +1432,59 @@ plot(samsize, es, type = "l", lwd = 2, col = "red",
 ```
 
  
+### Average Bioequivalence
+
+Pharmacokinetics (PK) is the study of the body’s absorption, distribution, metabolism, and elimination of a drug. An important outcome of a PK study is the bioavailability of the drug. The bioavailability of a drug is defined as the rate and extent to which the active drug ingredient or therapeutic moiety is absorbed and becomes available at the site of drug action. As bioavailability cannot be easily measured directly, the concentration of the drug that reaches the circulating bloodstream is taken as a surrogate. Therefore, bioavailability can be viewed as the concentration of the drug that is in the blood. Two drugs are bioequivalent if they have the same bioavailability. 
+
+> 药代动力学（PK）是人体对药物的吸收，分布，代谢和消除的研究。 PK 研究的一个重要结果是药物的生物利用度。
+药物的生物利用度被定义为活性药物成分或治疗部分被吸收并在药物作用部位变得可用的速率和程度。由于不能轻易直接测量生物利用度，因此将到达循环血流的药物浓度作为替代指标。因此，生物利用度可以看作是血液中药物的浓度。如果两种药物具有相同的生物利用度，则它们是生物等效的。
+
+At the present time, average bioequivalence (ABE) serves as the current international standard for bioequivalence (BE) testing using a 2 × 2 crossover design (Chow and Liu, 2008). The PK parameters used for assessing ABE are area under the curve (AUC) and peak concentration (Cmax). The recommended statistical method is the two one-sided tests procedure to determine if the average values for the PK measures determined after administration of the T (test) and R (reference) products were comparable. This approach is termed ABE. It is equivalent to the so-called confidence interval method, which involves the calculation of a 90% confidence interval for the ratio of the averages (population geometric means) of the measures for the T and R products. To establish BE, the calculated confidence interval should fall within a BE limit, usually 80%–125% for the ratio of the product averages. The 1992 FDA guidance has also provided specific recommendations for logarithmic transformation of PK data, methods to evaluate sequence effects, and methods to evaluate outlier data. In practice, people also use parallel designs and the 90% confidence interval for nontransformed data. To establish BE, the calculated confidence interval should fall within a BE limit, usually 80%–120% for the difference of the product averages. 
+
+> 目前，平均生物等效性 (ABE) 是使用 2 × 2 交叉设计进行生物等效性 (BE) 测试的当前国际标准（Chow 和 Liu，2008 年）。用于评估 ABE 的 PK 参数是曲线下面积 (AUC) 和峰值浓度 (Cmax)。推荐的统计方法是两个单面测试程序，以确定在施用T（测试）和R（参考）产品后确定的PK度量的平均值是否可比。这种方法称为 ABE。它等效于所谓的置信区间方法，它涉及计算 T 和 R 产品度量的平均值（总体几何平均值）之比的 90% 置信区间。要建立 BE，计算出的置信区间应落在 BE 限值内，通常产品平均值的比率为 80% -125%。 1992 年的 FDA 指南还为 PK 数据的对数转换、评估序列效应的方法和评估离群数据的方法提供了具体建议。在实践中，人们还使用平行设计和未转换数据的 90% 置信区间。要建立 BE，计算的置信区间应落在 BE 限制内，通常产品平均值的差异为 80% -120%。
+
+The hypothesis for ABE in a 2×2 crossover design with log-transformed data can be written as
+$$
+\begin{array}{l}
+H_{01}: \mu_{T}-\mu_{R} \leq-\ln 1.25 \\
+H_{02}: \mu_{T}-\mu_{R} \geq \ln 1.25
+\end{array}
+$$
+The asymptotic sample size is given by (Chow et al., 2003 )
+$$
+n=\frac{\left(z_{1-\alpha}+z_{1-\beta / 2}\right)^{2} \sigma_{1,1}^{2}}{2(\ln 1.25-|\varepsilon|)^{2}}
+$$
+where the variance for the intrasubject comparison is estimated using
+$$
+\hat{\sigma}_{1,1}^{2}=\frac{1}{n_{1}+n_{2}-2} \sum_{j=1}^{2} \sum_{i=1}^{n_{j}}\left(y_{i 1 j}-y_{i 2 j}-\bar{y}_{1 j}+\bar{y}_{2 j}\right)^{2}
+$$
+$y_{i k j}$ is the log-transformed $\mathrm{PK}$ measure from the $i$ th subject in the $j$ th sequence at the $k$ th dosing period, and $\bar{y}_{k j}$ is the sample mean of the observations in the $j$ th sequence at the $k$ th period.
+
+**Crossover Bioequivalence Trial SAS**
+
+ The $\mathrm{PK}$ parameter chosen for this bioequivalence test is a log-transformation of the 24 -hour AUC (i.e., the raw data is log-normal). Assume that the difference between the two formulations in $\log (\mathrm{AUC})$ is $\varepsilon=0.04$ and the standard deviation for the intrasubject comparison is $\sigma_{1,1}^{2}=0.55$ with $\alpha=0.05$ and $\beta=0.2$, the sample size per sequence is given by
+$$
+n=\frac{(1.96+0.84)^{2}(0.55)^{2}}{2(0.223-0.04)^{2}}=36
+$$
 
 
+```
+%Macro Power2By2ABE(totalN=24, sWithin=0.355, uRatio=1);
+  Data ABE; Keep sWithin uRatio n power;
+  n=&totalN; sWithin=&sWithin; uRatio=&uRatio;
+  * Err df for AB/BA crossover design;
+  n2=n-2;
+  t1=tinv(1-0.05,n-2); t2=-t1;
+  nc1=Sqrt(n)*log(uRatio/0.8)/Sqrt(2)/sWithin;
+  nc2=Sqrt(n)*log(uRatio/1.25)/Sqrt(2)/sWithin;
+  df=Sqrt(n-2)*(nc1-nc2)/(2*t1);
+  Power=Probt(t2,df,nc2)-Probt(t1,df,nc1);
+  Run;
+  Proc Print; Run;
+%Mend Power2By2ABE;
 
-
-
-
+%Power2By2ABE(totalN=58, sWithin=0.355, uRatio=1)
+```
 
 ## Other Methods
 
