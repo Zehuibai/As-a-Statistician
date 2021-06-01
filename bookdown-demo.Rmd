@@ -1,3 +1,154 @@
+--- 
+title: "As a Statistician"
+author: "Zehui Bai"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge."
+---
+
+# Introduction
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# Input and Format
+
+Placeholder
+
+
+## Input data into SAS
+### Reading free formatted data instream
+### Reading fixed formatted data instream
+### INFILE: Reading fixed formatted data from an external file
+### Write the SAS File
+### Import csv data
+### %Import
+### Infile Read multiple raw data files
+### Generate automatic file name
+## Input and import data in R
+### Import csv data
+### Import txt data
+### Import excel data
+### Import stata data
+### Import SAS data
+### Copy from clipboard
+## Save and write objective in R
+### Save as R-Datei
+### write.table and write.csv
+### write.foreign
+### write.xlsx
+### Save the plot
+## Format in SAS
+### Proc format 
+### Copy and combine SAS format libraries
+## Package readr 
+## Package Strings
+## Package forcats
+## Package lubridate
+
+<!--chapter:end:02-Input-and-Format.Rmd-->
+
+
+# Data Management in SAS
+
+Placeholder
+
+
+## Array
+### Defining
+### Format multiple variables
+### 2*2 arrays
+### Dynamic Element List using Macro Variables
+### Carry over values
+## Retain
+### Change from Basilne
+## Variable Names and Types
+### Convert all numeric to char*
+### Get all the numeric variable names
+### Write all variable names as macro variables
+### Write all observations as macro variable
+### Rename some variables
+### Rename with suffix
+### Rename array variables
+## Check exists for validation
+### Check datasets exists
+### Check datasets and Variables
+### Check datasets if empty
+### %sysfunc get the observations
+## Proc Transpose
+### _numeric_
+### In processing
+## Clean Up
+### Basic setting
+### Delete datasets
+### Deleting Formats
+### Remove assigned formats
+### Delete macro variables
+### Delete Macro
+
+<!--chapter:end:03-DM-in-SAS.Rmd-->
+
+
+# Data Management in R
+
+Placeholder
+
+
+## Package tidyr 
+### Pivoting
+### gather and spread
+### separate and unite
+## Package dplyr 
+### Data Transformation with dplyr
+### across
+### arrange
+### coalesce
+### filter
+### if_else
+### join
+### mutate
+### select
+### summarise
+
+<!--chapter:end:04-DM-in-R.Rmd-->
+
+
+# SQL
+
+Placeholder
+
+
+## MySQL: Management
+## MySQL PHP (In processing)
+## PROC SQL in SAS
+### Inreoduction
+### Create Normal Table
+### Creating Tables like an Existing Table
+### Inserting Rows
+### Delete Rows and Table
+### New Columns using Summary Function
+### Aggregation: Summary
+### Conditionality (If)
+### Filtering Aggregated Data (HAVING)
+### Select Operator (Union...)
+### Loap
+### Join
+### Reordering Rows (Proc Sort)
+## Package DBI (In processing)
+## Package sparklyr (In processing)
+
+<!--chapter:end:05-SQL.Rmd-->
+
 # ggplot2
 
 
@@ -1345,26 +1496,8 @@ See more under `Graphviz and mermaid in DiagrammeR`
 
 
 
+
 ```{r Graphviz-Attributes,echo = T,message = FALSE, error = FALSE, warning = FALSE}
-grViz(diagram = "digraph flowchart {
-      # define node aesthetics
-      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
-      tab1 [label = '@@1']
-      tab2 [label = '@@2']
-      tab3 [label = '@@3']
-      tab4 [label = '@@4']
-# set up node layout
-      tab1 -> tab2;
-      tab2 -> tab3;
-      tab2 -> tab4
-      }
-[1]: 'Learning Data Science'
-      [2]: 'Industry vs Technical Knowledge'
-      [3]: 'Python/R'
-      [4]: 'Domain Experience'
-      ")
-
-
 grViz("digraph {
 graph [layout = dot, rankdir = LR]
 # define the global styles of the nodes. We can override these in box if we wish
@@ -1387,45 +1520,62 @@ We can use subgraphs and clusters to demonstrates groups within the data.
 
 
 ```{r Gantt-chart,echo = T,message = FALSE, error = FALSE, warning = FALSE}
-grViz("
-digraph nicegraph {
+grViz("digraph G{
+rankdir=LR
+graph[bgcolor = "#FDFDFD"]
+edge[style=invis]
+node[fontname = "helvetica", width = 1.5, height = 0.5, fontsize=12]
+	
+    subgraph cluster_accepted {
+    node [shape=box,style=filled, fillcolor = red];
+    label = '@@1';
+    style=dashed;
+		color= "#625a5a";
+        fontname = "helvetica-bold";
+        
+		node [shape=box, style=filled, color=black, fillcolor = "#91cf60"];
+		    a0[label = 'Approved']
+        a1[label = "Awaiting \n Construction"]
+        a2[label = "Decommissioned"]
+        a3[label = "Operational"]
+        a4[label = "Under \n Construction"]
+        a5[label = "No Application \n Required"]
+        
+        a0 -> a2
+        a1 -> a5
 
-  # graph, node, and edge definitions
-  graph [compound = true, nodesep = .5, ranksep = .25,
-         color = crimson]
+	}
+  
+    subgraph cluster_submitted {
+    node [shape=box, style = filled, color=black, fillcolor = "#fee08b"];
+		label = '@@2';
+        style=dashed;
+		color= "#625a5a";
 
-  node [fontname = Helvetica, fontcolor = darkslategray,
-        shape = rectangle, fixedsize = true, width = 1,
-        color = darkslategray]
-
-  edge [color = grey, arrowhead = none, arrowtail = none]
-
-  # subgraph for R information
-  subgraph cluster0 {
-    node [fixedsize = true, width = 3]
-    '@@1-1' -> '@@1-2' -> '@@1-3' -> '@@1-4'
-    '@@1-4' -> '@@1-5' -> '@@1-6' -> '@@1-7'
-  }
-
-  # subgraph for RStudio information
-  subgraph cluster1 {
-    node [fixedsize = true, width = 3]
-    '@@2' -> '@@3'
-  }
-
-  Information             [width = 1.5]
-  Information -> R
-  Information -> RStudio
-  R -> '@@1-1'            [lhead = cluster0]
-  RStudio -> '@@2'        [lhead = cluster1]
-
+        fontname = "helvetica-bold";
+        
+		s0[label = "In Planning"]
+        s1[label = "Connection \n Applied For"]
+        s3[style=invis]
+        s4[style=invis]
+        
 }
-
-[1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
-[2]: paste0('RStudio version:\\n ', rstudioapi::versionInfo()[[1]])
-[3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
-
-")
+    
+	subgraph cluster_rejected {
+    node [shape=box, style = filled, color=black, fillcolor = "#fc8d59
+"];
+		label = '@@3';
+        style=dashed;
+        fontname = "helvetica-bold";
+        color="#625a5a"
+                
+		b0[label = "Refused"]
+        b1[label = "Withdrawn"]
+        b2[label = "No Application \n Made"]
+        b3[label = "Abandoned"];
+        }
+a2 -> s0 -> b0
+}")
 ```
 
 
@@ -1439,4 +1589,685 @@ mermaid("gantt
         Data processing    :after a1, 30d
         Data analysis      :b1, 2016-03-01, 15d")
 ```
+
+
+<!--chapter:end:07-ggplot2.Rmd-->
+
+
+# Proc Sqplot (In Processing)
+
+Placeholder
+
+
+## ODS
+## Introduction
+## Scatter Plot
+### Vector in scatter Plot
+### Add predict curve
+### grouping
+## Bar chart
+### Group and using freq
+## Histogram
+
+<!--chapter:end:08-Proc-Sqplot.Rmd-->
+
+
+# Descriptive Statistics in SAS
+
+Placeholder
+
+
+## PROC FREQ
+### ODS Table Names
+### ODS Plots
+## PROC UNIVARIATE
+### HISTOGRAM Statement
+### CDFPLOT Statement
+### PPPLOT Statement
+### PROBPLOT and QQPLOT Statement
+### ODS Tables   
+### ODS Graphics
+## PROC MEANS
+### Basic summary statistics
+### AUTONAME Option
+### CHARTYPE Option
+## PROC TABULATE 
+### Basic Syntax for PROC TABULATE
+### Identification of Desired Statistics
+### In processing
+
+<!--chapter:end:10-Descriptive-Statistics-in-SAS.Rmd-->
+
+
+# Descriptive Statistics in R
+
+Placeholder
+
+
+## Package pape 
+## Package summarytools 
+## Package compareGroups  
+## Package sjPlot for Models Summary
+## Package kableExtra 
+### kable_styling
+### Column/Row Specification
+### Grouping columns/rows 
+### Add Footnote
+
+<!--chapter:end:11-Descriptive-Statistics-in-R.Rmd-->
+
+
+# Sample Size Calculation
+
+Placeholder
+
+
+## Distribution
+### Quantile Function in SAS
+### Binomial distribution
+### Negative binomial distribution
+### Multinomial distribution
+### Normal Distribution
+### Multivariate normal distribution
+### Poisson distribution
+### Exponential distribution
+### Gamma distribution
+### Weibull Distribution
+### Beta Distribution
+#### Beta分布及其函数公式推导
+#### Beta 函数和 Gamma 函数
+#### Beta 分布的期望与方差
+## Point Estimates
+## Test Proportion(s)
+### Binomial CI for Small Samples
+#### Wald CI
+#### Clopper-Pearson or “Exact” CI
+#### Wilson score CI
+#### Adjusted Wald CI
+### Package binom
+### %CI_Single_Proportion 
+### Incidence rate CI
+### Package: pwr
+### 1-Sample Proportion, 2-Sided Equality based on Wald CI
+### 1-Sample Proportion Non-Inferiority or Superiority
+### 1-Sample Proportion Equivalence
+### 2-Sample Proportions, 2-Sided Equality based on Wald CI
+### 2-Sample Proportions Non-Inferiority or Superiority
+### 2-Sample Proportions Equivalence
+### Paired Proportions: McNemar's Z-test
+### Chi-square test
+## Test Mean(s)
+### One Sample Mean 2-Sided Equality
+### 1-Sample Mean Non-Inferiority or Superiority
+### 1-Sample Mean Equivalence
+### 2-Sample Means, 2-Sided Equality
+### 2-Sample Means, 1-Sided
+### 2-Sample Means Non-Inferiority or Superiority
+### 2-Sample Means Equivalence
+### T-Test using `pwr.t.test` or `pwr.t2n.test`
+### Test k Means
+### Anova using `pwr.anova.test`
+### Average Bioequivalence
+## Other Methods
+### Odds Ratio
+### Correlation
+### Correlated Binary Data: Ophthalmologic Studies
+## Multiple test
+### Definitions of Power 
+### Bonferroni Tests (Individual Power)
+### Tukey's method (Individual Power)
+### Dunnett's Two-Sided Tests (Individual Power)
+### Combined Power %SimPower and %PlotSimPower
+#### **All Pairwise Comparisons**
+#### **logically constrained step-down tests**
+#### **DUNNETT Comparisons with a Control Two-Sided**
+#### **Step-down Dunnett**
+### Dunnett Set up Close Tests in R
+## Time-To-Event Data
+### Cox PH, 2-Sided Equality
+### Log-Rank Tests for Competing Risks
+## Estimation in diagnostic test 
+### Adequate sensitivity/specificity
+### Testing sensitivity (or specificity) 
+### Likelihood ratio estimation
+### ROC index of accuracy
+
+<!--chapter:end:13-Sample-Size.Rmd-->
+
+
+# Parametric Test
+
+Placeholder
+
+
+## Binomial test
+### Mathematical Formula
+### R implementation
+### SAS Implementation
+## Fisher's Exact Test
+### Introduction
+### SAS implementation
+### R implementation
+## McNemar's test
+### introduction
+### SAS Implementation
+### R Implementation
+## Cochran–Mantel–Haenszel Test
+### R implementation
+## Correlation Test
+### Pearson correlation 
+### Spearman correlation
+### Kendall correlation
+## Two Sample T-Test
+### Inreoduction
+### SAS implementation
+### R implementation
+## Normality test
+### SAS implementation
+### R implementation
+
+<!--chapter:end:14-Parametric-Test.Rmd-->
+
+
+# ANOVA
+
+Placeholder
+
+
+## Unstructured Models
+## Balanced One-Way Analysis-of-Variance (ANOVA) 
+### Modeling Assumptions and Basic Analysis
+### Parameter Estimates
+### R Implementation
+### SAS Implementation
+### Model Diagnosis
+#### Homogeneity Test
+#### Normality assumption
+#### Violation of assumptions
+## Unbalanced One-Way ANOVA and Analysis-of-Covariance (ANCOVA)
+## Two-Ways ANOVA Test
+### Introduction
+### R implementation
+### SAS Implementation
+### Unbalanced design
+## Heteroscedastic Responses
+## Repeated Measures ANOVA Data 
+## Multivariate Responses with Normally Distributed Data 
+## Independent Observations from Parametric Nonnormal Distributions
+## Dependent Observations from Parametric Nonnormal Distributions
+
+<!--chapter:end:15-ANOVA.Rmd-->
+
+
+# Multiple-Comparison
+
+Placeholder
+
+
+## Introduction
+### Multiplicity Problem
+### Error Rates
+#### Comparisonwise Error Rate (CER)
+#### Familywise Error Rate (FWE) 
+#### Control of the FWE: Weak and Strong
+#### Directional Decisions and Type III Error Rates
+#### False Discovery Rate (FDR)
+### The adjusted P
+### Basic Statistical Concepts
+### Functions in glht package in R
+## Bonferroni and Šidák Methods
+### LSD (least significance difference)
+### Šidák
+### Bonferroni
+### Schweder-Spjøtvoll p-Value Plot 
+## MCP among Treatment Means in the One-Way Balanced ANOVA 
+### LS-Means    
+### The Multivariate t Distribution
+### Calculating the Critical Value $c_{\alpha}$
+### All Pairwise Comparisons and Studentized Range Distribution
+### Tukey's Method for All Pairwise Comparisons
+### Displaying Pairwise Comparisons Graphically
+### Dunnett's Two-Sided Comparisons with a Control and Dunnett's Two-Sided Range Distribution
+### Dunnett's One-Sided Comparisons with a Control
+### Maximum Modulus Distribution, Multiple Inferences for Independent Estimates
+## Multiple Comparisons among Treatment Means in the One-Way Unbalanced ANOVA 
+### The Model and Estimates
+### Tukey-Kramer Method 
+### Alternative Simulation-Based Method
+### Pairwise Comparisons with Control 
+### Comparisons with the Average Mean–Analysis of Means (ANOM) 
+## Generalizations for the Analysis of Covariance (ANCOVA) model
+### Dunnett-Hsu Factor Analytic Approximation 
+### Hsu-Nelson Simulation-Based Approximation: CVADJUST Method
+### Comparisons in ANCOVA Models with Interaction 
+## Multiple Inferences for Infinite Sets of Parameters
+### Scheffés Method
+### Finding the Maximal Contrast
+### Working-Hotelling method
+### Discrete approximation method
+## Multiple Comparisons under Heteroscedasticity 
+### Introduction of heteroscedasticity
+### Satterthwaite Approximation 
+### MaxT Method under Heteroscedasticity
+### MinP Method under Heteroscedasticity
+## Closed and Stepwise Testing Methods 
+### Closed Family of Hypotheses
+### Bonferroni-Holm Method 
+### Šidák-Holm Method 
+### Closed Fisher Combination Method 
+### Simes-Hommel Method 
+### Hochberg’s O(k) Step-Up
+### Sequential Testing with Fixed Sequences 
+### Sequential Testing Using Gatekeeping Methods
+## Closed Testing of Pairwise Comparisons and General Contrasts
+### Incorporating Logical Constraints
+### Shaffer’s Method
+### Extended Shaffer-Royen Method 
+### Step-down Dunnett test
+## Multiple Comparisons with Binary Data
+### Introduction
+### Multivariate Two-Sample Binary Outcomes
+
+<!--chapter:end:16-Multiple-Comparison.Rmd-->
+
+
+# Non-Parametric Test
+
+Placeholder
+
+
+## Two Samples Hypotheses Testing
+### Sign Test for Location Parameter for Matched Paired Samples
+### Wilcoxon Signed-Rank Test for Location Parameter for Matched
+### Wilcoxon Rank-Sum Test for Location Parameter for Two Independent Samples
+### Ansari-Bradley Test for Scale Parameter for Two Independent Samples
+### Kolmogorov-Smirnov Test for Equality of Distributions
+## Several Samples Hypotheses Testing
+### Friedman Rank Test for Location Parameter for Several Dependent Samples
+### Kruskal-Wallis H-Test for Location Parameter
+## Tests for Categorical Data
+### Spearman Rank Correlation Coefficient Test
+### Fisher Exact Test
+## Permutation test
+### Introduction
+### Package: coin
+### One-way Permutation Test of Independence for Ordinal Data
+### One-way Permutation Test of Symmetry for Ordinal Data
+### Permutation Tests for Medians and Percentiles
+## Nonparametric Regression
+
+<!--chapter:end:17-Non-Parametric-Test.Rmd-->
+
+
+# Correlation and Regression
+
+Placeholder
+
+
+## Correlation
+### Pearson correlation coefficient 
+### Spearman's rank correlation coefficient 
+### Kendall rank correlation coefficient
+### Intraclass correlation
+### Visualize the correlation in R
+## Ordinary least squares (OLS) 
+### Assumpions
+### Interpretation
+### Matrix Solution
+### Gauss-Markov Theorem
+### limitation
+## Model Statistics
+### Residuals Standard Error
+### R-Squared and Adjusted R-Squared
+### T Statistic  
+### F Statistic
+### Confidence Intervals 
+### Likelihood-ratio test
+### Accuracy
+## Model Diagnostics
+### Checking Error Assumptions
+### Finding Unusual Observations
+### Checking the Structure of the Model
+## SAS implementation Proc Reg
+### Options
+### Diagnose
+## R implementation 
+
+<!--chapter:end:18-Regression.Rmd-->
+
+
+# Advanced Linear Regression
+
+Placeholder
+
+
+## Model Selection
+### Selection Methods
+### Selection Criteria
+### k- Fold Cross validation
+## Practical Difficulties using OLS
+## Skewness
+### Introduction
+### Baisc Transformation  
+### Box-Cox Power Transformation
+## Scale
+## Interaction
+### Simple slopes analysis
+### Plotting Interactions 
+### Check linearity assumption
+## Collinearity
+## Problems with the Error
+### Generalized Least Squares
+### Weighted Least Squares
+### Robust Regression
+## Shrinkage Methods
+### Principal Components Analzsis
+### Partial Least Squares
+### Ridge Regression
+
+<!--chapter:end:19-Advanced-Linear-Regression.Rmd-->
+
+
+# Logistic Regression 
+
+Placeholder
+
+
+## Introduction
+### Violation of assumptions of Ordinary least squares (OLS) 
+### More fundamental problem outside [0,1]
+### Logistic Regression Model 
+### Estimation of the Logistic Model
+### Convergence Problems
+### Use exact methods. 
+### Use penalized likelihood
+## Logit Modell
+### Introduction
+### R Implementation
+### SAS Implementation
+### Multicollinearity
+### Goodness-of-Fit Statistics Pearson deviance
+### Hosmer and Lemeshow Goodness-of-Fit Test
+### Statistics Measuring Predictive Power $R^2$
+#### Generalized $R^{2}$
+#### McFadden $R^{2}$
+#### Tjur's $R^{2}$
+### ROC Curves 
+### Predicted Values, Residuals, and Influence Statistics
+### Unobserved Heterogeneity
+### Plotting Effects of Predictor Variables
+## Probit Modell
+### Introduction
+### R Implemetation
+### SAS Implementation
+## Complementary log-log-Modell
+### R Implemetation
+## Multi-category logit model
+### Multinomialverteilung
+### Mehrkategoriales Logit-Modell
+### R Implementation
+### SAS Implementation
+## Ordinal Cumulative Logit Model
+### R Implementation
+### SAS Implementation
+## Adjacent Categories Model
+## Continuation Ratio Model
+
+<!--chapter:end:20-Logistic-Regression.Rmd-->
+
+
+# Advanced Logistic Regression  
+
+Placeholder
+
+
+## Logit Analysis of Contingency Tables
+### Two-Way Table
+### Three-Way Table
+### Four-Way Table
+### Overdispersion
+## Loglinear Analysis of Contingency Tables
+### Two-way Table
+### Problem of Zeros
+## Discrete Choice Analysis
+### Logistic Strata
+### Conditional logit model
+### Ranked Data
+### Heteroscedastic extreme value (HEV) Model
+### Nested logit model
+## Longitudinal and Other Clustered Data
+### Introduction
+### Robust Standard Errors
+### GEE Estimation with PROC GENMOD
+### Mixed Models with PROC GLIMMIX
+### Fixed-Effects with Conditional Logistic Regression
+### Hybrid Method      
+
+<!--chapter:end:21-Advanced-Logistic-Regression.Rmd-->
+
+
+# Survival Analysis 
+
+Placeholder
+
+
+## Preliminary
+### Probability density function
+### Cumulative distribution function
+### Survival function
+### Hazard function
+### Cumulative hazard function
+### Mean Residual Life
+### Relation between functions
+## Kaplan-Meier estimator
+### KM Introduction
+### Nelson-Aalen estimator of the cumulative hazard function
+### Survival curve in SAS
+### KM Survival Plots in SAS
+### Convert Personal-level to Personal-period in R
+### Package survfit in R
+### KM Survival Plots in R
+## Compare the survival function
+### Tests of equality of the survival function
+### Other nonparametric tests for STRATA statement 
+### Multiple comparisons
+### Comparing survival functions using Log-Rank HR
+### Mantel-Haenszel HR
+## Cox Proportional Hazards Model
+### Introduction
+
+<!--chapter:end:22-Survival-Analysis.Rmd-->
+
+# Advanced Survival Analysis 
+
+<!--chapter:end:23-Advanced-Survival-Analysis.Rmd-->
+
+
+# Count Data Regression  
+
+Placeholder
+
+
+## Introduction of Count Data Regression  
+## Poisson regression
+## Negative Binomial Regression
+## Zero-truncated Poisson Regression Model 
+## Zero-Insflated Model
+## Hurdle models
+## Proportion-Response-Regression
+### Beta Regression
+### Zero-inflated Beta Regression
+### One-inflated Beta Regression
+### Zero-one-inflated Beta Regression
+
+<!--chapter:end:24-Count-Data-Regression.Rmd-->
+
+
+# Mixed Model 
+
+Placeholder
+
+
+## Introduction
+### Correlated response data
+### Hierarchical and Marginal model
+### MLE in Marginal model
+### REML in Marginal model
+### Variance correction
+#### Kackar-Harville correction
+#### Kendward-Roger correction
+### Hypothesis tests
+#### Wald Test
+#### Likelihood Ratio Test
+### Residual Structure
+### Converge problems
+## Random Slope and Intercept Model  
+### Model Introduction
+### SAS Implementation
+### R Implementation
+#### Model with one random intercept effekct
+#### Model with random intercept and slpoe effects
+## Random Slope and Intercept Model with Covariance Structure
+### Model Introduction
+### SAS Implementation
+### R Implementation
+## Generalized Estimating Equation  
+### Introduction of GEE
+### SAS Implementation 
+### R Implementation 
+## Hierarchical Regression Model for Normal Response
+### Introduction
+### SAS Implementation  
+### R Implementation  
+
+<!--chapter:end:26-Mixed-Model.Rmd-->
+
+# Generalized Linear (Mixed) Model 
+
+<!--chapter:end:27-GLM-and-GLMM.Rmd-->
+
+
+# Meta Analysis 
+
+Placeholder
+
+
+## Introduction
+### meta-analysis for different data
+## Fixed Effect Model for Continuous Outcomes
+### Effect Measures  
+### Standardized Mean Difference
+### Inverse variance-weighted average method
+### Generic inverse variance meta-analysis `metagen`
+### Weighted Sum of Z-Scores
+## Random Effects Model for Continuous Outcomes
+### Introduction
+### Implementation
+### Hartung-Knapp Adjustment
+## Meta-Regression
+## Meta-Analysis with Binary Outcomes
+### Effect Measures
+#### Odds Ratio
+#### Risk Ratio
+#### Risk Difference
+#### Arcsine Difference
+### Implementation
+### Estimation in Sparse Data - Continuity correction
+### Peto Odds Ratio
+### Fixed Effect Model: Inverse Variance Method
+### Fixed Effect Model: Mantel–Haenszel Method
+### Random Effects Model
+
+<!--chapter:end:30-Meta-Analysis.Rmd-->
+
+
+# Group (Adaptive) Sequential Design 
+
+Placeholder
+
+
+## Classical Designs without futility stopping
+### Pocock Method
+### O'Brien & Fleming Method
+### Wang & Tsiatis Method
+### Rejection bounds and Local p-values
+### Power and Sample size
+## Classical Designs with binding futility stopping
+### Symmetric designs
+### One-Sided Designs
+## Alpha Spending Function Approach
+## R Implementation using rpact
+### Basic Functions
+### `getDesignGroupSequential` defining efficacy boundaries
+### `futilityBounds` defining futility boundaries
+## Sample Size
+### Sample Sizes for Different Types of Endpoints without IA
+### Two groups continuous endpoint (without IA)
+### Two groups binary endpoint (without IA)
+### Group-sequential designs for conti and binary
+### Survival endpoint
+#### Specifying survival distributions
+#### Without interim analyses
+
+<!--chapter:end:31-Group-Sequential-Design.Rmd-->
+
+
+# Adaptive designs
+
+Placeholder
+
+
+## Introduction
+### Early termination due to futility
+### Early termination due to efficacy
+### Sample size reassessment
+### Change or modification of the primary endpoint 
+### Discontinuing treatment arms 
+### Switching between superiority and non-inferiority
+### Selection of the patient population 
+### Methods
+##  General Theory
+### Stopping Boundary
+### Power and Adjusted p-value
+### Stopping Probabilities (Design Evaluation)
+### Expected Duration of an Adaptive Trial (Design Evaluation)
+### Expected Sample Sizes (Design Evaluation)
+### Conditional Power and futility index
+## Method with Direct Combination of p-values
+### Method Based on Individual p-values
+### Method Based on the Sum of p-values
+### Method with Product of p-values
+### Fisher’s product test (Combination Tests)
+### Fisher’s product test with early rej. and acceptance
+## Inverse normal combination function
+
+<!--chapter:end:32-Adaptive-Design.Rmd-->
+
+# Propensity Score 
+
+<!--chapter:end:33-Propensity-Score.Rmd-->
+
+
+# Missing Data
+
+Placeholder
+
+
+##  Missing mechanisms
+## Compatibility and Congeniality
+## Single imputation
+## Multiple imputation
+### Joint Modeling (JM)
+### Multiple Imputation by Fully Conditional Specification (MICE)
+## Bayesian linear regression
+## Predictive Mean Matching
+## MICE using random forest
+
+<!--chapter:end:34-Missing-Data.Rmd-->
+
+`r if (knitr:::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:40-references.Rmd-->
 

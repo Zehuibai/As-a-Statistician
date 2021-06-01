@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-05-30" />
+<meta name="date" content="2021-05-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -969,8 +969,8 @@
             <section class="normal" id="section-">
 <div id="adaptive-designs" class="section level1" number="26">
 <h1><span class="header-section-number">Chapter 26</span> Adaptive designs</h1>
-<div id="htmlwidget-dfcb13bd07f8c848a382" style="width:672px;height:480px;" class="markmap html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dfcb13bd07f8c848a382">{"x":{"data":"# \n## Adaptive designs\n### Introduction\n#### Early termination due to futility\n#### Early termination due to efficacy\n#### Sample size reassessment\n#### Change or modification of the primary endpoint \n#### Discontinuing treatment arms \n#### Switching between superiority and non-inferiority\n#### Selection of the patient population \n#### Methods\n###  General Theory\n#### Stopping Boundary\n#### Power and Adjusted p-value\n#### Stopping Probabilities (Design Evaluation)\n#### Expected Duration of an Adaptive Trial (Design Evaluation)\n#### Expected Sample Sizes (Design Evaluation)\n#### Conditional Power and futility index\n### Method with Direct Combination of p-values\n#### Method Based on Individual p-values\n#### Method Based on the Sum of p-values\n#### Method with Product of p-values\n#### Fisher’s product test (Combination Tests)\n#### Fisher’s product test with early rej. and acceptance\n### Inverse normal combination function","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ffdbe4d0840b7607792e" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ffdbe4d0840b7607792e">{"x":{"data":"# \n## Adaptive designs\n### Introduction\n#### Early termination due to futility\n#### Early termination due to efficacy\n#### Sample size reassessment\n#### Change or modification of the primary endpoint \n#### Discontinuing treatment arms \n#### Switching between superiority and non-inferiority\n#### Selection of the patient population \n#### Methods\n###  General Theory\n#### Stopping Boundary\n#### Power and Adjusted p-value\n#### Stopping Probabilities (Design Evaluation)\n#### Expected Duration of an Adaptive Trial (Design Evaluation)\n#### Expected Sample Sizes (Design Evaluation)\n#### Conditional Power and futility index\n### Method with Direct Combination of p-values\n#### Method Based on Individual p-values\n#### Method Based on the Sum of p-values\n#### Method with Product of p-values\n#### Fisher’s product test (Combination Tests)\n#### Fisher’s product test with early rej. and acceptance\n### Inverse normal combination function","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <div id="introduction-18" class="section level2" number="26.1">
 <h2><span class="header-section-number">26.1</span> Introduction</h2>
 <p>An adaptive design is a design that allows adaptations or modifications to some aspects of a trial after its initiation without undermining the validity and integrity of the trial. The adaptations may include, but are not limited to, sample-size reestimation, early stopping for efficacy or futility, response-adaptive randomization, and dropping inferior treatment groups. Adaptive designs usually require unblinding data and invoke a dependent sampling procedure. Therefore, theory behind adaptive design is much more complicated than that behind classical design.</p>
@@ -1380,11 +1380,21 @@ We have that</p>
 <li><span class="math inline">\(\mathbf{\Sigma} C(p, q)=1-\Phi(Z)\)</span> is uniformly distributed under <span class="math inline">\(H_{0}\)</span>.</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:Inverse-normal-combination-1"></span>
-<img src="02_Plots/Inverse-normal-combination-1.PNG" alt="Figure: Comparison to Fisher’s product test ($lpha_0$ = 1)" width="100%" />
+<img src="02_Plots/Inverse-normal-combination-1.PNG" alt="Figure: Comparison to Fisher’s product test (alpha_0 = 1)" width="100%" />
 <p class="caption">
-Figure 26.5: Figure: Comparison to Fisher’s product test (<span class="math inline">\(lpha_0\)</span> = 1)
+Figure 26.5: Figure: Comparison to Fisher’s product test (alpha_0 = 1)
 </p>
 </div>
+<p><strong>Weighted inverse normal method</strong></p>
+<p>Prefix <span class="math inline">\(0 \leq w_{1}, w_{2} \leq 1\)</span> with <span class="math inline">\(w_{1}^{2}+w_{2}^{2}=1\)</span> and use the combination function:
+<span class="math display">\[
+C(p, q)=1-\Phi(w_{1} \underbrace{\Phi^{-1}(1-p)}_{Z_{1}}+w_{2} \underbrace{\Phi^{-1}(1-q)}_{Z_{2}})
+\]</span>
+This implies
+* <span class="math inline">\(Z_{2}^{*}=w_{1} Z_{1}+w_{2} Z_{2} \sim N(0,1)\)</span> with <span class="math inline">\(\operatorname{Cov}\left(Z_{1}, Z_{2}^{*}\right)=w_{1}\)</span>
+* Distribution as in GSD with interim information time <span class="math inline">\(t=w_{1}^{2}\)</span>.
+* We can use local levels from any GSD with <span class="math inline">\(t_{1}=w_{1}^{2}\)</span>.
+* This adaptive GSD is also called “weighted <span class="math inline">\(z\)</span> -score test” (Cui et al., 1999 ) and can be extended to designs with <span class="math inline">\(K&gt;2\)</span> stages.</p>
 
 </div>
 </div>
