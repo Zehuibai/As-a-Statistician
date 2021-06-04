@@ -12,6 +12,14 @@ widget
 
 ## Package tidyr 
 
+### CHEAT SHEET
+
+```{r tidyr-cheat-sheet, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Wrangling with dplyr and tidyr"}
+knitr::include_graphics("./02_Plots/tidyr_sheet1.png")
+knitr::include_graphics("./02_Plots/tidyr_sheet2.png")
+```
+
+
 ### Pivoting
 
 * One variable might be spread across multiple columns. 
@@ -118,16 +126,15 @@ table5 %>%
 
 [Package ‘dplyr’](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
 
-### Data Transformation with dplyr
+### CHEAT SHEET
 
-```{r dplyr cheat sheet 1, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Data Transformation with dplyr 1"}
+```{r dplyr-cheat-sheet, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Transformation with dplyr"}
 knitr::include_graphics("./02_Plots/data_transformation1.png")
-```
-
-
-```{r dplyr cheat sheet 2, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Data Transformation with dplyr 2"}
 knitr::include_graphics("./02_Plots/data_transformation2.png")
 ```
+
+
+
 
 ### across
 
@@ -297,11 +304,42 @@ cuckoos %>%
 
 
 
-```{r function,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+
+## Package readr 
+
+### CHEAT SHEET
+
+```{r readr, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Import: CHEAT SHEET"}
+knitr::include_graphics("./02_Plots/readr_sheet1.png") 
+knitr::include_graphics("./02_Plots/readr_sheet2.png") 
 ```
 
 
 
-```{r function,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Package stringr
+
+### CHEAT SHEET
+
+```{r stringr, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="strings with stringr: CHEAT SHEET"}
+knitr::include_graphics("./02_Plots/stringr_sheet1.png") 
+knitr::include_graphics("./02_Plots/stringr_sheet2.png") 
+```
+
+## Package forcats
+
+### CHEAT SHEET
+
+```{r forcats, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Factors with forcats: CHEAT SHEET"}
+knitr::include_graphics("./02_Plots/forcats_sheet1.png") 
+```
+
+
+## Package lubridate
+
+### CHEAT SHEET
+
+```{r lubridate, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Dates and times with lubridate: CHEAT SHEET"}
+knitr::include_graphics("./02_Plots/lubridate_sheet1.png")
+knitr::include_graphics("./02_Plots/lubridate_sheet2.png")
 ```
 

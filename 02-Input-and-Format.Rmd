@@ -381,10 +381,4 @@ proc catalog cat=first.FORMATS;
 run;
 ```
 
-## Package readr 
 
-## Package Strings
-
-## Package forcats
-
-## Package lubridate
