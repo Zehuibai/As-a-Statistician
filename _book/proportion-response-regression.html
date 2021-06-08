@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Descriptive Statistics in R | As a Statistician</title>
+  <title>Chapter 22 Proportion Response Regression | As a Statistician</title>
   <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Descriptive Statistics in R | As a Statistician" />
+  <meta property="og:title" content="Chapter 22 Proportion Response Regression | As a Statistician" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Descriptive Statistics in R | As a Statistician" />
+  <meta name="twitter:title" content="Chapter 22 Proportion Response Regression | As a Statistician" />
   
   <meta name="twitter:description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-06-08" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="descriptive-statistics-in-sas.html"/>
-<link rel="next" href="sample-size-calculation.html"/>
+<link rel="prev" href="count-data-regression.html"/>
+<link rel="next" href="mixed-model.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -53,16 +53,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/d3-3.5.17/d3.min.js"></script>
-<link href="libs/markmap-0.3.3/view.mindmap.css" rel="stylesheet" />
-<script src="libs/markmap-0.3.3/view.mindmap.js"></script>
-<script src="libs/markmap-0.3.3/plugins/parsemd.min.js"></script>
-<script src="libs/markmap-binding-1.2.3/markmap.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -410,12 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-pape"><i class="fa fa-check"></i><b>9.1</b> Package pape</a></li>
 <li class="chapter" data-level="9.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-summarytools"><i class="fa fa-check"></i><b>9.2</b> Package summarytools</a></li>
 <li class="chapter" data-level="9.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-comparegroups"><i class="fa fa-check"></i><b>9.3</b> Package compareGroups</a></li>
-<li class="chapter" data-level="9.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-sjplot-for-models-summary"><i class="fa fa-check"></i><b>9.4</b> Package sjPlot for Models Summary</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#tab_model-and-options"><i class="fa fa-check"></i><b>9.4.1</b> tab_model and options</a></li>
-<li class="chapter" data-level="9.4.2" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#mixed-models"><i class="fa fa-check"></i><b>9.4.2</b> Mixed Models</a></li>
-<li class="chapter" data-level="9.4.3" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#plot_model"><i class="fa fa-check"></i><b>9.4.3</b> plot_model</a></li>
-</ul></li>
+<li class="chapter" data-level="9.4" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-sjplot-for-models-summary"><i class="fa fa-check"></i><b>9.4</b> Package sjPlot for Models Summary</a></li>
 <li class="chapter" data-level="9.5" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#package-kableextra"><i class="fa fa-check"></i><b>9.5</b> Package kableExtra</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html#kable_styling"><i class="fa fa-check"></i><b>9.5.1</b> kable_styling</a></li>
@@ -1093,3760 +1078,495 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="descriptive-statistics-in-r" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Descriptive Statistics in R</h1>
-<div id="htmlwidget-f017c817e495ac72578b" style="width:672px;height:480px;" class="markmap html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f017c817e495ac72578b">{"x":{"data":"# \n## Descriptive Statistics in R\n### Package pape \n### Package summarytools \n### Package compareGroups  \n### Package sjPlot for Models Summary\n#### tab_model and options\n#### Mixed Models\n#### plot_model\n### Package kableExtra \n#### kable_styling\n#### Column/Row Specification\n#### Grouping columns/rows \n#### Add Footnote","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
-<div id="package-pape" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Package pape</h2>
-<p>编写漂亮论文和报告的工具箱</p>
+<div id="proportion-response-regression" class="section level1" number="22">
+<h1><span class="header-section-number">Chapter 22</span> Proportion Response Regression</h1>
+<p>Assume that the response variable y takes a continuous value in the interval (0,1), which may or may not include the endpoint. There are 4 different model avaliable</p>
 <ul>
-<li>Using papeR with <a href="https://cran.r-project.org/web/packages/papeR/vignettes/papeR_introduction.html">Markdown</a></li>
-<li>Using papeR with <a href="https://cran.r-project.org/web/packages/papeR/vignettes/papeR_with_latex.pdf">LaTeX</a></li>
+<li>beta regression,</li>
+<li>zero-inflated beta regression (if zero is included in the range),</li>
+<li>one-inflated beta regression (if one is a possible observation), and</li>
+<li>zero-one-inflated beta regression (where both zero and one may be observed).</li>
 </ul>
-<pre><code>library(papeR)
-library(&quot;papeR&quot;)
-data(Orthodont, package = &quot;nlme&quot;)
-labels(Orthodont) &lt;- c(&quot;fissure distance (mm)&quot;,
-                       &quot;age (years)&quot;, &quot;Subject&quot;, &quot;Sex&quot;)
-summarize(Orthodont, type = &quot;numeric&quot;, group = &quot;Sex&quot;,
-          test = c(&quot;wilcox.test&quot;, &quot;t.test&quot;))</code></pre>
-</div>
-<div id="package-summarytools" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Package summarytools</h2>
+<div id="beta-regression" class="section level2" number="22.1">
+<h2><span class="header-section-number">22.1</span> Beta Regression</h2>
+<div id="model-5" class="section level3" number="22.1.1">
+<h3><span class="header-section-number">22.1.1</span> Model</h3>
+<p>Assume that the assumed value of y is continuously between 0 and 1 (not including endpoints). The Beta regression model stipulates that y follows a beta distribution with a probability density function</p>
+<p>Definitions of the beta distribution usually employ a parameterization using the symbols a and <span class="math inline">\(\beta\)</span> such that the probability density function for a beta-distributed response variable <span class="math inline">\(y\)</span> is given by the following:
+<span class="math display">\[
+f(y \mid \alpha, \beta)=\frac{y^{\alpha-1}(1-y)^{\beta-1}}{B(\alpha, \beta)}
+\]</span>
+where
+<span class="math display">\[
+B(\alpha, \beta)=\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha+\beta)}
+\]</span>
+And <span class="math inline">\(\Gamma(.)\)</span> is the gamma function.
+The corresponding expectation and variance of the distribution are given by the following:
+<span class="math display">\[
+\begin{array}{c}
+E[y]=\frac{\alpha}{\alpha+\beta} \\
+\operatorname{var}[y]=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}
+\end{array}
+\]</span>
+When using the beta distribution for modelling data, it is usually more convenient to use an alternative parameterization with <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\phi\)</span></p>
+<p><span class="math display">\[
+f(y)=\frac{y^{\mu \phi-1}(1-y)^{(1-\mu) \phi-1}}{B(\mu \phi,(1-\mu) \phi)}, \quad 0&lt;y&lt;1,
+\]</span>
+where the location parameter
+<span class="math display">\[
+\mu=\frac{\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{k} x_{k}\right\}}{1+\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{k} x_{k}\right\}},
+\]</span>
+and the dispersion (or scale) parameter <span class="math inline">\(\phi\)</span> is a positive real number.</p>
+<p>Beta regression begins with the assumption that the data-generating process can reasonably be modelled by a beta probability distribution (Balakrishnan &amp; Nevzorov, 2003). The beta distribution is a member of the exponential family (Kieschnick &amp; McCullough, 2003), and is defined by two parameters for values on the open interval (0, 1). Two parameterizations for the beta distribution are available, but the mean-precision parameterization, with <span class="math inline">\(\mu\)</span>
+(for the expected value) and <span class="math inline">\(\phi\)</span> (as a measure of ‘precision,’ or the inverse of dispersion), is most commonly used in the context of beta regression</p>
+<p>It can be shown that <span class="math inline">\(y\)</span> has mean
+<span class="math display">\[
+\mathbb{E}(y)=\mu
+\]</span>
+and variance
+<span class="math display">\[
+\operatorname{Var}(y)=\frac{\mu(1-\mu)}{1+\phi}
+\]</span>
+and is therefore proportional to the variance of the binomial distribution for one trial, <span class="math inline">\(\mu(1-\mu)\)</span>, by a factor of <span class="math inline">\(\frac{1}{1+\phi}\)</span></p>
+<p>Depending on the choice of values for the two parameters a large range of shapes can be obtained including symmetrical, skewed, uniform, roughly bell-shaped and bimodal. This flexibility, combined with the limitation to values between 0 and 1, make the beta distribution a particularly useful model for continuous proportional data. In addition, fitting a beta distribution gives increasingly less biased estimates of the mean compared to transformation-based approaches when observations get closer to zero and one and/or their variance is large</p>
+<p>Beta regression consists of the same three components as generalized linear models (GLMs)</p>
 <ul>
-<li><a href="https://github.com/dcomtois/summarytools">Github</a></li>
+<li>the random component (the beta distribution and its implied mean–variance relationship),</li>
+<li>the systematic component (the linear predictor)</li>
+<li>the link function (specifying the link between the random and systematic component).</li>
 </ul>
-<table>
-<colgroup>
-<col width="4%" />
-<col width="95%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>freq()</td>
-<td>Frequency Tables featuring counts, proportions, as well as missing data information</td>
-</tr>
-<tr class="even">
-<td>ctable()</td>
-<td>Cross-Tabulations (joint frequencies) between pairs of discrete variables featuring marginal sums as well as row, column or total proportions</td>
-</tr>
-<tr class="odd">
-<td>descr()</td>
-<td>Descriptive (Univariate) Statistics for numerical data featuring common measures of central tendency and dispersion</td>
-</tr>
-<tr class="even">
-<td>dfSummary()</td>
-<td>Extensive Data Frame Summaries featuring type-specific information for all variables in a data frame: univariate statistics and/or frequency distributions, bar charts or histograms, as well as missing data counts. Very useful to quickly detect anomalies and identify trends at a glance</td>
-</tr>
-</tbody>
-</table>
+<p>In beta regression, the conditional model for the mean <span class="math inline">\(\mu\)</span> of the response given covariates <span class="math inline">\(X\)</span> is usually assumed to be linear on the logit transformed scale:
+<span class="math display">\[
+\begin{array}{c}
+y \sim \operatorname{Beta}(\mu, \phi) \\
+\operatorname{logit}(\mu)=\log \left(\frac{\mu}{1-\mu}\right)=\eta=X \beta
+\end{array}
+\]</span>
+where <span class="math inline">\(\eta\)</span> is known as the linear predictor, <span class="math inline">\(\beta\)</span> is a vector of parameters to be estimated and <span class="math inline">\(X\)</span> is the design matrix of covariate values. To obtain estimates from a beta regression fit that are interpretable on the scale of observations <span class="math inline">\((0,1)\)</span> the values from the linear predictor therefore need to be backtransformed with the inverse logit function:
+<span class="math display">\[
+\operatorname{logit}^{-1}(\eta)=\frac{e^{\eta}}{1+e^{\eta}}
+\]</span>
+As discussed in the text, <span class="math inline">\(\phi\)</span> can either be estimated as a single value for all observations, on modelled as a function of covariates with design matrix <span class="math inline">\(Z\)</span>, corresponding regression parameters <span class="math inline">\(y\)</span>, and linear predictor <span class="math inline">\(\zeta\)</span> - in which case a log link is appropriate:
+<span class="math display">\[
+\log (\phi)=\zeta=Z \gamma
+\]</span></p>
 </div>
-<div id="package-comparegroups" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Package compareGroups</h2>
-<p><a href="https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html">Descriptives by groups</a></p>
-<pre><code>library(compareGroups)
-data(predimed)
+<div id="sas-implementation-15" class="section level3" number="22.1.2">
+<h3><span class="header-section-number">22.1.2</span> SAS Implementation</h3>
+<p>In SAS, a beta regression is estimated via the glimmix procedure (which stands for “generalized linear mixed” modeling) from proc glimmix specifying /dist=beta link=logit</p>
+<pre><code>data libraries;
+input nbooks ncardholders location$ propontime @@;
+cards;
+9.8 0.7 rural 0.39 25.4 7.8 urban 0.81
+14.7 1.7 urban 0.71 38.2 9.5 urban 0.85
+35.5 5.8 urban 0.74 14.1 2.6 rural 0.47
+16.3 2.9 rural 0.72 33.3 7.7 urban 0.83
+19.9 3.1 rural 0.69 38.0 4.6 urban 0.76
+44.1 8.3 urban 0.85 34.2 5.4 urban 0.86
+12.7 2.7 rural 0.53 28.7 3.4 urban 0.78
+9.5 1.0 rural 0.55 31.8 8.7 urban 0.78
+21.1 6.2 urban 0.82 12.1 2.3 rural 0.42
+26.3 0.9 rural 0.88 16.4 8.4 urban 0.88
+11.8 1.6 rural 0.45 31.6 8.8 rural 0.64
+24.6 4.5 rural 0.81 25.3 1.8 urban 0.73
+12.4 1.9 rural 0.38 16.2 7.3 rural 0.66
+13.7 6.2 urban 0.84 29.4 6.3 urban 0.72
+;
 
-## Methods
-## 1 - forces analysis as &quot;normal-distributed&quot;; 
-## 2 - forces analysis as &quot;continuous non-normal&quot;; 
-## 3 - forces analysis as &quot;categorical&quot;; 
-## 4 - NA, which performs a Shapiro-Wilks test to decide between normal or non-normal. 
-res &lt;- compareGroups(group ~ . - toevent, 
-                     data = predimed, 
-                     method = c(wtn = 2, p14 = 2))
+proc glimmix;
+  class location(ref=&#39;rural&#39;);
+  model propontime=nbooks ncardholders location\dist=beta link=logit solution;
+run;
 
-## Create the descriptive table
-restab &lt;- createTable(res, digits = c(p14 = 0, hormo=1), type = 1, 
-                      hide = c(sex = &quot;Male&quot;), 
-                      hide.no = &quot;no&quot;, 
-                      show.n = TRUE)
-restab
+## Check the Model Fit 
+proc glimmix;
+model propontime=/dist=beta link=logit;
+run;
+data deviance_test;
+deviance = -30.66-(-53.40);
+pvalue=1-probchi(deviance,3);
+run;</code></pre>
+</div>
+<div id="r-implementation-betareg" class="section level3" number="22.1.3">
+<h3><span class="header-section-number">22.1.3</span> R Implementation “betareg”</h3>
+<div class="figure" style="text-align: center"><span id="fig:betareg"></span>
+<img src="02_Plots/betareg.PNG" alt=" Functions and methods for objects of class “betareg”" width="100%" />
+<p class="caption">
+Figure 22.1:  Functions and methods for objects of class “betareg”
+</p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="proportion-response-regression.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(betareg)</span>
+<span id="cb2-2"><a href="proportion-response-regression.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GasolineYield&quot;</span>, <span class="at">package =</span> <span class="st">&quot;betareg&quot;</span>)</span>
+<span id="cb2-3"><a href="proportion-response-regression.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## fitting beta regression model</span></span>
+<span id="cb2-4"><a href="proportion-response-regression.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( gy_logit <span class="ot">&lt;-</span> <span class="fu">betareg</span>(yield <span class="sc">~</span> batch <span class="sc">+</span> temp, <span class="at">data =</span> GasolineYield, <span class="at">link=</span><span class="st">&quot;logit&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## betareg(formula = yield ~ batch + temp, data = GasolineYield, link = &quot;logit&quot;)
+## 
+## Standardized weighted residuals 2:
+##     Min      1Q  Median      3Q     Max 
+## -2.8750 -0.8149  0.1601  0.8384  2.0483 
+## 
+## Coefficients (mean model with logit link):
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -6.1595710  0.1823247 -33.784  &lt; 2e-16 ***
+## batch1       1.7277289  0.1012294  17.067  &lt; 2e-16 ***
+## batch2       1.3225969  0.1179020  11.218  &lt; 2e-16 ***
+## batch3       1.5723099  0.1161045  13.542  &lt; 2e-16 ***
+## batch4       1.0597141  0.1023598  10.353  &lt; 2e-16 ***
+## batch5       1.1337518  0.1035232  10.952  &lt; 2e-16 ***
+## batch6       1.0401618  0.1060365   9.809  &lt; 2e-16 ***
+## batch7       0.5436922  0.1091275   4.982 6.29e-07 ***
+## batch8       0.4959007  0.1089257   4.553 5.30e-06 ***
+## batch9       0.3857930  0.1185933   3.253  0.00114 ** 
+## temp         0.0109669  0.0004126  26.577  &lt; 2e-16 ***
+## 
+## Phi coefficients (precision model with identity link):
+##       Estimate Std. Error z value Pr(&gt;|z|)    
+## (phi)    440.3      110.0   4.002 6.29e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+## 
+## Type of estimator: ML (maximum likelihood)
+## Log-likelihood:  84.8 on 12 Df
+## Pseudo R-squared: 0.9617
+## Number of iterations: 51 (BFGS) + 3 (Fisher scoring)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="proportion-response-regression.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( gy_loglog <span class="ot">&lt;-</span> <span class="fu">betareg</span>(yield <span class="sc">~</span> batch <span class="sc">+</span> temp, <span class="at">data =</span> GasolineYield, <span class="at">link=</span><span class="st">&quot;loglog&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## betareg(formula = yield ~ batch + temp, data = GasolineYield, link = &quot;loglog&quot;)
+## 
+## Standardized weighted residuals 2:
+##     Min      1Q  Median      3Q     Max 
+## -2.2151 -0.8785  0.1526  0.8737  3.0834 
+## 
+## Coefficients (mean model with loglog link):
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.7937944  0.0579177 -48.237  &lt; 2e-16 ***
+## batch1       0.9038714  0.0347387  26.019  &lt; 2e-16 ***
+## batch2       0.6553991  0.0376683  17.399  &lt; 2e-16 ***
+## batch3       0.7684237  0.0378459  20.304  &lt; 2e-16 ***
+## batch4       0.5375955  0.0335027  16.046  &lt; 2e-16 ***
+## batch5       0.5516613  0.0346755  15.909  &lt; 2e-16 ***
+## batch6       0.5198331  0.0351349  14.795  &lt; 2e-16 ***
+## batch7       0.2921514  0.0340681   8.576  &lt; 2e-16 ***
+## batch8       0.2504792  0.0349788   7.161 8.02e-13 ***
+## batch9       0.1871284  0.0383089   4.885 1.04e-06 ***
+## temp         0.0053645  0.0001341  40.008  &lt; 2e-16 ***
+## 
+## Phi coefficients (precision model with identity link):
+##       Estimate Std. Error z value Pr(&gt;|z|)    
+## (phi)    906.7      226.6   4.001 6.32e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1 
+## 
+## Type of estimator: ML (maximum likelihood)
+## Log-likelihood: 96.16 on 12 Df
+## Pseudo R-squared: 0.9852
+## Number of iterations: 51 (BFGS) + 2 (Fisher scoring)</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="proportion-response-regression.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(<span class="fu">RNGversion</span>(<span class="st">&quot;3.5.0&quot;</span>))</span>
+<span id="cb6-2"><a href="proportion-response-regression.html#cb6-2" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>()</span>
+<span id="cb6-3"><a href="proportion-response-regression.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb6-4"><a href="proportion-response-regression.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb6-5"><a href="proportion-response-regression.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gy_logit, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb6-6"><a href="proportion-response-regression.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gy_logit, <span class="at">which =</span> <span class="dv">5</span>, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb6-7"><a href="proportion-response-regression.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gy_logit, <span class="at">which =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>, <span class="at">sub.caption =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="proportion-response-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a>op</span></code></pre></div>
+<pre><code>## $xlog
+## [1] FALSE
+## 
+## $ylog
+## [1] FALSE
+## 
+## $adj
+## [1] 0.5
+## 
+## $ann
+## [1] TRUE
+## 
+## $ask
+## [1] FALSE
+## 
+## $bg
+## [1] &quot;white&quot;
+## 
+## $bty
+## [1] &quot;o&quot;
+## 
+## $cex
+## [1] 1
+## 
+## $cex.axis
+## [1] 1
+## 
+## $cex.lab
+## [1] 1
+## 
+## $cex.main
+## [1] 1.2
+## 
+## $cex.sub
+## [1] 1
+## 
+## $cin
+## [1] 0.15 0.20
+## 
+## $col
+## [1] &quot;black&quot;
+## 
+## $col.axis
+## [1] &quot;black&quot;
+## 
+## $col.lab
+## [1] &quot;black&quot;
+## 
+## $col.main
+## [1] &quot;black&quot;
+## 
+## $col.sub
+## [1] &quot;black&quot;
+## 
+## $cra
+## [1] 28.8 38.4
+## 
+## $crt
+## [1] 0
+## 
+## $csi
+## [1] 0.2
+## 
+## $cxy
+## [1] 0.02604167 0.06329115
+## 
+## $din
+## [1] 6.999999 4.999999
+## 
+## $err
+## [1] 0
+## 
+## $family
+## [1] &quot;&quot;
+## 
+## $fg
+## [1] &quot;black&quot;
+## 
+## $fig
+## [1] 0 1 0 1
+## 
+## $fin
+## [1] 6.999999 4.999999
+## 
+## $font
+## [1] 1
+## 
+## $font.axis
+## [1] 1
+## 
+## $font.lab
+## [1] 1
+## 
+## $font.main
+## [1] 2
+## 
+## $font.sub
+## [1] 1
+## 
+## $lab
+## [1] 5 5 7
+## 
+## $las
+## [1] 0
+## 
+## $lend
+## [1] &quot;round&quot;
+## 
+## $lheight
+## [1] 1
+## 
+## $ljoin
+## [1] &quot;round&quot;
+## 
+## $lmitre
+## [1] 10
+## 
+## $lty
+## [1] &quot;solid&quot;
+## 
+## $lwd
+## [1] 1
+## 
+## $mai
+## [1] 1.02 0.82 0.82 0.42
+## 
+## $mar
+## [1] 5.1 4.1 4.1 2.1
+## 
+## $mex
+## [1] 1
+## 
+## $mfcol
+## [1] 1 1
+## 
+## $mfg
+## [1] 1 1 1 1
+## 
+## $mfrow
+## [1] 1 1
+## 
+## $mgp
+## [1] 3 1 0
+## 
+## $mkh
+## [1] 0.001
+## 
+## $new
+## [1] FALSE
+## 
+## $oma
+## [1] 0 0 0 0
+## 
+## $omd
+## [1] 0 1 0 1
+## 
+## $omi
+## [1] 0 0 0 0
+## 
+## $page
+## [1] TRUE
+## 
+## $pch
+## [1] 1
+## 
+## $pin
+## [1] 5.759999 3.159999
+## 
+## $plt
+## [1] 0.1171429 0.9400000 0.2040000 0.8360000
+## 
+## $ps
+## [1] 12
+## 
+## $pty
+## [1] &quot;m&quot;
+## 
+## $smo
+## [1] 1
+## 
+## $srt
+## [1] 0
+## 
+## $tck
+## [1] NA
+## 
+## $tcl
+## [1] -0.5
+## 
+## $usr
+## [1] 0 1 0 1
+## 
+## $xaxp
+## [1] 0 1 5
+## 
+## $xaxs
+## [1] &quot;r&quot;
+## 
+## $xaxt
+## [1] &quot;s&quot;
+## 
+## $xpd
+## [1] FALSE
+## 
+## $yaxp
+## [1] 0 1 5
+## 
+## $yaxs
+## [1] &quot;r&quot;
+## 
+## $yaxt
+## [1] &quot;s&quot;
+## 
+## $ylbias
+## [1] 0.2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="proportion-response-regression.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## models can also be compared by means of a likelihood-ratio test</span></span>
+<span id="cb9-2"><a href="proportion-response-regression.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## this can also be interpreted as testing the null hypothesis of equidispersion against a specific alternative of variable dispersion.</span></span>
+<span id="cb9-3"><a href="proportion-response-regression.html#cb9-3" aria-hidden="true" tabindex="-1"></a>gy_logit2 <span class="ot">&lt;-</span> <span class="fu">betareg</span>(yield <span class="sc">~</span> batch <span class="sc">+</span> temp <span class="sc">|</span> temp, <span class="at">data =</span> GasolineYield)</span>
+<span id="cb9-4"><a href="proportion-response-regression.html#cb9-4" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">lrtest</span>(gy_logit, gy_logit2)</span></code></pre></div>
+<pre><code>## Likelihood ratio test
+## 
+## Model 1: yield ~ batch + temp
+## Model 2: yield ~ batch + temp | temp
+##   #Df LogLik Df Chisq Pr(&gt;Chisq)  
+## 1  12 84.798                      
+## 2  13 86.977  1 4.359    0.03681 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="proportion-response-regression.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(gy_logit, gy_logit2, gy_loglog)</span></code></pre></div>
+<pre><code>##           df       AIC
+## gy_logit  12 -145.5951
+## gy_logit2 13 -147.9541
+## gy_loglog 12 -168.3101</code></pre>
+</div>
+</div>
+<div id="zero-inflated-beta-regression" class="section level2" number="22.2">
+<h2><span class="header-section-number">22.2</span> Zero-inflated Beta Regression</h2>
+<p>If the conventional observation of the model scale is zero, then a zero-inflated beta regression can be used. In this model, the response variable y has a mixture of beta distribution and zero mass. In other words, model the distribution function as</p>
+<p><span class="math display">\[
+f(y)=\left\{\begin{array}{ll}
+\pi_{0}, &amp; \text { if } y=0 \\
+\left(1-\pi_{0}\right) \frac{y^{\mu \phi-1}(1-y)^{(1-\mu) \phi-1}}{B(\mu \phi,(1-\mu) \phi)}, &amp; \text { if } 0&lt;y&lt;1
+\end{array}\right.
+\]</span>
+where the probability of zero
+<span class="math display">\[
+\pi_{0}=\frac{\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}}{1+\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}}
+\]</span>
+the location parameter
+<span class="math display">\[
+\mu=\frac{\exp \left\{\gamma_{0}+\gamma_{1} x_{m+1}+\cdots+\gamma_{k-m} x_{k}\right\}}{1+\exp \left\{\gamma_{0}+\gamma_{1} x_{m+1}+\cdots+\gamma_{k-m} x_{k}\right\}}
+\]</span>
+and the dispersion parameter <span class="math inline">\(\phi\)</span> is a positive real number. Being a mixture of beta distribution and a degenerate distribution at zero, this distribution doesn’t belong to the exponential family, and thus the model is not a generalized linear model.</p>
+</div>
+<div id="one-inflated-beta-regression" class="section level2" number="22.3">
+<h2><span class="header-section-number">22.3</span> One-inflated Beta Regression</h2>
+<p>Assuming that the value range of the y variable is (0,1], that is, 1 is a possible observation value, the data can be modeled by an expanded beta regression. The point quality is 1, that is, the distribution function of y is
+<span class="math display">\[
+f(y)=\left\{\begin{array}{ll}
+\left(1-\pi_{1}\right) \frac{y^{\mu \Phi-1}(1-y)^{(1-\mu) \phi-1}}{B(\mu \phi,(1-\mu) \phi)}, &amp; \text { if } 0&lt;y&lt;1 \\
+\pi_{1}, &amp; \text { if } y=1
+\end{array}\right.
+\]</span>
+Here the probability of one
+<span class="math display">\[
+\pi_{1}=\frac{\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}}{1+\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}}
+\]</span>
+the location parameter
+<span class="math display">\[
+\mu=\frac{\exp \left\{\gamma_{0}+\gamma_{1} x_{m+1}+\cdots+\gamma_{k-m} x_{k}\right\}}{1+\exp \left\{\gamma_{0}+\gamma_{1} x_{m+1}+\cdots+\gamma_{k-m} x_{k}\right\}}
+\]</span></p>
+</div>
+<div id="zero-one-inflated-beta-regression" class="section level2" number="22.4">
+<h2><span class="header-section-number">22.4</span> Zero-one-inflated Beta Regression</h2>
+<p><span class="math display">\[
+f(y)=\left\{\begin{array}{ll}
+\pi_{0}, &amp; \text { if } y=0 \\
+\left(1-\pi_{0}-\pi_{1}\right) \frac{y^{\mu \phi-1}(1-y)^{(1-\mu) \phi-1}}{B(\mu \phi,(1-\mu) \phi)}, &amp; \text { if } 0&lt;y&lt;1, \\
+\pi_{1}, &amp; \text { if } y=1
+\end{array}\right.
+\]</span>
+Here the parameters depend on predictors <span class="math inline">\(x_{1}, \ldots, x_{k}\)</span> via the following relations:
+<span class="math display">\[
+\begin{aligned}
+\mu &amp;=\frac{\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}}{1+\exp \left\{\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{m} x_{m}\right\}} \\
+\pi_{0} &amp;=\frac{\nu}{1+\nu+\tau}, \quad \text { and } \quad \pi_{1}=\frac{\tau}{1+\nu+\tau}
+\end{aligned}
+\]</span>
+Where
+<span class="math display">\[
+\nu=\exp \left\{\gamma_{0}+\gamma_{1} x_{m+1}+\cdots+\gamma_{l-m} x_{l}\right\} \text { and } \tau=\exp \left\{\zeta_{0}+\zeta_{1} x_{l+1}+\cdots+\zeta_{k-l} x_{k}\right\}
+\]</span>
+and the dispersion parameter <span class="math inline">\(\phi\)</span> is a positive constant.</p>
 
-export2md(restab, header.labels = c(p.overall = &quot;p-value&quot;))</code></pre>
-</div>
-<div id="package-sjplot-for-models-summary" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Package sjPlot for Models Summary</h2>
-<div id="tab_model-and-options" class="section level3" number="9.4.1">
-<h3><span class="header-section-number">9.4.1</span> tab_model and options</h3>
-<p>tab_model() is the pendant to plot_model(), however, instead of creating plots, tab_model() creates HTML-tables that will be displayed either in your IDE’s viewer-pane, in a web browser or in a knitr-markdown-document (like this vignette).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics-in-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb3-2"><a href="descriptive-statistics-in-r.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
-<span id="cb3-3"><a href="descriptive-statistics-in-r.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;efc&quot;</span>)</span>
-<span id="cb3-4"><a href="descriptive-statistics-in-r.html#cb3-4" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>c161sex <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(efc<span class="sc">$</span>c161sex)</span>
-<span id="cb3-5"><a href="descriptive-statistics-in-r.html#cb3-5" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>c172code <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(efc<span class="sc">$</span>c172code)</span>
-<span id="cb3-6"><a href="descriptive-statistics-in-r.html#cb3-6" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(barthtot <span class="sc">~</span> c160age <span class="sc">+</span> c12hour <span class="sc">+</span> c161sex <span class="sc">+</span> c172code, <span class="at">data =</span> efc)</span>
-<span id="cb3-7"><a href="descriptive-statistics-in-r.html#cb3-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(neg_c_7 <span class="sc">~</span> c160age <span class="sc">+</span> c12hour <span class="sc">+</span> c161sex <span class="sc">+</span> e17age, <span class="at">data =</span> efc)</span>
-<span id="cb3-8"><a href="descriptive-statistics-in-r.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="descriptive-statistics-in-r.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb3-10"><a href="descriptive-statistics-in-r.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  m1, <span class="at">show.se =</span> <span class="cn">TRUE</span>, <span class="at">show.std =</span> <span class="cn">TRUE</span>, <span class="at">show.stat =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-11"><a href="descriptive-statistics-in-r.html#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.order =</span> <span class="fu">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;stat&quot;</span>, <span class="st">&quot;est&quot;</span>, <span class="st">&quot;std.se&quot;</span>, <span class="st">&quot;se&quot;</span>, <span class="st">&quot;std.est&quot;</span>)</span>
-<span id="cb3-12"><a href="descriptive-statistics-in-r.html#cb3-12" aria-hidden="true" tabindex="-1"></a>) </span></code></pre></div>
-<table style="border-collapse:collapse; border:none;">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-Total score BARTHEL INDEX
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Statistic
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Estimates
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-standardized std. Error
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-std. Error
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
-std. Beta
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-18.62
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-87.15
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.08
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-4.68
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
--0.01
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-carer’ age
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.004</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--2.87
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.21
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.07
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
--0.09
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-average number of hours<br>of care per week
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--14.95
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.28
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
--0.48
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c161sex: c161sex2
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.850
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.19
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.39
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.07
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.09
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
--0.01
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c172code: c172code2
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.550
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.60
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.37
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.08
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.28
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-0.05
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c172code: c172code3
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.564
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.58
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--1.64
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.10
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.84
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
--0.06
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Observations
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">
-821
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-R<sup>2</sup> / R<sup>2</sup> adjusted
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">
-0.271 / 0.266
-</td>
-</tr>
-</table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descriptive-statistics-in-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Customize table output</span></span>
-<span id="cb4-2"><a href="descriptive-statistics-in-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## With collapse.ci and collapse.se, the columns for confidence intervals and standard errors can be collapsed into one column together with the estimates. Sometimes this table layout is required.</span></span>
-<span id="cb4-3"><a href="descriptive-statistics-in-r.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(m1, <span class="at">collapse.ci =</span> <span class="cn">TRUE</span>)   </span></code></pre></div>
-<table style="border-collapse:collapse; border:none;">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-Total score BARTHEL INDEX
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Estimates
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-87.15<br>(77.96 – 96.34)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-carer’ age
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.21<br>(-0.35 – -0.07)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.004</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-average number of hours<br>of care per week
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.28<br>(-0.32 – -0.24)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c161sex: c161sex2
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.39<br>(-4.49 – 3.71)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.850
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c172code: c172code2
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.37<br>(-3.12 – 5.85)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.550
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-c172code: c172code3
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--1.64<br>(-7.22 – 3.93)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.564
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Observations
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-821
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-R<sup>2</sup> / R<sup>2</sup> adjusted
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-0.271 / 0.266
-</td>
-</tr>
-</table>
-<p><strong>Aviable options</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th>Options</th>
-<th>Des.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>auto.label = FALSE</td>
-<td>Turn off automatic labelling</td>
-</tr>
-<tr class="even">
-<td>transform</td>
-<td>默认情况下使用“ exp”作为适用模型类别的转换 未转换的估计，请使用NULL</td>
-</tr>
-<tr class="odd">
-<td>CSS = css_theme(“cells”)</td>
-<td>定制表格样式</td>
-</tr>
-<tr class="even">
-<td>show.intercept</td>
-<td>截距</td>
-</tr>
-<tr class="odd">
-<td>show.est</td>
-<td>估算值</td>
-</tr>
-<tr class="even">
-<td>show.ci</td>
-<td>置信区间</td>
-</tr>
-<tr class="odd">
-<td>show.se</td>
-<td>标准错误</td>
-</tr>
-<tr class="even">
-<td>show.std</td>
-<td>标准化的β系数</td>
-</tr>
-<tr class="odd">
-<td>show.p</td>
-<td>p值</td>
-</tr>
-<tr class="even">
-<td>show.stat</td>
-<td>系数的检验统计量</td>
-</tr>
-<tr class="odd">
-<td>show.df</td>
-<td>p.val =“ kr”， 线性混合模型的p值基于df和Kenward-Rogers近似值</td>
-</tr>
-<tr class="even">
-<td>show.r2</td>
-<td>r平方值</td>
-</tr>
-<tr class="odd">
-<td>show.icc</td>
-<td>类内相关系数</td>
-</tr>
-<tr class="even">
-<td>show.re.var</td>
-<td>混合模型的随机效果方差</td>
-</tr>
-<tr class="odd">
-<td>show.fstat</td>
-<td>每个模型的F统计信息</td>
-</tr>
-<tr class="even">
-<td>show.aic</td>
-<td>每个模型的AIC值</td>
-</tr>
-<tr class="odd">
-<td>show.dev</td>
-<td>模型的偏差</td>
-</tr>
-<tr class="even">
-<td>show.loglik</td>
-<td>模型的对数似然</td>
-</tr>
-<tr class="odd">
-<td>show.obs</td>
-<td>每个模型的观测数量</td>
-</tr>
-<tr class="even">
-<td>title</td>
-<td>表格标题</td>
-</tr>
-<tr class="odd">
-<td>collapse.ci</td>
-<td>置信区间和标准误差的列与估计值合为一栏</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descriptive-statistics-in-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Defining own labels</span></span>
-<span id="cb5-2"><a href="descriptive-statistics-in-r.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb5-3"><a href="descriptive-statistics-in-r.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  m1, m2, </span>
-<span id="cb5-4"><a href="descriptive-statistics-in-r.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;Age (Carer)&quot;</span>, <span class="st">&quot;Hours per Week&quot;</span>, <span class="st">&quot;Gender (Carer)&quot;</span>,</span>
-<span id="cb5-5"><a href="descriptive-statistics-in-r.html#cb5-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Education: middle (Carer)&quot;</span>, <span class="st">&quot;Education: high (Carer)&quot;</span>, </span>
-<span id="cb5-6"><a href="descriptive-statistics-in-r.html#cb5-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Age (Older Person)&quot;</span>),</span>
-<span id="cb5-7"><a href="descriptive-statistics-in-r.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">&quot;First Model&quot;</span>, <span class="st">&quot;M2&quot;</span>),</span>
-<span id="cb5-8"><a href="descriptive-statistics-in-r.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.pred =</span> <span class="st">&quot;Coeffcient&quot;</span>,</span>
-<span id="cb5-9"><a href="descriptive-statistics-in-r.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.ci =</span> <span class="st">&quot;Conf. Int (95%)&quot;</span>,</span>
-<span id="cb5-10"><a href="descriptive-statistics-in-r.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.p =</span> <span class="st">&quot;P-Value&quot;</span></span>
-<span id="cb5-11"><a href="descriptive-statistics-in-r.html#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<table style="border-collapse:collapse; border:none;">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-First Model
-</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-M2
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Coeffcient
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Estimates
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Conf. Int (95%)
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-P-Value
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Estimates
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Conf. Int (95%)
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
-P-Value
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Intercept
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-87.15
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-77.96 – 96.34
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-9.83
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-7.33 – 12.33
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Age (Carer)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.21
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.35 – -0.07
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.004</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.01
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.01 – 0.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-0.359
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Hours per Week
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.28
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.32 – -0.24
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.01 – 0.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Gender (Carer)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.39
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--4.49 – 3.71
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.850
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.43
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.15 – 1.01
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-0.147
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Education: middle (Carer)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.37
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--3.12 – 5.85
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.550
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Education: high (Carer)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--1.64
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--7.22 – 3.93
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.564
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-Age (Older Person)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.01
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.03 – 0.04
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-0.741
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Observations
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
-821
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
-879
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-R<sup>2</sup> / R<sup>2</sup> adjusted
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.271 / 0.266
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.067 / 0.063
-</td>
-</tr>
-</table>
-</div>
-<div id="mixed-models" class="section level3" number="9.4.2">
-<h3><span class="header-section-number">9.4.2</span> Mixed Models</h3>
-<ul>
-<li>边际R平方仅考虑固定效应的方差, 而条件R平方则同时考虑固定效应和随机效应。</li>
-<li>p值是基于t统计量并使用正态分布函数的简单近似值。可以使用p.val =" kr"计算出更精确的p 值。在这种情况下 (仅适用于线性混合模型) , p值的计算基于条件F检验，其中自由度采用
-Kenward-Roger近似 tab_model <span class="math inline">\(\left(\mathrm{m} 1\right.\)</span>, p.val <span class="math inline">\(=\mathrm{&quot;kr}^{\prime \prime}\)</span>, show. <span class="math inline">\(\mathrm{df}=\)</span> TRUE <span class="math inline">\()\)</span></li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descriptive-statistics-in-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb6-2"><a href="descriptive-statistics-in-r.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;sleepstudy&quot;</span>)</span>
-<span id="cb6-3"><a href="descriptive-statistics-in-r.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;efc&quot;</span>)</span>
-<span id="cb6-4"><a href="descriptive-statistics-in-r.html#cb6-4" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(efc<span class="sc">$</span>e15relat)</span>
-<span id="cb6-5"><a href="descriptive-statistics-in-r.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="descriptive-statistics-in-r.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Unlike tables for non-mixed models, tab_models() adds additional </span></span>
-<span id="cb6-7"><a href="descriptive-statistics-in-r.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## information on the random effects to the table output for mixed models. </span></span>
-<span id="cb6-8"><a href="descriptive-statistics-in-r.html#cb6-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(neg_c_7 <span class="sc">~</span> c160age <span class="sc">+</span> c161sex <span class="sc">+</span> e42dep <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster), <span class="at">data =</span> efc)</span>
-<span id="cb6-9"><a href="descriptive-statistics-in-r.html#cb6-9" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>neg_c_7d <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(efc<span class="sc">$</span>neg_c_7 <span class="sc">&lt;</span> <span class="fu">median</span>(efc<span class="sc">$</span>neg_c_7, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb6-10"><a href="descriptive-statistics-in-r.html#cb6-10" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(efc<span class="sc">$</span>e15relat)</span>
-<span id="cb6-11"><a href="descriptive-statistics-in-r.html#cb6-11" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
-<span id="cb6-12"><a href="descriptive-statistics-in-r.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  neg_c_7d <span class="sc">~</span> c160age <span class="sc">+</span> c161sex <span class="sc">+</span> e42dep <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> cluster),</span>
-<span id="cb6-13"><a href="descriptive-statistics-in-r.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> efc, </span>
-<span id="cb6-14"><a href="descriptive-statistics-in-r.html#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>)</span>
-<span id="cb6-15"><a href="descriptive-statistics-in-r.html#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-16"><a href="descriptive-statistics-in-r.html#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="descriptive-statistics-in-r.html#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(m1, m3)</span></code></pre></div>
-<table style="border-collapse:collapse; border:none;">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-Negative impact with 7<br>items
-</th>
-<th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-neg_c_7d
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Estimates
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-CI
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-CI
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-6.55
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-4.87 – 8.23
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.01 – 0.05
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-carer’ age
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.00
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.03 – 0.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.802
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.01
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.99 – 1.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-0.355
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-carer’s gender
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.47
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
--0.08 – 1.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.094
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.83
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.30 – 2.59
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-<strong>0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-elder’s dependency
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.45
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.20 – 1.71
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.37
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.99 – 2.81
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td colspan="7" style="font-weight:bold; text-align:left; padding-top:.8em;">
-Random Effects
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-σ<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-12.61
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-3.29
-</td>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-τ<sub>00</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.50 <sub>cluster</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.24 <sub>cluster</sub>
-</td>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-ICC
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.04
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.07
-</td>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-8 <sub>cluster</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-8 <sub>cluster</sub>
-</td>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Observations
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
-888
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3">
-888
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.127 / 0.160
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3">
-0.181 / 0.237
-</td>
-</tr>
-</table>
-</div>
-<div id="plot_model" class="section level3" number="9.4.3">
-<h3><span class="header-section-number">9.4.3</span> plot_model</h3>
-<p>plot_model() creates plots from regression models, either estimates (as so-called forest or dot whisker plots) or marginal effects.</p>
-<p>plot_model（）允许创建各种绘图类型，可以通过类型参数进行定义。默认值为type =“ fe”，这表示将绘制固定效果（模型系数）。要绘制边际效应，请使用以下命令调用plot_model（）：</p>
-<ul>
-<li>type =“ pred”以绘制特定模型项的预测值（边际效应）。</li>
-<li>type =“ eff”，类似于type =“pred”， 但是，离散预测变量在其比例（而不是参考水平）上保持恒定。它通过内部调用。</li>
-<li>type =“ emm”，类似于type =“ eff”。它通过内部调用。</li>
-<li>type =“ int”绘制交互作用项的边际效应。</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descriptive-statistics-in-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Marginal Effect</span></span>
-<span id="cb7-2"><a href="descriptive-statistics-in-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-3"><a href="descriptive-statistics-in-r.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb7-4"><a href="descriptive-statistics-in-r.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb7-5"><a href="descriptive-statistics-in-r.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create binrary response</span></span>
-<span id="cb7-6"><a href="descriptive-statistics-in-r.html#cb7-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(efc<span class="sc">$</span>neg_c_7 <span class="sc">&lt;</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(efc<span class="sc">$</span>neg_c_7)), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb7-7"><a href="descriptive-statistics-in-r.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 绘制特定模型项的预测值（边际效应）</span></span>
-<span id="cb7-8"><a href="descriptive-statistics-in-r.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_sjplot</span>())</span>
-<span id="cb7-9"><a href="descriptive-statistics-in-r.html#cb7-9" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(barthtot <span class="sc">~</span> c12hour <span class="sc">+</span> neg_c_7 <span class="sc">+</span> c161sex <span class="sc">+</span> c172code, <span class="at">data =</span> efc)</span>
-<span id="cb7-10"><a href="descriptive-statistics-in-r.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(fit, <span class="at">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="at">terms =</span> <span class="st">&quot;c12hour&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-1.png" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics-in-r.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Marginal effects for different groups</span></span>
-<span id="cb8-2"><a href="descriptive-statistics-in-r.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(fit, <span class="at">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;c12hour&quot;</span>, <span class="st">&quot;c172code&quot;</span>))</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-2.png" width="672" /></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics-in-r.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot coefficients</span></span>
-<span id="cb9-2"><a href="descriptive-statistics-in-r.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(fit, <span class="at">colors =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-3.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descriptive-statistics-in-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 2-ways-interaction</span></span>
-<span id="cb10-2"><a href="descriptive-statistics-in-r.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_sjplot</span>())</span>
-<span id="cb10-3"><a href="descriptive-statistics-in-r.html#cb10-3" aria-hidden="true" tabindex="-1"></a>efc<span class="sc">$</span>c161sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(efc<span class="sc">$</span>c161sex)</span>
-<span id="cb10-4"><a href="descriptive-statistics-in-r.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## fit model with interaction</span></span>
-<span id="cb10-5"><a href="descriptive-statistics-in-r.html#cb10-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(neg_c_7 <span class="sc">~</span> c12hour <span class="sc">+</span> barthtot <span class="sc">*</span> c161sex, <span class="at">data =</span> efc)</span>
-<span id="cb10-6"><a href="descriptive-statistics-in-r.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(fit, <span class="at">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;barthtot&quot;</span>, <span class="st">&quot;c161sex&quot;</span>))</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-4.png" width="672" /></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics-in-r.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## alternatively</span></span>
-<span id="cb11-2"><a href="descriptive-statistics-in-r.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## plot_model(fit, type = &quot;int&quot;)</span></span>
-<span id="cb11-3"><a href="descriptive-statistics-in-r.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="descriptive-statistics-in-r.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimates (Fixed Effects)</span></span>
-<span id="cb11-5"><a href="descriptive-statistics-in-r.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitting a logistic regression model</span></span>
-<span id="cb11-6"><a href="descriptive-statistics-in-r.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create binary response</span></span>
-<span id="cb11-7"><a href="descriptive-statistics-in-r.html#cb11-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(efc<span class="sc">$</span>neg_c_7 <span class="sc">&lt;</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(efc<span class="sc">$</span>neg_c_7)), <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb11-8"><a href="descriptive-statistics-in-r.html#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="descriptive-statistics-in-r.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame for fitting model</span></span>
-<span id="cb11-10"><a href="descriptive-statistics-in-r.html#cb11-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb11-11"><a href="descriptive-statistics-in-r.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">factor</span>(y),</span>
-<span id="cb11-12"><a href="descriptive-statistics-in-r.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">factor</span>(efc<span class="sc">$</span>c161sex),</span>
-<span id="cb11-13"><a href="descriptive-statistics-in-r.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">dep =</span> <span class="fu">factor</span>(efc<span class="sc">$</span>e42dep),</span>
-<span id="cb11-14"><a href="descriptive-statistics-in-r.html#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">barthel =</span> efc<span class="sc">$</span>barthtot,</span>
-<span id="cb11-15"><a href="descriptive-statistics-in-r.html#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">education =</span> <span class="fu">factor</span>(efc<span class="sc">$</span>c172code)</span>
-<span id="cb11-16"><a href="descriptive-statistics-in-r.html#cb11-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-17"><a href="descriptive-statistics-in-r.html#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">## fit model</span></span>
-<span id="cb11-18"><a href="descriptive-statistics-in-r.html#cb11-18" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span>., <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>))</span>
-<span id="cb11-19"><a href="descriptive-statistics-in-r.html#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting estimates of generalized linear models</span></span>
-<span id="cb11-20"><a href="descriptive-statistics-in-r.html#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m1, <span class="at">vline.color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-5.png" width="672" /></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="descriptive-statistics-in-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sorting estimates</span></span>
-<span id="cb12-2"><a href="descriptive-statistics-in-r.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(m1, <span class="at">sort.est =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/plot_model-6.png" width="672" /></p>
-</div>
-</div>
-<div id="package-kableextra" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Package kableExtra</h2>
-<p>Use kable() with kableExtra to generate 90 % of complex/advanced tables in either HTML or LaTeX, See more</p>
-<ul>
-<li><a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html">Create Awesome HTML Table with knitr::kable and kableExtra</a></li>
-<li><a href="https://rdrr.io/cran/kableExtra/f/inst/doc/awesome_table_in_pdf.pdf">Create Awesome LaTeX Table with knitr::kable and kableExtra</a></li>
-</ul>
-<div id="kable_styling" class="section level3" number="9.5.1">
-<h3><span class="header-section-number">9.5.1</span> kable_styling</h3>
-<p>HTML table attributes, provides a cleaner approach to modify the style of HTML tables other than using the table.attr option in knitr::kable(). Note that those bootstrap options requires Twitter bootstrap theme, which is not avaiable in some customized template being loaded.</p>
-<pre><code>kable_styling(
-  kable_input,
-  bootstrap_options = &quot;basic&quot;,
-  latex_options = &quot;basic&quot;,
-  full_width = NULL,
-  position = &quot;center&quot;,
-  font_size = NULL,
-  row_label_position = &quot;l&quot;,
-  repeat_header_text = &quot;\\textit{(continued)}&quot;,
-  repeat_header_method = c(&quot;append&quot;, &quot;replace&quot;),
-  repeat_header_continued = FALSE,
-  stripe_color = &quot;gray!6&quot;,
-  stripe_index = NULL,
-  latex_table_env = NULL,
-  protect_latex = TRUE,
-  table.envir = &quot;table&quot;,
-  fixed_thead = FALSE,
-  htmltable_class = NULL,
-  html_font = NULL,
-  wraptable_width = &quot;0pt&quot;
-)</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descriptive-statistics-in-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb14-2"><a href="descriptive-statistics-in-r.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb14-3"><a href="descriptive-statistics-in-r.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb14-4"><a href="descriptive-statistics-in-r.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb14-5"><a href="descriptive-statistics-in-r.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="descriptive-statistics-in-r.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="descriptive-statistics-in-r.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## pandoc Output</span></span>
-<span id="cb14-8"><a href="descriptive-statistics-in-r.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## kable_styling() will automatically apply twitter bootstrap theme to the table.</span></span>
-<span id="cb14-9"><a href="descriptive-statistics-in-r.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## same as the original pandoc output</span></span>
-<span id="cb14-10"><a href="descriptive-statistics-in-r.html#cb14-10" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
-<span id="cb14-11"><a href="descriptive-statistics-in-r.html#cb14-11" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
-<span id="cb14-12"><a href="descriptive-statistics-in-r.html#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-13"><a href="descriptive-statistics-in-r.html#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="descriptive-statistics-in-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="descriptive-statistics-in-r.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>))</span></code></pre></div>
-<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descriptive-statistics-in-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Table Styles:add striped lines &quot;striped&quot; 添加带条纹</span></span>
-<span id="cb16-2"><a href="descriptive-statistics-in-r.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## highlight the hovered row,&quot;hover&quot;</span></span>
-<span id="cb16-3"><a href="descriptive-statistics-in-r.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 不希望表格太大,&quot;condensed&quot;</span></span>
-<span id="cb16-4"><a href="descriptive-statistics-in-r.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 响应选项，可以适应窗口滚动--horizontally scrollable，“responsive”</span></span>
-<span id="cb16-5"><a href="descriptive-statistics-in-r.html#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="descriptive-statistics-in-r.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="descriptive-statistics-in-r.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb16-8"><a href="descriptive-statistics-in-r.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F, <span class="at">position =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; ">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="descriptive-statistics-in-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="descriptive-statistics-in-r.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F, <span class="at">position =</span> <span class="st">&quot;float_right&quot;</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; float: right; margin-left: 10px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="descriptive-statistics-in-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 文本环绕表格 wrap text around the table using the float-left or float-right options.</span></span>
-<span id="cb18-2"><a href="descriptive-statistics-in-r.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="descriptive-statistics-in-r.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## small Font size</span></span>
-<span id="cb18-4"><a href="descriptive-statistics-in-r.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="descriptive-statistics-in-r.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, <span class="at">font_size =</span> <span class="dv">7</span>)</span></code></pre></div>
-<table class="table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descriptive-statistics-in-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fixed Table Header Row 固定表标题行</span></span>
-<span id="cb19-2"><a href="descriptive-statistics-in-r.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="descriptive-statistics-in-r.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">fixed_thead =</span> T)</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-mpg
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-cyl
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-disp
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-hp
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-drat
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108.0
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Valiant
-</td>
-<td style="text-align:right;">
-18.1
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-225.0
-</td>
-<td style="text-align:right;">
-105
-</td>
-<td style="text-align:right;">
-2.76
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Duster 360
-</td>
-<td style="text-align:right;">
-14.3
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-245
-</td>
-<td style="text-align:right;">
-3.21
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Merc 240D
-</td>
-<td style="text-align:right;">
-24.4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-146.7
-</td>
-<td style="text-align:right;">
-62
-</td>
-<td style="text-align:right;">
-3.69
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Merc 230
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-140.8
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Merc 280
-</td>
-<td style="text-align:right;">
-19.2
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-167.6
-</td>
-<td style="text-align:right;">
-123
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="descriptive-statistics-in-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 直接保存HTML表</span></span>
-<span id="cb20-2"><a href="descriptive-statistics-in-r.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## kable(mtcars) %&gt;%</span></span>
-<span id="cb20-3"><a href="descriptive-statistics-in-r.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   kable_styling() %&gt;%</span></span>
-<span id="cb20-4"><a href="descriptive-statistics-in-r.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   save_kable(file = &quot;table1.html&quot;, self_contained = T)</span></span></code></pre></div>
-</div>
-<div id="columnrow-specification" class="section level3" number="9.5.2">
-<h3><span class="header-section-number">9.5.2</span> Column/Row Specification</h3>
-<p>table with lots of explanatory texts, specified the column width for different column, may want to highlight a column (e.g. a “Total” column) by making it bold.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics-in-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## data preparation</span></span>
-<span id="cb21-2"><a href="descriptive-statistics-in-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a>text_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-3"><a href="descriptive-statistics-in-r.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Items =</span> <span class="fu">c</span>(<span class="st">&quot;Item 1&quot;</span>, <span class="st">&quot;Item 2&quot;</span>, <span class="st">&quot;Item 3&quot;</span>),</span>
-<span id="cb21-4"><a href="descriptive-statistics-in-r.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Features =</span> <span class="fu">c</span>(<span class="st">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. &quot;</span>,</span>
-<span id="cb21-5"><a href="descriptive-statistics-in-r.html#cb21-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. &quot;</span>, </span>
-<span id="cb21-6"><a href="descriptive-statistics-in-r.html#cb21-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. &quot;</span>))</span>
-<span id="cb21-7"><a href="descriptive-statistics-in-r.html#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="descriptive-statistics-in-r.html#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="descriptive-statistics-in-r.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 第一列加粗，居左对其</span></span>
-<span id="cb21-10"><a href="descriptive-statistics-in-r.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 第二列背景，居左对其</span></span>
-<span id="cb21-11"><a href="descriptive-statistics-in-r.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(text_tbl) <span class="sc">%&gt;%</span></span>
-<span id="cb21-12"><a href="descriptive-statistics-in-r.html#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb21-13"><a href="descriptive-statistics-in-r.html#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> T, <span class="at">border_right =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb21-14"><a href="descriptive-statistics-in-r.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">width =</span> <span class="st">&quot;30em&quot;</span>, <span class="at">background =</span> <span class="st">&quot;yellow&quot;</span>)</span></code></pre></div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Items
-</th>
-<th style="text-align:left;">
-Features
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;">
-Item 1
-</td>
-<td style="text-align:left;width: 30em; background-color: yellow !important;">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;">
-Item 2
-</td>
-<td style="text-align:left;width: 30em; background-color: yellow !important;">
-In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;">
-Item 3
-</td>
-<td style="text-align:left;width: 30em; background-color: yellow !important;">
-Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis.
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="descriptive-statistics-in-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="descriptive-statistics-in-r.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="descriptive-statistics-in-r.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">bold =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="descriptive-statistics-in-r.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">bold =</span> T, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">background =</span> <span class="st">&quot;#D7261E&quot;</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;font-weight: bold;">
-110
-</td>
-<td style="text-align:right;font-weight: bold;">
-3.90
-</td>
-<td style="text-align:right;font-weight: bold;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;font-weight: bold;">
-110
-</td>
-<td style="text-align:right;font-weight: bold;">
-3.90
-</td>
-<td style="text-align:right;font-weight: bold;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-Datsun 710
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-22.8
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-4
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-108
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-93
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-3.85
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-21.4
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-6
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-258
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-110
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-3.08
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-18.7
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-8
-</td>
-<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-360
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-175
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-3.15
-</td>
-<td style="text-align:right;font-weight: bold;font-weight: bold;color: white !important;background-color: #D7261E !important;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="descriptive-statistics-in-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 标题行的格式</span></span>
-<span id="cb23-2"><a href="descriptive-statistics-in-r.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="descriptive-statistics-in-r.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="descriptive-statistics-in-r.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">45</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-mpg
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-cyl
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-disp
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-hp
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-drat
-</th>
-<th style="text-align:right;-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="grouping-columnsrows" class="section level3" number="9.5.3">
-<h3><span class="header-section-number">9.5.3</span> Grouping columns/rows</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="descriptive-statistics-in-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Add header rows to group columns 分组的列/行, 将标题行添加到组列</span></span>
-<span id="cb24-2"><a href="descriptive-statistics-in-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="descriptive-statistics-in-r.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="descriptive-statistics-in-r.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">&quot; &quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;Group 1&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, </span>
-<span id="cb24-5"><a href="descriptive-statistics-in-r.html#cb24-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;Group 2&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;Group 3&quot;</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code></pre></div>
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 1
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 2
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 3
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="descriptive-statistics-in-r.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="descriptive-statistics-in-r.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;bordered&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="descriptive-statistics-in-r.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Group 1&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;Group 2&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;Group 3&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="descriptive-statistics-in-r.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Group 4&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;Group 5&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb25-5"><a href="descriptive-statistics-in-r.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Group 6&quot;</span> <span class="ot">=</span> <span class="dv">6</span>))</span></code></pre></div>
-<table class="table table-striped table-bordered" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 6
-</div>
-</th>
-</tr>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 4
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 5
-</div>
-</th>
-</tr>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 1
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 2
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Group 3
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="descriptive-statistics-in-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Subgroups</span></span>
-<span id="cb26-2"><a href="descriptive-statistics-in-r.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Group rows via labeling 对行进行分组</span></span>
-<span id="cb26-3"><a href="descriptive-statistics-in-r.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">caption =</span> <span class="st">&quot;Group Rows&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="descriptive-statistics-in-r.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="descriptive-statistics-in-r.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="dv">4</span>, <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-6"><a href="descriptive-statistics-in-r.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">&quot;Group 2&quot;</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-(#tab:kableExtra Grouping)Group Rows
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108.0
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr grouplength="4">
-<td colspan="7" style="border-bottom: 1px solid;">
-<strong>Group 1</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Valiant
-</td>
-<td style="text-align:right;">
-18.1
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-225.0
-</td>
-<td style="text-align:right;">
-105
-</td>
-<td style="text-align:right;">
-2.76
-</td>
-<td style="text-align:right;">
-3.460
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Duster 360
-</td>
-<td style="text-align:right;">
-14.3
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-245
-</td>
-<td style="text-align:right;">
-3.21
-</td>
-<td style="text-align:right;">
-3.570
-</td>
-</tr>
-<tr grouplength="3">
-<td colspan="7" style="border-bottom: 1px solid;">
-<strong>Group 2</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 240D
-</td>
-<td style="text-align:right;">
-24.4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-146.7
-</td>
-<td style="text-align:right;">
-62
-</td>
-<td style="text-align:right;">
-3.69
-</td>
-<td style="text-align:right;">
-3.190
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 230
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-140.8
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-<td style="text-align:right;">
-3.150
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 280
-</td>
-<td style="text-align:right;">
-19.2
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-167.6
-</td>
-<td style="text-align:right;">
-123
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics-in-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">caption =</span> <span class="st">&quot;Group Rows&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="descriptive-statistics-in-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="descriptive-statistics-in-r.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;Group 1&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;Group 2&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-(#tab:kableExtra Grouping)Group Rows
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108.0
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr grouplength="4">
-<td colspan="7" style="border-bottom: 1px solid;">
-<strong>Group 1</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258.0
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Valiant
-</td>
-<td style="text-align:right;">
-18.1
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-225.0
-</td>
-<td style="text-align:right;">
-105
-</td>
-<td style="text-align:right;">
-2.76
-</td>
-<td style="text-align:right;">
-3.460
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Duster 360
-</td>
-<td style="text-align:right;">
-14.3
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360.0
-</td>
-<td style="text-align:right;">
-245
-</td>
-<td style="text-align:right;">
-3.21
-</td>
-<td style="text-align:right;">
-3.570
-</td>
-</tr>
-<tr grouplength="3">
-<td colspan="7" style="border-bottom: 1px solid;">
-<strong>Group 2</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 240D
-</td>
-<td style="text-align:right;">
-24.4
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-146.7
-</td>
-<td style="text-align:right;">
-62
-</td>
-<td style="text-align:right;">
-3.69
-</td>
-<td style="text-align:right;">
-3.190
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 230
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-140.8
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-<td style="text-align:right;">
-3.150
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Merc 280
-</td>
-<td style="text-align:right;">
-19.2
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-167.6
-</td>
-<td style="text-align:right;">
-123
-</td>
-<td style="text-align:right;">
-3.92
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="descriptive-statistics-in-r.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt) <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="descriptive-statistics-in-r.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="descriptive-statistics-in-r.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pack_rows</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="at">label_row_css =</span> <span class="st">&quot;background-color: #666; color: #fff;&quot;</span>)</span></code></pre></div>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-mpg
-</th>
-<th style="text-align:right;">
-cyl
-</th>
-<th style="text-align:right;">
-disp
-</th>
-<th style="text-align:right;">
-hp
-</th>
-<th style="text-align:right;">
-drat
-</th>
-<th style="text-align:right;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.90
-</td>
-<td style="text-align:right;">
-2.875
-</td>
-</tr>
-<tr grouplength="3">
-<td colspan="7" style="background-color: #666; color: #fff;">
-<strong>Group 1</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Datsun 710
-</td>
-<td style="text-align:right;">
-22.8
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-108
-</td>
-<td style="text-align:right;">
-93
-</td>
-<td style="text-align:right;">
-3.85
-</td>
-<td style="text-align:right;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet 4 Drive
-</td>
-<td style="text-align:right;">
-21.4
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-258
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-3.08
-</td>
-<td style="text-align:right;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Hornet Sportabout
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-360
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-3.15
-</td>
-<td style="text-align:right;">
-3.440
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="add-footnote" class="section level3" number="9.5.4">
-<h3><span class="header-section-number">9.5.4</span> Add Footnote</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics-in-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt, <span class="at">align =</span> <span class="st">&quot;c&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="descriptive-statistics-in-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="descriptive-statistics-in-r.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">general =</span> <span class="st">&quot;Here is a general comments of the table. &quot;</span>,</span>
-<span id="cb29-4"><a href="descriptive-statistics-in-r.html#cb29-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">number =</span> <span class="fu">c</span>(<span class="st">&quot;Footnote 1; &quot;</span>, <span class="st">&quot;Footnote 2; &quot;</span>),</span>
-<span id="cb29-5"><a href="descriptive-statistics-in-r.html#cb29-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">alphabet =</span> <span class="fu">c</span>(<span class="st">&quot;Footnote A; &quot;</span>, <span class="st">&quot;Footnote B; &quot;</span>),</span>
-<span id="cb29-6"><a href="descriptive-statistics-in-r.html#cb29-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">symbol =</span> <span class="fu">c</span>(<span class="st">&quot;Footnote Symbol 1; &quot;</span>, <span class="st">&quot;Footnote Symbol 2&quot;</span>),</span>
-<span id="cb29-7"><a href="descriptive-statistics-in-r.html#cb29-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">general_title =</span> <span class="st">&quot;General: &quot;</span>, <span class="at">number_title =</span> <span class="st">&quot;Type I: &quot;</span>,</span>
-<span id="cb29-8"><a href="descriptive-statistics-in-r.html#cb29-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">alphabet_title =</span> <span class="st">&quot;Type II: &quot;</span>, <span class="at">symbol_title =</span> <span class="st">&quot;Type III: &quot;</span>,</span>
-<span id="cb29-9"><a href="descriptive-statistics-in-r.html#cb29-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">footnote_as_chunk =</span> T, <span class="at">title_format =</span> <span class="fu">c</span>(<span class="st">&quot;italic&quot;</span>, <span class="st">&quot;underline&quot;</span>)</span>
-<span id="cb29-10"><a href="descriptive-statistics-in-r.html#cb29-10" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-mpg
-</th>
-<th style="text-align:center;">
-cyl
-</th>
-<th style="text-align:center;">
-disp
-</th>
-<th style="text-align:center;">
-hp
-</th>
-<th style="text-align:center;">
-drat
-</th>
-<th style="text-align:center;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:center;">
-21.0
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-160
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.90
-</td>
-<td style="text-align:center;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:center;">
-21.0
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-160
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.90
-</td>
-<td style="text-align:center;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:center;">
-22.8
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-108
-</td>
-<td style="text-align:center;">
-93
-</td>
-<td style="text-align:center;">
-3.85
-</td>
-<td style="text-align:center;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive
-</td>
-<td style="text-align:center;">
-21.4
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-258
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.08
-</td>
-<td style="text-align:center;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:center;">
-18.7
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-360
-</td>
-<td style="text-align:center;">
-175
-</td>
-<td style="text-align:center;">
-3.15
-</td>
-<td style="text-align:center;">
-3.440
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;text-decoration: underline;">General: </span> <sup></sup> Here is a general comments of the table.
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;text-decoration: underline;">Type I: </span> <sup>1</sup> Footnote 1; <sup>2</sup> Footnote 2;
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;text-decoration: underline;">Type II: </span> <sup>a</sup> Footnote A; <sup>b</sup> Footnote B;
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;text-decoration: underline;">Type III: </span> <sup>*</sup> Footnote Symbol 1; <sup>†</sup> Footnote Symbol 2
-</td>
-</tr>
-</tfoot>
-</table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="descriptive-statistics-in-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a>dt_footnote <span class="ot">&lt;-</span> dt</span>
-<span id="cb30-2"><a href="descriptive-statistics-in-r.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dt_footnote)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(dt_footnote)[<span class="dv">2</span>], </span>
-<span id="cb30-3"><a href="descriptive-statistics-in-r.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">footnote_marker_symbol</span>(<span class="dv">1</span>))</span>
-<span id="cb30-4"><a href="descriptive-statistics-in-r.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(dt_footnote)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">row.names</span>(dt_footnote)[<span class="dv">4</span>], </span>
-<span id="cb30-5"><a href="descriptive-statistics-in-r.html#cb30-5" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">footnote_marker_alphabet</span>(<span class="dv">1</span>))</span>
-<span id="cb30-6"><a href="descriptive-statistics-in-r.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dt_footnote, <span class="at">align =</span> <span class="st">&quot;c&quot;</span>, </span>
-<span id="cb30-7"><a href="descriptive-statistics-in-r.html#cb30-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Remember this escape = F</span></span>
-<span id="cb30-8"><a href="descriptive-statistics-in-r.html#cb30-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">escape =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb30-9"><a href="descriptive-statistics-in-r.html#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb30-10"><a href="descriptive-statistics-in-r.html#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">alphabet =</span> <span class="st">&quot;Footnote A; &quot;</span>,</span>
-<span id="cb30-11"><a href="descriptive-statistics-in-r.html#cb30-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">symbol =</span> <span class="st">&quot;Footnote Symbol 1; &quot;</span>,</span>
-<span id="cb30-12"><a href="descriptive-statistics-in-r.html#cb30-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">alphabet_title =</span> <span class="st">&quot;Type II: &quot;</span>, <span class="at">symbol_title =</span> <span class="st">&quot;Type III: &quot;</span>,</span>
-<span id="cb30-13"><a href="descriptive-statistics-in-r.html#cb30-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">footnote_as_chunk =</span> T)</span></code></pre></div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-mpg
-</th>
-<th style="text-align:center;">
-cyl<sup>*</sup>
-</th>
-<th style="text-align:center;">
-disp
-</th>
-<th style="text-align:center;">
-hp
-</th>
-<th style="text-align:center;">
-drat
-</th>
-<th style="text-align:center;">
-wt
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Mazda RX4
-</td>
-<td style="text-align:center;">
-21.0
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-160
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.90
-</td>
-<td style="text-align:center;">
-2.620
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align:center;">
-21.0
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-160
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.90
-</td>
-<td style="text-align:center;">
-2.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Datsun 710
-</td>
-<td style="text-align:center;">
-22.8
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-108
-</td>
-<td style="text-align:center;">
-93
-</td>
-<td style="text-align:center;">
-3.85
-</td>
-<td style="text-align:center;">
-2.320
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet 4 Drive<sup>a</sup>
-</td>
-<td style="text-align:center;">
-21.4
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-258
-</td>
-<td style="text-align:center;">
-110
-</td>
-<td style="text-align:center;">
-3.08
-</td>
-<td style="text-align:center;">
-3.215
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Hornet Sportabout
-</td>
-<td style="text-align:center;">
-18.7
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-360
-</td>
-<td style="text-align:center;">
-175
-</td>
-<td style="text-align:center;">
-3.15
-</td>
-<td style="text-align:center;">
-3.440
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;">Type II: </span> <sup>a</sup> Footnote A;
-</td>
-</tr>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;">Type III: </span> <sup>*</sup> Footnote Symbol 1;
-</td>
-</tr>
-</tfoot>
-</table>
-
-</div>
 </div>
 </div>
             </section>
@@ -4854,8 +1574,8 @@ Hornet Sportabout
           </div>
         </div>
       </div>
-<a href="descriptive-statistics-in-sas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sample-size-calculation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="count-data-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mixed-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -4887,7 +1607,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/11-Descriptive-Statistics-in-R.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/25-Proportion-Response-Regression.Rmd",
 "text": "Edit"
 },
 "history": {

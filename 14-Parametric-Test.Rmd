@@ -198,7 +198,7 @@ https://www.pharmasug.org/proceedings/2012/PO/PharmaSUG-2012-PO05.pdf
 		exact binomial;
 		output out=OUTPUT binomial;
 	RUN;
-````
+```
 
 ### R implementation
 

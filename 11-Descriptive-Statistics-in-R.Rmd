@@ -75,6 +75,167 @@ export2md(restab, header.labels = c(p.overall = "p-value"))
  
 ## Package sjPlot for Models Summary
 
+### tab_model and options
+ 
+tab_model() is the pendant to plot_model(), however, instead of creating plots, tab_model() creates HTML-tables that will be displayed either in your IDE’s viewer-pane, in a web browser or in a knitr-markdown-document (like this vignette).
+
+```{r sjPlot-one-models,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(sjPlot)
+library(forcats)
+data("efc")
+efc$c161sex <- as.factor(efc$c161sex)
+efc$c172code <- as.factor(efc$c172code)
+m1 <- lm(barthtot ~ c160age + c12hour + c161sex + c172code, data = efc)
+m2 <- lm(neg_c_7 ~ c160age + c12hour + c161sex + e17age, data = efc)
+
+tab_model(
+  m1, show.se = TRUE, show.std = TRUE, show.stat = TRUE,
+  col.order = c("p", "stat", "est", "std.se", "se", "std.est")
+) 
+
+## Customize table output
+## With collapse.ci and collapse.se, the columns for confidence intervals and standard errors can be collapsed into one column together with the estimates. Sometimes this table layout is required.
+tab_model(m1, collapse.ci = TRUE)   
+
+
+```
+
+
+**Aviable options**
+
+| Options                  | Des.                                                                |
+|--------------------------|---------------------------------------------------------------------|
+| auto.label = FALSE       | Turn off automatic labelling                                        |
+| transform                | 默认情况下使用“ exp”作为适用模型类别的转换 未转换的估计，请使用NULL |
+| CSS = css_theme("cells") | 定制表格样式                                                        |
+| show.intercept           | 截距                                                                |
+| show.est                 | 估算值                                                              |
+| show.ci                  | 置信区间                                                            |
+| show.se                  | 标准错误                                                            |
+| show.std                 | 标准化的β系数                                                       |
+| show.p                   | p值                                                                 |
+| show.stat                | 系数的检验统计量                                                    |
+| show.df                  | p.val =“ kr”， 线性混合模型的p值基于df和Kenward-Rogers近似值        |
+| show.r2                  | r平方值                                                             |
+| show.icc                 | 类内相关系数                                                        |
+| show.re.var              | 混合模型的随机效果方差                                              |
+| show.fstat               | 每个模型的F统计信息                                                 |
+| show.aic                 | 每个模型的AIC值                                                     |
+| show.dev                 | 模型的偏差                                                          |
+| show.loglik              | 模型的对数似然                                                      |
+| show.obs                 | 每个模型的观测数量                                                  |
+| title                    | 表格标题                                                            |
+| collapse.ci              | 置信区间和标准误差的列与估计值合为一栏                              |
+
+
+
+```{r more-LR-models, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Defining own labels
+tab_model(
+  m1, m2, 
+  pred.labels = c("Intercept", "Age (Carer)", "Hours per Week", "Gender (Carer)",
+                  "Education: middle (Carer)", "Education: high (Carer)", 
+                  "Age (Older Person)"),
+  dv.labels = c("First Model", "M2"),
+  string.pred = "Coeffcient",
+  string.ci = "Conf. Int (95%)",
+  string.p = "P-Value"
+)
+
+```
+
+
+### Mixed Models
+
+- 边际R平方仅考虑固定效应的方差, 而条件R平方则同时考虑固定效应和随机效应。
+- p值是基于t统计量并使用正态分布函数的简单近似值。可以使用p.val =" kr"计算出更精确的p 值。在这种情况下 (仅适用于线性混合模型) , p值的计算基于条件F检验，其中自由度采用
+Kenward-Roger近似 tab_model $\left(\mathrm{m} 1\right.$, p.val $=\mathrm{"kr}^{\prime \prime}$, show. $\mathrm{df}=$ TRUE $)$
+
+```{r mixed-models, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(lme4)
+data("sleepstudy")
+data("efc")
+efc$cluster <- as.factor(efc$e15relat)
+
+## Unlike tables for non-mixed models, tab_models() adds additional 
+## information on the random effects to the table output for mixed models. 
+m1 <- lmer(neg_c_7 ~ c160age + c161sex + e42dep + (1 | cluster), data = efc)
+efc$neg_c_7d <- ifelse(efc$neg_c_7 < median(efc$neg_c_7, na.rm = TRUE), 0, 1)
+efc$cluster <- as.factor(efc$e15relat)
+m3 <- glmer(
+  neg_c_7d ~ c160age + c161sex + e42dep + (1 | cluster),
+  data = efc, 
+  family = binomial(link = "logit")
+)
+
+tab_model(m1, m3)
+
+```
+
+
+### plot_model
+
+plot_model() creates plots from regression models, either estimates (as so-called forest or dot whisker plots) or marginal effects.
+
+plot_model（）允许创建各种绘图类型，可以通过类型参数进行定义。默认值为type =“ fe”，这表示将绘制固定效果（模型系数）。要绘制边际效应，请使用以下命令调用plot_model（）：
+
+* type =“ pred”以绘制特定模型项的预测值（边际效应）。
+* type =“ eff”，类似于type =“pred”， 但是，离散预测变量在其比例（而不是参考水平）上保持恒定。它通过内部调用。
+* type =“ emm”，类似于type =“ eff”。它通过内部调用。
+* type =“ int”绘制交互作用项的边际效应。
+
+
+
+```{r plot_model,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Marginal Effect
+library(ggplot2)
+library(sjPlot)
+theme_set(theme_bw())
+# create binrary response
+y <- ifelse(efc$neg_c_7 < median(na.omit(efc$neg_c_7)), 0, 1)
+## 绘制特定模型项的预测值（边际效应）
+theme_set(theme_sjplot())
+fit <- lm(barthtot ~ c12hour + neg_c_7 + c161sex + c172code, data = efc)
+plot_model(fit, type = "pred", terms = "c12hour")
+
+## Marginal effects for different groups
+plot_model(fit, type = "pred", terms = c("c12hour", "c172code"))
+
+## plot coefficients
+plot_model(fit, colors = "black")
+
+## 2-ways-interaction
+theme_set(theme_sjplot())
+efc$c161sex <- factor(efc$c161sex)
+## fit model with interaction
+fit <- lm(neg_c_7 ~ c12hour + barthtot * c161sex, data = efc)
+plot_model(fit, type = "pred", terms = c("barthtot", "c161sex"))
+## alternatively
+## plot_model(fit, type = "int")
+
+## Estimates (Fixed Effects)
+## Fitting a logistic regression model
+# create binary response
+y <- ifelse(efc$neg_c_7 < median(na.omit(efc$neg_c_7)), 0, 1)
+
+# create data frame for fitting model
+df <- data.frame(
+  y = factor(y),
+  sex = factor(efc$c161sex),
+  dep = factor(efc$e42dep),
+  barthel = efc$barthtot,
+  education = factor(efc$c172code)
+)
+## fit model
+m1 <- glm(y ~., data = df, family = binomial(link = "logit"))
+## Plotting estimates of generalized linear models
+plot_model(m1, vline.color = "red")
+## Sorting estimates
+plot_model(m1, sort.est = TRUE)
+
+```
+
+
 ## Package kableExtra 
 
 Use kable() with kableExtra to generate 90 % of complex/advanced tables in either HTML or LaTeX, See more
