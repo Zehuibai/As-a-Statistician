@@ -10,6 +10,208 @@ widget <- mm(from = filename, type = "file", root = "")
 widget
 ```
 
+## Set up
+
+### Load Package
+
+```
+if(!require(psych)){install.packages("psych")}
+```
+
+ipak function: install and load multiple R packages.  check to see if packages are installed. Install them if they are not, then load them into the R session.
+
+```
+packages<-c("assertr","stats","tidyr", "stringi")
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+ipak(packages)
+
+## Load necessary packages. 
+## lapply(packages, library, character.only = TRUE)
+```
+
+### Working path
+
+```
+### Clean complete environment
+rm(list=ls())
+getwd()
+### setwd()
+
+### Get date for data name
+current.date <- ymd(format(Sys.Date(), '%Y-%m-%d'))
+
+### Get the path
+get.path <- dirname(rstudioapi::getSourceEditorContext()$path)
+### Read csv data
+library(readr)
+Readdata <- read_delim(file = file.path(get.path, "name.csv"), delim = ";", escape_double = FALSE, trim_ws = TRUE, skip = 1)
+```
+
+
+
+## Basic data management
+
+### apply family
+
+
+
+
+## Package readr 
+
+### CHEAT SHEET
+
+```{r readr, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Import: CHEAT SHEET"}
+knitr::include_graphics("./02_Plots/readr_sheet1.png") 
+knitr::include_graphics("./02_Plots/readr_sheet2.png") 
+
+
+```
+
+
+
+### Basic import/imput
+
+#### Import csv data
+
+The Scan function returns a **list or vector**. This makes the scanning function less useful for entering "rectangular" data
+
+```
+mydata1 <- read.csv("~/Desktop/SASUniversityEdition/myfolders/Daten/CRP.csv",
+                    sep=";", 
+                    header=TRUE)   
+mydata2 <- scan("~/Desktop/SASUniversityEdition/myfolders/Daten/CRP.csv", 
+                sep=";", 
+                what = list("integer","numeric"))
+```
+
+#### Import txt data
+
+```
+test.semi <- read.table("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/testsemicolon.txt", header=T, sep=";")
+print(test.semi)
+
+pfad <- "~/Desktop/SASUniversityEdition/myfolders/Daten"
+mydata3 <- read.table(file.path(pfad, "CRP.csv"), 
+                      header=TRUE, sep=";", dec = ",", skip=9) 
+```
+
+#### Import excel data
+
+* read.xlsx slow for large data sets (worksheet with more than 100 000 cells)  
+* read.xlsx2 is faster on big files compared to read.xlsx function.
+
+```
+## install.packages("xlsx")
+library("xlsx")
+read.xlsx(file, sheetIndex, header=TRUE, colClasses=NA)
+read.xlsx2(file, sheetIndex, header=TRUE, colClasses="character")
+```
+
+#### Import stata data
+
+```
+library(foreign)
+test.stata <- read.dta("https://stats.idre.ucla.edu/stat/data/test.dta")
+print(test.stata)
+```
+
+#### Import SAS data
+
+```
+library(sas7bdat)
+data <- read.sas7bdat("~/Desktop/SASUniversityEdition/myfolders/Daten/uis.sas7bdat")
+View(data)
+```
+
+### Copy from clipboard
+
+```
+copdat <- read.delim("clipboard")
+yourdata <- copdat 
+```
+
+### Save and write objective in R
+
+#### Save as R-Datei
+
+```
+path <- "C:/Users/zbai/Projects/00_Project/00 PMS_VENUS/VENUS_CIR/01_Datasets"
+saveRDS(save_objective, file = file.path(path, "dataname.rds" ))
+
+save_objective <- readRDS(file = file.path(path, "dataname.rds" ))
+```
+
+#### write.table and write.csv
+
+```
+#  quote：字符串是否使用引号表示，默认为TRUE，也就是使用引号表示
+#  row.names：是否导出行序号，默认为TRUE，也就是导出行序号 
+#  col.names：是否导出列名，默认为TRUE，也就是导出列名 
+#  sep：分隔符，默认为空格（” “），也就是以空格为分割列
+write.table (data ,file ="~/Desktop/f.csv", row.names = FALSE, col.names =FALSE, quote =FALSE)
+```
+
+#### write.foreign
+
+Save as SPSS- und SAS- Datei 
+
+```{r write as SAS- Datei,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library("foreign")
+datafile <- tempfile()
+codefile <- tempfile()
+write.foreign(esoph, datafile, codefile, package="SAS")
+file.show(datafile)
+file.show(codefile)
+unlink(datafile)
+unlink(codefile)
+```
+
+#### write.xlsx
+
+```
+# Write the first data set in a new workbook
+write.xlsx(USArrests, file = "./01_Datasets/myworkbook.xlsx",
+      sheetName = "USA-ARRESTS", append = FALSE)
+# Add a second data set in a new worksheet
+write.xlsx(mtcars, file = "myworkbook.xlsx", 
+           sheetName="MTCARS", append=TRUE)
+# Add a third data set
+write.xlsx(iris, file = "myworkbook.xlsx",
+           sheetName="IRIS", append=TRUE)
+```
+
+
+
+### Save the plot
+
+File formats for exporting plots:
+
+* pdf(“rplot.pdf”): pdf file
+* png(“rplot.png”): png file
+* jpeg(“rplot.jpg”): jpeg file
+* postscript(“rplot.ps”): postscript file
+* bmp(“rplot.bmp”): bmp file
+* win.metafile(“rplot.wmf”): windows metafile
+
+```
+# 1. Open a pdf file
+pdf("rplot.pdf") 
+# 2. Create a plot
+plot(x = my_data$wt, y = my_data$mpg,
+     pch = 16, frame = FALSE,
+     xlab = "wt", ylab = "mpg", col = "#2E9FDF")
+# 3. Close the pdf file
+dev.off() 
+```
+
+
+
+
 ## Package tidyr 
 
 ### CHEAT SHEET
@@ -304,15 +506,6 @@ cuckoos %>%
 
 
 
-
-## Package readr 
-
-### CHEAT SHEET
-
-```{r readr, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Import: CHEAT SHEET"}
-knitr::include_graphics("./02_Plots/readr_sheet1.png") 
-knitr::include_graphics("./02_Plots/readr_sheet2.png") 
-```
 
 
 

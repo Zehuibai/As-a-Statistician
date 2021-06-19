@@ -10,6 +10,274 @@ widget <- mm(from = filename, type = "file", root = "")
 widget
 ```
 
+
+
+## Input data into SAS
+
+### Native datasets input
+
+```
+libname libref "dir_location";
+data ds;
+  set libref.sasfilename; /* Note: no file extension */
+  ...
+run;
+
+data ds;
+set "dir_location\sasfilename.sas7bdat"; 
+     /* Windows only */
+set "dir_location/sasfilename.sas7bdat";
+     /* works on all OS including Windows */
+run;
+```
+
+### Reading free formatted data instream
+
+```
+DATA data1;
+ INPUT make $ model $ mpg weight price;
+CARDS;
+AMC Concord 22 2930 4099
+AMC Pacer   17 3350 4749
+AMC Spirit  22 2640 3799
+Buick Century 20 3250 4816
+Buick Electra 15 4080 7827
+;
+RUN; 
+```
+
+### Reading fixed formatted data instream
+
+It need to provide the beginning and ending column numbers for each variable.
+ 
+```
+DATA data2;
+  INPUT make $ 1-5 model $ 6-12 mpg 13-14 weight 15-18 price 19-22;
+CARDS;
+AMC  Concord2229304099
+AMC  Pacer  1733504749
+AMC  Spirit 2226403799
+BuickCentury2032504816
+BuickElectra1540807827
+;
+RUN;
+```
+
+### INFILE: Reading fixed formatted data from an external file
+
+```
+The data3.dat file:
+
+AMC  Concord2229304099
+AMC  Pacer  1733504749
+AMC  Spirit 2226403799
+BuickCentury2032504816
+BuickElectra1540807827 
+
+DATA cars3;
+  INFILE "~/path/data3.dat";
+  INPUT make $ 1-5 model $ 6-12 mpg 13-14 weight 15-18 price 19-22;
+RUN;
+
+*** with special (comma) delimited
+*** tab delimited: DELIMITER='09'x;
+*** comma delimited: delimiter=',';
+
+AMC,Concord,22,2930,4099
+AMC,Pacer,17,3350,4749
+AMC,Spirit,22,2640,3799
+Buick,Century,20,3250,4816
+Buick,Electra,15,4080,7827 
+
+DATA cars5;
+  INFILE "~/path/data3.dat"  delimiter=',';
+  INPUT make $ model $ mpg weight price;
+RUN;
+```
+
+### Write the SAS File
+
+```
+libname diss 'c:dissertation';
+ 
+data diss.salary;
+  input sal1996-sal2000 ;
+  cards;
+10000 10500 11000 12000 12700
+14000 16500 18000 22000 29000
+;
+run;
+
+data 'c:dissertationsalarylong';
+  input Salary1996-Salary2000 ;
+cards;
+10000 10500 11000 12000 12700
+14000 16500 18000 22000 29000
+;
+run;
+```
+
+
+### Import csv data
+
+```
+PROC IMPORT  datafile="Z:\path\data4.csv"
+        out=outname
+        dbms=csv
+		replace;
+		delimiter=";";
+        getnames=yes;
+		Guessingrows=MAX;
+RUN;
+```
+
+### %Import
+
+Import all SAS datasets available in a specific folder
+
+| Macro Variables | Description                                                                                                            |
+|-----------------|------------------------------------------------------------------------------------------------------------------------|
+| folder_path     | File path with the data that are to be imported;                                                                       |
+| delete_all      | If delete_all is unequal 1 then all datasets in the work-library are deleted, else if it is 1 no datasets are deleted; |
+| fname&i         | Macro variable that contains the dataset name                                                                          |
+| total           | Number of all datasets within a folder                                                                                 |
+
+
+```
+%macro Import (folder_path, delete_all);
+	*** delete all datasets if delete_all is 1;
+	%if &delete_all ne 1 %then %do;
+		proc datasets library=work kill nolist; run; quit;
+		dm log 'clear';
+	%end;
+
+	libname IMPORT "&folder_path";
+
+	*** definition of folder with the datasets;
+	proc sql;
+		create table m_dataset_list as select distinct memname from dictionary.tables
+		where libname="IMPORT" and memtype="DATA";
+	quit;
+
+	*** declare macro variables containing the name of a dataset in the specified folder and their overall number; 
+	data m_dataset_list;
+		set m_dataset_list end=last;
+		retain i 0;
+		i=i+1;
+		call symput('fname'||trim(left(put(i,8.))),scan(trim(memname),1,'.'));
+		if last then call symput('total',trim(left(put(i,8.))));
+	run;
+
+
+	*** import by means of the macro variables defined above ; 
+	libname libdata "&folder_path";
+	libname library (libdata); 	
+	%do i=1 %to &total;
+		data work.&&fname&i; set libdata.&&fname&i; 
+		run;
+	%end;
+%mend Import;
+
+%Import (folder_path=Z:\...\,
+		 delete_all=);
+```
+
+### URL
+
+```
+filename urlhandle url 'http://www.math.smith.edu/sas/testdata';
+filename urlhandle url 'http://www.math.smith.edu/sas/testdata' 
+         user='your_username' pass='your_password';
+proc import datafile=urlhandle out=ds dbms=dlm;
+run;
+
+```
+
+### Infile Read multiple raw data files
+
+```
+* data step to read in data;
+data mydata;
+  length inname $ 100;
+  input inname $;
+
+  infile dummy filevar=inname end=EOF;
+  do until (EOF);
+
+    * PUT YOUR INPUT STATEMENT HERE TO READ IN YOUR DATA;
+    input year 1-4 name $ 6-28 party $ 30-34 born 35-38 died 40-43
+          age 45-46 stborn $ 48-49 stelec $ 51-52 religion $ 54-65
+          elecvote 67-69 popvote 71-78;
+
+    * DO ANY PROCESSING OF THE DATA HERE (E.G. COMPUTING NEW VARIABLES);
+    output;
+  end;
+cards;
+c:winners1.txt
+c:winners2.txt
+run;
+```
+
+### Generate automatic file name
+
+If you create multiple data sets in SAS, you may want to name them in an automated way. How to create a file name based on date and time. Such a file naming process will 1) prevent you from providing the same file name to two different data sets, and 2) allow you to see when the file was first created.
+
+```
+data tsave;
+  do i = 1 to 10;
+    do time = 1 to 5;
+	   y = rannor(1232+i + time);
+       output;
+  	end;
+  end;
+run;
+
+data _null_;
+  cdate =  "&SYSDATE9";
+  ctime = "&SYSTIME";
+  time_string = cdate||"_"||translate(ctime, "_", ":");
+  call symput('mytime', time_string);
+run;
+
+data "c:tempnewdata_&mytime";
+  set tsave;
+run;
+```
+
+
+
+
+## Format in SAS
+
+### Proc format 
+
+```
+proc format;
+    value eye_CAT    1 = "OD"
+	                   2 = "OS";
+	  value AR_CAT     1 = "^{unicode 2264} 3° absolute rotation"
+	                   2 = "^{unicode 2264} 5° absolute rotation"
+									   3 = "^{unicode 2264} 7° absolute rotation"
+								     4 = "^{unicode 2264} 10° absolute rotation"
+								     5 = "^{unicode 2264} 20° absolute rotation"
+								     6 = "^{unicode 2264} 30° absolute rotation";
+run;
+```
+
+### Copy and combine SAS format libraries
+
+```
+libname first "etempdata1";
+libname second "etempdata2";
+
+proc catalog cat=first.FORMATS;
+  copy out=second.FORMATS;
+run;
+```
+
+
+
+
 ## Array
 
 ### Defining
