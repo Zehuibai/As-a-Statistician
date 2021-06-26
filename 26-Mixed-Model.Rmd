@@ -288,7 +288,73 @@ $$
 3- 删除较大的主效应后如果仍然不能收敛，保留较大Corr的主效应，删除Corr较小的主效应（如果两个主效应的Corr都大于0.9，不能直接删掉它们，因为随机斜率彼此相互影响，删掉一个，其他的Corr都会相应改变），以此类推，直至探索到符合上面两条标准的模型。
 4. 进行随机斜率筛选的时候，请保持最大迭代次数和全模型相同，这样方便比较模型的差异。
 
+### Preface of linear mixed model
 
+
+```{r shrimp,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+shrimp <- read.csv("./01_Datasets/shrimp.csv",sep=",", header=TRUE)   
+## AnimalID-个体编号
+## SireID-父本编号
+## DamID-母本编号
+## FamilyID-家系编号
+## SexID-性别
+## TankID-测试池号
+## M1BW-入池前体重
+## M2BW-收获体重和M2Age
+## 收获时日龄均为数字变量
+
+library(ggplot2)
+ggplot(data=shrimp,aes(x=SexID,y=M2BW,color=SexID))+
+  geom_boxplot()+
+  geom_dotplot(binaxis = "y",stackdir = "center",position = "dodge",binwidth = 0.25)
+## 实际计算雌雄虾体重均值，发现雌虾的确比雄虾重。
+## Howevwe 雌雄虾的这个差别是真实的吗？
+## 雌雄虾分布在2多个测试池中，且来自105个家系，并且每个家系的入池体重是存在差别的。而且两个池子的养殖管理水平存在较大差别 TankID
+## 我们需要去除测试池、家系对雌雄虾体重的影响，准确估计雌雄虾体重。接下来就要用到线性模型
+
+
+## Choose the model 模型中一个效应到底是作为固定效应，还是随机效应
+## "SAS for Mixed models (Second edition)": An effect is called fixed if the levels in the study represent all possible levels of the factor, or at least all levels about which inference is to be made
+## Factor effects are random if they are used in the study to represent only a sample (ideally, a random sample) of a larger set of potential levels”
+## 固定效应，该效应的所有水平在实验群体中都已经出现
+## 随机效应, 试验群体出现的该效应的水平只是一个很大水平数中的随机抽样
+## 如果我们分析一个效应的目的是为了研究它所在的一个具有概率分布的大群体的情况，那么这个效应应该作为随机效应。随机效应有两个特点，a) 它是大群体中的一个样本，b) 它具有概率分布。
+
+shrimp.lm <- lm(M2BW~SexID,shrimp)
+summary(shrimp.lm) 
+
+library(dplyr)
+
+shrimp %>% 
+  group_by(SexID) %>% 
+  transmute(sex.mean=mean(M2BW)) %>% unique()
+ 
+ggplot(data=shrimp,aes(x=SexID,y=M2BW,color=SexID))+
+  geom_dotplot(binaxis = "y",stackdir = "center",position = "dodge",binwidth = 0.25)+
+  geom_vline(xintercept = 1)+
+  geom_vline(xintercept = 2)+
+  geom_hline(yintercept = 34.37646)+
+  geom_hline(yintercept = 28.16273)+
+  geom_abline(intercept = 34.3765+6.2137, slope=-6.2137)+
+  geom_text(x=2.4,y=31.5,label="-6.6155")+
+  annotate("segment",x=2.5,xend=2.5,y=28.16273,yend = 34.37646)
+
+## 考虑家系结构，Pop:Family为随机效应，Pop、Sex和Tank为固定效应，Sex:M1BW为协变量
+library(lme4)
+shrimp.lm.9 <- lmer(M2BW ~ 1 + PopID + SexID + TankID + SexID:M1BW 
+                    + (1|PopID:FamilyID),shrimp)
+summary(shrimp.lm.9)
+anova(shrimp.lm.9)
+
+## Compare with linear model
+shrimp.lm.8 <- lm(M2BW ~ 1 + PopID + SexID + TankID + SexID:M1BW,shrimp)
+## Mixed model Residual  Variance 12.527     
+## 考虑家系结构后，残差方差明显变小，从残差中分离出了大部分的家系方差。
+## 如果不考虑家系结构，残差方差明显被高估,估计值
+mean(resid(shrimp.lm.8)^2) 
+```
+
+                    
 ## Random Slope and Intercept Model  
 
 **This structure assumes that the errors are independent, and thus is termed an independent structure.**

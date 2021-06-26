@@ -68,8 +68,6 @@ Readdata <- read_delim(file = file.path(get.path, "name.csv"), delim = ";", esca
 ```{r readr, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Data Import: CHEAT SHEET"}
 knitr::include_graphics("./02_Plots/readr_sheet1.png") 
 knitr::include_graphics("./02_Plots/readr_sheet2.png") 
-
-
 ```
 
 
