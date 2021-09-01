@@ -30,6 +30,7 @@ The Pocock boundary is simple to use in that the p-value threshold is the same a
 
 Pocock (1977) first proposed that the crossing boundary be constant for all equally spaced analyses. O'Brien and Fleming $(1979)$ suggested that the crossing boundaries for the kth analysis, $z_{c}(k)$, be changed over the total
 number of analyses $\mathrm{K}$ such that
+
 $$
 z_{c}(k)=z_{O B F} \sqrt{K / k}
 $$
@@ -291,7 +292,7 @@ designSet <- getDesignSet(designs = c(d1, d2), variedParameters = "typeOfDesign"
 plot(designSet, type = 1)
 ```
 
-### `futilityBounds` defining futility boundaries
+  ### `futilityBounds` defining futility boundaries
 
 * A futility bound of z=0 corresponds to an **estimated treatment effect of zero** or “null”, i.e., in this case futility stopping is recommended if the treatment effect estimate at the interim analysis is zero or “goes in the wrong direction”.
 * utility bounds of z=−∞ (which are numerically equivalent to z=−6) correspond to no futility stopping at an interim.

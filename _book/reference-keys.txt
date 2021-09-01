@@ -802,3 +802,7 @@ basic-importimput
 ate-att
 propensity-score-matching
 preface-of-linear-mixed-model
+generalized-additive-models
+generalized-linear-model
+generalized-additive-models-1
+concept
