@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-06-21" />
+<meta name="date" content="2021-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -857,9 +857,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#comparing-survival-functions-using-log-rank-hr"><i class="fa fa-check"></i><b>18.3.4</b> Comparing survival functions using Log-Rank HR</a></li>
 <li class="chapter" data-level="18.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#mantel-haenszel-hr"><i class="fa fa-check"></i><b>18.3.5</b> Mantel-Haenszel HR</a></li>
 </ul></li>
-<li class="chapter" data-level="18.4" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>18.4</b> Cox Proportional Hazards Model</a>
+<li class="chapter" data-level="18.4" data-path="survival-analysis.html"><a href="survival-analysis.html#accelerated-failure-time-aft-model"><i class="fa fa-check"></i><b>18.4</b> Accelerated failure time (AFT) model</a>
 <ul>
 <li class="chapter" data-level="18.4.1" data-path="survival-analysis.html"><a href="survival-analysis.html#introduction-13"><i class="fa fa-check"></i><b>18.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.4.2" data-path="survival-analysis.html"><a href="survival-analysis.html#proc-lifereg"><i class="fa fa-check"></i><b>18.4.2</b> PROC LIFEREG</a></li>
+<li class="chapter" data-level="18.4.3" data-path="survival-analysis.html"><a href="survival-analysis.html#residuum-distribution"><i class="fa fa-check"></i><b>18.4.3</b> Residuum distribution</a></li>
+<li class="chapter" data-level="18.4.4" data-path="survival-analysis.html"><a href="survival-analysis.html#exponential-model"><i class="fa fa-check"></i><b>18.4.4</b> Exponential Model</a></li>
+<li class="chapter" data-level="18.4.5" data-path="survival-analysis.html"><a href="survival-analysis.html#weibull-model"><i class="fa fa-check"></i><b>18.4.5</b> Weibull Model</a></li>
+<li class="chapter" data-level="18.4.6" data-path="survival-analysis.html"><a href="survival-analysis.html#log-normal-model"><i class="fa fa-check"></i><b>18.4.6</b> Log-Normal Model</a></li>
+<li class="chapter" data-level="18.4.7" data-path="survival-analysis.html"><a href="survival-analysis.html#log-logistic-model"><i class="fa fa-check"></i><b>18.4.7</b> Log-Logistic Model</a></li>
+<li class="chapter" data-level="18.4.8" data-path="survival-analysis.html"><a href="survival-analysis.html#fit-statistics-for-model-comparsion"><i class="fa fa-check"></i><b>18.4.8</b> Fit statistics for model comparsion</a></li>
+<li class="chapter" data-level="18.4.9" data-path="survival-analysis.html"><a href="survival-analysis.html#graphical-method-for-distinguishing-different-distributions-in-sas"><i class="fa fa-check"></i><b>18.4.9</b> Graphical method for distinguishing different distributions in SAS</a></li>
+<li class="chapter" data-level="18.4.10" data-path="survival-analysis.html"><a href="survival-analysis.html#prediction-and-hazard-function"><i class="fa fa-check"></i><b>18.4.10</b> Prediction and hazard function</a></li>
+<li class="chapter" data-level="18.4.11" data-path="survival-analysis.html"><a href="survival-analysis.html#left-censoring-and-interval-censoring"><i class="fa fa-check"></i><b>18.4.11</b> Left Censoring and Interval Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-proportional-hazards-model"><i class="fa fa-check"></i><b>18.5</b> Cox Proportional Hazards Model</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="survival-analysis.html"><a href="survival-analysis.html#introduction-14"><i class="fa fa-check"></i><b>18.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.5.2" data-path="survival-analysis.html"><a href="survival-analysis.html#parameter-estimate"><i class="fa fa-check"></i><b>18.5.2</b> Parameter estimate</a></li>
+<li class="chapter" data-level="18.5.3" data-path="survival-analysis.html"><a href="survival-analysis.html#parameter-test"><i class="fa fa-check"></i><b>18.5.3</b> Parameter test</a></li>
+<li class="chapter" data-level="18.5.4" data-path="survival-analysis.html"><a href="survival-analysis.html#graphs-of-the-survival-and-baseline-hazard-function-in-sas"><i class="fa fa-check"></i><b>18.5.4</b> Graphs of the survival and baseline hazard function in SAS</a></li>
+<li class="chapter" data-level="18.5.5" data-path="survival-analysis.html"><a href="survival-analysis.html#check-proportional-hazards"><i class="fa fa-check"></i><b>18.5.5</b> Check proportional hazards</a></li>
+<li class="chapter" data-level="18.5.6" data-path="survival-analysis.html"><a href="survival-analysis.html#model-diagnostics-1"><i class="fa fa-check"></i><b>18.5.6</b> Model Diagnostics</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html"><i class="fa fa-check"></i><b>19</b> Advanced Survival Analysis</a></li>
@@ -915,7 +934,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="22" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>22</b> Mixed Model</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-14"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<li class="chapter" data-level="22.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-15"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="22.1.1" data-path="mixed-model.html"><a href="mixed-model.html#correlated-response-data"><i class="fa fa-check"></i><b>22.1.1</b> Correlated response data</a></li>
 <li class="chapter" data-level="22.1.2" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-and-marginal-model"><i class="fa fa-check"></i><b>22.1.2</b> Hierarchical and Marginal model</a></li>
@@ -947,15 +966,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="22.5" data-path="mixed-model.html"><a href="mixed-model.html#hierarchical-regression-model-for-normal-response"><i class="fa fa-check"></i><b>22.5</b> Hierarchical Regression Model for Normal Response</a>
 <ul>
-<li class="chapter" data-level="22.5.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-15"><i class="fa fa-check"></i><b>22.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="22.5.1" data-path="mixed-model.html"><a href="mixed-model.html#introduction-16"><i class="fa fa-check"></i><b>22.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="22.5.2" data-path="mixed-model.html"><a href="mixed-model.html#sas-implementation-19"><i class="fa fa-check"></i><b>22.5.2</b> SAS Implementation</a></li>
 <li class="chapter" data-level="22.5.3" data-path="mixed-model.html"><a href="mixed-model.html#r-implementation-20"><i class="fa fa-check"></i><b>22.5.3</b> R Implementation</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="generalized-linear-mixed-model.html"><a href="generalized-linear-mixed-model.html"><i class="fa fa-check"></i><b>23</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="23" data-path="generalized-additive-models.html"><a href="generalized-additive-models.html"><i class="fa fa-check"></i><b>23</b> Generalized Additive Models</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="generalized-additive-models.html"><a href="generalized-additive-models.html#generalized-linear-mixed-model"><i class="fa fa-check"></i><b>23.1</b> Generalized Linear (Mixed) Model</a></li>
+<li class="chapter" data-level="23.2" data-path="generalized-additive-models.html"><a href="generalized-additive-models.html#generalized-linear-model"><i class="fa fa-check"></i><b>23.2</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="23.3" data-path="generalized-additive-models.html"><a href="generalized-additive-models.html#generalized-additive-models-1"><i class="fa fa-check"></i><b>23.3</b> Generalized Additive Models</a>
+<ul>
+<li class="chapter" data-level="23.3.1" data-path="generalized-additive-models.html"><a href="generalized-additive-models.html#concept"><i class="fa fa-check"></i><b>23.3.1</b> Concept</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="24" data-path="meta-analysis.html"><a href="meta-analysis.html"><i class="fa fa-check"></i><b>24</b> Meta Analysis</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="meta-analysis.html"><a href="meta-analysis.html#introduction-16"><i class="fa fa-check"></i><b>24.1</b> Introduction</a>
+<li class="chapter" data-level="24.1" data-path="meta-analysis.html"><a href="meta-analysis.html#introduction-17"><i class="fa fa-check"></i><b>24.1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="24.1.1" data-path="meta-analysis.html"><a href="meta-analysis.html#meta-analysis-for-different-data"><i class="fa fa-check"></i><b>24.1.1</b> meta-analysis for different data</a></li>
 </ul></li>
@@ -969,7 +996,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="24.3" data-path="meta-analysis.html"><a href="meta-analysis.html#random-effects-model-for-continuous-outcomes"><i class="fa fa-check"></i><b>24.3</b> Random Effects Model for Continuous Outcomes</a>
 <ul>
-<li class="chapter" data-level="24.3.1" data-path="meta-analysis.html"><a href="meta-analysis.html#introduction-17"><i class="fa fa-check"></i><b>24.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="24.3.1" data-path="meta-analysis.html"><a href="meta-analysis.html#introduction-18"><i class="fa fa-check"></i><b>24.3.1</b> Introduction</a></li>
 <li class="chapter" data-level="24.3.2" data-path="meta-analysis.html"><a href="meta-analysis.html#implementation"><i class="fa fa-check"></i><b>24.3.2</b> Implementation</a></li>
 <li class="chapter" data-level="24.3.3" data-path="meta-analysis.html"><a href="meta-analysis.html#hartung-knapp-adjustment"><i class="fa fa-check"></i><b>24.3.3</b> Hartung-Knapp Adjustment</a></li>
 </ul></li>
@@ -1005,7 +1032,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.4.1" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#basic-functions"><i class="fa fa-check"></i><b>25.4.1</b> Basic Functions</a></li>
 <li class="chapter" data-level="25.4.2" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#getdesigngroupsequential-defining-efficacy-boundaries"><i class="fa fa-check"></i><b>25.4.2</b> <code>getDesignGroupSequential</code> defining efficacy boundaries</a></li>
-<li class="chapter" data-level="25.4.3" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#futilitybounds-defining-futility-boundaries"><i class="fa fa-check"></i><b>25.4.3</b> <code>futilityBounds</code> defining futility boundaries</a></li>
 </ul></li>
 <li class="chapter" data-level="25.5" data-path="group-adaptive-sequential-design.html"><a href="group-adaptive-sequential-design.html#sample-size"><i class="fa fa-check"></i><b>25.5</b> Sample Size</a>
 <ul>
@@ -1018,7 +1044,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="26" data-path="adaptive-designs.html"><a href="adaptive-designs.html"><i class="fa fa-check"></i><b>26</b> Adaptive designs</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="adaptive-designs.html"><a href="adaptive-designs.html#introduction-18"><i class="fa fa-check"></i><b>26.1</b> Introduction</a>
+<li class="chapter" data-level="26.1" data-path="adaptive-designs.html"><a href="adaptive-designs.html#introduction-19"><i class="fa fa-check"></i><b>26.1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="26.1.1" data-path="adaptive-designs.html"><a href="adaptive-designs.html#early-termination-due-to-futility"><i class="fa fa-check"></i><b>26.1.1</b> Early termination due to futility</a></li>
 <li class="chapter" data-level="26.1.2" data-path="adaptive-designs.html"><a href="adaptive-designs.html#early-termination-due-to-efficacy"><i class="fa fa-check"></i><b>26.1.2</b> Early termination due to efficacy</a></li>
@@ -1090,8 +1116,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="survival-analysis" class="section level1" number="18">
 <h1><span class="header-section-number">Chapter 18</span> Survival Analysis</h1>
-<div id="htmlwidget-ee4c9eab7179f2657ea9" style="width:672px;height:480px;" class="markmap html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ee4c9eab7179f2657ea9">{"x":{"data":"# \n## Survival Analysis \n### Preliminary\n#### Probability density function\n#### Cumulative distribution function\n#### Survival function\n#### Hazard function\n#### Cumulative hazard function\n#### Mean Residual Life\n#### Relation between functions\n### Kaplan-Meier estimator\n#### KM Introduction\n#### Nelson-Aalen estimator of the cumulative hazard function\n#### Survival curve in SAS\n#### KM Survival Plots in SAS\n#### Convert Personal-level to Personal-period in R\n#### Package survfit in R\n#### KM Survival Plots in R\n### Compare the survival function\n#### Tests of equality of the survival function\n#### Other nonparametric tests for STRATA statement \n#### Multiple comparisons\n#### Comparing survival functions using Log-Rank HR\n#### Mantel-Haenszel HR\n### Cox Proportional Hazards Model\n#### Introduction","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bcce56f978070efd2349" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bcce56f978070efd2349">{"x":{"data":"# \n## Survival Analysis \n### Preliminary\n#### Probability density function\n#### Cumulative distribution function\n#### Survival function\n#### Hazard function\n#### Cumulative hazard function\n#### Mean Residual Life\n#### Relation between functions\n### Kaplan-Meier estimator\n#### KM Introduction\n#### Nelson-Aalen estimator of the cumulative hazard function\n#### Survival curve in SAS\n#### KM Survival Plots in SAS\n#### Convert Personal-level to Personal-period in R\n#### Package survfit in R\n#### KM Survival Plots in R\n### Compare the survival function\n#### Tests of equality of the survival function\n#### Other nonparametric tests for STRATA statement \n#### Multiple comparisons\n#### Comparing survival functions using Log-Rank HR\n#### Mantel-Haenszel HR\n### Accelerated failure time (AFT) model\n#### Introduction\n#### PROC LIFEREG\n#### Residuum distribution\n#### Exponential Model \n#### Weibull Model\n#### Log-Normal Model\n#### Log-Logistic Model\n#### Fit statistics for model comparsion\n#### Graphical method for distinguishing different distributions in SAS\n#### Prediction and hazard function\n#### Left Censoring and Interval Censoring\n### Cox Proportional Hazards Model\n#### Introduction\n#### Parameter estimate\n#### Parameter test\n#### Graphs of the survival and baseline hazard function in SAS\n#### Check proportional hazards\n#### Model Diagnostics\n##### Cox-Snell Residuals\n##### Martingale residuals\n##### Deviance Residuals\n##### Schoenfeld residuals","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <div id="preliminary" class="section level2" number="18.1">
 <h2><span class="header-section-number">18.1</span> Preliminary</h2>
 <p>Survival analysis mainly focuses on processing a special kind of time data, and the time data may be partially censored. The shortcomings of the ordinary least squares regression method are that the event occurrence time is usually not normally distributed, and the model cannot handle Censor. The non-parametric method can simply and quickly check the survival experience, while the Cox proportional hazard regression model is still the main Analytical method.</p>
@@ -2005,55 +2031,616 @@ This <span class="math inline">\(S E\left(\log H R_{M H}\right)\)</span> can be 
 <p>See more under <strong>Survival Analysis-Survival Analysis Using SAS - A Practical Guide (2nd Edition)</strong></p>
 </div>
 </div>
-<div id="cox-proportional-hazards-model" class="section level2" number="18.4">
-<h2><span class="header-section-number">18.4</span> Cox Proportional Hazards Model</h2>
+<div id="accelerated-failure-time-aft-model" class="section level2" number="18.4">
+<h2><span class="header-section-number">18.4</span> Accelerated failure time (AFT) model</h2>
 <div id="introduction-13" class="section level3" number="18.4.1">
 <h3><span class="header-section-number">18.4.1</span> Introduction</h3>
-<p>The hazard rate can also be interpreted as the rate at which failures occur at that point in time, or the rate at which risk is accumulated
-<span class="math display">\[h(t|x)=exp(\beta_0 + \beta_1x)\]</span>
-<span class="math display">\[h(t)=h_0(t)exp(x\beta_x)\]</span>
-<span class="math display">\[HR = \frac{h(t|x_2)}{h(t|x_1)} = \frac{h_0(t)exp(x_2\beta_x)}{h_0(t)exp(x_1\beta_x)} = exp(\beta_x(x_2-x_1))\]</span></p>
+<p>The accelerated failure time model (AFT model) is a parametric model that can replace the commonly used proportional hazard model. The proportional hazard model assumes that the role of the covariate is to multiply the risk by a certain constant, while the AFT model assumes that the role of the covariate is to <strong>accelerate or slow down the life course of the disease by a certain constant.</strong> The AFT model describes the relationship between the survivor functions of any two individuals in its most general form.</p>
+<p>Assuming that <span class="math inline">\(T\)</span> is the failure time and <span class="math inline">\(x\)</span> is the covariate, the assumption of the accelerated failure time model is that the survival time of a person is equal to the baseline survival time of the population, the acceleration factor of this person, and its mathematical form is as follows:
+<span class="math display">\[
+T=t * e^{\theta \cdot x}, t=e^{\mu+\sigma * W}
+\]</span>
+Common forms also include:
+<span class="math display">\[
+S(t \mid x)=S_{0}\left(t * e^{\theta \cdot x}\right)
+\]</span>
+<span class="math display">\[
+Y=\log (T)=\mu+\gamma \cdot x+\sigma * W
+\]</span>
+Among them, the baseline survival time <span class="math inline">\(t\)</span> of the population obeys a certain probability distribution, and the <span class="math inline">\(W\)</span> is also a random variable that obeys a certain probability distribution.</p>
+<p><strong>PH &amp; AFT</strong></p>
+<ul>
+<li>AFT Model is based on time T modeling, and PH Model is based on Hazard modeling</li>
+<li>Weibull regression is the only regression that satisfies both model assumptions</li>
+</ul>
+<p>For PH Model: <span class="math display">\[\quad \lambda_{i}(t)=\lambda_{0}(t) \exp \left(x_{i}^{T} \beta\right)\]</span>
+For AFT Model: <span class="math display">\[\lambda_{i}(t)=\lambda_{0}\left(\exp \left(-x_{i}^{T} \beta\right) t\right) \exp \left(-x_{i}^{T} \beta\right)\]</span></p>
+<p>这是由于 <span class="math inline">\(T_{i}=\exp \left(x_{i}^{T} \beta\right) T_{0}\)</span>, 因此
+<span class="math display">\[
+S_{i}(t)=P\left(T_{i} \geq t\right)=P\left(T_{0} \geq \exp \left(-x_{i}^{T} \beta\right) t\right)=S_{0}\left(\exp \left(-x_{i}^{T} \beta\right) t\right)
+\]</span>
+<span class="math display">\[
+f_{i}(t)=f_{0}\left(\exp \left(-x_{i}^{T} \beta\right) t\right) \exp \left(-x_{i}^{T} \beta\right)
+\]</span>
+<span class="math display">\[
+\lambda_{i}(t)=\exp \left(-x_{i}^{T} \beta\right) \lambda_{0}\left(\exp \left(-x_{i}^{T} \beta\right) t\right)
+\]</span></p>
+<p>Intuitively, the larger the <span class="math inline">\(x_{i}^{T} \beta\)</span>, the longer the survival time. Since S is a monotonic non-decreasing function, the survival curve is higher. From a logarithmic perspective</p>
+<p>PH Model:
+<span class="math display">\[
+\log \lambda_{i}(t)=\log \lambda_{0}(\exp (\log t))+x_{i}^{T} \beta
+\]</span>
+AFT Model:
+<span class="math display">\[
+\log \lambda_{i}(t)=\log \lambda_{0}\left(\exp \left(\log t-x_{i}^{T} \beta\right)\right)-x_{i}^{T} \beta
+\]</span></p>
+</div>
+<div id="proc-lifereg" class="section level3" number="18.4.2">
+<h3><span class="header-section-number">18.4.2</span> PROC LIFEREG</h3>
+<p>The LIFEREG program uses the maximum likelihood method to generate the estimated value of the parameter regression model using censored survival data [method of maximum likelihood]. To some extent, PROREG LIFEREG has been obscured by the PHREG program, which uses a method known as partial likelihoo for semiparametric regression analysis [method known as partial likelihoo].</p>
+<p>PROC LIFEREG is by no means obsolete. It can do some better things than PROC PHREG, and it can do other things that PROC PHREG simply cannot do:</p>
+<ul>
+<li>PROC LIFEREG accommodates left censoring and interval censoring. PROC PHREG allows only right censoring.</li>
+<li>With PROC LIFEREG, you can test certain hypotheses about the shape of the hazard function. PROC PHREG gives you only nonparametric estimates of the survivor function, which can be difficult to interpret.</li>
+<li>If the shape of the survival distribution is known, PROC LIFEREG produces more efficient estimates (with smaller standard errors) than PROC PHREG.</li>
+<li>PROC LIFEREG can easily generate predicted event times for any specified set of covariate values. This is more difficult with PHREG, and often impossible.</li>
+<li>PROC LIFEREG’s greatest limitation is that it does not handle time-dependent covariates, something at which PROC PHREG excels.</li>
+</ul>
+<!-- LIFEREG程序使用最大似然方法使用删失的生存数据生成参数回归模型的估计值 [method of maximum likelihood]。在某种程度上，PROREG LIFEREG已被PHREG程序所遮盖，该程序使用称为偏似然的方法进行半参数回归分析 [method known as partial likelihoo]。 -->
+<!-- PROC LIFEREG绝不是过时的。它可以做一些比PROC PHREG更好的事情，它可以做PROC PHREG根本无法做的其他事情： -->
+<!-- PROC LIFEREG可以容纳左检查和间隔检查。 -->
+<!-- 使用PROC LIFEREG，您可以检验关于危害函数形状的某些假设。 PROC PHREG仅给您幸存者功能的非参数估计，这可能很难解释。 -->
+<!-- 如果已知生存分布的形状，则PROC LIFEREG会比PROC PHREG产生更有效的估计（标准误差较小）。  -->
+<!-- PROC LIFEREG可以轻松地为任何指定的一组协变量值生成预测事件时间。对于PHREG，这更困难，而且通常是不可能的。  -->
+<!-- PROC LIFEREG的最大局限性在于它不能处理与时间相关的协变量，而PROC PHREG擅长于此。 -->
+<p>What PROC LIFEREG actually estimates is a special case of this model that is quite similar in form to an ordinary linear regression model. Let <span class="math inline">\(T_{i}\)</span> be a random variable denoting the event time for the ith individual in the sample, and let <span class="math inline">\(x_{i 1}, \ldots, x_{i k}\)</span> be the values of <span class="math inline">\(k\)</span> covariates for that same individual. The model is then
+<span class="math display">\[
+\log T_{i}=\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}+\sigma \varepsilon_{i}
+\]</span>
+where <span class="math inline">\(\varepsilon_{i}\)</span> is a random disturbance term, and <span class="math inline">\(\beta_{0}, \ldots, \beta_{k}\)</span>, and <span class="math inline">\(\sigma\)</span> are parameters to be estimated. Exponentiating both sides gives an alternative way of expressing the model:
+<span class="math display">\[
+T_{i}=\exp \left(\beta_{0}+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}+\sigma \varepsilon_{i}\right)
+\]</span>
+In regression analysis, <span class="math inline">\(-\log (T)\)</span> represents fixed effects, and <span class="math inline">\(\epsilon\)</span> represents noise. Different <span class="math inline">\(\epsilon\)</span> distribution means different distribution of <span class="math inline">\(T_{0}\)</span>.</p>
+<p>According to a simple transformation, we have <span class="math inline">\(T_{i}=\exp \left(x_{i}^{T} \beta\right) T_{0}, T_{0}=\exp (W)\)</span>. Therefore, the AFT model parameter <span class="math inline">\(\beta\)</span> represents: when the jth dimension changes in <span class="math inline">\(\Delta_{j}\)</span>, the survival time will change <span class="math inline">\(\exp \left(\Delta_{j} \beta_{j}\right )\)</span></p>
+</div>
+<div id="residuum-distribution" class="section level3" number="18.4.3">
+<h3><span class="header-section-number">18.4.3</span> Residuum distribution</h3>
+<p>Assuming <span class="math inline">\(Y=\log T\)</span>, the AFT Model can be expressed as
+<span class="math display">\[
+Y_{i}=x_{i}^{T} \beta+W_{i}
+\]</span>
+<span class="math inline">\(W_{i} \sim f\)</span> represents the <strong>independent residual</strong></p>
+<ul>
+<li>If <span class="math inline">\(W \sim N\left(0, \sigma^{2}\right)\)</span>, the model at this time is called <strong>Lognormal-AFT Model</strong>. Because the assumption of normality for <span class="math inline">\(Y\)</span> is equivalent to the assumption of lognormality. At this time, if there is no censorship, we can directly use the LSE (least squares) method to solve the problem (in fact, there is rarely such a possibility). Survival data usually has at least some vetted observations, and it is difficult to process these observations with <strong>OLS (Ordinary Least Squares)</strong>. Instead, we can use <strong>maximum likelihood estimation</strong>.</li>
+<li>If <span class="math inline">\(W \sim W \operatorname{libull}(\lambda, \gamma)\)</span>, the model at this time is called <strong>Weibull regression model</strong>. It is a special AFT Model.</li>
+<li>Following surmmaries the model</li>
+</ul>
+<p><span class="math display">\[
+\begin{array}{c|l}
+\text { Distribution of } \varepsilon &amp; \text { Distribution of } T \\
+\hline \text { extreme value (2 par.) } &amp; \text { Weibull } \\
+\text { extreme value (1 par.) } &amp; \text { exponential } \\
+\text { log-gamma } &amp; \text { gamma } \\
+\text { logistic } &amp; \text { log-logistic } \\
+\text { normal } &amp; \text { log-normal }
+\end{array}
+\]</span></p>
+<p><strong>Specify Model in SAS</strong></p>
+<pre><code>*** Lognormal-AFT Model;
+PROC LIFEREG DATA=recid;
+ MODEL week*arrest(0)=fin age race wexp mar paro prio / DISTRIBUTION=LNORMAL;
+RUN;</code></pre>
+</div>
+<div id="exponential-model" class="section level3" number="18.4.4">
+<h3><span class="header-section-number">18.4.4</span> Exponential Model</h3>
+<p>The simplest model estimated by PROC LIFEREG is the exponential model, which is called by DISTRIBUTION = EXPONENTIAL in the MODEL statement. The model specifies that <span class="math inline">\(\varepsilon\)</span> has a standard extreme-value distribution and constrains <span class="math inline">\(\sigma=1\)</span>. If <span class="math inline">\(\varepsilon\)</span> has an extreme value distribution, then the logarithm T also has an extreme value distribution, provided that the covariate is the condition.
+Constant hazard function, expresses the exponential regression model as
+<span class="math display">\[
+\log h(t)=\beta_{0}^{\bullet}+\beta_{1}^{\bullet} x_{1}+\ldots+\beta_{k}^{\bullet} x_{k}
+\]</span></p>
+<p><strong>Interpretation</strong></p>
+<p><span class="math display">\[\lambda_{i}(t)=\lambda(t) \exp \left(x_{i}^{T} \beta\right), \lambda(t) \geq 0\]</span>
+Where <span class="math inline">\(\lambda(t)=\lambda\)</span>
+<span class="math display">\[\frac{\lambda_{1}(t)}{\lambda_{2}(t)}=\exp \left(\Delta_{j} \beta_{j}\right), \Delta_{j}=x_{1 j}-x_{2 j}\]</span>
+Therefore, the meaning of the parameter <span class="math inline">\(\beta_{j}\)</span> is: when the data <span class="math inline">\(x_{j}\)</span> changes with the size of <span class="math inline">\(\Delta_{j}\)</span>, the Hazard Ratio of the model will change <span class="math inline">\(\exp \left(\Delta_{ j} \beta_{j}\right)\)</span></p>
+</div>
+<div id="weibull-model" class="section level3" number="18.4.5">
+<h3><span class="header-section-number">18.4.5</span> Weibull Model</h3>
+<p>The Weibull model is a slight modification of the exponential model with great consequences. By specifying DISTRIBUTION = WEIBULL in the MODEL statement, we retain the assumption that <span class="math inline">\(\varepsilon\)</span> has a standard extreme value distribution, but <strong>relax the assumption of <span class="math inline">\(\sigma=1\)</span>.</strong></p>
+<ul>
+<li>When <span class="math inline">\(\sigma\)</span>&gt; 1, the danger decreases with time.</li>
+<li>When <span class="math inline">\(0.5&lt;\sigma&lt;1\)</span>, the risk is increasing at a reduced rate.</li>
+<li>When <span class="math inline">\(0&lt;\sigma&lt;0.5\)</span>, the danger is increasing at an increasing rate.</li>
+<li>-When <span class="math inline">\(\sigma=0.5\)</span>, the hazard function is a straight line and its starting point is 0.</li>
+</ul>
+<p><strong>Weibull Distribution</strong></p>
+<p><span class="math display">\[
+\begin{array}{l}
+\lambda(t)=\lambda \gamma(t \lambda)^{\gamma-1} \\
+\Lambda(t)=(t \lambda)^{\gamma} \\
+S(t)=\exp \left[-(t \lambda)^{\gamma}\right] \\
+f(t)=\lambda \gamma(t \lambda)^{\gamma-1} \exp \left((t \lambda)^{\gamma}\right)
+\end{array}
+\]</span></p>
+<p><strong>Connection with exponential distribution</strong></p>
+<p>If <span class="math inline">\(X \sim \operatorname{Exp}(\tau)\)</span>, then <span class="math inline">\(T=X^{\sigma} \sim\)</span> Weibull <span class="math inline">\(\left(\gamma=1 / \sigma, \lambda=\tau^{\ sigma}\right)\)</span>
+also,
+- For exponential distribution, <span class="math inline">\(\quad \log S(t)=(-\log t)+C_(1)\)</span>
+- For Weibull distribution, <span class="math inline">\(\quad \log S(t)=\gamma(-\log t)+C_{2}\)</span></p>
+<p>T has a Weibull distribution conditioned on covariates.it has a relatively simple survival function, which is easy to manipulate mathematically: (where <span class="math inline">\(\mathbf{x}_{i}\)</span> is a vector of the covariate values and $ $ is a vector of coefficients.)
+<span class="math display">\[
+S_{i}(t)=\exp \left\{-\left[t_{i} e^{-\beta \mathbf{x}_{i}}\right]^{\frac{1}{\sigma}}\right\}
+\]</span>
+Secondly, in addition to the AFT model, the Weibull model is also a proportional hazard model. This means that its coefficient (after proper conversion) can be interpreted as a relative hazard ratio. In fact, the Weibull model (and its special case, the exponential model) is the only model that belongs to both categories. Like the exponential model, there is a completely equivalent relationship between the logarithmic risk forms of the model
+<span class="math display">\[
+\log h(t)=\alpha \log t+\beta_{0}^{\bullet}+\beta_{1}^{\bullet} x_{1}+\ldots+\beta_{k}^{\bullet} x_{k}
+\]</span>
+and the log-survival time model
+<span class="math display">\[
+\log T_{i}=\beta_{0}+\beta_{1} x_{1}+\ldots+\beta_{k} x_{k}+\sigma \varepsilon
+\]</span>
+However, the relationship between the parameters is slightly more complicated. Specifically, for the Weibull model
+<span class="math display">\[
+\beta_{j}^{\bullet}=\frac{-\beta_{j}}{\sigma} \text { for } j=1, \ldots, k
+\]</span>
+<span class="math display">\[\alpha=(1 / \sigma)-1.\]</span></p>
+<pre><code>## Output
+## σˆ (labeled “Scale” 0.7124  in Output) is between 0 and 1
+## calculate αˆ = (1/.7124)–1=0.4037, which is the coefficient for log t 
+   in the log-hazard model. 
+## “Weibull Shape.” This is not an independent parameter but merely 
+   the reciprocal of the Shape parameter (that is, 1/σˆ ). </code></pre>
+</div>
+<div id="log-normal-model" class="section level3" number="18.4.6">
+<h3><span class="header-section-number">18.4.6</span> Log-Normal Model</h3>
+<p>Unlike the Weibull model, the lognormal model has a non-monotonic hazard function. When t=0, the danger is 0. It rises to a peak, and then drops to 0 as t approaches infinity. The log normal is not a proportional hazard model, and its risk function cannot be expressed in a closed form. However, it can be expressed as a regression model, where the dependent variable is the log hazard.
+<span class="math display">\[
+\log h(t)=\log h_{0}\left(t e^{-\beta x}\right)-\beta \mathbf{x}
+\]</span>
+where <span class="math inline">\(h_{0}\)</span> (.) can be interpreted as the hazard function for an individual with <span class="math inline">\(\mathbf{x}=\mathbf{0}\)</span>. (personal hazard function)</p>
+</div>
+<div id="log-logistic-model" class="section level3" number="18.4.7">
+<h3><span class="header-section-number">18.4.7</span> Log-Logistic Model</h3>
+<p>An inverted U-shaped hazard is the log-logistic model, which assumes that ε has a logistic distribution with
+<span class="math display">\[
+f(\varepsilon)=\frac{e^{\varepsilon}}{\left(1+e^{\varepsilon}\right)^{2}}
+\]</span></p>
+<p>DISTRIBUTION=LLOGISTIC, The logical distribution is symmetrical, with an average value of 0, and is very similar in shape to the normal distribution. If <span class="math inline">\(\varepsilon\)</span> has a logarithmic distribution, then the logarithm <span class="math inline">\(T\)</span> (although the mean is non-zero) has a logarithmic distribution. The loglogistic hazard function is
+<span class="math display">\[
+h(t)=\frac{\lambda \gamma(\lambda t)^{\gamma-1}}{1+(\lambda t)^{\gamma}}
+\]</span>
+where <span class="math inline">\(\gamma=1 / \sigma\)</span>, and
+<span class="math display">\[
+\lambda=\exp \left\{-\left[\beta_{0}+\beta_{1} x_{1}+\ldots+\beta_{k} x_{k}\right]\right\}
+\]</span></p>
+<ul>
+<li>When <span class="math inline">\(\sigma&lt;1\)</span>, the logarithmic logic hazard is similar to the lognormal hazard: starting from 0, rising to the peak, and then falling to 0.</li>
+<li>When <span class="math inline">\(\sigma&gt;1\)</span>, the hazard behaves like a diminishing Weibull hazard: it starts at infinity and then decreases towards 0.</li>
+<li>When <span class="math inline">\(\sigma=1\)</span>, the hazard value at t <span class="math inline">\(=0\)</span> is <span class="math inline">\(\lambda\)</span>, and then decreases toward 0 as t tends to infinity.</li>
+</ul>
+<p>Although the logarithmic logic model has the complexity of the hazard function, it has a fairly simple survival function
+<span class="math display">\[
+S(t)=\frac{1}{1+(\lambda t)^{\gamma}}
+\]</span>
+As before, <span class="math inline">\(\gamma=1 / \sigma\)</span> and <span class="math inline">\(\lambda=\exp \left\{-\left[\beta_{0}+\beta_{1} x_{1}+\ldots+\beta_{k} x_{k}\right]\right\} .\)</span> A little algebra shows that this can be written as
+<span class="math display">\[
+\log \left[\frac{S(t)}{1-S(t)}\right]=\beta_{0}^{\bullet}+\beta_{1}^{\bullet} x_{1}+\ldots+\beta_{k}^{\bullet} x_{k}-\gamma \log t
+\]</span>
+Where <span class="math inline">\(\beta_{i}^{\bullet}=\beta_{i} / \sigma\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>. 这只是事件 <span class="math inline">\(t\)</span> 之前发生的概率的逻辑回归模型。</p>
+</div>
+<div id="fit-statistics-for-model-comparsion" class="section level3" number="18.4.8">
+<h3><span class="header-section-number">18.4.8</span> Fit statistics for model comparsion</h3>
+<p><strong>The statistical information largely depends on the sample size.</strong></p>
+<ul>
+<li>Akaike’s information criterion (AIC), is a modification of the <span class="math inline">\(-2\)</span> log-likelihood that penalizes models for having more covariates. where <span class="math inline">\(\mathrm{k}\)</span> is the number of covariates.
+<span class="math display">\[
+A I C=-2 \log L+2 k
+\]</span></li>
+<li>(AICC) is a “corrected” version of the AIC that may have better behavior in small samples:
+<span class="math display">\[
+A I C C=A I C+\frac{2 k(k+1)}{n-k-1}
+\]</span></li>
+<li>Bayesian information criterion (also known as Schwarz’s criterion) gives a more severe penalization for additional covariates (对其他协变量进行更严厉的惩罚)
+<span class="math display">\[
+B I C=-2 \log L+k \log n
+\]</span></li>
+</ul>
+</div>
+<div id="graphical-method-for-distinguishing-different-distributions-in-sas" class="section level3" number="18.4.9">
+<h3><span class="header-section-number">18.4.9</span> Graphical method for distinguishing different distributions in SAS</h3>
+<ul>
+<li>the PLOTS=LS option produces a plot of -log and t. If the true distribution is an exponential distribution, the graph should produce a straight line with an origin of 0</li>
+<li>The LLS option produces a plot of −loglog versus log t, if the true distribution is Weibull, it should be a straight line;</li>
+</ul>
+</div>
+<div id="prediction-and-hazard-function" class="section level3" number="18.4.10">
+<h3><span class="header-section-number">18.4.10</span> Prediction and hazard function</h3>
+<p>After fitting the model with PROC LIFEREG, sometimes it is desirable to generate predicted survival times for the observations in the data set. If a single point estimate is to be made for each person, the predicted median survival time may be the best. You can easily get this information using the OUTPUT statement.</p>
+<p>P in the OUTPUT statement = option request percentile. By default, PROC LIFEREG calculates the 50th percentile (ie median). You can use the QUANTILE keyword to request other percentiles, as described in the PROC LIFEREG documentation. The STD keyword requests the standard error of the median.</p>
+<pre><code>PROC LIFEREG DATA=recid;
+ MODEL week*arrest(0)=fin age race wexp mar paro prio
+ / D=WEIBULL;
+ OUTPUT OUT=a P=median STD=s;
+RUN;</code></pre>
+<!-- 还可以获取不在原始数据集中的一组协变量值的预测值。在估算模型之前，只需将具有所需协变量值且事件时间设置为缺失的其他观测值附加到数据集即可。
+这些添加的观察值不用于估计模型，但是将为它们生成预测值。研究人员通常不希望预测生存时间，而是要预测生存到指定时间的概率（例如5年生存概率）。
+虽然这些不是由PROC LIFEREG直接计算的，但计算起来却相当简单。这是通过将可由OUTPUT语句生成的线性预测值替换为幸存函数的公式来实现的 %PREDICT. -->
+<!-- 使用OUTEST =选项将参数估计值写入数据集。接下来，在OUTPUT语句中使用XBETA =选项请求将线性预测变量包含在第二个数据集中。最后，调用宏，指示两个数据集的名称，分配给线性预测变量的名称以及计算生存概率的时间。 -->
+<p><strong>Predict the probability of survival to a specified time</strong></p>
+<pre><code>PROC LIFEREG DATA=recid OUTEST=a;
+ MODEL week*arrest(0) = fin age race wexp mar paro prio
+ / D=WEIBULL;
+ OUTPUT OUT=b XBETA=lp;
+RUN;
+%PREDICT(OUTEST=a,OUT=b,XBETA=lp,TIME=30)
+
+
+%macro predict (outest=, out=_last_,xbeta=,time=);
+ data _pred_;
+ _p_=1;
+ set &amp;outest point=_p_;
+ set &amp;out;
+ lp=&amp;xbeta;
+ t=&amp;time;
+ gamma=1/_scale_;
+ alpha=exp(-lp*gamma);
+ prob=0;
+ _dist_=upcase(_dist_);
+ if _dist_=&#39;WEIBULL&#39; or _dist_=&#39;EXPONENTIAL&#39; or _dist_=&#39;EXPONENT&#39; then prob=exp(-
+ alpha*t**gamma);
+ if _dist_=&#39;LOGNORMAL&#39; or _dist_=&#39;LNORMAL&#39; then prob=1-probnorm((log(t)-lp)/_scale_);
+ if _dist_=&#39;LLOGISTIC&#39; or _dist_=&#39;LLOGISTC&#39; then prob=1/(1+alpha*t**gamma);
+ if _dist_=&#39;GAMMA&#39; then do;
+  d=_shape1_;
+  k=1/(d*d);
+  u=(t*exp(-lp))**gamma;
+  prob=1-probgam(k*u**d,k);
+  if d lt 0 then prob=1-prob;
+  end;
+ drop lp gamma alpha _dist_ _scale_ intercept
+  _shape1_ _model_ _name_ _type_ _status_ _prob_ _lnlike_ d k u;
+ run;
+ proc print data=_pred_;
+ run;
+%mend predict;
+
+*** %LIFEHAZ generated a graph of hazard versus time;
+PROC LIFEREG DATA=recid OUTEST=a;
+ MODEL week*arrest(0) = fin age race wexp mar paro prio
+ / D=WEIBULL;
+ OUTPUT OUT=b XBETA=lp;
+RUN;
+%LIFEHAZ(OUTEST=a,OUT=b,XBETA=lp)
+
+%macro lifehaz(outest=,out=,obsno=0,xbeta=lp);
+data;
+ set &amp;outest;
+ call symput(&#39;time&#39;,_NAME_);
+run;
+proc means data=&amp;out noprint;
+ var &amp;time &amp;xbeta;
+ output out=_c_ min(&amp;time)=min max(&amp;time)=max mean(&amp;xbeta)=mean;
+run;
+data;
+ set &amp;outest;
+ call symput(&#39;model&#39;,_dist_);
+ s=_scale_;
+ d=_shape1_;
+ _y_=&amp;obsno;
+ set _c_ (keep=min max mean);
+ if _y_=0 then m=mean;
+ else do;
+ set &amp;out (keep=&amp;xbeta) point=_y_;
+ m=&amp;xbeta;
+ end;
+ inc=(max-min)/300;
+ g=1/s;
+ alph=exp(-m*g);
+ _dist_=upcase(_dist_);
+if _dist_=&#39;LOGNORMAL&#39; or _dist_=&#39;LNORMAL&#39; then do;
+ do t=min to max by inc;
+ z=(log(t)-m)/s;
+ f=exp(-z*z/2)/(t*s*sqrt(2*3.14159));
+ Surv=1-probnorm(z);
+ h=f/Surv;
+ output;
+ end;
+end;
+else if _dist_=&#39;GAMMA&#39; then do;
+ k=1/(d*d);
+ do t=min to max by inc;
+ u=(t*exp(-m))**(1/s);
+ f=abs(d)*(k*u**d)**k*exp(-k*u**d)/(s*gamma(k)*t);
+ Surv=1-probgam(k*u**d,k);
+ if d lt 0 then Surv=1-Surv;
+ h=f/Surv;
+ output;
+ end;
+end;
+else if _dist_=&#39;WEIBULL&#39; or _dist_=&#39;EXPONENTIAL&#39; or _dist_=&#39;EXPONENT&#39; then do;
+ do t=min to max by inc;
+ h=g*alph*t**(g-1);
+ output;
+ end;
+end;
+else if _dist_=&#39;LLOGISTIC&#39; or _dist_=&#39;LLOGISTC&#39; then do;
+ do t=min to max by inc;
+ h=g*alph*t**(g-1)/(1+alph*t**g);
+ output;
+ end;
+end;
+else put &#39;ERROR:DISTRIBUTION NOT FITTED BY LIFEREG&#39;;
+run;
+proc gplot;
+ plot h*t / haxis=axis2 vaxis=axis1 vzero;
+ symbol1 i=join v=none c=black;
+ axis1 label=(f=titalic angle=90 &#39;Hazard&#39;);
+ axis2 label=(f=titalic justify=c &#39;time&#39; f=titalic justify=c &quot;&amp;model&quot;);
+run; quit;
+%mend lifehaz;</code></pre>
+</div>
+<div id="left-censoring-and-interval-censoring" class="section level3" number="18.4.11">
+<h3><span class="header-section-number">18.4.11</span> Left Censoring and Interval Censoring</h3>
+<p>PROC LIFEREG excludes any observations with a time of 0 or less, because it must take the logarithm of the event time as the first step. One way is to assign some arbitrarily chosen number between 0 and 1. A more elegant solution is to treat this situation as being censored at time 1.</p>
+<!-- PROC LIFEREG排除时间为0或更短的任何观测值，因为它必须将事件时间的对数作为第一步。一种方法是在0到1之间分配一些任意选择的数字。一种更优雅的解决方案是将这种情况视为在时间1处被审查。 -->
+<ul>
+<li>For uncensored observations, LOWER and UPPER have the same value.</li>
+<li>For observations with YEARS=0, we set LOWER=. and UPPER=1.</li>
+<li>For right-censored observations (including those with events other than the one of interest), UPPER=. and LOWER=YEARS.</li>
+<li>If both UPPER and LOWER are missing (which happens for individuals with YEARS=0 who have events other than the one of interest), the observation is excluded. T</li>
+</ul>
+<pre><code>DATA leaders2;
+ SET leaders;
+ lower=years;
+ upper=years;
+ IF years=0 THEN DO;
+ lower=.;
+ upper=1;
+ END;
+ IF lost IN (0,1,2) THEN upper=.;
+RUN;
+
+*** fit an exponential model;
+PROC LIFEREG DATA=leaders2;
+ CLASS region;
+ MODEL (lower,upper)= manner start military age conflict
+ loginc literacy region / D=EXPONENTIAL;
+RUN;</code></pre>
+</div>
+</div>
+<div id="cox-proportional-hazards-model" class="section level2" number="18.5">
+<h2><span class="header-section-number">18.5</span> Cox Proportional Hazards Model</h2>
+<div id="introduction-14" class="section level3" number="18.5.1">
+<h3><span class="header-section-number">18.5.1</span> Introduction</h3>
+<p>The basic model that does not include time-dependent covariates or nonproportional hazards. The model is usually written as
+<span class="math display">\[h_{i}(t)=\lambda_{0}(t) \exp \left(\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}\right)\]</span>
+Taking the logarithm of both sides, we can rewrite the model as
+<span class="math display">\[\log h_{i}(t)=\alpha(t)+\beta_{1} x_{i 1}+\ldots+\beta_{k} x_{i k}\]</span>
+Take the ratio of the hazards for two individuals <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
+<span class="math display">\[\frac{h_{i}(t)}{h_{j}(t)}=\exp \left\{\beta_{1}\left(x_{i 1}-x_{j}\right)+\ldots+\beta_{k}\left(x_{i k}-x_{j k}\right)\right\}\]</span></p>
 <p><strong>Partial Likelihood</strong></p>
 <p>尚若不考虑删失, <span class="math inline">\(\quad j\)</span> 个观测 <span class="math inline">\(T_{1} \sim \lambda_{1}(t), T_{2} \sim \lambda_{2}(t), \ldots T_{j} \sim \lambda_{j}(t)\)</span> 在Cox Regression的假设下满
 足
 <span class="math display">\[
 P\left(T_{1}&lt;T_{2}&lt;\ldots&lt;T_{J}\right)=\prod_{i=1}^{J} \frac{\lambda_{j}(t)}{\sum_{k=j}^{J} \lambda_{k}(t)}=\prod_{i=1}^{J} \frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k=j}^{J} \exp \left(x_{k}^{T} \beta\right)}
 \]</span>
-进一步，我们考虑删失, 为了更好的保留原数据中的信息, 我们将每个死亡事件发生的时间点记为 <span class="math inline">\(t_{j}\)</span>, 则在
-该时间点发生死亡的概率为:
+Furthermore, when the censor be considered, the time point of death event is denoted as <span class="math inline">\(t_{j}\)</span>, then the <span class="math inline">\(\mathrm{P}(death)\)</span>
 <span class="math display">\[
-\frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k \in R\left(t_{j}\right)} \exp \left(x_{k} \beta\right)}
+\mathrm{P}(death)=\frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k \in R\left(t_{j}\right)} \exp \left(x_{k} \beta\right)}
 \]</span>
-给定受试者的协变量值 <span class="math inline">\(\beta ，\)</span> 我们可以类似地计算观察到每个受试者失败时间的联合概率或失败时间的可能
-性, given the subject’s covariates values <span class="math inline">\(x_{j}\)</span> 似然可以被表达为
+given the subject’s covariates <span class="math inline">\(\beta\)</span>; the joint probability of observing each subject’s failure time can be calculated given the subject’s covariates values <span class="math inline">\(x_{j}\)</span> likelihood <span class="math inline">\(L(\beta)\)</span> could be expressed as
 <span class="math display">\[
 L(\beta)=\prod_{j} \frac{\exp \left(x_{j}^{T} \beta\right)}{\sum_{k \in R\left(t_{j}\right)} \exp \left(x_{k} \beta\right)}
 \]</span>
-<span class="math inline">\(k \in R\left(t_{j}\right)\)</span> 代表在时间点 <span class="math inline">\(t_{j}-\)</span> 处个体 <span class="math inline">\(k\)</span> 仍然存活。这里我们暂时假设在时间点 <span class="math inline">\(t_{j}\)</span> 上只有一个死亡观 测。
-从严格意义上来说，这并不是一个似然函数。因为似然函数本应代表在给定数据的情况下分布函数的连 乘, 然而上式显然不是。甚至来说，连乘本应是关于个体的连乘, 而上式是关于时间点的。Cox在1975年 将这种形式的似然称为偏似然 (Partial Likelihood)，并证明了它的所有性质与似然别无二致。</p>
+<span class="math inline">\(k \in R\left(t_{j}\right)\)</span> represents at time <span class="math inline">\(t_{j}-\)</span> the subject <span class="math inline">\(k\)</span> is still alive. Here we temporarily assume that there is only one death observation at time <span class="math inline">\(t_{j}\)</span>.</p>
+<p>Strictly speaking, this is not a likelihood function. <strong>Because the likelihood function should represent the continuous multiplication of the distribution function under the given data</strong>, but the above formula is obviously not. Even speaking, the continuous multiplication should be about the continuous multiplication of the individual, and the above formula is about the point in time. Cox (1975) called this form of likelihood Partial Likelihood, and proved that all its properties are the same as likelihood.</p>
+</div>
+<div id="parameter-estimate" class="section level3" number="18.5.2">
+<h3><span class="header-section-number">18.5.2</span> Parameter estimate</h3>
 <p><strong>NR iteration for parameter estimate</strong></p>
-<p>参数迭代形式为
+<p>The iteration form is
 <span class="math display">\[
-\hat{\beta}^{(r+1)}=\hat{\beta}^{(r)}+\left(X^{T} W X\right)^{-1} X^{T}(d-P d)
-\]</span>
-- <span class="math inline">\(w_{i}=\exp \left(x_{i}^{T} \beta\right)\)</span>
-- <span class="math inline">\(Y_{i}\left(t_{j}\right)\)</span> 如果个体在 <span class="math inline">\(t_{j}\)</span> 时刻仍芙存活则为1, <span class="math inline">\(Y_{i}\left(t_{j}\right)\)</span> 是一个个体往某时间 <span class="math inline">\(t_{j}\)</span> 生存的index
-- <span class="math inline">\(\pi_{i j}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k \in R\left(t_{j}\right)} w_{k}}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k=1}^{n} Y_{k}\left(t_{j}\right) w_{k}}\)</span>
-- <span class="math inline">\(P=\left\{\pi_{i j}\right\}_{i, j}\)</span>,代表荣个个体 <span class="math inline">\(i\)</span> 在时间 <span class="math inline">\(t_{j}\)</span> 时的相对死亡风险。因此我们只考虑还活着的个体
-- <span class="math inline">\(W_{k k}=-\sum_{i} \delta_{i} \pi_{k i}\left(1-\pi_{k i}\right), W_{k k}\)</span> 代表个体的加权情况。每当一个其余个体 <span class="math inline">\(i\)</span> 死亡, 如果 <span class="math inline">\(k\)</span> 仍然 存活，则其权重增加 <span class="math inline">\(\pi(1-\pi)\)</span>
-- <span class="math inline">\(W_{k j}=\sum_{i} \delta_{i} \pi_{k i} \pi_{j i}, k j\)</span> 代表个体 <span class="math inline">\(k\)</span> 的交互情况。每当一个其余个体死亡，如果 <span class="math inline">\(k, j\)</span> 仍然存活 <span class="math inline">\((\)</span> Y决
-定), 其交互权重增加 <span class="math inline">\(\pi_{k} \pi_{j}\)</span></p>
-<p><strong>Wald</strong></p>
-<p><span class="math display">\[\quad \hat{\beta} \sim N\left(\beta,\left(X^{T} W X\right)^{-1}\right)\]</span>
-<strong>Likelihood Ratio</strong></p>
-<p>Likelihood Ratio Test(LRT) 却是容易使用的。LRT常常被用来判断两个模型 (不同的参数维度) 是否具有显著差异。具体而言</p>
-<p><span class="math display">\[-2\left(l\left(\hat{\beta}_{1}\right)-l\left(\hat{\beta}_{2}\right)\right) \sim \chi_{p}^{2}, \quad\]</span></p>
-<p><strong>Score Test</strong></p>
-<p>用Score Method获得置信区间是非常界难的。但我们可以使用它来做检验。具体而言
-<span class="math display">\[u(\beta)=\sum_{i=1}^{n} \delta_{i} x_{i}-\sum_{i=1}^{n} \sum_{k=1}^{n} Y_{k}\left(t_{i}\right) \frac{w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} x_{i} \delta_{i}=X^{T}(d-P d)\]</span>
-<span class="math display">\[I(\beta)=\sum_{i=1}^{n} \sum_{k=1}^{n} \delta_{i} x_{i}\left[\frac{Y_{k}\left(t_{i}\right) w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} \frac{x_{k}^{T}\left(\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}\right)+\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j} x_{j}^{T}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}}\right]\]</span></p>
-<p>统计量为<span class="math inline">\(u\left(\beta_{0}\right) / \sqrt{I\left(\beta_{0}\right)}\)</span>, 不需要计算<span class="math inline">\(\hat{\beta}\)</span>从而在模型加入新的变量时不需安再重新拟合参数。</p>
+\hat{\beta}^{(r+1)}=\hat{\beta}^{(r)}+\left(X^{T} WX\right)^{-1} X^{T} (dP d)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(w_{i}=\exp \left(x_{i}^{T} \beta\right)\)</span></li>
+<li><span class="math inline">\(Y_{i}\left(t_{j}\right)\)</span> 1 if the individual is still alive at the moment <span class="math inline">\(t_{j}\)</span>, <span class="math inline">\(Y_{i}\left(t_{j}\right)\)</span> Is the index of an individual’s survival at a certain time <span class="math inline">\(t_{j}\)</span></li>
+<li><span class="math inline">\(\pi_{ij}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k \in R\left(t_{j}\right)} w_ {k}}=Y_{i}\left(t_{j}\right) \frac{w_{i}}{\sum_{k=1}^{n} Y_{k}\left(t_{j} \right) w_{k}}\)</span></li>
+<li><span class="math inline">\(P=\left\{\pi_{i j}\right\}_{i, j}\)</span>, represents the relative death risk of the individual <span class="math inline">\(i\)</span> at time <span class="math inline">\(t_{j}\)</span>. So we only consider individuals who are still alive</li>
+<li><span class="math inline">\(W_{k k}=-\sum_{i} \delta_{i} \pi_{k i}\left(1-\pi_{k i}\right), W_{k k}\)</span> represents the weighting of the individual. Whenever one of the remaining individuals <span class="math inline">\(i\)</span> dies, if <span class="math inline">\(k\)</span> is still alive, its weight increases by <span class="math inline">\(\pi(1-\pi)\)</span></li>
+<li><span class="math inline">\(W_{k j}=\sum_{i} \delta_{i} \pi_{k i} \pi_{j i}, k j\)</span> represents the interaction of the individual <span class="math inline">\(k\)</span>. Whenever one of the remaining individuals dies, if <span class="math inline">\(k, j\)</span> are still alive <span class="math inline">\((\)</span> Y will
+Set), the interaction weight increases <span class="math inline">\(\pi_(k) \pi_(j)\)</span>
+Mehr zu diesem AusgangstextFür weitere Übersetzungsinformationen ist ein Ausgangstext erforderlich
+Feedback geben
+Seitenleisten</li>
+</ul>
+<p><strong>Model fitting in SAS</strong></p>
+<pre><code>proc phreg data = whas500;
+    class gender;
+    model lenfol*fstat(0) = gender age;
+run;
 
+## Output
+## “Ties Handling: BRESLOW.” 
+   This line refers to the default method for handling ties—two or more 
+   observations that have exactly the same event time. Although Breslow’s method 
+   is nearly universal
+
+## Analysis of Maximum Likelihood Estimates
+   
+## Model Fit Statistics
+## -2 LOG L
+## AIC
+## SBC: Schwartz’s Bayesian criterion (SBC) statistics 
+   The main purpose is to punish models with more covariates, allowing people to compare non-nested models
+   
+## Testing Global Null Hypothesis
+## Displays test of hypothesis that all coefficients in the model are 0
+   模型整体是否可以预测危险率变化的整体检验。这些检验是渐近的等价比, 一般首选似然比检验
+## Likelihood Ratio
+## Socre
+## Wald</code></pre>
+</div>
+<div id="parameter-test" class="section level3" number="18.5.3">
+<h3><span class="header-section-number">18.5.3</span> Parameter test</h3>
+<p><strong>Wald Test</strong></p>
+<p><span class="math display">\[\quad \hat{\beta} \sim N\left(\beta,\left(X^{T} W X\right)^{-1}\right)\]</span>
+<strong>Likelihood Ratio Test</strong></p>
+<p>Likelihood Ratio Test (LRT) is easy to use. LRT is often used to determine whether two models (different parameter dimensions) are significantly different. in particular
+<span class="math display">\[-2\left(l\left(\hat{\beta}_{1}\right)-l\left(\hat{\beta}_{2}\right)\right) \sim \chi_{p}^{2}, \quad\]</span></p>
+<p><strong>Score Test</strong></p>
+<p>It is very difficult to obtain the confidence interval with Score Method. But we can use it for hypothesis test
+<span class="math display">\[u(\beta)=\sum_{i=1}^{n} \delta_{i} x_{i}-\sum_{i=1}^{n} \sum_{k=1}^{n} Y_{k}\left(t_{i}\right) \frac{w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} x_{i} \delta_{i}=X^{T}(d-P d)\]</span>
+<span class="math display">\[I(\beta)=\sum_{i=1}^{n} \sum_{k=1}^{n} \delta_{i} x_{i}\left[\frac{Y_{k}\left(t_{i}\right) w_{k}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}} \frac{x_{k}^{T}\left(\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}\right)+\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j} x_{j}^{T}}{\sum_{j=1}^{n} Y_{j}\left(t_{i}\right) w_{j}}\right]\]</span>
+The statistic is <span class="math inline">\(u\left(\beta_{0}\right) / \sqrt{I\left(\beta_{0}\right)}\)</span>, there is no need to calculate <span class="math inline">\(\hat{\beta}\)</span> so as to add it to the model There is no need to refit the parameters for new variables.</p>
+</div>
+<div id="graphs-of-the-survival-and-baseline-hazard-function-in-sas" class="section level3" number="18.5.4">
+<h3><span class="header-section-number">18.5.4</span> Graphs of the survival and baseline hazard function in SAS</h3>
+<p><strong>plots=survival</strong></p>
+<p>When only plots=survival is specified on the proc phreg statement, SAS will produce one graph, a “reference curve” of the survival function at the reference level of all categorical predictors and at the mean of all continuous predictors.</p>
+<pre><code>proc phreg data=whas500 plots=survival;
+    class gender;
+    model lenfol*fstat(0) = gender age;;
+run;</code></pre>
+<p><strong>Use the baseline statement to generate survival plots by group</strong></p>
+<pre><code>***Whether it is a survival curve or a hazad curve, it is necessary to use 
+   the baseline description and create a small data set of covariate values 
+   to estimate the curve of interest;
+proc format;
+    value gender 0 = &quot;male&quot; 1 = &quot;female&quot;;
+run;
+data covs;
+    format gender gender.;
+    input gender age;
+    datalines;
+    0 69.845947
+    1 69.845947
+    ;
+run;
+
+*** covariates = option in baseline statement to specify the dataset 
+*** rowid = If a variable is specified after the option, SAS will create a separate 
+    line for each level of the variable in the same graph;
+
+proc phreg data = whas500 plots(overlay)=(survival);
+    class gender;
+    model lenfol*fstat(0) = gender age;
+    baseline covariates=covs out=base / rowid=gender;
+run;</code></pre>
+<p><strong>hazardratio statement</strong></p>
+<p>Using the hazardratio statement and graphs to interpret effects, particularly interactions. Below, we show how to use the hazardratio statement to request that SAS estimate 3 hazard ratios at specific levels of our covariates</p>
+<ul>
+<li>After the keyword hazardratio, we can optionally apply a label, then we specify the variable whose levels are to be compared in the hazard, and finally after the option keyword at we tell SAS at which level of our other covariates to evaluate this hazard ratio. If the variable whose hazard rates are to computed is not involved in an interaction, specification of additional covariates is unncessary since the hazard ratio is constant across levels of all other covariates (a main effect).</li>
+<li>We calculate the hazard ratio describing a one-unit increase in age, or <strong>HR(age+1) HR(age)</strong>, for both genders. Notice the =ALL following gender, which is used only with class variables to request the hazard ratio at all levels of the class variable.</li>
+<li>We also calculate the hazard ratio between females and males, or <strong>HR(gender=1)HR(gender=0)</strong> at ages 0, 20, 40, 60, and 80.</li>
+<li>Finally, we calculate the hazard ratio describing a 5-unit increase in bmi, or <strong>HR(bmi+5) HR(bmi)</strong>, at clinically revelant BMI scores. Notice the additional option units=5. BMI classes are typically separated by about 5 points, so we would like to see how the hazard ratio between (approximately) adjacent BMI classes changes as bmi increases.</li>
+</ul>
+<pre><code>proc phreg data = whas500;
+    class gender;
+    model lenfol*fstat(0) = gender|age bmi|bmi hr ;
+    hazardratio &#39;Effect of 1-unit change in age by gender&#39; age / at(gender=ALL);
+    hazardratio &#39;Effect of gender across ages&#39; gender / at(age=(0 20 40 60 80));
+    hazardratio &#39;Effect of 5-unit change in bmi across bmi&#39; bmi / at(bmi = (15 18.5 25 30 40)) units=5;
+run;</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Effect of gender across ages: Hazard Ratios for GENDER</th>
+<th>Title</th>
+<th>Title</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Description</td>
+<td>Point Estimate</td>
+<td>95% Wald CI Lower Limits</td>
+<td>CI Upper Limits</td>
+</tr>
+<tr class="even">
+<td>GENDER Female vs Male At AGE=0</td>
+<td>8.247</td>
+<td>1.177</td>
+<td>57.783</td>
+</tr>
+<tr class="odd">
+<td>GENDER Female vs Male At AGE=20</td>
+<td>4.594</td>
+<td>1.064</td>
+<td>19.841</td>
+</tr>
+<tr class="even">
+<td>GENDER Female vs Male At AGE=40</td>
+<td>2.559</td>
+<td>0.955</td>
+<td>6.857</td>
+</tr>
+<tr class="odd">
+<td>GENDER Female vs Male At AGE=60</td>
+<td>1.426</td>
+<td>0.837</td>
+<td>2.429</td>
+</tr>
+<tr class="even">
+<td>GENDER Female vs Male At AGE=80</td>
+<td>0.794</td>
+<td>0.601</td>
+<td>1.049</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="check-proportional-hazards" class="section level3" number="18.5.5">
+<h3><span class="header-section-number">18.5.5</span> Check proportional hazards</h3>
+<p>A central assumption of Cox regression is that covariate effects on the hazard rate, namely <strong>hazard ratios, are constant over time</strong>. For example, if males have twice the hazard rate of females 1 day after followup, the Cox model assumes that males have twice the hazard rate at 1000 days after follow up as well. Violations of the proportional hazard assumption may cause bias in the estimated coefficients as well as incorrect inference regarding significance of effects.</p>
+<ol style="list-style-type: decimal">
+<li>Graphing Kaplan-Meier survival function estimates to assess proportional hazards for categorical covariates
+<ul>
+<li>In the case of categorical covariates, graphs of the Kaplan-Meier estimates of the survival function provide quick and easy checks of proportional hazards. If proportional hazards holds, <strong>the graphs of the survival function should look “parallel”</strong>, in the sense that they should have basically the same shape, should not cross, and should start close and then diverge slowly through follow up time.</li>
+</ul>
+<pre><code>proc lifetest data=whas500 atrisk plots=survival(atrisk cb) outs=outwhas500;
+strata gender;
+time lenfol*fstat(0);
+run;</code></pre></li>
+</ol>
+</div>
+<div id="model-diagnostics-1" class="section level3" number="18.5.6">
+<h3><span class="header-section-number">18.5.6</span> Model Diagnostics</h3>
+<div id="cox-snell-residuals" class="section level4" number="18.5.6.1">
+<h4><span class="header-section-number">18.5.6.1</span> Cox-Snell Residuals</h4>
+<p>The residual represents the part that the explanatory variable cannot explain, in the case of censoring
+<span class="math display">\[\hat{e}_{i}=\hat{\Lambda}_{0}\left(t_{i}\right) \exp \left(x_{i}^{T} \beta\right)\]</span></p>
+<p><span class="math inline">\(\hat(\Lambda)\)</span> can be estimated by <span class="math inline">\(KM\)</span> (or <span class="math inline">\(NA\)</span>). Compare Cox-Snell Residuals with the standard exponential distribution, because <span class="math inline">\(Y=\Lambda(t) \sim \operatorname(Exp)(1)]\)</span> , Get the residual plot. However, this has a little flaw, because it is not easy for us to observe the situation close to the origin. Therefore, we use standardized difference for transformation.
+<span class="math display">\[
+(\hat{\Lambda}(e)-\Lambda(e)) / S E=(\hat{\Lambda}(e)-e) / S E
+\]</span>
+However, the Cox-Snell residual is flawed: it has no way to tell us where the assumptions of the model are wrong.</p>
+</div>
+<div id="martingale-residuals" class="section level4" number="18.5.6.2">
+<h4><span class="header-section-number">18.5.6.2</span> Martingale residuals</h4>
+<p><span class="math display">\[\hat{m}_{i}=\delta_{i}-\hat{\Lambda}_{i}\left(t_{i}\right)=\delta_{i}-\hat{e}_{i}\]</span></p>
+<p>It represents the difference between the observed value of the sample death index <span class="math inline">\(\left(\delta_{i}\right)\)</span> and the average value <span class="math inline">\(\left(\hat{e}_{i}\right)\)</span>. Among them, the average is about the average over time.
+Positive and negative are meaningful. Positive, it means that the patient died earlier than the expected time; negative, it means that the patient lived longer (or censored).
+But it is asymmetrical. The maximum value of <span class="math inline">\(\quad \hat{m}_{i}\)</span> is 1, but the minimum value is infinite.</p>
+</div>
+<div id="deviance-residuals" class="section level4" number="18.5.6.3">
+<h4><span class="header-section-number">18.5.6.3</span> Deviance Residuals</h4>
+<p><span class="math display">\[\hat{d}_{i}=\operatorname{sign}\left(\hat{m}_{i}\right) \sqrt{2\left(\tilde{l}_{i}-l_{i}\right)},\]</span></p>
+<p><span class="math inline">\(\hat{m}_{i}=\delta_{i}-\hat{e}_{i}, \quad l_{i}\)</span> is the corresponding likelihood of i sample (given model), <span class="math inline">\(\tilde{l }_{i}\)</span> represents the maximum likelihood (generally the full model).
+It retains the positive and negative nature of the residual error, and adds the idea of likelihood (in fact, many tests are based on deviance), which is symmetric.</p>
+</div>
+<div id="schoenfeld-residuals" class="section level4" number="18.5.6.4">
+<h4><span class="header-section-number">18.5.6.4</span> Schoenfeld residuals</h4>
+<p>Schoenfeld Residuals are used to validate the above assumptions made by the Cox model. The Cox model makes three assumptions:</p>
+<ol style="list-style-type: decimal">
+<li>Common baseline hazard rate <span class="math inline">\(\lambda(t)\)</span> : At any time <span class="math inline">\(t\)</span>, all individuals are assumed to experience the same baseline hazard <span class="math inline">\(\lambda(t)\)</span>. For example, if a study consists of males and females belonging to different races and age groups, then at any time <span class="math inline">\(t\)</span> during the study, white males who entered the study when they were in the 18-34 years age range are assumed to experience the same baseline hazard <span class="math inline">\(\lambda(t)\)</span> as Asian females who entered the study when they <span class="math inline">\(40-64\)</span> year old. This is clearly a strong assumption and one must validate it before accepting results of the Cox model for your data set.</li>
+<li>Time invariant co-variates <span class="math inline">\(X\)</span> : The effect of the regression variables <span class="math inline">\(\boldsymbol{X}\)</span> (a.k.a. co-variates) on the instantaneous hazard experienced by an individual is assumed to remain constant over time. For example, if a volunteer enters a study of cancer risk to smokers, and if the participant’s genetic makeup is a co-variate, then the effect of their genes on the hazard of contracting cancer is assumed to remain constant throughout the study. Notation-wise, <span class="math inline">\(\boldsymbol{X}\left(t_{-} i\right)=\boldsymbol{X}\)</span> for all <span class="math inline">\(t_{-} i\)</span>. This is again a rather strong assumption that should be validated. For example, gene expression can vary with time in response to a number of factors.</li>
+<li>Time invariant regression coefficients <span class="math inline">\(\beta:\)</span> The regression coefficients <span class="math inline">\(\boldsymbol{\beta}\)</span> do not vary with time. In other words, <span class="math inline">\(\boldsymbol{\beta}\left(\mathrm{t}_{-} i\right)=\boldsymbol{\beta}\)</span> for all <span class="math inline">\(t_{-} i\)</span>. One can see that assumptions (2) and (3) are closely related. For example, the effect of gene expression increasing with time can be expressed as the coefficient of the gene regression variable increasing with time.</li>
+</ol>
+
+</div>
 </div>
 </div>
 </div>
