@@ -23,22 +23,129 @@ ggplot2 implements the idea of a "grammar of graphics". The grammar implemented 
 A plot is defined by a coordinate system (coord), one or more scales (scale), an optional faceting specification (facet), and one or more layers (layer). A layer is defined as an R data frame (data), a specification mapping columns of that frame into aesthetic properties (mapping), a statistical approach to summarize the rows of that frame (stat), a geometric object to visually represent that summary (geom), and an optional position adjustment to move overlapping geometric objects out of their way (position).
 
 
-### coord
+### Coordinate system
 
-* coord_cartesian - (default) cartesian coordinate system (x horizontal from left to right, y vertical from bottom to top)
-* coord_flip - flipped cartesian coordinate system (x vertical from bottom to top, y horizontal from left to right)
-* coord_trans
-* coord_equal
-* coord_polar - polar coordinate system; the x (or y) scale is mapped to the angle (theta)
-* coord_map - various map projections
+* **coord**
 
 <!-- coord_cartesian（默认）笛卡尔坐标系, coord_flip 直角坐标系 -->
 
+    * coord_cartesian - (default) cartesian coordinate system (x horizontal from left to right, y vertical from bottom to top)
+    * coord_flip - flipped cartesian coordinate system (x vertical from bottom to top, y horizontal from left to right)
+    * coord_trans
+    * coord_equal
+    * coord_polar - polar coordinate system; the x (or y) scale is mapped to the angle (theta)
+    * coord_map - various map projections
 
-### facet
+* **facet**
 
-* facet_wrap(~cell) - univariate: create a 1-d strip of panels, based on one factor, and wrap the strip into a 2-d matrix
-* facet_grid(row~col) - (usually) bivariate: create a 2-d matrix of panels, based on two factors
+
+    * facet_wrap(~cell) - univariate: create a 1-d strip of panels, based on one factor, and wrap the strip into a 2-d matrix
+    * facet_grid(row~col) - (usually) bivariate: create a 2-d matrix of panels, based on two factors
+    
+* Modify the display **range** of the axis 
+
+
+    scale_x_continuous(break, lables, ...)
+    scale_y_continuous
+    ...
+
+* Modify the label of the axis (**content, size, font, color, bold, position, angle**)
+
+
+    1. + labs(subtitle=".....", title=".....", y=".....", x=".....") 
+    2. + ggtitle(title=".....", subtitle=".....") + xlab(".....") + ylab(".....")
+    
+    Change label of x axis
+    + xlab(".....") + theme(axis.title.x = element_text(size=12, color="green", face="bold",vjust=0.5,hjust=0.5,angle=45))
+
+* Remove the axis **tick marks**
+
+
+    theme(panel.grid   = element_blank())
+    theme(axis.text    = element_blank())
+    theme(axis.ticks   = element_blank())
+    theme(axis.ticks.y = element_blank())
+
+
+### Legend
+
+* Change the legend title
+
+
+    1. p + labs(fill = "Type")
+    2. order p + guides(fill = guide_legend(title = 'Type'))
+
+* Change the legend position
+
+
+    1. “left”,“top”, “right”, “bottom”, “none”
+    p + theme(legend.position="top")
+    
+    2. order given numerical position coordinates
+    p + theme(legend.position = c(0.7, 0.1),
+          legend.direction = "horizontal")
+
+* Reverse legend order
+
+
+    1. p + guides(fill = guide_legend(reverse=TRUE))
+    2. p + scale_fill_discrete(guide = guide_legend(reverse=TRUE))
+    3. p + scale_fill_discrete(breaks = rev(levels(iris$Species)))
+
+* Change labels and order
+
+
+    1. Change the x order 
+    p + scale_x_discrete(limits=c("versicolor", "virginica", "setosa"))
+    
+    2. Change legend label name
+    p + scale_fill_discrete(name = "Species", labels = c("S", "V1", "V2"))
+    
+
+* Change legend color
+
+
+    p + scale_fill_manual(values = c("#d8b365", "#f5f5f5", "#5ab4ac"))
+
+* Remove legend
+
+
+    1. p + theme(legend.position = "none")
+    2. p + guides(fill=FALSE)
+    3. Modify multiple legends: remove two 
+    
+    data(mtcars)
+    mtcars$cyl<-as.factor(mtcars$cyl)
+    mtcars$gear <- as.factor(mtcars$gear)
+    p <- ggplot(data = mtcars, aes(x = mpg, y = wt))+
+    geom_point(aes(color = cyl, size = qsec, shape = gear)) + theme_bw()
+    p + guides(shape = FALSE, size = FALSE)
+
+* Change legend font (color, size)
+
+
+    p + theme(legend.title = element_text(color = "blue", size = 15),
+              legend.text = element_text(color = "orange", size = 12))
+
+* Change legend background
+
+
+    p + theme(
+      # Change legend background color
+      legend.background = element_rect(fill = "gray"),
+      legend.key = element_rect(fill = "yellow", color = NA),
+      # Change legend key size and key width
+      legend.key.size = unit(1.5, "cm"),
+      legend.key.width = unit(1,"cm") 
+      )
+      
+* Add legend outer border
+
+
+    p + theme(
+      legend.background = element_rect(color = "blue", linetype = "solid", size = 1)
+      )
+
 
 
 ### geom
@@ -193,6 +300,15 @@ ggsave(p, filename = "chartFromRPractical.png")
 ```
 
 
+
+
+ 
+
+
+
+
+
+
 ## Scatter plot
 
 ### Grouping Aesthetic
@@ -327,9 +443,7 @@ ggplot(mpg, aes(cty, hwy))+
        title="Scatterplot with overlapping points", 
        caption="Source: midwest")
 
-## 原始数据有234个数据点，但图表似乎显示的点更少
-## 这是因为有许多重叠的点显示为单个点。在源数据集中cty和hwy都是整数
-## 可以使用jitter_geom（）绘制一个抖动图
+## The raw dataset has 234 observations, but shown in figure fewer, because some points lay together, the jitter plot could be used in this case by applying jitter_geom
 ggplot(mpg, aes(cty, hwy))+
   geom_point() + 
   theme_bw()+
@@ -542,10 +656,8 @@ ggplot(midwest, aes(x=area, y=poptotal)) +
 
 ### Dumbbell Plot 
 
-1. 可视化两个时间点之间的相对位置（如增长和下降）。
-2. 比较两个类别之间的距离。
-
-为了获得正确的哑铃排序，应将Y变量作为一个因子，并且该因子变量的级别应与在图中显示的顺序相同。
+Dumbbell plot is used to visualize the relative position of two time points (increase or decrease), it could also be used to compare the distance between 2 categories. In order to get right orders of dumbbell, the variable $Y$ should be treated as factor with conresponding orders shown in figure. 
+ 
 
 ```{r Dumbbell Plot , echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library(ggalt) 
@@ -712,8 +824,8 @@ ggplot(data = diamonds) +
 
 ## Position aesthetic
 ## position adjustment options: "identity", "dodge" or "fill".
-## position =“ fill”的作用类似于堆叠，但是使每组堆叠的条具有相同的高度。 这样可以更轻松地比较各组之间的比例。
-## position =“ dodge”将重叠的对象彼此相邻放置。 这样可以更轻松地比较各个值。
+## position =“fill” is like overlay, but each bar has same height. 
+## position =“dodge” put objects together
 
 ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) + 
   geom_bar(alpha = 1/5, position = "identity")
@@ -839,9 +951,7 @@ ggplot(cty_mpg, aes(x=make, y=mileage)) +
   theme(axis.text.x = element_text(angle=65, vjust=0.6)) +
   theme_bw()
 
-
-
-
+ 
 
 ### Lollipop Chart
 ### Lollipop charts conveys the same information as in bar charts. By reducing the thick bars into thin lines, it reduces the clutter and lays more emphasis on the value. It looks nice and modern.
@@ -887,9 +997,7 @@ ggplot(PrimEnd, aes(x=Primary.Endpoint, y=mean)) +
        y = "Difference between the IOLs",
        title = "Superiority analysis in mean absolute rotation between Visit H0 (sitting) and H1")
 
-
-
-
+ 
 
 tg <- ToothGrowth
 ## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
