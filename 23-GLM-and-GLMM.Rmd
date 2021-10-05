@@ -1,0 +1,63 @@
+# Generalized Additive Models
+
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
+## Generalized Linear (Mixed) Model 
+
+
+
+## Generalized Linear Model 
+
+
+## Generalized Additive Models
+
+### Concept
+
+In essence, a GAM is a GLM. What distinguishes it from the ones you know is that, unlike a standard GLM, it is composed of a sum of smooth functions of covariates instead of or in addition to the standard linear covariate effects. For the GAM, we can specify it generally as follows:
+$$y = f(x) + \epsilon$$
+$$y = f(x) + \epsilon = \sum_{j=1}^{d}B_j(x)\gamma_j + \epsilon$$
+Above, each  $B_j$ is a basis function that is the transformed $x$ depending on the type of basis considered, and the $y$ are the corresponding regression coefficients. 
+
+
+
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+pisa <-  read.csv('./01_Datasets/pisasci2006.csv')
+library(dplyr)
+library(mgcv)
+
+### Normal Regression
+mod_lm <- gam(Overall ~ Income, data=pisa)
+### summary(mod_lm)
+
+### bs = cr，表示三次回归样条
+mod_gam1 <- gam(Overall ~ s(Income, bs="cr"), data=pisa)
+### 首先看到假设的分布，以及使用的链接函数，在这种情况下，分别是正态和恒等，如果我们没有平滑，将导致 SLiM。之后我们看到输出分为参数和平滑或非参数部分。
+summary(mod_gam1)
+
+source('./03_Functions/better_smooth.R')
+source('./03_Functions/better_corr.R')
+
+library(ggplot2)
+library(GGally)
+
+p = ggpairs(pisa[,-c(1,3:5)], 
+        lower=list(continuous=GGally::wrap(better_smooth,  ptalpha=.25, ptcol='#ff5500', ptsize=1,
+        linecol='#03b3ff', method='loess', se=F, lwd=.5)),
+        diag = list(continuous=GGally::wrap('densityDiag', color='gray50', lwd=.5)),
+        # upper=list(continuous=GGally::wrap(better_corr)),
+        axisLabels="none") + 
+  theme_trueMinimal() +
+  theme(axis.text.x=element_text(color='gray50')) +
+  theme(legend.position = "none", 
+        panel.grid.major = element_blank(), 
+        axis.ticks = element_blank())
+p
+```

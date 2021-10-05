@@ -1,0 +1,418 @@
+# Descriptive Statistics in R
+ 
+```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+library('mindr')
+### text -> widget
+### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
+### mm(from = input, type = "text", root = "mindr")
+filename <- rstudioapi::getSourceEditorContext()$path
+widget <- mm(from = filename, type = "file", root = "")
+widget
+```
+
+ 
+
+## Package pape 
+
+Toolbox for writing beautiful papers and reports
+
+* Using papeR with [Markdown](https://cran.r-project.org/web/packages/papeR/vignettes/papeR_introduction.html)
+* Using papeR with [LaTeX](https://cran.r-project.org/web/packages/papeR/vignettes/papeR_with_latex.pdf)
+
+```
+library(papeR)
+library("papeR")
+data(Orthodont, package = "nlme")
+labels(Orthodont) <- c("fissure distance (mm)",
+                       "age (years)", "Subject", "Sex")
+summarize(Orthodont, type = "numeric", group = "Sex",
+          test = c("wilcox.test", "t.test"))
+```
+
+
+## Package summarytools 
+
+
+* [Github](https://github.com/dcomtois/summarytools)
+
+| Function    | Description |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| freq()      | Frequency Tables featuring counts, proportions, as well as missing data information  |
+| ctable()    | Cross-Tabulations (joint frequencies) between pairs of discrete variables featuring marginal sums as well as row, column or total proportions                 |
+| descr()     | Descriptive (Univariate) Statistics for numerical data featuring common measures of central tendency and dispersion                                       |
+| dfSummary() | Extensive Data Frame Summaries featuring type-specific information for all variables in a data frame: univariate statistics and/or frequency distributions, bar charts or histograms, as well as missing data counts. Very useful to quickly detect anomalies and identify trends at a glance |
+
+
+
+
+## Package compareGroups  
+
+[Descriptives by groups](https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html)
+
+```
+library(compareGroups)
+data(predimed)
+
+## Methods
+## 1 - forces analysis as "normal-distributed"; 
+## 2 - forces analysis as "continuous non-normal"; 
+## 3 - forces analysis as "categorical"; 
+## 4 - NA, which performs a Shapiro-Wilks test to decide between normal or non-normal. 
+res <- compareGroups(group ~ . - toevent, 
+                     data = predimed, 
+                     method = c(wtn = 2, p14 = 2))
+
+## Create the descriptive table
+restab <- createTable(res, digits = c(p14 = 0, hormo=1), type = 1, 
+                      hide = c(sex = "Male"), 
+                      hide.no = "no", 
+                      show.n = TRUE)
+restab
+
+export2md(restab, header.labels = c(p.overall = "p-value"))
+```
+
+ 
+## Package sjPlot for Models Summary
+
+### tab_model and options
+ 
+tab_model() is the pendant to plot_model(), however, instead of creating plots, tab_model() creates HTML-tables that will be displayed either in your IDE’s viewer-pane, in a web browser or in a knitr-markdown-document (like this vignette).
+
+```{r sjPlot-one-models,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(sjPlot)
+library(forcats)
+data("efc")
+efc$c161sex <- as.factor(efc$c161sex)
+efc$c172code <- as.factor(efc$c172code)
+m1 <- lm(barthtot ~ c160age + c12hour + c161sex + c172code, data = efc)
+m2 <- lm(neg_c_7 ~ c160age + c12hour + c161sex + e17age, data = efc)
+
+tab_model(
+  m1, show.se = TRUE, show.std = TRUE, show.stat = TRUE,
+  col.order = c("p", "stat", "est", "std.se", "se", "std.est")
+) 
+
+## Customize table output
+## With collapse.ci and collapse.se, the columns for confidence intervals and standard errors can be collapsed into one column together with the estimates. Sometimes this table layout is required.
+tab_model(m1, collapse.ci = TRUE)   
+
+
+```
+
+
+**Aviable options**
+
+| Options                  | Des.                                                                |
+|--------------------------|---------------------------------------------------------------------|
+| auto.label = FALSE       | Turn off automatic labelling                                        |
+| transform                | 默认情况下使用“ exp”作为适用模型类别的转换 未转换的估计，请使用NULL |
+| CSS = css_theme("cells") | 定制表格样式                                                        |
+| show.intercept           | 截距                                                                |
+| show.est                 | 估算值                                                              |
+| show.ci                  | 置信区间                                                            |
+| show.se                  | 标准错误                                                            |
+| show.std                 | 标准化的β系数                                                       |
+| show.p                   | p值                                                                 |
+| show.stat                | 系数的检验统计量                                                    |
+| show.df                  | p.val =“ kr”， 线性混合模型的p值基于df和Kenward-Rogers近似值        |
+| show.r2                  | r平方值                                                             |
+| show.icc                 | 类内相关系数                                                        |
+| show.re.var              | 混合模型的随机效果方差                                              |
+| show.fstat               | 每个模型的F统计信息                                                 |
+| show.aic                 | 每个模型的AIC值                                                     |
+| show.dev                 | 模型的偏差                                                          |
+| show.loglik              | 模型的对数似然                                                      |
+| show.obs                 | 每个模型的观测数量                                                  |
+| title                    | 表格标题                                                            |
+| collapse.ci              | 置信区间和标准误差的列与估计值合为一栏                              |
+
+
+
+```{r more-LR-models, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Defining own labels
+tab_model(
+  m1, m2, 
+  pred.labels = c("Intercept", "Age (Carer)", "Hours per Week", "Gender (Carer)",
+                  "Education: middle (Carer)", "Education: high (Carer)", 
+                  "Age (Older Person)"),
+  dv.labels = c("First Model", "M2"),
+  string.pred = "Coeffcient",
+  string.ci = "Conf. Int (95%)",
+  string.p = "P-Value"
+)
+
+```
+
+
+### Mixed Models
+
+- 边际R平方仅考虑固定效应的方差, 而条件R平方则同时考虑固定效应和随机效应。
+- p值是基于t统计量并使用正态分布函数的简单近似值。可以使用p.val =" kr"计算出更精确的p 值。在这种情况下 (仅适用于线性混合模型) , p值的计算基于条件F检验，其中自由度采用
+Kenward-Roger近似 tab_model $\left(\mathrm{m} 1\right.$, p.val $=\mathrm{"kr}^{\prime \prime}$, show. $\mathrm{df}=$ TRUE $)$
+
+```{r mixed-models, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(lme4)
+data("sleepstudy")
+data("efc")
+efc$cluster <- as.factor(efc$e15relat)
+
+## Unlike tables for non-mixed models, tab_models() adds additional 
+## information on the random effects to the table output for mixed models. 
+m1 <- lmer(neg_c_7 ~ c160age + c161sex + e42dep + (1 | cluster), data = efc)
+efc$neg_c_7d <- ifelse(efc$neg_c_7 < median(efc$neg_c_7, na.rm = TRUE), 0, 1)
+efc$cluster <- as.factor(efc$e15relat)
+m3 <- glmer(
+  neg_c_7d ~ c160age + c161sex + e42dep + (1 | cluster),
+  data = efc, 
+  family = binomial(link = "logit")
+)
+
+tab_model(m1, m3)
+
+```
+
+
+### plot_model
+
+plot_model() creates plots from regression models, either estimates (as so-called forest or dot whisker plots) or marginal effects.
+
+plot_model（）允许创建各种绘图类型，可以通过类型参数进行定义。默认值为type =“ fe”，这表示将绘制固定效果（模型系数）。要绘制边际效应，请使用以下命令调用plot_model（）：
+
+* type =“ pred”以绘制特定模型项的预测值（边际效应）。
+* type =“ eff”，类似于type =“pred”， 但是，离散预测变量在其比例（而不是参考水平）上保持恒定。它通过内部调用。
+* type =“ emm”，类似于type =“ eff”。它通过内部调用。
+* type =“ int”绘制交互作用项的边际效应。
+
+
+
+```{r plot_model,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Marginal Effect
+library(ggplot2)
+library(sjPlot)
+theme_set(theme_bw())
+# create binrary response
+y <- ifelse(efc$neg_c_7 < median(na.omit(efc$neg_c_7)), 0, 1)
+## 绘制特定模型项的预测值（边际效应）
+theme_set(theme_sjplot())
+fit <- lm(barthtot ~ c12hour + neg_c_7 + c161sex + c172code, data = efc)
+plot_model(fit, type = "pred", terms = "c12hour")
+
+## Marginal effects for different groups
+plot_model(fit, type = "pred", terms = c("c12hour", "c172code"))
+
+## plot coefficients
+plot_model(fit, colors = "black")
+
+## 2-ways-interaction
+theme_set(theme_sjplot())
+efc$c161sex <- factor(efc$c161sex)
+## fit model with interaction
+fit <- lm(neg_c_7 ~ c12hour + barthtot * c161sex, data = efc)
+plot_model(fit, type = "pred", terms = c("barthtot", "c161sex"))
+## alternatively
+## plot_model(fit, type = "int")
+
+## Estimates (Fixed Effects)
+## Fitting a logistic regression model
+# create binary response
+y <- ifelse(efc$neg_c_7 < median(na.omit(efc$neg_c_7)), 0, 1)
+
+# create data frame for fitting model
+df <- data.frame(
+  y = factor(y),
+  sex = factor(efc$c161sex),
+  dep = factor(efc$e42dep),
+  barthel = efc$barthtot,
+  education = factor(efc$c172code)
+)
+## fit model
+m1 <- glm(y ~., data = df, family = binomial(link = "logit"))
+## Plotting estimates of generalized linear models
+plot_model(m1, vline.color = "red")
+## Sorting estimates
+plot_model(m1, sort.est = TRUE)
+
+```
+
+
+## Package kableExtra 
+
+Use kable() with kableExtra to generate 90 % of complex/advanced tables in either HTML or LaTeX, See more
+
+* [Create Awesome HTML Table with knitr::kable and kableExtra](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
+* [Create Awesome LaTeX Table with knitr::kable and kableExtra](https://rdrr.io/cran/kableExtra/f/inst/doc/awesome_table_in_pdf.pdf)
+
+### kable_styling
+
+HTML table attributes, provides a cleaner approach to modify the style of HTML tables other than using the table.attr option in knitr::kable(). Note that those bootstrap options requires Twitter bootstrap theme, which is not avaiable in some customized template being loaded.
+
+```
+kable_styling(
+  kable_input,
+  bootstrap_options = "basic",
+  latex_options = "basic",
+  full_width = NULL,
+  position = "center",
+  font_size = NULL,
+  row_label_position = "l",
+  repeat_header_text = "\\textit{(continued)}",
+  repeat_header_method = c("append", "replace"),
+  repeat_header_continued = FALSE,
+  stripe_color = "gray!6",
+  stripe_index = NULL,
+  latex_table_env = NULL,
+  protect_latex = TRUE,
+  table.envir = "table",
+  fixed_thead = FALSE,
+  htmltable_class = NULL,
+  html_font = NULL,
+  wraptable_width = "0pt"
+)
+```
+
+```{r Basic kable_styling,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+# load package
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+
+
+## pandoc Output
+## kable_styling() will automatically apply twitter bootstrap theme to the table.
+## same as the original pandoc output
+dt <- mtcars[1:5, 1:6]
+dt %>%
+  kable() %>%
+  kable_styling()
+  
+
+kable(dt) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+  ## Table Styles:add striped lines "striped" 添加带条纹
+  ## highlight the hovered row,"hover"
+  ## 不希望表格太大,"condensed"
+  ## 响应选项，可以适应窗口滚动--horizontally scrollable，“responsive”
+
+
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F, position = "float_right")
+  ## 文本环绕表格 wrap text around the table using the float-left or float-right options.
+
+## small Font size
+kable(dt) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 7)
+  
+## Fixed Table Header Row 固定表标题行
+kable(mtcars[1:10, 1:5]) %>%
+  kable_styling(fixed_thead = T)
+
+## 直接保存HTML表
+## kable(mtcars) %>%
+##   kable_styling() %>%
+##   save_kable(file = "table1.html", self_contained = T)
+```
+
+
+### Column/Row Specification
+
+
+table with lots of explanatory texts, specified the column width for different column, may want to highlight a column (e.g. a “Total” column) by making it bold. 
+
+```{r kableExtra Specification,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## data preparation
+text_tbl <- data.frame(
+  Items = c("Item 1", "Item 2", "Item 3"),
+  Features = c("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
+               "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
+               "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "))
+
+
+## 第一列加粗，居左对其
+## 第二列背景，居左对其
+kable(text_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em", background = "yellow")
+
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  column_spec(5:7, bold = T) %>%
+  row_spec(3:5, bold = T, color = "white", background = "#D7261E")
+
+## 标题行的格式
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  row_spec(0, angle = -45)
+```
+
+
+### Grouping columns/rows 
+
+
+```{r kableExtra Grouping,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Add header rows to group columns 分组的列/行, 将标题行添加到组列
+kable(dt) %>%
+  kable_styling("striped") %>%
+  add_header_above(c(" " = 1, "Group 1" = 3, 
+                     "Group 2" = 1, "Group 3" = 2))
+
+kable(dt) %>%
+  kable_styling(c("striped", "bordered")) %>%
+  add_header_above(c(" ", "Group 1" = 2, "Group 2" = 2, "Group 3" = 2)) %>%
+  add_header_above(c(" ", "Group 4" = 4, "Group 5" = 2)) %>%
+  add_header_above(c(" ", "Group 6" = 6))
+
+
+## Subgroups
+## Group rows via labeling 对行进行分组
+kable(mtcars[1:10, 1:6], caption = "Group Rows") %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows("Group 1", 4, 7) %>%
+  pack_rows("Group 2", 8, 10)
+
+kable(mtcars[1:10, 1:6], caption = "Group Rows") %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows(index = c(" " = 3, "Group 1" = 4, "Group 2" = 3))
+
+kable(dt) %>%
+  kable_styling("striped", full_width = F) %>%
+  pack_rows("Group 1", 3, 5, label_row_css = "background-color: #666; color: #fff;")
+```
+
+
+### Add Footnote
+
+```{r kableExtra Footnote,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+kable(dt, align = "c") %>%
+  kable_styling(full_width = F) %>%
+  footnote(general = "Here is a general comments of the table. ",
+           number = c("Footnote 1; ", "Footnote 2; "),
+           alphabet = c("Footnote A; ", "Footnote B; "),
+           symbol = c("Footnote Symbol 1; ", "Footnote Symbol 2"),
+           general_title = "General: ", number_title = "Type I: ",
+           alphabet_title = "Type II: ", symbol_title = "Type III: ",
+           footnote_as_chunk = T, title_format = c("italic", "underline")
+           )
+
+dt_footnote <- dt
+names(dt_footnote)[2] <- paste0(names(dt_footnote)[2], 
+                                footnote_marker_symbol(1))
+row.names(dt_footnote)[4] <- paste0(row.names(dt_footnote)[4], 
+                                footnote_marker_alphabet(1))
+kable(dt_footnote, align = "c", 
+      # Remember this escape = F
+      escape = F) %>%
+  kable_styling(full_width = F) %>%
+  footnote(alphabet = "Footnote A; ",
+           symbol = "Footnote Symbol 1; ",
+           alphabet_title = "Type II: ", symbol_title = "Type III: ",
+           footnote_as_chunk = T)
+``` 
+           
+           
+
+```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+```

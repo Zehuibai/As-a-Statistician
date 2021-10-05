@@ -32,7 +32,6 @@ The note is still being updated, and some chapters are left blank in order to ad
 
 * Data Management
     + Chap 01 Introduction
-    + Chap 02 Input and Format
     + Chap 03 DM in SAS
     + Chap 04 DM in R
     + Chap 05 SQL (in processing)

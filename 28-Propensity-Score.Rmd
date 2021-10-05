@@ -1,0 +1,11 @@
+# Propensity Score 
+
+## ATE & ATT
+
+
+
+## Propensity Score Matching
+
+Propensity score matching entails forming matched sets of treated and untreated subjects who share a similar value of the propensity score (Rosenbaum & Rubin, 1983a, 1985).
+
+https://sejdemyr.github.io/r-tutorials/statistics/tutorial8.html
