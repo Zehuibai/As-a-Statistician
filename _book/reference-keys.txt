@@ -930,3 +930,4 @@ style-location-option
 borders
 conti_report
 categ_report
+loess-regression

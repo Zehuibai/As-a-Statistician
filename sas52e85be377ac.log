@@ -1,0 +1,90 @@
+1                             The SAS System
+                                           11:33 Wednesday, October 6, 2021
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+WARNING: Unable to copy SASUSER registry to WORK registry. Because of 
+         this, you will not see registry customizations during this 
+         session.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M6) 
+      Licensed to GCP SERVICE INTERNATIONAL LTD U CO KG, Site 70097125.
+NOTE: This session is executing on the X64_10PRO  platform.
+
+
+
+NOTE: Analytical products:
+      
+      SAS/STAT 15.1
+
+NOTE: Additional host information:
+
+ X64_10PRO WIN 10.0.19041  Workstation
+
+NOTE: SAS initialization used:
+      real time           0.13 seconds
+      cpu time            0.15 seconds
+      
+1          OPTIONS NONUMBER NODATE PAGESIZE = MAX FORMCHAR =
+1        ! '|----|+|---+=|-/<>*' FORMDLIM=' ';title;
+2          data unempl_rates;
+3          input rate @@;
+4          month= _N_ ;
+5          datalines;
+
+NOTE: SAS went to a new line when INPUT statement reached past the end of 
+      a line.
+NOTE: The data set WORK.UNEMPL_RATES has 120 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+16         ;
+17         proc loess data=unempl_rates;
+18         model rate=month/clm;
+19         ods output OutputStatistics=results;
+20         run;
+
+NOTE: The DFMETHOD=EXACT option is implicitly selected when the STD, CLM, 
+      or T option is used.
+NOTE: The data set WORK.RESULTS has 120 observations and 7 variables.
+NOTE: The PROCEDURE LOESS printed pages 1-3.
+NOTE: PROCEDURE LOESS used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+21         proc print data=results;
+22         run;
+
+NOTE: There were 120 observations read from the data set WORK.RESULTS.
+NOTE: The PROCEDURE PRINT printed page 4.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23         symbol1 color=black value=dot;
+24         symbol2 color=black value=none interpol=join line=1;
+25         symbol3 color=black value=none interpol=join line=2;
+26         symbol4 color=black value=none interpol=join line=2;
+27         proc gplot data=results;
+28         by SmoothingParameter;
+29         plot (DepVar Pred LowerCL UpperCL)*month/ overlay;
+30         run;
+
+NOTE: There were 120 observations read from the data set WORK.RESULTS.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           1:24:08.36
+      cpu time            0.31 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           1:24:08.54
+      cpu time            0.50 seconds
+      

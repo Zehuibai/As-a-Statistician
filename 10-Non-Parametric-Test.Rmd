@@ -12,11 +12,11 @@ widget
 
 Nonparametric methods are insensitive to model assumptions and outliers but have reduced power.
 
-> 非参数检验则不考虑总体分布是否己知，常常也不是针对总体参数，而是针对总体的某些一般性假设（如总体分布的位置是否相同，总体分布是否正态）进行检验. 非参数检验适用于以下三种情况
+Non-parametric testing does not consider whether the population distribution is known or not, and it is often not for population parameters, but for certain general assumptions of the population (such as whether the location of the population distribution is the same, whether the population distribution is normal). The test is applicable to the following three situations
 
-> 1. 顺序类型的数据资料，这类数据的分布形态一般是未知的；
-> 2. 虽然是连续数据，但总体分布形态未知或者非正态，这和卡方检验一样，称自由分布栓验．
-> 3. 总体分布虽然正态，数据也是连续类型，但样本容量极小，如10以下（T检验性毕竟很差，最好不要用要求较严格的参数检验法）
+> 1. Sequential data, the distribution of this type of data is generally unknown;
+> 2. Although it is continuous data, the overall distribution is unknown or non-normal. This is the same as the chi-square test, which is called the free distribution test.
+> 3. Although the overall distribution is normal, the data is also continuous, but the sample size is extremely small, such as less than 10 (after all, the T test is very poor, and it is best not to use the more stringent parameter test method)
 
 * [PROC NPAR1WAY Statement](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.4/statug/statug_npar1way_syntax01.htm#statug.npar1way.np1plots)
 
@@ -24,13 +24,13 @@ Nonparametric methods are insensitive to model assumptions and outliers but have
 
 ### Sign Test for Location Parameter for Matched Paired Samples
 
+If the matched paired observations are normally distributed or can be approximated by a normal distribution, then the paired t-test is the best statistical test to implement. However, if the data is obtained from a non-normal distribution or data that contains outliers, then the non-parametric sign test is a better choice.
+Suppose we have n pairs of observations in the form of $(\mathrm(xi), \mathrm(yi)), \mathrm(i)=1, \ldots, \mathrm(n)_(\circ)$ We assume that every The record is for the same person, or for two different individuals that match certain characteristics that you don't want to be confused. The question to be considered in the research is whether the observed variables come from the same distribution or whether the distribution of location parameters is different. Use $\theta_{X}$ and $\theta_{Y}$ to denote the positional parameters of the unknown cumulative distribution functions FX (x) and FY (y), respectively. Usually, the positional parameter is the mean, median or mode. The tested hypotheses may be stated as $H_{0}: \theta_{X}=\theta_{Y}$ against
+$H_{1}: \theta_{X}>\theta_{Y}$, or $H_{1}: \theta_{X}<\theta_{Y}$, or $H_{1}: \theta_{X } \neq \theta_{Y}$. Note that the algebraic form of the cumulative distribution function is not assumed to be known, so a nonparametric test is used.
 
-如果匹配的配对观测值呈正态分布或可以通过正态分布进行近似, 则配对t检验是实施的最佳统计检验。但 是, 如果数据是从非正态分布或包含异常值的数据中获得的，则非参数符号检验是一个更好的选择。
-假设我们有n对观测值, 形式为 $(\mathrm{xi}, \mathrm{yi}), \mathrm{i}=1, \ldots, \mathrm{n}_{\circ}$ 我们假设每对记录是针对同一个人，或针对不希 望混淆的某些特征匹配的两个不同个体。研究中要考虑的问题是观察到的变量是来自相同的分布还是位置 参数的分布不同。用\thetaX和\thetaY分别表示未知累积分布函数FX (x) 和FY (y) 的位置参数。通常, 位置参数是 平均值, 中位数或众数。 The tested hypotheses may be stated as $H_{0}: \theta_{X}=\theta_{Y}$ against
-$H_{1}: \theta_{X}>\theta_{Y}$, or $H_{1}: \theta_{X}<\theta_{Y}$, or $H_{1}: \theta_{X} \neq \theta_{Y}$.注意，累积分布函数的代数形式不是假定已知的，因此使用了非参数检验。
+In order to perform test statistics, calculate the difference of observation value $d_i = \mathrm{xi}$ -yi for each pair of $n$, and record the signs of these differences. If the number is positive, define the sign of the number as a plus sign ("+"); if it is negative, define it as a minus sign ("-"). If the difference is equal to zero, the sign is uncertain. However, the zero difference during this test is meaningless. All homodyne pairs should be eliminated from further consideration and halves should be reduced accordingly
+Analyze the total number of valid pairs. Under the null hypothesis that xi and yi have the same distribution, their difference di may be positive or negative. Let M denote the total number of positive deviations. Then under H0, M has a binomial distribution with the parameter $\mathrm{p}=\mathrm{P}(\mathrm{X}>\mathrm{Y})=0.5$. Suppose it can be written as H0: $\mathrm{p}=0.5$ relative to H1: $\mathrm{p>}$ 0.5 or H1: $\mathrm{p}<0.5$ or H1: $\mathrm{p}=0.5 $. Which alternative hypothesis should be chosen depends on the current problem. Use Bi $(\mathrm{n}, 0.5)$ to represent the term random variable with parameters n and 0.5. The calculation of P value is as follows:
 
-为了进行检验统计，针对$n$对中的每对计算观察值$d_i = \mathrm{xi}$ -yi的差异, 并记录这些差异的符号。如果数字为 正 则将数字的符号定义为加号 (" +") ; 如果为负, 则将其定义为减号 ( "-") 。如果差等于零, 则符号不 确定。但是，在此测试过程中零差异是无意义的。应该从进一步考虑中消除所有零差对，并相应减少对分
-析有效的对总数。在xi和yi分布相同的零假设下，它们的差di可能为正也为负。令M表示正差的总数。然后 在H0下, M具有参数 $\mathrm{p}=\mathrm{P}(\mathrm{X}>\mathrm{Y})=0.5$ 的二项式分布。假设可以写成H0: $\mathrm{p}=0.5$ 相对于H1： $\mathrm{p>}$ 0.5或 H1: $\mathrm{p}<0.5$ 或H1 : $\mathrm{p}=0.5$ 。应该选择哪种替代假设取决于当前的问题。用Bi $(\mathrm{n}, 0.5)$ 表示参数为n和0.5的 项式随机变量。 P值的计算如下：
 
 - For $H_{1}: p>0.5$, P-value $=\mathbb{P}(B i(n, 0.5) \geq M)=(0.5)^{n} \sum_{k=M}^{n}\left(\begin{array}{c}n \\ k\end{array}\right)$.
 - For $H_{1}: p<0.5$, P-value $=\mathbb{P}(B i(n, 0.5) \leq M)=(0.5)^{n} \sum_{k=0}^{M}\left(\begin{array}{l}n \\ k\end{array}\right)$.
@@ -110,18 +110,32 @@ run;
 ### Wilcoxon Signed-Rank Test for Location Parameter for Matched
 
 
-> 测试程序对配对实验的符号测试的另一种选择是Wilcoxon符号秩测试, 它以著名的美国统计学家Frank Wilcoxon (1892- 1965) 的名字命名, 他在1945.1年提出了该测试。在Wilcoxon符号秩检验中, 它把观测 值和零假设的中心位置之差的绝对值的秩分别按照不同的符号相加作为其检验统计量。它适用于T检验中的 成对比较，但并不要求成对数据之差di服从正态分布, 只要求对称分布即可。检验成对观测数据之差是否 来自均值为0的总体 (产生数据的总体是否具有相同的均值)
-> 为了进行Wilcoxon符号秩检验, 首先我们为n个匹配对中的每对计算差异di $=\mathrm{x}_{\mathrm{i}-\mathrm{y} \mathrm{i}_{\circ}}$ 所有等于零的差异都应 从分析中丢弃。然后, 我们以这样的方式对差异的绝对值进行排序：将最小值分配为1, 然后将最小值分配 为2, 以此类推。以此类推。如果两个或多个绝对差异之间存在并列关系, 则每个并列关系值被赋予与不存 在平局时将被分配的平均排名相等的等级，并且在处理平局后的下一个最高绝对差将被分配给下一个未使 用的等级。例如, 如果两个绝对差分别与等级2和等级3绑定在一起, 则每个等级都将获得2.5等级, 并且将 下一个最高的绝对差指定为等级4。
-该方法具体步骤如下:
+Test program Another option for the symbolic test of the pairing experiment is the Wilcoxon signed rank test, which is named after the famous American statistician Frank Wilcoxon (1892-1965), who proposed the test in 1945.1. In the Wilcoxon signed rank test, it adds the rank of the absolute value of the difference between the observation value and the center position of the null hypothesis according to different signs as its test statistic. It is suitable for pairwise comparison in the T test, but it does not require the difference di between the paired data to obey the normal distribution, but only requires a symmetrical distribution. Test whether the difference between the paired observations comes from a population with a mean of 0 (whether the population that generates the data has the same mean)
 
-- (1) 对i=1,\ldots,n, 计算 $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$, 它们代表这些样本点到Mo的距离。
-- (2)把上面的n个绝对值排序, 并找出它们的n个秩，如果它们有相同的样本点, 每个点取平均秩 (如 $1,4,4,5$ 的秩为 $1,2.5,2.5,4)$ 。
-- (3)令 $W+$ 等于X $\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}>0$ 的 $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$ 的秩的和, 而W $-$ 等于 $\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}<0$ 的
-$\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$ 的秩的和。
-- (4)对双边检验 $\mathrm{H}_{0}: \mathrm{M}=\mathrm{M}_{0}<=>\mathrm{H}_{1}: \mathrm{M} \neq \mathrm{M}_{0}$, 在零假设下, $\mathrm{W}$ +和W -应差不多。因而，当其
-中之一很小时, 应怀疑零假设。在此, 取检验统计量W=min(W +,W -)
-- (5) 根据得到的W值, 利用统计软件或查Wilcoxon符号秩检验的分布表以得到在零假设下的p值。如果n 很大要用正态近似: 得 到一个与W有关的正态随机变量Z的值，再用软件或查正态分布表得到p值。
-- (6)如果p值较小 (比如小于或等于给定的显著性水平，譬如0.05) 则可以拒绝零假设。如果p值较大则 没有充分的证据来拒绝 零假设, 但不意味着接受零假设。
+In order to perform the Wilcoxon signed rank test, first we calculate the difference di for each of the n matching pairs $=\mathrm{x}_{\mathrm{i}-\mathrm{y} \mathrm{i}_{\ circ}}$ All differences equal to zero should be discarded from the analysis. Then, we sort the absolute value of the difference in this way: assign the minimum value to 1, then assign the minimum value to 2, and so on. And so on. If there is a tie relationship between two or more absolute differences, each tie relationship value is assigned a rank equal to the average ranking that will be assigned if there is no tie, and the next highest absolute difference after the tie is processed will be Assign to the next unused level. For example, if two absolute differences are tied to level 2 and level 3 respectively, each level will receive a level of 2.5, and the next highest absolute difference will be designated as level 4.
+The specific steps of the method are as follows:
+
+-(1) For i=1,\ldots,n, calculate $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$, they represent these The distance from the sample point to Mo.
+-(2) Sort the above n absolute values ​​and find their n ranks. If they have the same sample points, take the average rank for each point (for example, the rank of $1,4,4,5$ is $1 ,2.5,2.5,4)$.
+-(3) Let $W+$ equal X $\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}>0$ of $\left|\mathrm{X}_{\ mathrm{i}}-\mathrm{M}_{0}\right|$'s rank sum, and W $-$ is equal to $\mathrm{X}_{\mathrm{i}}-\mathrm{M} _{0}<0$ of
+The sum of the ranks of $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$.
+-(4) For bilateral inspection $\mathrm{H}_{0}: \mathrm{M}=\mathrm{M}_{0}<=>\mathrm{H}_{1}: \mathrm{M } \neq \mathrm{M}_{0}$, under the null hypothesis, $\mathrm{W}$ + and W-should be similar. Therefore, when its
+One of them is very small and the null hypothesis should be doubted. Here, take the test statistic W=min(W +,W -)
+-(5) According to the obtained W value, use statistical software or check the distribution table of Wilcoxon signed rank test to obtain the p value under the null hypothesis. If n is large, use normal approximation: get the value of a normal random variable Z related to W, and then use software or check the normal distribution table to get the p value.
+-(6) If the p-value is small (for example, less than or equal to the given significance level, such as 0.05), the null hypothesis can be rejected. If the p-value is large, there is insufficient evidence to reject the null hypothesis, but it does not mean that the null hypothesis is accepted.
+
+<!-- > 测试程序对配对实验的符号测试的另一种选择是Wilcoxon符号秩测试, 它以著名的美国统计学家Frank Wilcoxon (1892- 1965) 的名字命名, 他在1945.1年提出了该测试。在Wilcoxon符号秩检验中, 它把观测 值和零假设的中心位置之差的绝对值的秩分别按照不同的符号相加作为其检验统计量。它适用于T检验中的 成对比较，但并不要求成对数据之差di服从正态分布, 只要求对称分布即可。检验成对观测数据之差是否 来自均值为0的总体 (产生数据的总体是否具有相同的均值) -->
+<!-- > 为了进行Wilcoxon符号秩检验, 首先我们为n个匹配对中的每对计算差异di $=\mathrm{x}_{\mathrm{i}-\mathrm{y} \mathrm{i}_{\circ}}$ 所有等于零的差异都应 从分析中丢弃。然后, 我们以这样的方式对差异的绝对值进行排序：将最小值分配为1, 然后将最小值分配 为2, 以此类推。以此类推。如果两个或多个绝对差异之间存在并列关系, 则每个并列关系值被赋予与不存 在平局时将被分配的平均排名相等的等级，并且在处理平局后的下一个最高绝对差将被分配给下一个未使 用的等级。例如, 如果两个绝对差分别与等级2和等级3绑定在一起, 则每个等级都将获得2.5等级, 并且将 下一个最高的绝对差指定为等级4。 -->
+<!-- 该方法具体步骤如下: -->
+
+<!-- - (1) 对i=1,\ldots,n, 计算 $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$, 它们代表这些样本点到Mo的距离。 -->
+<!-- - (2)把上面的n个绝对值排序, 并找出它们的n个秩，如果它们有相同的样本点, 每个点取平均秩 (如 $1,4,4,5$ 的秩为 $1,2.5,2.5,4)$ 。 -->
+<!-- - (3)令 $W+$ 等于X $\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}>0$ 的 $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$ 的秩的和, 而W $-$ 等于 $\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}<0$ 的 -->
+<!-- $\left|\mathrm{X}_{\mathrm{i}}-\mathrm{M}_{0}\right|$ 的秩的和。 -->
+<!-- - (4)对双边检验 $\mathrm{H}_{0}: \mathrm{M}=\mathrm{M}_{0}<=>\mathrm{H}_{1}: \mathrm{M} \neq \mathrm{M}_{0}$, 在零假设下, $\mathrm{W}$ +和W -应差不多。因而，当其 -->
+<!-- 中之一很小时, 应怀疑零假设。在此, 取检验统计量W=min(W +,W -) -->
+<!-- - (5) 根据得到的W值, 利用统计软件或查Wilcoxon符号秩检验的分布表以得到在零假设下的p值。如果n 很大要用正态近似: 得 到一个与W有关的正态随机变量Z的值，再用软件或查正态分布表得到p值。 -->
+<!-- - (6)如果p值较小 (比如小于或等于给定的显著性水平，譬如0.05) 则可以拒绝零假设。如果p值较大则 没有充分的证据来拒绝 零假设, 但不意味着接受零假设。 -->
 
 The critical value $T_0$ depends on the sample size n, the significance level α, and whether the alternative hypothesis is one-tailed or two-tailed.
 
@@ -150,9 +164,9 @@ $$
 \end{array}
 $$
 
+For the hypothesis under study $H_{1}: \theta_{T x}>\theta_{C x}$, the rejection area is composed of a sufficiently small negative difference level sum. The test statistic is $T^{-}=5+6=11$. From the critical table, for $\mathrm{n=9,}$, at the $5 \%$ significance level, the criticality of the one-sided test The value is $T_{0}=8$ Since the original hypothesis of $T^{-}>T_{0}$ is not rejected, it is concluded that the operation is invalid.
 
-
-对于正在研究的假设 $H_{1}: \theta_{T x}>\theta_{C x}$, 拒绝区域由足够小的负差等级和组成。测试统计量为 $T^{-}=5+6=11$. 从临界表，对于 $\mathrm{n=9,}$, 在 $5 \%$ 显着性水平下，单面测试的临界值为 $T_{0}=8$ 由于 $T^{-}>T_{0}$ 原假设不被拒绝, 从而得出手术无效的结论。
+<!-- 对于正在研究的假设 $H_{1}: \theta_{T x}>\theta_{C x}$, 拒绝区域由足够小的负差等级和组成。测试统计量为 $T^{-}=5+6=11$. 从临界表，对于 $\mathrm{n=9,}$, 在 $5 \%$ 显着性水平下，单面测试的临界值为 $T_{0}=8$ 由于 $T^{-}>T_{0}$ 原假设不被拒绝, 从而得出手术无效的结论。 -->
 
 **SAS Implementation|**
 
@@ -169,11 +183,16 @@ RUN;
 
 ### Wilcoxon Rank-Sum Test for Location Parameter for Two Independent Samples
 
-> Wilcoxon rank-sum test/Mann–Whitney U test
+**Wilcoxon rank-sum test/Mann–Whitney U test**
 
-> 若两组数据独立，可以使用Wilcoxon秩和检验(更广为人知的名字是 Mann–Whitney U检验) 来评估观测是否是从相同的概率分布中抽得的(在一个总体中获得更高得分的概率是否比另 一个总体要大)。
-wilcoxon秩和检验，用于推断计量资料或等级资料的两个样本所来自的两个总体分布是否有差别在理论上假设应为两个总体分布相同，即两个样本来自同一总体。
-> 由于秩和检验对于两个总体分布的冠状差别不敏感，对于位置相同、形状不同但类似的两个总体分布，推断不出两个总体分布有差别，故对立的备择假设不能认为两个总体分布不同，而只能为两个总体分布位置不同。不管两个总体分布的形状有无差别，秩和检验的目的是推断两个总体分布的位置是否有差别，这正是实践中所需要的，如要推断两个不同人群的某项指标值的大小是否有差别或哪个人群的大，可用其指标值分布的位置差别反映，而不关心其指标值分布的形状有无差别
+If the two sets of data are independent, the Wilcoxon rank sum test (better known as the Mann–Whitney U test) can be used to assess whether the observations are drawn from the same probability distribution (the probability of obtaining a higher score in a population) Is it larger than the other population).
+Wilcoxon rank sum test is used to infer whether the two population distributions from two samples of measurement data or grade data are different. Theoretically, it is assumed that the two population distributions are the same, that is, the two samples come from the same population.
+
+Since the rank sum test is not sensitive to the coronal difference between the two population distributions, for two population distributions with the same location and different shapes but similar, it cannot be inferred that the two population distributions are different, so the opposing alternative hypothesis cannot be considered as two The overall distribution is different, but only because the two overall distribution positions are different. Regardless of whether the shapes of the two population distributions are different, the purpose of the rank sum test is to infer whether the positions of the two population distributions are different. This is exactly what is needed in practice, such as inferring the value of an indicator of two different populations. Whether there is a difference in size or which group of people is big, it can be reflected by the difference in the position of the index value distribution, regardless of whether the shape of the index value distribution is different
+
+<!-- > 若两组数据独立，可以使用Wilcoxon秩和检验(更广为人知的名字是 Mann–Whitney U检验) 来评估观测是否是从相同的概率分布中抽得的(在一个总体中获得更高得分的概率是否比另 一个总体要大)。 -->
+<!-- wilcoxon秩和检验，用于推断计量资料或等级资料的两个样本所来自的两个总体分布是否有差别在理论上假设应为两个总体分布相同，即两个样本来自同一总体。 -->
+<!-- > 由于秩和检验对于两个总体分布的冠状差别不敏感，对于位置相同、形状不同但类似的两个总体分布，推断不出两个总体分布有差别，故对立的备择假设不能认为两个总体分布不同，而只能为两个总体分布位置不同。不管两个总体分布的形状有无差别，秩和检验的目的是推断两个总体分布的位置是否有差别，这正是实践中所需要的，如要推断两个不同人群的某项指标值的大小是否有差别或哪个人群的大，可用其指标值分布的位置差别反映，而不关心其指标值分布的形状有无差别 -->
 
 **A very general formulation is to assume that:**
 
@@ -184,17 +203,17 @@ wilcoxon秩和检验，用于推断计量资料或等级资料的两个样本所
 
 **Calculation by hand**
 
-1. 为所有观测值分配数值等级 (将两组观测值放入一组)， 以1表示最小值。如果存在一组绑定值，则分 配一个等级，该等级等于未调整等级的中点。
-2. 将来自样本1的观测值的等级加起来。由于所有等级的总和等于N $(\mathrm{N}+1)$ / 2, 因此样本2中的等级总 和现在确定了，其中N是观测值的总数。
+1. Assign a numerical level to all observations (put two observations into one group), with 1 representing the minimum value. If there is a set of binding values, a level is assigned, which is equal to the midpoint of the unadjusted level.
+2. Add up the ranks of the observations from sample 1. Since the sum of all levels is equal to N $(\mathrm{N}+1)/2$, the sum of levels in sample 2 is now determined, where N is the total number of observations.
 3. $\mathrm{U}$ is then given by
 $$
 U_{1}=R_{1}-\frac{n_{1}\left(n_{1}+1\right)}{2}
 $$
-其中n1是样本1的样本大小, R1是样本1的秩和。 (将两个样本中的哪个视为样本1都没有关系).An equally valid formula for $U$ is
+Where n1 is the sample size of sample 1, and R1 is the rank sum of sample 1. (It doesn't matter which of the two samples is considered sample 1). An equally valid formula for $U$ is
 $$
 U_{2}=R_{2}-\frac{n_{2}\left(n_{2}+1\right)}{2}
 $$
-U1和U2的较小值是查阅重要性表时使用的值。这两个值的总和为
+The smaller value of U1 and U2 is the value used when referring to the importance table. The sum of these two values is
 $$
 \begin{array}{c}
 U_{1}+U_{2}=R_{1}-\frac{n_{1}\left(n_{1}+1\right)}{2}+R_{2}-\frac{n_{2}\left(n_{2}+1\right)}{2} \\
@@ -208,7 +227,7 @@ $$z={\frac {U-m_{U}}{\sigma _{U}}}$$
 **SAS Implementation**
 
 - The EXACT option requests an exact test for the specified statistic, that is, an exact P-value is computed via listing all possibilities
-- 基于检验统计量的渐近正态性的P值。 对于较大的 $n_{1} \leq n_{2}$, 检验统计量近似为正态分布, with
+- The P value based on the asymptotic normality of the test statistic. For larger $n_{1} \leq n_{2}$, the test statistic is approximately normal distribution, with
 mean $n_{1}(n+1) / 2$ and variance $n_{1} n_{2}(n+1) / 12$ where $n=n_{1}+n_{2}$ (if corrected for ties, the variance is $n 1 n 2(n+1) / 12-n 1 n 2 /[12 n(n-1)] \sum j=1^{m} T j\left(T j^{2}-1\right)$ with
 $T 1, \ldots, T_{m}$ denoting the respective sizes of \$m\$ groups of tied observations).
 
@@ -244,18 +263,20 @@ wilcox_test(Prob ~ So, data = UScrime, distribution = "exact")
 
 ### Ansari-Bradley Test for Scale Parameter for Two Independent Samples
 
-如果来自两个独立样本的观察值呈正态分布, 并且要进行方差相等性检验, 则标准F检验可以很好地处理这 种情况。如果违反了正态性假设, 并且需要测试确定概率分布范围的比例尺参数是否相等 (equality of scale parameters determining the spread of the probability distributions) 则可以实施非参数AnsariBradley检验。但是, 只有在概率分布的位置参数相同的情况下，才可以验证其使用。
+If the observations from two independent samples are normally distributed, and a test for equality of variance is required, the standard F test can handle this situation well. If the normality assumption is violated and the equality of scale parameters determining the spread of the probability distributions needs to be tested, then the non-parametric Ansari Bradley test can be implemented. However, its use can only be verified when the location parameters of the probability distribution are the same.
+
+<!-- 如果来自两个独立样本的观察值呈正态分布, 并且要进行方差相等性检验, 则标准F检验可以很好地处理这 种情况。如果违反了正态性假设, 并且需要测试确定概率分布范围的比例尺参数是否相等 (equality of scale parameters determining the spread of the probability distributions) 则可以实施非参数AnsariBradley检验。但是, 只有在概率分布的位置参数相同的情况下，才可以验证其使用。 -->
 
 It is assumed that the two cumulative distribution functions, $F_{X}$ and $F_{Y}$, have equal location
 parameters, say, $\theta$, but different scale parameters, say, $\eta_{1}$ and $\eta_{2}$ Let $\gamma=\eta 2 / \eta 1$ denote the ratio of
 the two scale parameters. The hypotheses of interest may be easily expressed in terms of $\gamma$. As always, the null $H_{0}: \gamma=1$ asserts that the scale parameters are equal.
 
-适用条件: 两独立样本 $\mathrm{X}_{1}, \mathrm{X}_{2}, \cdots, \mathrm{X}_{\mathrm{m}} \square \mathrm{F}\left(\frac{x-\theta_{1}}{\sigma_{1}}\right), \mathrm{Y}_{1}, \mathrm{Y}_{2}, \cdots, \mathrm{Y}_{n} \square \mathrm{F}\left(\frac{x-\theta_{2}}{\sigma_{2}}\right)$ 其中 $F(.)$ 为连续
-分布函数, 且F $(0)=\frac{1}{2}$, 假定两个总体的位置参数相等, 即 $\theta_{1}=\theta_{2}$.
-先把两样本混合按升尉排序，并按从小到大的顺序评秩。
+Applicable conditions: Two independent samples $\mathrm{X}_{1}, \mathrm{X}_{2}, \cdots, \mathrm{X}_{\mathrm{m}} \square \mathrm{F} \left(\frac{x-\theta_{1}}{\sigma_{1}}\right), \mathrm{Y}_{1}, \mathrm{Y}_{2}, \cdots, \mathrm {Y}_{n} \square \mathrm{F}\left(\frac{x-\theta_{2}}{\sigma_{2}}\right)$ where $F(.)$ is continuous
+Distribution function, and F $(0)=\frac{1}{2}$, assuming that the positional parameters of the two populations are equal, that is, $\theta_{1}=\theta_{2}$.
+First mix the two samples and sort them by promotion, and rank them in ascending order.
 
-・若令 $\mathrm{R}_{11}, R_{12}, \cdots, R_{1 m}$ 表示 $X$ 在混合样本中的秩
-・若令 $\mathrm{R}_{21}, R_{22}, \cdots, R_{2 m}$ 表示 $Y$ 在混合样本中的秩
+* If $\mathrm{R}_{11}, R_{12}, \cdots, R_{1 m}$ denote the rank of $X$ in the mixed sample
+* If $\mathrm{R}_{21}, R_{22}, \cdots, R_{2 m}$ denote the rank of $Y$ in the mixed sample
 
 $$
 \begin{array}{l}
@@ -264,9 +285,9 @@ $$
 \end{array}
 $$
 
-- If $\bar{A}_{1}$ 与 $\overline{A_{2}}$ 相差很远, 则可怀疑原假设。
-- If  $\bar{A}_{1}$ 偏小，则 $\sigma_{1}$ 偏大;
-- If $\overline{A_{1}}$ 偏大，则 $\sigma_{1}$ 偏小;
+- If $\bar{A}_{1}$ is far from $\overline{A_{2}}$, the null hypothesis can be doubted.
+- If $\bar{A}_{1}$ is too small, then $\sigma_{1}$ is too big;
+- If $\overline{A_{1}}$ is too large, then $\sigma_{1}$ is too small;
 
 **SAS Implementation**
 
@@ -321,23 +342,28 @@ ansari.test(x,y,alternative="less")
 
 ### Kolmogorov-Smirnov Test for Equality of Distributions
 
-假设对从两个独立总体中抽取的两个样本进行了测量。感兴趣的问题是, 这些测量值在各个总体中的基本
-分布是否相等。在这种情况下，可以进行非参数KolmogorovSmirnov检验|
+Suppose that two samples drawn from two independent populations are measured. The question of interest is how basic these measurements are in each population
+Whether the distribution is equal. In this case, the non-parametric Kolmogorov Smirnov test can be performed|
+
+<!-- 假设对从两个独立总体中抽取的两个样本进行了测量。感兴趣的问题是, 这些测量值在各个总体中的基本 
+分布是否相等。在这种情况下，可以进行非参数KolmogorovSmirnov检验|-->
+
 
 Let $x_{1}, \ldots, x_{n_{1}}$ and $y_{1}, \ldots, y_{n_{2}}$ be two independent random samples from populations with continuous cumulative distribution functions $F_{X}$ and $F_{Y}$, respectively. We would like to assess
 whether these are the same functions, that is, we would like to test the null hypothesis
 $$
 H_{0}: F_{X}(t)=F_{Y}(t) \text { for all } t
 $$
-为了应用Kolmogorov-Smirnov检验, 首先为两个样本计算各自的经验分布函数(empirical distribution functions) $\hat{F}_{X}(t)$ and $\hat{F}_{Y}(t)$
+In order to apply the Kolmogorov-Smirnov test, first calculate the respective empirical distribution functions for the two samples $\hat{F}_{X}(t)$ and $\hat{F}_{Y}(t)$
 $$
 \begin{array}{l}
 \hat{F}_{X}(t)=\frac{\# \text { of } x^{\prime} \mathrm{s} \leq t}{n_{1}}=\frac{1}{n_{1}} \sum_{i=1}^{n_{1}} \mathbb{I}\left\{x_{i} \leq t\right\} \\
 \hat{F}_{Y}(t)=\frac{\# \text { of } y^{\prime} \mathrm{s} \leq t}{n_{2}}=\frac{1}{n_{2}} \sum_{i=1}^{n_{2}} \mathbb{I}\left\{y_{i} \leq t\right\}
 \end{array}
 $$
-Function $\mathbb{I}\{A\}$ 表示 $A$, 的指标函数，如果该语句为true, 则等于1, 否则为0.
-计算测试统计量。它表示两个经验分布函数之间的最大差异（或最大垂直距离）。 
+ 
+Function $\mathbb{I}\{A\}$ represents the indicator function of $A$, if the statement is true, it is equal to 1, otherwise it is 0.
+Calculate test statistics. It represents the maximum difference (or maximum vertical distance) between two empirical distribution functions.
 
 * For the upper-tailed alternative $H_{1}: F_{X}(t)>F_{Y}(t)$ for some $t$, the test statistic is
 $$
@@ -351,7 +377,7 @@ $$
 $$
 D=\max _{t}\left|\hat{F}_{X}(t)-\hat{F}_{Y}(t)\right|
 $$
-最后，将测试统计量与适当的临界值进行比较。 表如果测试统计量严格大于临界值，则决策规则将拒绝零假设，否则将拒绝零假设。
+Finally, the test statistics are compared with the appropriate critical value. If the test statistic is strictly greater than the critical value, the decision rule will reject the null hypothesis, otherwise it will reject the null hypothesis.
 
 **SAS Implementation**
 
@@ -397,8 +423,11 @@ n <- length(x)
 
 The Friedman test determines if there are differences among groups for two-way data structured in a specific way, namely in an unreplicated complete block design.  In this design, one variable serves as the treatment or group variable, and another variable serves as the blocking variable.  It is the differences among treatments or groups that we are interested in.  We aren’t necessarily interested in differences among blocks, but we want our statistics to take into account differences in the blocks.  In the unreplicated complete block design, each block has one and only one observation of each treatment. 
 
-> 当比较两个以上相关样本的均值时，参数方法要求对方差进行重复测量分析。在这种情况下，一种合理的非参数技术是位置参数的Friedman秩检验。这项检验是1937年由美国经济学家和统计学家Milton Friedman（1912-2006）提出的。
-测试程序假设随着时间或在一定条件下对n个个体重复进行了k个相同变量的测量。这k组测量值通常称为相关样本，因为相同的个体构成了每个样本。零假设假设所有k个位置参数均相等
+When comparing the means of two or more related samples, the parametric method requires repeated measurement analysis of variance. In this case, a reasonable non-parametric technique is the Friedman rank test of positional parameters. This test was proposed by American economist and statistician Milton Friedman (1912-2006) in 1937.
+The test procedure assumes that k identical variables are repeatedly measured on n individuals over time or under certain conditions. These k sets of measurements are usually called related samples, because the same individual constitutes each sample. The null hypothesis assumes that all k positional parameters are equal
+
+<!-- 当比较两个以上相关样本的均值时，参数方法要求对方差进行重复测量分析。在这种情况下，一种合理的非参数技术是位置参数的Friedman秩检验。这项检验是1937年由美国经济学家和统计学家Milton Friedman（1912-2006）提出的。 -->
+<!-- 测试程序假设随着时间或在一定条件下对n个个体重复进行了k个相同变量的测量。这k组测量值通常称为相关样本，因为相同的个体构成了每个样本。零假设假设所有k个位置参数均相等 -->
 
 $$H_{0}: \theta_{1}=\theta_{2}=\cdots=\theta_{k},$$
 Alternative hypothesis asserting that not all  location parameters are the same,
@@ -575,11 +604,14 @@ The Kruskal–Wallis test is a rank-based test that is similar to the Mann–Whi
 
 Without further assumptions about the distribution of the data, the Kruskal–Wallis test **does not address hypotheses about the medians of the groups**.  Instead, the test addresses if it is likely that an observation in one group is greater than an observation in the other.  This is sometimes stated as testing if one sample has stochastic dominance compared with the other. The test **assumes that the observations are independent**.  That is, it is not appropriate for paired observations or repeated measures data.
 
-> 如果数据来自多个独立样本，并且目标是测试各个位置参数的相等性与非相等性, 则应进行单向方差分析 (ANOVA) 。 方差分析方法的非参数等效项是Kruskal-Wallis H-test, 它扩展了Mann-Whitney U检验(仅用 于比较两组)。
-用于推断多个独立性样本所来自的多个总体分布是否有差别。在理论上检验假设 $H_{0}$ 应为多个总体分布相
-同, 即多个样本来自同一总体。由于H检验多个总体分布的形状差别不敏感, 故在实际应用中检验假设 $H_{0}$
-可写作多个总体分布位置相同。对立的备择假设 $H_{1}$ 为多个总体分布位置不全相同。
 
+If the data comes from multiple independent samples, and the goal is to test the equality and inequality of each positional parameter, one-way analysis of variance (ANOVA) should be performed. The non-parametric equivalent of the analysis of variance method is Kruskal-Wallis H-test, which extends the Mann-Whitney U test (only used to compare two groups).
+
+Used to infer whether there is a difference in multiple population distributions from multiple independent samples. In theory, testing the hypothesis $H_{0}$ should be that multiple populations have the same distribution, that is, multiple samples come from the same population. Since the H test is not sensitive to the shape difference of multiple population distributions, the test hypothesis $H_{0}$ can be written as multiple population distributions in the same position in practical applications. The opposing alternative hypothesis $H_{1}$ is that multiple populations are distributed in different positions.
+
+<!-- 如果数据来自多个独立样本，并且目标是测试各个位置参数的相等性与非相等性, 则应进行单向方差分析 (ANOVA) 。 方差分析方法的非参数等效项是Kruskal-Wallis H-test, 它扩展了Mann-Whitney U检验(仅用 于比较两组)。 -->
+<!-- 用于推断多个独立性样本所来自的多个总体分布是否有差别。在理论上检验假设 $H_{0}$ 应为多个总体分布相同, 即多个样本来自同一总体。由于H检验多个总体分布的形状差别不敏感, 故在实际应用中检验假设 $H_{0}$可写作多个总体分布位置相同。对立的备择假设 $H_{1}$ 为多个总体分布位置不全相同。 -->
+ 
 $$
 \begin{array}{c}
 H=(N-1) \frac{\sum_{i=1}^{g} n_{i}\left(\bar{r}_{i \cdot}-\bar{r}\right)^{2}}{\sum_{i=1}^{g} \sum_{j=1}^{n_{i}}\left(r_{i j}-\bar{r}\right)^{2}} \\
@@ -593,7 +625,7 @@ $$
 
 Statistics of effect size for the Kruskal–Wallis test provide the degree to which one group has data with higher ranks than another group.  They are related to the probability that a value from one group will be greater than a value from another group.   Unlike p-values, **they are not affected by sample size**.
 
-> Kruskal–Wallis检验的效应量统计数据提供了一组比另一组具有更高等级的数据的程度。它们与一组值大于另一组值的可能性有关。与p值不同，它们不受样本大小的影响。
+The effect size statistics of the Kruskal–Wallis test provide the degree to which one set of data has a higher rank than the other. They are related to the possibility that one set of values is greater than another set of values. Unlike p-values, they are **not affected by sample size**.
 
 Appropriate effect size statistics for the Kruskal–Wallis test include **Freeman’s theta and epsilon-squared**.  epsilon-squared is probably the most common. For Freeman’s theta, an effect size of 1 indicates that the measurements for each group are entirely greater or entirely less than some other group, and an effect size of 0 indicates that there is no effect; that is, that the groups are absolutely stochastically equal.
 
@@ -748,13 +780,23 @@ multiVDA(x = Data$Likert,
 
 ### Spearman Rank Correlation Coefficient Test
 
-假设n对实现 $(\mathrm{xi}, \mathrm{yi})$ 可用于连续变量X和Y。可以将Pearson乘积矩相关系数计算为X和Y之间线性关系的 方向和强度的量度。为了测试等于零的皮尔逊相关系数，假设X和Y近似正态分布。
+Suppose n pairs of realizations $(\mathrm{xi}, \mathrm{yi})$ can be used for continuous variables X and Y. The Pearson product moment correlation coefficient can be calculated as a measure of the direction and strength of the linear relationship between X and Y. To test the Pearson correlation coefficient equal to zero, assume that X and Y are approximately normally distributed.
+
+<!-- 假设n对实现 $(\mathrm{xi}, \mathrm{yi})$ 可用于连续变量X和Y。可以将Pearson乘积矩相关系数计算为X和Y之间线性关系的 方向和强度的量度。为了测试等于零的皮尔逊相关系数，假设X和Y近似正态分布。 -->
+
 $$
 r_{p}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sqrt{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}} \sqrt{\sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}}}
 $$
-如果观测值与正态分布大不相同，或者至少一个变量是有序的, 则Spearman等级相关系数是Pearson相关 系数的非参数替代方案。
 
-Spearman相关系数的计算假设对变量X和Y获得n对观测值。要么数据是非正态的, 要么这些变量中的至少 一个是按序数尺度进行测量的。Spearman等级相关系数由与Pearson乘积矩相关的相同公式 (3.1) 定 义，不同之处在于，不是对原始值进行计算, 而是对等级进行计算。等级分别分配给X和Y变量。分配过程 如下：最小值得到的等级为1, 其次为最小值的等级为2, 依此类推。最大值获得n的等级。如果遇到并列观 察, 则将为每个观察值分配平均水平 (如果未并列 not tied)
+
+If the observed value is very different from the normal distribution, or at least one variable is ordered, then the Spearman rank correlation coefficient is a nonparametric alternative to the Pearson correlation coefficient.
+
+The calculation of Spearman's correlation coefficient assumes that n pairs of observations are obtained for variables X and Y. Either the data is non-normal, or at least one of these variables is measured on an ordinal scale. The difference is that instead of calculating the original value, the rank is calculated. The levels are assigned to the X and Y variables respectively. The allocation process is as follows: the lowest value gets the level 1, followed by the lowest level is 2, and so on. The maximum value gets the rank of n. If there are parallel observations, an average level will be assigned to each observation (if not tied)
+
+<!-- 如果观测值与正态分布大不相同，或者至少一个变量是有序的, 则Spearman等级相关系数是Pearson相关 系数的非参数替代方案。 -->
+
+<!-- Spearman相关系数的计算假设对变量X和Y获得n对观测值。要么数据是非正态的, 要么这些变量中的至少 一个是按序数尺度进行测量的。Spearman等级相关系数由与Pearson乘积矩相关的相同公式 (3.1) 定 义，不同之处在于，不是对原始值进行计算, 而是对等级进行计算。等级分别分配给X和Y变量。分配过程 如下：最小值得到的等级为1, 其次为最小值的等级为2, 依此类推。最大值获得n的等级。如果遇到并列观 察, 则将为每个观察值分配平均水平 (如果未并列 not tied) -->
+
 $$
 r_{s}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sqrt{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}} \sqrt{\sum_{i=1}^{n}\left(y_{i}-\bar{y}\right)^{2}}}
 $$
@@ -842,18 +884,18 @@ The disadvantages of permutation test is  the **limited complexity** of designs 
 
 ### Package: coin
 
-| 检 验                                       | coin函数                  |
-|---------------------------------------------|---------------------------|
-| 两样本和K样本置换检验                       | oneway_test(y ~ A)        |
-| 含一个分层(区组)因子的两样本和K样本置换检验 | oneway_test(y ~ A \| C)   |
-| Wilcoxon-Mann-Whitney秩和检验               | wilcox_test(y ~ A)        |
-| Kruskal-Wallis检验                          | kruskal_test(y ~ A)       |
-| Person卡方检验                              | chisq_test(A ~ B)         |
-| Cochran-Mantel-Haenszel检验                 | cmh_test(A ~ B \| C)      |
-| 线性关联检验                                | lbl_test(D ~ E)           |
-| Spearman检验                                | spearman_test(y ~ x)      |
-| Friedman检验                                | friedman_test(y ~ A \| C) |
-| Wilcoxon符号秩检验                          | wilcoxsign_test(y1 ~ y2)  |
+| Test | Coin function |
+|---------------------------------------------|--- ------------------------|
+| Two-sample and K-sample permutation test | oneway_test(y ~ A) |
+| Two-sample and K-sample permutation test with a stratification (block) factor | oneway_test(y ~ A \| C) |
+| Wilcoxon-Mann-Whitney rank sum test | wilcox_test(y ~ A) |
+| Kruskal-Wallis test | kruskal_test(y ~ A) |
+| Person chi-square test | chisq_test(A ~ B) |
+| Cochran-Mantel-Haenszel test | cmh_test(A ~ B \| C) |
+| Linear Association Test | lbl_test(D ~ E) |
+| Spearman test | spearman_test(y ~ x) |
+| Friedman test | friedman_test(y ~ A \| C) |
+| Wilcoxon Signed Rank Test | wilcoxsign_test(y1 ~ y2) |
 
 
 
@@ -1057,4 +1099,203 @@ cldList(p.adjust ~ Comparison, data = PT25)
  
 ## Nonparametric Regression
 
-In processing 
+For some data sets, it is impossible to describe the relationship between the response variable y and the predictor variables x1,...,xk in a priori known form (such as polynomial or exponential). In this case, a useful tool is nonparametric regression 
+$$y=f\left(x_{1}, \ldots, x_{k}\right)+\varepsilon$$
+$f$ has no explicit functional form, and $\varepsilon$ is an independent uniformly distributed random variable with a mean value of zero and a variance of $\sigma 2$ constant error. No assumption is made about the form of the probability distribution of $\varepsilon$.
+
+
+
+### Loess Regression
+
+The loess (locally estimated scatterplot smoothing) method evaluates f near each data point, and draws a piecewise polynomial curve connecting the fitted points on the scatter plot. In more than two dimensions, the loess regression method constructs a flat surface by fitting points. Locally Estimated Scatterplot Smoothing (LOESS) does not need to determine the number of parameters in advance. In each prediction, the sample points around the specified sample points are used for temporary training to determine the parameters.
+
+By fitting a polynomial regression function in the local neighborhood of each point, the response function at the data point can be estimated. The radius of the neighborhood is determined by the predetermined proportion of the data points contained in these neighborhoods (called smoothing parameters). Polynomial regression (usually linear or quadratic) is fitted by the weighted least squares method, and the smaller the weight, the farther the point is from the center.
+
+First, specify the value of the smoothing parameter as $\mathrm{p} / \mathrm{n}$. This means that for each fixed point $\mathbf{x}^{0}=\left(x_{1}^{0}, \ldots, x_{k}^{0}\right),$, linear function Fitting through the $p$ points in the local neighborhood $\mathscr{N}_{p}\left(\mathbf{x}^{0}\right)$. The linear function is defined as
+
+<!-- The loess (locally estimated scatterplot smoothing) method 在每个数据点附近上评估f, 并在散点图上绘 制连接拟合点的分段多项式曲线。在两个以上的维度中， loess 回归方法通过拟合点构造平坦表面。本地散 点平滑估计（Locally Estimated Scatterplot Smoothing, LOESS)，事先不用确定参数数量，每次预测的 时候，用指定的样本点周围的样本点进行临时训练，确定参数。 -->
+<!-- 通过在每个点的局部邻域中拟合多项式回归函数，可以对数据点处的响应函数进行估计。邻域的半径由这 些邻域包含的数据点的预定比例（称为平滑参数）确定。多项式回归（通常是线性或二次方）通过加权最 小二乘法进行拟合，而权重越小则指向距中心的距离越远。 -->
+<!-- 首先，将平滑参数的值指定为 $\mathrm{p} / \mathrm{n}$ 。这意味着对于每个固定点 $\mathbf{x}^{0}=\left(x_{1}^{0}, \ldots, x_{k}^{0}\right),$, 线性函数通过局部 邻域 $\mathscr{N}_{p}\left(\mathbf{x}^{0}\right)$ 中的 $p$ 个点拟合。该线性函数定义为 -->
+
+$$
+l(\mathbf{x})=l\left(x_{1}, \ldots, x_{k}\right)=\beta_{0}+\beta_{1}\left(x_{1}-x_{1}^{0}\right)+\cdots+\beta_{k}\left(x_{k}-x_{k}^{0}\right)
+$$
+for every $\mathbf{x}=\left(x_{1}, \ldots, x_{k}\right)$ in $\mathscr{N}_{p}\left(\mathbf{x}^{0}\right)$
+The weighted least-squares predicted line $\hat{l}(\mathbf{x})=\hat{\beta}_{0}+\hat{\beta}_{1}\left(x_{1}-x_{1}^{0}\right)+\cdots+\hat{\beta}_{k}\left(x_{k}-x_{k}^{0}\right)$ minimizes
+$$
+\sum_{\mathbf{x}_{i} \in \mathscr{N}_{p}\left(\mathbf{x}^{0}\right)}\left[y_{i}-l\left(\mathbf{x}_{i}\right)\right]^{2} w\left(\frac{\left\|\mathbf{x}_{i}-\mathbf{x}^{0}\right\|}{r\left(\mathbf{x}^{0}\right)}\right)
+$$
+where $\mathbf{x}_{i}=\left(x_{1 i}, \ldots, x_{k i}\right), i=1, \ldots, p .$ Here $\left\|\mathbf{x}_{i}-\mathbf{x}^{0}\right\|$ denotes the Euclidean distance, that is,
+$$\left\|\mathbf{x}_{i}-\mathbf{x}^{0}\right\|=\sqrt{\left(x_{1 i}-x_{1}^{0}\right)^{2}+\cdots+\left(x_{k i}-x_{k}^{0}\right)^{2}}$$
+$r\left(\mathbf{x}^{0}\right)=\max _{\mathbf{x}_{i} \in \mathscr{N}_{p}\left(\mathbf{x}^{0}\right)}\left\|\mathbf{x}_{i}-\mathbf{x}^{0}\right\|$ is the radius of the neighborhood, and $w(\cdot)$ is the weight function.
+
+Finally, by predicting the corresponding value on the line $\hat{l}$, that is, $\hat{f}\left(\mathbf{x}^{0}\right)=\hat{l}\left(\mathbf {x}^{0}\right)=\hat{\beta}_{0}. \$$, estimate the response function $f$ at the point $\mathbf{x}^{0}$. Please note that only the value of the matching intercept will work.
+Once the loess estimation of the response function for each data point is completed, the loess curve can be drawn on the scatter plot by connecting the fitted points with the straight line. If a significant curve relationship is displayed on the scatter plot, then the quadratic function
+
+$$
+q\left(x_{1}, \ldots, x_{k}\right)=\beta_{0}+\beta_{1,1}\left(x_{1}-x_{1}^{0}\right)+\beta_{1,2}\left(x_{1}-x_{1}^{0}\right)^{2}+\cdots+\beta_{k, 1}\left(x_{k}-x_{k}^{0}\right)+\beta_{k, 2}\left(x_{k}-x_{k}^{0}\right)^{2}
+$$
+Instead of the linear function $l$. The loess regression method proposes different weight functions. The most commonly used is
+
+- the bisquare function
+$$
+w(\mathbf{x})=\left\{\begin{array}{ll}
+\left(1-\|\mathbf{x}\|^{2}\right)^{2}, & \text { if }\|\mathbf{x}\| \leq 1 \\
+0, & \text { otherwise }
+\end{array}\right.
+$$
+- and the tricube function
+$$
+w(\mathbf{x})=\left\{\begin{array}{ll}
+\left(1-\|\mathbf{x}\|^{3}\right)^{3}, & \text { if }\|\mathbf{x}\| \leq 1 \\
+0, & \text { otherwise }
+\end{array}\right.
+$$
+In both cases $\|\mathbf{x}\|$ denotes the Euclidean norm of $\mathbf{x}=\left(x_{1}, \ldots, x_{k}\right),\|\mathbf{x}\|=\sqrt{x_{1}^{2}+\cdots+x_{k}^{2}}$
+
+
+**Comparison**
+
+Using linear regression will cause underfitting. In this case, Loess can solve this problem well. Compared with linear regression:
+-The goal of linear regression is to minimize $\sum\left(y^{(i)}-\theta^{T} x^{(i)}\right)^{2}$
+-Loess’s goal is to minimize $\left(y^{(i)}-\theta^{T} x^{(i)}\right)^{2}$, where $\quad \omega^{( i)}=\exp \left(-\frac{\left(x^{(i)}-x\right)^{2}}{2 \iota^{2}}\right)$
+
+The function of $\omega$ is to make the neighboring points of the predicted point contribute a lot in minimizing the objective function:
+
+-$\left|x^{(i)}-x\right|$ small $\Rightarrow \omega^{(i)} \approx 1$
+-$\left|x^{(i)}-x\right|$ large $\Rightarrow \omega^{(i)} \approx 0$
+
+**Disadvantages**: 
+
+Can not solve the problems of under-fitting and over-fitting, when the amount of data is large, it is costly to fit each predicted data once.
+
+
+**Smoothing Parameter Selection Criterion**
+
+<!-- 已经提出了许多标准来选择一组数据的最佳平滑参数。 在这里，最常用的，经偏差校正的赤池信息准则（AICC）the bias corrected Akaike information criterion。 该准则是选择使AICC最小化的平滑参数。 -->
+
+Many criteria have been proposed to select the best smoothing parameter for a set of data. Here, the most commonly used is the bias corrected Akaike information criterion (AICC). The criterion is to choose a smoothing parameter that minimizes AICC.
+
+$$A I C C=\ln \hat{\sigma}^{2}+\frac{2(\operatorname{Trace}(\mathbb{L})+1)}{n-\operatorname{Trace}(\mathbb{L})-2}$$
+
+where $\hat{\sigma}^{2}$ is an estimate of the variance of random error $\varepsilon$. The matrix $\mathbb{L}$ is an $n \times n$ smoothing matrix that satisfies $\mathbf{y}=\mathbb{L} \hat{\mathbf{y}}$ where $\mathbf{y}$ is the vector of observed $y$-values, and $\hat{\mathbf{y}}$ is the vector of the corresponding predicted values. he trace of a matrix is defined as the sum of the elements on the main diagonal.
+
+**SAS Example Modelinga and Plotting Fitted Loess Curve**
+
+```{r SAS_libload,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(SASmarkdown)
+library(knitr) 
+saspath <- "C:/SASHome/SASFoundation/9.4/sas.exe"
+sasopts <- "-nosplash -linesize 75"
+knitr::opts_chunk$set(engine="sashtml", engine.path=saspath, 
+        engine.opts=sasopts, comment=NA)
+
+# run these commands to convince yourself that
+# within this knitr session the engine changed.
+knitr::opts_chunk$get()$engine
+knitr::opts_chunk$get()$engine.path
+knitr::opts_chunk$get()$engine.opts
+```
+
+```{sashtml} 
+data unempl_rates;
+input rate @@;
+month= _N_ ;
+datalines;
+6.0 6.7 4.9 4.4 5.8 4.8 5.5 6.7 4.7 5.6 6.5 6.0
+4.7 5.1 7.2 6.1 7.7 5.7 7.1 4.2 5.8 5.1 6.3 5.1
+3.9 4.7 4.4 5.9 4.1 5.8 4.9 5.4 3.9 6.0 4.1 4.6
+5.7 5.0 4.5 6.9 5.6 4.6 4.4 4.1 3.2 6.3 4.2 4.7
+4.3 4.3 4.5 6.7 3.9 4.6 5.8 3.8 5.5 4.7 5.0 4.2
+5.0 4.5 3.7 5.5 5.4 2.6 5.0 4.9 5.7 4.3 5.3 7.1
+7.5 4.1 5.1 5.7 4.8 6.1 6.3 4.1 5.7 7.2 6.0 7.2
+8.0 8.7 8.5 9.1 7.5 10.5 8.5 7.4 10.5 8.9 8.5 9.9
+8.3 9.9 7.2 9.5 10.5 11.9 11.4 8.0 10.5 11.2 9.2 9.5
+10.0 10.3 9.1 8.1 7.9 9.5 10.7 8.5 9.1 8.7 9.0 8.6
+;
+proc loess data=unempl_rates;
+model rate=month/clm;
+ods output OutputStatistics=results;
+run;
+proc print data=results;
+run;
+symbol1 color=black value=dot;
+symbol2 color=black value=none interpol=join line=1;
+symbol3 color=black value=none interpol=join line=2;
+symbol4 color=black value=none interpol=join line=2;
+proc gplot data=results;
+by SmoothingParameter;
+plot (DepVar Pred LowerCL UpperCL)*month/ overlay;
+run;
+```
+
+**Compare the smoothing parameters**
+
+```
+proc loess data=unempl_rates;
+model rate=month/ clm smooth=0.05 0.08 0.1 0.12;
+ods output OutputStatistics=results;
+run;
+proc gplot data=results;
+by SmoothingParameter;
+plot (DepVar Pred LowerCL UpperCL)*month/ overlay name=’graph’;
+run;
+proc greplay igout=work.gseg tc=sashelp.templt template=l2r2 nofs;
+treplay 1:graph 2:graph2 3:graph1 4:graph3;
+run;
+```
+
+
+**R implementation**
+
+```{r losse_inR, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+data(economics, package="ggplot2")  # load data
+economics$index <- 1:nrow(economics)  # create index variable
+economics <- economics[1:80, ]  # retail 80rows for better graphical understanding
+loessMod10 <- loess(uempmed ~ index, data=economics, span=0.10) # 10% smoothing span
+loessMod25 <- loess(uempmed ~ index, data=economics, span=0.25) # 25% smoothing span
+loessMod50 <- loess(uempmed ~ index, data=economics, span=0.50) # 50% smoothing span
+
+### Predict Loess 
+### get smoothed output
+economics$smoothed10 <- predict(loessMod10) 
+economics$smoothed25 <- predict(loessMod25) 
+economics$smoothed50 <- predict(loessMod50) 
+
+## plot(economics$uempmed, x=economics$date, type="l", main="Loess Smoothing and Prediction", xlab="Date", ylab="Unemployment (Median)")
+ggplot(data = economics) + 
+  geom_point(mapping = aes(x = date, y = smoothed10), color="#fc9272") + 
+  geom_point(mapping = aes(x = date, y = smoothed25), color="#de2d26") + 
+  geom_smooth(mapping = aes(x = date, y = smoothed10), color="#fc9272", fill=NA) + 
+  geom_smooth(mapping = aes(x = date, y = smoothed25), color="#de2d26", fill=NA) + 
+  theme_bw()+
+  labs(y="Unemployment (Median)", 
+       x="Date", 
+       title="Loess Smoothing and Prediction")
+```
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

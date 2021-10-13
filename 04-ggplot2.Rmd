@@ -274,8 +274,9 @@ Functions that ggplot2 provides to define each of the above kinds of scales.
 * stat_vline - used by geom_vline
 
 ### Color
-    + [ColorBrewer scales](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
-    + Hexadecimal color code chart
+
++ [ColorBrewer scales](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
++ Hexadecimal color code chart
     
 ```{r Hexadecimal color code chart, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Hexadecimal color code chart"}
 knitr::include_graphics("./02_Plots/ggplot2_Hexadecimal_Color_Code.png")
