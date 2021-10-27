@@ -738,14 +738,28 @@ _H.FEMALE 1    0.354838   0.325341         1.09      0.2754
 ```
 
 
-### Plotting Effects of Predictor Variables
+## Illustration in SAS
+
+`PLOTS <(global-plot-options)> =(plot-request <(options)> <…plot-request <(options)>>)`
+controls the plots produced through ODS Graphics. When you specify only one plot-request, you can omit the parentheses from around the plot-request. For example:
+
+    PLOTS = ALL
+    PLOTS = (ROC EFFECT INFLUENCE(UNPACK))
+    PLOTS(ONLY) = EFFECT(CLBAR SHOWOBS)
+
+
+* If the INFLUENCE or IPLOTS option is specified in the MODEL statement, then the INFLUENCE plots are produced unless the MAXPOINTS= cutoff is exceeded.
+* If you specify ROC statements, then an overlaid plot of the ROC curves for the model (or the selected model if a SELECTION= method is specified) and for all the ROC statement models is displayed.
+* If you specify the CLODDS= option in the MODEL statement or if you specify the ODDSRATIO statement, then a plot of the odds ratios and their confidence limits is displayed.
+
+### Effects of Predictor Variables
 
 > 由于逻辑回归模型具有固有的非线性，因此通常很难直观地看到预测变量对事件概率的影响。 EFFECTPLOT语句为该问题提供了一种优雅的解决方案。 在检查交互作用和多项式函数时特别有用。
 
 > EFFECTPLOT语句要求根据ARTS（已发表文章的数量）绘制促销的预测概率图，同时将所有其他变量设置为其平均值。 如果模型中有任何CLASS变量，则将它们设置为参考级别。水平轴包括ARTS观测值的整个范围。 如果将选项/ LINK放在EFFECTPLOT语句上，则会得到在垂直轴上带有线性预测变量（几率的对数）的图形，在这种情况下，该线性预测变量将是一条直线。 水平轴上0和1处的小圆圈代表因变量在预测变量的不同值处的实际值。 在这种情况下，一个圆圈可以代表许多数据点
 
 ```
-## 从不包含相互作用或多项式函数的模型开始
+*** 从不包含相互作用或多项式函数的模型开始
 PROC LOGISTIC DATA=promo;
  MODEL promo(EVENT='1') = female dur select arts;
  EFFECTPLOT FIT(X=arts);
@@ -763,6 +777,21 @@ arts*female ;
  EFFECTPLOT SLICEFIT(X=arts SLICEBY=female=0 1);
 run;
 ```
+
+### Odds ratio plot
+
+```
+ods graphics on;
+proc logistic data=prostate
+  plots(only)=(effect oddsratio (type=horizontalstat));
+  model capsule (event="1") = psa /clodds=both;
+  unit psa = 10;
+run;
+ods graphics off;
+```
+ 
+
+
 
 ## Probit Modell
 
@@ -876,6 +905,21 @@ m \pi_{1}\left(1-\pi_{1}\right) & \cdots & -\pi_{1} \pi_{q} \\
 $$
 ### Mehrkategoriales Logit-Modell
 
+Multicategory logit models are an extension of logistic regression models in which the response can be classified into three or more categories. When the categories have no natural ordering (e.g. car style preference), a baseline-category logit model is appropriate. To simplify the explanation, let us consider a single predictor. The model takes the following form, where the response can be classified into one of $J$, categories:
+
+$\operatorname{lng}\left(\frac{\pi_{j}}{\pi_{J}}\right)=\alpha+\beta_{j} x$ where $j=0,1, \ldots J-1$. (The reference category is typically taken to be category $J$ ).
+
+The logit link for this model is then $\log \left(\frac{\pi_{j}}{\pi_{J}}\right)$.
+Given that the response is classified in category $j$ or category $J$, this represents the log odds that the response is $j$. Let us consider a total of 4 possible response levels from 0 to 3 . For $J=4$, the model uses:
+$$
+\log \left(\frac{\pi_{0}}{\pi_{3}}\right), \log \left(\frac{\pi_{1}}{\pi_{3}}\right) \text {, and } \log \left(\frac{\pi_{2}}{\pi_{3}}\right)
+$$
+Odds are then calculated for each response level using the highest category as the reference category (in the example this would be category 4$)$.
+
+For each response level, separate parameter estimates are provided for each predictor in the model. When several predictors are used, the number of parameters in the model can grow large and become difficult to manage. 
+
+More details:
+
 $$\mathrm{P}\left(Y_{i}=r \mid \boldsymbol{x}_{i}\right)=\pi_{i r}=\frac{\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right)}{1+\sum_{s=1}^{q} \exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{s}\right)} \quad r=1, \ldots, q$$
 $$\log \frac{\pi_{i r}}{\pi_{i c}}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r} \quad b z w \cdot \frac{\pi_{i r}}{\pi_{i c}}=\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right), \quad r=1, \ldots, c$$
 
@@ -973,9 +1017,17 @@ RUN;
 
 ## Ordinal Cumulative Logit Model
 
-Cumulative odds logit models are also called proportional odds model or ordinal logit model (Scott et al, 1997), The odds of being less than or equal a particular category can be defined as $\frac{P(Y \le j)}{P(Y>j)}$
-$$log \frac{P(Y \le j)}{P(Y>j)} = logit (P(Y \le j)).$$
-$$logit (P(Y \le j)) = \beta_{j0} – \eta_{1}x_1 – \cdots – \eta_{p} x_p.$$
+When there is a natural ordering to the response levels, a cumulative logit model is appropriate. An example of a natural ordering would be a score on a 5-point score range or the educational attainment of adults ranging from high school through post-graduate. This logit models the curnulative probability that a response ( $Y$ can be classified at or below a given category. In its simplest form, it assumes that the same proportionality constant applies for each parameter estimate to each cumulative level (known as a cumulative logit model with proportional odds). As such, it assumes that, controlling for all other predictors in the model, the change in odds between a predictor value of $(x+1)$ versus $x$ is the same at each response level. This difference is proportional to the distance between the explanatory variables, and the difference is the same no matter which response function is used (independent of the response level considered). This is also known as the equal slopes assumption or the parallel lines assumption (Derr 2013).
+
+This model has the following form:
+$$
+\operatorname{logit}[P(Y \leq j)]=\alpha_{j}+\beta x, \text { where } \mathrm{j}=0 \text { to J - } 1
+$$
+The cumulative logit link is the following:
+$$\operatorname{logit}[P(Y \leq j)]=\log \left[\frac{P(Y \leq j)}{1-P(Y \leq j)}\right]=\log \left[\frac{\pi_{0}+\ldots \pi_{j}}{\pi_{j+1}+\ldots \pi_{j}}\right]$$ where $\mathrm{j}=0$ to J $-1$
+
+Note that the highest category is not in the model, as the cumulative probability of the highest category is always 1 .
+
 **Proportional odds assumption**
 
 The proportional odds assumption is that the number added to each of these logarithms to get the next is the same in every case. In other words, these logarithms form an arithmetic sequence.[2] The model states that the number in the last column of the table—the number of times that that logarithm must be added—is some linear combination of the other observed variables.
@@ -1040,7 +1092,18 @@ m.marginal$out
 
 ### SAS Implementation
 
-cumulative logit model—also known as the ordered logit or ordinal logit model 是应用最广泛的方法，也是最容易在SAS中使用的模型(default)。
+cumulative logit model—also known as the ordered logit or ordinal logit model. It is the most widely used method and the easiest model to use in SAS (default). In PROC LOGISTIC, specifying LINK=CLOGIT produces a model which utilizes a cumulative logit link. 
+
+Using the default settings, the procedure conducts a Score Test for the Proportional Odds Assumption. If it rejects the null hypothesis that proportional odds may be assumed, the user has two additional modeling techniques utilizing the cumulative logit link.
+A general cumulative logit model **generates separate parameter estimates (effects) for each predictor across all $J-1$ response levels (see Agresti, 2007)**. This model replaces $\beta$ in the proportional odds model with $\beta_{j}$ and uses the same cumulative logit link:
+$$
+\operatorname{logit}[P(Y \leq j)]=\alpha_{j}+\beta_{j} x, \text { where } \mathrm{j}=0 \text { to J - } 1
+$$
+The model allows for probability distribution curves that climb or fall at different rates for different response levels. This raises the possibility of these curves crossing each other at certain predictor values. This is inappropriate, because this violates the order that cumulative probabilities must have:
+$P(Y \leq X) \leq P(Y \leq X+1)$ for all values of the predictors
+This result could lead to negative predicted probabilities at individual response levels. Therefore, such a model can only fit adequately over a narrow range of predictor values. Using the proportional odds form of model ensures that the cumulative probabilities have the proper order for all predictor values. If a model of this form is desirable, PROC LOGISTIC will generate a general cumulative logit model if the option UNEQUALSLOPES is specified in the options for the MODEL statement.
+
+<!-- 使用比例优势形式的模型可确保累积概率对于所有预测变量值具有正确的顺序。如果需要这种形式的模型，如果在 MODEL 语句的选项中指定了选项 UNEQUALSLOPES，则 PROC LOGISTIC 将生成一般累积 logit 模型。 -->
 
 ```
 PROC LOGISTIC DATA=wallet;

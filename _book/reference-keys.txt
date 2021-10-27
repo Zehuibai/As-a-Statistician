@@ -931,3 +931,6 @@ borders
 conti_report
 categ_report
 loess-regression
+illustration-in-sas
+effects-of-predictor-variables
+odds-ratio-plot
