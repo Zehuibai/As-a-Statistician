@@ -219,6 +219,20 @@ chisq.test(dat)$expected
 fisher.test(dat)
 ```
 
+
+## Sensitivity and specificity
+
+* Sensitivity (True Positive Rate) refers to the proportion of those who received a positive result on this test out of those who actually have the condition (when judged by the ‘Gold Standard’).
+* Specificity (True Negative Rate) refers to the proportion of those who received a negative result on this test out of those who do not actually have the condition (when judged by the ‘Gold Standard’).
+
+
+```{r confussion-matrix, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="2×2 contingency table or confusion matrix"}
+knitr::include_graphics("./02_Plots/confussion-matrix.png")
+knitr::include_graphics("./02_Plots/confussion-matrix2.png")
+```
+
+
+
  
 ## McNemar's test
 
@@ -228,15 +242,18 @@ Simar to the contigency test, McNemar's test can be used to analyze categorical 
 
 The test is applied to a $2 \times 2$ contingency table, which tabulates the outcomes of two tests on a sample of $N$ subjects, as follows.
 
+
 $$
-\begin{tabular}{|c|c|c|c|}
-\hline & Test 2 positive & Test 2 negative & Row total \\
-\hline Test 1 positive & $a$ & $b$ & $a+b$ \\
-\hline Test 1 negative & $c$ & $d$ & $c+d$ \\
-\hline Column total & $a+c$ & $b+d$ & $N$ \\
+\begin{array}{|c|c|c|c|}
+\hline & \text { Test 2 positive } & \text { Test 2 negative } & \text { Row total } \\
+\hline \text { Test } 1 \text { positive } & \mathrm{a} & \mathrm{b} & \mathrm{a}+\mathrm{b} \\
+\hline \text { Test } 1 \text { negative } & \mathrm{c} & \mathrm{d} & \mathrm{c}+\mathrm{d} \\
+\hline \text { Column total } & \mathrm{a}+\mathrm{c} & \mathrm{b}+\mathrm{d} & \mathrm{N} \\
 \hline
-\end{tabular}
+\end{array}
 $$
+
+
 
 The null hypothesis of marginal homogeneity states that the two marginal probabilities for each outcome are the same, i.e. $p_{a}+p_{b}=p_{a}+p_{c}$ and
 $p_{c}+p_{d}=p_{b}+p_{d}$

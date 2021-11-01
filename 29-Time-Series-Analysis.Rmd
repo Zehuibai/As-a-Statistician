@@ -405,7 +405,9 @@ We might assume that $X_{t}$, the unobserved variation around $\mu_{t}$, has zer
 
 
 
-## Autoregressive moving average (ARMA) models
+## ARMA models
+
+> MODELS FOR STATIONARY TIME SERIES
 
 ### General Linear Processes
 
@@ -487,6 +489,18 @@ It is instructive to rederive the results. The model is
 $$
 Y_{t}=e_{t}-\theta e_{t-1}
 $$
+
+
+```{r Sample Path of an MA(1) Process,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+### Sample Path of an AR(1) Process
+par(mfrow = c(2,1))
+plot(arima.sim(list(order=c(0,0,1), ma=.9), n=100), ylab="x",
+main=(expression(MA(1)~~~theta==+.5)))
+plot(arima.sim(list(order=c(0,0,1), ma=-.9), n=100), ylab="x",
+main=(expression(MA(1)~~~theta==-.5)))
+```
+
+
 only one $\theta$ is involved, so drop the redundant subscript 1. Clearly $E\left(Y_{t}\right)=0$ and $\operatorname{Var}\left(Y_{t}\right)=\sigma_{e}^{2}\left(1+\theta^{2}\right) .$ Now
 $$
 \begin{aligned}
@@ -588,6 +602,18 @@ Assume the series is stationary and satisfies
 $$
 Y_{t}=\phi Y_{t-1}+e_{t}
 $$
+
+```{r Sample Path of an AR(1) Process,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+### Sample Path of an AR(1) Process
+par(mfrow=c(2,1))
+plot(arima.sim(list(order=c(1,0,0), ar=.9), n=100), ylab="x",
+main=(expression(AR(1)~~~phi==+.9)))
+plot(arima.sim(list(order=c(1,0,0), ar=-.9), n=100), ylab="x",
+main=(expression(AR(1)~~~phi==-.9)))
+```
+
+
+
 We first take variances of both sides above and obtain
 $$
 \gamma_{0}=\phi^{2} \gamma_{0}+\sigma_{e}^{2}
@@ -629,6 +655,14 @@ Y_{t}=e_{t}+\phi e_{t-1}+\phi^{2} e_{t-2}+\phi^{3} e_{t-3}+\cdots
 $$
 
 we should note that the autocorrelation function for the AR(1) process has been derived in two different ways. The first method used the general linear process representation. The second method used the defining recursion.
+
+
+
+
+
+
+
+
 
 
 #### AR(2): The Second-Order Autoregressive Process
@@ -757,284 +791,330 @@ We have seen that for the MA(1) process we get exactly the same autocorrelation 
 For example the 2 models $Y_{t}=e_{t}-\theta e_{t-1}$ and $Y_{t}=e_{t}-\frac{1}{\theta} e_{t-1}$ have equal autocorrelation coefficient.
 
 
+### Fit the AR model in R
 
 
+```{r Fit AR model,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(tseries) 
+#Loading the Data Set
+data("AirPassengers")
 
+#This tells you that the data series is in a time series format
+is.ts(AirPassengers)
 
+#Starting index, end index
+start(AirPassengers)
+end(AirPassengers)
 
+time(AirPassengers)
+#This will print the cycle across years.
+frequency(AirPassengers)
 
+## plot the time series
+library(ggplot2)
+library(fpp)
+###  the autoplot() command frequently. It automatically produces an appropriate plot of whatever you pass to it in the first argument. In this case, it recognises melsyd[,"Economy.Class"] as a time series and produces a time plot.
+reg=lm(AirPassengers~time(AirPassengers))
+
+autoplot(AirPassengers) + 
+  ylim(0, 600) +
+  ggtitle("Monthly totals of international airline passengers, 1949-1960") +
+  xlab("Year") +
+  ylab("Number of Passengers")
+
+## ACF help us determine what type of series we have, whether it is a White noise, Random walk, Auto regressive or Moving average.
+ggAcf(AirPassengers)
+
+## Fit the AR model to AirPassengers
+## Note for reference that an AR model is an ARIMA(1, 0, 0) model.
+AR <- arima(AirPassengers, order = c(1,0,0))
+print(AR)
+
+#plotting the series along with the fitted values
+library(zoo)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+AR_fit <- AirPassengers - residuals(AR)
+autoplot(ts.union(AirPassengers, AR_fit), facets = FALSE) +
+ scale_color_manual(labels = c("Actual", "Forecasted"),
+                    values=c("black", "red")) +
+  ggtitle("Plotting the series along with the AR fitted values") +
+  xlab("Year") +
+  ylab("Number of Passengers")
+
+#Using predict() to make a 1-step forecast
+predict_AR <- predict(AR)
+
+#Obtaining the 1-step forecast using $pred[1]
+predict_AR$pred[1]
+#ALternatively Using predict to make 1-step through 10-step forecasts
+predict(AR, n.ahead = 10)
 ```
-library(TSA)
-data(tempdub)
-har.=harmonic(tempdub,1)
 
-## har.: cos(2*pi*t)   sin(2*pi*t)
+### Fit the MA model in R
 
-model4=lm(tempdub~har.)
-summary(model4)
+```{r Fit MA model,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+#Fitting the MA model to AirPassengers
+MA <- arima(AirPassengers, order = c(0,0,1))
+print(MA)
+autoplot(ts.union(AirPassengers, AirPassengers - resid(MA)), facets = FALSE) +
+ scale_color_manual(labels = c("Actual", "Forecasted"),
+                    values=c("black", "blue")) +
+  ggtitle("Plotting the series along with the MA fitted values") +
+  xlab("Year") +
+  ylab("Number of Passengers")
 
-Coefficients:
-                Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      46.2660     0.3088 149.816  < 2e-16 ***
-har.cos(2*pi*t) -26.7079     0.4367 -61.154  < 2e-16 ***
-har.sin(2*pi*t)  -2.1697     0.4367  -4.968 1.93e-06 ***
+#Alternately Making a 1-step through 10-step forecast based on MA
+predict(MA,n.ahead=10)
 
-
-plot(ts(fitted(model4),freq=12,start=c(1964,1)),
-     ylab='Temperature',type='l',
-ylim=range(c(fitted(model4),tempdub)))
-points(tempdub)
+# Find correlation between AR_fit and MA_fit
+MA_fit <- AirPassengers - resid(MA)
+cor(AR_fit, MA_fit)
+# Find AIC of AR
+AIC(AR)
+AIC(MA)
+BIC(AR)
+BIC(MA)
 ```
 
-![](<../../.gitbook/assets/plot_zoom_png (48).png>)
+Once we have got the models ready we must answer the important question: Should we choose AR or MA process? Goodness of fit such as an Information criteria is an method to help us make the decision. Specifically Akaike information criterion (AIC) and Bayesian information criterion (BIC) are used for Time series Models. Information Criteria is a more advanced concept but for either measure a lower value indicates a relatively better fitting model.
 
-#### Reliability and Efficiency of Regression Estimates
+<!-- 一旦我们准备好模型，我们必须回答一个重要的问题：我们应该选择 AR 还是 MA 过程？ 诸如信息标准之类的拟合优度是一种帮助我们做出决定的方法。 具体而言，Akaike 信息准则 (AIC) 和贝叶斯信息准则 (BIC) 用于时间序列模型。 Information Criteria 是一个更高级的概念，但对于任何一个度量，较低的值表示相对更好的拟合模型。 -->
 
-To comparing the least squares estimates with the so-called best linear unbiased estimates (BLUE) or the generalized least squares (GLS) estimates. If the stochastic component {Xt } is not white noise, estimates of the unknown parameters in the trend function may be made; they are linear functions of the data, are unbiased, and have the smallest variances among all such estimates—the so-called BLUE or GLS estimates.
 
-> 将最小二乘估计与所谓的最佳线性无偏估计（BLUE）或广义最小二乘（GLS）估计进行比较。如果随机成分{Xt}不是白噪声，则可以估算趋势函数中的未知参数；它们是数据的线性函数，是无偏的，并且在所有此类估计（即所谓的BLUE或GLS估计）中具有最小的方差。
+## ARIMA Models
 
-基于大样本量的结果，这些结果支持对我们考虑的趋势类型使用更简单的最小二乘估计。特别是，假设趋势是时间上的多项式，三角多项式，季节性均值或以下项的线性组合. 对于非常一般的平稳随机成分{Xt}，趋势的最小二乘估计与大样本量的最佳线性无偏估计具有相同的方差。尽管简单的最小二乘估计可能在渐近效率上有效，但是并不能证明所有回归例程打印出的系数的估计标准偏差都是正确的。
+> MODELS FOR NONSTATIONARY TIME SERIES
 
-#### Interpreting Regression Output
 
-标准回归例程会计算未知回归系数（β）的最小二乘估计值。 因此，在对随机成分{Xt}的最小假设下，估计值是合理的。 但是，回归输出的某些属性在很大程度上取决于{Xt}是白噪声的通常回归假设，而某些则取决于{Xt}近似正态分布的进一步假设。
+### Stationarity Through Differencing
 
-如果{Xt}过程具有恒定方差，那么我们可以通过剩余标准偏差(**residual standard deviation**)来估计Xt的标准偏差
-
-$$
-s=\sqrt{\frac{1}{n-p} \sum_{t=1}^{n}\left(Y_{t}-\hat{\mu}_{t}\right)^{2}}
-$$
-
-### Residual Analysis
-
-As we have already noted, the unobserved stochastic component $$\left\{X_{t}\right\}$$ can be estimated, or predicted, by the residual
-
-$$
-\hat{X}_{t}=Y_{t}-\hat{\mu}_{t}
-$$
-
-如果趋势模型是合理正确的，则残差的行为应大致类似于真实随机成分，并且可以通过查看残差来评估有关随机成分的各种假设。如果随机成分是白噪声，则残差的行为应大致类似于独立的（正常）随机变量，均值为零且标准差为s。(**考虑残差标准化**)
-
-掌握了残差或标准化残差后，下一步就是检查各种残差图。我们首先看一下残差随时间变化的图。如果随机成分是白噪声，并且对趋势进行了充分的建模，则我们期望这样的图将显示出矩形散点，而没有任何明显的趋势。
-
-接下来，我们将标准化残差与相应的趋势估计值或拟合值进行比较，寻找模式。 小残差是否与较小的拟合趋势值相关联，而大残差是否与较大的拟合趋势值相关联？ 与某些大小的拟合趋势值相关的残差变化是否较小，还是与其他拟合趋势值相关的变化较大？
-
-可以通过绘制残差或标准化残差的直方图来评估总体非正态性, 也可以通过绘制所谓的正常得分或分位数（QQ）图来更仔细地检查正态性。 这样的图显示了数据的分位数与正态分布的理论分位数之间的关系。 对于正态分布的数据，QQ图看起来近似于一条直线。
-
-出色的正态性检验称为Shapiro-Wilk检验。†它本质上是计算残差与相应法向分位数之间的相关性。这种相关性越低，我们就越有反常态的证据。将检验应用于这些残差可得出W = 0.9929的检验统计量，其p值为0.6954。我们不能拒绝零假设，即该模型的随机成分是正态分布的。
-
-随机成分的独立性可以通过几种方法进行测试。运行测试按顺序检查残差以寻找模式，这些模式会提供反对独立性的证据。样本自相关函数另一个用于检查依赖性的非常重要的诊断工具是样本自相关函数 (_**Sample Autocorrelation Function**_) `acf(rstudent(model3))`
-
-## Stationary Models
-
-A broad class of parametric time series models—the autoregressive moving average (ARMA) models.
-
-#### Model-Building Strategy
-
-1.  **model specification (or identification)**
-
-    在这一步中，我们查看序列的时间图，从数据中计算出许多不同的统计数据，并应用有关数据出现的主题的任何知识，例如生物学，商业或生态学。应该强调的是，此时选择的模型是暂定的，并且在分析中稍后会进行修订。在选择模型时，我们将尝试坚持简约原则。也就是说，所使用的模型应要求数量最少的参数，这些参数足以代表时间序列。
-2. **model fitting**, and\
-   模型将不可避免地涉及一个或多个参数，这些参数的值必须从观察到的序列中估算出来。模型拟合包括找到给定模型中那些未知参数的最佳可能估计。我们将考虑诸如最小二乘法和最大似然估计之类的标准。
-3. **model diagnostics**\
-   模型诊断与评估我们指定和估计的模型的质量有关。模型对数据的拟合程度如何？该模型的假设是否合理满足？如果没有发现不足之处，则可以假定建模是完整的，并且该模型可以用于例如预测未来值。否则，我们将根据发现的不足之处选择另一个模型。也就是说，我们返回模型说明步骤。通过这种方式，我们循环执行这三个步骤，直到找到理想的模型为止。
-
-### General Linear Processes
-
-我们将始终让{Yt}表示观察到的时间序列。 从这里开始，我们还将让{et}代表一个未观察到的白噪声序列，即一系列相同分布的，零均值，独立的随机变量。 在我们的大部分工作中，可以用较弱的假设代替独立性的假设，即{et}是不相关的随机变量，但是我们不会追求这种轻微的普遍性。 一般的线性过程{Yt}可以表示为当前和过去的白噪声项的加权线性组合，例如
-
-$$
-Y_{t}=e_{t}+\psi_{1} e_{t-1}+\psi_{2} e_{t-2}+\cdots
-$$
-
-ψ形成指数衰减序列的情况 (exponentially decaying sequence)
-
-$$
-\psi_{j}=\phi^{j}
-$$
-
-where $$\phi$$ is a number strictly between $$-1$$ and $$+1$$. Then
-
-$$
-Y_{t}=e_{t}+\phi e_{t-1}+\phi^{2} e_{t-2}+\cdots
-$$
-
-For this example,
-
-$$
-E\left(Y_{t}\right)=E\left(e_{t}+\phi e_{t-1}+\phi^{2} e_{t-2}+\cdots\right)=0
-$$
-
-so that $$\left\{Y_{t}\right\}$$ has a constant mean of zero. Also,
-
-$$
-\begin{aligned}
-\operatorname{Var}\left(Y_{t}\right) &=\operatorname{Var}\left(e_{t}+\phi e_{t-1}+\phi^{2} e_{t-2}+\cdots\right) \\
-&=\operatorname{Var}\left(e_{t}\right)+\phi^{2} \operatorname{Var}\left(e_{t-1}\right)+\phi^{4} \operatorname{Var}\left(e_{t-2}\right)+\cdots \\
-&=\sigma_{e}^{2}\left(1+\phi^{2}+\phi^{4}+\cdots\right)\\
-&=\frac{\sigma_{e}^{2}}{1-\phi^{2}} \text{(by summing a geometric series)}
-\end{aligned}
-$$
-
-Furthermore,
-
-$$
-\begin{aligned}
-\operatorname{Cov}\left(Y_{t}, Y_{t-1}\right) &=\operatorname{Cov}\left(e_{t}+\phi e_{t-1}+\phi^{2} e_{t-2}+\cdots, e_{t-1}+\phi e_{t-2}+\phi^{2} e_{t-3}+\cdots\right) \\
-&=\operatorname{Cov}\left(\phi e_{t-1}, e_{t-1}\right)+\operatorname{Cov}\left(\phi^{2} e_{t-2}, \phi e_{t-2}\right)+\cdots \\
-&=\phi \sigma_{e}^{2}+\phi^{3} \sigma_{e}^{2}+\phi^{5} \sigma_{e}^{2}+\cdots \\
-&=\phi \sigma_{e}^{2}\left(1+\phi^{2}+\phi^{4}+\cdots\right)\\
-&=\frac{\phi \sigma_{e}^{2}}{1-\phi^{2}}  \text{(again summing a geometric series)}
-\end{aligned}
-$$
-
-Thus
-
-$$
-\operatorname{Corr}\left(Y_{t}, Y_{t-1}\right)=\left[\frac{\phi \sigma_{e}^{2}}{1-\phi^{2}}\right] /\left[\frac{\sigma_{e}^{2}}{1-\phi^{2}}\right]=\phi
-$$
-
-In a similar manner, we can find
-
-$$
-\operatorname{Cov}\left(Y_{t}, Y_{t-k}\right)=\frac{\phi^{k} \sigma_{e}^{2}}{1-\phi^{2}}
-$$
-
-and thus
-
-$$
-\operatorname{Corr}\left(Y_{t}, Y_{t-k}\right)=\phi^{k}
-$$
-
-重要的是要注意，以这种方式定义的过程是固定的-自协方差结构仅取决于时滞(Time Lag)，而不取决于绝对时间。 对于一般的线性过程
-
-$$
-E\left(Y_{t}\right)=0 \quad \gamma_{k}=\operatorname{Cov}\left(Y_{t}, Y_{t-k}\right)=\sigma_{e}^{2} \sum_{i=0}^{\infty} \psi_{i} \psi_{i+k} \quad k \geq 0
-$$
-
-with $$\psi_{0}=1$$.
-
-### Moving Average Processes
-
-q阶的移动平均值，并将其名称缩写为MA（q）。 术语移动平均来自以下事实：Yt是通过将权重1，-θ1，-θ2，...，-θq应用于变量et，et-1，et-2，…，et-q然后得到的 移动权重并将其应用于et + 1，et，et-1，...，et-q + 1以获得Yt + 1，依此类推。
-
-$$
-Y_{t}=e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}-\cdots-\theta_{q} e_{t-q}
-$$
-
-#### The First-Order Moving Average Process
-
-MA(1) series:
-
-$$
-Y_{t}=e_{t}-\theta e_{t-1}
-$$
-
-$$k ≥ 2$$, The process has no correlation beyond lag 1
-
-$$
-\left.\begin{array}{rl}
-E\left(Y_{t}\right) & =0 \\
-\gamma_{0} & =\operatorname{Var}\left(Y_{t}\right)=\sigma_{e}^{2}\left(1+\theta^{2}\right) \\
-\gamma_{1} & =-\theta \sigma_{e}^{2} \\
-\rho_{1} & =(-\theta) /\left(1+\theta^{2}\right) \\
-\gamma_{k} & =\rho_{k}=0 \quad \text { for } k \geq 2
-\end{array}\right\}
-$$
-
-#### The Second-Order Moving Average Process
-
-$$
-Y_{t}=e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}
-$$
-
-$$
-\begin{aligned}
-\gamma_{0} &=\operatorname{Var}\left(Y_{t}\right)=\operatorname{Var}\left(e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}\right)=\left(1+\theta_{1}^{2}+\theta_{2}^{2}\right) \sigma_{e}^{2} \\
-\gamma_{1} &=\operatorname{Cov}\left(Y_{t}, Y_{t-1}\right)=\operatorname{Cov}\left(e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}, e_{t-1}-\theta_{1} e_{t-2}-\theta_{2} e_{t-3}\right) \\
-&=\operatorname{Cov}\left(-\theta_{1} e_{t-1}, e_{t-1}\right)+\operatorname{Cov}\left(-\theta_{1} e_{t-2},-\theta_{2} e_{t-2}\right) \\
-&=\left[-\theta_{1}+\left(-\theta_{1}\right)\left(-\theta_{2}\right)\right] \sigma_{e}^{2} \\
-&=\left(-\theta_{1}+\theta_{1} \theta_{2}\right) \sigma_{e}^{2} \\
-\gamma_{2} &=\operatorname{Cov}\left(Y_{t}, Y_{t-2}\right)=\operatorname{Cov}\left(e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}, e_{t-2}-\theta_{1} e_{t-3}-\theta_{2} e_{t-4}\right) \\
-&=\operatorname{Cov}\left(-\theta_{2} e_{t-2}, e_{t-2}\right) \\
-&=-\theta_{2} \sigma_{e}^{2}
-\end{aligned}
-$$
-
-Thus, for an MA(2) process,
-
-$$
-\begin{aligned}
-\rho_{1} &=\frac{-\theta_{1}+\theta_{1} \theta_{2}}{1+\theta_{1}^{2}+\theta_{2}^{2}} \\
-\rho_{2} &=\frac{-\theta_{2}}{1+\theta_{1}^{2}+\theta_{2}^{2}} \\
-\rho_{k} &=0 \text { for } k=3,4, \ldots
-\end{aligned}
-$$
-
-#### The General MA(q) Process
-
-For the general $$\operatorname{MA}(q)$$ process $$Y_{t}=e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}-\cdots-\theta_{q} e_{t-q}$$, similar calcu- lations show that
-
-$$
-\gamma_{0}=\left(1+\theta_{1}^{2}+\theta_{2}^{2}+\cdots+\theta_{q}^{2}\right) \sigma_{e}^{2}
-$$
-
-$$
-\rho_{k}=\left\{\begin{array}{l}
-\frac{-\theta_{k}+\theta_{1} \theta_{k+1}+\theta_{2} \theta_{k+2}+\cdots+\theta_{q-k} \theta_{q}}{1+\theta_{1}^{2}+\theta_{2}^{2}+\cdots+\theta_{q}^{2}} \\
-0 \quad \text { for } k>q
-\end{array}\right.
-$$
-
-### Autoregressive Processes
-
-Autoregressive processes are as their name suggests - regressions on themselves. Specifically, a $$p$$ th-order autoregressive process $$\left\{Y_{t}\right\}$$ satisfies the equation
-
-$$
-Y_{t}=\phi_{1} Y_{t-1}+\phi_{2} Y_{t-2}+\cdots+\phi_{p} Y_{t-p}+e_{t}
-$$
-
-#### The First-Order Autoregressive Process
-
+Consider again the AR(1) model
 $$
 Y_{t}=\phi Y_{t-1}+e_{t}
 $$
+We have seen that assuming $e_{t}$ is a true "innovation" (that is, $e_{t}$ is uncorrelated with $\left.Y_{t-1}, Y_{t-2}, \ldots\right)$, we must have $|\phi|<1$. What can we say about solutions to above Equation if $|\phi| \geq 1$ 
 
-![](<../../.gitbook/assets/image (77).png>)
+When $\phi=1$. If $\phi=1$, the AR(1) model equation is
+$$
+Y_{t}=Y_{t}+e_{t}
+$$
+This is the relationship satisfied by the random walk process. Alternatively, we can rewrite this as
+$$
+\nabla Y_{t}=e_{t}
+$$
 
-#### The Second-Order Autoregressive Process
 
 $$
-Y_{t}=\phi_{1} Y_{t-1}+\phi_{2} Y_{t-2}+e_{t}
+Y_{t}=M_{t}+e_{t}, \quad \text { where } \quad M_{t}=M_{t-1}+W_{t}
+$$
+with $\left\{e_{t}\right\}$ and $\left\{\varepsilon_{t}\right\}$ independent white noise time series. Here the stochastic trend $M_{t}$ is such that its "rate of change," $\nabla M_{t}$, is changing slowly over time. Then
+$$
+\nabla Y_{t}=\nabla M_{t}+\nabla e_{t}=W_{t}+\nabla e_{t}
 $$
 
-### ARMA Model
 
-If we assume that the series is partly autoregressive and partly moving average, we obtain a quite general time series model.
+### ARIMA: Integrated autoregressive moving average model 
 
+A time series $\left\{Y_{t}\right\}$ is said to follow an integrated autoregressive moving average model if the $d$ th difference $W_{t}=\nabla^{d} Y_{t}$ is a stationary ARMA process. If $\left\{W_{t}\right\}$ follows an ARMA $(p, q)$ model, we say that $\left\{Y_{t}\right\}$ is an ARIMA $(p, d, q)$ process. Fortunately, for practical purposes, we can usually take $d=1$ or at most 2 .
+Consider then an $\operatorname{ARIMA}(p, 1, q)$ process. With $W_{t}=Y_{t}-Y_{t-1}$, we have
 $$
 \begin{array}{r}
-Y_{t}=\phi_{1} Y_{t-1}+\phi_{2} Y_{t-2}+\cdots+\phi_{p} Y_{t-p}+e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2} \\
+W_{t}=\phi_{1} W_{t-1}+\phi_{2} W_{t-2}+\cdots+\phi_{p} W_{t-p}+e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2} \\
 -\cdots-\theta_{q} e_{t-q}
 \end{array}
 $$
-
-we say that $$\left\{Y_{t}\right\}$$ is a mixed autoregressive moving average process of orders $$p$$ and $$q$$, respectively; we abbreviate the name to ARMA $$(p, q)$$.
-
-#### The ARMA(1,1) Model
-
+or, in terms of the observed series,
 $$
-Y_{t}=\phi Y_{t-1}+e_{t}-\theta e_{t-1}
+\begin{array}{c}
+Y_{t}-Y_{t-1}=\phi_{1}\left(Y_{t-1}-Y_{t-2}\right)+\phi_{2}\left(Y_{t-2}-Y_{t-3}\right)+\cdots+\phi_{p}\left(Y_{t-p}-Y_{t-p-1}\right) \\
++e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}-\cdots-\theta_{q} e_{t-q}
+\end{array}
 $$
+which we may rewrite as
+$$
+\begin{array}{l}
+Y_{t}=\left(1+\phi_{1}\right) Y_{t-1}+\left(\phi_{2}-\phi_{1}\right) Y_{t-2}+\left(\phi_{3}-\phi_{2}\right) Y_{t-3}+\cdots \\
+\quad+\left(\phi_{p}-\phi_{p-1}\right) Y_{t-p}-\phi_{p} Y_{t-p-1}+e_{t}-\theta_{1} e_{t-1}-\theta_{2} e_{t-2}-\cdots-\theta_{q} e_{t-q}
+\end{array}
+$$
+We call this the **difference equation form** of the model. Notice that it appears to be an ARMA $(p+1, q)$ process. However, the characteristic polynomial satisfies
+$$
+\begin{array}{c}
+1-\left(1+\phi_{1}\right) x-\left(\phi_{2}-\phi_{1}\right) x^{2}-\left(\phi_{3}-\phi_{2}\right) x^{3}-\cdots-\left(\phi_{p}-\phi_{p-1}\right) x^{p}+\phi_{p} x^{p+1} \\
+=\left(1-\phi_{1} x-\phi_{2} x^{2}-\cdots-\phi_{p} x^{p}\right)(1-x)
+\end{array}
+$$
+which can be easily checked. This factorization clearly shows the root at $x = 1$, which implies nonstationarity
 
-To derive Yule-Walker type equations, we first note that
-
+For convenience, we take $Y_{t}=0$ for $t<-m$. The difference equation $Y_{t}-Y_{t-1}=W_{t}$ can be solved by summing both sides from $t=-m$ to $t=$ $t$ to get the representation
+$$
+Y_{t}=\sum_{j=-m}^{t} W_{j}
+$$
+for the $\operatorname{ARIMA}(p, 1, q)$ process.
+The ARIMA( $p, 2, q)$ process can be dealt with similarly by summing twice to get the representations
 $$
 \begin{aligned}
-E\left(e_{t} Y_{t}\right) &=E\left[e_{t}\left(\phi Y_{t-1}+e_{t}-\theta e_{t-1}\right)\right] \\
-&=\sigma_{e}^{2}
+Y_{t} &=\sum_{j=-m}^{t} \sum_{i=-m}^{j} W_{i} \\
+&=\sum_{j=0}^{t+m}(j+1) W_{t-j}
 \end{aligned}
 $$
 
+### IMA(1,1) Model
 
+The simple IMA(1,1) model satisfactorily represents numerous time series, especially those arising in economics and business. In difference equation form, the model is
+$$
+Y_{t}=Y_{t-1}+e_{t}-\theta e_{t-1}
+$$
+To write $Y_{t}$ explicitly as a function of present and past noise values, we use Equation $Y_{t}=\sum_{j=-m}^{t} W_{j}$ and the fact that $W_{t}=e_{t}-\theta e_{t-1}$ in this case. After a little rearrangement, we can write
+$$
+Y_{t}=e_{t}+(1-\theta) e_{t-1}+(1-\theta) e_{t-2}+\cdots+(1-\theta) e_{-m}-\theta e_{-m-1}
+$$
+Notice that in contrast to our stationary ARMA models, the weights on the white noise terms do not die out as we go into the past. Since we are assuming that $-m<1$ and $0<t$, we may usefully think of $Y_{t}$ as mostly an equally weighted accumulation of a large number of white noise values.
+
+<!-- 可能有用地认为 $Y_{t}$ 主要是大量白噪声值的同等加权累积。 -->
+
+We can easily derive variances and correlations. We have
+$$
+\operatorname{Var}\left(Y_{t}\right)=\left[1+\theta^{2}+(1-\theta)^{2}(t+m)\right] \sigma_{e}^{2}
+$$
+and
+$$
+\begin{aligned}
+\operatorname{Corr}\left(Y_{t}, Y_{t-k}\right) &=\frac{1-\theta+\theta^{2}+(1-\theta)^{2}(t+m-k)}{\left[\operatorname{Var}\left(Y_{t}\right) \operatorname{Var}\left(Y_{t-k}\right)\right]^{1 / 2}} \\
+& \approx \sqrt{\frac{t+m-k}{t+m}} \\
+& \approx 1 \quad \text { for large } m \text { and moderate } k
+\end{aligned}
+$$
+We see that as $t$ increases, $\operatorname{Var}\left(Y_{t}\right)$ increases and could be quite large. Also, the correlation between $Y_{t}$ and $Y_{t-k}$ will be strongly positive for many lags $k=1,2, \ldots$.
+
+### ARI(1,1) Model
+
+The ARI(1,1) process will satisfy
+$$
+Y_{t}-Y_{t-1}=\phi\left(Y_{t-1}-Y_{t-2}\right)+e_{t}
+$$
+or
+$$
+Y_{t}=(1+\phi) Y_{t-1}-\phi Y_{t-2}+e_{t}
+$$
+where $|\phi|<1\rangle$
+
+
+
+## Time series graphics
+
+
+### Time plots
+
+```{r Time-plots,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+require(fpp)
+library(ggplot2)
+data(melsyd)
+
+###  the autoplot() command frequently. It automatically produces an appropriate plot of whatever you pass to it in the first argument. In this case, it recognises melsyd[,"Economy.Class"] as a time series and produces a time plot.
+autoplot(melsyd[,"Economy.Class"]) +
+  ggtitle("Economy class passengers: Melbourne-Sydney") +
+  xlab("Year") +
+  ylab("Thousands")
+```
+
+**Time series patterns**
+
+In describing these time series, we have used words such as “trend” and “seasonal” which need to be defined more carefully.
+
+* Trend
+    + A trend exists when there is a long-term increase or decrease in the data. It does not have to be linear. Sometimes we will refer to a trend as “changing direction,” when it might go from an increasing trend to a decreasing trend. There is a trend in the antidiabetic drug sales data
+* Seasonal
+    + A seasonal pattern occurs when a time series is affected by seasonal factors such as the time of the year or the day of the week. Seasonality is always of a fixed and known frequency. The monthly sales of antidiabetic drugs above shows seasonality which is induced partly by the change in the cost of the drugs at the end of the calendar year.
+* Cyclic
+    + A cycle occurs when the data exhibit rises and falls that are not of a fixed frequency. These fluctuations are usually due to economic conditions, and are often related to the “business cycle.” The duration of these fluctuations is usually at least 2 years.
+
+
+### Seasonal plots
+
+```{r Seasonal-plots,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+require(fpp) 
+data(a10)
+str(a10)
+head(a10)
+
+ggseasonplot(a10, year.labels=TRUE, year.labels.left=TRUE) +
+  ylab("$ million") +
+  ggtitle("Seasonal plot: antidiabetic drug sales")
+
+### A useful variation on the seasonal plot uses polar coordinates. Setting polar=TRUE makes the time series axis circular rather than horizontal, as shown below.
+ggseasonplot(a10, polar=TRUE) +
+  ylab("$ million") +
+  ggtitle("Polar seasonal plot: antidiabetic drug sales")
+```
+**Seasonal subseries plots**
+
+An alternative plot that emphasises the seasonal patterns is where the data for each season are collected together in separate mini time plots.
+
+<!-- 另一个强调季节性模式的图是将每个季节的数据收集在单独的迷你时间图中。 -->
+
+
+```{r Seasonal-subseries-plots,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggsubseriesplot(a10) +
+  ylab("$ million") +
+  ggtitle("Seasonal subseries plot: antidiabetic drug sales")
+```
+### Scatterplots matrices
+
+```{r Scatterplots-matrices,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(fpp2)
+data(visnights)
+autoplot(visnights[,1:5], facets=TRUE) +
+  ylab("Number of visitor nights each quarter (millions)")
+## To see the relationships between these five time series, we can plot each time series against the others. These plots can be arranged in a scatterplot matrix
+GGally::ggpairs(as.data.frame(visnights[,1:5]))
+```
+### Lag plots
+
+The horizontal axis shows lagged values of the time series. Each graph shows $y_{t}$ plotted against $y_{t-k}$ for different values of $k$.
+
+```{r Lag-plots,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+## Lagged scatterplots for quarterly beer production.
+library(fpp)
+data(ausbeer)
+## The window() function used here is very useful when extracting a portion of a time series.
+beer2 <- window(ausbeer, start=1992)
+gglagplot(beer2)
+```
+### Autocorrelation
+
+Just as correlation measures the extent of a linear relationship between two variables, autocorrelation measures the linear relationship between lagged values of a time series.
+
+$r_{1}$ measures the relationship between $y_{t}$ and $y_{t-1}, r_{2}$ measures the relationship between $y_{t}$ and $y_{t-2}$, and so on.
+The value of $r_{k}$ can be written as
+$$
+r_{k}=\frac{\sum_{t=k+1}^{T}\left(y_{t}-\bar{y}\right)\left(y_{t-k}-\bar{y}\right)}{\sum_{t=1}^{T}\left(y_{t}-\bar{y}\right)^{2}}
+$$
+where $T$ is the length of the time series.
+
+The autocorrelation coefficients are plotted to show the autocorrelation function or ACF. The plot is also known as a correlogram.
+
+
+```{r Autocorrelation function ,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+ggAcf(beer2)
+
+data(elec)
+aelec <- window(elec, start=1980)
+ggAcf(aelec, lag=48)
+```
+
+### White noise
+
+```{r White noise,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+set.seed(30)
+y <- ts(rnorm(50))
+autoplot(y) + ggtitle("A white noise time series.")
+
+ggAcf(y)+ ggtitle("Autocorrelation function for the white noise series.")
+```
+
+
+
+ 
