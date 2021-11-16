@@ -873,7 +873,7 @@ where $h(t)$ is something called the hazard of an event at time $t$ and $\alpha(
 
 
 
-## Multi-category logit model
+## Multicategory Logit Models 
 
 ### Multinomialverteilung
 
@@ -903,28 +903,28 @@ m \pi_{1}\left(1-\pi_{1}\right) & \cdots & -\pi_{1} \pi_{q} \\
 -\pi_{q} \pi_{1} & \cdots & m \pi_{q}\left(1-\pi_{q}\right)
 \end{array}\right)
 $$
-### Mehrkategoriales Logit-Modell
+### Nominal Response
 
-Multicategory logit models are an extension of logistic regression models in which the response can be classified into three or more categories. When the categories have no natural ordering (e.g. car style preference), a baseline-category logit model is appropriate. To simplify the explanation, let us consider a single predictor. The model takes the following form, where the response can be classified into one of $J$, categories:
 
-$\operatorname{lng}\left(\frac{\pi_{j}}{\pi_{J}}\right)=\alpha+\beta_{j} x$ where $j=0,1, \ldots J-1$. (The reference category is typically taken to be category $J$ ).
-
-The logit link for this model is then $\log \left(\frac{\pi_{j}}{\pi_{J}}\right)$.
-Given that the response is classified in category $j$ or category $J$, this represents the log odds that the response is $j$. Let us consider a total of 4 possible response levels from 0 to 3 . For $J=4$, the model uses:
+In a similar way in which a multicategory predictor in a GLM uses dummy variables for comparing the effect of the first $J-1$ categories on the odds for success with the effect of the last category, the reference category, multicategory logit models pair a baseline category with all remaining categories. Only that now it is of interest to find out how the set of predictors affects the odds for falling into a certain category versus the baseline category.
+Assume the last category $(J)$ is the baseline category, then the baseline logits are
 $$
-\log \left(\frac{\pi_{0}}{\pi_{3}}\right), \log \left(\frac{\pi_{1}}{\pi_{3}}\right) \text {, and } \log \left(\frac{\pi_{2}}{\pi_{3}}\right)
+\log \left(\pi_{i} / \pi_{J}\right), \quad i=1,2, \ldots, J-1
 $$
-Odds are then calculated for each response level using the highest category as the reference category (in the example this would be category 4$)$.
+The baseline category logit model with one predictor $x$ is given by $J-1$ equations:
+$$
+\log \left(\pi_{i} / \pi_{J}\right)=\alpha_{i}+\beta_{i} x, \quad i=1,2, \ldots, J-1
+$$
+(For $J=2$ (two categories) this becomes the binary logistic regression model.)
+Observe that for each category $i$ compared with the baseline category, a new set of parameters is introduced.
+The baseline category logit model permits the comparison of any two categories since, for categories $a$ and $b$
+$$
+\log \left(\pi_{a} / \pi_{b}\right)=\log \left(\frac{\pi_{a} / \pi_{J}}{\pi_{b} / \pi_{J}}\right)=\log \left(\pi_{a} / \pi_{J}\right)-\log \left(\pi_{b} / \pi_{J}\right)=\left(\alpha_{a}-\alpha_{b}\right)+\left(\beta_{a}-\beta_{b}\right) x
+$$
+The choice of baseline category has no effect on the parameter estimates for comparing two categories $a$ and $b$.
 
-For each response level, separate parameter estimates are provided for each predictor in the model. When several predictors are used, the number of parameters in the model can grow large and become difficult to manage. 
 
-More details:
-
-$$\mathrm{P}\left(Y_{i}=r \mid \boldsymbol{x}_{i}\right)=\pi_{i r}=\frac{\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right)}{1+\sum_{s=1}^{q} \exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{s}\right)} \quad r=1, \ldots, q$$
-$$\log \frac{\pi_{i r}}{\pi_{i c}}=\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r} \quad b z w \cdot \frac{\pi_{i r}}{\pi_{i c}}=\exp \left(\boldsymbol{x}_{i}^{\prime} \boldsymbol{\beta}_{r}\right), \quad r=1, \ldots, c$$
-
-
-### R Implementation
+#### R Implementation
 
 ```{r mehrkategorical, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library(foreign)
@@ -954,7 +954,7 @@ head(fitted(test))
 **Interpretation**
 
 $$\begin{aligned} ln\left(\frac{P(prog=general)}{P(prog=academic)}\right) = b_{10} + b_{11}(ses=2) + b_{12}(ses=3) + b_{13}write\\ ln\left(\frac{P(prog=vocation)}{P(prog=academic)}\right) = b_{20} + b_{21}(ses=2) + b_{22}(ses=3) + b_{23}write \end{aligned}$$
-### SAS Implementation
+#### SAS Implementation
 
 The unordered multinomial model is invoked by the LINK=GLOGIT option. If this option is omitted, LOGISTIC estimates the cumulative logit, which assumes that the response levels are ordered.
 
@@ -1015,14 +1015,41 @@ RUN;
 
 
 
-## Ordinal Cumulative Logit Model
+### Ordinal Response: Cumulative Logit Model
 
-When there is a natural ordering to the response levels, a cumulative logit model is appropriate. An example of a natural ordering would be a score on a 5-point score range or the educational attainment of adults ranging from high school through post-graduate. This logit models the curnulative probability that a response ( $Y$ can be classified at or below a given category. In its simplest form, it assumes that the same proportionality constant applies for each parameter estimate to each cumulative level (known as a cumulative logit model with proportional odds). As such, it assumes that, controlling for all other predictors in the model, the change in odds between a predictor value of $(x+1)$ versus $x$ is the same at each response level. This difference is proportional to the distance between the explanatory variables, and the difference is the same no matter which response function is used (independent of the response level considered). This is also known as the equal slopes assumption or the parallel lines assumption (Derr 2013).
+If the multicategory response is ordinal a model should be used which reflects the order of the categories. A model taking the ordinal nature of the response variable into account should be easier to interpret and tests have greater power.
 
-This model has the following form:
+**Definition:**
+Assume that $Y$ is an ordinal variable with categories $1,2, \ldots, J$, then the cumulative probability for category $j$ is the probability to fall at most into category $j$
 $$
-\operatorname{logit}[P(Y \leq j)]=\alpha_{j}+\beta x, \text { where } \mathrm{j}=0 \text { to J - } 1
+P(Y \leq j)=\pi_{1}+\cdots+\pi_{j}, \quad j=1,2, \ldots, J
 $$
+It is
+$$
+P(Y \leq 1) \leq P(Y \leq 2) \leq \cdots \leq P(Y \leq J)=1
+$$
+To model an ordinal response variable one models the cumulative response probabilities or cumulative odds. In the model cumulative odds for the last category do not have to be modeled since the cumulative probability for the highest category is always one (no category falls above).
+
+**Definition:**
+The cumulative logits are the logits for the cumulative probabilities
+$$
+\operatorname{logit}(P(Y \leq j))=\log \left(\frac{P(Y \leq j)}{1-P(Y \leq j)}\right)=\log \left(\frac{\pi_{1}+\cdots+\pi_{j}}{\pi_{j+1}+\cdots+\pi_{J}}\right)
+$$
+
+
+A model for cumulative logit $j$ is equivalent to a binary logistic regression model for combined categories 1 to $j$ (I) versus the combined category $j+1$ to $J$ (II)
+categories: $\underbrace{12 \quad \ldots \quad j}_{I} \underbrace{j+1 \quad \ldots \quad J}_{I I}$
+For one predictor variable $x$ the proportional odds model becomes for $j=1,2 \ldots, J-1$ :
+$$
+\operatorname{logit}(P(Y \leq j))=\alpha_{j}+\beta x
+$$
+The slope $\beta$ is the same for all cumulative logits, and therefore this model has a single slope parameter instead of $J-1$ in the multicategory logistic regression model.
+The parameter $\beta$ describes the effect of $x$ on the odds for falling into categories 1 to $j$. The effect is assumed to be the same for all cumulative odds.
+
+Given the cumulative probabilities in dependency on predictor variable $x$ if $\beta>0$, We can obtain the probabilities to fall within category $j$ in dependency on $x$ sing that 
+$$P(Y=j)=P(Y \leq j)-P(Y \leq j-1)$$
+
+
 The cumulative logit link is the following:
 $$\operatorname{logit}[P(Y \leq j)]=\log \left[\frac{P(Y \leq j)}{1-P(Y \leq j)}\right]=\log \left[\frac{\pi_{0}+\ldots \pi_{j}}{\pi_{j+1}+\ldots \pi_{j}}\right]$$ where $\mathrm{j}=0$ to J $-1$
 
@@ -1034,7 +1061,7 @@ The proportional odds assumption is that the number added to each of these logar
 
 Ordinal logistic regression assumes that the coefficients that describe the relationship between the lowest versus all higher categories of the response variable
 
-### R Implementation
+#### R Implementation
 
 ```{r  Cumulative Logit Model, echo = T,message = FALSE, error = FALSE, warning = FALSE}
 require(foreign)
@@ -1090,7 +1117,7 @@ m.marginal$out
 ```
 
 
-### SAS Implementation
+#### SAS Implementation
 
 cumulative logit model—also known as the ordered logit or ordinal logit model. It is the most widely used method and the easiest model to use in SAS (default). In PROC LOGISTIC, specifying LINK=CLOGIT produces a model which utilizes a cumulative logit link. 
 

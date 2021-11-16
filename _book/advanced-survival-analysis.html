@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-11-06" />
+<meta name="date" content="2021-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,12 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.17/d3.min.js"></script>
+<link href="libs/markmap-0.3.3/view.mindmap.css" rel="stylesheet" />
+<script src="libs/markmap-0.3.3/view.mindmap.js"></script>
+<script src="libs/markmap-0.3.3/plugins/parsemd.min.js"></script>
+<script src="libs/markmap-binding-1.2.3/markmap.js"></script>
 
 
 <style type="text/css">
@@ -790,20 +796,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="16.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>16.5.1</b> R Implemetation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.6" data-path="logistic-regression.html"><a href="logistic-regression.html#multi-category-logit-model"><i class="fa fa-check"></i><b>16.6</b> Multi-category logit model</a>
+<li class="chapter" data-level="16.6" data-path="logistic-regression.html"><a href="logistic-regression.html#multicategory-logit-models"><i class="fa fa-check"></i><b>16.6</b> Multicategory Logit Models</a>
 <ul>
 <li class="chapter" data-level="16.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>16.6.1</b> Multinomialverteilung</a></li>
-<li class="chapter" data-level="16.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#mehrkategoriales-logit-modell"><i class="fa fa-check"></i><b>16.6.2</b> Mehrkategoriales Logit-Modell</a></li>
-<li class="chapter" data-level="16.6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-10"><i class="fa fa-check"></i><b>16.6.3</b> R Implementation</a></li>
-<li class="chapter" data-level="16.6.4" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-9"><i class="fa fa-check"></i><b>16.6.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="16.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#nominal-response"><i class="fa fa-check"></i><b>16.6.2</b> Nominal Response</a></li>
+<li class="chapter" data-level="16.6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-response-cumulative-logit-model"><i class="fa fa-check"></i><b>16.6.3</b> Ordinal Response: Cumulative Logit Model</a></li>
 </ul></li>
-<li class="chapter" data-level="16.7" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-cumulative-logit-model"><i class="fa fa-check"></i><b>16.7</b> Ordinal Cumulative Logit Model</a>
-<ul>
-<li class="chapter" data-level="16.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-11"><i class="fa fa-check"></i><b>16.7.1</b> R Implementation</a></li>
-<li class="chapter" data-level="16.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-10"><i class="fa fa-check"></i><b>16.7.2</b> SAS Implementation</a></li>
-</ul></li>
-<li class="chapter" data-level="16.8" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>16.8</b> Adjacent Categories Model</a></li>
-<li class="chapter" data-level="16.9" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>16.9</b> Continuation Ratio Model</a></li>
+<li class="chapter" data-level="16.7" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>16.7</b> Adjacent Categories Model</a></li>
+<li class="chapter" data-level="16.8" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>16.8</b> Continuation Ratio Model</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="advanced-logistic-regression.html"><a href="advanced-logistic-regression.html"><i class="fa fa-check"></i><b>17</b> Advanced Logistic Regression</a>
 <ul>
@@ -1209,8 +1209,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="31.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-of-bayesian"><i class="fa fa-check"></i><b>31.1</b> Introduction of Bayesian</a>
 <ul>
-<li class="chapter" data-level="31.1.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#frequency"><i class="fa fa-check"></i><b>31.1.1</b> Frequency</a></li>
-<li class="chapter" data-level="31.1.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#posterior-distribution"><i class="fa fa-check"></i><b>31.1.2</b> Posterior distribution</a></li>
+<li class="chapter" data-level="31.1.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#frequency-and-bayesian"><i class="fa fa-check"></i><b>31.1.1</b> Frequency and Bayesian</a></li>
+<li class="chapter" data-level="31.1.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayes-rule"><i class="fa fa-check"></i><b>31.1.2</b> Bayes’ Rule</a></li>
+<li class="chapter" data-level="31.1.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bootstrap"><i class="fa fa-check"></i><b>31.1.3</b> Bootstrap</a></li>
+<li class="chapter" data-level="31.1.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#posterior-distribution"><i class="fa fa-check"></i><b>31.1.4</b> Posterior Distribution</a></li>
+<li class="chapter" data-level="31.1.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-credible-intervals"><i class="fa fa-check"></i><b>31.1.5</b> Bayesian Credible Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="31.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#parameter-estimates-1"><i class="fa fa-check"></i><b>31.2</b> Parameter estimates</a>
+<ul>
+<li class="chapter" data-level="31.2.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>31.2.1</b> Maximum likelihood estimation</a></li>
+<li class="chapter" data-level="31.2.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-a-posteriori-estimation"><i class="fa fa-check"></i><b>31.2.2</b> Maximum a posteriori estimation</a></li>
+<li class="chapter" data-level="31.2.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-model"><i class="fa fa-check"></i><b>31.2.3</b> Bayesian Model</a></li>
+</ul></li>
+<li class="chapter" data-level="31.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#prior-distributions"><i class="fa fa-check"></i><b>31.3</b> Prior Distributions</a>
+<ul>
+<li class="chapter" data-level="31.3.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#conjugate-prior-distributions"><i class="fa fa-check"></i><b>31.3.1</b> Conjugate Prior Distributions</a></li>
+<li class="chapter" data-level="31.3.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#non-informativ-priors"><i class="fa fa-check"></i><b>31.3.2</b> Non-informativ Priors</a></li>
+</ul></li>
+<li class="chapter" data-level="31.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc"><i class="fa fa-check"></i><b>31.4</b> MCMC</a>
+<ul>
+<li class="chapter" data-level="31.4.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>31.4.1</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="31.4.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#概率分布采样"><i class="fa fa-check"></i><b>31.4.2</b> 概率分布采样</a></li>
+<li class="chapter" data-level="31.4.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#接受-拒绝采样"><i class="fa fa-check"></i><b>31.4.3</b> 接受-拒绝采样</a></li>
+<li class="chapter" data-level="31.4.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#markov-chain"><i class="fa fa-check"></i><b>31.4.4</b> Markov Chain</a></li>
+<li class="chapter" data-level="31.4.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#马尔科夫链的收敛性质"><i class="fa fa-check"></i><b>31.4.5</b> 马尔科夫链的收敛性质</a></li>
+<li class="chapter" data-level="31.4.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#基于马尔科夫链采样"><i class="fa fa-check"></i><b>31.4.6</b> 基于马尔科夫链采样</a></li>
+<li class="chapter" data-level="31.4.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc采样"><i class="fa fa-check"></i><b>31.4.7</b> MCMC采样</a></li>
+<li class="chapter" data-level="31.4.8" data-path="bayesian-theory.html"><a href="bayesian-theory.html#m-h采样"><i class="fa fa-check"></i><b>31.4.8</b> M-H采样</a></li>
+<li class="chapter" data-level="31.4.9" data-path="bayesian-theory.html"><a href="bayesian-theory.html#gibbs采样"><i class="fa fa-check"></i><b>31.4.9</b> Gibbs采样</a></li>
+</ul></li>
+<li class="chapter" data-level="31.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#regression-and-variable-selection"><i class="fa fa-check"></i><b>31.5</b> Regression and Variable Selection</a>
+<ul>
+<li class="chapter" data-level="31.5.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#classical-least-squares-estimator"><i class="fa fa-check"></i><b>31.5.1</b> Classical Least Squares Estimator</a></li>
+<li class="chapter" data-level="31.5.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#the-jeffreys-prior-analysis"><i class="fa fa-check"></i><b>31.5.2</b> The Jeffreys Prior Analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="32" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>32</b> KNN</a>
@@ -1256,14 +1287,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="33.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>33.3.4</b> Character selection</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>34</b> Neural Network</a>
+<li class="chapter" data-level="34" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>34</b> Tree models</a>
 <ul>
-<li class="chapter" data-level="34.1" data-path="neural-network.html"><a href="neural-network.html#introduction-29"><i class="fa fa-check"></i><b>34.1</b> Introduction</a></li>
-<li class="chapter" data-level="34.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>34.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
-<li class="chapter" data-level="34.3" data-path="neural-network.html"><a href="neural-network.html#application-2"><i class="fa fa-check"></i><b>34.3</b> Application</a>
+<li class="chapter" data-level="34.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>34.1</b> Decision Tree Model</a>
 <ul>
-<li class="chapter" data-level="34.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>34.3.1</b> 数据准备</a></li>
-<li class="chapter" data-level="34.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>34.3.2</b> 模型构建</a></li>
+<li class="chapter" data-level="34.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>34.1.1</b> Decision tree algorithm</a></li>
+<li class="chapter" data-level="34.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>34.1.2</b> ID3 Algorithm</a></li>
+<li class="chapter" data-level="34.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>34.1.3</b> C4.5 Algorithm</a></li>
+<li class="chapter" data-level="34.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>34.1.4</b> CART Algorithm</a></li>
+<li class="chapter" data-level="34.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>34.1.5</b> Pruning</a></li>
+<li class="chapter" data-level="34.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>34.1.6</b> Package ‘rpart’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>34.2</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="34.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>34.2.1</b> Bootstrap (Bagging)</a></li>
+<li class="chapter" data-level="34.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>34.2.2</b> bagging算法流程</a></li>
+<li class="chapter" data-level="34.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>34.2.3</b> Random Forest Algorithm</a></li>
+<li class="chapter" data-level="34.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>34.2.4</b> Random forest promotion</a></li>
+<li class="chapter" data-level="34.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>34.2.5</b> Package ‘randomForest’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>34.3</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="34.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>34.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="34.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>34.3.2</b> Regression tree</a></li>
+<li class="chapter" data-level="34.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>34.3.3</b> Classification tree</a></li>
+<li class="chapter" data-level="34.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>34.3.4</b> Random forest for regression</a></li>
+<li class="chapter" data-level="34.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>34.3.5</b> Random forest for classification</a></li>
+<li class="chapter" data-level="34.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>34.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
+<li class="chapter" data-level="34.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>34.3.7</b> 使用随机森林进行特征选择</a></li>
+</ul></li>
+<li class="chapter" data-level="34.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>34.4</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="34.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>34.4.1</b> GBDT概述</a></li>
+<li class="chapter" data-level="34.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>34.4.2</b> GBDT的负梯度拟合</a></li>
+<li class="chapter" data-level="34.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>34.4.3</b> GBDT回归算法</a></li>
+<li class="chapter" data-level="34.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>34.4.4</b> GBDT分类算法</a></li>
+<li class="chapter" data-level="34.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>34.4.5</b> Package ‘gbm’</a></li>
+<li class="chapter" data-level="34.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>34.4.6</b> 极限梯度提升——分类</a></li>
+</ul></li>
+<li class="chapter" data-level="34.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>34.5</b> Cubist Model</a>
+<ul>
+<li class="chapter" data-level="34.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-29"><i class="fa fa-check"></i><b>34.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="34.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>34.5.2</b> Application Data Preparation</a></li>
+<li class="chapter" data-level="34.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>34.5.3</b> Fit Continious Outcome</a></li>
+<li class="chapter" data-level="34.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>34.5.4</b> Variable Importance</a></li>
+<li class="chapter" data-level="34.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>34.5.5</b> Summary display</a></li>
+<li class="chapter" data-level="34.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>34.5.6</b> specific parts</a></li>
+<li class="chapter" data-level="34.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>34.5.7</b> Ensembles By Committees</a></li>
+<li class="chapter" data-level="34.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>34.5.8</b> Nearest–neighbors Adjustmemt</a></li>
+<li class="chapter" data-level="34.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>34.5.9</b> Optimize parameters</a></li>
+<li class="chapter" data-level="34.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>34.5.10</b> Logistic CV</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>35</b> Neural Network</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="neural-network.html"><a href="neural-network.html#introduction-30"><i class="fa fa-check"></i><b>35.1</b> Introduction</a></li>
+<li class="chapter" data-level="35.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>35.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
+<li class="chapter" data-level="35.3" data-path="neural-network.html"><a href="neural-network.html#application-2"><i class="fa fa-check"></i><b>35.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="35.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>35.3.1</b> 数据准备</a></li>
+<li class="chapter" data-level="35.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>35.3.2</b> 模型构建</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -1289,6 +1372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="advanced-survival-analysis" class="section level1" number="19">
 <h1><span class="header-section-number">Chapter 19</span> Advanced Survival Analysis</h1>
+<div id="htmlwidget-491d587a5153bca91c70" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-491d587a5153bca91c70">{"x":{"data":"# \n## Advanced Survival Analysis \n### Tied or Discrete Data\n#### Introduction of Tie \n#### Discrete Cox Regression\n#### Logit model for Discrete time \n#### Complementary log-log model for continuous time process\n### Time-dependent covariates\n#### Introduction\n#### Programming method\n#### Counting method\n### Additive Hazards Regression Model\n#### Preview\n#### Lin and Ying's additive hazards model\n#### Aalen’s Additive Hazards Model\n### Competing Risk\n#### Introduction\n#### Type-specific hazards\n#### Covariate effects via COX model\n#### Cumulative incidence function (CIF)\n##### Introduction\n##### Proc Lifetest\n##### %CIF Macro\n#### Subdistribution hazard function\n##### Introduction\n##### Modeling using proc phreg\n##### %FINEGRAY_SEL\n##### %MULTIPLE_PHREG\n#### Cause-specific hazard function\n##### Modeling using proc phreg\n##### %Cause_Specific_SEL\n### Clustered Events\n#### Introduction\n#### Proportional hazards model which adopts a marginal \n#### Frailty model","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <div id="tied-or-discrete-data" class="section level2" number="19.1">
 <h2><span class="header-section-number">19.1</span> Tied or Discrete Data</h2>
 <div id="introduction-of-tie" class="section level3" number="19.1.1">
