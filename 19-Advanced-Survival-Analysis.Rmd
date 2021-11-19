@@ -13,8 +13,12 @@ widget
 
 ## Tied or Discrete Data
 
-### Introduction of Tie 
+**Source**
 
+* (Schmid M, Berger M (2021): Competing risks analysis for discrete time-to-event data. WIREs Computational Statistics 13:e1529.)[https://sci-hub.se/10.1002/wics.1529]
+* (discSurv: Discrete Time Survival Analysis)[https://cran.r-project.org/web/packages/discSurv/index.html]
+
+### Introduction of Tie 
 
 In the process of model derivation, we assumed that there would be only one death observation at each point $t_j$. If there are more than two observations, we call it the "Tie", we have the following three tricky solutions
 
@@ -55,6 +59,87 @@ PROC PHREG DATA=recid;
    MODEL week*arrest(0)=fin age race wexp mar paro prio / TIES=EFRON;
 RUN; 
 ```
+
+
+### Discrete time
+
+**Time-to-event data**
+
+A record of whenan event occurs (relative to some “beginning”) for each individual in a sample, e.g., time of death, grade of school drop-out, age of first alcohol use in school-aged children, etc.
+
+**Time-scales**
+
+* Continuous: The “exact” time of an event for each subject is known, e.g., time of death
+* Discrete: 
+    + The timing of an event is continuous but is only recorded for an intervalof time, e.g., grade of school drop-out.
+    + The timing of an event is itself discrete, e.g., grade retention
+
+
+```{r , echo=FALSE, fig.align="center", out.width = '100%'}
+knitr::include_graphics("./02_Plots/DisTime.png")
+```
+
+Which means observation times measured on a discrete time scale $t=1,2, \ldots, q$ (apply to both scenarios)
+
+
+**Scenario 1:**
+
+* Values of $t$ represent a set of fixed follow-up intervals $\left[a_{t-1}, a_{t}\right)$ with continuous boundaries $a_{0}=0<a_{1}<\ldots<a_{q}=\infty$
+* Examples: clinical and epidemiological studies, panel studies, 
+
+**Scenario 2:**
+
+* Intrinsically discrete time scale
+* Examples: time to pregnancy (observation time defined by number of menstrual cycles), university outcomes in educational research (observation time defined by number of semesters),
+
+
+
+Traditional methods for time-to-event analysis have often dealt with building models for one target event only. For example, in case of the CRASH-2 data, one could focus on only one cause of death (e.g., bleeding) and treat all patients that experienced another target event (e.g., death due to head injury or other causes, in the following termed “competing events”) as censored. This strategy has the advantage that it is simple to implement (see, e.g., the works by Kalbfleisch & Prentice, 2002; Singer & Willett, 2003; Box-Steffensmeier & Jones, 2004; Allison, 2014 and Tutz & Schmid, 2016, which provide comprehensive treatments of the available methodology for discrete failure time analysis with a single target event). On the other hand, it is often prone to biased analysis results. This is because the “censoring” times implicitly defined by this strategy are usually not independent of the event times, so that the assumptions of many existing methods for time-to-event analysis with a single target event are violated (e.g., the random censoring assumption or, more generally, the independent censoring assumption made by Kalbfleisch & Prentice, 2002). As a consequence, special methods that account for the presence of competing risks are needed. 
+
+
+<!-- 事件时间分析的传统方法通常只为一个目标事件构建模型。例如，在 CRASH-2 数据的情况下，可以只关注一个死因（例如，出血）并治疗所有经历过另一目标事件（例如，由于头部受伤或其他原因导致的死亡，在以下情况下）的患者被称为“竞争事件”）被审查。这种策略的优点是易于实施（例如，参见 Kalbfleisch & Prentice，2002 年；Singer & Willett，2003 年；Box-Steffensmeier & Jones，2004 年；Allison，2014 年和 Tutz & Schmid，2016 年的著作，其中提供对单个目标事件的离散故障时间分析的可用方法的综合处理）。另一方面，它往往容易出现有偏差的分析结果。这是因为该策略隐式定义的“审查”时间通常不独立于事件时间，因此违反了许多现有方法对单个目标事件的时间到事件分析的假设（例如，随机审查假设，或者更一般地说，是 Kalbfleisch & Prentice，2002 年做出的独立审查假设）。因此，需要考虑竞争风险的特殊方法。 -->
+
+
+
+### Notation and Definitions
+
+* $n$ independent individuals, $J$ possible target events
+* $\mathbf{x}_{i}=\left(x_{i 1}, \ldots, x_{i p}\right)^{\top}, i=1, \ldots, n:$ covariate vectors
+* $\rightarrow T_{i} \in\{1,2, \ldots, q\}:$ event time of individual $i$
+* $C_{i} \in\{1,2, \ldots, q\}:$ censoring time of individual $i$
+
+- Assumptions:
+    - $T_{i}$ and $C_{i}$ are independent ("random censoring")
+    - Censoring process does not depend on any parameters used to model the event times ( "non-informative censoring")
+    - In Scenario $1, T_{i}$ always precedes $C_{i}$ if both $T_{i}$ and $C_{i}$ occur in the same interval ("censoring at the end of the interval")
+
+* $\tilde{T}_{i}=\min \left(T_{i}, C_{i}\right)$ and $\Delta_{i}:=I\left(T_{i} \leq C_{i}\right):$ observation time and status indicator, respectively, of individual $i$
+* $\rightarrow \epsilon_{i} \in\{1, \ldots, J\}:$ event type of individual $i$ at $T_{i}$
+
+
+- Cumulative incidence function (CIF):
+$F_{j}\left(t \mid \mathbf{x}_{i}\right):=P\left(T_{i} \leq t, \epsilon_{i}=j \mid \mathbf{x}_{i}\right)$
+
+    * Defined for each $j \in\{1, \ldots, J\}$
+    * Bounded between 0 and $F_{j}\left(q \mid \mathbf{x}_{i}\right)=P\left(\epsilon_{i}=j \mid \mathbf{x}_{i}\right) \leq 1$
+
+- Cause-specific hazard function:
+$$
+\lambda_{j}\left(t \mid \mathbf{x}_{i}\right):=P\left(T_{i}=t, \epsilon_{i}=j \mid T_{i} \geq t, \mathbf{x}_{i}\right)
+$$
+
+    * Defined in terms of a probability
+ 
+
+- Overall hazard function:
+
+$$
+\lambda\left(t \mid \mathbf{x}_{i}\right):=P\left(T_{i}=t \mid T_{i} \geq t, \mathbf{x}_{i}\right)=\sum_{j=1}^{J} \lambda_{j}\left(t \mid \mathbf{x}_{i}\right)
+$$
+
+* Conditional probability of experiencing any of the $J$ events at $t$
+
+- (Overall) survival function: $S\left(t \mid \mathbf{x}_{i}\right):=P\left(T_{i}>t \mid \mathbf{x}_{i}\right)=\prod_{t=1}^{q}\left(1-\lambda\left(t \mid \mathbf{x}_{i}\right)\right)$
 
 
 ### Discrete Cox Regression
@@ -119,6 +204,98 @@ PROC LOGISTIC DATA=jobyrs;
  MODEL quit(DESC)=ed prestige salary year/ LINK=CLOGLOG;
 RUN; 
 ```
+
+
+
+### Discrete Cause-Specific Hazards Model
+
+
+<!-- 通过指定多元回归模型将累积关联函数 Fj(tj xi) 与一组协变量值 xi 相关联对于特定原因的危害 λj(tj xi)。 -->
+
+- Model that relates the cause-specific hazard function to covariates
+
+A popular approach to modeling discrete-time competing-risks data is the discrete cause-specific hazards model (Tutz, 1995), which relates the cumulative incidence functions $F_{j}\left(t \mid \mathbf{x}_{i}\right)$ to a set of covariate values $\mathbf{x}_{i}$ by specifying a multivariate regression model for the cause-specific hazards $\lambda_{j}\left(t \mid \mathbf{x}_{i}\right) .$ We first consider the parametric version of the discrete cause-specific hazards model, which is defined by
+
+$$
+\begin{array}{c}
+\lambda_{j}\left(t \mid \mathbf{x}_{i}\right)=\frac{\exp \left(\gamma_{0 t j}+\mathbf{x}_{i}^{\top} \gamma_{j}\right)}{1+\sum_{j=1}^{J} \exp \left(\gamma_{0 t j}+\mathbf{x}_{i}^{\top} \gamma_{j}\right)} \\
+j=1, \ldots, J, t=1, \ldots, q-1
+\end{array}
+$$
+- $\gamma_{01 j}, \ldots, \gamma_{0(q-1) j}$ : cause-specific baseline coefficients (factor variables)
+- $\rightarrow \gamma_{j}:=\left(\gamma_{j 1}, \ldots, \gamma_{j p}\right)^{\top}:$ cause-specific vector of regression coefficients
+
+
+Define conditional survival beyond $t$ by
+$$
+\lambda_{0}\left(t \mid \mathbf{x}_{i}\right):=P\left(T_{i}>t \mid T_{i} \geq t, \mathbf{x}_{i}\right)
+$$
+
+Then $\lambda_{j}\left(t \mid \mathbf{x}_{i}\right) / \lambda_{0}\left(t \mid \mathbf{x}_{i}\right)=\exp \left(\gamma_{0 t j}\right) \cdot \exp \left(\gamma_{j 1}\right)^{x_{1}} \cdots \exp \left(\gamma_{j p}\right)^{x_{p}}$
+$\Rightarrow$ Increase of covariate $x_{k}, k \in\{1, \ldots, p\}$, by one unit increases the cause-specific odds by the factor $\exp \left(\gamma_{j k}\right)$
+
+Equivalent to a multinomial logistic regression model with $J+1$ outcome categories and reference category "survival beyond $t$ 
+
+
+
+### Discrete Subdistribution Hazard Model  
+
+
+**Summary Motivation**
+
+- Disadvantage of the discrete cause-specific hazards model: no one-to-one relationship between $\lambda_{j}\left(t \mid \mathbf{x}_{i}\right)$ and $F_{j}\left(t \mid \mathbf{x}_{i}\right)$
+$\Rightarrow$ All $J$ cause-specific hazard functions are needed to model $F_{j}\left(t \mid \mathbf{x}_{i}\right)$
+$\Rightarrow$ Difficult to infer the effects of the covariates on $F_{j}\left(t \mid \mathbf{x}_{i}\right)$
+
+- Alternative: discrete subdistribution hazard model
+	- Direct modeling approach for the cumulative incidence function of a specific event of interest
+	- Extension of the respective modeling approach for continuous event times
+	- Only one model needs to be considered for interpretation of the covariate effects on event occurrence
+	
+	
+A disadvantage of the discrete cause-specific hazards model defined in $\lambda_{j}\left(t \mid \mathbf{x}_{i}\right)=\frac{\exp \left(\gamma_{0 t j}+\mathbf{x}_{i}^{\top} \gamma_{j}\right)}{1+\sum_{j=1}^{J} \exp \left(\gamma_{0 t j}+\mathbf{x}_{i}^{\top} \gamma_{j}\right)}$ is the lack of a one-to-one relationship between λj(tj xi) and Fj(tj xi). In fact, Equation $F_{j}\left(t \mid \mathbf{x}_{i}\right)=\sum_{s=1}^{t} \lambda_{j}\left(s \mid \mathbf{x}_{i}\right) \cdot S\left(s-1 \mid \mathbf{x}_{i}\right)$ implies that all J cause-specific hazard functions are needed to model the cumulative incidence function Fj(tj xi) of the j-th event. This is a drawback especially when the interest is only in one of the J events and when the number of competing events (and hence the number of coefficients to be estimated) is large. In particular, it becomes difficult to infer the effects of the covariates on the CIF, as a change in the survival probability (with regard to xi) of the event of interest may be a result of a changed cause-specific hazard of a competing event (while the cause-specific hazard of the event of interest may remain unchanged). In these situations, an alternative to the discrete cause-specific hazards model is the discrete subdistribution hazard model (Berger, Schmid, Welchowski, Schmitz-Valckenberg, & Beyersmann, 2020), which is a direct modeling approach for the cumulative incidence function of a specific event of interest. It is an extension of the respective modeling approach for continuous event times by Fine and Gray (1999) and has the advantage that only one model needs to be considered for interpretation of the covariate effects on event occurrence.
+
+
+<!-- 中定义的离散原因特定危害模型的一个缺点是 λj(tj xi) 和 Fj(tj xi) 之间缺乏一对一的关系。事实上，等式 (1) 意味着需要所有 J 个特定于原因的危险函数来模拟第 j 个事件的累积发生率函数 Fj(tj xi)。这是一个缺点，尤其是当只关注 J 个事件之一并且竞争事件的数量（以及因此要估计的系数的数量）很大时。特别是，推断协变量对 CIF 的影响变得困难，因为感兴趣事件的生存概率（关于 xi）的变化可能是竞争事件的特定原因危害变化的结果（而感兴趣事件的特定原因危害可能保持不变）。在这些情况下，离散原因特定危害模型的替代方法是离散子分布危害模型（Berger、Schmid、Welchowski、Schmitz-Valckenberg 和 Beyersmann，2020 年），它是一种用于累积关联函数的直接建模方法。感兴趣的特定事件。它是 Fine and Gray (1999) 对连续事件时间的相应建模方法的扩展，其优点是只需要考虑一个模型来解释事件发生的协变量效应。 -->
+
+
+
+<!-- 根据定义，ϑi 测量到类型 1 事件发生的时间。具体来说，它假设一旦竞争事件发生，1 类事件将永远不会是第一个被观察到的事件（Fine & Gray，1999），这意味着对于 1 类事件的发生没有有限的事件时间如果 ϵi ≠ 1。 -->
+
+Assume w.l.o.g. that the event of interest is defined by $j=1$
+- Consider subdistribution time
+$$
+\vartheta_{i}:=\left\{\begin{array}{l}
+T_{i}, \text { if } \epsilon_{i}=1 \\
+\infty, \text { if } \epsilon_{i} \neq 1
+\end{array}\right.
+$$
+- $\vartheta_{i}$ : time to the occurrence of the type- 1 event
+- Discrete subdistribution hazard is defined by
+$$
+\begin{aligned}
+\xi_{1}\left(t \mid \mathbf{x}_{i}\right) &:=P\left(T_{i}=t, \epsilon_{i}=1 \mid\left(T_{i} \geq t\right) \cup\left(T_{i} \leq t-1, \epsilon_{i} \neq 1\right), \mathbf{x}_{i}\right) \\
+&=P\left(\vartheta_{i}=t \mid \vartheta_{i} \geq t, \mathbf{x}_{i}\right), \quad t=1, \ldots, q
+\end{aligned}
+$$
+
+* $t=1, \ldots, q$, represents the discrete hazard function of the subdistribution time $\vartheta_{i}$. 
+* Comparing $\xi_{1}(t)$ to the cause-specific hazard $\lambda_{1}(t)$, it follows with a little algebra that $\lambda_{1}(t)=\xi_{1}(t) \cdot\left(1+P\left(T_{i} \leq t-1, \epsilon_{i} \neq 1\right) / P\left(T_{i} \geq t\right)\right) .$ This relationship, which is analogous to a relationship for continuous event times derived by Beyersmann and Schumacher (2007), implies that **$\xi_{1}(t)$ is usually smaller than $\lambda_{1}(t)$.** 
+* Conceptually, the subdistribution hazard may be considered as an approach to model the occurrence probability of the target event whereas the cause-specific hazards may be understood as the driving forces of competing risks data, providing, for example, insight in disease dynamics.
+
+<!-- 从概念上讲，子分布危害可以被视为一种对目标事件发生概率进行建模的方法，而特定原因的危害可以被理解为竞争风险数据的驱动力，例如提供对疾病动态的洞察力。 -->
+
+
+
+With a little algebra it can be shown that the subdistribution hazard $\xi_{1}\left(t \mid \mathbf{x}_{i}\right)$ is linked to $F_{1}\left(t \mid \mathbf{x}_{i}\right)$ by $F_{1}\left(t \mid \mathbf{x}_{i}\right)=1-\prod_{s=1}^{t}\left(1-\xi_{1}\left(s \mid \mathbf{x}_{i}\right)\right)=1-S_{1}\left(t \mid \mathbf{x}_{i}\right)$, where $S_{1}\left(t \mid \mathbf{x}_{i}\right)=P\left(\vartheta_{i}>t \mid \mathbf{x}_{i}\right) .$ Consequently, there is a one-to-one relationship between $\xi_{1}\left(t \mid \mathbf{x}_{i}\right)$ and $F_{1}\left(t \mid \mathbf{x}_{i}\right)$, and the effects of the covariates on $\xi_{1}\left(t \mid \mathbf{x}_{i}\right)$ have a direct interpretation in terms of increases or decreases in the CIF of a type- 1 event. A parametric model for $\xi_{1}\left(t \mid \mathbf{x}_{i}\right)$ is given by
+$$
+\xi_{1}\left(t \mid \mathbf{x}_{i}\right)=\frac{\exp \left(\beta_{0 t 1}+\mathbf{x}_{i}^{\top} \beta_{1}\right)}{1+\exp \left(\beta_{0 t 1}+\mathbf{x}_{i}^{\top} \beta_{1}\right)}
+$$
+$t=1, \ldots, q-1$, where the parameters $\beta_{011}, \ldots, \beta_{0(q-1) 1}$ represent the baseline coefficients and $\beta_{1}:=\left(\beta_{11}, \ldots, \beta_{p 1}\right)^{\top}$ is a vector of regression coefficients. Analogous to the cause-specific hazards model (2), the increase of covariate $x_{k}, k \in\{1,$, $\ldots, p\}$, by one unit increases the odds $\xi_{1}\left(t \mid \mathbf{x}_{i}\right) /\left(1-\xi_{1}\left(t \mid \mathbf{x}_{i}\right)\right)$ by the factor $\exp \left(\beta_{k 1}\right) .$ The baseline and regression coefficients in (7) can be obtained by a weighted maximum likelihood estimation scheme that is based on an estimate of the censoring survival function $\hat{G}(t)=\hat{P}\left(C_{i}>t\right)$ and on a vector of weights
+$$
+w_{i t}:=\frac{\hat{G}(t-1)}{\hat{G}\left(\min \left(\tilde{T}_{i}, t\right)-1\right)} \cdot\left(I\left(t \leq \tilde{T}_{i}\right)+I\left(\tilde{T}_{i} \leq t-1, \Delta_{i} \epsilon_{i}>1\right)\right)
+$$
+
 
 
 
@@ -3071,6 +3248,11 @@ title 'Table 2 Multivariate Cause-Specific Hazard Regression for Death' ;
                  debug=t);
 title '';
 ```
+
+
+
+
+
 
 
 ## Clustered Events
