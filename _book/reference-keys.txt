@@ -1178,3 +1178,14 @@ estimation-of-various-pk-parameters
 discrete-time-regression-models
 the-glm-framework-and-person-period-data
 discrete-time-survival-analysis-in-r
+non-proportional-hazards-in-survival-analysis
+weighted-piecewise-log-rank-test
+restricted-mean-survival-time-difference
+maximum-combination-test
+zellners-g-prior-analysis
+bayesian-linear-regression-1
+item-response-theory
+em-algorithm
+mcmc-algorithm
+introduction-32
+unidimensional-irt-models-for-dichotomously-scored-responses
