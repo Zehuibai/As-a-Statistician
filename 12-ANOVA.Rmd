@@ -517,3 +517,4 @@ As an example, suppose you know that the observations are counts of defects on a
 Following the previous example, suppose you know that the counts of defects on manufactured items are associated with different machines. You still wish to compare shifts A, B, and C, but you want to account for the machine effect. In this case, you may model the observations on a common machine as dependent, using a random effects model, where the machine effect is considered random. Again the model may be Poisson, but with a repeated measures component. In this case, you can use PROC GLIMMIX both to perform the repeated measures modeling and to perform the multiple comparisons.
 
 
+ 

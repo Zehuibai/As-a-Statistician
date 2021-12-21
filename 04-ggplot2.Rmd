@@ -1503,3 +1503,53 @@ mermaid("gantt
         Data analysis      :b1, 2016-03-01, 15d")
 ```
 
+
+
+
+
+## ggstatsplot
+
+ggstatsplot is an extension of ggplot2 package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots.
+
+* https://indrajeetpatil.github.io/ggstatsplot/articles/
+* Patil, I. (2021). Visualizations with statistical details: The 'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167, doi:10.21105/joss.03167
+  
+
+### ggbetweenstats
+
+* to check if a continuous variable differs across multiple groups/conditions
+* to compare distributions visually and check for outliers
+
+```{r test, echo = T,message = FALSE, error = FALSE, warning = FALSE}
+
+library(gapminder)
+dplyr::glimpse(x = gapminder::gapminder)
+
+## since the confidence intervals for the effect sizes are computed using
+## bootstrapping, important to set a seed for reproducibility
+set.seed(123)
+library(ggstatsplot)
+
+## function call
+ggbetweenstats(
+  data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
+  x = continent,
+  y = lifeExp
+)
+
+## for reproducibility
+set.seed(123)
+
+
+## plot
+ggbetweenstats(
+  data  = iris,
+  x     = Species,
+  y     = Sepal.Length,
+  title = "Distribution of sepal length across Iris species"
+)
+```
+
+
+
+

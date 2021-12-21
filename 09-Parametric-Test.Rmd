@@ -217,6 +217,8 @@ chisq.test(dat)$expected
 
 ## Fisher’s exact test
 fisher.test(dat)
+
+library(ggstatsplot)
 ```
 
 

@@ -1189,3 +1189,16 @@ em-algorithm
 mcmc-algorithm
 introduction-32
 unidimensional-irt-models-for-dichotomously-scored-responses
+unidimensional-irt-models
+others
+ggstatsplot
+ggbetweenstats
+component
+pca算法
+主成分旋转
+kernelized-pca
+data-preparation-4
+modeling-1
+neural-network-1
+introduction-33
+application-3
