@@ -98,7 +98,7 @@ Hierarchical clustering can be divided into two main types:
 
 
 
-##  K均值聚类 
+## K-means Clustering
 
 像其他聚类算法一样，k均值试图将观察分为互斥组（或簇），以使同一聚类中的观察尽可能相似（即，类内相似度很高），而来自不同聚类的观察则尽可能不相似（即，类间相似度低）。在k均值聚类中，每个聚类都由其中心（即质心）表示，该中心对应于分配给该聚类的观测值的平均值。查找这些聚类的过程类似于k最近邻居（KNN）算法。
 
@@ -193,23 +193,29 @@ Mini Batch，也就是用样本集中的一部分的样本来做传统的K-Means
 
 
 
-## 果瓦系数与围绕中心的划分
+## Gower's coefficient and PAM
 
-无论层次聚类还是K均值聚类，都不是 为分析混合数据(既包括定量数据又包括定性数据)而专门设计的
+### Gower's coefficient
 
-    使用果瓦相异度系数将混合数据转换为适当的特征 空间。在这种方法中，你甚至可以使用因子作为输入变量
-    处理混合数据，比 如可以先进行主成分分析, 建立潜变量，然后使用潜变量作为聚类的输入
-    聚类算法使用 PAM聚类算法，而不是K均值, PAM和K均值很相似, 有两个明显的优点
+**果瓦系数与围绕中心的划分**
+
+无论层次聚类还是K均值聚类，都不是为分析混合数据(既包括定量数据又包括定性数据)而专门设计的
+
+使用果瓦相异度系数将混合数据转换为适当的特征 空间。在这种方法中，你甚至可以使用因子作为输入变量
+处理混合数据，比 如可以先进行主成分分析, 建立潜变量，然后使用潜变量作为聚类的输入
+聚类算法使用 PAM聚类算法，而不是K均值, PAM和K均值很相似, 有两个明显的优点
+    
         1. PAM可以接受相异度矩阵作为输入，这样即可处理混合数据
         2. PAM对于异常值和不对称数据的鲁棒性更好，因为它最小化的是相异度总和，而不是欧氏距离的平方和
+ 
+果瓦系数比较两个成对的实例，并计算它们之间的相异度，实质上就是每个变量的贡献的加
+权平均值。对于两个实例i与j，果瓦系数定义如下
 
+$$S_{ij} = sum(W_{ijk} * S_{ijk}) / sum(W_{ijk})$$
 
-### 相异度矩阵 dissimilarity matrix
+$S_{ijk}$是第k个变量的贡献。如果第k个变量是有效的，$W_{ijk}$是1，否则是0
 
-```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
-knitr::include_graphics("./00 Fotos/dissimilarity matrix.png")
-```
-
+ 
 
 ### 不同数据类型的相异度计算 (距离法)
 
@@ -218,9 +224,7 @@ knitr::include_graphics("./00 Fotos/dissimilarity matrix.png")
 #### 欧几里得距离
 
 
-```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE}
-knitr::include_graphics("./00 Fotos/Euclidean distance.png")
-
+```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE} 
 a=matrix(rnorm(15,0,1),c(3,5))
 a
 dist(a,p=2)
@@ -256,23 +260,8 @@ aa=matrix(rnorm(15,0,1),c(3,5))
 dist(aa, method = "canberra")
 ```
 
-
-
-
-### Gower's coefficient
-
-果瓦系数比较两个成对的实例，并计算它们之间的相异度，实质上就是每个变量的贡献的加
-权平均值。对于两个实例i与j，果瓦系数定义如下
-
-$$S_{ij} = sum(W_{ijk} * S_{ijk}) / sum(W_{ijk})$$
-
-$S_{ijk}$是第k个变量的贡献。如果第k个变量是有效的，$W_{ijk}$是1，否则是0
-
-
-
-
-
-
+ 
+ 
 
 ### PAM
 
@@ -295,7 +284,7 @@ PAM算法的目标是，使所有观测与离它们最近的中心点的相异�
 
 ## BIRCH Clustering
 
-## BIRCH Introduction
+### BIRCH Introduction
 
 BIRCH的全称是利用层次方法的平衡迭代规约和聚类（Balanced Iterative Reducing and Clustering Using Hierarchies）. BIRCH算法比较适合于数据量大，类别数K也比较多的情况。它运行速度很快，只需要单遍扫描数据集就能进行聚类.
 
@@ -327,11 +316,7 @@ CF有一个很好的性质，就是满足线性关系， $CF1+CF2 = (N_1+N_2, LS
 3. （可选）利用其它的一些聚类算法比如K-Means对所有的CF元组进行聚类，得到一颗比较好的CF Tree.这一步的主要目的是消除由于样本读入顺序导致的不合理的树结构，以及一些由于节点CF个数限制导致的树结构分裂。
 4. （可选）利用第三步生成的CF Tree的所有CF节点的质心，作为初始质心点，对所有的样本点按距离远近进行聚类。这样进一步减少了由于CF Tree的一些限制导致的聚类不合理的情况。
 
-
  
-
-
-
 
 
 ## Application
