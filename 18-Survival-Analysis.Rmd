@@ -725,8 +725,40 @@ $$
 See more under **Survival Analysis-Survival Analysis Using SAS - A Practical Guide (2nd Edition)**
 
 
+### Analysis-of-covariance (Adjustment)
+
+**References**: Heller G. and Venkatraman E.S. (2004) A nonparametric test to compare survival distributions with
+covariate adjustment. JRSS-B 66, 719-733.
+
+The analysis of covariance is a technique that is used to improve the power of a k-sample test by adjusting for concomitant variables. In the classic normal linear model, this technique is used for increasing the precision of the k-sample test statistic derived from a randomized study or to adjust for sources of bias in observational studies. The power of the adjusted test statistic is a function of the strength of the association between the covariates and the response. However, the increase in power comes at the cost of model specification. The assumption of a specific linear regression function and a normal error distribution is imposed on the model structure. If either of these assumptions is incorrect, the resulting inference that is drawn from the adjusted test is questionable. 
+
+> 协方差分析是一种通过调整伴随变量来提高 k 样本检验功效的技术。在经典的正态线性模型中，此技术用于提高从随机研究得出的 k 样本检验统计量的精度，或调整观察性研究中的偏倚来源。调整后的检验统计量的功效是协变量与响应之间关联强度的函数。然而，功率的增加是以模型规格为代价的。对模型结构强加了特定线性回归函数和正态误差分布的假设。如果这些假设中的任何一个不正确，则从调整后的测试中得出的推论是有问题的。
 
 
+For the proportional hazards model, the primary assumptions are that the relative risk function $\lambda(t \mid z, \mathbf{x}) / \lambda_{0}(t)$ is
+
+(a) time invariant and
+(b) represented by a log-linear function of the covariates.
+
+For the analysis-of-covariance survival problem, an incorrect model specification can lead to erroneous inference on the group effect. 
+
+In this paper, a k-sample test statistic is developed for survival time data with the right censoring present which adjusts for three or fewer concomitant covariates but does not require the assumption of proportional hazards or a parametric specification of the relative risk function. The statistic is asymptotically valid when the observed covariates and the group classifier are either independent or dependent, assuming that the underlying failure time and censoring variables are independent conditionally on the group classification and covariates.
+
+> 对于协方差生存问题的分析，不正确的模型规范会导致对组效应的错误推断。
+
+> 在本文中，为生存时间数据开发了一个 k 样本检验统计量，其中存在正确的删失，它针对三个或更少的伴随协变量进行调整，但不需要假设比例风险或相对风险函数的参数规范。当观察到的协变量和组分类器独立或相关时，统计量渐近有效，假设基础失效时间和审查变量在组分类和协变量的条件下独立。
+
+
+```{r Covariance Adjustment,echo = T,message = FALSE, error = FALSE, warning = FALSE}
+library(clinfun)
+library(survival)
+data(pbc)
+pbc1 <- pbc
+pbc1$trt[pbc1$trt == -9] <- NA
+pbc1$copper[pbc1$copper == -9] <- NA
+calogrank(pbc1$time, pbc1$status, pbc1$trt, pbc1[,c("copper")])
+calogrank(pbc1$time, pbc1$status, pbc1$trt, pbc1[,c("protime", "copper")])
+```
 
 
 ## Accelerated failure time (AFT) model
