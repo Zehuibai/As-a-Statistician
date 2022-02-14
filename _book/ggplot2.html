@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-12-19" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -881,6 +881,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="18.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#multiple-comparisons"><i class="fa fa-check"></i><b>18.3.3</b> Multiple comparisons</a></li>
 <li class="chapter" data-level="18.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#comparing-survival-functions-using-log-rank-hr"><i class="fa fa-check"></i><b>18.3.4</b> Comparing survival functions using Log-Rank HR</a></li>
 <li class="chapter" data-level="18.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#mantel-haenszel-hr"><i class="fa fa-check"></i><b>18.3.5</b> Mantel-Haenszel HR</a></li>
+<li class="chapter" data-level="18.3.6" data-path="survival-analysis.html"><a href="survival-analysis.html#analysis-of-covariance-adjustment"><i class="fa fa-check"></i><b>18.3.6</b> Analysis-of-covariance (Adjustment)</a></li>
 </ul></li>
 <li class="chapter" data-level="18.4" data-path="survival-analysis.html"><a href="survival-analysis.html#accelerated-failure-time-aft-model"><i class="fa fa-check"></i><b>18.4</b> Accelerated failure time (AFT) model</a>
 <ul>
@@ -1208,197 +1209,379 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="29.4.6" data-path="time-series-analysis.html"><a href="time-series-analysis.html#white-noise-1"><i class="fa fa-check"></i><b>29.4.6</b> White noise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="30" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html"><i class="fa fa-check"></i><b>30</b> Pharmacokinetic Analysis</a>
+<li class="chapter" data-level="30" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>30</b> Regularization Penalized Regression</a>
 <ul>
-<li class="chapter" data-level="30.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#introduction-25"><i class="fa fa-check"></i><b>30.1</b> Introduction</a>
+<li class="chapter" data-level="30.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#introduction-25"><i class="fa fa-check"></i><b>30.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="30.1.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#statistical-analysis"><i class="fa fa-check"></i><b>30.1.1</b> Statistical analysis</a></li>
+<li class="chapter" data-level="30.1.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#motivation"><i class="fa fa-check"></i><b>30.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="30.1.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#data-preparation"><i class="fa fa-check"></i><b>30.1.2</b> Data preparation</a></li>
+<li class="chapter" data-level="30.1.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#best-subset-regression"><i class="fa fa-check"></i><b>30.1.3</b> Best subset regression</a></li>
 </ul></li>
-<li class="chapter" data-level="30.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#pk-package"><i class="fa fa-check"></i><b>30.2</b> PK package</a>
+<li class="chapter" data-level="30.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#ridge-regression-1"><i class="fa fa-check"></i><b>30.2</b> Ridge Regression</a>
 <ul>
-<li class="chapter" data-level="30.2.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc"><i class="fa fa-check"></i><b>30.2.1</b> AUC</a></li>
-<li class="chapter" data-level="30.2.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-complete-data-design"><i class="fa fa-check"></i><b>30.2.2</b> AUC in complete data design</a></li>
-<li class="chapter" data-level="30.2.3" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-repeated-complete-data-design"><i class="fa fa-check"></i><b>30.2.3</b> AUC in repeated complete data design</a></li>
-<li class="chapter" data-level="30.2.4" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#bioequivalence-between-aucs"><i class="fa fa-check"></i><b>30.2.4</b> Bioequivalence between AUCs</a></li>
-<li class="chapter" data-level="30.2.5" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-biexponential-model"><i class="fa fa-check"></i><b>30.2.5</b> Two-phase half-life estimation by biexponential model</a></li>
-<li class="chapter" data-level="30.2.6" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-linear-fitting"><i class="fa fa-check"></i><b>30.2.6</b> Two-phase half-life estimation by linear fitting</a></li>
-<li class="chapter" data-level="30.2.7" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#estimation-of-various-pk-parameters"><i class="fa fa-check"></i><b>30.2.7</b> Estimation of various PK parameters</a></li>
+<li class="chapter" data-level="30.2.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modeling"><i class="fa fa-check"></i><b>30.2.1</b> Modeling</a></li>
 </ul></li>
+<li class="chapter" data-level="30.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#lasso-regression"><i class="fa fa-check"></i><b>30.3</b> Lasso Regression</a>
+<ul>
+<li class="chapter" data-level="30.3.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling"><i class="fa fa-check"></i><b>30.3.1</b> Modelling</a></li>
+<li class="chapter" data-level="30.3.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#glmnet-cross-validation"><i class="fa fa-check"></i><b>30.3.2</b> glmnet cross validation</a></li>
 </ul></li>
-<li class="chapter" data-level="31" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>31</b> Regularization Penalized Regression</a>
+<li class="chapter" data-level="30.4" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#elasticnet"><i class="fa fa-check"></i><b>30.4</b> ElasticNet</a>
 <ul>
-<li class="chapter" data-level="31.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#introduction-26"><i class="fa fa-check"></i><b>31.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="31.1.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#motivation"><i class="fa fa-check"></i><b>31.1.1</b> Motivation</a></li>
-<li class="chapter" data-level="31.1.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#data-preparation"><i class="fa fa-check"></i><b>31.1.2</b> Data preparation</a></li>
-<li class="chapter" data-level="31.1.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#best-subset-regression"><i class="fa fa-check"></i><b>31.1.3</b> Best subset regression</a></li>
-</ul></li>
-<li class="chapter" data-level="31.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#ridge-regression-1"><i class="fa fa-check"></i><b>31.2</b> Ridge Regression</a>
-<ul>
-<li class="chapter" data-level="31.2.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modeling"><i class="fa fa-check"></i><b>31.2.1</b> Modeling</a></li>
-</ul></li>
-<li class="chapter" data-level="31.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#lasso-regression"><i class="fa fa-check"></i><b>31.3</b> Lasso Regression</a>
-<ul>
-<li class="chapter" data-level="31.3.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling"><i class="fa fa-check"></i><b>31.3.1</b> Modelling</a></li>
-<li class="chapter" data-level="31.3.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#glmnet-cross-validation"><i class="fa fa-check"></i><b>31.3.2</b> glmnet cross validation</a></li>
-</ul></li>
-<li class="chapter" data-level="31.4" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#elasticnet"><i class="fa fa-check"></i><b>31.4</b> ElasticNet</a>
-<ul>
-<li class="chapter" data-level="31.4.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling-1"><i class="fa fa-check"></i><b>31.4.1</b> Modelling</a></li>
-<li class="chapter" data-level="31.4.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#classification"><i class="fa fa-check"></i><b>31.4.2</b> Classification</a></li>
+<li class="chapter" data-level="30.4.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling-1"><i class="fa fa-check"></i><b>30.4.1</b> Modelling</a></li>
+<li class="chapter" data-level="30.4.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#classification"><i class="fa fa-check"></i><b>30.4.2</b> Classification</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>32</b> Bayesian Theory</a>
+<li class="chapter" data-level="31" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>31</b> Bayesian Theory</a>
 <ul>
-<li class="chapter" data-level="32.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-of-bayesian"><i class="fa fa-check"></i><b>32.1</b> Introduction of Bayesian</a>
+<li class="chapter" data-level="31.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-of-bayesian"><i class="fa fa-check"></i><b>31.1</b> Introduction of Bayesian</a>
 <ul>
-<li class="chapter" data-level="32.1.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#frequency-and-bayesian"><i class="fa fa-check"></i><b>32.1.1</b> Frequency and Bayesian</a></li>
-<li class="chapter" data-level="32.1.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayes-rule"><i class="fa fa-check"></i><b>32.1.2</b> Bayes’ Rule</a></li>
-<li class="chapter" data-level="32.1.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bootstrap"><i class="fa fa-check"></i><b>32.1.3</b> Bootstrap</a></li>
-<li class="chapter" data-level="32.1.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#posterior-distribution"><i class="fa fa-check"></i><b>32.1.4</b> Posterior Distribution</a></li>
-<li class="chapter" data-level="32.1.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-credible-intervals"><i class="fa fa-check"></i><b>32.1.5</b> Bayesian Credible Intervals</a></li>
+<li class="chapter" data-level="31.1.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#frequency-and-bayesian"><i class="fa fa-check"></i><b>31.1.1</b> Frequency and Bayesian</a></li>
+<li class="chapter" data-level="31.1.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayes-rule"><i class="fa fa-check"></i><b>31.1.2</b> Bayes’ Rule</a></li>
+<li class="chapter" data-level="31.1.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bootstrap"><i class="fa fa-check"></i><b>31.1.3</b> Bootstrap</a></li>
+<li class="chapter" data-level="31.1.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#posterior-distribution"><i class="fa fa-check"></i><b>31.1.4</b> Posterior Distribution</a></li>
+<li class="chapter" data-level="31.1.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-credible-intervals"><i class="fa fa-check"></i><b>31.1.5</b> Bayesian Credible Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="32.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#parameter-estimates-1"><i class="fa fa-check"></i><b>32.2</b> Parameter estimates</a>
+<li class="chapter" data-level="31.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#parameter-estimates-1"><i class="fa fa-check"></i><b>31.2</b> Parameter estimates</a>
 <ul>
-<li class="chapter" data-level="32.2.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>32.2.1</b> Maximum likelihood estimation</a></li>
-<li class="chapter" data-level="32.2.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-a-posteriori-estimation"><i class="fa fa-check"></i><b>32.2.2</b> Maximum a posteriori estimation</a></li>
-<li class="chapter" data-level="32.2.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-model"><i class="fa fa-check"></i><b>32.2.3</b> Bayesian Model</a></li>
+<li class="chapter" data-level="31.2.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>31.2.1</b> Maximum likelihood estimation</a></li>
+<li class="chapter" data-level="31.2.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-a-posteriori-estimation"><i class="fa fa-check"></i><b>31.2.2</b> Maximum a posteriori estimation</a></li>
+<li class="chapter" data-level="31.2.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-model"><i class="fa fa-check"></i><b>31.2.3</b> Bayesian Model</a></li>
 </ul></li>
-<li class="chapter" data-level="32.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#prior-distributions"><i class="fa fa-check"></i><b>32.3</b> Prior Distributions</a>
+<li class="chapter" data-level="31.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#prior-distributions"><i class="fa fa-check"></i><b>31.3</b> Prior Distributions</a>
 <ul>
-<li class="chapter" data-level="32.3.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#conjugate-prior-distributions"><i class="fa fa-check"></i><b>32.3.1</b> Conjugate Prior Distributions</a></li>
-<li class="chapter" data-level="32.3.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#non-informativ-priors"><i class="fa fa-check"></i><b>32.3.2</b> Non-informativ Priors</a></li>
+<li class="chapter" data-level="31.3.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#conjugate-prior-distributions"><i class="fa fa-check"></i><b>31.3.1</b> Conjugate Prior Distributions</a></li>
+<li class="chapter" data-level="31.3.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#non-informativ-priors"><i class="fa fa-check"></i><b>31.3.2</b> Non-informativ Priors</a></li>
 </ul></li>
-<li class="chapter" data-level="32.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc"><i class="fa fa-check"></i><b>32.4</b> MCMC</a>
+<li class="chapter" data-level="31.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc"><i class="fa fa-check"></i><b>31.4</b> MCMC</a>
 <ul>
-<li class="chapter" data-level="32.4.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>32.4.1</b> Monte Carlo Simulation</a></li>
-<li class="chapter" data-level="32.4.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#概率分布采样"><i class="fa fa-check"></i><b>32.4.2</b> 概率分布采样</a></li>
-<li class="chapter" data-level="32.4.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#接受-拒绝采样"><i class="fa fa-check"></i><b>32.4.3</b> 接受-拒绝采样</a></li>
-<li class="chapter" data-level="32.4.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#markov-chain"><i class="fa fa-check"></i><b>32.4.4</b> Markov Chain</a></li>
-<li class="chapter" data-level="32.4.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#马尔科夫链的收敛性质"><i class="fa fa-check"></i><b>32.4.5</b> 马尔科夫链的收敛性质</a></li>
-<li class="chapter" data-level="32.4.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#基于马尔科夫链采样"><i class="fa fa-check"></i><b>32.4.6</b> 基于马尔科夫链采样</a></li>
-<li class="chapter" data-level="32.4.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc采样"><i class="fa fa-check"></i><b>32.4.7</b> MCMC采样</a></li>
-<li class="chapter" data-level="32.4.8" data-path="bayesian-theory.html"><a href="bayesian-theory.html#m-h采样"><i class="fa fa-check"></i><b>32.4.8</b> M-H采样</a></li>
-<li class="chapter" data-level="32.4.9" data-path="bayesian-theory.html"><a href="bayesian-theory.html#gibbs采样"><i class="fa fa-check"></i><b>32.4.9</b> Gibbs采样</a></li>
+<li class="chapter" data-level="31.4.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>31.4.1</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="31.4.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#概率分布采样"><i class="fa fa-check"></i><b>31.4.2</b> 概率分布采样</a></li>
+<li class="chapter" data-level="31.4.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#接受-拒绝采样"><i class="fa fa-check"></i><b>31.4.3</b> 接受-拒绝采样</a></li>
+<li class="chapter" data-level="31.4.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#markov-chain"><i class="fa fa-check"></i><b>31.4.4</b> Markov Chain</a></li>
+<li class="chapter" data-level="31.4.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#马尔科夫链的收敛性质"><i class="fa fa-check"></i><b>31.4.5</b> 马尔科夫链的收敛性质</a></li>
+<li class="chapter" data-level="31.4.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#基于马尔科夫链采样"><i class="fa fa-check"></i><b>31.4.6</b> 基于马尔科夫链采样</a></li>
+<li class="chapter" data-level="31.4.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc采样"><i class="fa fa-check"></i><b>31.4.7</b> MCMC采样</a></li>
+<li class="chapter" data-level="31.4.8" data-path="bayesian-theory.html"><a href="bayesian-theory.html#m-h采样"><i class="fa fa-check"></i><b>31.4.8</b> M-H采样</a></li>
+<li class="chapter" data-level="31.4.9" data-path="bayesian-theory.html"><a href="bayesian-theory.html#gibbs采样"><i class="fa fa-check"></i><b>31.4.9</b> Gibbs采样</a></li>
 </ul></li>
-<li class="chapter" data-level="32.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#regression-and-variable-selection"><i class="fa fa-check"></i><b>32.5</b> Regression and Variable Selection</a>
+<li class="chapter" data-level="31.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#regression-and-variable-selection"><i class="fa fa-check"></i><b>31.5</b> Regression and Variable Selection</a>
 <ul>
-<li class="chapter" data-level="32.5.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#classical-least-squares-estimator"><i class="fa fa-check"></i><b>32.5.1</b> Classical Least Squares Estimator</a></li>
-<li class="chapter" data-level="32.5.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#the-jeffreys-prior-analysis"><i class="fa fa-check"></i><b>32.5.2</b> The Jeffreys Prior Analysis</a></li>
-<li class="chapter" data-level="32.5.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#zellners-g-prior-analysis"><i class="fa fa-check"></i><b>32.5.3</b> Zellner’s G-prior analysis</a></li>
+<li class="chapter" data-level="31.5.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#classical-least-squares-estimator"><i class="fa fa-check"></i><b>31.5.1</b> Classical Least Squares Estimator</a></li>
+<li class="chapter" data-level="31.5.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#the-jeffreys-prior-analysis"><i class="fa fa-check"></i><b>31.5.2</b> The Jeffreys Prior Analysis</a></li>
+<li class="chapter" data-level="31.5.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#zellners-g-prior-analysis"><i class="fa fa-check"></i><b>31.5.3</b> Zellner’s G-prior analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="32.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-linear-regression-1"><i class="fa fa-check"></i><b>32.6</b> Bayesian linear regression</a></li>
-<li class="chapter" data-level="32.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-27"><i class="fa fa-check"></i><b>32.7</b> Introduction</a>
+<li class="chapter" data-level="31.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-linear-regression-1"><i class="fa fa-check"></i><b>31.6</b> Bayesian linear regression</a></li>
+<li class="chapter" data-level="31.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-26"><i class="fa fa-check"></i><b>31.7</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="32.7.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#item-response-theory"><i class="fa fa-check"></i><b>32.7.1</b> Item response theory</a></li>
-<li class="chapter" data-level="32.7.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#em-algorithm"><i class="fa fa-check"></i><b>32.7.2</b> EM algorithm</a></li>
-<li class="chapter" data-level="32.7.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc-algorithm"><i class="fa fa-check"></i><b>32.7.3</b> MCMC algorithm</a></li>
-<li class="chapter" data-level="32.7.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#unidimensional-irt-models"><i class="fa fa-check"></i><b>32.7.4</b> Unidimensional IRT Models</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="33" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>33</b> KNN</a>
-<ul>
-<li class="chapter" data-level="33.1" data-path="knn.html"><a href="knn.html#introduction-28"><i class="fa fa-check"></i><b>33.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="33.1.1" data-path="knn.html"><a href="knn.html#idee"><i class="fa fa-check"></i><b>33.1.1</b> Idee</a></li>
-<li class="chapter" data-level="33.1.2" data-path="knn.html"><a href="knn.html#加权最近邻法"><i class="fa fa-check"></i><b>33.1.2</b> 加权最近邻法</a></li>
-<li class="chapter" data-level="33.1.3" data-path="knn.html"><a href="knn.html#knn算法三要素"><i class="fa fa-check"></i><b>33.1.3</b> KNN算法三要素</a></li>
-<li class="chapter" data-level="33.1.4" data-path="knn.html"><a href="knn.html#优缺点"><i class="fa fa-check"></i><b>33.1.4</b> 优缺点</a></li>
-</ul></li>
-<li class="chapter" data-level="33.2" data-path="knn.html"><a href="knn.html#knn算法的实现方式"><i class="fa fa-check"></i><b>33.2</b> KNN算法的实现方式</a>
-<ul>
-<li class="chapter" data-level="33.2.1" data-path="knn.html"><a href="knn.html#brute-force"><i class="fa fa-check"></i><b>33.2.1</b> Brute-force</a></li>
-<li class="chapter" data-level="33.2.2" data-path="knn.html"><a href="knn.html#kd树实现"><i class="fa fa-check"></i><b>33.2.2</b> KD树实现</a></li>
-<li class="chapter" data-level="33.2.3" data-path="knn.html"><a href="knn.html#球树实现"><i class="fa fa-check"></i><b>33.2.3</b> 球树实现</a></li>
-</ul></li>
-<li class="chapter" data-level="33.3" data-path="knn.html"><a href="knn.html#application"><i class="fa fa-check"></i><b>33.3</b> Application</a>
-<ul>
-<li class="chapter" data-level="33.3.1" data-path="knn.html"><a href="knn.html#data-preparation-1"><i class="fa fa-check"></i><b>33.3.1</b> Data Preparation</a></li>
-<li class="chapter" data-level="33.3.2" data-path="knn.html"><a href="knn.html#knn-modelling"><i class="fa fa-check"></i><b>33.3.2</b> KNN Modelling</a></li>
-<li class="chapter" data-level="33.3.3" data-path="knn.html"><a href="knn.html#加权最近邻法-1"><i class="fa fa-check"></i><b>33.3.3</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="31.7.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#item-response-theory"><i class="fa fa-check"></i><b>31.7.1</b> Item response theory</a></li>
+<li class="chapter" data-level="31.7.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#em-algorithm"><i class="fa fa-check"></i><b>31.7.2</b> EM algorithm</a></li>
+<li class="chapter" data-level="31.7.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc-algorithm"><i class="fa fa-check"></i><b>31.7.3</b> MCMC algorithm</a></li>
+<li class="chapter" data-level="31.7.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#unidimensional-irt-models"><i class="fa fa-check"></i><b>31.7.4</b> Unidimensional IRT Models</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>34</b> SVM</a>
+<li class="chapter" data-level="32" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>32</b> KNN</a>
 <ul>
-<li class="chapter" data-level="34.1" data-path="svm.html"><a href="svm.html#introduction-29"><i class="fa fa-check"></i><b>34.1</b> Introduction</a></li>
-<li class="chapter" data-level="34.2" data-path="svm.html"><a href="svm.html#introduction-30"><i class="fa fa-check"></i><b>34.2</b> Introduction</a>
+<li class="chapter" data-level="32.1" data-path="knn.html"><a href="knn.html#introduction-27"><i class="fa fa-check"></i><b>32.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="34.2.1" data-path="svm.html"><a href="svm.html#perceptron"><i class="fa fa-check"></i><b>34.2.1</b> Perceptron</a></li>
-<li class="chapter" data-level="34.2.2" data-path="svm.html"><a href="svm.html#函数间隔与几何间隔"><i class="fa fa-check"></i><b>34.2.2</b> 函数间隔与几何间隔</a></li>
-<li class="chapter" data-level="34.2.3" data-path="svm.html"><a href="svm.html#svm支持向量"><i class="fa fa-check"></i><b>34.2.3</b> SVM支持向量</a></li>
-<li class="chapter" data-level="34.2.4" data-path="svm.html"><a href="svm.html#svm模型目标函数与优化"><i class="fa fa-check"></i><b>34.2.4</b> SVM模型目标函数与优化</a></li>
-<li class="chapter" data-level="34.2.5" data-path="svm.html"><a href="svm.html#线性可分svm的算法过程"><i class="fa fa-check"></i><b>34.2.5</b> 线性可分SVM的算法过程</a></li>
-<li class="chapter" data-level="34.2.6" data-path="svm.html"><a href="svm.html#线性svm的软间隔最大化"><i class="fa fa-check"></i><b>34.2.6</b> 线性SVM的软间隔最大化</a></li>
-<li class="chapter" data-level="34.2.7" data-path="svm.html"><a href="svm.html#线性不可分支持向量机与核函数"><i class="fa fa-check"></i><b>34.2.7</b> 线性不可分支持向量机与核函数</a></li>
+<li class="chapter" data-level="32.1.1" data-path="knn.html"><a href="knn.html#idee"><i class="fa fa-check"></i><b>32.1.1</b> Idee</a></li>
+<li class="chapter" data-level="32.1.2" data-path="knn.html"><a href="knn.html#加权最近邻法"><i class="fa fa-check"></i><b>32.1.2</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="32.1.3" data-path="knn.html"><a href="knn.html#knn算法三要素"><i class="fa fa-check"></i><b>32.1.3</b> KNN算法三要素</a></li>
+<li class="chapter" data-level="32.1.4" data-path="knn.html"><a href="knn.html#优缺点"><i class="fa fa-check"></i><b>32.1.4</b> 优缺点</a></li>
 </ul></li>
-<li class="chapter" data-level="34.3" data-path="svm.html"><a href="svm.html#application-1"><i class="fa fa-check"></i><b>34.3</b> Application</a>
+<li class="chapter" data-level="32.2" data-path="knn.html"><a href="knn.html#knn算法的实现方式"><i class="fa fa-check"></i><b>32.2</b> KNN算法的实现方式</a>
 <ul>
-<li class="chapter" data-level="34.3.1" data-path="svm.html"><a href="svm.html#data-preparation-2"><i class="fa fa-check"></i><b>34.3.1</b> Data Preparation</a></li>
-<li class="chapter" data-level="34.3.2" data-path="svm.html"><a href="svm.html#svm-modelling"><i class="fa fa-check"></i><b>34.3.2</b> SVM Modelling</a></li>
-<li class="chapter" data-level="34.3.3" data-path="svm.html"><a href="svm.html#model-selection-1"><i class="fa fa-check"></i><b>34.3.3</b> Model Selection</a></li>
-<li class="chapter" data-level="34.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>34.3.4</b> Character selection</a></li>
+<li class="chapter" data-level="32.2.1" data-path="knn.html"><a href="knn.html#brute-force"><i class="fa fa-check"></i><b>32.2.1</b> Brute-force</a></li>
+<li class="chapter" data-level="32.2.2" data-path="knn.html"><a href="knn.html#kd树实现"><i class="fa fa-check"></i><b>32.2.2</b> KD树实现</a></li>
+<li class="chapter" data-level="32.2.3" data-path="knn.html"><a href="knn.html#球树实现"><i class="fa fa-check"></i><b>32.2.3</b> 球树实现</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="35" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>35</b> Tree models</a>
+<li class="chapter" data-level="32.3" data-path="knn.html"><a href="knn.html#application"><i class="fa fa-check"></i><b>32.3</b> Application</a>
 <ul>
-<li class="chapter" data-level="35.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>35.1</b> Decision Tree Model</a>
-<ul>
-<li class="chapter" data-level="35.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>35.1.1</b> Decision tree algorithm</a></li>
-<li class="chapter" data-level="35.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>35.1.2</b> ID3 Algorithm</a></li>
-<li class="chapter" data-level="35.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>35.1.3</b> C4.5 Algorithm</a></li>
-<li class="chapter" data-level="35.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>35.1.4</b> CART Algorithm</a></li>
-<li class="chapter" data-level="35.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>35.1.5</b> Pruning</a></li>
-<li class="chapter" data-level="35.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>35.1.6</b> Package ‘rpart’</a></li>
-</ul></li>
-<li class="chapter" data-level="35.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>35.2</b> Random Forest</a>
-<ul>
-<li class="chapter" data-level="35.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>35.2.1</b> Bootstrap (Bagging)</a></li>
-<li class="chapter" data-level="35.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>35.2.2</b> bagging算法流程</a></li>
-<li class="chapter" data-level="35.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>35.2.3</b> Random Forest Algorithm</a></li>
-<li class="chapter" data-level="35.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>35.2.4</b> Random forest promotion</a></li>
-<li class="chapter" data-level="35.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>35.2.5</b> Package ‘randomForest’</a></li>
-</ul></li>
-<li class="chapter" data-level="35.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>35.3</b> Modelling</a>
-<ul>
-<li class="chapter" data-level="35.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>35.3.1</b> Data preparation</a></li>
-<li class="chapter" data-level="35.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>35.3.2</b> Regression tree</a></li>
-<li class="chapter" data-level="35.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>35.3.3</b> Classification tree</a></li>
-<li class="chapter" data-level="35.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>35.3.4</b> Random forest for regression</a></li>
-<li class="chapter" data-level="35.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>35.3.5</b> Random forest for classification</a></li>
-<li class="chapter" data-level="35.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>35.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
-<li class="chapter" data-level="35.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>35.3.7</b> 使用随机森林进行特征选择</a></li>
-</ul></li>
-<li class="chapter" data-level="35.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>35.4</b> Gradient Boosting</a>
-<ul>
-<li class="chapter" data-level="35.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>35.4.1</b> GBDT概述</a></li>
-<li class="chapter" data-level="35.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>35.4.2</b> GBDT的负梯度拟合</a></li>
-<li class="chapter" data-level="35.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>35.4.3</b> GBDT回归算法</a></li>
-<li class="chapter" data-level="35.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>35.4.4</b> GBDT分类算法</a></li>
-<li class="chapter" data-level="35.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>35.4.5</b> Package ‘gbm’</a></li>
-<li class="chapter" data-level="35.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>35.4.6</b> 极限梯度提升——分类</a></li>
-</ul></li>
-<li class="chapter" data-level="35.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>35.5</b> Cubist Model</a>
-<ul>
-<li class="chapter" data-level="35.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-31"><i class="fa fa-check"></i><b>35.5.1</b> Introduction</a></li>
-<li class="chapter" data-level="35.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>35.5.2</b> Application Data Preparation</a></li>
-<li class="chapter" data-level="35.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>35.5.3</b> Fit Continious Outcome</a></li>
-<li class="chapter" data-level="35.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>35.5.4</b> Variable Importance</a></li>
-<li class="chapter" data-level="35.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>35.5.5</b> Summary display</a></li>
-<li class="chapter" data-level="35.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>35.5.6</b> specific parts</a></li>
-<li class="chapter" data-level="35.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>35.5.7</b> Ensembles By Committees</a></li>
-<li class="chapter" data-level="35.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>35.5.8</b> Nearest–neighbors Adjustmemt</a></li>
-<li class="chapter" data-level="35.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>35.5.9</b> Optimize parameters</a></li>
-<li class="chapter" data-level="35.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>35.5.10</b> Logistic CV</a></li>
+<li class="chapter" data-level="32.3.1" data-path="knn.html"><a href="knn.html#data-preparation-1"><i class="fa fa-check"></i><b>32.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="32.3.2" data-path="knn.html"><a href="knn.html#knn-modelling"><i class="fa fa-check"></i><b>32.3.2</b> KNN Modelling</a></li>
+<li class="chapter" data-level="32.3.3" data-path="knn.html"><a href="knn.html#加权最近邻法-1"><i class="fa fa-check"></i><b>32.3.3</b> 加权最近邻法</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="36" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>36</b> Neural Network</a>
+<li class="chapter" data-level="33" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>33</b> SVM</a>
 <ul>
-<li class="chapter" data-level="36.1" data-path="neural-network.html"><a href="neural-network.html#introduction-32"><i class="fa fa-check"></i><b>36.1</b> Introduction</a></li>
-<li class="chapter" data-level="36.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>36.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
-<li class="chapter" data-level="36.3" data-path="neural-network.html"><a href="neural-network.html#application-2"><i class="fa fa-check"></i><b>36.3</b> Application</a>
+<li class="chapter" data-level="33.1" data-path="svm.html"><a href="svm.html#introduction-28"><i class="fa fa-check"></i><b>33.1</b> Introduction</a></li>
+<li class="chapter" data-level="33.2" data-path="svm.html"><a href="svm.html#introduction-29"><i class="fa fa-check"></i><b>33.2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="36.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>36.3.1</b> 数据准备</a></li>
-<li class="chapter" data-level="36.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>36.3.2</b> 模型构建</a></li>
+<li class="chapter" data-level="33.2.1" data-path="svm.html"><a href="svm.html#perceptron"><i class="fa fa-check"></i><b>33.2.1</b> Perceptron</a></li>
+<li class="chapter" data-level="33.2.2" data-path="svm.html"><a href="svm.html#函数间隔与几何间隔"><i class="fa fa-check"></i><b>33.2.2</b> 函数间隔与几何间隔</a></li>
+<li class="chapter" data-level="33.2.3" data-path="svm.html"><a href="svm.html#svm支持向量"><i class="fa fa-check"></i><b>33.2.3</b> SVM支持向量</a></li>
+<li class="chapter" data-level="33.2.4" data-path="svm.html"><a href="svm.html#svm模型目标函数与优化"><i class="fa fa-check"></i><b>33.2.4</b> SVM模型目标函数与优化</a></li>
+<li class="chapter" data-level="33.2.5" data-path="svm.html"><a href="svm.html#线性可分svm的算法过程"><i class="fa fa-check"></i><b>33.2.5</b> 线性可分SVM的算法过程</a></li>
+<li class="chapter" data-level="33.2.6" data-path="svm.html"><a href="svm.html#线性svm的软间隔最大化"><i class="fa fa-check"></i><b>33.2.6</b> 线性SVM的软间隔最大化</a></li>
+<li class="chapter" data-level="33.2.7" data-path="svm.html"><a href="svm.html#线性不可分支持向量机与核函数"><i class="fa fa-check"></i><b>33.2.7</b> 线性不可分支持向量机与核函数</a></li>
+</ul></li>
+<li class="chapter" data-level="33.3" data-path="svm.html"><a href="svm.html#application-1"><i class="fa fa-check"></i><b>33.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="33.3.1" data-path="svm.html"><a href="svm.html#data-preparation-2"><i class="fa fa-check"></i><b>33.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="33.3.2" data-path="svm.html"><a href="svm.html#svm-modelling"><i class="fa fa-check"></i><b>33.3.2</b> SVM Modelling</a></li>
+<li class="chapter" data-level="33.3.3" data-path="svm.html"><a href="svm.html#model-selection-1"><i class="fa fa-check"></i><b>33.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="33.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>33.3.4</b> Character selection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>34</b> Tree models</a>
+<ul>
+<li class="chapter" data-level="34.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>34.1</b> Decision Tree Model</a>
+<ul>
+<li class="chapter" data-level="34.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>34.1.1</b> Decision tree algorithm</a></li>
+<li class="chapter" data-level="34.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>34.1.2</b> ID3 Algorithm</a></li>
+<li class="chapter" data-level="34.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>34.1.3</b> C4.5 Algorithm</a></li>
+<li class="chapter" data-level="34.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>34.1.4</b> CART Algorithm</a></li>
+<li class="chapter" data-level="34.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>34.1.5</b> Pruning</a></li>
+<li class="chapter" data-level="34.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>34.1.6</b> Package ‘rpart’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>34.2</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="34.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>34.2.1</b> Bootstrap (Bagging)</a></li>
+<li class="chapter" data-level="34.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>34.2.2</b> bagging算法流程</a></li>
+<li class="chapter" data-level="34.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>34.2.3</b> Random Forest Algorithm</a></li>
+<li class="chapter" data-level="34.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>34.2.4</b> Random forest promotion</a></li>
+<li class="chapter" data-level="34.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>34.2.5</b> Package ‘randomForest’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>34.3</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="34.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>34.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="34.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>34.3.2</b> Regression tree</a></li>
+<li class="chapter" data-level="34.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>34.3.3</b> Classification tree</a></li>
+<li class="chapter" data-level="34.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>34.3.4</b> Random forest for regression</a></li>
+<li class="chapter" data-level="34.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>34.3.5</b> Random forest for classification</a></li>
+<li class="chapter" data-level="34.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>34.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
+<li class="chapter" data-level="34.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>34.3.7</b> 使用随机森林进行特征选择</a></li>
+</ul></li>
+<li class="chapter" data-level="34.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>34.4</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="34.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>34.4.1</b> GBDT概述</a></li>
+<li class="chapter" data-level="34.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>34.4.2</b> GBDT的负梯度拟合</a></li>
+<li class="chapter" data-level="34.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>34.4.3</b> GBDT回归算法</a></li>
+<li class="chapter" data-level="34.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>34.4.4</b> GBDT分类算法</a></li>
+<li class="chapter" data-level="34.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>34.4.5</b> Package ‘gbm’</a></li>
+<li class="chapter" data-level="34.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>34.4.6</b> 极限梯度提升——分类</a></li>
+</ul></li>
+<li class="chapter" data-level="34.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>34.5</b> Cubist Model</a>
+<ul>
+<li class="chapter" data-level="34.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-30"><i class="fa fa-check"></i><b>34.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="34.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>34.5.2</b> Application Data Preparation</a></li>
+<li class="chapter" data-level="34.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>34.5.3</b> Fit Continious Outcome</a></li>
+<li class="chapter" data-level="34.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>34.5.4</b> Variable Importance</a></li>
+<li class="chapter" data-level="34.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>34.5.5</b> Summary display</a></li>
+<li class="chapter" data-level="34.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>34.5.6</b> specific parts</a></li>
+<li class="chapter" data-level="34.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>34.5.7</b> Ensembles By Committees</a></li>
+<li class="chapter" data-level="34.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>34.5.8</b> Nearest–neighbors Adjustmemt</a></li>
+<li class="chapter" data-level="34.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>34.5.9</b> Optimize parameters</a></li>
+<li class="chapter" data-level="34.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>34.5.10</b> Logistic CV</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>35</b> Neural Network</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="neural-network.html"><a href="neural-network.html#introduction-31"><i class="fa fa-check"></i><b>35.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="35.1.1" data-path="neural-network.html"><a href="neural-network.html#component"><i class="fa fa-check"></i><b>35.1.1</b> Component</a></li>
+<li class="chapter" data-level="35.1.2" data-path="neural-network.html"><a href="neural-network.html#pca算法"><i class="fa fa-check"></i><b>35.1.2</b> PCA算法</a></li>
+<li class="chapter" data-level="35.1.3" data-path="neural-network.html"><a href="neural-network.html#主成分旋转"><i class="fa fa-check"></i><b>35.1.3</b> 主成分旋转</a></li>
+<li class="chapter" data-level="35.1.4" data-path="neural-network.html"><a href="neural-network.html#kernelized-pca"><i class="fa fa-check"></i><b>35.1.4</b> Kernelized PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="35.2" data-path="neural-network.html"><a href="neural-network.html#application-2"><i class="fa fa-check"></i><b>35.2</b> Application</a>
+<ul>
+<li class="chapter" data-level="35.2.1" data-path="neural-network.html"><a href="neural-network.html#data-preparation-4"><i class="fa fa-check"></i><b>35.2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="35.2.2" data-path="neural-network.html"><a href="neural-network.html#modeling-1"><i class="fa fa-check"></i><b>35.2.2</b> Modeling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>36</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="36.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>36.1</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="36.1.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#introduction-32"><i class="fa fa-check"></i><b>36.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="36.1.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-algorithms"><i class="fa fa-check"></i><b>36.1.2</b> Hierarchical clustering algorithms</a></li>
+<li class="chapter" data-level="36.1.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#measure-the-dissimilarity-between-two-clusters-of-observations"><i class="fa fa-check"></i><b>36.1.3</b> Measure the dissimilarity between two clusters of observations</a></li>
+</ul></li>
+<li class="chapter" data-level="36.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>36.2</b> K-means Clustering</a>
+<ul>
+<li class="chapter" data-level="36.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#algorithm"><i class="fa fa-check"></i><b>36.2.1</b> Algorithm</a></li>
+<li class="chapter" data-level="36.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means"><i class="fa fa-check"></i><b>36.2.2</b> K-Means++</a></li>
+<li class="chapter" data-level="36.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elkan-k-means"><i class="fa fa-check"></i><b>36.2.3</b> elkan K-Means</a></li>
+<li class="chapter" data-level="36.2.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#mini-batch-k-means"><i class="fa fa-check"></i><b>36.2.4</b> Mini Batch K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="36.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam"><i class="fa fa-check"></i><b>36.3</b> Gower’s coefficient and PAM</a>
+<ul>
+<li class="chapter" data-level="36.3.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient"><i class="fa fa-check"></i><b>36.3.1</b> Gower’s coefficient</a></li>
+<li class="chapter" data-level="36.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#不同数据类型的相异度计算-距离法"><i class="fa fa-check"></i><b>36.3.2</b> 不同数据类型的相异度计算 (距离法)</a></li>
+<li class="chapter" data-level="36.3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#pam"><i class="fa fa-check"></i><b>36.3.3</b> PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="36.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-clustering"><i class="fa fa-check"></i><b>36.4</b> BIRCH Clustering</a>
+<ul>
+<li class="chapter" data-level="36.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-introduction"><i class="fa fa-check"></i><b>36.4.1</b> BIRCH Introduction</a></li>
+<li class="chapter" data-level="36.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#聚类特征cf与聚类特征树cf-tree"><i class="fa fa-check"></i><b>36.4.2</b> 聚类特征CF与聚类特征树CF Tree</a></li>
+<li class="chapter" data-level="36.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cf-tree的生成"><i class="fa fa-check"></i><b>36.4.3</b> CF Tree的生成</a></li>
+<li class="chapter" data-level="36.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch算法"><i class="fa fa-check"></i><b>36.4.4</b> BIRCH算法</a></li>
+</ul></li>
+<li class="chapter" data-level="36.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#application-3"><i class="fa fa-check"></i><b>36.5</b> Application</a>
+<ul>
+<li class="chapter" data-level="36.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#data-preparation-5"><i class="fa fa-check"></i><b>36.5.1</b> Data preparation</a></li>
+<li class="chapter" data-level="36.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-1"><i class="fa fa-check"></i><b>36.5.2</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="36.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering-1"><i class="fa fa-check"></i><b>36.5.3</b> K-means Clustering</a></li>
+<li class="chapter" data-level="36.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam-1"><i class="fa fa-check"></i><b>36.5.4</b> Gower’s coefficient and PAM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="neural-network-1.html"><a href="neural-network-1.html"><i class="fa fa-check"></i><b>37</b> Neural Network</a>
+<ul>
+<li class="chapter" data-level="37.1" data-path="neural-network-1.html"><a href="neural-network-1.html#introduction-33"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
+<li class="chapter" data-level="37.2" data-path="neural-network-1.html"><a href="neural-network-1.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>37.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
+<li class="chapter" data-level="37.3" data-path="neural-network-1.html"><a href="neural-network-1.html#application-4"><i class="fa fa-check"></i><b>37.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="37.3.1" data-path="neural-network-1.html"><a href="neural-network-1.html#数据准备"><i class="fa fa-check"></i><b>37.3.1</b> 数据准备</a></li>
+<li class="chapter" data-level="37.3.2" data-path="neural-network-1.html"><a href="neural-network-1.html#模型构建"><i class="fa fa-check"></i><b>37.3.2</b> 模型构建</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="clinic-trail.html"><a href="clinic-trail.html"><i class="fa fa-check"></i><b>38</b> Clinic Trail</a>
+<ul>
+<li class="chapter" data-level="38.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-34"><i class="fa fa-check"></i><b>38.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="38.1.1" data-path="clinic-trail.html"><a href="clinic-trail.html#regulation"><i class="fa fa-check"></i><b>38.1.1</b> Regulation</a></li>
+<li class="chapter" data-level="38.1.2" data-path="clinic-trail.html"><a href="clinic-trail.html#protocol-deviations"><i class="fa fa-check"></i><b>38.1.2</b> Protocol Deviations</a></li>
+<li class="chapter" data-level="38.1.3" data-path="clinic-trail.html"><a href="clinic-trail.html#randomization"><i class="fa fa-check"></i><b>38.1.3</b> Randomization</a></li>
+</ul></li>
+<li class="chapter" data-level="38.2" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-i-trials-design"><i class="fa fa-check"></i><b>38.2</b> Phase I Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.2.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-35"><i class="fa fa-check"></i><b>38.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.2.2" data-path="clinic-trail.html"><a href="clinic-trail.html#nic-002-charité"><i class="fa fa-check"></i><b>38.2.2</b> NIC-002 (Charité)</a></li>
+</ul></li>
+<li class="chapter" data-level="38.3" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-ii-trials-design"><i class="fa fa-check"></i><b>38.3</b> Phase II Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.3.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-36"><i class="fa fa-check"></i><b>38.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.3.2" data-path="clinic-trail.html"><a href="clinic-trail.html#terra"><i class="fa fa-check"></i><b>38.3.2</b> Terra</a></li>
+<li class="chapter" data-level="38.3.3" data-path="clinic-trail.html"><a href="clinic-trail.html#lotab"><i class="fa fa-check"></i><b>38.3.3</b> LOTAB</a></li>
+<li class="chapter" data-level="38.3.4" data-path="clinic-trail.html"><a href="clinic-trail.html#niccam"><i class="fa fa-check"></i><b>38.3.4</b> NICCAM</a></li>
+</ul></li>
+<li class="chapter" data-level="38.4" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iii-trials-design"><i class="fa fa-check"></i><b>38.4</b> Phase III Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.4.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-37"><i class="fa fa-check"></i><b>38.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.4.2" data-path="clinic-trail.html"><a href="clinic-trail.html#mg-iii-001"><i class="fa fa-check"></i><b>38.4.2</b> MG-III-001</a></li>
+<li class="chapter" data-level="38.4.3" data-path="clinic-trail.html"><a href="clinic-trail.html#mediwound1"><i class="fa fa-check"></i><b>38.4.3</b> MEDIWOUND1</a></li>
+<li class="chapter" data-level="38.4.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cevira"><i class="fa fa-check"></i><b>38.4.4</b> CEVIRA</a></li>
+</ul></li>
+<li class="chapter" data-level="38.5" data-path="clinic-trail.html"><a href="clinic-trail.html#premarket-approval-pma"><i class="fa fa-check"></i><b>38.5</b> Premarket approval (PMA)</a>
+<ul>
+<li class="chapter" data-level="38.5.1" data-path="clinic-trail.html"><a href="clinic-trail.html#rat"><i class="fa fa-check"></i><b>38.5.1</b> RAT</a></li>
+<li class="chapter" data-level="38.5.2" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242"><i class="fa fa-check"></i><b>38.5.2</b> HM242</a></li>
+<li class="chapter" data-level="38.5.3" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-gel"><i class="fa fa-check"></i><b>38.5.3</b> HM242-Gel</a></li>
+<li class="chapter" data-level="38.5.4" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-solution"><i class="fa fa-check"></i><b>38.5.4</b> HM242-Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="38.6" data-path="clinic-trail.html"><a href="clinic-trail.html#postmarketing-surveillance-pms"><i class="fa fa-check"></i><b>38.6</b> Postmarketing Surveillance (PMS)</a>
+<ul>
+<li class="chapter" data-level="38.6.1" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iv-and-pms"><i class="fa fa-check"></i><b>38.6.1</b> Phase IV and PMS</a></li>
+<li class="chapter" data-level="38.6.2" data-path="clinic-trail.html"><a href="clinic-trail.html#bull-pms"><i class="fa fa-check"></i><b>38.6.2</b> BULL-PMS</a></li>
+<li class="chapter" data-level="38.6.3" data-path="clinic-trail.html"><a href="clinic-trail.html#venus-toric"><i class="fa fa-check"></i><b>38.6.3</b> VENUS toric</a></li>
+<li class="chapter" data-level="38.6.4" data-path="clinic-trail.html"><a href="clinic-trail.html#uvea-839"><i class="fa fa-check"></i><b>38.6.4</b> UVEA 839</a></li>
+<li class="chapter" data-level="38.6.5" data-path="clinic-trail.html"><a href="clinic-trail.html#ts002"><i class="fa fa-check"></i><b>38.6.5</b> TS002</a></li>
+<li class="chapter" data-level="38.6.6" data-path="clinic-trail.html"><a href="clinic-trail.html#cp17-01"><i class="fa fa-check"></i><b>38.6.6</b> CP17-01</a></li>
+<li class="chapter" data-level="38.6.7" data-path="clinic-trail.html"><a href="clinic-trail.html#relax"><i class="fa fa-check"></i><b>38.6.7</b> RELAX</a></li>
+<li class="chapter" data-level="38.6.8" data-path="clinic-trail.html"><a href="clinic-trail.html#virtiol"><i class="fa fa-check"></i><b>38.6.8</b> VirtIOL</a></li>
+</ul></li>
+<li class="chapter" data-level="38.7" data-path="clinic-trail.html"><a href="clinic-trail.html#non-interventional-study-nis"><i class="fa fa-check"></i><b>38.7</b> Non-Interventional Study (NIS)</a>
+<ul>
+<li class="chapter" data-level="38.7.1" data-path="clinic-trail.html"><a href="clinic-trail.html#db"><i class="fa fa-check"></i><b>38.7.1</b> DB</a></li>
+<li class="chapter" data-level="38.7.2" data-path="clinic-trail.html"><a href="clinic-trail.html#oepnv"><i class="fa fa-check"></i><b>38.7.2</b> OEPNV</a></li>
+</ul></li>
+<li class="chapter" data-level="38.8" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-ii"><i class="fa fa-check"></i><b>38.8</b> Trials Design (Phase II)</a>
+<ul>
+<li class="chapter" data-level="38.8.1" data-path="clinic-trail.html"><a href="clinic-trail.html#flemings-two-stage-design"><i class="fa fa-check"></i><b>38.8.1</b> Fleming’s Two-Stage design</a></li>
+<li class="chapter" data-level="38.8.2" data-path="clinic-trail.html"><a href="clinic-trail.html#simons-2-stage-design"><i class="fa fa-check"></i><b>38.8.2</b> Simon’s 2-Stage Design</a></li>
+<li class="chapter" data-level="38.8.3" data-path="clinic-trail.html"><a href="clinic-trail.html#jonckheere-terptsra-jt-trend-test"><i class="fa fa-check"></i><b>38.8.3</b> Jonckheere-Terptsra (JT) trend test</a></li>
+<li class="chapter" data-level="38.8.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cochran-armitage-ca-trend-test"><i class="fa fa-check"></i><b>38.8.4</b> Cochran-Armitage (CA) trend test</a></li>
+<li class="chapter" data-level="38.8.5" data-path="clinic-trail.html"><a href="clinic-trail.html#mcp-mod"><i class="fa fa-check"></i><b>38.8.5</b> MCP-Mod</a></li>
+<li class="chapter" data-level="38.8.6" data-path="clinic-trail.html"><a href="clinic-trail.html#two-stage-phase-ii-design-for-response-and-toxicity"><i class="fa fa-check"></i><b>38.8.6</b> Two Stage Phase II Design for Response and Toxicity</a></li>
+</ul></li>
+<li class="chapter" data-level="38.9" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-iii"><i class="fa fa-check"></i><b>38.9</b> Trials Design (Phase III)</a>
+<ul>
+<li class="chapter" data-level="38.9.1" data-path="clinic-trail.html"><a href="clinic-trail.html#non-inferiority-and-equivalence-three-armed-trial"><i class="fa fa-check"></i><b>38.9.1</b> Non-inferiority and Equivalence Three-armed trial</a></li>
+<li class="chapter" data-level="38.9.2" data-path="clinic-trail.html"><a href="clinic-trail.html#pigeot-method"><i class="fa fa-check"></i><b>38.9.2</b> Pigeot Method</a></li>
+</ul></li>
+<li class="chapter" data-level="38.10" data-path="clinic-trail.html"><a href="clinic-trail.html#sample-size-calculation-1"><i class="fa fa-check"></i><b>38.10</b> Sample Size Calculation</a>
+<ul>
+<li class="chapter" data-level="38.10.1" data-path="clinic-trail.html"><a href="clinic-trail.html#chi-square-test-1"><i class="fa fa-check"></i><b>38.10.1</b> <strong>Chi-Square Test</strong></a></li>
+<li class="chapter" data-level="38.10.2" data-path="clinic-trail.html"><a href="clinic-trail.html#fishers-exact-test-2"><i class="fa fa-check"></i><b>38.10.2</b> Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="38.10.3" data-path="clinic-trail.html"><a href="clinic-trail.html#t-test"><i class="fa fa-check"></i><b>38.10.3</b> T-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="38.11" data-path="clinic-trail.html"><a href="clinic-trail.html#data-analysis-methods-in-cip"><i class="fa fa-check"></i><b>38.11</b> Data Analysis Methods in CIP</a>
+<ul>
+<li class="chapter" data-level="38.11.1" data-path="clinic-trail.html"><a href="clinic-trail.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>38.11.1</b> Statistical Analysis Plan</a></li>
+<li class="chapter" data-level="38.11.2" data-path="clinic-trail.html"><a href="clinic-trail.html#general-considerations"><i class="fa fa-check"></i><b>38.11.2</b> General Considerations</a></li>
+<li class="chapter" data-level="38.11.3" data-path="clinic-trail.html"><a href="clinic-trail.html#analysis-sets"><i class="fa fa-check"></i><b>38.11.3</b> Analysis Sets</a></li>
+<li class="chapter" data-level="38.11.4" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-disposition"><i class="fa fa-check"></i><b>38.11.4</b> Patient Disposition</a></li>
+<li class="chapter" data-level="38.11.5" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-characteristics"><i class="fa fa-check"></i><b>38.11.5</b> Patient Characteristics</a></li>
+<li class="chapter" data-level="38.11.6" data-path="clinic-trail.html"><a href="clinic-trail.html#treatment-compliance"><i class="fa fa-check"></i><b>38.11.6</b> Treatment Compliance</a></li>
+<li class="chapter" data-level="38.11.7" data-path="clinic-trail.html"><a href="clinic-trail.html#descriptiveexplorative-analysis"><i class="fa fa-check"></i><b>38.11.7</b> Descriptive/Explorative Analysis</a></li>
+<li class="chapter" data-level="38.11.8" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-survival-analyses"><i class="fa fa-check"></i><b>38.11.8</b> Efficacy Survival Analyses</a></li>
+<li class="chapter" data-level="38.11.9" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-anova-analyses"><i class="fa fa-check"></i><b>38.11.9</b> Efficacy ANOVA Analyses</a></li>
+<li class="chapter" data-level="38.11.10" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-glm-dose-finding-study"><i class="fa fa-check"></i><b>38.11.10</b> Efficacy GLM Dose-Finding Study</a></li>
+<li class="chapter" data-level="38.11.11" data-path="clinic-trail.html"><a href="clinic-trail.html#safety-analyses"><i class="fa fa-check"></i><b>38.11.11</b> Safety Analyses</a></li>
+<li class="chapter" data-level="38.11.12" data-path="clinic-trail.html"><a href="clinic-trail.html#pharmacokinetic-and-pharmacodynamic-analyses"><i class="fa fa-check"></i><b>38.11.12</b> Pharmacokinetic and Pharmacodynamic Analyses</a></li>
+<li class="chapter" data-level="38.11.13" data-path="clinic-trail.html"><a href="clinic-trail.html#immunogenicity-data-analyses"><i class="fa fa-check"></i><b>38.11.13</b> Immunogenicity Data Analyses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html"><i class="fa fa-check"></i><b>39</b> Pharmacokinetic Analysis</a>
+<ul>
+<li class="chapter" data-level="39.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#introduction-38"><i class="fa fa-check"></i><b>39.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="39.1.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#statistical-analysis-18"><i class="fa fa-check"></i><b>39.1.1</b> Statistical analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="39.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#pk-package"><i class="fa fa-check"></i><b>39.2</b> PK package</a>
+<ul>
+<li class="chapter" data-level="39.2.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc"><i class="fa fa-check"></i><b>39.2.1</b> AUC</a></li>
+<li class="chapter" data-level="39.2.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-complete-data-design"><i class="fa fa-check"></i><b>39.2.2</b> AUC in complete data design</a></li>
+<li class="chapter" data-level="39.2.3" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-repeated-complete-data-design"><i class="fa fa-check"></i><b>39.2.3</b> AUC in repeated complete data design</a></li>
+<li class="chapter" data-level="39.2.4" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#bioequivalence-between-aucs"><i class="fa fa-check"></i><b>39.2.4</b> Bioequivalence between AUCs</a></li>
+<li class="chapter" data-level="39.2.5" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-biexponential-model"><i class="fa fa-check"></i><b>39.2.5</b> Two-phase half-life estimation by biexponential model</a></li>
+<li class="chapter" data-level="39.2.6" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-linear-fitting"><i class="fa fa-check"></i><b>39.2.6</b> Two-phase half-life estimation by linear fitting</a></li>
+<li class="chapter" data-level="39.2.7" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#estimation-of-various-pk-parameters"><i class="fa fa-check"></i><b>39.2.7</b> Estimation of various PK parameters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="cdisc-1.html"><a href="cdisc-1.html"><i class="fa fa-check"></i><b>40</b> CDISC</a>
+<ul>
+<li class="chapter" data-level="40.1" data-path="cdisc-1.html"><a href="cdisc-1.html#study-data-tabulation-model-sdtm"><i class="fa fa-check"></i><b>40.1</b> Study Data Tabulation Model (SDTM)</a>
+<ul>
+<li class="chapter" data-level="40.1.1" data-path="cdisc-1.html"><a href="cdisc-1.html#introduction-39"><i class="fa fa-check"></i><b>40.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="40.1.2" data-path="cdisc-1.html"><a href="cdisc-1.html#model-concepts-and-terms"><i class="fa fa-check"></i><b>40.1.2</b> Model Concepts and Terms</a></li>
+<li class="chapter" data-level="40.1.3" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-domains"><i class="fa fa-check"></i><b>40.1.3</b> SDTM Domains</a></li>
+<li class="chapter" data-level="40.1.4" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-define.xml"><i class="fa fa-check"></i><b>40.1.4</b> SDTM Define.xml</a></li>
+<li class="chapter" data-level="40.1.5" data-path="cdisc-1.html"><a href="cdisc-1.html#extract-transform-load-etl"><i class="fa fa-check"></i><b>40.1.5</b> Extract-Transform-Load (ETL)</a></li>
+<li class="chapter" data-level="40.1.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-dm-sdtm-datasets"><i class="fa fa-check"></i><b>40.1.6</b> Example Building DM SDTM Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="40.2" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-sas-macro"><i class="fa fa-check"></i><b>40.2</b> SDTM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="40.2.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define"><i class="fa fa-check"></i><b>40.2.1</b> ％make_define</a></li>
+<li class="chapter" data-level="40.2.2" data-path="cdisc-1.html"><a href="cdisc-1.html#make_codelist_formats"><i class="fa fa-check"></i><b>40.2.2</b> %make_codelist_formats</a></li>
+<li class="chapter" data-level="40.2.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset"><i class="fa fa-check"></i><b>40.2.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="40.2.4" data-path="cdisc-1.html"><a href="cdisc-1.html#make_dtc_date"><i class="fa fa-check"></i><b>40.2.4</b> %make_dtc_date</a></li>
+<li class="chapter" data-level="40.2.5" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sdtm_dy"><i class="fa fa-check"></i><b>40.2.5</b> %make_sdtm_dy</a></li>
+<li class="chapter" data-level="40.2.6" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sort_order"><i class="fa fa-check"></i><b>40.2.6</b> %make_sort_order</a></li>
+<li class="chapter" data-level="40.2.7" data-path="cdisc-1.html"><a href="cdisc-1.html#create_stdm_domains"><i class="fa fa-check"></i><b>40.2.7</b> %Create_STDM_Domains</a></li>
+<li class="chapter" data-level="40.2.8" data-path="cdisc-1.html"><a href="cdisc-1.html#detectduplicates"><i class="fa fa-check"></i><b>40.2.8</b> %DetectDuplicates</a></li>
+<li class="chapter" data-level="40.2.9" data-path="cdisc-1.html"><a href="cdisc-1.html#changedvarnum"><i class="fa fa-check"></i><b>40.2.9</b> %ChangedVarNum</a></li>
+<li class="chapter" data-level="40.2.10" data-path="cdisc-1.html"><a href="cdisc-1.html#changedlabels"><i class="fa fa-check"></i><b>40.2.10</b> %ChangedLabels</a></li>
+</ul></li>
+<li class="chapter" data-level="40.3" data-path="cdisc-1.html"><a href="cdisc-1.html#analysis-data-model-adam"><i class="fa fa-check"></i><b>40.3</b> Analysis Data Model (ADaM)</a>
+<ul>
+<li class="chapter" data-level="40.3.1" data-path="cdisc-1.html"><a href="cdisc-1.html#compare-with-sdtm"><i class="fa fa-check"></i><b>40.3.1</b> Compare with SDTM</a></li>
+<li class="chapter" data-level="40.3.2" data-path="cdisc-1.html"><a href="cdisc-1.html#types-of-adam-metadata"><i class="fa fa-check"></i><b>40.3.2</b> 4 types of ADaM metadata</a></li>
+<li class="chapter" data-level="40.3.3" data-path="cdisc-1.html"><a href="cdisc-1.html#subject-level-analysis-dataset-adsl"><i class="fa fa-check"></i><b>40.3.3</b> Subject-Level Analysis Dataset (ADSL)</a></li>
+<li class="chapter" data-level="40.3.4" data-path="cdisc-1.html"><a href="cdisc-1.html#the-basic-data-structure-bds"><i class="fa fa-check"></i><b>40.3.4</b> The Basic Data Structure (BDS)</a></li>
+<li class="chapter" data-level="40.3.5" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adsl-datasets"><i class="fa fa-check"></i><b>40.3.5</b> Example Building ADSL Datasets</a></li>
+<li class="chapter" data-level="40.3.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adam-basic-data-structure-bds-datasets"><i class="fa fa-check"></i><b>40.3.6</b> Example Building ADaM Basic Data Structure (BDS) Datasets</a></li>
+<li class="chapter" data-level="40.3.7" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adae-adverse-event-analysis-datasets-datasets"><i class="fa fa-check"></i><b>40.3.7</b> Example Building ADAE – Adverse Event Analysis Datasets Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="40.4" data-path="cdisc-1.html"><a href="cdisc-1.html#adam-sas-macro"><i class="fa fa-check"></i><b>40.4</b> ADaM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="40.4.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define-1"><i class="fa fa-check"></i><b>40.4.1</b> %make_define</a></li>
+<li class="chapter" data-level="40.4.2" data-path="cdisc-1.html"><a href="cdisc-1.html#create_adam_dataset"><i class="fa fa-check"></i><b>40.4.2</b> %create_adam_dataset</a></li>
+<li class="chapter" data-level="40.4.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset-1"><i class="fa fa-check"></i><b>40.4.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="40.4.4" data-path="cdisc-1.html"><a href="cdisc-1.html#dtc2dt"><i class="fa fa-check"></i><b>40.4.4</b> %DTC2DT</a></li>
+<li class="chapter" data-level="40.4.5" data-path="cdisc-1.html"><a href="cdisc-1.html#imputed_date"><i class="fa fa-check"></i><b>40.4.5</b> %imputed_date</a></li>
+<li class="chapter" data-level="40.4.6" data-path="cdisc-1.html"><a href="cdisc-1.html#mergsupp"><i class="fa fa-check"></i><b>40.4.6</b> %mergsupp</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -1424,8 +1607,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ggplot2" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> ggplot2</h1>
-<div id="htmlwidget-697f90eb4e4ab130190a" style="width:672px;height:480px;" class="markmap html-widget"></div>
-<script type="application/json" data-for="htmlwidget-697f90eb4e4ab130190a">{"x":{"data":"# \n## ggplot2\n### Parametric Rendering\n#### Grammar\n#### Coordinate system\n#### Legend\n#### geom\n#### position\n#### scale\n#### stat\n#### Color\n#### Thema\n#### Saving plots\n### Scatter plot\n#### Grouping Aesthetic\n#### facet\n#### geom_smooth\n#### Dot Plot\n#### Label and Title\n#### Residuals\n#### Encircling\n#### Dumbbell Plot \n### Histogram \n#### General appearance\n#### Themes\n#### geom_freqpoly()\n#### Marginal Histogram / Boxplot\n#### Scales\n### Bar plot\n#### Aesthetic\n#### Proportion\n#### coord\n#### stat=\"identity\"\n#### Ranking\n#### Means and error bars\n#### Waffle Chart\n### Box plot\n#### varwidth\n#### Reorder\n#### Fill\n#### stat=\"identity\"\n#### Dot + Box Plot \n#### Violin Plot \n### Other rendering \n#### Annotation\n#### Text: ggtext\n#### Text: ggrepel\n#### Arrage: gridExtra\n#### Interactive charts: plotly\n### DiagrammeR\n#### Basic flowchart using `grViz`\n#### Graphviz Attributes\n#### Gantt chart\n### ggstatsplot\n#### ggbetweenstats","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-00f387d3c05e3e5c1227" style="width:672px;height:480px;" class="markmap html-widget"></div>
+<script type="application/json" data-for="htmlwidget-00f387d3c05e3e5c1227">{"x":{"data":"# \n## ggplot2\n### Parametric Rendering\n#### Grammar\n#### Coordinate system\n#### Legend\n#### geom\n#### position\n#### scale\n#### stat\n#### Color\n#### Thema\n#### Saving plots\n### Scatter plot\n#### Grouping Aesthetic\n#### facet\n#### geom_smooth\n#### Dot Plot\n#### Label and Title\n#### Residuals\n#### Encircling\n#### Dumbbell Plot \n### Histogram \n#### General appearance\n#### Themes\n#### geom_freqpoly()\n#### Marginal Histogram / Boxplot\n#### Scales\n### Bar plot\n#### Aesthetic\n#### Proportion\n#### coord\n#### stat=\"identity\"\n#### Ranking\n#### Means and error bars\n#### Waffle Chart\n### Box plot\n#### varwidth\n#### Reorder\n#### Fill\n#### stat=\"identity\"\n#### Dot + Box Plot \n#### Violin Plot \n### Other rendering \n#### Annotation\n#### Text: ggtext\n#### Text: ggrepel\n#### Arrage: gridExtra\n#### Interactive charts: plotly\n### DiagrammeR\n#### Basic flowchart using `grViz`\n#### Graphviz Attributes\n#### Gantt chart\n### ggstatsplot\n#### ggbetweenstats","options":{"preset":"colorful","autoFit":true}},"evals":[],"jsHooks":[]}</script>
 <div id="parametric-rendering" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Parametric Rendering</h2>
 <div id="grammar" class="section level3" number="4.1.1">
@@ -2942,8 +3125,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb75-10"><a href="ggplot2.html#cb75-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.7</span>) </span>
 <span id="cb75-11"><a href="ggplot2.html#cb75-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-12"><a href="ggplot2.html#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p, <span class="at">tooltip=</span><span class="st">&quot;text&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-09ce274d2c62bc6700ac" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-09ce274d2c62bc6700ac">{"x":{"data":[{"x":[6223.367465,4797.231267,1441.284873,12569.85177,1217.032994,430.0706916,2042.09524,706.016537,1704.063724,986.1478792,277.5518587,3632.557798,1544.750112,2082.481567,5581.180998,12154.08975,641.3695236,690.8055759,13206.48452,752.7497265,1327.60891,942.6542111,579.231743,1463.249282,1569.331442,414.5073415,12057.49928,1044.770126,759.3499101,1042.581557,1803.151496,10956.99112,3820.17523,823.6856205,4811.060429,619.6768924,2013.977305,7670.122558,863.0884639,1598.435089,1712.472136,862.5407561,926.1410683,9269.657808,2602.394995,4513.480643,1107.482182,882.9699438,7092.923025,1056.380121,1271.211593,469.7092981],"y":[72.301,42.731,56.728,50.728,52.295,49.58,50.43,44.741,50.651,65.152,46.462,55.322,48.328,54.791,71.338,51.579,58.04,52.947,56.735,59.448,60.022,56.007,46.388,54.11,42.592,45.678,73.952,59.443,48.303,54.467,64.164,72.801,71.164,42.082,52.906,56.867,46.859,76.442,46.242,65.528,63.062,42.568,48.159,49.339,58.556,39.613,52.517,58.42,73.923,51.542,42.384,43.487],"text":["This country is:  Algeria","This country is:  Angola","This country is:  Benin","This country is:  Botswana","This country is:  Burkina Faso","This country is:  Burundi","This country is:  Cameroon","This country is:  Central African Republic","This country is:  Chad","This country is:  Comoros","This country is:  Congo, Dem. Rep.","This country is:  Congo, Rep.","This country is:  Cote d'Ivoire","This country is:  Djibouti","This country is:  Egypt","This country is:  Equatorial Guinea","This country is:  Eritrea","This country is:  Ethiopia","This country is:  Gabon","This country is:  Gambia","This country is:  Ghana","This country is:  Guinea","This country is:  Guinea-Bissau","This country is:  Kenya","This country is:  Lesotho","This country is:  Liberia","This country is:  Libya","This country is:  Madagascar","This country is:  Malawi","This country is:  Mali","This country is:  Mauritania","This country is:  Mauritius","This country is:  Morocco","This country is:  Mozambique","This country is:  Namibia","This country is:  Niger","This country is:  Nigeria","This country is:  Reunion","This country is:  Rwanda","This country is:  Sao Tome and Principe","This country is:  Senegal","This country is:  Sierra Leone","This country is:  Somalia","This country is:  South Africa","This country is:  Sudan","This country is:  Swaziland","This country is:  Tanzania","This country is:  Togo","This country is:  Tunisia","This country is:  Uganda","This country is:  Zambia","This country is:  Zimbabwe"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.7,"size":[6.77527173254923,5.598900411863,5.24035330707835,4.40395768399738,5.7356199392208,5.26901439581437,5.9564773609874,4.8422259478741,5.42852631166044,4.15169850163956,7.9562662998771,4.76713328307226,5.97611663817011,4.06305719383881,8.43636871732964,4.08813627550005,4.90865391372741,8.32592567062337,4.36262596871136,4.41454467512776,6.25770233060098,5.40445197132612,4.3666011970112,6.87649613589243,4.480300710223,4.68010775450673,5.03693920169262,6.0461636385333,5.66517797748393,5.5697344023561,4.69148323166173,4.31315004312066,6.79437672410524,6.09253246174489,4.48845333089755,5.6338762963756,9.82271393327331,4.18215900239245,5.3111594952501,3.77952755905512,5.58747695964146,5.04848038390226,5.33382085391144,7.22380829377829,7.1561065468969,4.282361176813,6.98520027409899,5.00028803920838,5.43159101796171,6.580769078434,5.54798462578679,5.59074371141117],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12779.37964,3822.137084,9065.800825,36319.23501,13171.63885,7006.580419,9645.06142,8948.102923,6025.374752,6873.262326,5728.353514,5186.050003,1201.637154,3548.330846,7320.880262,11977.57496,2749.320965,9809.185636,4172.838464,7408.905561,19328.70901,18008.50924,42951.65309,10611.46299,11415.80569],"y":[75.32,65.554,72.39,80.653,78.553,72.889,78.782,78.273,72.235,74.994,71.878,70.259,60.916,70.198,72.567,76.195,72.899,75.537,71.752,71.421,78.746,69.819,78.242,76.384,73.747],"text":["This country is:  Argentina","This country is:  Bolivia","This country is:  Brazil","This country is:  Canada","This country is:  Chile","This country is:  Colombia","This country is:  Costa Rica","This country is:  Cuba","This country is:  Dominican Republic","This country is:  Ecuador","This country is:  El Salvador","This country is:  Guatemala","This country is:  Haiti","This country is:  Honduras","This country is:  Jamaica","This country is:  Mexico","This country is:  Nicaragua","This country is:  Panama","This country is:  Paraguay","This country is:  Peru","This country is:  Puerto Rico","This country is:  Trinidad and Tobago","This country is:  United States","This country is:  Uruguay","This country is:  Venezuela"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":0.7,"size":[7.07528369289545,5.33385387656466,10.9497220287062,6.77784403625228,5.86681801798997,7.23282911414924,4.81182340745332,5.52260397354913,5.35122378867242,5.69571313317988,5.1306777542305,5.61021330347734,5.27919109958551,5.18415329737334,4.6155666029278,9.20063061292984,4.99737544049698,4.68733172329479,5.10307852744492,6.55670348636785,4.78640121163658,4.26132881438327,12.807919245623,4.71746231550028,6.42738713411734],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[974.5803384,29796.04834,1391.253792,1713.778686,4959.114854,39724.97867,2452.210407,3540.651564,11605.71449,4471.061906,25523.2771,31656.06806,4519.461171,1593.06548,23348.13973,47306.98978,10461.05868,12451.6558,3095.772271,944,1091.359778,22316.19287,2605.94758,3190.481016,21654.83194,47143.17964,3970.095407,4184.548089,28718.27684,7458.396327,2441.576404,3025.349798,2280.769906],"y":[43.828,75.635,64.062,59.723,72.961,82.208,64.698,70.65,70.964,59.545,80.745,82.603,72.535,67.297,78.623,77.588,71.993,74.241,66.803,62.069,63.785,75.64,65.483,71.688,72.777,79.972,72.396,74.143,78.4,70.616,74.249,73.422,62.698],"text":["This country is:  Afghanistan","This country is:  Bahrain","This country is:  Bangladesh","This country is:  Cambodia","This country is:  China","This country is:  Hong Kong, China","This country is:  India","This country is:  Indonesia","This country is:  Iran","This country is:  Iraq","This country is:  Israel","This country is:  Japan","This country is:  Jordan","This country is:  Korea, Dem. Rep.","This country is:  Korea, Rep.","This country is:  Kuwait","This country is:  Lebanon","This country is:  Malaysia","This country is:  Mongolia","This country is:  Myanmar","This country is:  Nepal","This country is:  Oman","This country is:  Pakistan","This country is:  Philippines","This country is:  Saudi Arabia","This country is:  Singapore","This country is:  Sri Lanka","This country is:  Syria","This country is:  Taiwan","This country is:  Thailand","This country is:  Vietnam","This country is:  West Bank and Gaza","This country is:  Yemen, Rep."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":0.7,"size":[6.70929835135528,4.1508288847182,10.1588656081799,5.72211801075065,22.6771653543307,5.13475345805415,21.1203680953071,11.5573968303758,8.11057131553749,6.49879524068774,5.07824026167466,9.65077587363648,5.03869129857133,6.28100350114513,7.4168446506104,4.56983839481089,4.78354392302204,6.36196165910748,4.63065651672448,7.36876387589759,6.56775273775666,4.68175365529605,10.5466615830696,8.74086596862592,6.50384061768477,4.86541785279541,6.11737587407916,6.05493528307165,6.27409491409121,7.97119993399054,8.57951329437571,4.79655097614072,6.22127948111281],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5937.029526,36126.4927,33692.60508,7446.298803,10680.79282,14619.22272,22833.30851,35278.41874,33207.0844,30470.0167,32170.37442,27538.41188,18008.94444,36180.78919,40675.99635,28569.7197,9253.896111,36797.93332,49357.19017,15389.92468,20509.64777,10808.47561,9786.534714,18678.31435,25768.25759,28821.0637,33859.74835,37506.41907,8458.276384,33203.26128],"y":[76.423,79.829,79.441,74.852,73.005,75.748,76.486,78.332,79.313,80.657,79.406,79.483,73.338,81.757,78.885,80.546,74.543,79.762,80.196,75.563,78.098,72.476,74.002,74.663,77.926,80.941,80.884,81.701,71.777,79.425],"text":["This country is:  Albania","This country is:  Austria","This country is:  Belgium","This country is:  Bosnia and Herzegovina","This country is:  Bulgaria","This country is:  Croatia","This country is:  Czech Republic","This country is:  Denmark","This country is:  Finland","This country is:  France","This country is:  Germany","This country is:  Greece","This country is:  Hungary","This country is:  Iceland","This country is:  Ireland","This country is:  Italy","This country is:  Montenegro","This country is:  Netherlands","This country is:  Norway","This country is:  Poland","This country is:  Portugal","This country is:  Romania","This country is:  Serbia","This country is:  Slovak Republic","This country is:  Slovenia","This country is:  Spain","This country is:  Sweden","This country is:  Switzerland","This country is:  Turkey","This country is:  United Kingdom"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":0.7,"size":[4.73930360976545,5.2515712457991,5.44107849786917,4.86531670289218,5.16855282584858,4.85794694387522,5.42769965273683,4.97410786436283,4.94778140481952,7.84043376621969,8.49809123744673,5.46648280699294,5.40514308400654,3.9460291298415,4.8085649745634,7.74130405516196,4.14203032052794,5.88528441607637,4.87472139425141,7.00115515259145,5.46138101214586,6.22484391610449,5.42123845033248,4.97176812735327,4.47964255788798,7.0812884751231,5.32616181946541,5.19097245574501,8.16356363915206,7.83015990857845],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[34435.36744,25185.00911],"y":[81.235,80.204],"text":["This country is:  Australia","This country is:  New Zealand"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":0.7,"size":[6.12061399094626,4.80944439195868],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2176.430056865,51811.172085565],"tickmode":"array","ticktext":["0","10000","20000","30000","40000","50000"],"tickvals":[0,10000,20000,30000,40000,50000],"categoryorder":"array","categoryarray":["0","10000","20000","30000","40000","50000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"gdpPercap","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[37.4635,84.7525],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"lifeExp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.93503937007874},"annotations":[{"text":"pop<br />continent","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"23943b0b47d9":{"x":{},"y":{},"size":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"23943b0b47d9","visdat":{"23943b0b47d9":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2cbcab383de1e2154ed2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2cbcab383de1e2154ed2">{"x":{"data":[{"x":[6223.367465,4797.231267,1441.284873,12569.85177,1217.032994,430.0706916,2042.09524,706.016537,1704.063724,986.1478792,277.5518587,3632.557798,1544.750112,2082.481567,5581.180998,12154.08975,641.3695236,690.8055759,13206.48452,752.7497265,1327.60891,942.6542111,579.231743,1463.249282,1569.331442,414.5073415,12057.49928,1044.770126,759.3499101,1042.581557,1803.151496,10956.99112,3820.17523,823.6856205,4811.060429,619.6768924,2013.977305,7670.122558,863.0884639,1598.435089,1712.472136,862.5407561,926.1410683,9269.657808,2602.394995,4513.480643,1107.482182,882.9699438,7092.923025,1056.380121,1271.211593,469.7092981],"y":[72.301,42.731,56.728,50.728,52.295,49.58,50.43,44.741,50.651,65.152,46.462,55.322,48.328,54.791,71.338,51.579,58.04,52.947,56.735,59.448,60.022,56.007,46.388,54.11,42.592,45.678,73.952,59.443,48.303,54.467,64.164,72.801,71.164,42.082,52.906,56.867,46.859,76.442,46.242,65.528,63.062,42.568,48.159,49.339,58.556,39.613,52.517,58.42,73.923,51.542,42.384,43.487],"text":["This country is:  Algeria","This country is:  Angola","This country is:  Benin","This country is:  Botswana","This country is:  Burkina Faso","This country is:  Burundi","This country is:  Cameroon","This country is:  Central African Republic","This country is:  Chad","This country is:  Comoros","This country is:  Congo, Dem. Rep.","This country is:  Congo, Rep.","This country is:  Cote d'Ivoire","This country is:  Djibouti","This country is:  Egypt","This country is:  Equatorial Guinea","This country is:  Eritrea","This country is:  Ethiopia","This country is:  Gabon","This country is:  Gambia","This country is:  Ghana","This country is:  Guinea","This country is:  Guinea-Bissau","This country is:  Kenya","This country is:  Lesotho","This country is:  Liberia","This country is:  Libya","This country is:  Madagascar","This country is:  Malawi","This country is:  Mali","This country is:  Mauritania","This country is:  Mauritius","This country is:  Morocco","This country is:  Mozambique","This country is:  Namibia","This country is:  Niger","This country is:  Nigeria","This country is:  Reunion","This country is:  Rwanda","This country is:  Sao Tome and Principe","This country is:  Senegal","This country is:  Sierra Leone","This country is:  Somalia","This country is:  South Africa","This country is:  Sudan","This country is:  Swaziland","This country is:  Tanzania","This country is:  Togo","This country is:  Tunisia","This country is:  Uganda","This country is:  Zambia","This country is:  Zimbabwe"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.7,"size":[6.77527173254923,5.598900411863,5.24035330707835,4.40395768399738,5.7356199392208,5.26901439581437,5.9564773609874,4.8422259478741,5.42852631166044,4.15169850163956,7.9562662998771,4.76713328307226,5.97611663817011,4.06305719383881,8.43636871732964,4.08813627550005,4.90865391372741,8.32592567062337,4.36262596871136,4.41454467512776,6.25770233060098,5.40445197132612,4.3666011970112,6.87649613589243,4.480300710223,4.68010775450673,5.03693920169262,6.0461636385333,5.66517797748393,5.5697344023561,4.69148323166173,4.31315004312066,6.79437672410524,6.09253246174489,4.48845333089755,5.6338762963756,9.82271393327331,4.18215900239245,5.3111594952501,3.77952755905512,5.58747695964146,5.04848038390226,5.33382085391144,7.22380829377829,7.1561065468969,4.282361176813,6.98520027409899,5.00028803920838,5.43159101796171,6.580769078434,5.54798462578679,5.59074371141117],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12779.37964,3822.137084,9065.800825,36319.23501,13171.63885,7006.580419,9645.06142,8948.102923,6025.374752,6873.262326,5728.353514,5186.050003,1201.637154,3548.330846,7320.880262,11977.57496,2749.320965,9809.185636,4172.838464,7408.905561,19328.70901,18008.50924,42951.65309,10611.46299,11415.80569],"y":[75.32,65.554,72.39,80.653,78.553,72.889,78.782,78.273,72.235,74.994,71.878,70.259,60.916,70.198,72.567,76.195,72.899,75.537,71.752,71.421,78.746,69.819,78.242,76.384,73.747],"text":["This country is:  Argentina","This country is:  Bolivia","This country is:  Brazil","This country is:  Canada","This country is:  Chile","This country is:  Colombia","This country is:  Costa Rica","This country is:  Cuba","This country is:  Dominican Republic","This country is:  Ecuador","This country is:  El Salvador","This country is:  Guatemala","This country is:  Haiti","This country is:  Honduras","This country is:  Jamaica","This country is:  Mexico","This country is:  Nicaragua","This country is:  Panama","This country is:  Paraguay","This country is:  Peru","This country is:  Puerto Rico","This country is:  Trinidad and Tobago","This country is:  United States","This country is:  Uruguay","This country is:  Venezuela"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":0.7,"size":[7.07528369289545,5.33385387656466,10.9497220287062,6.77784403625228,5.86681801798997,7.23282911414924,4.81182340745332,5.52260397354913,5.35122378867242,5.69571313317988,5.1306777542305,5.61021330347734,5.27919109958551,5.18415329737334,4.6155666029278,9.20063061292984,4.99737544049698,4.68733172329479,5.10307852744492,6.55670348636785,4.78640121163658,4.26132881438327,12.807919245623,4.71746231550028,6.42738713411734],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[974.5803384,29796.04834,1391.253792,1713.778686,4959.114854,39724.97867,2452.210407,3540.651564,11605.71449,4471.061906,25523.2771,31656.06806,4519.461171,1593.06548,23348.13973,47306.98978,10461.05868,12451.6558,3095.772271,944,1091.359778,22316.19287,2605.94758,3190.481016,21654.83194,47143.17964,3970.095407,4184.548089,28718.27684,7458.396327,2441.576404,3025.349798,2280.769906],"y":[43.828,75.635,64.062,59.723,72.961,82.208,64.698,70.65,70.964,59.545,80.745,82.603,72.535,67.297,78.623,77.588,71.993,74.241,66.803,62.069,63.785,75.64,65.483,71.688,72.777,79.972,72.396,74.143,78.4,70.616,74.249,73.422,62.698],"text":["This country is:  Afghanistan","This country is:  Bahrain","This country is:  Bangladesh","This country is:  Cambodia","This country is:  China","This country is:  Hong Kong, China","This country is:  India","This country is:  Indonesia","This country is:  Iran","This country is:  Iraq","This country is:  Israel","This country is:  Japan","This country is:  Jordan","This country is:  Korea, Dem. Rep.","This country is:  Korea, Rep.","This country is:  Kuwait","This country is:  Lebanon","This country is:  Malaysia","This country is:  Mongolia","This country is:  Myanmar","This country is:  Nepal","This country is:  Oman","This country is:  Pakistan","This country is:  Philippines","This country is:  Saudi Arabia","This country is:  Singapore","This country is:  Sri Lanka","This country is:  Syria","This country is:  Taiwan","This country is:  Thailand","This country is:  Vietnam","This country is:  West Bank and Gaza","This country is:  Yemen, Rep."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":0.7,"size":[6.70929835135528,4.1508288847182,10.1588656081799,5.72211801075065,22.6771653543307,5.13475345805415,21.1203680953071,11.5573968303758,8.11057131553749,6.49879524068774,5.07824026167466,9.65077587363648,5.03869129857133,6.28100350114513,7.4168446506104,4.56983839481089,4.78354392302204,6.36196165910748,4.63065651672448,7.36876387589759,6.56775273775666,4.68175365529605,10.5466615830696,8.74086596862592,6.50384061768477,4.86541785279541,6.11737587407916,6.05493528307165,6.27409491409121,7.97119993399054,8.57951329437571,4.79655097614072,6.22127948111281],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5937.029526,36126.4927,33692.60508,7446.298803,10680.79282,14619.22272,22833.30851,35278.41874,33207.0844,30470.0167,32170.37442,27538.41188,18008.94444,36180.78919,40675.99635,28569.7197,9253.896111,36797.93332,49357.19017,15389.92468,20509.64777,10808.47561,9786.534714,18678.31435,25768.25759,28821.0637,33859.74835,37506.41907,8458.276384,33203.26128],"y":[76.423,79.829,79.441,74.852,73.005,75.748,76.486,78.332,79.313,80.657,79.406,79.483,73.338,81.757,78.885,80.546,74.543,79.762,80.196,75.563,78.098,72.476,74.002,74.663,77.926,80.941,80.884,81.701,71.777,79.425],"text":["This country is:  Albania","This country is:  Austria","This country is:  Belgium","This country is:  Bosnia and Herzegovina","This country is:  Bulgaria","This country is:  Croatia","This country is:  Czech Republic","This country is:  Denmark","This country is:  Finland","This country is:  France","This country is:  Germany","This country is:  Greece","This country is:  Hungary","This country is:  Iceland","This country is:  Ireland","This country is:  Italy","This country is:  Montenegro","This country is:  Netherlands","This country is:  Norway","This country is:  Poland","This country is:  Portugal","This country is:  Romania","This country is:  Serbia","This country is:  Slovak Republic","This country is:  Slovenia","This country is:  Spain","This country is:  Sweden","This country is:  Switzerland","This country is:  Turkey","This country is:  United Kingdom"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":0.7,"size":[4.73930360976545,5.2515712457991,5.44107849786917,4.86531670289218,5.16855282584858,4.85794694387522,5.42769965273683,4.97410786436283,4.94778140481952,7.84043376621969,8.49809123744673,5.46648280699294,5.40514308400654,3.9460291298415,4.8085649745634,7.74130405516196,4.14203032052794,5.88528441607637,4.87472139425141,7.00115515259145,5.46138101214586,6.22484391610449,5.42123845033248,4.97176812735327,4.47964255788798,7.0812884751231,5.32616181946541,5.19097245574501,8.16356363915206,7.83015990857845],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[34435.36744,25185.00911],"y":[81.235,80.204],"text":["This country is:  Australia","This country is:  New Zealand"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":0.7,"size":[6.12061399094626,4.80944439195868],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2176.430056865,51811.172085565],"tickmode":"array","ticktext":["0","10000","20000","30000","40000","50000"],"tickvals":[0,10000,20000,30000,40000,50000],"categoryorder":"array","categoryarray":["0","10000","20000","30000","40000","50000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"gdpPercap","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[37.4635,84.7525],"tickmode":"array","ticktext":["40","50","60","70","80"],"tickvals":[40,50,60,70,80],"categoryorder":"array","categoryarray":["40","50","60","70","80"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"lifeExp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.93503937007874},"annotations":[{"text":"pop<br />continent","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"34f873d215ae":{"x":{},"y":{},"size":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"34f873d215ae","visdat":{"34f873d215ae":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="diagrammer" class="section level2" number="4.7">
@@ -2971,8 +3154,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb76-19"><a href="ggplot2.html#cb76-19" aria-hidden="true" tabindex="-1"></a><span class="st">      [4]: &#39;Participants eligible for the study n=600&#39;</span></span>
 <span id="cb76-20"><a href="ggplot2.html#cb76-20" aria-hidden="true" tabindex="-1"></a><span class="st">      [5]: &#39;Study sample n=600&#39;</span></span>
 <span id="cb76-21"><a href="ggplot2.html#cb76-21" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-b4c3c58f70c82722b05b" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4c3c58f70c82722b05b">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Questionnaire sent to n=1000 participants\"]\n      tab2 [label = \"Participants responded to questionnaire n=850\"]\n      tab3 [label = \"Participants came to clinic for evaluation n=700\"]\n      tab4 [label = \"Participants eligible for the study n=600\"]\n      tab5 [label = \"Study sample n=600\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bc1fc9cfe2c2a754438d" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bc1fc9cfe2c2a754438d">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Questionnaire sent to n=1000 participants\"]\n      tab2 [label = \"Participants responded to questionnaire n=850\"]\n      tab3 [label = \"Participants came to clinic for evaluation n=700\"]\n      tab4 [label = \"Participants eligible for the study n=600\"]\n      tab5 [label = \"Study sample n=600\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="ggplot2.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">&quot;digraph flowchart {</span></span>
 <span id="cb77-2"><a href="ggplot2.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="st">      # node definitions with substituted label text</span></span>
 <span id="cb77-3"><a href="ggplot2.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="st">      node [fontname = Helvetica, shape = rectangle]        </span></span>
@@ -2994,8 +3177,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb77-19"><a href="ggplot2.html#cb77-19" aria-hidden="true" tabindex="-1"></a><span class="st">      [4]: &#39;Participants eligible for the study n=600&#39;</span></span>
 <span id="cb77-20"><a href="ggplot2.html#cb77-20" aria-hidden="true" tabindex="-1"></a><span class="st">      [5]: &#39;Study sample n=600&#39;</span></span>
 <span id="cb77-21"><a href="ggplot2.html#cb77-21" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-1851c9c1f2e72d486f26" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1851c9c1f2e72d486f26">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Questionnaire sent to n=1000 participants\"]\n      tab2 [label = \"Participants came to clinic for evaluation n=700\"]\n      tab3 [label = \"Participants non-eligible for the study n=100\"]\n      tab4 [label = \"Participants eligible for the study n=600\"]\n      tab5 [label = \"Study sample n=600\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2;\n      tab2 -> tab3;\n      tab2 -> tab4 -> tab5\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0b98cecaf9400c9e5189" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0b98cecaf9400c9e5189">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Questionnaire sent to n=1000 participants\"]\n      tab2 [label = \"Participants came to clinic for evaluation n=700\"]\n      tab3 [label = \"Participants non-eligible for the study n=100\"]\n      tab4 [label = \"Participants eligible for the study n=600\"]\n      tab5 [label = \"Study sample n=600\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2;\n      tab2 -> tab3;\n      tab2 -> tab4 -> tab5\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="graphviz-attributes" class="section level3" number="4.7.2">
 <h3><span class="header-section-number">4.7.2</span> Graphviz Attributes</h3>
@@ -3024,8 +3207,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb78-15"><a href="ggplot2.html#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="st">      [3]: &#39;Python/R&#39;</span></span>
 <span id="cb78-16"><a href="ggplot2.html#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="st">      [4]: &#39;Domain Experience&#39;</span></span>
 <span id="cb78-17"><a href="ggplot2.html#cb78-17" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-2dfb876605f14b28cb98" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2dfb876605f14b28cb98">{"x":{"diagram":"digraph flowchart {\n      # define node aesthetics\n      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        \n      tab1 [label = \"Learning Data Science\"]\n      tab2 [label = \"Industry vs Technical Knowledge\"]\n      tab3 [label = \"Python/R\"]\n      tab4 [label = \"Domain Experience\"]\n# set up node layout\n      tab1 -> tab2;\n      tab2 -> tab3;\n      tab2 -> tab4\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f7568ca4164bb5a18e0d" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7568ca4164bb5a18e0d">{"x":{"diagram":"digraph flowchart {\n      # define node aesthetics\n      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        \n      tab1 [label = \"Learning Data Science\"]\n      tab2 [label = \"Industry vs Technical Knowledge\"]\n      tab3 [label = \"Python/R\"]\n      tab4 [label = \"Domain Experience\"]\n# set up node layout\n      tab1 -> tab2;\n      tab2 -> tab3;\n      tab2 -> tab4\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="ggplot2.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">&quot;digraph {</span></span>
 <span id="cb79-2"><a href="ggplot2.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="st">graph [layout = dot, rankdir = LR]</span></span>
 <span id="cb79-3"><a href="ggplot2.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="st"># define the global styles of the nodes. We can override these in box if we wish</span></span>
@@ -3040,8 +3223,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb79-12"><a href="ggplot2.html#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="st"># edge definitions with the node IDs</span></span>
 <span id="cb79-13"><a href="ggplot2.html#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="st">{data1 data2}  -&gt; process -&gt; statistical -&gt; results</span></span>
 <span id="cb79-14"><a href="ggplot2.html#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="st">}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-bacd6eb30e5a0c5e7d90" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bacd6eb30e5a0c5e7d90">{"x":{"diagram":"digraph {\ngraph [layout = dot, rankdir = LR]\n# define the global styles of the nodes. We can override these in box if we wish\nnode [shape = rectangle, style = filled, fillcolor = Linen]\n\ndata1 [label = \"Dataset 1\", shape = folder, fillcolor = Beige]\ndata2 [label = \"Dataset 2\", shape = folder, fillcolor = Beige]\nprocess [label =  \"Process \n Data\"]\nstatistical [label = \"Statistical \n Analysis\"]\nresults [label= \"Results\"]\n\n# edge definitions with the node IDs\n{data1 data2}  -> process -> statistical -> results\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3f0193962a63b2b8f7a3" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3f0193962a63b2b8f7a3">{"x":{"diagram":"digraph {\ngraph [layout = dot, rankdir = LR]\n# define the global styles of the nodes. We can override these in box if we wish\nnode [shape = rectangle, style = filled, fillcolor = Linen]\n\ndata1 [label = \"Dataset 1\", shape = folder, fillcolor = Beige]\ndata2 [label = \"Dataset 2\", shape = folder, fillcolor = Beige]\nprocess [label =  \"Process \n Data\"]\nstatistical [label = \"Statistical \n Analysis\"]\nresults [label= \"Results\"]\n\n# edge definitions with the node IDs\n{data1 data2}  -> process -> statistical -> results\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="gantt-chart" class="section level3" number="4.7.3">
 <h3><span class="header-section-number">4.7.3</span> Gantt chart</h3>
@@ -3051,8 +3234,8 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <span id="cb80-4"><a href="ggplot2.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="st">        Planning           :a1, 2016-01-01, 10d</span></span>
 <span id="cb80-5"><a href="ggplot2.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="st">        Data processing    :after a1, 30d</span></span>
 <span id="cb80-6"><a href="ggplot2.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="st">        Data analysis      :b1, 2016-03-01, 15d&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-ff656dccd99433ac8481" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ff656dccd99433ac8481">{"x":{"diagram":"gantt\n        Section Initiation\n        Planning           :a1, 2016-01-01, 10d\n        Data processing    :after a1, 30d\n        Data analysis      :b1, 2016-03-01, 15d"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-586523ed7b9495e86853" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-586523ed7b9495e86853">{"x":{"diagram":"gantt\n        Section Initiation\n        Planning           :a1, 2016-01-01, 10d\n        Data processing    :after a1, 30d\n        Data analysis      :b1, 2016-03-01, 15d"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="ggstatsplot" class="section level2" number="4.8">
@@ -3060,32 +3243,37 @@ ggplot(modf, aes(x = modf$bmi, y = .stdresid)) + geom_point()+
 <p>ggstatsplot is an extension of ggplot2 package for creating graphics with details from statistical tests included in the plots themselves and targeted primarily at behavioral sciences community to provide a one-line code to produce information-rich plots.</p>
 <ul>
 <li><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a></li>
+<li>Patil, I. (2021). Visualizations with statistical details: The ‘ggstatsplot’ approach. Journal of Open Source Software, 6(61), 3167, <a href="doi:10.21105/joss.03167" class="uri">doi:10.21105/joss.03167</a></li>
 </ul>
-<p><span class="citation">(<a href="#ref-Article" role="doc-biblioref"><strong>Article?</strong></a>)</span>{,
-doi = {10.21105/joss.03167},
-url = {<a href="https://doi.org/10.21105/joss.03167" class="uri">https://doi.org/10.21105/joss.03167</a>},
-year = {2021},
-publisher = {{The Open Journal}},
-volume = {6},
-number = {61},
-pages = {3167},
-author = {Indrajeet Patil},
-title = {{Visualizations with statistical details: The {‘ggstatsplot’} approach}},
-journal = {{Journal of Open Source Software}},
-}</p>
 <div id="ggbetweenstats" class="section level3" number="4.8.1">
 <h3><span class="header-section-number">4.8.1</span> ggbetweenstats</h3>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ggplot2.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## for reproducibility</span></span>
-<span id="cb81-2"><a href="ggplot2.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb81-3"><a href="ggplot2.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb81-4"><a href="ggplot2.html#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-5"><a href="ggplot2.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="do">## plot</span></span>
-<span id="cb81-6"><a href="ggplot2.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
-<span id="cb81-7"><a href="ggplot2.html#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> iris,</span>
-<span id="cb81-8"><a href="ggplot2.html#cb81-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x     =</span> Species,</span>
-<span id="cb81-9"><a href="ggplot2.html#cb81-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y     =</span> Sepal.Length,</span>
-<span id="cb81-10"><a href="ggplot2.html#cb81-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of sepal length across Iris species&quot;</span></span>
-<span id="cb81-11"><a href="ggplot2.html#cb81-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ul>
+<li>to check if a continuous variable differs across multiple groups/conditions</li>
+<li>to compare distributions visually and check for outliers</li>
+</ul>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ggplot2.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb81-2"><a href="ggplot2.html#cb81-2" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(<span class="at">x =</span> gapminder<span class="sc">::</span>gapminder)</span></code></pre></div>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, ~
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="ggplot2.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="do">## since the confidence intervals for the effect sizes are computed using</span></span>
+<span id="cb83-2"><a href="ggplot2.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="do">## bootstrapping, important to set a seed for reproducibility</span></span>
+<span id="cb83-3"><a href="ggplot2.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="do">## for reproducibility</span></span>
+<span id="cb83-4"><a href="ggplot2.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb83-5"><a href="ggplot2.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb83-6"><a href="ggplot2.html#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="ggplot2.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb83-8"><a href="ggplot2.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb83-9"><a href="ggplot2.html#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> iris,</span>
+<span id="cb83-10"><a href="ggplot2.html#cb83-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x     =</span> Species,</span>
+<span id="cb83-11"><a href="ggplot2.html#cb83-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y     =</span> Sepal.Length,</span>
+<span id="cb83-12"><a href="ggplot2.html#cb83-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of sepal length across Iris species&quot;</span></span>
+<span id="cb83-13"><a href="ggplot2.html#cb83-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/test-1.png" width="672" /></p>
 
 </div>
