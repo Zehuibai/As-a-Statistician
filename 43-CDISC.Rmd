@@ -11,8 +11,8 @@ library('mindr')
 ### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
 ### mm(from = input, type = "text", root = "mindr")
 filename <- rstudioapi::getSourceEditorContext()$path
-widget <- mm(from = filename, type = "file", root = "")
-widget
+# widget <- mm(from = filename, type = "file", root = "")
+# widget
 ```
 
 
@@ -66,6 +66,75 @@ All datasets are structured as flat files with rows representing observations an
 ```{r SDTM-domains, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: SDTM domains"}
 knitr::include_graphics("./02_Plots/SDTM_Domains.png")
 ```
+
+大多数在试验过程中采集到的受试者级别的观测数据，都可以被归为干预(Interventions)，事件(Events)和发现(Findings)三大类中的某一类。SDTM描述了每一观测数据类中被允许使用的变量列表。
+
+特殊目的域:
+
+* 备注 (CO)
+* 人口学 (DM)
+* 受试者元素 (SE)
+* 受试者访视 (SV) 
+
+干预类：
+
+* 既往与合并用药 (CM)
+* 暴露采集 (EC)
+* 暴露 (EX)
+* 嗜好品使用 (SU)
+* 操作 (PR) 
+
+事件类：
+
+* 不良事件 (AE)
+* 临床事件(CE)
+* 分布情况 (DS)
+* 方案偏离(DV)
+* 就诊事件 (HO)
+* 既往病史(MH) 
+
+发现类：
+
+* 药物收发记录 (DA)
+* 死亡详情 (DD)
+* 心电图 (EG)
+* 不满足的入选/排除标准 (IE)
+* 免疫原性检验 (IS)
+* 实验室检查 (LB)
+* 微生物检测 (MB)
+* 微观发现 (MI)
+* 形态学发现 (MO)
+* 药敏试验 (MS)
+* 药代动力学浓度 (PC)
+* 药代动力学参数 (PP)
+* 体格检查 (PE)
+* 问卷与量表 (QS)
+* 生殖系统检查(RP)
+* 疾病效应/状态评估 (RS)
+* 受试者特征 (SC)
+* 受试者状态 (SS)
+* 肿瘤鉴定 (TU)
+* 肿瘤/病灶测量 (TR)
+* 生命体征 (VS)
+
+相关发现：
+
+* 相关观测发现 (FA)
+* 皮试 (SR) 
+
+试验设计域：
+
+* 试验分组 (TA)
+* 试验疾病评估(TD)
+* 试验元素 (TE)
+* 试验访视(TV)
+* 试验入排标准(TI)
+* 试验概要(TS) 
+
+关联数据：
+
+* 补充修饰语数据集 (SUPP–数据集)
+* 关联记录数据集 (RELREC)
 
 #### AE (Adverse Events)
 

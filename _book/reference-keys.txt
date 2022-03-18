@@ -1429,3 +1429,6 @@ t-test
 examples
 descriptiveexplorative-analysis
 immunogenicity-data-analyses
+pca
+fig:SDTM-domains
+fig:SDTM-ADaM

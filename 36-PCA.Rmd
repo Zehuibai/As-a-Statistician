@@ -1,4 +1,4 @@
-#  Neural Network
+#  PCA
 
 
 
@@ -8,8 +8,8 @@ library('mindr')
 ### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
 ### mm(from = input, type = "text", root = "mindr")
 filename <- rstudioapi::getSourceEditorContext()$path
-widget <- mm(from = filename, type = "file", root = "")
-widget
+# widget <- mm(from = filename, type = "file", root = "")
+# widget
 ```
 
 
