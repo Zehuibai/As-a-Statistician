@@ -1,14 +1,19 @@
 # ggplot2
 
 
-```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
 library('mindr')
 ### text -> widget
 ### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
 ### mm(from = input, type = "text", root = "mindr")
-filename <- rstudioapi::getSourceEditorContext()$path
-# widget <- mm(from = filename, type = "file", root = "")
-# widget
+input <- rstudioapi::getSourceEditorContext()$path 
+## file.show(input) # Open the input file with the default program, if any
+input_txt <- readLines(input, encoding = "UTF-8")
+## Convert to mind map text, markdown outline, R script, and HTML widget ####
+mm_output <- mm(input_txt, 
+                output_type = c("widget"),
+                root = "")
+mm_output$widget
 ```
 
 ## Parametric Rendering
@@ -278,7 +283,7 @@ Functions that ggplot2 provides to define each of the above kinds of scales.
 + [ColorBrewer scales](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
 + Hexadecimal color code chart
     
-```{r Hexadecimal color code chart, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Hexadecimal color code chart"}
+```{r Hexadecimal, echo=FALSE, fig.align="center", out.width = '100%',fig.cap="Figure: Hexadecimal color code chart"}
 knitr::include_graphics("./02_Plots/ggplot2_Hexadecimal_Color_Code.png")
 ```
 
