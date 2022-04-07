@@ -1433,3 +1433,5 @@ pca
 fig:SDTM-domains
 fig:SDTM-ADaM
 fig:Hexadecimal
+fig:unnamed-chunk-2
+item-response-theory-1

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>As a Statistician</title>
   <meta name="description" content="This book involves different statistical principles and methods, including the application of SAS and R, and aims to accumulate personal statistical knowledge." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="As a Statistician" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2022-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 
 <link rel="next" href="data-management-in-sas.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -96,8 +96,6 @@
 <li class="chapter" data-level="2.2.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#build-a-format-from-a-dataset"><i class="fa fa-check"></i><b>2.2.3</b> Build a format from a dataset</a></li>
 <li class="chapter" data-level="2.2.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#output-format-as-datasets"><i class="fa fa-check"></i><b>2.2.4</b> Output format as datasets</a></li>
 <li class="chapter" data-level="2.2.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-the-format"><i class="fa fa-check"></i><b>2.2.5</b> Delete the format</a></li>
-<li class="chapter" data-level="2.2.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#cat-connect-string-variables"><i class="fa fa-check"></i><b>2.2.6</b> ‘CAT’ connect string variables</a></li>
-<li class="chapter" data-level="2.2.7" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#combine"><i class="fa fa-check"></i><b>2.2.7</b> %Combine</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#array"><i class="fa fa-check"></i><b>2.3</b> Array</a>
 <ul>
@@ -105,60 +103,31 @@
 <li class="chapter" data-level="2.3.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#format-multiple-variables"><i class="fa fa-check"></i><b>2.3.2</b> Format multiple variables</a></li>
 <li class="chapter" data-level="2.3.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#arrays"><i class="fa fa-check"></i><b>2.3.3</b> 2*2 arrays</a></li>
 <li class="chapter" data-level="2.3.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#dynamic-element-list-using-macro-variables"><i class="fa fa-check"></i><b>2.3.4</b> Dynamic Element List using Macro Variables</a></li>
-<li class="chapter" data-level="2.3.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#carry-over-values"><i class="fa fa-check"></i><b>2.3.5</b> Carry over values</a></li>
-<li class="chapter" data-level="2.3.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#summary-sums"><i class="fa fa-check"></i><b>2.3.6</b> Summary sums</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#retain"><i class="fa fa-check"></i><b>2.4</b> Retain</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#change-from-basilne"><i class="fa fa-check"></i><b>2.4.1</b> Change from Basilne</a></li>
+<li class="chapter" data-level="2.4.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#generate-serial-number"><i class="fa fa-check"></i><b>2.4.1</b> Generate Serial Number</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#change-from-basilne"><i class="fa fa-check"></i><b>2.4.2</b> Change from Basilne</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#names-and-types"><i class="fa fa-check"></i><b>2.5</b> Names and Types</a>
+<li class="chapter" data-level="2.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#data-utilities"><i class="fa fa-check"></i><b>2.5</b> Data utilities</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#convert-all-numeric-to-char"><i class="fa fa-check"></i><b>2.5.1</b> Convert all numeric to char*</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#get-all-the-numeric-variable-names"><i class="fa fa-check"></i><b>2.5.2</b> Get all the numeric variable names</a></li>
-<li class="chapter" data-level="2.5.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#write-all-variable-names-as-macro-variables"><i class="fa fa-check"></i><b>2.5.3</b> Write all variable names as macro variables</a></li>
-<li class="chapter" data-level="2.5.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#write-all-observations-as-macro-variable"><i class="fa fa-check"></i><b>2.5.4</b> Write all observations as macro variable</a></li>
-<li class="chapter" data-level="2.5.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#select-character-and-numeric-variables"><i class="fa fa-check"></i><b>2.5.5</b> Select Character and numeric variables</a></li>
-<li class="chapter" data-level="2.5.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#rename-some-variables"><i class="fa fa-check"></i><b>2.5.6</b> Rename some variables</a></li>
-<li class="chapter" data-level="2.5.7" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#rename-with-suffix"><i class="fa fa-check"></i><b>2.5.7</b> Rename with suffix</a></li>
-<li class="chapter" data-level="2.5.8" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#rename-array-variables"><i class="fa fa-check"></i><b>2.5.8</b> Rename array variables</a></li>
+<li class="chapter" data-level="2.5.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#scan"><i class="fa fa-check"></i><b>2.5.1</b> %Scan</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#eval-and-syseval"><i class="fa fa-check"></i><b>2.5.2</b> %eval and %syseval</a></li>
+<li class="chapter" data-level="2.5.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#macro-variable-status"><i class="fa fa-check"></i><b>2.5.3</b> Macro variable status</a></li>
+<li class="chapter" data-level="2.5.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#sysfunc"><i class="fa fa-check"></i><b>2.5.4</b> %SYSFUNC</a></li>
+<li class="chapter" data-level="2.5.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#quoting-function"><i class="fa fa-check"></i><b>2.5.5</b> Quoting Function</a></li>
+<li class="chapter" data-level="2.5.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#call-symput"><i class="fa fa-check"></i><b>2.5.6</b> Call Symput</a></li>
+<li class="chapter" data-level="2.5.7" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#call-execute"><i class="fa fa-check"></i><b>2.5.7</b> Call Execute</a></li>
+<li class="chapter" data-level="2.5.8" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#sysfunc-get-the-observations"><i class="fa fa-check"></i><b>2.5.8</b> %sysfunc get the observations</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#data-utilities"><i class="fa fa-check"></i><b>2.6</b> Data utilities</a>
+<li class="chapter" data-level="2.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#clean-up"><i class="fa fa-check"></i><b>2.6</b> Clean Up</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#scan"><i class="fa fa-check"></i><b>2.6.1</b> %Scan</a></li>
-<li class="chapter" data-level="2.6.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#eval-and-syseval"><i class="fa fa-check"></i><b>2.6.2</b> %eval and %syseval</a></li>
-<li class="chapter" data-level="2.6.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#macro-variable-status"><i class="fa fa-check"></i><b>2.6.3</b> Macro variable status</a></li>
-<li class="chapter" data-level="2.6.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#sysfunc"><i class="fa fa-check"></i><b>2.6.4</b> %SYSFUNC</a></li>
-<li class="chapter" data-level="2.6.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#quoting-function"><i class="fa fa-check"></i><b>2.6.5</b> Quoting Function</a></li>
-<li class="chapter" data-level="2.6.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#call-symput"><i class="fa fa-check"></i><b>2.6.6</b> Call Symput</a></li>
-<li class="chapter" data-level="2.6.7" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#call-execute"><i class="fa fa-check"></i><b>2.6.7</b> Call Execute</a></li>
-<li class="chapter" data-level="2.6.8" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#dummy-datasets"><i class="fa fa-check"></i><b>2.6.8</b> Dummy Datasets</a></li>
-<li class="chapter" data-level="2.6.9" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#dummy-variables-with-reference"><i class="fa fa-check"></i><b>2.6.9</b> Dummy variables with reference</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#check-for-validation"><i class="fa fa-check"></i><b>2.7</b> Check for validation</a>
-<ul>
-<li class="chapter" data-level="2.7.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#check-datasets-exists"><i class="fa fa-check"></i><b>2.7.1</b> Check datasets exists</a></li>
-<li class="chapter" data-level="2.7.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#check-datasets-and-variables"><i class="fa fa-check"></i><b>2.7.2</b> Check datasets and Variables</a></li>
-<li class="chapter" data-level="2.7.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#check-datasets-if-empty"><i class="fa fa-check"></i><b>2.7.3</b> Check datasets if empty</a></li>
-<li class="chapter" data-level="2.7.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#sysfunc-get-the-observations"><i class="fa fa-check"></i><b>2.7.4</b> %sysfunc get the observations</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#log"><i class="fa fa-check"></i><b>2.8</b> Log</a>
-<ul>
-<li class="chapter" data-level="2.8.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#logreader"><i class="fa fa-check"></i><b>2.8.1</b> %LogReader</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#proc-transpose"><i class="fa fa-check"></i><b>2.9</b> Proc Transpose</a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#numeric"><i class="fa fa-check"></i><b>2.9.1</b> <em>numeric</em></a></li>
-<li class="chapter" data-level="2.9.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#in-processing"><i class="fa fa-check"></i><b>2.9.2</b> In processing</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#clean-up"><i class="fa fa-check"></i><b>2.10</b> Clean Up</a>
-<ul>
-<li class="chapter" data-level="2.10.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#basic-setting"><i class="fa fa-check"></i><b>2.10.1</b> Basic setting</a></li>
-<li class="chapter" data-level="2.10.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-datasets"><i class="fa fa-check"></i><b>2.10.2</b> Delete datasets</a></li>
-<li class="chapter" data-level="2.10.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#deleting-formats"><i class="fa fa-check"></i><b>2.10.3</b> Deleting Formats</a></li>
-<li class="chapter" data-level="2.10.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#remove-assigned-formats"><i class="fa fa-check"></i><b>2.10.4</b> Remove assigned formats</a></li>
-<li class="chapter" data-level="2.10.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-macro-variables"><i class="fa fa-check"></i><b>2.10.5</b> Delete macro variables</a></li>
-<li class="chapter" data-level="2.10.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-macro"><i class="fa fa-check"></i><b>2.10.6</b> Delete Macro</a></li>
+<li class="chapter" data-level="2.6.1" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#basic-setting"><i class="fa fa-check"></i><b>2.6.1</b> Basic setting</a></li>
+<li class="chapter" data-level="2.6.2" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-datasets"><i class="fa fa-check"></i><b>2.6.2</b> Delete datasets</a></li>
+<li class="chapter" data-level="2.6.3" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#deleting-formats"><i class="fa fa-check"></i><b>2.6.3</b> Deleting Formats</a></li>
+<li class="chapter" data-level="2.6.4" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#remove-assigned-formats"><i class="fa fa-check"></i><b>2.6.4</b> Remove assigned formats</a></li>
+<li class="chapter" data-level="2.6.5" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-macro-variables"><i class="fa fa-check"></i><b>2.6.5</b> Delete macro variables</a></li>
+<li class="chapter" data-level="2.6.6" data-path="data-management-in-sas.html"><a href="data-management-in-sas.html#delete-macro"><i class="fa fa-check"></i><b>2.6.6</b> Delete Macro</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-management-in-r.html"><a href="data-management-in-r.html"><i class="fa fa-check"></i><b>3</b> Data Management in R</a>
@@ -280,6 +249,10 @@
 <li class="chapter" data-level="4.7.2" data-path="ggplot2.html"><a href="ggplot2.html#graphviz-attributes"><i class="fa fa-check"></i><b>4.7.2</b> Graphviz Attributes</a></li>
 <li class="chapter" data-level="4.7.3" data-path="ggplot2.html"><a href="ggplot2.html#gantt-chart"><i class="fa fa-check"></i><b>4.7.3</b> Gantt chart</a></li>
 </ul></li>
+<li class="chapter" data-level="4.8" data-path="ggplot2.html"><a href="ggplot2.html#ggstatsplot"><i class="fa fa-check"></i><b>4.8</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="ggplot2.html"><a href="ggplot2.html#ggbetweenstats"><i class="fa fa-check"></i><b>4.8.1</b> ggbetweenstats</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="proc-sqplot-in-processing.html"><a href="proc-sqplot-in-processing.html"><i class="fa fa-check"></i><b>5</b> Proc Sqplot (In Processing)</a>
 <ul>
@@ -346,7 +319,21 @@
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#basic-syntax-for-proc-tabulate"><i class="fa fa-check"></i><b>7.4.1</b> Basic Syntax for PROC TABULATE</a></li>
 <li class="chapter" data-level="7.4.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#identification-of-desired-statistics"><i class="fa fa-check"></i><b>7.4.2</b> Identification of Desired Statistics</a></li>
-<li class="chapter" data-level="7.4.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#in-processing-1"><i class="fa fa-check"></i><b>7.4.3</b> In processing</a></li>
+<li class="chapter" data-level="7.4.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#in-processing"><i class="fa fa-check"></i><b>7.4.3</b> In processing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#sas-macro"><i class="fa fa-check"></i><b>7.5</b> SAS Macro</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#multisummary"><i class="fa fa-check"></i><b>7.5.1</b> %Multisummary</a></li>
+<li class="chapter" data-level="7.5.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#conti"><i class="fa fa-check"></i><b>7.5.2</b> %conti</a></li>
+<li class="chapter" data-level="7.5.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#categ"><i class="fa fa-check"></i><b>7.5.3</b> %categ</a></li>
+<li class="chapter" data-level="7.5.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#var"><i class="fa fa-check"></i><b>7.5.4</b> %VAR</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#proc-report"><i class="fa fa-check"></i><b>7.6</b> Proc report</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#style-location-option"><i class="fa fa-check"></i><b>7.6.1</b> STYLE &lt;(location)&gt; = option</a></li>
+<li class="chapter" data-level="7.6.2" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#borders"><i class="fa fa-check"></i><b>7.6.2</b> Borders</a></li>
+<li class="chapter" data-level="7.6.3" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#conti_report"><i class="fa fa-check"></i><b>7.6.3</b> %Conti_report</a></li>
+<li class="chapter" data-level="7.6.4" data-path="descriptive-statistics-in-sas.html"><a href="descriptive-statistics-in-sas.html#categ_report"><i class="fa fa-check"></i><b>7.6.4</b> %Categ_report</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="descriptive-statistics-in-r.html"><a href="descriptive-statistics-in-r.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics in R</a>
@@ -382,32 +369,33 @@
 <li class="chapter" data-level="9.2.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-1"><i class="fa fa-check"></i><b>9.2.2</b> SAS implementation</a></li>
 <li class="chapter" data-level="9.2.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-1"><i class="fa fa-check"></i><b>9.2.3</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>9.3</b> McNemar’s test</a>
+<li class="chapter" data-level="9.3" data-path="parametric-test.html"><a href="parametric-test.html#sensitivity-and-specificity"><i class="fa fa-check"></i><b>9.3</b> Sensitivity and specificity</a></li>
+<li class="chapter" data-level="9.4" data-path="parametric-test.html"><a href="parametric-test.html#mcnemars-test"><i class="fa fa-check"></i><b>9.4</b> McNemar’s test</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-3"><i class="fa fa-check"></i><b>9.3.1</b> introduction</a></li>
-<li class="chapter" data-level="9.3.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>9.3.2</b> SAS Implementation</a></li>
-<li class="chapter" data-level="9.3.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>9.3.3</b> R Implementation</a></li>
+<li class="chapter" data-level="9.4.1" data-path="parametric-test.html"><a href="parametric-test.html#introduction-3"><i class="fa fa-check"></i><b>9.4.1</b> introduction</a></li>
+<li class="chapter" data-level="9.4.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-2"><i class="fa fa-check"></i><b>9.4.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="9.4.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-2"><i class="fa fa-check"></i><b>9.4.3</b> R Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>9.4</b> Cochran–Mantel–Haenszel Test</a>
+<li class="chapter" data-level="9.5" data-path="parametric-test.html"><a href="parametric-test.html#cochranmantelhaenszel-test"><i class="fa fa-check"></i><b>9.5</b> Cochran–Mantel–Haenszel Test</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>9.4.1</b> R implementation</a></li>
+<li class="chapter" data-level="9.5.1" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-3"><i class="fa fa-check"></i><b>9.5.1</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>9.5</b> Correlation Test</a>
+<li class="chapter" data-level="9.6" data-path="parametric-test.html"><a href="parametric-test.html#correlation-test"><i class="fa fa-check"></i><b>9.6</b> Correlation Test</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>9.5.1</b> Pearson correlation</a></li>
-<li class="chapter" data-level="9.5.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>9.5.2</b> Spearman correlation</a></li>
-<li class="chapter" data-level="9.5.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>9.5.3</b> Kendall correlation</a></li>
+<li class="chapter" data-level="9.6.1" data-path="parametric-test.html"><a href="parametric-test.html#pearson-correlation"><i class="fa fa-check"></i><b>9.6.1</b> Pearson correlation</a></li>
+<li class="chapter" data-level="9.6.2" data-path="parametric-test.html"><a href="parametric-test.html#spearman-correlation"><i class="fa fa-check"></i><b>9.6.2</b> Spearman correlation</a></li>
+<li class="chapter" data-level="9.6.3" data-path="parametric-test.html"><a href="parametric-test.html#kendall-correlation"><i class="fa fa-check"></i><b>9.6.3</b> Kendall correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>9.6</b> Two Sample T-Test</a>
+<li class="chapter" data-level="9.7" data-path="parametric-test.html"><a href="parametric-test.html#two-sample-t-test"><i class="fa fa-check"></i><b>9.7</b> Two Sample T-Test</a>
 <ul>
-<li class="chapter" data-level="9.6.1" data-path="parametric-test.html"><a href="parametric-test.html#inreoduction-1"><i class="fa fa-check"></i><b>9.6.1</b> Inreoduction</a></li>
-<li class="chapter" data-level="9.6.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-3"><i class="fa fa-check"></i><b>9.6.2</b> SAS implementation</a></li>
-<li class="chapter" data-level="9.6.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>9.6.3</b> R implementation</a></li>
+<li class="chapter" data-level="9.7.1" data-path="parametric-test.html"><a href="parametric-test.html#inreoduction-1"><i class="fa fa-check"></i><b>9.7.1</b> Inreoduction</a></li>
+<li class="chapter" data-level="9.7.2" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-3"><i class="fa fa-check"></i><b>9.7.2</b> SAS implementation</a></li>
+<li class="chapter" data-level="9.7.3" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-4"><i class="fa fa-check"></i><b>9.7.3</b> R implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>9.7</b> Normality test</a>
+<li class="chapter" data-level="9.8" data-path="parametric-test.html"><a href="parametric-test.html#normality-test"><i class="fa fa-check"></i><b>9.8</b> Normality test</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-4"><i class="fa fa-check"></i><b>9.7.1</b> SAS implementation</a></li>
-<li class="chapter" data-level="9.7.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-5"><i class="fa fa-check"></i><b>9.7.2</b> R implementation</a></li>
+<li class="chapter" data-level="9.8.1" data-path="parametric-test.html"><a href="parametric-test.html#sas-implementation-4"><i class="fa fa-check"></i><b>9.8.1</b> SAS implementation</a></li>
+<li class="chapter" data-level="9.8.2" data-path="parametric-test.html"><a href="parametric-test.html#r-implementation-5"><i class="fa fa-check"></i><b>9.8.2</b> R implementation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="non-parametric-test.html"><a href="non-parametric-test.html"><i class="fa fa-check"></i><b>10</b> Non-Parametric Test</a>
@@ -438,7 +426,10 @@
 <li class="chapter" data-level="10.4.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#one-way-permutation-test-of-symmetry-for-ordinal-data"><i class="fa fa-check"></i><b>10.4.4</b> One-way Permutation Test of Symmetry for Ordinal Data</a></li>
 <li class="chapter" data-level="10.4.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#permutation-tests-for-medians-and-percentiles"><i class="fa fa-check"></i><b>10.4.5</b> Permutation Tests for Medians and Percentiles</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#nonparametric-regression"><i class="fa fa-check"></i><b>10.5</b> Nonparametric Regression</a></li>
+<li class="chapter" data-level="10.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#nonparametric-regression"><i class="fa fa-check"></i><b>10.5</b> Nonparametric Regression</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#loess-regression"><i class="fa fa-check"></i><b>10.5.1</b> Loess Regression</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html"><i class="fa fa-check"></i><b>11</b> Sample Size Calculation</a>
 <ul>
@@ -462,8 +453,7 @@
 <li class="chapter" data-level="11.2.1" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#point-estimates"><i class="fa fa-check"></i><b>11.2.1</b> Point Estimates</a></li>
 <li class="chapter" data-level="11.2.2" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#binomial-ci-for-small-samples"><i class="fa fa-check"></i><b>11.2.2</b> Binomial CI for Small Samples</a></li>
 <li class="chapter" data-level="11.2.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#r-packages"><i class="fa fa-check"></i><b>11.2.3</b> R Packages</a></li>
-<li class="chapter" data-level="11.2.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#sas-ci_single_proportion"><i class="fa fa-check"></i><b>11.2.4</b> SAS %CI_Single_Proportion</a></li>
-<li class="chapter" data-level="11.2.5" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>11.2.5</b> Incidence rate CI</a></li>
+<li class="chapter" data-level="11.2.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#incidence-rate-ci"><i class="fa fa-check"></i><b>11.2.4</b> Incidence rate CI</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-1-sample-proportion"><i class="fa fa-check"></i><b>11.3</b> Test 1-Sample Proportion</a></li>
 <li class="chapter" data-level="11.4" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html#test-2-sample-proportions"><i class="fa fa-check"></i><b>11.4</b> Test 2-Sample Proportions</a>
@@ -724,29 +714,27 @@
 <li class="chapter" data-level="16.2.8" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-curves"><i class="fa fa-check"></i><b>16.2.8</b> ROC Curves</a></li>
 <li class="chapter" data-level="16.2.9" data-path="logistic-regression.html"><a href="logistic-regression.html#predicted-values-residuals-and-influence-statistics"><i class="fa fa-check"></i><b>16.2.9</b> Predicted Values, Residuals, and Influence Statistics</a></li>
 <li class="chapter" data-level="16.2.10" data-path="logistic-regression.html"><a href="logistic-regression.html#unobserved-heterogeneity"><i class="fa fa-check"></i><b>16.2.10</b> Unobserved Heterogeneity</a></li>
-<li class="chapter" data-level="16.2.11" data-path="logistic-regression.html"><a href="logistic-regression.html#plotting-effects-of-predictor-variables"><i class="fa fa-check"></i><b>16.2.11</b> Plotting Effects of Predictor Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="logistic-regression.html"><a href="logistic-regression.html#probit-modell"><i class="fa fa-check"></i><b>16.3</b> Probit Modell</a>
+<li class="chapter" data-level="16.3" data-path="logistic-regression.html"><a href="logistic-regression.html#illustration-in-sas"><i class="fa fa-check"></i><b>16.3</b> Illustration in SAS</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-11"><i class="fa fa-check"></i><b>16.3.1</b> Introduction</a></li>
-<li class="chapter" data-level="16.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation"><i class="fa fa-check"></i><b>16.3.2</b> R Implemetation</a></li>
-<li class="chapter" data-level="16.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-8"><i class="fa fa-check"></i><b>16.3.3</b> SAS Implementation</a></li>
+<li class="chapter" data-level="16.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#effects-of-predictor-variables"><i class="fa fa-check"></i><b>16.3.1</b> Effects of Predictor Variables</a></li>
+<li class="chapter" data-level="16.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#odds-ratio-plot"><i class="fa fa-check"></i><b>16.3.2</b> Odds ratio plot</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="logistic-regression.html"><a href="logistic-regression.html#complementary-log-log-modell"><i class="fa fa-check"></i><b>16.4</b> Complementary log-log-Modell</a>
+<li class="chapter" data-level="16.4" data-path="logistic-regression.html"><a href="logistic-regression.html#probit-modell"><i class="fa fa-check"></i><b>16.4</b> Probit Modell</a>
 <ul>
-<li class="chapter" data-level="16.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>16.4.1</b> R Implemetation</a></li>
+<li class="chapter" data-level="16.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction-11"><i class="fa fa-check"></i><b>16.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="16.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation"><i class="fa fa-check"></i><b>16.4.2</b> R Implemetation</a></li>
+<li class="chapter" data-level="16.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-8"><i class="fa fa-check"></i><b>16.4.3</b> SAS Implementation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multi-category-logit-model"><i class="fa fa-check"></i><b>16.5</b> Multi-category logit model</a>
+<li class="chapter" data-level="16.5" data-path="logistic-regression.html"><a href="logistic-regression.html#complementary-log-log-modell"><i class="fa fa-check"></i><b>16.5</b> Complementary log-log-Modell</a>
 <ul>
-<li class="chapter" data-level="16.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>16.5.1</b> Multinomialverteilung</a></li>
-<li class="chapter" data-level="16.5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#mehrkategoriales-logit-modell"><i class="fa fa-check"></i><b>16.5.2</b> Mehrkategoriales Logit-Modell</a></li>
-<li class="chapter" data-level="16.5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-10"><i class="fa fa-check"></i><b>16.5.3</b> R Implementation</a></li>
-<li class="chapter" data-level="16.5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-9"><i class="fa fa-check"></i><b>16.5.4</b> SAS Implementation</a></li>
+<li class="chapter" data-level="16.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implemetation-1"><i class="fa fa-check"></i><b>16.5.1</b> R Implemetation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.6" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-cumulative-logit-model"><i class="fa fa-check"></i><b>16.6</b> Ordinal Cumulative Logit Model</a>
+<li class="chapter" data-level="16.6" data-path="logistic-regression.html"><a href="logistic-regression.html#multicategory-logit-models"><i class="fa fa-check"></i><b>16.6</b> Multicategory Logit Models</a>
 <ul>
-<li class="chapter" data-level="16.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#r-implementation-11"><i class="fa fa-check"></i><b>16.6.1</b> R Implementation</a></li>
-<li class="chapter" data-level="16.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#sas-implementation-10"><i class="fa fa-check"></i><b>16.6.2</b> SAS Implementation</a></li>
+<li class="chapter" data-level="16.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#multinomialverteilung"><i class="fa fa-check"></i><b>16.6.1</b> Multinomialverteilung</a></li>
+<li class="chapter" data-level="16.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#nominal-response"><i class="fa fa-check"></i><b>16.6.2</b> Nominal Response</a></li>
+<li class="chapter" data-level="16.6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#ordinal-response-cumulative-logit-model"><i class="fa fa-check"></i><b>16.6.3</b> Ordinal Response: Cumulative Logit Model</a></li>
 </ul></li>
 <li class="chapter" data-level="16.7" data-path="logistic-regression.html"><a href="logistic-regression.html#adjacent-categories-model"><i class="fa fa-check"></i><b>16.7</b> Adjacent Categories Model</a></li>
 <li class="chapter" data-level="16.8" data-path="logistic-regression.html"><a href="logistic-regression.html#continuation-ratio-model"><i class="fa fa-check"></i><b>16.8</b> Continuation Ratio Model</a></li>
@@ -812,6 +800,7 @@
 <li class="chapter" data-level="18.3.3" data-path="survival-analysis.html"><a href="survival-analysis.html#multiple-comparisons"><i class="fa fa-check"></i><b>18.3.3</b> Multiple comparisons</a></li>
 <li class="chapter" data-level="18.3.4" data-path="survival-analysis.html"><a href="survival-analysis.html#comparing-survival-functions-using-log-rank-hr"><i class="fa fa-check"></i><b>18.3.4</b> Comparing survival functions using Log-Rank HR</a></li>
 <li class="chapter" data-level="18.3.5" data-path="survival-analysis.html"><a href="survival-analysis.html#mantel-haenszel-hr"><i class="fa fa-check"></i><b>18.3.5</b> Mantel-Haenszel HR</a></li>
+<li class="chapter" data-level="18.3.6" data-path="survival-analysis.html"><a href="survival-analysis.html#analysis-of-covariance-adjustment"><i class="fa fa-check"></i><b>18.3.6</b> Analysis-of-covariance (Adjustment)</a></li>
 </ul></li>
 <li class="chapter" data-level="18.4" data-path="survival-analysis.html"><a href="survival-analysis.html#accelerated-failure-time-aft-model"><i class="fa fa-check"></i><b>18.4</b> Accelerated failure time (AFT) model</a>
 <ul>
@@ -843,9 +832,14 @@
 <li class="chapter" data-level="19.1" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#tied-or-discrete-data"><i class="fa fa-check"></i><b>19.1</b> Tied or Discrete Data</a>
 <ul>
 <li class="chapter" data-level="19.1.1" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#introduction-of-tie"><i class="fa fa-check"></i><b>19.1.1</b> Introduction of Tie</a></li>
-<li class="chapter" data-level="19.1.2" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-cox-regression"><i class="fa fa-check"></i><b>19.1.2</b> Discrete Cox Regression</a></li>
-<li class="chapter" data-level="19.1.3" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#logit-model-for-discrete-time"><i class="fa fa-check"></i><b>19.1.3</b> Logit model for Discrete time</a></li>
-<li class="chapter" data-level="19.1.4" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#complementary-log-log-model-for-continuous-time-process"><i class="fa fa-check"></i><b>19.1.4</b> Complementary log-log model for continuous time process</a></li>
+<li class="chapter" data-level="19.1.2" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-time"><i class="fa fa-check"></i><b>19.1.2</b> Discrete time</a></li>
+<li class="chapter" data-level="19.1.3" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#notation-and-definitions"><i class="fa fa-check"></i><b>19.1.3</b> Notation and Definitions</a></li>
+<li class="chapter" data-level="19.1.4" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-cox-regression"><i class="fa fa-check"></i><b>19.1.4</b> Discrete Cox Regression</a></li>
+<li class="chapter" data-level="19.1.5" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-time-regression-models"><i class="fa fa-check"></i><b>19.1.5</b> Discrete-Time Regression Models</a></li>
+<li class="chapter" data-level="19.1.6" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#the-glm-framework-and-person-period-data"><i class="fa fa-check"></i><b>19.1.6</b> The GLM Framework and Person-Period Data</a></li>
+<li class="chapter" data-level="19.1.7" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-time-survival-analysis-in-r"><i class="fa fa-check"></i><b>19.1.7</b> Discrete-Time Survival Analysis in R</a></li>
+<li class="chapter" data-level="19.1.8" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-cause-specific-hazards-model"><i class="fa fa-check"></i><b>19.1.8</b> Discrete Cause-Specific Hazards Model</a></li>
+<li class="chapter" data-level="19.1.9" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#discrete-subdistribution-hazard-model"><i class="fa fa-check"></i><b>19.1.9</b> Discrete Subdistribution Hazard Model</a></li>
 </ul></li>
 <li class="chapter" data-level="19.2" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#time-dependent-covariates"><i class="fa fa-check"></i><b>19.2</b> Time-dependent covariates</a>
 <ul>
@@ -873,6 +867,12 @@
 <li class="chapter" data-level="19.5.1" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#introduction-19"><i class="fa fa-check"></i><b>19.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="19.5.2" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#proportional-hazards-model-which-adopts-a-marginal"><i class="fa fa-check"></i><b>19.5.2</b> Proportional hazards model which adopts a marginal</a></li>
 <li class="chapter" data-level="19.5.3" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#frailty-model"><i class="fa fa-check"></i><b>19.5.3</b> Frailty model</a></li>
+</ul></li>
+<li class="chapter" data-level="19.6" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#non-proportional-hazards-in-survival-analysis"><i class="fa fa-check"></i><b>19.6</b> Non-proportional hazards in Survival Analysis</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#weighted-piecewise-log-rank-test"><i class="fa fa-check"></i><b>19.6.1</b> Weighted Piecewise Log-Rank Test</a></li>
+<li class="chapter" data-level="19.6.2" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#restricted-mean-survival-time-difference"><i class="fa fa-check"></i><b>19.6.2</b> Restricted Mean Survival Time Difference</a></li>
+<li class="chapter" data-level="19.6.3" data-path="advanced-survival-analysis.html"><a href="advanced-survival-analysis.html#maximum-combination-test"><i class="fa fa-check"></i><b>19.6.3</b> Maximum Combination Test</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="count-data-regression.html"><a href="count-data-regression.html"><i class="fa fa-check"></i><b>20</b> Count Data Regression</a>
@@ -1086,6 +1086,423 @@
 <li class="chapter" data-level="28.1" data-path="propensity-score.html"><a href="propensity-score.html#ate-att"><i class="fa fa-check"></i><b>28.1</b> ATE &amp; ATT</a></li>
 <li class="chapter" data-level="28.2" data-path="propensity-score.html"><a href="propensity-score.html#propensity-score-matching"><i class="fa fa-check"></i><b>28.2</b> Propensity Score Matching</a></li>
 </ul></li>
+<li class="chapter" data-level="29" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>29</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#fundational-concepts"><i class="fa fa-check"></i><b>29.1</b> Fundational Concepts</a>
+<ul>
+<li class="chapter" data-level="29.1.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#means-variances-and-covariances"><i class="fa fa-check"></i><b>29.1.1</b> Means, Variances, and Covariances</a></li>
+<li class="chapter" data-level="29.1.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#properties-of-covariance"><i class="fa fa-check"></i><b>29.1.2</b> Properties of covariance</a></li>
+<li class="chapter" data-level="29.1.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#properties-of-expectation"><i class="fa fa-check"></i><b>29.1.3</b> Properties of Expectation</a></li>
+<li class="chapter" data-level="29.1.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#properties-of-variance"><i class="fa fa-check"></i><b>29.1.4</b> Properties of Variance</a></li>
+<li class="chapter" data-level="29.1.5" data-path="time-series-analysis.html"><a href="time-series-analysis.html#the-random-walk"><i class="fa fa-check"></i><b>29.1.5</b> The Random Walk</a></li>
+<li class="chapter" data-level="29.1.6" data-path="time-series-analysis.html"><a href="time-series-analysis.html#a-moving-average"><i class="fa fa-check"></i><b>29.1.6</b> A Moving Average</a></li>
+<li class="chapter" data-level="29.1.7" data-path="time-series-analysis.html"><a href="time-series-analysis.html#strictly-stationarity"><i class="fa fa-check"></i><b>29.1.7</b> Strictly Stationarity</a></li>
+<li class="chapter" data-level="29.1.8" data-path="time-series-analysis.html"><a href="time-series-analysis.html#weakly-or-second-order-stationary"><i class="fa fa-check"></i><b>29.1.8</b> Weakly (or second-order) stationary</a></li>
+<li class="chapter" data-level="29.1.9" data-path="time-series-analysis.html"><a href="time-series-analysis.html#white-noise"><i class="fa fa-check"></i><b>29.1.9</b> White Noise</a></li>
+<li class="chapter" data-level="29.1.10" data-path="time-series-analysis.html"><a href="time-series-analysis.html#deterministic-versus-stochastic-trends"><i class="fa fa-check"></i><b>29.1.10</b> Deterministic Versus Stochastic Trends</a></li>
+</ul></li>
+<li class="chapter" data-level="29.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arma-models"><i class="fa fa-check"></i><b>29.2</b> ARMA models</a>
+<ul>
+<li class="chapter" data-level="29.2.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#general-linear-processes"><i class="fa fa-check"></i><b>29.2.1</b> General Linear Processes</a></li>
+<li class="chapter" data-level="29.2.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-average-processes"><i class="fa fa-check"></i><b>29.2.2</b> Moving Average Processes</a></li>
+<li class="chapter" data-level="29.2.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#autoregressive-processes"><i class="fa fa-check"></i><b>29.2.3</b> Autoregressive Processes</a></li>
+<li class="chapter" data-level="29.2.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#the-mixed-autoregressive-moving-average-model"><i class="fa fa-check"></i><b>29.2.4</b> The Mixed Autoregressive Moving Average Model</a></li>
+<li class="chapter" data-level="29.2.5" data-path="time-series-analysis.html"><a href="time-series-analysis.html#invertibility"><i class="fa fa-check"></i><b>29.2.5</b> Invertibility</a></li>
+<li class="chapter" data-level="29.2.6" data-path="time-series-analysis.html"><a href="time-series-analysis.html#fit-the-ar-model-in-r"><i class="fa fa-check"></i><b>29.2.6</b> Fit the AR model in R</a></li>
+<li class="chapter" data-level="29.2.7" data-path="time-series-analysis.html"><a href="time-series-analysis.html#fit-the-ma-model-in-r"><i class="fa fa-check"></i><b>29.2.7</b> Fit the MA model in R</a></li>
+</ul></li>
+<li class="chapter" data-level="29.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-models"><i class="fa fa-check"></i><b>29.3</b> ARIMA Models</a>
+<ul>
+<li class="chapter" data-level="29.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#stationarity-through-differencing"><i class="fa fa-check"></i><b>29.3.1</b> Stationarity Through Differencing</a></li>
+<li class="chapter" data-level="29.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-integrated-autoregressive-moving-average-model"><i class="fa fa-check"></i><b>29.3.2</b> ARIMA: Integrated autoregressive moving average model</a></li>
+<li class="chapter" data-level="29.3.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#ima11-model"><i class="fa fa-check"></i><b>29.3.3</b> IMA(1,1) Model</a></li>
+<li class="chapter" data-level="29.3.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#ari11-model"><i class="fa fa-check"></i><b>29.3.4</b> ARI(1,1) Model</a></li>
+</ul></li>
+<li class="chapter" data-level="29.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#time-series-graphics"><i class="fa fa-check"></i><b>29.4</b> Time series graphics</a>
+<ul>
+<li class="chapter" data-level="29.4.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#time-plots"><i class="fa fa-check"></i><b>29.4.1</b> Time plots</a></li>
+<li class="chapter" data-level="29.4.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#seasonal-plots"><i class="fa fa-check"></i><b>29.4.2</b> Seasonal plots</a></li>
+<li class="chapter" data-level="29.4.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#scatterplots-matrices"><i class="fa fa-check"></i><b>29.4.3</b> Scatterplots matrices</a></li>
+<li class="chapter" data-level="29.4.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#lag-plots"><i class="fa fa-check"></i><b>29.4.4</b> Lag plots</a></li>
+<li class="chapter" data-level="29.4.5" data-path="time-series-analysis.html"><a href="time-series-analysis.html#autocorrelation"><i class="fa fa-check"></i><b>29.4.5</b> Autocorrelation</a></li>
+<li class="chapter" data-level="29.4.6" data-path="time-series-analysis.html"><a href="time-series-analysis.html#white-noise-1"><i class="fa fa-check"></i><b>29.4.6</b> White noise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html"><i class="fa fa-check"></i><b>30</b> Regularization Penalized Regression</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#introduction-25"><i class="fa fa-check"></i><b>30.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="30.1.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#motivation"><i class="fa fa-check"></i><b>30.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="30.1.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#data-preparation"><i class="fa fa-check"></i><b>30.1.2</b> Data preparation</a></li>
+<li class="chapter" data-level="30.1.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#best-subset-regression"><i class="fa fa-check"></i><b>30.1.3</b> Best subset regression</a></li>
+</ul></li>
+<li class="chapter" data-level="30.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#ridge-regression-1"><i class="fa fa-check"></i><b>30.2</b> Ridge Regression</a>
+<ul>
+<li class="chapter" data-level="30.2.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modeling"><i class="fa fa-check"></i><b>30.2.1</b> Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="30.3" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#lasso-regression"><i class="fa fa-check"></i><b>30.3</b> Lasso Regression</a>
+<ul>
+<li class="chapter" data-level="30.3.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling"><i class="fa fa-check"></i><b>30.3.1</b> Modelling</a></li>
+<li class="chapter" data-level="30.3.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#glmnet-cross-validation"><i class="fa fa-check"></i><b>30.3.2</b> glmnet cross validation</a></li>
+</ul></li>
+<li class="chapter" data-level="30.4" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#elasticnet"><i class="fa fa-check"></i><b>30.4</b> ElasticNet</a>
+<ul>
+<li class="chapter" data-level="30.4.1" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#modelling-1"><i class="fa fa-check"></i><b>30.4.1</b> Modelling</a></li>
+<li class="chapter" data-level="30.4.2" data-path="regularization-penalized-regression.html"><a href="regularization-penalized-regression.html#classification"><i class="fa fa-check"></i><b>30.4.2</b> Classification</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="bayesian-theory.html"><a href="bayesian-theory.html"><i class="fa fa-check"></i><b>31</b> Bayesian Theory</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-of-bayesian"><i class="fa fa-check"></i><b>31.1</b> Introduction of Bayesian</a>
+<ul>
+<li class="chapter" data-level="31.1.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#frequency-and-bayesian"><i class="fa fa-check"></i><b>31.1.1</b> Frequency and Bayesian</a></li>
+<li class="chapter" data-level="31.1.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayes-rule"><i class="fa fa-check"></i><b>31.1.2</b> Bayes’ Rule</a></li>
+<li class="chapter" data-level="31.1.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bootstrap"><i class="fa fa-check"></i><b>31.1.3</b> Bootstrap</a></li>
+<li class="chapter" data-level="31.1.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#posterior-distribution"><i class="fa fa-check"></i><b>31.1.4</b> Posterior Distribution</a></li>
+<li class="chapter" data-level="31.1.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-credible-intervals"><i class="fa fa-check"></i><b>31.1.5</b> Bayesian Credible Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="31.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#parameter-estimates-1"><i class="fa fa-check"></i><b>31.2</b> Parameter estimates</a>
+<ul>
+<li class="chapter" data-level="31.2.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>31.2.1</b> Maximum likelihood estimation</a></li>
+<li class="chapter" data-level="31.2.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#maximum-a-posteriori-estimation"><i class="fa fa-check"></i><b>31.2.2</b> Maximum a posteriori estimation</a></li>
+<li class="chapter" data-level="31.2.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-model"><i class="fa fa-check"></i><b>31.2.3</b> Bayesian Model</a></li>
+</ul></li>
+<li class="chapter" data-level="31.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#prior-distributions"><i class="fa fa-check"></i><b>31.3</b> Prior Distributions</a>
+<ul>
+<li class="chapter" data-level="31.3.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#conjugate-prior-distributions"><i class="fa fa-check"></i><b>31.3.1</b> Conjugate Prior Distributions</a></li>
+<li class="chapter" data-level="31.3.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#non-informativ-priors"><i class="fa fa-check"></i><b>31.3.2</b> Non-informativ Priors</a></li>
+</ul></li>
+<li class="chapter" data-level="31.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc"><i class="fa fa-check"></i><b>31.4</b> MCMC</a>
+<ul>
+<li class="chapter" data-level="31.4.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>31.4.1</b> Monte Carlo Simulation</a></li>
+<li class="chapter" data-level="31.4.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#概率分布采样"><i class="fa fa-check"></i><b>31.4.2</b> 概率分布采样</a></li>
+<li class="chapter" data-level="31.4.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#接受-拒绝采样"><i class="fa fa-check"></i><b>31.4.3</b> 接受-拒绝采样</a></li>
+<li class="chapter" data-level="31.4.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#markov-chain"><i class="fa fa-check"></i><b>31.4.4</b> Markov Chain</a></li>
+<li class="chapter" data-level="31.4.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#马尔科夫链的收敛性质"><i class="fa fa-check"></i><b>31.4.5</b> 马尔科夫链的收敛性质</a></li>
+<li class="chapter" data-level="31.4.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#基于马尔科夫链采样"><i class="fa fa-check"></i><b>31.4.6</b> 基于马尔科夫链采样</a></li>
+<li class="chapter" data-level="31.4.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc采样"><i class="fa fa-check"></i><b>31.4.7</b> MCMC采样</a></li>
+<li class="chapter" data-level="31.4.8" data-path="bayesian-theory.html"><a href="bayesian-theory.html#m-h采样"><i class="fa fa-check"></i><b>31.4.8</b> M-H采样</a></li>
+<li class="chapter" data-level="31.4.9" data-path="bayesian-theory.html"><a href="bayesian-theory.html#gibbs采样"><i class="fa fa-check"></i><b>31.4.9</b> Gibbs采样</a></li>
+</ul></li>
+<li class="chapter" data-level="31.5" data-path="bayesian-theory.html"><a href="bayesian-theory.html#regression-and-variable-selection"><i class="fa fa-check"></i><b>31.5</b> Regression and Variable Selection</a>
+<ul>
+<li class="chapter" data-level="31.5.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#classical-least-squares-estimator"><i class="fa fa-check"></i><b>31.5.1</b> Classical Least Squares Estimator</a></li>
+<li class="chapter" data-level="31.5.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#the-jeffreys-prior-analysis"><i class="fa fa-check"></i><b>31.5.2</b> The Jeffreys Prior Analysis</a></li>
+<li class="chapter" data-level="31.5.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#zellners-g-prior-analysis"><i class="fa fa-check"></i><b>31.5.3</b> Zellner’s G-prior analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="31.6" data-path="bayesian-theory.html"><a href="bayesian-theory.html#bayesian-linear-regression-1"><i class="fa fa-check"></i><b>31.6</b> Bayesian linear regression</a></li>
+<li class="chapter" data-level="31.7" data-path="bayesian-theory.html"><a href="bayesian-theory.html#introduction-26"><i class="fa fa-check"></i><b>31.7</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="31.7.1" data-path="bayesian-theory.html"><a href="bayesian-theory.html#item-response-theory"><i class="fa fa-check"></i><b>31.7.1</b> Item response theory</a></li>
+<li class="chapter" data-level="31.7.2" data-path="bayesian-theory.html"><a href="bayesian-theory.html#em-algorithm"><i class="fa fa-check"></i><b>31.7.2</b> EM algorithm</a></li>
+<li class="chapter" data-level="31.7.3" data-path="bayesian-theory.html"><a href="bayesian-theory.html#mcmc-algorithm"><i class="fa fa-check"></i><b>31.7.3</b> MCMC algorithm</a></li>
+<li class="chapter" data-level="31.7.4" data-path="bayesian-theory.html"><a href="bayesian-theory.html#unidimensional-irt-models"><i class="fa fa-check"></i><b>31.7.4</b> Unidimensional IRT Models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>32</b> KNN</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="knn.html"><a href="knn.html#introduction-27"><i class="fa fa-check"></i><b>32.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="32.1.1" data-path="knn.html"><a href="knn.html#idee"><i class="fa fa-check"></i><b>32.1.1</b> Idee</a></li>
+<li class="chapter" data-level="32.1.2" data-path="knn.html"><a href="knn.html#加权最近邻法"><i class="fa fa-check"></i><b>32.1.2</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="32.1.3" data-path="knn.html"><a href="knn.html#knn算法三要素"><i class="fa fa-check"></i><b>32.1.3</b> KNN算法三要素</a></li>
+<li class="chapter" data-level="32.1.4" data-path="knn.html"><a href="knn.html#优缺点"><i class="fa fa-check"></i><b>32.1.4</b> 优缺点</a></li>
+</ul></li>
+<li class="chapter" data-level="32.2" data-path="knn.html"><a href="knn.html#knn算法的实现方式"><i class="fa fa-check"></i><b>32.2</b> KNN算法的实现方式</a>
+<ul>
+<li class="chapter" data-level="32.2.1" data-path="knn.html"><a href="knn.html#brute-force"><i class="fa fa-check"></i><b>32.2.1</b> Brute-force</a></li>
+<li class="chapter" data-level="32.2.2" data-path="knn.html"><a href="knn.html#kd树实现"><i class="fa fa-check"></i><b>32.2.2</b> KD树实现</a></li>
+<li class="chapter" data-level="32.2.3" data-path="knn.html"><a href="knn.html#球树实现"><i class="fa fa-check"></i><b>32.2.3</b> 球树实现</a></li>
+</ul></li>
+<li class="chapter" data-level="32.3" data-path="knn.html"><a href="knn.html#application"><i class="fa fa-check"></i><b>32.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="32.3.1" data-path="knn.html"><a href="knn.html#data-preparation-1"><i class="fa fa-check"></i><b>32.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="32.3.2" data-path="knn.html"><a href="knn.html#knn-modelling"><i class="fa fa-check"></i><b>32.3.2</b> KNN Modelling</a></li>
+<li class="chapter" data-level="32.3.3" data-path="knn.html"><a href="knn.html#加权最近邻法-1"><i class="fa fa-check"></i><b>32.3.3</b> 加权最近邻法</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>33</b> SVM</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="svm.html"><a href="svm.html#introduction-28"><i class="fa fa-check"></i><b>33.1</b> Introduction</a></li>
+<li class="chapter" data-level="33.2" data-path="svm.html"><a href="svm.html#introduction-29"><i class="fa fa-check"></i><b>33.2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="33.2.1" data-path="svm.html"><a href="svm.html#perceptron"><i class="fa fa-check"></i><b>33.2.1</b> Perceptron</a></li>
+<li class="chapter" data-level="33.2.2" data-path="svm.html"><a href="svm.html#函数间隔与几何间隔"><i class="fa fa-check"></i><b>33.2.2</b> 函数间隔与几何间隔</a></li>
+<li class="chapter" data-level="33.2.3" data-path="svm.html"><a href="svm.html#svm支持向量"><i class="fa fa-check"></i><b>33.2.3</b> SVM支持向量</a></li>
+<li class="chapter" data-level="33.2.4" data-path="svm.html"><a href="svm.html#svm模型目标函数与优化"><i class="fa fa-check"></i><b>33.2.4</b> SVM模型目标函数与优化</a></li>
+<li class="chapter" data-level="33.2.5" data-path="svm.html"><a href="svm.html#线性可分svm的算法过程"><i class="fa fa-check"></i><b>33.2.5</b> 线性可分SVM的算法过程</a></li>
+<li class="chapter" data-level="33.2.6" data-path="svm.html"><a href="svm.html#线性svm的软间隔最大化"><i class="fa fa-check"></i><b>33.2.6</b> 线性SVM的软间隔最大化</a></li>
+<li class="chapter" data-level="33.2.7" data-path="svm.html"><a href="svm.html#线性不可分支持向量机与核函数"><i class="fa fa-check"></i><b>33.2.7</b> 线性不可分支持向量机与核函数</a></li>
+</ul></li>
+<li class="chapter" data-level="33.3" data-path="svm.html"><a href="svm.html#application-1"><i class="fa fa-check"></i><b>33.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="33.3.1" data-path="svm.html"><a href="svm.html#data-preparation-2"><i class="fa fa-check"></i><b>33.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="33.3.2" data-path="svm.html"><a href="svm.html#svm-modelling"><i class="fa fa-check"></i><b>33.3.2</b> SVM Modelling</a></li>
+<li class="chapter" data-level="33.3.3" data-path="svm.html"><a href="svm.html#model-selection-1"><i class="fa fa-check"></i><b>33.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="33.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>33.3.4</b> Character selection</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>34</b> Tree models</a>
+<ul>
+<li class="chapter" data-level="34.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>34.1</b> Decision Tree Model</a>
+<ul>
+<li class="chapter" data-level="34.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>34.1.1</b> Decision tree algorithm</a></li>
+<li class="chapter" data-level="34.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>34.1.2</b> ID3 Algorithm</a></li>
+<li class="chapter" data-level="34.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>34.1.3</b> C4.5 Algorithm</a></li>
+<li class="chapter" data-level="34.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>34.1.4</b> CART Algorithm</a></li>
+<li class="chapter" data-level="34.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>34.1.5</b> Pruning</a></li>
+<li class="chapter" data-level="34.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>34.1.6</b> Package ‘rpart’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>34.2</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="34.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>34.2.1</b> Bootstrap (Bagging)</a></li>
+<li class="chapter" data-level="34.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>34.2.2</b> bagging算法流程</a></li>
+<li class="chapter" data-level="34.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>34.2.3</b> Random Forest Algorithm</a></li>
+<li class="chapter" data-level="34.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>34.2.4</b> Random forest promotion</a></li>
+<li class="chapter" data-level="34.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>34.2.5</b> Package ‘randomForest’</a></li>
+</ul></li>
+<li class="chapter" data-level="34.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>34.3</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="34.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>34.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="34.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>34.3.2</b> Regression tree</a></li>
+<li class="chapter" data-level="34.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>34.3.3</b> Classification tree</a></li>
+<li class="chapter" data-level="34.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>34.3.4</b> Random forest for regression</a></li>
+<li class="chapter" data-level="34.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>34.3.5</b> Random forest for classification</a></li>
+<li class="chapter" data-level="34.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>34.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
+<li class="chapter" data-level="34.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>34.3.7</b> 使用随机森林进行特征选择</a></li>
+</ul></li>
+<li class="chapter" data-level="34.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>34.4</b> Gradient Boosting</a>
+<ul>
+<li class="chapter" data-level="34.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>34.4.1</b> GBDT概述</a></li>
+<li class="chapter" data-level="34.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>34.4.2</b> GBDT的负梯度拟合</a></li>
+<li class="chapter" data-level="34.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>34.4.3</b> GBDT回归算法</a></li>
+<li class="chapter" data-level="34.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>34.4.4</b> GBDT分类算法</a></li>
+<li class="chapter" data-level="34.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>34.4.5</b> Package ‘gbm’</a></li>
+<li class="chapter" data-level="34.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>34.4.6</b> 极限梯度提升——分类</a></li>
+</ul></li>
+<li class="chapter" data-level="34.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>34.5</b> Cubist Model</a>
+<ul>
+<li class="chapter" data-level="34.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-30"><i class="fa fa-check"></i><b>34.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="34.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>34.5.2</b> Application Data Preparation</a></li>
+<li class="chapter" data-level="34.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>34.5.3</b> Fit Continious Outcome</a></li>
+<li class="chapter" data-level="34.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>34.5.4</b> Variable Importance</a></li>
+<li class="chapter" data-level="34.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>34.5.5</b> Summary display</a></li>
+<li class="chapter" data-level="34.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>34.5.6</b> specific parts</a></li>
+<li class="chapter" data-level="34.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>34.5.7</b> Ensembles By Committees</a></li>
+<li class="chapter" data-level="34.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>34.5.8</b> Nearest–neighbors Adjustmemt</a></li>
+<li class="chapter" data-level="34.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>34.5.9</b> Optimize parameters</a></li>
+<li class="chapter" data-level="34.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>34.5.10</b> Logistic CV</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>35</b> PCA</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="pca.html"><a href="pca.html#introduction-31"><i class="fa fa-check"></i><b>35.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="35.1.1" data-path="pca.html"><a href="pca.html#component"><i class="fa fa-check"></i><b>35.1.1</b> Component</a></li>
+<li class="chapter" data-level="35.1.2" data-path="pca.html"><a href="pca.html#pca算法"><i class="fa fa-check"></i><b>35.1.2</b> PCA算法</a></li>
+<li class="chapter" data-level="35.1.3" data-path="pca.html"><a href="pca.html#主成分旋转"><i class="fa fa-check"></i><b>35.1.3</b> 主成分旋转</a></li>
+<li class="chapter" data-level="35.1.4" data-path="pca.html"><a href="pca.html#kernelized-pca"><i class="fa fa-check"></i><b>35.1.4</b> Kernelized PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="35.2" data-path="pca.html"><a href="pca.html#application-2"><i class="fa fa-check"></i><b>35.2</b> Application</a>
+<ul>
+<li class="chapter" data-level="35.2.1" data-path="pca.html"><a href="pca.html#data-preparation-4"><i class="fa fa-check"></i><b>35.2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="35.2.2" data-path="pca.html"><a href="pca.html#modeling-1"><i class="fa fa-check"></i><b>35.2.2</b> Modeling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>36</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="36.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>36.1</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="36.1.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#introduction-32"><i class="fa fa-check"></i><b>36.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="36.1.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-algorithms"><i class="fa fa-check"></i><b>36.1.2</b> Hierarchical clustering algorithms</a></li>
+<li class="chapter" data-level="36.1.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#measure-the-dissimilarity-between-two-clusters-of-observations"><i class="fa fa-check"></i><b>36.1.3</b> Measure the dissimilarity between two clusters of observations</a></li>
+</ul></li>
+<li class="chapter" data-level="36.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>36.2</b> K-means Clustering</a>
+<ul>
+<li class="chapter" data-level="36.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#algorithm"><i class="fa fa-check"></i><b>36.2.1</b> Algorithm</a></li>
+<li class="chapter" data-level="36.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means"><i class="fa fa-check"></i><b>36.2.2</b> K-Means++</a></li>
+<li class="chapter" data-level="36.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elkan-k-means"><i class="fa fa-check"></i><b>36.2.3</b> elkan K-Means</a></li>
+<li class="chapter" data-level="36.2.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#mini-batch-k-means"><i class="fa fa-check"></i><b>36.2.4</b> Mini Batch K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="36.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam"><i class="fa fa-check"></i><b>36.3</b> Gower’s coefficient and PAM</a>
+<ul>
+<li class="chapter" data-level="36.3.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient"><i class="fa fa-check"></i><b>36.3.1</b> Gower’s coefficient</a></li>
+<li class="chapter" data-level="36.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#不同数据类型的相异度计算-距离法"><i class="fa fa-check"></i><b>36.3.2</b> 不同数据类型的相异度计算 (距离法)</a></li>
+<li class="chapter" data-level="36.3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#pam"><i class="fa fa-check"></i><b>36.3.3</b> PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="36.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-clustering"><i class="fa fa-check"></i><b>36.4</b> BIRCH Clustering</a>
+<ul>
+<li class="chapter" data-level="36.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-introduction"><i class="fa fa-check"></i><b>36.4.1</b> BIRCH Introduction</a></li>
+<li class="chapter" data-level="36.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#聚类特征cf与聚类特征树cf-tree"><i class="fa fa-check"></i><b>36.4.2</b> 聚类特征CF与聚类特征树CF Tree</a></li>
+<li class="chapter" data-level="36.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cf-tree的生成"><i class="fa fa-check"></i><b>36.4.3</b> CF Tree的生成</a></li>
+<li class="chapter" data-level="36.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch算法"><i class="fa fa-check"></i><b>36.4.4</b> BIRCH算法</a></li>
+</ul></li>
+<li class="chapter" data-level="36.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#application-3"><i class="fa fa-check"></i><b>36.5</b> Application</a>
+<ul>
+<li class="chapter" data-level="36.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#data-preparation-5"><i class="fa fa-check"></i><b>36.5.1</b> Data preparation</a></li>
+<li class="chapter" data-level="36.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-1"><i class="fa fa-check"></i><b>36.5.2</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="36.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering-1"><i class="fa fa-check"></i><b>36.5.3</b> K-means Clustering</a></li>
+<li class="chapter" data-level="36.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam-1"><i class="fa fa-check"></i><b>36.5.4</b> Gower’s coefficient and PAM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>37</b> Neural Network</a>
+<ul>
+<li class="chapter" data-level="37.1" data-path="neural-network.html"><a href="neural-network.html#introduction-33"><i class="fa fa-check"></i><b>37.1</b> Introduction</a></li>
+<li class="chapter" data-level="37.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>37.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
+<li class="chapter" data-level="37.3" data-path="neural-network.html"><a href="neural-network.html#application-4"><i class="fa fa-check"></i><b>37.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="37.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>37.3.1</b> 数据准备</a></li>
+<li class="chapter" data-level="37.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>37.3.2</b> 模型构建</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="clinic-trail.html"><a href="clinic-trail.html"><i class="fa fa-check"></i><b>38</b> Clinic Trail</a>
+<ul>
+<li class="chapter" data-level="38.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-34"><i class="fa fa-check"></i><b>38.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="38.1.1" data-path="clinic-trail.html"><a href="clinic-trail.html#regulation"><i class="fa fa-check"></i><b>38.1.1</b> Regulation</a></li>
+<li class="chapter" data-level="38.1.2" data-path="clinic-trail.html"><a href="clinic-trail.html#protocol-deviations"><i class="fa fa-check"></i><b>38.1.2</b> Protocol Deviations</a></li>
+<li class="chapter" data-level="38.1.3" data-path="clinic-trail.html"><a href="clinic-trail.html#randomization"><i class="fa fa-check"></i><b>38.1.3</b> Randomization</a></li>
+</ul></li>
+<li class="chapter" data-level="38.2" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-i-trials-design"><i class="fa fa-check"></i><b>38.2</b> Phase I Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.2.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-35"><i class="fa fa-check"></i><b>38.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.2.2" data-path="clinic-trail.html"><a href="clinic-trail.html#nic-002-charité"><i class="fa fa-check"></i><b>38.2.2</b> NIC-002 (Charité)</a></li>
+</ul></li>
+<li class="chapter" data-level="38.3" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-ii-trials-design"><i class="fa fa-check"></i><b>38.3</b> Phase II Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.3.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-36"><i class="fa fa-check"></i><b>38.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.3.2" data-path="clinic-trail.html"><a href="clinic-trail.html#terra"><i class="fa fa-check"></i><b>38.3.2</b> Terra</a></li>
+<li class="chapter" data-level="38.3.3" data-path="clinic-trail.html"><a href="clinic-trail.html#lotab"><i class="fa fa-check"></i><b>38.3.3</b> LOTAB</a></li>
+<li class="chapter" data-level="38.3.4" data-path="clinic-trail.html"><a href="clinic-trail.html#niccam"><i class="fa fa-check"></i><b>38.3.4</b> NICCAM</a></li>
+</ul></li>
+<li class="chapter" data-level="38.4" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iii-trials-design"><i class="fa fa-check"></i><b>38.4</b> Phase III Trials Design</a>
+<ul>
+<li class="chapter" data-level="38.4.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-37"><i class="fa fa-check"></i><b>38.4.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.4.2" data-path="clinic-trail.html"><a href="clinic-trail.html#mg-iii-001"><i class="fa fa-check"></i><b>38.4.2</b> MG-III-001</a></li>
+<li class="chapter" data-level="38.4.3" data-path="clinic-trail.html"><a href="clinic-trail.html#mediwound1"><i class="fa fa-check"></i><b>38.4.3</b> MEDIWOUND1</a></li>
+<li class="chapter" data-level="38.4.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cevira"><i class="fa fa-check"></i><b>38.4.4</b> CEVIRA</a></li>
+</ul></li>
+<li class="chapter" data-level="38.5" data-path="clinic-trail.html"><a href="clinic-trail.html#premarket-approval-pma"><i class="fa fa-check"></i><b>38.5</b> Premarket approval (PMA)</a>
+<ul>
+<li class="chapter" data-level="38.5.1" data-path="clinic-trail.html"><a href="clinic-trail.html#rat"><i class="fa fa-check"></i><b>38.5.1</b> RAT</a></li>
+<li class="chapter" data-level="38.5.2" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242"><i class="fa fa-check"></i><b>38.5.2</b> HM242</a></li>
+<li class="chapter" data-level="38.5.3" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-gel"><i class="fa fa-check"></i><b>38.5.3</b> HM242-Gel</a></li>
+<li class="chapter" data-level="38.5.4" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-solution"><i class="fa fa-check"></i><b>38.5.4</b> HM242-Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="38.6" data-path="clinic-trail.html"><a href="clinic-trail.html#postmarketing-surveillance-pms"><i class="fa fa-check"></i><b>38.6</b> Postmarketing Surveillance (PMS)</a>
+<ul>
+<li class="chapter" data-level="38.6.1" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iv-and-pms"><i class="fa fa-check"></i><b>38.6.1</b> Phase IV and PMS</a></li>
+<li class="chapter" data-level="38.6.2" data-path="clinic-trail.html"><a href="clinic-trail.html#bull-pms"><i class="fa fa-check"></i><b>38.6.2</b> BULL-PMS</a></li>
+<li class="chapter" data-level="38.6.3" data-path="clinic-trail.html"><a href="clinic-trail.html#venus-toric"><i class="fa fa-check"></i><b>38.6.3</b> VENUS toric</a></li>
+<li class="chapter" data-level="38.6.4" data-path="clinic-trail.html"><a href="clinic-trail.html#uvea-839"><i class="fa fa-check"></i><b>38.6.4</b> UVEA 839</a></li>
+<li class="chapter" data-level="38.6.5" data-path="clinic-trail.html"><a href="clinic-trail.html#ts002"><i class="fa fa-check"></i><b>38.6.5</b> TS002</a></li>
+<li class="chapter" data-level="38.6.6" data-path="clinic-trail.html"><a href="clinic-trail.html#cp17-01"><i class="fa fa-check"></i><b>38.6.6</b> CP17-01</a></li>
+<li class="chapter" data-level="38.6.7" data-path="clinic-trail.html"><a href="clinic-trail.html#relax"><i class="fa fa-check"></i><b>38.6.7</b> RELAX</a></li>
+<li class="chapter" data-level="38.6.8" data-path="clinic-trail.html"><a href="clinic-trail.html#virtiol"><i class="fa fa-check"></i><b>38.6.8</b> VirtIOL</a></li>
+</ul></li>
+<li class="chapter" data-level="38.7" data-path="clinic-trail.html"><a href="clinic-trail.html#non-interventional-study-nis"><i class="fa fa-check"></i><b>38.7</b> Non-Interventional Study (NIS)</a>
+<ul>
+<li class="chapter" data-level="38.7.1" data-path="clinic-trail.html"><a href="clinic-trail.html#db"><i class="fa fa-check"></i><b>38.7.1</b> DB</a></li>
+<li class="chapter" data-level="38.7.2" data-path="clinic-trail.html"><a href="clinic-trail.html#oepnv"><i class="fa fa-check"></i><b>38.7.2</b> OEPNV</a></li>
+</ul></li>
+<li class="chapter" data-level="38.8" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-ii"><i class="fa fa-check"></i><b>38.8</b> Trials Design (Phase II)</a>
+<ul>
+<li class="chapter" data-level="38.8.1" data-path="clinic-trail.html"><a href="clinic-trail.html#flemings-two-stage-design"><i class="fa fa-check"></i><b>38.8.1</b> Fleming’s Two-Stage design</a></li>
+<li class="chapter" data-level="38.8.2" data-path="clinic-trail.html"><a href="clinic-trail.html#simons-2-stage-design"><i class="fa fa-check"></i><b>38.8.2</b> Simon’s 2-Stage Design</a></li>
+<li class="chapter" data-level="38.8.3" data-path="clinic-trail.html"><a href="clinic-trail.html#jonckheere-terptsra-jt-trend-test"><i class="fa fa-check"></i><b>38.8.3</b> Jonckheere-Terptsra (JT) trend test</a></li>
+<li class="chapter" data-level="38.8.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cochran-armitage-ca-trend-test"><i class="fa fa-check"></i><b>38.8.4</b> Cochran-Armitage (CA) trend test</a></li>
+<li class="chapter" data-level="38.8.5" data-path="clinic-trail.html"><a href="clinic-trail.html#mcp-mod"><i class="fa fa-check"></i><b>38.8.5</b> MCP-Mod</a></li>
+<li class="chapter" data-level="38.8.6" data-path="clinic-trail.html"><a href="clinic-trail.html#two-stage-phase-ii-design-for-response-and-toxicity"><i class="fa fa-check"></i><b>38.8.6</b> Two Stage Phase II Design for Response and Toxicity</a></li>
+</ul></li>
+<li class="chapter" data-level="38.9" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-iii"><i class="fa fa-check"></i><b>38.9</b> Trials Design (Phase III)</a>
+<ul>
+<li class="chapter" data-level="38.9.1" data-path="clinic-trail.html"><a href="clinic-trail.html#non-inferiority-and-equivalence-three-armed-trial"><i class="fa fa-check"></i><b>38.9.1</b> Non-inferiority and Equivalence Three-armed trial</a></li>
+<li class="chapter" data-level="38.9.2" data-path="clinic-trail.html"><a href="clinic-trail.html#pigeot-method"><i class="fa fa-check"></i><b>38.9.2</b> Pigeot Method</a></li>
+</ul></li>
+<li class="chapter" data-level="38.10" data-path="clinic-trail.html"><a href="clinic-trail.html#sample-size-calculation-1"><i class="fa fa-check"></i><b>38.10</b> Sample Size Calculation</a>
+<ul>
+<li class="chapter" data-level="38.10.1" data-path="clinic-trail.html"><a href="clinic-trail.html#chi-square-test-1"><i class="fa fa-check"></i><b>38.10.1</b> <strong>Chi-Square Test</strong></a></li>
+<li class="chapter" data-level="38.10.2" data-path="clinic-trail.html"><a href="clinic-trail.html#fishers-exact-test-2"><i class="fa fa-check"></i><b>38.10.2</b> Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="38.10.3" data-path="clinic-trail.html"><a href="clinic-trail.html#t-test"><i class="fa fa-check"></i><b>38.10.3</b> T-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="38.11" data-path="clinic-trail.html"><a href="clinic-trail.html#data-analysis-methods-in-cip"><i class="fa fa-check"></i><b>38.11</b> Data Analysis Methods in CIP</a>
+<ul>
+<li class="chapter" data-level="38.11.1" data-path="clinic-trail.html"><a href="clinic-trail.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>38.11.1</b> Statistical Analysis Plan</a></li>
+<li class="chapter" data-level="38.11.2" data-path="clinic-trail.html"><a href="clinic-trail.html#general-considerations"><i class="fa fa-check"></i><b>38.11.2</b> General Considerations</a></li>
+<li class="chapter" data-level="38.11.3" data-path="clinic-trail.html"><a href="clinic-trail.html#analysis-sets"><i class="fa fa-check"></i><b>38.11.3</b> Analysis Sets</a></li>
+<li class="chapter" data-level="38.11.4" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-disposition"><i class="fa fa-check"></i><b>38.11.4</b> Patient Disposition</a></li>
+<li class="chapter" data-level="38.11.5" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-characteristics"><i class="fa fa-check"></i><b>38.11.5</b> Patient Characteristics</a></li>
+<li class="chapter" data-level="38.11.6" data-path="clinic-trail.html"><a href="clinic-trail.html#treatment-compliance"><i class="fa fa-check"></i><b>38.11.6</b> Treatment Compliance</a></li>
+<li class="chapter" data-level="38.11.7" data-path="clinic-trail.html"><a href="clinic-trail.html#descriptiveexplorative-analysis"><i class="fa fa-check"></i><b>38.11.7</b> Descriptive/Explorative Analysis</a></li>
+<li class="chapter" data-level="38.11.8" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-survival-analyses"><i class="fa fa-check"></i><b>38.11.8</b> Efficacy Survival Analyses</a></li>
+<li class="chapter" data-level="38.11.9" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-anova-analyses"><i class="fa fa-check"></i><b>38.11.9</b> Efficacy ANOVA Analyses</a></li>
+<li class="chapter" data-level="38.11.10" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-glm-dose-finding-study"><i class="fa fa-check"></i><b>38.11.10</b> Efficacy GLM Dose-Finding Study</a></li>
+<li class="chapter" data-level="38.11.11" data-path="clinic-trail.html"><a href="clinic-trail.html#safety-analyses"><i class="fa fa-check"></i><b>38.11.11</b> Safety Analyses</a></li>
+<li class="chapter" data-level="38.11.12" data-path="clinic-trail.html"><a href="clinic-trail.html#pharmacokinetic-and-pharmacodynamic-analyses"><i class="fa fa-check"></i><b>38.11.12</b> Pharmacokinetic and Pharmacodynamic Analyses</a></li>
+<li class="chapter" data-level="38.11.13" data-path="clinic-trail.html"><a href="clinic-trail.html#immunogenicity-data-analyses"><i class="fa fa-check"></i><b>38.11.13</b> Immunogenicity Data Analyses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html"><i class="fa fa-check"></i><b>39</b> Pharmacokinetic Analysis</a>
+<ul>
+<li class="chapter" data-level="39.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#introduction-38"><i class="fa fa-check"></i><b>39.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="39.1.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#statistical-analysis-18"><i class="fa fa-check"></i><b>39.1.1</b> Statistical analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="39.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#pk-package"><i class="fa fa-check"></i><b>39.2</b> PK package</a>
+<ul>
+<li class="chapter" data-level="39.2.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc"><i class="fa fa-check"></i><b>39.2.1</b> AUC</a></li>
+<li class="chapter" data-level="39.2.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-complete-data-design"><i class="fa fa-check"></i><b>39.2.2</b> AUC in complete data design</a></li>
+<li class="chapter" data-level="39.2.3" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-repeated-complete-data-design"><i class="fa fa-check"></i><b>39.2.3</b> AUC in repeated complete data design</a></li>
+<li class="chapter" data-level="39.2.4" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#bioequivalence-between-aucs"><i class="fa fa-check"></i><b>39.2.4</b> Bioequivalence between AUCs</a></li>
+<li class="chapter" data-level="39.2.5" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-biexponential-model"><i class="fa fa-check"></i><b>39.2.5</b> Two-phase half-life estimation by biexponential model</a></li>
+<li class="chapter" data-level="39.2.6" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-linear-fitting"><i class="fa fa-check"></i><b>39.2.6</b> Two-phase half-life estimation by linear fitting</a></li>
+<li class="chapter" data-level="39.2.7" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#estimation-of-various-pk-parameters"><i class="fa fa-check"></i><b>39.2.7</b> Estimation of various PK parameters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="cdisc-1.html"><a href="cdisc-1.html"><i class="fa fa-check"></i><b>40</b> CDISC</a>
+<ul>
+<li class="chapter" data-level="40.1" data-path="cdisc-1.html"><a href="cdisc-1.html#study-data-tabulation-model-sdtm"><i class="fa fa-check"></i><b>40.1</b> Study Data Tabulation Model (SDTM)</a>
+<ul>
+<li class="chapter" data-level="40.1.1" data-path="cdisc-1.html"><a href="cdisc-1.html#introduction-39"><i class="fa fa-check"></i><b>40.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="40.1.2" data-path="cdisc-1.html"><a href="cdisc-1.html#model-concepts-and-terms"><i class="fa fa-check"></i><b>40.1.2</b> Model Concepts and Terms</a></li>
+<li class="chapter" data-level="40.1.3" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-domains"><i class="fa fa-check"></i><b>40.1.3</b> SDTM Domains</a></li>
+<li class="chapter" data-level="40.1.4" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-define.xml"><i class="fa fa-check"></i><b>40.1.4</b> SDTM Define.xml</a></li>
+<li class="chapter" data-level="40.1.5" data-path="cdisc-1.html"><a href="cdisc-1.html#extract-transform-load-etl"><i class="fa fa-check"></i><b>40.1.5</b> Extract-Transform-Load (ETL)</a></li>
+<li class="chapter" data-level="40.1.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-dm-sdtm-datasets"><i class="fa fa-check"></i><b>40.1.6</b> Example Building DM SDTM Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="40.2" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-sas-macro"><i class="fa fa-check"></i><b>40.2</b> SDTM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="40.2.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define"><i class="fa fa-check"></i><b>40.2.1</b> ％make_define</a></li>
+<li class="chapter" data-level="40.2.2" data-path="cdisc-1.html"><a href="cdisc-1.html#make_codelist_formats"><i class="fa fa-check"></i><b>40.2.2</b> %make_codelist_formats</a></li>
+<li class="chapter" data-level="40.2.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset"><i class="fa fa-check"></i><b>40.2.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="40.2.4" data-path="cdisc-1.html"><a href="cdisc-1.html#make_dtc_date"><i class="fa fa-check"></i><b>40.2.4</b> %make_dtc_date</a></li>
+<li class="chapter" data-level="40.2.5" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sdtm_dy"><i class="fa fa-check"></i><b>40.2.5</b> %make_sdtm_dy</a></li>
+<li class="chapter" data-level="40.2.6" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sort_order"><i class="fa fa-check"></i><b>40.2.6</b> %make_sort_order</a></li>
+<li class="chapter" data-level="40.2.7" data-path="cdisc-1.html"><a href="cdisc-1.html#create_stdm_domains"><i class="fa fa-check"></i><b>40.2.7</b> %Create_STDM_Domains</a></li>
+<li class="chapter" data-level="40.2.8" data-path="cdisc-1.html"><a href="cdisc-1.html#detectduplicates"><i class="fa fa-check"></i><b>40.2.8</b> %DetectDuplicates</a></li>
+<li class="chapter" data-level="40.2.9" data-path="cdisc-1.html"><a href="cdisc-1.html#changedvarnum"><i class="fa fa-check"></i><b>40.2.9</b> %ChangedVarNum</a></li>
+<li class="chapter" data-level="40.2.10" data-path="cdisc-1.html"><a href="cdisc-1.html#changedlabels"><i class="fa fa-check"></i><b>40.2.10</b> %ChangedLabels</a></li>
+</ul></li>
+<li class="chapter" data-level="40.3" data-path="cdisc-1.html"><a href="cdisc-1.html#analysis-data-model-adam"><i class="fa fa-check"></i><b>40.3</b> Analysis Data Model (ADaM)</a>
+<ul>
+<li class="chapter" data-level="40.3.1" data-path="cdisc-1.html"><a href="cdisc-1.html#compare-with-sdtm"><i class="fa fa-check"></i><b>40.3.1</b> Compare with SDTM</a></li>
+<li class="chapter" data-level="40.3.2" data-path="cdisc-1.html"><a href="cdisc-1.html#types-of-adam-metadata"><i class="fa fa-check"></i><b>40.3.2</b> 4 types of ADaM metadata</a></li>
+<li class="chapter" data-level="40.3.3" data-path="cdisc-1.html"><a href="cdisc-1.html#subject-level-analysis-dataset-adsl"><i class="fa fa-check"></i><b>40.3.3</b> Subject-Level Analysis Dataset (ADSL)</a></li>
+<li class="chapter" data-level="40.3.4" data-path="cdisc-1.html"><a href="cdisc-1.html#the-basic-data-structure-bds"><i class="fa fa-check"></i><b>40.3.4</b> The Basic Data Structure (BDS)</a></li>
+<li class="chapter" data-level="40.3.5" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adsl-datasets"><i class="fa fa-check"></i><b>40.3.5</b> Example Building ADSL Datasets</a></li>
+<li class="chapter" data-level="40.3.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adam-basic-data-structure-bds-datasets"><i class="fa fa-check"></i><b>40.3.6</b> Example Building ADaM Basic Data Structure (BDS) Datasets</a></li>
+<li class="chapter" data-level="40.3.7" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adae-adverse-event-analysis-datasets-datasets"><i class="fa fa-check"></i><b>40.3.7</b> Example Building ADAE – Adverse Event Analysis Datasets Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="40.4" data-path="cdisc-1.html"><a href="cdisc-1.html#adam-sas-macro"><i class="fa fa-check"></i><b>40.4</b> ADaM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="40.4.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define-1"><i class="fa fa-check"></i><b>40.4.1</b> %make_define</a></li>
+<li class="chapter" data-level="40.4.2" data-path="cdisc-1.html"><a href="cdisc-1.html#create_adam_dataset"><i class="fa fa-check"></i><b>40.4.2</b> %create_adam_dataset</a></li>
+<li class="chapter" data-level="40.4.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset-1"><i class="fa fa-check"></i><b>40.4.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="40.4.4" data-path="cdisc-1.html"><a href="cdisc-1.html#dtc2dt"><i class="fa fa-check"></i><b>40.4.4</b> %DTC2DT</a></li>
+<li class="chapter" data-level="40.4.5" data-path="cdisc-1.html"><a href="cdisc-1.html#imputed_date"><i class="fa fa-check"></i><b>40.4.5</b> %imputed_date</a></li>
+<li class="chapter" data-level="40.4.6" data-path="cdisc-1.html"><a href="cdisc-1.html#mergsupp"><i class="fa fa-check"></i><b>40.4.6</b> %mergsupp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -1110,7 +1527,7 @@
 <div id="header">
 <h1 class="title">As a Statistician</h1>
 <p class="author"><em>Zehui Bai</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-10-05</em></p>
+<p class="date"><em>2022-04-06</em></p>
 </div>
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -1200,7 +1617,6 @@
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1240,6 +1656,10 @@ gitbook.start({
 "text": null
 },
 "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
