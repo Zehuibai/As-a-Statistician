@@ -1,14 +1,20 @@
 # Tree models
 
 
-```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+
+```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
 library('mindr')
 ### text -> widget
 ### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
 ### mm(from = input, type = "text", root = "mindr")
-filename <- rstudioapi::getSourceEditorContext()$path
-widget <- mm(from = filename, type = "file", root = "")
-widget
+input <- rstudioapi::getSourceEditorContext()$path 
+## file.show(input) # Open the input file with the default program, if any
+input_txt <- readLines(input, encoding = "UTF-8")
+## Convert to mind map text, markdown outline, R script, and HTML widget ####
+mm_output <- mm(input_txt, 
+                output_type = c("widget"),
+                root = "")
+mm_output$widget
 ```
 
 
