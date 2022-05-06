@@ -24,7 +24,7 @@
 <meta name="author" content="Zehui Bai" />
 
 
-<meta name="date" content="2022-04-07" />
+<meta name="date" content="2022-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="bayesian-theory.html"/>
-<link rel="next" href="knn.html"/>
+<link rel="next" href="smoothing.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -495,10 +495,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.4.3" data-path="non-parametric-test.html"><a href="non-parametric-test.html#one-way-permutation-test-of-independence-for-ordinal-data"><i class="fa fa-check"></i><b>10.4.3</b> One-way Permutation Test of Independence for Ordinal Data</a></li>
 <li class="chapter" data-level="10.4.4" data-path="non-parametric-test.html"><a href="non-parametric-test.html#one-way-permutation-test-of-symmetry-for-ordinal-data"><i class="fa fa-check"></i><b>10.4.4</b> One-way Permutation Test of Symmetry for Ordinal Data</a></li>
 <li class="chapter" data-level="10.4.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#permutation-tests-for-medians-and-percentiles"><i class="fa fa-check"></i><b>10.4.5</b> Permutation Tests for Medians and Percentiles</a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="non-parametric-test.html"><a href="non-parametric-test.html#nonparametric-regression"><i class="fa fa-check"></i><b>10.5</b> Nonparametric Regression</a>
-<ul>
-<li class="chapter" data-level="10.5.1" data-path="non-parametric-test.html"><a href="non-parametric-test.html#loess-regression"><i class="fa fa-check"></i><b>10.5.1</b> Loess Regression</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="sample-size-calculation.html"><a href="sample-size-calculation.html"><i class="fa fa-check"></i><b>11</b> Sample Size Calculation</a>
@@ -1272,308 +1268,314 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="32.1.4" data-path="item-response-theory.html"><a href="item-response-theory.html#unidimensional-irt-models"><i class="fa fa-check"></i><b>32.1.4</b> Unidimensional IRT Models</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="33" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>33</b> KNN</a>
+<li class="chapter" data-level="33" data-path="smoothing.html"><a href="smoothing.html"><i class="fa fa-check"></i><b>33</b> Smoothing</a>
 <ul>
-<li class="chapter" data-level="33.1" data-path="knn.html"><a href="knn.html#introduction-27"><i class="fa fa-check"></i><b>33.1</b> Introduction</a>
+<li class="chapter" data-level="33.1" data-path="smoothing.html"><a href="smoothing.html#smoothing-1"><i class="fa fa-check"></i><b>33.1</b> Smoothing</a>
 <ul>
-<li class="chapter" data-level="33.1.1" data-path="knn.html"><a href="knn.html#idee"><i class="fa fa-check"></i><b>33.1.1</b> Idee</a></li>
-<li class="chapter" data-level="33.1.2" data-path="knn.html"><a href="knn.html#加权最近邻法"><i class="fa fa-check"></i><b>33.1.2</b> 加权最近邻法</a></li>
-<li class="chapter" data-level="33.1.3" data-path="knn.html"><a href="knn.html#knn算法三要素"><i class="fa fa-check"></i><b>33.1.3</b> KNN算法三要素</a></li>
-<li class="chapter" data-level="33.1.4" data-path="knn.html"><a href="knn.html#优缺点"><i class="fa fa-check"></i><b>33.1.4</b> 优缺点</a></li>
+<li class="chapter" data-level="33.1.1" data-path="smoothing.html"><a href="smoothing.html#bin-smoothing"><i class="fa fa-check"></i><b>33.1.1</b> Bin smoothing</a></li>
+<li class="chapter" data-level="33.1.2" data-path="smoothing.html"><a href="smoothing.html#kernels"><i class="fa fa-check"></i><b>33.1.2</b> Kernels</a></li>
+<li class="chapter" data-level="33.1.3" data-path="smoothing.html"><a href="smoothing.html#local-weighted-regression-loess"><i class="fa fa-check"></i><b>33.1.3</b> Local weighted regression (loess)</a></li>
 </ul></li>
-<li class="chapter" data-level="33.2" data-path="knn.html"><a href="knn.html#knn算法的实现方式"><i class="fa fa-check"></i><b>33.2</b> KNN算法的实现方式</a>
-<ul>
-<li class="chapter" data-level="33.2.1" data-path="knn.html"><a href="knn.html#brute-force"><i class="fa fa-check"></i><b>33.2.1</b> Brute-force</a></li>
-<li class="chapter" data-level="33.2.2" data-path="knn.html"><a href="knn.html#kd树实现"><i class="fa fa-check"></i><b>33.2.2</b> KD树实现</a></li>
-<li class="chapter" data-level="33.2.3" data-path="knn.html"><a href="knn.html#球树实现"><i class="fa fa-check"></i><b>33.2.3</b> 球树实现</a></li>
+<li class="chapter" data-level="33.2" data-path="smoothing.html"><a href="smoothing.html#loess-regression"><i class="fa fa-check"></i><b>33.2</b> Loess Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="33.3" data-path="knn.html"><a href="knn.html#application"><i class="fa fa-check"></i><b>33.3</b> Application</a>
+<li class="chapter" data-level="34" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>34</b> KNN</a>
 <ul>
-<li class="chapter" data-level="33.3.1" data-path="knn.html"><a href="knn.html#data-preparation-1"><i class="fa fa-check"></i><b>33.3.1</b> Data Preparation</a></li>
-<li class="chapter" data-level="33.3.2" data-path="knn.html"><a href="knn.html#knn-modelling"><i class="fa fa-check"></i><b>33.3.2</b> KNN Modelling</a></li>
-<li class="chapter" data-level="33.3.3" data-path="knn.html"><a href="knn.html#加权最近邻法-1"><i class="fa fa-check"></i><b>33.3.3</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="34.1" data-path="knn.html"><a href="knn.html#introduction-27"><i class="fa fa-check"></i><b>34.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="34.1.1" data-path="knn.html"><a href="knn.html#idee"><i class="fa fa-check"></i><b>34.1.1</b> Idee</a></li>
+<li class="chapter" data-level="34.1.2" data-path="knn.html"><a href="knn.html#加权最近邻法"><i class="fa fa-check"></i><b>34.1.2</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="34.1.3" data-path="knn.html"><a href="knn.html#knn算法三要素"><i class="fa fa-check"></i><b>34.1.3</b> KNN算法三要素</a></li>
+<li class="chapter" data-level="34.1.4" data-path="knn.html"><a href="knn.html#优缺点"><i class="fa fa-check"></i><b>34.1.4</b> 优缺点</a></li>
 </ul></li>
+<li class="chapter" data-level="34.2" data-path="knn.html"><a href="knn.html#knn算法的实现方式"><i class="fa fa-check"></i><b>34.2</b> KNN算法的实现方式</a>
+<ul>
+<li class="chapter" data-level="34.2.1" data-path="knn.html"><a href="knn.html#brute-force"><i class="fa fa-check"></i><b>34.2.1</b> Brute-force</a></li>
+<li class="chapter" data-level="34.2.2" data-path="knn.html"><a href="knn.html#kd树实现"><i class="fa fa-check"></i><b>34.2.2</b> KD树实现</a></li>
+<li class="chapter" data-level="34.2.3" data-path="knn.html"><a href="knn.html#球树实现"><i class="fa fa-check"></i><b>34.2.3</b> 球树实现</a></li>
 </ul></li>
-<li class="chapter" data-level="34" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>34</b> SVM</a>
+<li class="chapter" data-level="34.3" data-path="knn.html"><a href="knn.html#application"><i class="fa fa-check"></i><b>34.3</b> Application</a>
 <ul>
-<li class="chapter" data-level="34.1" data-path="svm.html"><a href="svm.html#introduction-28"><i class="fa fa-check"></i><b>34.1</b> Introduction</a></li>
-<li class="chapter" data-level="34.2" data-path="svm.html"><a href="svm.html#introduction-29"><i class="fa fa-check"></i><b>34.2</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="34.2.1" data-path="svm.html"><a href="svm.html#perceptron"><i class="fa fa-check"></i><b>34.2.1</b> Perceptron</a></li>
-<li class="chapter" data-level="34.2.2" data-path="svm.html"><a href="svm.html#函数间隔与几何间隔"><i class="fa fa-check"></i><b>34.2.2</b> 函数间隔与几何间隔</a></li>
-<li class="chapter" data-level="34.2.3" data-path="svm.html"><a href="svm.html#svm支持向量"><i class="fa fa-check"></i><b>34.2.3</b> SVM支持向量</a></li>
-<li class="chapter" data-level="34.2.4" data-path="svm.html"><a href="svm.html#svm模型目标函数与优化"><i class="fa fa-check"></i><b>34.2.4</b> SVM模型目标函数与优化</a></li>
-<li class="chapter" data-level="34.2.5" data-path="svm.html"><a href="svm.html#线性可分svm的算法过程"><i class="fa fa-check"></i><b>34.2.5</b> 线性可分SVM的算法过程</a></li>
-<li class="chapter" data-level="34.2.6" data-path="svm.html"><a href="svm.html#线性svm的软间隔最大化"><i class="fa fa-check"></i><b>34.2.6</b> 线性SVM的软间隔最大化</a></li>
-<li class="chapter" data-level="34.2.7" data-path="svm.html"><a href="svm.html#线性不可分支持向量机与核函数"><i class="fa fa-check"></i><b>34.2.7</b> 线性不可分支持向量机与核函数</a></li>
-</ul></li>
-<li class="chapter" data-level="34.3" data-path="svm.html"><a href="svm.html#application-1"><i class="fa fa-check"></i><b>34.3</b> Application</a>
-<ul>
-<li class="chapter" data-level="34.3.1" data-path="svm.html"><a href="svm.html#data-preparation-2"><i class="fa fa-check"></i><b>34.3.1</b> Data Preparation</a></li>
-<li class="chapter" data-level="34.3.2" data-path="svm.html"><a href="svm.html#svm-modelling"><i class="fa fa-check"></i><b>34.3.2</b> SVM Modelling</a></li>
-<li class="chapter" data-level="34.3.3" data-path="svm.html"><a href="svm.html#model-selection-1"><i class="fa fa-check"></i><b>34.3.3</b> Model Selection</a></li>
-<li class="chapter" data-level="34.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>34.3.4</b> Character selection</a></li>
+<li class="chapter" data-level="34.3.1" data-path="knn.html"><a href="knn.html#data-preparation-1"><i class="fa fa-check"></i><b>34.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="34.3.2" data-path="knn.html"><a href="knn.html#knn-modelling"><i class="fa fa-check"></i><b>34.3.2</b> KNN Modelling</a></li>
+<li class="chapter" data-level="34.3.3" data-path="knn.html"><a href="knn.html#加权最近邻法-1"><i class="fa fa-check"></i><b>34.3.3</b> 加权最近邻法</a></li>
+<li class="chapter" data-level="34.3.4" data-path="knn.html"><a href="knn.html#over-training"><i class="fa fa-check"></i><b>34.3.4</b> Over-training</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="35" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>35</b> Tree models</a>
+<li class="chapter" data-level="35" data-path="svm.html"><a href="svm.html"><i class="fa fa-check"></i><b>35</b> SVM</a>
 <ul>
-<li class="chapter" data-level="35.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>35.1</b> Decision Tree Model</a>
+<li class="chapter" data-level="35.1" data-path="svm.html"><a href="svm.html#introduction-28"><i class="fa fa-check"></i><b>35.1</b> Introduction</a></li>
+<li class="chapter" data-level="35.2" data-path="svm.html"><a href="svm.html#introduction-29"><i class="fa fa-check"></i><b>35.2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="35.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>35.1.1</b> Decision tree algorithm</a></li>
-<li class="chapter" data-level="35.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>35.1.2</b> ID3 Algorithm</a></li>
-<li class="chapter" data-level="35.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>35.1.3</b> C4.5 Algorithm</a></li>
-<li class="chapter" data-level="35.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>35.1.4</b> CART Algorithm</a></li>
-<li class="chapter" data-level="35.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>35.1.5</b> Pruning</a></li>
-<li class="chapter" data-level="35.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>35.1.6</b> Package ‘rpart’</a></li>
+<li class="chapter" data-level="35.2.1" data-path="svm.html"><a href="svm.html#perceptron"><i class="fa fa-check"></i><b>35.2.1</b> Perceptron</a></li>
+<li class="chapter" data-level="35.2.2" data-path="svm.html"><a href="svm.html#函数间隔与几何间隔"><i class="fa fa-check"></i><b>35.2.2</b> 函数间隔与几何间隔</a></li>
+<li class="chapter" data-level="35.2.3" data-path="svm.html"><a href="svm.html#svm支持向量"><i class="fa fa-check"></i><b>35.2.3</b> SVM支持向量</a></li>
+<li class="chapter" data-level="35.2.4" data-path="svm.html"><a href="svm.html#svm模型目标函数与优化"><i class="fa fa-check"></i><b>35.2.4</b> SVM模型目标函数与优化</a></li>
+<li class="chapter" data-level="35.2.5" data-path="svm.html"><a href="svm.html#线性可分svm的算法过程"><i class="fa fa-check"></i><b>35.2.5</b> 线性可分SVM的算法过程</a></li>
+<li class="chapter" data-level="35.2.6" data-path="svm.html"><a href="svm.html#线性svm的软间隔最大化"><i class="fa fa-check"></i><b>35.2.6</b> 线性SVM的软间隔最大化</a></li>
+<li class="chapter" data-level="35.2.7" data-path="svm.html"><a href="svm.html#线性不可分支持向量机与核函数"><i class="fa fa-check"></i><b>35.2.7</b> 线性不可分支持向量机与核函数</a></li>
 </ul></li>
-<li class="chapter" data-level="35.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>35.2</b> Random Forest</a>
+<li class="chapter" data-level="35.3" data-path="svm.html"><a href="svm.html#application-1"><i class="fa fa-check"></i><b>35.3</b> Application</a>
 <ul>
-<li class="chapter" data-level="35.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>35.2.1</b> Bootstrap (Bagging)</a></li>
-<li class="chapter" data-level="35.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>35.2.2</b> bagging算法流程</a></li>
-<li class="chapter" data-level="35.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>35.2.3</b> Random Forest Algorithm</a></li>
-<li class="chapter" data-level="35.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>35.2.4</b> Random forest promotion</a></li>
-<li class="chapter" data-level="35.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>35.2.5</b> Package ‘randomForest’</a></li>
-</ul></li>
-<li class="chapter" data-level="35.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>35.3</b> Modelling</a>
-<ul>
-<li class="chapter" data-level="35.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>35.3.1</b> Data preparation</a></li>
-<li class="chapter" data-level="35.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>35.3.2</b> Regression tree</a></li>
-<li class="chapter" data-level="35.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>35.3.3</b> Classification tree</a></li>
-<li class="chapter" data-level="35.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>35.3.4</b> Random forest for regression</a></li>
-<li class="chapter" data-level="35.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>35.3.5</b> Random forest for classification</a></li>
-<li class="chapter" data-level="35.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>35.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
-<li class="chapter" data-level="35.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>35.3.7</b> 使用随机森林进行特征选择</a></li>
-</ul></li>
-<li class="chapter" data-level="35.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>35.4</b> Gradient Boosting</a>
-<ul>
-<li class="chapter" data-level="35.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>35.4.1</b> GBDT概述</a></li>
-<li class="chapter" data-level="35.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>35.4.2</b> GBDT的负梯度拟合</a></li>
-<li class="chapter" data-level="35.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>35.4.3</b> GBDT回归算法</a></li>
-<li class="chapter" data-level="35.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>35.4.4</b> GBDT分类算法</a></li>
-<li class="chapter" data-level="35.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>35.4.5</b> Package ‘gbm’</a></li>
-<li class="chapter" data-level="35.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>35.4.6</b> 极限梯度提升——分类</a></li>
-</ul></li>
-<li class="chapter" data-level="35.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>35.5</b> Cubist Model</a>
-<ul>
-<li class="chapter" data-level="35.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-30"><i class="fa fa-check"></i><b>35.5.1</b> Introduction</a></li>
-<li class="chapter" data-level="35.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>35.5.2</b> Application Data Preparation</a></li>
-<li class="chapter" data-level="35.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>35.5.3</b> Fit Continious Outcome</a></li>
-<li class="chapter" data-level="35.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>35.5.4</b> Variable Importance</a></li>
-<li class="chapter" data-level="35.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>35.5.5</b> Summary display</a></li>
-<li class="chapter" data-level="35.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>35.5.6</b> specific parts</a></li>
-<li class="chapter" data-level="35.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>35.5.7</b> Ensembles By Committees</a></li>
-<li class="chapter" data-level="35.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>35.5.8</b> Nearest–neighbors Adjustmemt</a></li>
-<li class="chapter" data-level="35.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>35.5.9</b> Optimize parameters</a></li>
-<li class="chapter" data-level="35.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>35.5.10</b> Logistic CV</a></li>
+<li class="chapter" data-level="35.3.1" data-path="svm.html"><a href="svm.html#data-preparation-2"><i class="fa fa-check"></i><b>35.3.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="35.3.2" data-path="svm.html"><a href="svm.html#svm-modelling"><i class="fa fa-check"></i><b>35.3.2</b> SVM Modelling</a></li>
+<li class="chapter" data-level="35.3.3" data-path="svm.html"><a href="svm.html#model-selection-1"><i class="fa fa-check"></i><b>35.3.3</b> Model Selection</a></li>
+<li class="chapter" data-level="35.3.4" data-path="svm.html"><a href="svm.html#character-selection"><i class="fa fa-check"></i><b>35.3.4</b> Character selection</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="36" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>36</b> PCA</a>
+<li class="chapter" data-level="36" data-path="tree-models.html"><a href="tree-models.html"><i class="fa fa-check"></i><b>36</b> Tree models</a>
 <ul>
-<li class="chapter" data-level="36.1" data-path="pca.html"><a href="pca.html#introduction-31"><i class="fa fa-check"></i><b>36.1</b> Introduction</a>
+<li class="chapter" data-level="36.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-model"><i class="fa fa-check"></i><b>36.1</b> Decision Tree Model</a>
 <ul>
-<li class="chapter" data-level="36.1.1" data-path="pca.html"><a href="pca.html#component"><i class="fa fa-check"></i><b>36.1.1</b> Component</a></li>
-<li class="chapter" data-level="36.1.2" data-path="pca.html"><a href="pca.html#pca算法"><i class="fa fa-check"></i><b>36.1.2</b> PCA算法</a></li>
-<li class="chapter" data-level="36.1.3" data-path="pca.html"><a href="pca.html#主成分旋转"><i class="fa fa-check"></i><b>36.1.3</b> 主成分旋转</a></li>
-<li class="chapter" data-level="36.1.4" data-path="pca.html"><a href="pca.html#kernelized-pca"><i class="fa fa-check"></i><b>36.1.4</b> Kernelized PCA</a></li>
+<li class="chapter" data-level="36.1.1" data-path="tree-models.html"><a href="tree-models.html#decision-tree-algorithm"><i class="fa fa-check"></i><b>36.1.1</b> Decision tree algorithm</a></li>
+<li class="chapter" data-level="36.1.2" data-path="tree-models.html"><a href="tree-models.html#id3-algorithm"><i class="fa fa-check"></i><b>36.1.2</b> ID3 Algorithm</a></li>
+<li class="chapter" data-level="36.1.3" data-path="tree-models.html"><a href="tree-models.html#c4.5-algorithm"><i class="fa fa-check"></i><b>36.1.3</b> C4.5 Algorithm</a></li>
+<li class="chapter" data-level="36.1.4" data-path="tree-models.html"><a href="tree-models.html#cart-algorithm"><i class="fa fa-check"></i><b>36.1.4</b> CART Algorithm</a></li>
+<li class="chapter" data-level="36.1.5" data-path="tree-models.html"><a href="tree-models.html#pruning"><i class="fa fa-check"></i><b>36.1.5</b> Pruning</a></li>
+<li class="chapter" data-level="36.1.6" data-path="tree-models.html"><a href="tree-models.html#package-rpart"><i class="fa fa-check"></i><b>36.1.6</b> Package ‘rpart’</a></li>
 </ul></li>
-<li class="chapter" data-level="36.2" data-path="pca.html"><a href="pca.html#application-2"><i class="fa fa-check"></i><b>36.2</b> Application</a>
+<li class="chapter" data-level="36.2" data-path="tree-models.html"><a href="tree-models.html#random-forest"><i class="fa fa-check"></i><b>36.2</b> Random Forest</a>
 <ul>
-<li class="chapter" data-level="36.2.1" data-path="pca.html"><a href="pca.html#data-preparation-4"><i class="fa fa-check"></i><b>36.2.1</b> Data preparation</a></li>
-<li class="chapter" data-level="36.2.2" data-path="pca.html"><a href="pca.html#modeling-1"><i class="fa fa-check"></i><b>36.2.2</b> Modeling</a></li>
+<li class="chapter" data-level="36.2.1" data-path="tree-models.html"><a href="tree-models.html#bootstrap-bagging"><i class="fa fa-check"></i><b>36.2.1</b> Bootstrap (Bagging)</a></li>
+<li class="chapter" data-level="36.2.2" data-path="tree-models.html"><a href="tree-models.html#bagging算法流程"><i class="fa fa-check"></i><b>36.2.2</b> bagging算法流程</a></li>
+<li class="chapter" data-level="36.2.3" data-path="tree-models.html"><a href="tree-models.html#random-forest-algorithm"><i class="fa fa-check"></i><b>36.2.3</b> Random Forest Algorithm</a></li>
+<li class="chapter" data-level="36.2.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-promotion"><i class="fa fa-check"></i><b>36.2.4</b> Random forest promotion</a></li>
+<li class="chapter" data-level="36.2.5" data-path="tree-models.html"><a href="tree-models.html#package-randomforest"><i class="fa fa-check"></i><b>36.2.5</b> Package ‘randomForest’</a></li>
 </ul></li>
+<li class="chapter" data-level="36.3" data-path="tree-models.html"><a href="tree-models.html#modelling-2"><i class="fa fa-check"></i><b>36.3</b> Modelling</a>
+<ul>
+<li class="chapter" data-level="36.3.1" data-path="tree-models.html"><a href="tree-models.html#data-preparation-3"><i class="fa fa-check"></i><b>36.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="36.3.2" data-path="tree-models.html"><a href="tree-models.html#regression-tree-1"><i class="fa fa-check"></i><b>36.3.2</b> Regression tree</a></li>
+<li class="chapter" data-level="36.3.3" data-path="tree-models.html"><a href="tree-models.html#classification-tree-1"><i class="fa fa-check"></i><b>36.3.3</b> Classification tree</a></li>
+<li class="chapter" data-level="36.3.4" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-regression"><i class="fa fa-check"></i><b>36.3.4</b> Random forest for regression</a></li>
+<li class="chapter" data-level="36.3.5" data-path="tree-models.html"><a href="tree-models.html#random-forest-for-classification"><i class="fa fa-check"></i><b>36.3.5</b> Random forest for classification</a></li>
+<li class="chapter" data-level="36.3.6" data-path="tree-models.html"><a href="tree-models.html#皮玛印第安人糖尿病数据集"><i class="fa fa-check"></i><b>36.3.6</b> 皮玛印第安人糖尿病数据集</a></li>
+<li class="chapter" data-level="36.3.7" data-path="tree-models.html"><a href="tree-models.html#使用随机森林进行特征选择"><i class="fa fa-check"></i><b>36.3.7</b> 使用随机森林进行特征选择</a></li>
 </ul></li>
-<li class="chapter" data-level="37" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>37</b> Cluster Analysis</a>
+<li class="chapter" data-level="36.4" data-path="tree-models.html"><a href="tree-models.html#gradient-boosting"><i class="fa fa-check"></i><b>36.4</b> Gradient Boosting</a>
 <ul>
-<li class="chapter" data-level="37.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>37.1</b> Hierarchical Clustering</a>
-<ul>
-<li class="chapter" data-level="37.1.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#introduction-32"><i class="fa fa-check"></i><b>37.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="37.1.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-algorithms"><i class="fa fa-check"></i><b>37.1.2</b> Hierarchical clustering algorithms</a></li>
-<li class="chapter" data-level="37.1.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#measure-the-dissimilarity-between-two-clusters-of-observations"><i class="fa fa-check"></i><b>37.1.3</b> Measure the dissimilarity between two clusters of observations</a></li>
+<li class="chapter" data-level="36.4.1" data-path="tree-models.html"><a href="tree-models.html#gbdt概述"><i class="fa fa-check"></i><b>36.4.1</b> GBDT概述</a></li>
+<li class="chapter" data-level="36.4.2" data-path="tree-models.html"><a href="tree-models.html#gbdt的负梯度拟合"><i class="fa fa-check"></i><b>36.4.2</b> GBDT的负梯度拟合</a></li>
+<li class="chapter" data-level="36.4.3" data-path="tree-models.html"><a href="tree-models.html#gbdt回归算法"><i class="fa fa-check"></i><b>36.4.3</b> GBDT回归算法</a></li>
+<li class="chapter" data-level="36.4.4" data-path="tree-models.html"><a href="tree-models.html#gbdt分类算法"><i class="fa fa-check"></i><b>36.4.4</b> GBDT分类算法</a></li>
+<li class="chapter" data-level="36.4.5" data-path="tree-models.html"><a href="tree-models.html#package-gbm"><i class="fa fa-check"></i><b>36.4.5</b> Package ‘gbm’</a></li>
+<li class="chapter" data-level="36.4.6" data-path="tree-models.html"><a href="tree-models.html#极限梯度提升分类"><i class="fa fa-check"></i><b>36.4.6</b> 极限梯度提升——分类</a></li>
 </ul></li>
-<li class="chapter" data-level="37.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>37.2</b> K-means Clustering</a>
+<li class="chapter" data-level="36.5" data-path="tree-models.html"><a href="tree-models.html#cubist-model"><i class="fa fa-check"></i><b>36.5</b> Cubist Model</a>
 <ul>
-<li class="chapter" data-level="37.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#algorithm"><i class="fa fa-check"></i><b>37.2.1</b> Algorithm</a></li>
-<li class="chapter" data-level="37.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means"><i class="fa fa-check"></i><b>37.2.2</b> K-Means++</a></li>
-<li class="chapter" data-level="37.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elkan-k-means"><i class="fa fa-check"></i><b>37.2.3</b> elkan K-Means</a></li>
-<li class="chapter" data-level="37.2.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#mini-batch-k-means"><i class="fa fa-check"></i><b>37.2.4</b> Mini Batch K-Means</a></li>
-</ul></li>
-<li class="chapter" data-level="37.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam"><i class="fa fa-check"></i><b>37.3</b> Gower’s coefficient and PAM</a>
-<ul>
-<li class="chapter" data-level="37.3.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient"><i class="fa fa-check"></i><b>37.3.1</b> Gower’s coefficient</a></li>
-<li class="chapter" data-level="37.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#不同数据类型的相异度计算-距离法"><i class="fa fa-check"></i><b>37.3.2</b> 不同数据类型的相异度计算 (距离法)</a></li>
-<li class="chapter" data-level="37.3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#pam"><i class="fa fa-check"></i><b>37.3.3</b> PAM</a></li>
-</ul></li>
-<li class="chapter" data-level="37.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-clustering"><i class="fa fa-check"></i><b>37.4</b> BIRCH Clustering</a>
-<ul>
-<li class="chapter" data-level="37.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-introduction"><i class="fa fa-check"></i><b>37.4.1</b> BIRCH Introduction</a></li>
-<li class="chapter" data-level="37.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#聚类特征cf与聚类特征树cf-tree"><i class="fa fa-check"></i><b>37.4.2</b> 聚类特征CF与聚类特征树CF Tree</a></li>
-<li class="chapter" data-level="37.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cf-tree的生成"><i class="fa fa-check"></i><b>37.4.3</b> CF Tree的生成</a></li>
-<li class="chapter" data-level="37.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch算法"><i class="fa fa-check"></i><b>37.4.4</b> BIRCH算法</a></li>
-</ul></li>
-<li class="chapter" data-level="37.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#application-3"><i class="fa fa-check"></i><b>37.5</b> Application</a>
-<ul>
-<li class="chapter" data-level="37.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#data-preparation-5"><i class="fa fa-check"></i><b>37.5.1</b> Data preparation</a></li>
-<li class="chapter" data-level="37.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-1"><i class="fa fa-check"></i><b>37.5.2</b> Hierarchical Clustering</a></li>
-<li class="chapter" data-level="37.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering-1"><i class="fa fa-check"></i><b>37.5.3</b> K-means Clustering</a></li>
-<li class="chapter" data-level="37.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam-1"><i class="fa fa-check"></i><b>37.5.4</b> Gower’s coefficient and PAM</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="38" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>38</b> Neural Network</a>
-<ul>
-<li class="chapter" data-level="38.1" data-path="neural-network.html"><a href="neural-network.html#introduction-33"><i class="fa fa-check"></i><b>38.1</b> Introduction</a></li>
-<li class="chapter" data-level="38.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>38.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
-<li class="chapter" data-level="38.3" data-path="neural-network.html"><a href="neural-network.html#application-4"><i class="fa fa-check"></i><b>38.3</b> Application</a>
-<ul>
-<li class="chapter" data-level="38.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>38.3.1</b> 数据准备</a></li>
-<li class="chapter" data-level="38.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>38.3.2</b> 模型构建</a></li>
+<li class="chapter" data-level="36.5.1" data-path="tree-models.html"><a href="tree-models.html#introduction-30"><i class="fa fa-check"></i><b>36.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="36.5.2" data-path="tree-models.html"><a href="tree-models.html#application-data-preparation"><i class="fa fa-check"></i><b>36.5.2</b> Application Data Preparation</a></li>
+<li class="chapter" data-level="36.5.3" data-path="tree-models.html"><a href="tree-models.html#fit-continious-outcome"><i class="fa fa-check"></i><b>36.5.3</b> Fit Continious Outcome</a></li>
+<li class="chapter" data-level="36.5.4" data-path="tree-models.html"><a href="tree-models.html#variable-importance"><i class="fa fa-check"></i><b>36.5.4</b> Variable Importance</a></li>
+<li class="chapter" data-level="36.5.5" data-path="tree-models.html"><a href="tree-models.html#summary-display"><i class="fa fa-check"></i><b>36.5.5</b> Summary display</a></li>
+<li class="chapter" data-level="36.5.6" data-path="tree-models.html"><a href="tree-models.html#specific-parts"><i class="fa fa-check"></i><b>36.5.6</b> specific parts</a></li>
+<li class="chapter" data-level="36.5.7" data-path="tree-models.html"><a href="tree-models.html#ensembles-by-committees"><i class="fa fa-check"></i><b>36.5.7</b> Ensembles By Committees</a></li>
+<li class="chapter" data-level="36.5.8" data-path="tree-models.html"><a href="tree-models.html#nearestneighbors-adjustmemt"><i class="fa fa-check"></i><b>36.5.8</b> Nearest–neighbors Adjustmemt</a></li>
+<li class="chapter" data-level="36.5.9" data-path="tree-models.html"><a href="tree-models.html#optimize-parameters"><i class="fa fa-check"></i><b>36.5.9</b> Optimize parameters</a></li>
+<li class="chapter" data-level="36.5.10" data-path="tree-models.html"><a href="tree-models.html#logistic-cv"><i class="fa fa-check"></i><b>36.5.10</b> Logistic CV</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="39" data-path="clinic-trail.html"><a href="clinic-trail.html"><i class="fa fa-check"></i><b>39</b> Clinic Trail</a>
+<li class="chapter" data-level="37" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>37</b> PCA</a>
 <ul>
-<li class="chapter" data-level="39.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-34"><i class="fa fa-check"></i><b>39.1</b> Introduction</a>
+<li class="chapter" data-level="37.1" data-path="pca.html"><a href="pca.html#introduction-31"><i class="fa fa-check"></i><b>37.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="39.1.1" data-path="clinic-trail.html"><a href="clinic-trail.html#regulation"><i class="fa fa-check"></i><b>39.1.1</b> Regulation</a></li>
-<li class="chapter" data-level="39.1.2" data-path="clinic-trail.html"><a href="clinic-trail.html#protocol-deviations"><i class="fa fa-check"></i><b>39.1.2</b> Protocol Deviations</a></li>
-<li class="chapter" data-level="39.1.3" data-path="clinic-trail.html"><a href="clinic-trail.html#randomization"><i class="fa fa-check"></i><b>39.1.3</b> Randomization</a></li>
+<li class="chapter" data-level="37.1.1" data-path="pca.html"><a href="pca.html#component"><i class="fa fa-check"></i><b>37.1.1</b> Component</a></li>
+<li class="chapter" data-level="37.1.2" data-path="pca.html"><a href="pca.html#pca算法"><i class="fa fa-check"></i><b>37.1.2</b> PCA算法</a></li>
+<li class="chapter" data-level="37.1.3" data-path="pca.html"><a href="pca.html#主成分旋转"><i class="fa fa-check"></i><b>37.1.3</b> 主成分旋转</a></li>
+<li class="chapter" data-level="37.1.4" data-path="pca.html"><a href="pca.html#kernelized-pca"><i class="fa fa-check"></i><b>37.1.4</b> Kernelized PCA</a></li>
 </ul></li>
-<li class="chapter" data-level="39.2" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-i-trials-design"><i class="fa fa-check"></i><b>39.2</b> Phase I Trials Design</a>
+<li class="chapter" data-level="37.2" data-path="pca.html"><a href="pca.html#application-2"><i class="fa fa-check"></i><b>37.2</b> Application</a>
 <ul>
-<li class="chapter" data-level="39.2.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-35"><i class="fa fa-check"></i><b>39.2.1</b> Introduction</a></li>
-<li class="chapter" data-level="39.2.2" data-path="clinic-trail.html"><a href="clinic-trail.html#nic-002-charité"><i class="fa fa-check"></i><b>39.2.2</b> NIC-002 (Charité)</a></li>
-</ul></li>
-<li class="chapter" data-level="39.3" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-ii-trials-design"><i class="fa fa-check"></i><b>39.3</b> Phase II Trials Design</a>
-<ul>
-<li class="chapter" data-level="39.3.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-36"><i class="fa fa-check"></i><b>39.3.1</b> Introduction</a></li>
-<li class="chapter" data-level="39.3.2" data-path="clinic-trail.html"><a href="clinic-trail.html#terra"><i class="fa fa-check"></i><b>39.3.2</b> Terra</a></li>
-<li class="chapter" data-level="39.3.3" data-path="clinic-trail.html"><a href="clinic-trail.html#lotab"><i class="fa fa-check"></i><b>39.3.3</b> LOTAB</a></li>
-<li class="chapter" data-level="39.3.4" data-path="clinic-trail.html"><a href="clinic-trail.html#niccam"><i class="fa fa-check"></i><b>39.3.4</b> NICCAM</a></li>
-</ul></li>
-<li class="chapter" data-level="39.4" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iii-trials-design"><i class="fa fa-check"></i><b>39.4</b> Phase III Trials Design</a>
-<ul>
-<li class="chapter" data-level="39.4.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-37"><i class="fa fa-check"></i><b>39.4.1</b> Introduction</a></li>
-<li class="chapter" data-level="39.4.2" data-path="clinic-trail.html"><a href="clinic-trail.html#mg-iii-001"><i class="fa fa-check"></i><b>39.4.2</b> MG-III-001</a></li>
-<li class="chapter" data-level="39.4.3" data-path="clinic-trail.html"><a href="clinic-trail.html#mediwound1"><i class="fa fa-check"></i><b>39.4.3</b> MEDIWOUND1</a></li>
-<li class="chapter" data-level="39.4.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cevira"><i class="fa fa-check"></i><b>39.4.4</b> CEVIRA</a></li>
-</ul></li>
-<li class="chapter" data-level="39.5" data-path="clinic-trail.html"><a href="clinic-trail.html#premarket-approval-pma"><i class="fa fa-check"></i><b>39.5</b> Premarket approval (PMA)</a>
-<ul>
-<li class="chapter" data-level="39.5.1" data-path="clinic-trail.html"><a href="clinic-trail.html#rat"><i class="fa fa-check"></i><b>39.5.1</b> RAT</a></li>
-<li class="chapter" data-level="39.5.2" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242"><i class="fa fa-check"></i><b>39.5.2</b> HM242</a></li>
-<li class="chapter" data-level="39.5.3" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-gel"><i class="fa fa-check"></i><b>39.5.3</b> HM242-Gel</a></li>
-<li class="chapter" data-level="39.5.4" data-path="clinic-trail.html"><a href="clinic-trail.html#hm242-solution"><i class="fa fa-check"></i><b>39.5.4</b> HM242-Solution</a></li>
-</ul></li>
-<li class="chapter" data-level="39.6" data-path="clinic-trail.html"><a href="clinic-trail.html#postmarketing-surveillance-pms"><i class="fa fa-check"></i><b>39.6</b> Postmarketing Surveillance (PMS)</a>
-<ul>
-<li class="chapter" data-level="39.6.1" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iv-and-pms"><i class="fa fa-check"></i><b>39.6.1</b> Phase IV and PMS</a></li>
-<li class="chapter" data-level="39.6.2" data-path="clinic-trail.html"><a href="clinic-trail.html#bull-pms"><i class="fa fa-check"></i><b>39.6.2</b> BULL-PMS</a></li>
-<li class="chapter" data-level="39.6.3" data-path="clinic-trail.html"><a href="clinic-trail.html#venus-toric"><i class="fa fa-check"></i><b>39.6.3</b> VENUS toric</a></li>
-<li class="chapter" data-level="39.6.4" data-path="clinic-trail.html"><a href="clinic-trail.html#uvea-839"><i class="fa fa-check"></i><b>39.6.4</b> UVEA 839</a></li>
-<li class="chapter" data-level="39.6.5" data-path="clinic-trail.html"><a href="clinic-trail.html#ts002"><i class="fa fa-check"></i><b>39.6.5</b> TS002</a></li>
-<li class="chapter" data-level="39.6.6" data-path="clinic-trail.html"><a href="clinic-trail.html#cp17-01"><i class="fa fa-check"></i><b>39.6.6</b> CP17-01</a></li>
-<li class="chapter" data-level="39.6.7" data-path="clinic-trail.html"><a href="clinic-trail.html#relax"><i class="fa fa-check"></i><b>39.6.7</b> RELAX</a></li>
-<li class="chapter" data-level="39.6.8" data-path="clinic-trail.html"><a href="clinic-trail.html#virtiol"><i class="fa fa-check"></i><b>39.6.8</b> VirtIOL</a></li>
-</ul></li>
-<li class="chapter" data-level="39.7" data-path="clinic-trail.html"><a href="clinic-trail.html#non-interventional-study-nis"><i class="fa fa-check"></i><b>39.7</b> Non-Interventional Study (NIS)</a>
-<ul>
-<li class="chapter" data-level="39.7.1" data-path="clinic-trail.html"><a href="clinic-trail.html#db"><i class="fa fa-check"></i><b>39.7.1</b> DB</a></li>
-<li class="chapter" data-level="39.7.2" data-path="clinic-trail.html"><a href="clinic-trail.html#oepnv"><i class="fa fa-check"></i><b>39.7.2</b> OEPNV</a></li>
-</ul></li>
-<li class="chapter" data-level="39.8" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-ii"><i class="fa fa-check"></i><b>39.8</b> Trials Design (Phase II)</a>
-<ul>
-<li class="chapter" data-level="39.8.1" data-path="clinic-trail.html"><a href="clinic-trail.html#flemings-two-stage-design"><i class="fa fa-check"></i><b>39.8.1</b> Fleming’s Two-Stage design</a></li>
-<li class="chapter" data-level="39.8.2" data-path="clinic-trail.html"><a href="clinic-trail.html#simons-2-stage-design"><i class="fa fa-check"></i><b>39.8.2</b> Simon’s 2-Stage Design</a></li>
-<li class="chapter" data-level="39.8.3" data-path="clinic-trail.html"><a href="clinic-trail.html#jonckheere-terptsra-jt-trend-test"><i class="fa fa-check"></i><b>39.8.3</b> Jonckheere-Terptsra (JT) trend test</a></li>
-<li class="chapter" data-level="39.8.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cochran-armitage-ca-trend-test"><i class="fa fa-check"></i><b>39.8.4</b> Cochran-Armitage (CA) trend test</a></li>
-<li class="chapter" data-level="39.8.5" data-path="clinic-trail.html"><a href="clinic-trail.html#mcp-mod"><i class="fa fa-check"></i><b>39.8.5</b> MCP-Mod</a></li>
-<li class="chapter" data-level="39.8.6" data-path="clinic-trail.html"><a href="clinic-trail.html#two-stage-phase-ii-design-for-response-and-toxicity"><i class="fa fa-check"></i><b>39.8.6</b> Two Stage Phase II Design for Response and Toxicity</a></li>
-</ul></li>
-<li class="chapter" data-level="39.9" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-iii"><i class="fa fa-check"></i><b>39.9</b> Trials Design (Phase III)</a>
-<ul>
-<li class="chapter" data-level="39.9.1" data-path="clinic-trail.html"><a href="clinic-trail.html#non-inferiority-and-equivalence-three-armed-trial"><i class="fa fa-check"></i><b>39.9.1</b> Non-inferiority and Equivalence Three-armed trial</a></li>
-<li class="chapter" data-level="39.9.2" data-path="clinic-trail.html"><a href="clinic-trail.html#pigeot-method"><i class="fa fa-check"></i><b>39.9.2</b> Pigeot Method</a></li>
-</ul></li>
-<li class="chapter" data-level="39.10" data-path="clinic-trail.html"><a href="clinic-trail.html#sample-size-calculation-1"><i class="fa fa-check"></i><b>39.10</b> Sample Size Calculation</a>
-<ul>
-<li class="chapter" data-level="39.10.1" data-path="clinic-trail.html"><a href="clinic-trail.html#chi-square-test-1"><i class="fa fa-check"></i><b>39.10.1</b> <strong>Chi-Square Test</strong></a></li>
-<li class="chapter" data-level="39.10.2" data-path="clinic-trail.html"><a href="clinic-trail.html#fishers-exact-test-2"><i class="fa fa-check"></i><b>39.10.2</b> Fisher’s Exact Test</a></li>
-<li class="chapter" data-level="39.10.3" data-path="clinic-trail.html"><a href="clinic-trail.html#t-test"><i class="fa fa-check"></i><b>39.10.3</b> T-Test</a></li>
-</ul></li>
-<li class="chapter" data-level="39.11" data-path="clinic-trail.html"><a href="clinic-trail.html#data-analysis-methods-in-cip"><i class="fa fa-check"></i><b>39.11</b> Data Analysis Methods in CIP</a>
-<ul>
-<li class="chapter" data-level="39.11.1" data-path="clinic-trail.html"><a href="clinic-trail.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>39.11.1</b> Statistical Analysis Plan</a></li>
-<li class="chapter" data-level="39.11.2" data-path="clinic-trail.html"><a href="clinic-trail.html#general-considerations"><i class="fa fa-check"></i><b>39.11.2</b> General Considerations</a></li>
-<li class="chapter" data-level="39.11.3" data-path="clinic-trail.html"><a href="clinic-trail.html#analysis-sets"><i class="fa fa-check"></i><b>39.11.3</b> Analysis Sets</a></li>
-<li class="chapter" data-level="39.11.4" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-disposition"><i class="fa fa-check"></i><b>39.11.4</b> Patient Disposition</a></li>
-<li class="chapter" data-level="39.11.5" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-characteristics"><i class="fa fa-check"></i><b>39.11.5</b> Patient Characteristics</a></li>
-<li class="chapter" data-level="39.11.6" data-path="clinic-trail.html"><a href="clinic-trail.html#treatment-compliance"><i class="fa fa-check"></i><b>39.11.6</b> Treatment Compliance</a></li>
-<li class="chapter" data-level="39.11.7" data-path="clinic-trail.html"><a href="clinic-trail.html#descriptiveexplorative-analysis"><i class="fa fa-check"></i><b>39.11.7</b> Descriptive/Explorative Analysis</a></li>
-<li class="chapter" data-level="39.11.8" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-survival-analyses"><i class="fa fa-check"></i><b>39.11.8</b> Efficacy Survival Analyses</a></li>
-<li class="chapter" data-level="39.11.9" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-anova-analyses"><i class="fa fa-check"></i><b>39.11.9</b> Efficacy ANOVA Analyses</a></li>
-<li class="chapter" data-level="39.11.10" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-glm-dose-finding-study"><i class="fa fa-check"></i><b>39.11.10</b> Efficacy GLM Dose-Finding Study</a></li>
-<li class="chapter" data-level="39.11.11" data-path="clinic-trail.html"><a href="clinic-trail.html#safety-analyses"><i class="fa fa-check"></i><b>39.11.11</b> Safety Analyses</a></li>
-<li class="chapter" data-level="39.11.12" data-path="clinic-trail.html"><a href="clinic-trail.html#pharmacokinetic-and-pharmacodynamic-analyses"><i class="fa fa-check"></i><b>39.11.12</b> Pharmacokinetic and Pharmacodynamic Analyses</a></li>
-<li class="chapter" data-level="39.11.13" data-path="clinic-trail.html"><a href="clinic-trail.html#immunogenicity-data-analyses"><i class="fa fa-check"></i><b>39.11.13</b> Immunogenicity Data Analyses</a></li>
+<li class="chapter" data-level="37.2.1" data-path="pca.html"><a href="pca.html#data-preparation-4"><i class="fa fa-check"></i><b>37.2.1</b> Data preparation</a></li>
+<li class="chapter" data-level="37.2.2" data-path="pca.html"><a href="pca.html#modeling-1"><i class="fa fa-check"></i><b>37.2.2</b> Modeling</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="40" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html"><i class="fa fa-check"></i><b>40</b> Pharmacokinetic Analysis</a>
+<li class="chapter" data-level="38" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>38</b> Cluster Analysis</a>
 <ul>
-<li class="chapter" data-level="40.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#introduction-38"><i class="fa fa-check"></i><b>40.1</b> Introduction</a>
+<li class="chapter" data-level="38.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>38.1</b> Hierarchical Clustering</a>
 <ul>
-<li class="chapter" data-level="40.1.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#statistical-analysis-18"><i class="fa fa-check"></i><b>40.1.1</b> Statistical analysis</a></li>
+<li class="chapter" data-level="38.1.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#introduction-32"><i class="fa fa-check"></i><b>38.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="38.1.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-algorithms"><i class="fa fa-check"></i><b>38.1.2</b> Hierarchical clustering algorithms</a></li>
+<li class="chapter" data-level="38.1.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#measure-the-dissimilarity-between-two-clusters-of-observations"><i class="fa fa-check"></i><b>38.1.3</b> Measure the dissimilarity between two clusters of observations</a></li>
 </ul></li>
-<li class="chapter" data-level="40.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#pk-package"><i class="fa fa-check"></i><b>40.2</b> PK package</a>
+<li class="chapter" data-level="38.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>38.2</b> K-means Clustering</a>
 <ul>
-<li class="chapter" data-level="40.2.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc"><i class="fa fa-check"></i><b>40.2.1</b> AUC</a></li>
-<li class="chapter" data-level="40.2.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-complete-data-design"><i class="fa fa-check"></i><b>40.2.2</b> AUC in complete data design</a></li>
-<li class="chapter" data-level="40.2.3" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-repeated-complete-data-design"><i class="fa fa-check"></i><b>40.2.3</b> AUC in repeated complete data design</a></li>
-<li class="chapter" data-level="40.2.4" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#bioequivalence-between-aucs"><i class="fa fa-check"></i><b>40.2.4</b> Bioequivalence between AUCs</a></li>
-<li class="chapter" data-level="40.2.5" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-biexponential-model"><i class="fa fa-check"></i><b>40.2.5</b> Two-phase half-life estimation by biexponential model</a></li>
-<li class="chapter" data-level="40.2.6" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-linear-fitting"><i class="fa fa-check"></i><b>40.2.6</b> Two-phase half-life estimation by linear fitting</a></li>
-<li class="chapter" data-level="40.2.7" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#estimation-of-various-pk-parameters"><i class="fa fa-check"></i><b>40.2.7</b> Estimation of various PK parameters</a></li>
+<li class="chapter" data-level="38.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#algorithm"><i class="fa fa-check"></i><b>38.2.1</b> Algorithm</a></li>
+<li class="chapter" data-level="38.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means"><i class="fa fa-check"></i><b>38.2.2</b> K-Means++</a></li>
+<li class="chapter" data-level="38.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elkan-k-means"><i class="fa fa-check"></i><b>38.2.3</b> elkan K-Means</a></li>
+<li class="chapter" data-level="38.2.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#mini-batch-k-means"><i class="fa fa-check"></i><b>38.2.4</b> Mini Batch K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="38.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam"><i class="fa fa-check"></i><b>38.3</b> Gower’s coefficient and PAM</a>
+<ul>
+<li class="chapter" data-level="38.3.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient"><i class="fa fa-check"></i><b>38.3.1</b> Gower’s coefficient</a></li>
+<li class="chapter" data-level="38.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#不同数据类型的相异度计算-距离法"><i class="fa fa-check"></i><b>38.3.2</b> 不同数据类型的相异度计算 (距离法)</a></li>
+<li class="chapter" data-level="38.3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#pam"><i class="fa fa-check"></i><b>38.3.3</b> PAM</a></li>
+</ul></li>
+<li class="chapter" data-level="38.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-clustering"><i class="fa fa-check"></i><b>38.4</b> BIRCH Clustering</a>
+<ul>
+<li class="chapter" data-level="38.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch-introduction"><i class="fa fa-check"></i><b>38.4.1</b> BIRCH Introduction</a></li>
+<li class="chapter" data-level="38.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#聚类特征cf与聚类特征树cf-tree"><i class="fa fa-check"></i><b>38.4.2</b> 聚类特征CF与聚类特征树CF Tree</a></li>
+<li class="chapter" data-level="38.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cf-tree的生成"><i class="fa fa-check"></i><b>38.4.3</b> CF Tree的生成</a></li>
+<li class="chapter" data-level="38.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#birch算法"><i class="fa fa-check"></i><b>38.4.4</b> BIRCH算法</a></li>
+</ul></li>
+<li class="chapter" data-level="38.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#application-3"><i class="fa fa-check"></i><b>38.5</b> Application</a>
+<ul>
+<li class="chapter" data-level="38.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#data-preparation-5"><i class="fa fa-check"></i><b>38.5.1</b> Data preparation</a></li>
+<li class="chapter" data-level="38.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering-1"><i class="fa fa-check"></i><b>38.5.2</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="38.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering-1"><i class="fa fa-check"></i><b>38.5.3</b> K-means Clustering</a></li>
+<li class="chapter" data-level="38.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gowers-coefficient-and-pam-1"><i class="fa fa-check"></i><b>38.5.4</b> Gower’s coefficient and PAM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="41" data-path="cdisc-1.html"><a href="cdisc-1.html"><i class="fa fa-check"></i><b>41</b> CDISC</a>
+<li class="chapter" data-level="39" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i><b>39</b> linear discriminant analysis (LDA)</a>
 <ul>
-<li class="chapter" data-level="41.1" data-path="cdisc-1.html"><a href="cdisc-1.html#study-data-tabulation-model-sdtm"><i class="fa fa-check"></i><b>41.1</b> Study Data Tabulation Model (SDTM)</a>
+<li class="chapter" data-level="39.1" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#introduction-33"><i class="fa fa-check"></i><b>39.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="41.1.1" data-path="cdisc-1.html"><a href="cdisc-1.html#introduction-39"><i class="fa fa-check"></i><b>41.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="41.1.2" data-path="cdisc-1.html"><a href="cdisc-1.html#model-concepts-and-terms"><i class="fa fa-check"></i><b>41.1.2</b> Model Concepts and Terms</a></li>
-<li class="chapter" data-level="41.1.3" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-domains"><i class="fa fa-check"></i><b>41.1.3</b> SDTM Domains</a></li>
-<li class="chapter" data-level="41.1.4" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-define.xml"><i class="fa fa-check"></i><b>41.1.4</b> SDTM Define.xml</a></li>
-<li class="chapter" data-level="41.1.5" data-path="cdisc-1.html"><a href="cdisc-1.html#extract-transform-load-etl"><i class="fa fa-check"></i><b>41.1.5</b> Extract-Transform-Load (ETL)</a></li>
-<li class="chapter" data-level="41.1.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-dm-sdtm-datasets"><i class="fa fa-check"></i><b>41.1.6</b> Example Building DM SDTM Datasets</a></li>
+<li class="chapter" data-level="39.1.1" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#naive-bayes"><i class="fa fa-check"></i><b>39.1.1</b> Naive Bayes</a></li>
+<li class="chapter" data-level="39.1.2" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#controlling-prevalence"><i class="fa fa-check"></i><b>39.1.2</b> Controlling prevalence</a></li>
+<li class="chapter" data-level="39.1.3" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#qda"><i class="fa fa-check"></i><b>39.1.3</b> QDA</a></li>
+<li class="chapter" data-level="39.1.4" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#lda"><i class="fa fa-check"></i><b>39.1.4</b> LDA</a></li>
 </ul></li>
-<li class="chapter" data-level="41.2" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-sas-macro"><i class="fa fa-check"></i><b>41.2</b> SDTM SAS Macro</a>
+<li class="chapter" data-level="39.2" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#discriminant-analysis-algorithm"><i class="fa fa-check"></i><b>39.2</b> Discriminant analysis algorithm</a>
 <ul>
-<li class="chapter" data-level="41.2.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define"><i class="fa fa-check"></i><b>41.2.1</b> ％make_define</a></li>
-<li class="chapter" data-level="41.2.2" data-path="cdisc-1.html"><a href="cdisc-1.html#make_codelist_formats"><i class="fa fa-check"></i><b>41.2.2</b> %make_codelist_formats</a></li>
-<li class="chapter" data-level="41.2.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset"><i class="fa fa-check"></i><b>41.2.3</b> %make_empty_dataset</a></li>
-<li class="chapter" data-level="41.2.4" data-path="cdisc-1.html"><a href="cdisc-1.html#make_dtc_date"><i class="fa fa-check"></i><b>41.2.4</b> %make_dtc_date</a></li>
-<li class="chapter" data-level="41.2.5" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sdtm_dy"><i class="fa fa-check"></i><b>41.2.5</b> %make_sdtm_dy</a></li>
-<li class="chapter" data-level="41.2.6" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sort_order"><i class="fa fa-check"></i><b>41.2.6</b> %make_sort_order</a></li>
-<li class="chapter" data-level="41.2.7" data-path="cdisc-1.html"><a href="cdisc-1.html#create_stdm_domains"><i class="fa fa-check"></i><b>41.2.7</b> %Create_STDM_Domains</a></li>
-<li class="chapter" data-level="41.2.8" data-path="cdisc-1.html"><a href="cdisc-1.html#detectduplicates"><i class="fa fa-check"></i><b>41.2.8</b> %DetectDuplicates</a></li>
-<li class="chapter" data-level="41.2.9" data-path="cdisc-1.html"><a href="cdisc-1.html#changedvarnum"><i class="fa fa-check"></i><b>41.2.9</b> %ChangedVarNum</a></li>
-<li class="chapter" data-level="41.2.10" data-path="cdisc-1.html"><a href="cdisc-1.html#changedlabels"><i class="fa fa-check"></i><b>41.2.10</b> %ChangedLabels</a></li>
+<li class="chapter" data-level="39.2.1" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#idee-1"><i class="fa fa-check"></i><b>39.2.1</b> Idee</a></li>
+<li class="chapter" data-level="39.2.2" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#瑞利商rayleigh-quotient"><i class="fa fa-check"></i><b>39.2.2</b> 瑞利商（Rayleigh quotient）</a></li>
+<li class="chapter" data-level="39.2.3" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#广义瑞利商-genralized-rayleigh-quotient"><i class="fa fa-check"></i><b>39.2.3</b> 广义瑞利商 genralized Rayleigh quotient</a></li>
+<li class="chapter" data-level="39.2.4" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#lda算法流程"><i class="fa fa-check"></i><b>39.2.4</b> LDA算法流程</a></li>
+<li class="chapter" data-level="39.2.5" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#lda-application"><i class="fa fa-check"></i><b>39.2.5</b> LDA Application</a></li>
+<li class="chapter" data-level="39.2.6" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#qda-1"><i class="fa fa-check"></i><b>39.2.6</b> QDA</a></li>
 </ul></li>
-<li class="chapter" data-level="41.3" data-path="cdisc-1.html"><a href="cdisc-1.html#analysis-data-model-adam"><i class="fa fa-check"></i><b>41.3</b> Analysis Data Model (ADaM)</a>
-<ul>
-<li class="chapter" data-level="41.3.1" data-path="cdisc-1.html"><a href="cdisc-1.html#compare-with-sdtm"><i class="fa fa-check"></i><b>41.3.1</b> Compare with SDTM</a></li>
-<li class="chapter" data-level="41.3.2" data-path="cdisc-1.html"><a href="cdisc-1.html#types-of-adam-metadata"><i class="fa fa-check"></i><b>41.3.2</b> 4 types of ADaM metadata</a></li>
-<li class="chapter" data-level="41.3.3" data-path="cdisc-1.html"><a href="cdisc-1.html#subject-level-analysis-dataset-adsl"><i class="fa fa-check"></i><b>41.3.3</b> Subject-Level Analysis Dataset (ADSL)</a></li>
-<li class="chapter" data-level="41.3.4" data-path="cdisc-1.html"><a href="cdisc-1.html#the-basic-data-structure-bds"><i class="fa fa-check"></i><b>41.3.4</b> The Basic Data Structure (BDS)</a></li>
-<li class="chapter" data-level="41.3.5" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adsl-datasets"><i class="fa fa-check"></i><b>41.3.5</b> Example Building ADSL Datasets</a></li>
-<li class="chapter" data-level="41.3.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adam-basic-data-structure-bds-datasets"><i class="fa fa-check"></i><b>41.3.6</b> Example Building ADaM Basic Data Structure (BDS) Datasets</a></li>
-<li class="chapter" data-level="41.3.7" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adae-adverse-event-analysis-datasets-datasets"><i class="fa fa-check"></i><b>41.3.7</b> Example Building ADAE – Adverse Event Analysis Datasets Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="41.4" data-path="cdisc-1.html"><a href="cdisc-1.html#adam-sas-macro"><i class="fa fa-check"></i><b>41.4</b> ADaM SAS Macro</a>
+<li class="chapter" data-level="40" data-path="neural-network.html"><a href="neural-network.html"><i class="fa fa-check"></i><b>40</b> Neural Network</a>
 <ul>
-<li class="chapter" data-level="41.4.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define-1"><i class="fa fa-check"></i><b>41.4.1</b> %make_define</a></li>
-<li class="chapter" data-level="41.4.2" data-path="cdisc-1.html"><a href="cdisc-1.html#create_adam_dataset"><i class="fa fa-check"></i><b>41.4.2</b> %create_adam_dataset</a></li>
-<li class="chapter" data-level="41.4.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset-1"><i class="fa fa-check"></i><b>41.4.3</b> %make_empty_dataset</a></li>
-<li class="chapter" data-level="41.4.4" data-path="cdisc-1.html"><a href="cdisc-1.html#dtc2dt"><i class="fa fa-check"></i><b>41.4.4</b> %DTC2DT</a></li>
-<li class="chapter" data-level="41.4.5" data-path="cdisc-1.html"><a href="cdisc-1.html#imputed_date"><i class="fa fa-check"></i><b>41.4.5</b> %imputed_date</a></li>
-<li class="chapter" data-level="41.4.6" data-path="cdisc-1.html"><a href="cdisc-1.html#mergsupp"><i class="fa fa-check"></i><b>41.4.6</b> %mergsupp</a></li>
+<li class="chapter" data-level="40.1" data-path="neural-network.html"><a href="neural-network.html#introduction-34"><i class="fa fa-check"></i><b>40.1</b> Introduction</a></li>
+<li class="chapter" data-level="40.2" data-path="neural-network.html"><a href="neural-network.html#反向传播方法进行训练的前馈神经网络"><i class="fa fa-check"></i><b>40.2</b> 反向传播方法进行训练的前馈神经网络</a></li>
+<li class="chapter" data-level="40.3" data-path="neural-network.html"><a href="neural-network.html#application-4"><i class="fa fa-check"></i><b>40.3</b> Application</a>
+<ul>
+<li class="chapter" data-level="40.3.1" data-path="neural-network.html"><a href="neural-network.html#数据准备"><i class="fa fa-check"></i><b>40.3.1</b> 数据准备</a></li>
+<li class="chapter" data-level="40.3.2" data-path="neural-network.html"><a href="neural-network.html#模型构建"><i class="fa fa-check"></i><b>40.3.2</b> 模型构建</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="clinic-trail.html"><a href="clinic-trail.html"><i class="fa fa-check"></i><b>41</b> Clinic Trail</a>
+<ul>
+<li class="chapter" data-level="41.1" data-path="clinic-trail.html"><a href="clinic-trail.html#regulation"><i class="fa fa-check"></i><b>41.1</b> Regulation</a></li>
+<li class="chapter" data-level="41.2" data-path="clinic-trail.html"><a href="clinic-trail.html#randomization"><i class="fa fa-check"></i><b>41.2</b> Randomization</a>
+<ul>
+<li class="chapter" data-level="41.2.1" data-path="clinic-trail.html"><a href="clinic-trail.html#simple-randomization"><i class="fa fa-check"></i><b>41.2.1</b> Simple randomization</a></li>
+<li class="chapter" data-level="41.2.2" data-path="clinic-trail.html"><a href="clinic-trail.html#block-randomization"><i class="fa fa-check"></i><b>41.2.2</b> Block randomization</a></li>
+<li class="chapter" data-level="41.2.3" data-path="clinic-trail.html"><a href="clinic-trail.html#stratified-randomization"><i class="fa fa-check"></i><b>41.2.3</b> Stratified randomization</a></li>
+</ul></li>
+<li class="chapter" data-level="41.3" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-i-trials-design"><i class="fa fa-check"></i><b>41.3</b> Phase I Trials Design</a>
+<ul>
+<li class="chapter" data-level="41.3.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-35"><i class="fa fa-check"></i><b>41.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="41.4" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-ii-trials-design"><i class="fa fa-check"></i><b>41.4</b> Phase II Trials Design</a>
+<ul>
+<li class="chapter" data-level="41.4.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-36"><i class="fa fa-check"></i><b>41.4.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="41.5" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iii-trials-design"><i class="fa fa-check"></i><b>41.5</b> Phase III Trials Design</a>
+<ul>
+<li class="chapter" data-level="41.5.1" data-path="clinic-trail.html"><a href="clinic-trail.html#introduction-37"><i class="fa fa-check"></i><b>41.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="41.5.2" data-path="clinic-trail.html"><a href="clinic-trail.html#mediwound1"><i class="fa fa-check"></i><b>41.5.2</b> MEDIWOUND1</a></li>
+</ul></li>
+<li class="chapter" data-level="41.6" data-path="clinic-trail.html"><a href="clinic-trail.html#postmarketing-surveillance-pms"><i class="fa fa-check"></i><b>41.6</b> Postmarketing Surveillance (PMS)</a>
+<ul>
+<li class="chapter" data-level="41.6.1" data-path="clinic-trail.html"><a href="clinic-trail.html#phase-iv-and-pms"><i class="fa fa-check"></i><b>41.6.1</b> Phase IV and PMS</a></li>
+</ul></li>
+<li class="chapter" data-level="41.7" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-ii"><i class="fa fa-check"></i><b>41.7</b> Trials Design (Phase II)</a>
+<ul>
+<li class="chapter" data-level="41.7.1" data-path="clinic-trail.html"><a href="clinic-trail.html#flemings-two-stage-design"><i class="fa fa-check"></i><b>41.7.1</b> Fleming’s Two-Stage design</a></li>
+<li class="chapter" data-level="41.7.2" data-path="clinic-trail.html"><a href="clinic-trail.html#simons-2-stage-design"><i class="fa fa-check"></i><b>41.7.2</b> Simon’s 2-Stage Design</a></li>
+<li class="chapter" data-level="41.7.3" data-path="clinic-trail.html"><a href="clinic-trail.html#jonckheere-terptsra-jt-trend-test"><i class="fa fa-check"></i><b>41.7.3</b> Jonckheere-Terptsra (JT) trend test</a></li>
+<li class="chapter" data-level="41.7.4" data-path="clinic-trail.html"><a href="clinic-trail.html#cochran-armitage-ca-trend-test"><i class="fa fa-check"></i><b>41.7.4</b> Cochran-Armitage (CA) trend test</a></li>
+<li class="chapter" data-level="41.7.5" data-path="clinic-trail.html"><a href="clinic-trail.html#mcp-mod"><i class="fa fa-check"></i><b>41.7.5</b> MCP-Mod</a></li>
+<li class="chapter" data-level="41.7.6" data-path="clinic-trail.html"><a href="clinic-trail.html#two-stage-phase-ii-design-for-response-and-toxicity"><i class="fa fa-check"></i><b>41.7.6</b> Two Stage Phase II Design for Response and Toxicity</a></li>
+</ul></li>
+<li class="chapter" data-level="41.8" data-path="clinic-trail.html"><a href="clinic-trail.html#trials-design-phase-iii"><i class="fa fa-check"></i><b>41.8</b> Trials Design (Phase III)</a>
+<ul>
+<li class="chapter" data-level="41.8.1" data-path="clinic-trail.html"><a href="clinic-trail.html#non-inferiority-and-equivalence-three-armed-trial"><i class="fa fa-check"></i><b>41.8.1</b> Non-inferiority and Equivalence Three-armed trial</a></li>
+<li class="chapter" data-level="41.8.2" data-path="clinic-trail.html"><a href="clinic-trail.html#pigeot-method"><i class="fa fa-check"></i><b>41.8.2</b> Pigeot Method</a></li>
+</ul></li>
+<li class="chapter" data-level="41.9" data-path="clinic-trail.html"><a href="clinic-trail.html#sample-size-calculation-1"><i class="fa fa-check"></i><b>41.9</b> Sample Size Calculation</a>
+<ul>
+<li class="chapter" data-level="41.9.1" data-path="clinic-trail.html"><a href="clinic-trail.html#chi-square-test-1"><i class="fa fa-check"></i><b>41.9.1</b> <strong>Chi-Square Test</strong></a></li>
+<li class="chapter" data-level="41.9.2" data-path="clinic-trail.html"><a href="clinic-trail.html#fishers-exact-test-2"><i class="fa fa-check"></i><b>41.9.2</b> Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="41.9.3" data-path="clinic-trail.html"><a href="clinic-trail.html#t-test"><i class="fa fa-check"></i><b>41.9.3</b> T-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="41.10" data-path="clinic-trail.html"><a href="clinic-trail.html#data-analysis-methods-in-cip"><i class="fa fa-check"></i><b>41.10</b> Data Analysis Methods in CIP</a>
+<ul>
+<li class="chapter" data-level="41.10.1" data-path="clinic-trail.html"><a href="clinic-trail.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>41.10.1</b> Statistical Analysis Plan</a></li>
+<li class="chapter" data-level="41.10.2" data-path="clinic-trail.html"><a href="clinic-trail.html#general-considerations"><i class="fa fa-check"></i><b>41.10.2</b> General Considerations</a></li>
+<li class="chapter" data-level="41.10.3" data-path="clinic-trail.html"><a href="clinic-trail.html#analysis-sets"><i class="fa fa-check"></i><b>41.10.3</b> Analysis Sets</a></li>
+<li class="chapter" data-level="41.10.4" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-disposition"><i class="fa fa-check"></i><b>41.10.4</b> Patient Disposition</a></li>
+<li class="chapter" data-level="41.10.5" data-path="clinic-trail.html"><a href="clinic-trail.html#patient-characteristics"><i class="fa fa-check"></i><b>41.10.5</b> Patient Characteristics</a></li>
+<li class="chapter" data-level="41.10.6" data-path="clinic-trail.html"><a href="clinic-trail.html#treatment-compliance"><i class="fa fa-check"></i><b>41.10.6</b> Treatment Compliance</a></li>
+<li class="chapter" data-level="41.10.7" data-path="clinic-trail.html"><a href="clinic-trail.html#descriptiveexplorative-analysis"><i class="fa fa-check"></i><b>41.10.7</b> Descriptive/Explorative Analysis</a></li>
+<li class="chapter" data-level="41.10.8" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-survival-analyses"><i class="fa fa-check"></i><b>41.10.8</b> Efficacy Survival Analyses</a></li>
+<li class="chapter" data-level="41.10.9" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-anova-analyses"><i class="fa fa-check"></i><b>41.10.9</b> Efficacy ANOVA Analyses</a></li>
+<li class="chapter" data-level="41.10.10" data-path="clinic-trail.html"><a href="clinic-trail.html#efficacy-glm-dose-finding-study"><i class="fa fa-check"></i><b>41.10.10</b> Efficacy GLM Dose-Finding Study</a></li>
+<li class="chapter" data-level="41.10.11" data-path="clinic-trail.html"><a href="clinic-trail.html#safety-analyses"><i class="fa fa-check"></i><b>41.10.11</b> Safety Analyses</a></li>
+<li class="chapter" data-level="41.10.12" data-path="clinic-trail.html"><a href="clinic-trail.html#pharmacokinetic-and-pharmacodynamic-analyses"><i class="fa fa-check"></i><b>41.10.12</b> Pharmacokinetic and Pharmacodynamic Analyses</a></li>
+<li class="chapter" data-level="41.10.13" data-path="clinic-trail.html"><a href="clinic-trail.html#immunogenicity-data-analyses"><i class="fa fa-check"></i><b>41.10.13</b> Immunogenicity Data Analyses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html"><i class="fa fa-check"></i><b>42</b> Pharmacokinetic Analysis</a>
+<ul>
+<li class="chapter" data-level="42.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#introduction-38"><i class="fa fa-check"></i><b>42.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="42.1.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#statistical-analysis-1"><i class="fa fa-check"></i><b>42.1.1</b> Statistical analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="42.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#pk-package"><i class="fa fa-check"></i><b>42.2</b> PK package</a>
+<ul>
+<li class="chapter" data-level="42.2.1" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc"><i class="fa fa-check"></i><b>42.2.1</b> AUC</a></li>
+<li class="chapter" data-level="42.2.2" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-complete-data-design"><i class="fa fa-check"></i><b>42.2.2</b> AUC in complete data design</a></li>
+<li class="chapter" data-level="42.2.3" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#auc-in-repeated-complete-data-design"><i class="fa fa-check"></i><b>42.2.3</b> AUC in repeated complete data design</a></li>
+<li class="chapter" data-level="42.2.4" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#bioequivalence-between-aucs"><i class="fa fa-check"></i><b>42.2.4</b> Bioequivalence between AUCs</a></li>
+<li class="chapter" data-level="42.2.5" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-biexponential-model"><i class="fa fa-check"></i><b>42.2.5</b> Two-phase half-life estimation by biexponential model</a></li>
+<li class="chapter" data-level="42.2.6" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#two-phase-half-life-estimation-by-linear-fitting"><i class="fa fa-check"></i><b>42.2.6</b> Two-phase half-life estimation by linear fitting</a></li>
+<li class="chapter" data-level="42.2.7" data-path="pharmacokinetic-analysis.html"><a href="pharmacokinetic-analysis.html#estimation-of-various-pk-parameters"><i class="fa fa-check"></i><b>42.2.7</b> Estimation of various PK parameters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="cdisc-1.html"><a href="cdisc-1.html"><i class="fa fa-check"></i><b>43</b> CDISC</a>
+<ul>
+<li class="chapter" data-level="43.1" data-path="cdisc-1.html"><a href="cdisc-1.html#study-data-tabulation-model-sdtm"><i class="fa fa-check"></i><b>43.1</b> Study Data Tabulation Model (SDTM)</a>
+<ul>
+<li class="chapter" data-level="43.1.1" data-path="cdisc-1.html"><a href="cdisc-1.html#introduction-39"><i class="fa fa-check"></i><b>43.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="43.1.2" data-path="cdisc-1.html"><a href="cdisc-1.html#model-concepts-and-terms"><i class="fa fa-check"></i><b>43.1.2</b> Model Concepts and Terms</a></li>
+<li class="chapter" data-level="43.1.3" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-domains"><i class="fa fa-check"></i><b>43.1.3</b> SDTM Domains</a></li>
+<li class="chapter" data-level="43.1.4" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-define.xml"><i class="fa fa-check"></i><b>43.1.4</b> SDTM Define.xml</a></li>
+<li class="chapter" data-level="43.1.5" data-path="cdisc-1.html"><a href="cdisc-1.html#extract-transform-load-etl"><i class="fa fa-check"></i><b>43.1.5</b> Extract-Transform-Load (ETL)</a></li>
+<li class="chapter" data-level="43.1.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-dm-sdtm-datasets"><i class="fa fa-check"></i><b>43.1.6</b> Example Building DM SDTM Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="43.2" data-path="cdisc-1.html"><a href="cdisc-1.html#sdtm-sas-macro"><i class="fa fa-check"></i><b>43.2</b> SDTM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="43.2.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define"><i class="fa fa-check"></i><b>43.2.1</b> ％make_define</a></li>
+<li class="chapter" data-level="43.2.2" data-path="cdisc-1.html"><a href="cdisc-1.html#make_codelist_formats"><i class="fa fa-check"></i><b>43.2.2</b> %make_codelist_formats</a></li>
+<li class="chapter" data-level="43.2.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset"><i class="fa fa-check"></i><b>43.2.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="43.2.4" data-path="cdisc-1.html"><a href="cdisc-1.html#make_dtc_date"><i class="fa fa-check"></i><b>43.2.4</b> %make_dtc_date</a></li>
+<li class="chapter" data-level="43.2.5" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sdtm_dy"><i class="fa fa-check"></i><b>43.2.5</b> %make_sdtm_dy</a></li>
+<li class="chapter" data-level="43.2.6" data-path="cdisc-1.html"><a href="cdisc-1.html#make_sort_order"><i class="fa fa-check"></i><b>43.2.6</b> %make_sort_order</a></li>
+<li class="chapter" data-level="43.2.7" data-path="cdisc-1.html"><a href="cdisc-1.html#create_stdm_domains"><i class="fa fa-check"></i><b>43.2.7</b> %Create_STDM_Domains</a></li>
+<li class="chapter" data-level="43.2.8" data-path="cdisc-1.html"><a href="cdisc-1.html#detectduplicates"><i class="fa fa-check"></i><b>43.2.8</b> %DetectDuplicates</a></li>
+<li class="chapter" data-level="43.2.9" data-path="cdisc-1.html"><a href="cdisc-1.html#changedvarnum"><i class="fa fa-check"></i><b>43.2.9</b> %ChangedVarNum</a></li>
+<li class="chapter" data-level="43.2.10" data-path="cdisc-1.html"><a href="cdisc-1.html#changedlabels"><i class="fa fa-check"></i><b>43.2.10</b> %ChangedLabels</a></li>
+</ul></li>
+<li class="chapter" data-level="43.3" data-path="cdisc-1.html"><a href="cdisc-1.html#analysis-data-model-adam"><i class="fa fa-check"></i><b>43.3</b> Analysis Data Model (ADaM)</a>
+<ul>
+<li class="chapter" data-level="43.3.1" data-path="cdisc-1.html"><a href="cdisc-1.html#compare-with-sdtm"><i class="fa fa-check"></i><b>43.3.1</b> Compare with SDTM</a></li>
+<li class="chapter" data-level="43.3.2" data-path="cdisc-1.html"><a href="cdisc-1.html#types-of-adam-metadata"><i class="fa fa-check"></i><b>43.3.2</b> 4 types of ADaM metadata</a></li>
+<li class="chapter" data-level="43.3.3" data-path="cdisc-1.html"><a href="cdisc-1.html#subject-level-analysis-dataset-adsl"><i class="fa fa-check"></i><b>43.3.3</b> Subject-Level Analysis Dataset (ADSL)</a></li>
+<li class="chapter" data-level="43.3.4" data-path="cdisc-1.html"><a href="cdisc-1.html#the-basic-data-structure-bds"><i class="fa fa-check"></i><b>43.3.4</b> The Basic Data Structure (BDS)</a></li>
+<li class="chapter" data-level="43.3.5" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adsl-datasets"><i class="fa fa-check"></i><b>43.3.5</b> Example Building ADSL Datasets</a></li>
+<li class="chapter" data-level="43.3.6" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adam-basic-data-structure-bds-datasets"><i class="fa fa-check"></i><b>43.3.6</b> Example Building ADaM Basic Data Structure (BDS) Datasets</a></li>
+<li class="chapter" data-level="43.3.7" data-path="cdisc-1.html"><a href="cdisc-1.html#example-building-adae-adverse-event-analysis-datasets-datasets"><i class="fa fa-check"></i><b>43.3.7</b> Example Building ADAE – Adverse Event Analysis Datasets Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="43.4" data-path="cdisc-1.html"><a href="cdisc-1.html#adam-sas-macro"><i class="fa fa-check"></i><b>43.4</b> ADaM SAS Macro</a>
+<ul>
+<li class="chapter" data-level="43.4.1" data-path="cdisc-1.html"><a href="cdisc-1.html#make_define-1"><i class="fa fa-check"></i><b>43.4.1</b> %make_define</a></li>
+<li class="chapter" data-level="43.4.2" data-path="cdisc-1.html"><a href="cdisc-1.html#create_adam_dataset"><i class="fa fa-check"></i><b>43.4.2</b> %create_adam_dataset</a></li>
+<li class="chapter" data-level="43.4.3" data-path="cdisc-1.html"><a href="cdisc-1.html#make_empty_dataset-1"><i class="fa fa-check"></i><b>43.4.3</b> %make_empty_dataset</a></li>
+<li class="chapter" data-level="43.4.4" data-path="cdisc-1.html"><a href="cdisc-1.html#dtc2dt"><i class="fa fa-check"></i><b>43.4.4</b> %DTC2DT</a></li>
+<li class="chapter" data-level="43.4.5" data-path="cdisc-1.html"><a href="cdisc-1.html#imputed_date"><i class="fa fa-check"></i><b>43.4.5</b> %imputed_date</a></li>
+<li class="chapter" data-level="43.4.6" data-path="cdisc-1.html"><a href="cdisc-1.html#mergsupp"><i class="fa fa-check"></i><b>43.4.6</b> %mergsupp</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -1784,7 +1786,7 @@ p_{i j}\left(\theta_{i}^{1}, a_{j}, b_{j}\right)=\frac{1}{1+\exp \left[-1.7 a_{j
         </div>
       </div>
 <a href="bayesian-theory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="knn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="smoothing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
