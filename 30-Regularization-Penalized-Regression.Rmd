@@ -1,15 +1,20 @@
 # Regularization Penalized Regression 
 
-
-```{r mind map,echo = F,message = FALSE, error = FALSE, warning = FALSE}
+```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
 library('mindr')
 ### text -> widget
 ### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
 ### mm(from = input, type = "text", root = "mindr")
-filename <- rstudioapi::getSourceEditorContext()$path
-widget <- mm(from = filename, type = "file", root = "")
-widget
+input <- rstudioapi::getSourceEditorContext()$path 
+## file.show(input) # Open the input file with the default program, if any
+input_txt <- readLines(input, encoding = "UTF-8")
+## Convert to mind map text, markdown outline, R script, and HTML widget ####
+mm_output <- mm(input_txt, 
+                output_type = c("widget"),
+                root = "")
+mm_output$widget
 ```
+
 
 ## Introduction
 
@@ -144,11 +149,28 @@ mean(resid.subfit^2)
 
 ## Ridge Regression
 
-岭回归(Ridge regression, Tikhonov regularization) 是一种专用于共线性数据分析的有偏估计回归方法，实质上是一种改良的最小二乘估计法，通过放弃最小二乘法的无偏性，以损失部分信息、降低精度为代价获得回归系数更为符合实际、更可靠的回归方法，对病态数据的拟合要强于最小二乘法。
+岭回归(Ridge regression, Tikhonov regularization) 是一种专用于**共线性数据分析**的有偏估计回归方法，实质上是一种改良的最小二乘估计法，通过放弃最小二乘法的无偏性，以损失部分信息、降低精度为代价获得回归系数更为符合实际、更可靠的回归方法，对病态数据的拟合要强于最小二乘法。
 
 在岭回归中，规范化项是所有 系数的平方和，称为L2-norm(L2范数)。在我们的模型中就是试图最小化RSS + λ(sumβj2)。
 当λ增加时，系数会缩小，趋向于0但永远不会为0。
 岭回归的优点是可以提高预测准确度，但因为它不能使任何一个特征的系数为0，所以在模型解释性上会有些问题
+
+Hoerl and Kennard (1970) proposed that potential instability in the LS estimator
+$$
+\hat{\beta}=\left(X^{\prime} X\right)^{-1} X^{\prime} Y,
+$$
+could be improved by adding a small constant value $\lambda$ to the diagonal entries of the matrix $X^{\prime} X$ before taking its inverse.
+The result is the ridge regression estimator
+$$
+\hat{\beta}_{\text {ridge }}=\left(X^{\prime} X+\lambda I_{p}\right)^{-1} X^{\prime} Y
+$$
+Ridge regression places a particular form of constraint on the parameters $\left(\beta^{\prime} \mathrm{s}\right): \hat{\beta}_{\text {ridge }}$ is chosen to minimize the penalized sum of squares:
+$$
+\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{p} x_{i j} \beta_{j}\right)^{2}+\lambda \sum_{j=1}^{p} \beta_{j}^{2}
+$$
+which is equivalent to minimization of $\sum_{i=1}^{n}\left(y_{i}-\sum_{j=1}^{p} x_{i j} \beta_{j}\right)^{2}$ subject to, for some $c>0, \sum_{j=1}^{p} \beta_{j}^{2}<c$, i.e. constraining the sum of the squared coefficients.
+Therefore, ridge regression puts further constraints on the parameters, $\beta_{j}$ 's, in the linear model. In this case, what we are doing is that instead of just minimizing the residual sum values, the optimization function is penalized. We would prefer to take smaller $\beta_{j}$ 's, or $\beta_{j}$ 's that are close to zero to drive the penalty term small.
+
 
 ### Modeling
 
@@ -199,7 +221,15 @@ mean(ridge.resid^2)
 当响应变量是很多预测变量的函数，而且预测变量的系数大小都差不多时，岭回归表现得更好
 两全其美的机会: 弹性网络既能做到岭回归不能做的特征提取，也能实现LASSO不能做的 特征分组。
 
- 
+A ridge solution can be hard to interpret because it is not sparse (no $\beta$ 's are set exactly to 0 ). 
+
+* Ridge subject to: $\sum_{j=1}^{p}\left(\beta_{j}\right)^{2}<c$.
+* Lasso subject to: $\sum_{j=1}^{p}\left|\beta_{j}\right|<c$.
+
+This is a subtle, but important change. Some of the coefficients may be shrunk exactly to zero.
+The least absolute shrinkage and selection operator, or lasso, as described in Tibshirani (1996) is a technique that has received a great deal of interest.
+As with ridge regression we assume the covariates are standardized. Lasso estimates of the coefficients (Tibshirani, 1996) achieve min $(Y-X \beta)^{\prime}(Y-X \beta)+\lambda \sum_{j=1}^{p}\left|\beta_{j}\right|$, so that the L2 penalty of ridge regression $\sum_{j=1}^{p} \beta_{j}^{2}$ is replaced by an L1 penalty, $\sum_{j=1}^{p}\left|\beta_{j}\right|$.
+4 
 ### Modelling
 
 ```{r,echo = T,message = FALSE, error = FALSE, warning = FALSE}
@@ -311,16 +341,16 @@ enet.train
 ## 实验设计得到的最优调优参数是α = 0和λ = 0.08，相当于glmnet中s = 0.08的岭回归
 
 ## 在测试集上验证模型
-enet <- glmnet(x, y,family = "gaussian", 
-               alpha = 0, 
-               lambda = .08)
-enet.coef <- coef(enet, s = .08, exact = TRUE)
-enet.coef
-enet.y <- predict(enet, newx = newx, type = "response",  s= .08)
-plot(enet.y, test$lpsa, xlab = "Predicted", 
-     ylab = "Actual", main = "Elastic Net")
-enet.resid <- enet.y - test$lpsa
-mean(enet.resid^2)
+# enet <- glmnet(x, y,family = "gaussian", 
+#                alpha = 0, 
+#                lambda = .08)
+# enet.coef <- coef(enet, s = .08, exact = TRUE)
+# enet.coef
+# enet.y <- predict(enet, newx = newx, type = "response",  s= .08)
+# plot(enet.y, test$lpsa, xlab = "Predicted", 
+#      ylab = "Actual", main = "Elastic Net")
+# enet.resid <- enet.y - test$lpsa
+# mean(enet.resid^2)
 ```
 
 
