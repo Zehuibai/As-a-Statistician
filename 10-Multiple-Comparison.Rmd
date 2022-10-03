@@ -2,19 +2,9 @@
 
 ```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
 library('mindr')
-### text -> widget
-### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
-### mm(from = input, type = "text", root = "mindr")
-input <- rstudioapi::getSourceEditorContext()$path 
-## file.show(input) # Open the input file with the default program, if any
-input_txt <- readLines(input, encoding = "UTF-8")
-## Convert to mind map text, markdown outline, R script, and HTML widget ####
-mm_output <- mm(input_txt, 
-                output_type = c("widget"),
-                root = "")
-mm_output$widget
+input <- rstudioapi::getSourceEditorContext()$path
+mm(from = input, type = 'file', widget_name = '10_Multiple-Comparison.html', root = "")
 ```
-
 
 ## Introduction
 
@@ -88,8 +78,7 @@ An MCP is said to control the FWE in the weak sense if it controls the FWE under
 
 A method that controls the FWE in the strong sense will result in a **Type I error for any component hypothesis no more than 5% of the time**.
 
-> 如果MCP在完全空配置下而不是在所有其他配置下控制FWE，则说它在较弱的意义上控制FWE。 尽管事实上“弱控制”和“强控制”与FWE结合使用，但您应注意，它们实际上指的是不同的错误率。 弱控制仅是指控制拒绝完全无效假设的可能性，并且允许类型I错误超过通常的5％值（例如，对于分量假设）。
-> 从严格意义上讲，控制FWE的方法将在不超过5％的时间内针对任何组件假设导致I型错误。
+
 
 
 #### Directional Decisions and Type III Error Rates
@@ -311,14 +300,14 @@ $$\begin{aligned}
 &L S D=t_{\alpha / 2} \sqrt{S_{c}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}
 \end{aligned}$$
 
-> LSD法单次比较的检验水准仍然为α。LSD法检验的灵敏度最高，但是会因为对比的频数增加使得第一类型错误概率增加。为解决该问题，便出现了Sidak法和Bonferroni法。
+> The test level of LSD method for single comparison is still α. The LSD test has the highest sensitivity, but increases the probability of Type 1 error as the frequency of comparisons increases. To solve this problem, the Sidak method and the Bonferroni method appeared.
 
 
 ### Šidák
 
-Sidak法的也是一种t检验，计算公式和LSD法的相同。但是Sidak法对a进行了调整。如果有k组, 对k组进行两两比较的次数为 $c=\frac{k(k-1)}{2}$ 那么做完c次比较，累积犯一类错误的概率为:
-$1-\left(1-\alpha_{a}\right)^{c}$ 令上面的公式值等于0.05, 由此可以反推出调整后的 $\alpha_{a} \quad$ 。例如进行6次事后比 较, 则Sidak法的=0.0085, 以 $\alpha_{a}$ 作为单次比较的显著性水平，显然 $\alpha_{a}$ 变小了。由于 $\alpha_{a}$ 减
-你，结论趋于接受无效假设, 因此该方法要比LSD法保守的多。
+The Sidak method is also a t test, and the calculation formula is the same as that of the LSD method. But the Sidak method adjusts for a. If there are k groups, the number of pairwise comparisons for the k groups is $c=\frac{k(k-1)}{2}$ Then after c comparisons, the cumulative probability of making a class of errors is:
+$1-\left(1-\alpha_{a}\right)^{c}$ makes the above formula equal to 0.05, which can be reversed to deduce the adjusted $\alpha_{a} \quad$ . For example, after 6 post-hoc comparisons, the Sidak method = 0.0085, and $\alpha_{a}$ is used as the significance level of a single comparison. Obviously, $\alpha_{a}$ becomes smaller. Since $\alpha_{a}$ subtracts
+You, the conclusion tends to accept the null hypothesis, so this method is much more conservative than the LSD method.
 
 The rationale for this method is the Boole inequality: 
 $$
@@ -507,8 +496,7 @@ unbalanced models as simple means can be used with simple models. Also, as Type 
 identical to Type I tests for simple models, so LS-means are the same as arithmetic means when
 the latter are appropriate.
 
-> 最小二乘均值或LS均值是“均衡”人群在特定类别内的预测平均值；因此，LS均值也称为“估计的人口边际均值”（Searle，Speed和Milliken，1980年）。 LS-均值对应于III型测试，其计算方式与I型测试相同。与III型测试一样，它们旨在与复杂的，可能不平衡的模型一起使用，因为简单的方法可以与简单的模型一起使用。此外，由于类型III的测试与简单模型的类型I的测试相同，因此在适当的情况下，LS均值与算术平均值相同。
-
+ 
 
 ```
 *** Selling Prices of Homes;
@@ -544,12 +532,11 @@ E 186.9 1946 4
 
 Remark:
 
-* 最小二乘均值根据参考表格（reference grid）
-    * 参考水平的组合构成参考表格
-    * 如果是因子，那么因子的每个水平作为参考水平；
-    * 如果是协变量，那么用协变量的总体均值作为参考水平；
-* 一旦建立了参考表格，最小二乘均值就是基于表格的简单预测，或者说是预测值列表的边际均值（marginal means）。
-
+* Least squares mean according to reference grid
+     * The combination of reference levels forms the reference table
+     * If it is a factor, then each level of the factor is used as a reference level;
+     * If it is a covariate, use the population mean of the covariate as the reference level;
+*Once the reference table is established, the least squares mean is a simple forecast based on the table, or the marginal means of a list of forecast values.
 
 ```{r Calculate the least squares mean in R,echo = T,message = FALSE, error = FALSE, warning = FALSE}
 library(lsmeans)
@@ -1500,7 +1487,7 @@ ods graphics off;
 
 A major difference is that the comparisons of interest in ANCOVA are differences of **LS-means rather than ordinary means**. This leads to some interesting graphical comparisons using regression functions. As in the unbalanced one-way case, the **standard errors of estimated LS-mean differences are not constant**, implying that simple range distributions (Tukey-type or Dunnett-type) cannot be used. Also, while for Dunnett comparisons there is an exact representation of the MaxT distribution in the case of unbalanced sample sizes without covariates, this is not the case when there are covariates. Hence, either simulation-based or analytic approximations must be used. 
 
-> 一个主要的区别是在ANCOVA中感兴趣的比较是LS-均值的差异，而不是普通方法。这导致使用回归函数进行一些有趣的图形比较。与不平衡单向情况一样，估计的LS均值差的标准误差也不是恒定的，这意味着不能使用简单的范围分布（Tukey型或Dunnett型）。同样，对于Dunnett比较而言，在样本量不平衡且没有协变量的情况下，可以精确地表示MaxT分布，而在有协变量的情况下，情况并非如此。因此，必须使用基于仿真的近似值或解析近似值。
+ 。
  
 
 ANCOVA model with interaction may be written as
@@ -1526,7 +1513,7 @@ There is an analytical **approximation** that works very well, providing critica
 
 
 
-<!-- 除非在MaxT统计量的构成差异之间的相关矩阵之间具有相关性具有一定的对称性，否则评估MaxT分布的临界值和调整的p值是很难的。 -->
+ 
 
 As has been discussed, evaluating the critical values and adjusted $p$ -values for the MaxT distribution is intractable unless the correlation matrix $\mathbf{R}=\mathbf{D}^{-1 / 2} \mathbf{C}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-} \mathbf{C} \mathbf{D}^{-1 / 2}$ between the constituent differences in the MaxT statistic has a certain symmetry, in which case the problem reduces to a feasible 2 -fold integral. 
 
@@ -1539,24 +1526,20 @@ The required symmetry is provided by complete balance in the case of Tukey's tes
 In the case of comparisons with a control, the $\mathbf{R}$ matrix has the factor analytic structure for exact computation of Dunnett's test if the $t_{i}$ 's are studentized differences between
 
 
-<!-- 在与控件进行比较的情况下，如果$t_ {i}$是学生之间的差异，则$\mathbf {R}$矩阵具有用于精确计算Dunnett检验的因子分析结构。 -->
+ 
 
 - $k-1$ means and a control mean, all uncorrelated. Note that it is not required that the variances of the estimated means (that is, the sample sizes) be equal.
 - $k-1$ LS-means and a control LS-mean from either a variance-balanced design, or a design in which the other factors are orthogonal to the treatment factor (for example, a randomized block design with proportional cell frequencies)
 
 However, other important situations that do not result in a correlation matrix $\mathbf{R}$ that has the symmetry required for exact computation include
-
-<!-- 但是，其他不会导致具有精确计算所需对称性的相关矩阵$ \ mathbf {R} $的其他重要情况包括：
-所有成对的差异，样本大小均不相等 
-当存在协变量时，LS均值和对照LS均值之间的差异。-->
+ 
 
 - all pairwise differences with unequal sample sizes
 - differences between LS-means and a control LS-mean when there are covariates.
 
 In these situations, exact calculation of critical values and adjusted $p$ -values is intractable in general. For comparisons with a control when the correlation $\mathbf{R}$ does not have a factor analytic structure, Hsu (1992) suggests approximating $\mathbf{R}$ with a matrix $\mathbf{R}^{\mathrm{F}}$ that does have such a structure and, correspondingly, approximating the MaxT critical values and $p$ -values by assuming that the true correlation matrix is $\mathbf{R}^{\mathrm{F}}$. The resulting critical values and adjusted $p$ values are calculated exactly for the correlation $\mathbf{R}^{\mathrm{F}}$, but are approximate for the true correlation
 R. (Approximating $\mathbf{R}$ in this way can also be viewed as computing "effective sample sizes" $\tilde{n}_{i}$ for the means and treating them as uncorrelated.)
-
-<!-- 在这些情况下，通常很难计算出临界值和调整后的$ p $值。为了在相关$ \ mathbf {R} $不具有因子分析结构的情况下与控件进行比较，Hsu（1992）建议使用矩阵$ \ mathbf {R} ^ {\ mathrm { F}} $具有这样的结构，并通过假设真实的相关矩阵为$ \ mathbf {R} ^ {\ mathrm {F}} $来近似地近似MaxT临界值和$ p $ -values。精确计算出相关系数$ \ mathbf {R} ^ {\ mathrm {F}} $的结果临界值和调整后的$ p $值，但对于真实相关性则近似R。 -->
+ 
 
 When you request Dunnett's test for LS-means (the PDIFF=CONTROL and
 ADJUST=DUNNETT options), the GLM procedure automatically uses Hsu's approximation

@@ -1,20 +1,9 @@
 # Proportion Response Regression
 
-
-
 ```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
 library('mindr')
-### text -> widget
-### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
-### mm(from = input, type = "text", root = "mindr")
-input <- rstudioapi::getSourceEditorContext()$path 
-## file.show(input) # Open the input file with the default program, if any
-input_txt <- readLines(input, encoding = "UTF-8")
-## Convert to mind map text, markdown outline, R script, and HTML widget ####
-mm_output <- mm(input_txt, 
-                output_type = c("widget"),
-                root = "")
-mm_output$widget
+input <- rstudioapi::getSourceEditorContext()$path
+mm(from = input, type = 'file', widget_name = '16_Proportion Response Regression.html', root = "")
 ```
 
 
@@ -30,11 +19,9 @@ Assume that the response variable y takes a continuous value in the interval (0,
 
 Beta regression is a technique that has been proposed for modelling of data for which the observations are limited to the open interval (0, 1)
 
-> Beta 回归是一种技术，已被提议用于对观测值限制在开区间 (0, 1) 的数据进行建模.
+> While proportional data are generated from continuous measurements (eg, percentage of vegetation cover, percentage of animal behavior time, percentage of biomass allocation), there is currently no well-established method. A common solution is to transform the data, mapping the data from 0 to an interval to an entire row of real numbers. After this transformation, the data can be processed using a series of statistical models that incorporate the assumption of normality. The arcsine transformation is usually used more, but the analysis by David Warton and Francis Hui shows that the logit transformation works better.
 
-> 而当比例数据由连续测量产生（例如，植被覆盖百分比，动物行为时间比例，生物量分配比例）时，目前还没有很成熟的方法。常用的解决方案是对数据进行变换，将数据从0到一个区间映射到整个实数行。进行该变换后，可以用一系列包含正态性假设的统计学模型对数据进行处理。反正弦转换通常使用得较多，但David Warton和Francis Hui的分析表明，logit转换效果更好。
-
->作为logit转换的替代， 使用β和Dirichlet回归，可以在比例数据原有的尺度上，使用连续或者分类变量，对其进行模拟。β回归适用于单个比例，而Dirichlet回归适用于两个以上的比例. 如果熟悉广义线性模型（GLM），那么也可以很好地理解β和Dirichlet回归模型。在这类模型里，预测变量与响应分布参数之间的关系是通过一个链接函数来定义的，通过这种方法可以确保所有预测值都有意义。
+> As an alternative to logit transformation, using beta and Dirichlet regression, proportional data can be modeled using continuous or categorical variables on their original scale. Beta regression works on a single proportion, while Dirichlet regression works on more than two proportions. If you are familiar with generalized linear models (GLMs), beta and Dirichlet regression models are also well understood. In this type of model, the relationship between the predictors and the parameters of the response distribution is defined by a link function, which ensures that all predicted values are meaningful.
 
 ### Model
 

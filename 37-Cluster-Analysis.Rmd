@@ -1,24 +1,7 @@
 # Cluster Analysis
 
 
-```{r,echo = F,message = FALSE, error = FALSE, warning = FALSE}
-library('mindr')
-### text -> widget
-### input <- c("# Chapter 1", "## Section 1.1", "### Section 1.1.1", "## Section 1.2", "# Chapter 2")
-### mm(from = input, type = "text", root = "mindr")
-input <- rstudioapi::getSourceEditorContext()$path 
-## file.show(input) # Open the input file with the default program, if any
-input_txt <- readLines(input, encoding = "UTF-8")
-## Convert to mind map text, markdown outline, R script, and HTML widget ####
-mm_output <- mm(input_txt, 
-                output_type = c("widget"),
-                root = "")
-mm_output$widget
-```
-
-
-
- 
+The goal of cluster analysis is to divide observations into groups (k groups) such that members within the same group are as similar as possible and members between groups are as different as possible. We will focus on the two most commonly used techniques: hierarchical clustering and K-means clustering. They are both very effective clustering methods, but they may not be suitable if you are analyzing large, complex datasets. So, we also study the partitioning around the center point, which uses as input a dissimilarity matrix based on the GoW metric. Finally I discuss a new technique that I have only recently learned and used - transforming data using random forests. The transformed data can be used as input for unsupervised learning.
 
 聚类分析的目标是将 观测分成若干组（k个组），使同一组内的成员尽可能相似，不同组间的成员尽可能不同. 我们将重点讨论两种最常用的技术：层次聚类和 K均值聚类。它们都是非常有效的聚类方法，但如果你要分析的是大规模的高复杂度的数据集， 它们可能不太适合。所以，我们还要研究围绕中心点的划分，它使用基于果瓦度量的相异度矩阵作为输入。最后讨论一种我最近才学习和使用的新技术——使用随机森林转换数据。转换后的数 据可以用作无监督学习的输入。
 
